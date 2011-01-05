@@ -13,7 +13,7 @@ To make it short, everything in JavaScript *acts* like an `Object`, expect for
 
     2.toString(); // syntax error
 
-The above doesn't work, but this is **not** because of the Number not being an
+The above doesn't work, but this is **not** because of the number not being an
 object (in fact JavaScript interprets it as an Object just fine), but a 
 mis-design in JavaScript's parser. Which tries to parse *anything* that follows a
 dot - which itself is preceded by whitespace or a number -  as a float.
@@ -38,7 +38,7 @@ which inherits from `Object` and has no *own properties*.
     };
 
 The above does not work in JavaScript engines which do not support EcmaScript 5.
-What happens is that `delete` is a keyword and therefore cannot be used as a key
+What happens is that `delete` is a *keyword* and therefore cannot be used as a key
 here. But you can simply work around this by using a string with the value
 `'delete'` instead of the plain token.
 
