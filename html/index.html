@@ -7,7 +7,7 @@
     </head>
 
     <body id="top">
-        <div id="nav"><h1>The Shed</h1><div id="navbox"><div><a href="#objects">Objects</a></div><div><a href="#the-prototype">The Prototype</a></div><div><a href="#hasownproperty">hasOwnProperty</a></div><div><a href="#the-for-in-loop">The For In Loop</a></div><div><a href="#arrays">Arrays</a></div><div><a href="#the-array-constructor">The Array Constructor</a></div><div><a href="#functions-and-closures">Functions and Closures</a></div><div><a href="#function-arguments">Function Arguments</a></div><div><a href="#pass-by-value-and-references">Pass By Value and References</a></div><div><a href="#more-on-scopes">More on Scopes</a></div><div><a href="#constructors">Constructors</a></div><div><a href="#the-typeof-operator">The typeof operator</a></div><div><a href="#the-instanceof-operator">The instanceof operator</a></div><div><a href="#equality-in-javascript">Equality in JavaScript</a></div><div><a href="#null-and-undefined">Null and Undefined</a></div><div><a href="#automatic-semicolon-insertion">Automatic Semicolon Insertion</a></div></div><div id="footer"><p>Copyright (c) 2011 Ivo Wetzel</p></div> </div>
+        <div id="nav"><h1>The Shed</h1><div id="navbox"><div><a href="#objects">Objects</a></div><div><a href="#the-prototype">The Prototype</a></div><div><a href="#hasownproperty">hasOwnProperty</a></div><div><a href="#the-for-in-loop">The For In Loop</a></div><div><a href="#arrays">Arrays</a></div><div><a href="#the-array-constructor">The Array Constructor</a></div><div><a href="#functions-and-closures">Functions and Closures</a></div><div><a href="#function-arguments">Function Arguments</a></div><div><a href="#pass-by-value-and-references">Pass By Value and References</a></div><div><a href="#more-on-scopes">More on Scopes</a></div><div><a href="#expressions-and-statements">Expressions and Statements</a></div><div><a href="#how-this-works-in-javascript">How this works in JavaScript</a></div><div><a href="#constructors">Constructors</a></div><div><a href="#the-typeof-operator">The typeof operator</a></div><div><a href="#the-instanceof-operator">The instanceof operator</a></div><div><a href="#equality-in-javascript">Equality in JavaScript</a></div><div><a href="#null-and-undefined">Null and Undefined</a></div><div><a href="#automatic-semicolon-insertion">Automatic Semicolon Insertion</a></div></div><div id="footer"><p>Copyright (c) 2011 Ivo Wetzel</p></div> </div>
         <div id="main"><h1>JavaScript Garden</h1><p><strong>JavaScript Garden</strong> is a collection of documentation about the most quirky
 parts of the JavaScript language. </p><h3 class="section" id="objects">Objects<a href="#top">^</a></h3><div class="sub"><p>To make it short, everything in JavaScript <em>acts</em> like an <code>Object</code>, expect for 
 <code>null</code> and <code>undefined</code>. This means that all those values inherit from 
@@ -438,7 +438,96 @@ function to be evaluated works just as well, like for example <code>+function(){
 <p><strong>Best Practice:</strong> Always use the anonymous wrapper to encapsulate your code in
 case there's any chance it might get used by someone else in their project. 
 Also never define any variables in the global namespace, always use <code>var</code> to
-limit the scope of your variables.</p></div><h3 class="section" id="constructors">Constructors<a href="#top">^</a></h3><div class="sub"><p>Constructors in JavaScript are another thing many people get wrong, their
+limit the scope of your variables.</p></div><h3 class="section" id="expressions-and-statements">Expressions and Statements<a href="#top">^</a></h3><div class="sub"><p>In JavaScript there's a important difference between expressions and statements.</p>
+
+<p><strong>Example</strong></p>
+
+<pre><code>foo(); // this works just like expected
+function foo() {}                    
+
+bar(); // this raises a TypeError
+console.log(bar); // No ReferenceError but prints 'undefined'
+var bar = function() {}
+</code></pre>
+
+<p>In the above example the call to <code>foo</code> works due to the fact that <code>function
+foo()</code> is a <em>statement</em>, but the call to <code>bar</code> fails since <code>var bar
+= function()</code> is an <em>expression</em>.</p>
+
+<p>Before the code is run, JavaScript executes all <em>statements</em>, since <code>var</code> is
+a statement, the variable <code>bar</code> will get created but the corresponding
+assignment expression will not yet get evaluated, therefore <code>bar</code> defaults to
+the value of <code>undefined</code>.</p>
+
+<p><strong>Another Example</strong></p>
+
+<pre><code>function test() {
+    if (foo) {
+        bar = 2;
+
+    } else {
+        var bar = 1;
+    }
+    return foo;
+}
+
+if (false) {
+    var foo = 1;
+}
+</code></pre>
+
+<p>Remember, there's <strong>no</strong> block scope in JavaScript, therefore the above will
+<em>not</em> assign <code>2</code> to the global variable <code>bar</code> but to the local <code>bar</code> of <code>test</code>.
+Also, while the if body never gets executed, the variable <code>foo</code> still gets
+created and defaults to <code>undefined</code>.</p></div><h3 class="section" id="how-this-works-in-javascript">How this works in JavaScript<a href="#top">^</a></h3><div class="sub"><p><code>this</code> in JavaScript is different from other languages, so many people get 
+confused by it, but there are only three different cases in which the value of
+<code>this</code> gets set.</p>
+
+<pre><code>// function case
+foo(); // this inside foo will refer to the global object
+
+// method case
+test.foo(); // this inside foo will refer to test
+
+// constructor case
+new foo(); // this inside foo will refer to the newly created object
+</code></pre>
+
+<p>These are <strong>all</strong> the possible values of <code>this</code>, it also gets clear that <code>this</code>
+will never refer to an outer function, due to the implicit binding to the
+<code>global</code> object in case of a plain function call.</p>
+
+<p><strong>Example</strong></p>
+
+<pre><code>Foo.method = function() {
+    function test() {
+        console.log(this); // this is set to the global object
+    }
+    test();
+}
+</code></pre>
+
+<p>Another common misconception is that something like this would work:</p>
+
+<pre><code>var str = 'Hello World';
+var ord = str.charCodeAt;
+
+var out = '';
+for(var i = 0, l = str.length; i &lt; l; i++) {
+    out += String.fromCharCode(ord(i));
+}
+console.log(out); // prints the string represanation of the global object
+</code></pre>
+
+<p>Since the value of <code>this</code> never gets determined <em>before</em> the actual call, the
+above call to <code>ord</code> will work like a plain function call. Therefore <code>charCodeAt</code> 
+will not use the string <code>Hello World</code>, but the results of calling <code>toString()</code> 
+on the <code>global</code> object.</p>
+
+<p>The late binding of <code>this</code> might seem like a bad thing but in fact it is what
+makes the prototypical inheritance work. The only <strong>real</strong> problem here is the
+implicit setting of <code>this</code> to the <code>global</code> object when doing a plain function
+call, which is never of any use.</p></div><h3 class="section" id="constructors">Constructors<a href="#top">^</a></h3><div class="sub"><p>Constructors in JavaScript are another thing many people get wrong, their
 workings are pretty simple though.</p>
 
 <p>Any function call that's preceded by the <code>new</code> keyword acts as a constructor.</p>
