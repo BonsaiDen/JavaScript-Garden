@@ -7,7 +7,7 @@ import os
 files = [x.strip() for x in open('nav.md').readlines() if x.strip() != '' ]
 
 def to_markdown(data):
-    with open('tmpmd~', 'wb') as f:
+    with open('md.tmp', 'wb') as f:
         f.write(data.encode('utf-8'))
 
     html = subprocess.getoutput('./tools/Markdown.pl md.tmp')
