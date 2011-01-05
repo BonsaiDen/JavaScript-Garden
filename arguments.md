@@ -10,9 +10,11 @@ The `arguments` `Object` kinda works like an `Array` but does not inherit from
 a normal `for` loop, it does **not** have methods like `slice`, `push`, `pop`
 etc.
 
-There are cases were you need to convert it into a normal array, then you have
-to use the following line of code:
+If you need to have `arguments` work like a *real* `Array` you need to convert
+it: 
     
     Array.prototype.slice.call(arguments);
 
-.....................
+This will return a new `Array` containing all the elements from the `arguments`
+`Object`.
+
