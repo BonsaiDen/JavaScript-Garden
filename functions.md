@@ -45,9 +45,9 @@ following does **not** work:
         count = 1337;
     };
 
-This will raise a `ReferenceError`, complaining about `count` not being defined.
-Which makes sense, since `foo.hack` was not defined inside the scope of
-`Counter`.
+This will **not** change the variable `count` that's inside of `Counter` since 
+`foo.hack` was not defined in that scope, instead, it will create or override the
+global variable `count`.
 
 **Best Practice:** Keep in mind that every time you return a function it's
 already a closure, you can use this to hide away internals or as in the above
