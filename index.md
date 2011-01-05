@@ -1,4 +1,4 @@
 # JavaScript Garden
 
-Everything you need to know for raising precious JavaScript flowers.
-
+**JavaScript Garden** is a collection of documentation about the most quirky
+parts of the JavaScript language. 
