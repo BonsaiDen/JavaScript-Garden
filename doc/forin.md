@@ -1,6 +1,6 @@
 ### The For In Loop
 
-Just like the `in` operator, the `for in` loop also does traverse the prototype
+Just like the `in` operator, the `for in` loop does also traverse the prototype
 chain when iterating over an object's properties. Although it will *not* include
 properties that have their `enumerable` attribute set to false e.g. the `length`
 property of an array.
