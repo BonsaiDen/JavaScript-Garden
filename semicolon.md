@@ -12,15 +12,16 @@ encounters a parse error due to a missing semicolon.
     }
 
 This will **not** return an object which has a property called `foo`, it will
-instead return `undefined`.
+instead simply return `undefined`.
 
 **How the parser "fixes" it**
 
-    return // parse error, expected semi colon, automatic insertion happens
+    return // parse error, expected a semicolon, automatic insertion happens
     { // while JS has no block scope, it handles blocks just fine
-        foo: 1 // this doesn't brake either, foo is seen as a label
-               // JavaScript does also support single expression evaluation so 
-               // the the number evaluates to 1 just fine
+        foo: 1 // this doesn't break either, foo is seen as a label here
+               // JavaScript does support single expression evaluation so 
+               // the number evaluates to 1 just fine
+
     } // another automatic insertion of a semicolon happens here
 
 **The results**
