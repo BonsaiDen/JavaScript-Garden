@@ -35,12 +35,12 @@ Another common misconception is that something like this would work:
     for(var i = 0, l = str.length; i < l; i++) {
         out += String.fromCharCode(ord(i));
     }
-    console.log(out); // prints '[object DOM' in Chrome
+    console.log(out); // prints the string represanation of the global object
 
 Since the value of `this` never gets determined *before* the actual call, the
-above call to `ord` will work like a plain function call. Therefore not
-`charCodeAt` will not use the string `Hello World`, but the results of 
-`window.toString()`.
+above call to `ord` will work like a plain function call. Therefore `charCodeAt` 
+will not use the string `Hello World`, but the results of calling `toString()` 
+on the `global` object.
 
 The late binding of `this` might seem like a bad thing but in fact it is what
 makes the prototypical inheritance work. The only **real** problem here is the
