@@ -31,8 +31,16 @@ Core JavaScript Guide
 
 ### The `instanceof` operator
 
+### Equality
+
 ### Null and Undefined
 
+### Automatic Semicolon Insertion
+
+
+
+TODO
+----
 
 ### Strings
 
@@ -47,22 +55,9 @@ Core JavaScript Guide
 
 - Converting to a string
 
-### Booleans
-
-- Truthfulness
-- Difference between `==` and `===` operators
-    - Type coercion
-
-- Converting to a bool value via double negation `!!`
-
-### Null and Undefined
-
-- Why both?
-    - What is `null`?    
-    - What is `undefined`?
-
 ### Others
 
 - The Ternary operator `? :`
 - Default values via the use of the logical `||`
+- Converting to a bool value via double negation `!!`
  
