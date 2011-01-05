@@ -1,0 +1,135 @@
+body * {
+    padding: 0px;
+    margin: 0px;
+    font: 11px Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+    line-height: 1.4em;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+p {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+a {
+    color: #444444;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #222222;
+    border-bottom: 2px solid #444444;
+}
+
+#nav {
+    float: right;
+    width: 300px;
+    position: fixed;
+    right: 0px;
+    margin-left: 12px;
+}
+
+#navbox {
+    overflow: auto;
+    padding-bottom: 20px;
+}
+
+#nav div {
+    margin-top: 6px;
+}
+
+#nav div a:before {
+    content: "- ";
+}
+
+#footer {
+    position: fixed;
+    bottom: 0px;
+    background-color: #FFFFFF;
+    width: 300px;
+}
+
+#footer p {
+    margin-bottom: 4px;
+}
+
+#footer p:before {
+    content: "~ ";
+}
+
+#footer p:after {
+    content: " ~";
+}
+
+#main {
+    margin: 0px 16px;
+    padding-right: 304px;
+}
+
+#main .section {
+    margin-top: 4px;
+}
+
+#main .sub {
+    margin-bottom: 48px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 20px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+    border-bottom: 3px solid #DADADA;
+}
+
+h3 {
+    padding-top: 18px;
+    font-size: 15px;
+    padding-bottom: 3px;
+    border-bottom: 3px solid #DADADA;
+}
+
+h3 a {
+    font-size: 20px;
+    line-height: 15px;
+    top: 5px;
+    position: relative;
+    margin-left: 8px;
+    color: #CCCCCC;
+}
+
+h3 a:hover {
+    border: none;
+};
+
+
+pre, code {
+    background-color: #F0F0F0;
+    color: #303030;
+    padding: 0 0.2em;
+}
+
+pre {
+    color: #707070;
+    margin: 1em 0;
+    padding: 0.3em;
+    line-height: 1.5em;
+    overflow: auto;
+    border: 1px solid #DEDEDE;
+}
+
+pre > code {
+    padding: 0;
+}
+
+strong {
+    font-weight: bolder;
+}
