@@ -580,9 +580,9 @@ latter one works more like a factory.</p>
 <p><strong>Best Practice:</strong> Make sure you know whether the <code>constructor</code> you're calling
 requires the <code>new</code> keyword. Since there's no side effect of using <code>new</code> for 
 factories you can use <code>new</code> for both. But in the end you should always test your 
-code to prevent such subtle mistakes.</p></div><h3 class="section" id="the-typeof-operator">The typeof operator<a href="#top">^</a></h3><div class="sub"><p>To make it short, both <code>typeof</code> and <code>instanceof</code> are <strong>completely broken</strong>,
-although <code>instanceof</code> still has its limited uses, but first let's take a look at
-this nice table:</p>
+code to prevent such subtle mistakes.</p></div><h3 class="section" id="the-typeof-operator">The typeof operator<a href="#top">^</a></h3><div class="sub"><p>To make it short, both <code>typeof</code> and <code>instanceof</code> are near to being 
+<strong>completely broken</strong>, although <code>instanceof</code> still has its limited uses, 
+but first let's take a look at this nice table:</p>
 
 <pre><code>Value               Class      Type
 -------------------------------------
@@ -624,6 +624,17 @@ you can see this is anything but consistent.</p>
 is('String', 'test'); // true
 is('String', new String('test')); // true
 </code></pre>
+
+<p>So before you set up your build tool and pre commit hooks to warn you about 
+every occurrence of <code>typeof</code>, let me tell you that there is actually one 
+<strong>and only one</strong> legitimate use for it:</p>
+
+<pre><code>typeof foo !== 'undefined'
+</code></pre>
+
+<p>The above will check whether <code>foo</code> was actually declared or not, since just 
+referencing it would result in a <code>ReferenceError</code>. But besides that, there's no
+good use for <code>typeof</code>.</p>
 
 <p><strong>Best Practice:</strong> If you're dealing with built in types, always use the <code>Class</code> 
 value. It's the only <em>reliable</em> and cross engine way of getting the type of an 
