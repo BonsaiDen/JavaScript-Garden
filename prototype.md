@@ -20,7 +20,9 @@ Common mistakes arise from the fact how the prototype chain works.
 
     function Bar() {
     }
-    Bar.prototype = Foo;
+
+    // Set Bar's prototype to the prototype object of Foo
+    Bar.prototype = Foo.prototype;
 
     var test = new Bar() // create a new bar instance
 
@@ -28,6 +30,10 @@ The above `test` object will inherit from both `Bar.prototype` and
 `Foo.prototype` so it will have access to the function `method` that was defined
 on `Foo`, but it will not have access to the value property of a `Foo` instance
 since `Foo` itself never gets called.  
+
+**Note:** Don't use `Bar.property = Foo;` this will **no**t point to `Foo`'s
+prototype but rather to the function object `Foo`, so the chain will go over
+`Function.prototype` in this case.
 
 If you try to access a property of an object, JavaScript will search the
 prototype chain **upwards** until it finds a property with the specified name,
@@ -38,7 +44,7 @@ hasn't found the property it will return `undefined`.
 
     Object.prototype: {toString: ... /* etc. */};
         Foo.prototype: {method: ...};
-            Bar.prototype: Foo
+            Bar.prototype: Foo.prototype
                 Bar.method()
 
 **Note:** You can assign *any* `object` to the prototype value, so consider
