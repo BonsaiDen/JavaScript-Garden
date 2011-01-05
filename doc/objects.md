@@ -1,6 +1,6 @@
 ### Objects
 
-To make it short, everything in JavaScript *acts* like an `Object`, expect for 
+To make it short, everything in JavaScript *acts* like an `Object`, except for 
 `null` and `undefined`. This means that all those values inherit from 
 `Object.prototype` (yet another reason **not** to mess with it).
 
