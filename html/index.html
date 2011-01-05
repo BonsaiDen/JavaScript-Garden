@@ -8,7 +8,8 @@
 
     <body id="top">
         <div id="nav"><h1>The Shed</h1><div id="navbox"><div><a href="#objects">Objects</a></div><div><a href="#the-prototype">The Prototype</a></div><div><a href="#hasownproperty">hasOwnProperty</a></div><div><a href="#the-for-in-loop">The For In Loop</a></div><div><a href="#arrays">Arrays</a></div><div><a href="#the-array-constructor">The Array Constructor</a></div><div><a href="#functions-and-closures">Functions and Closures</a></div><div><a href="#function-arguments">Function Arguments</a></div><div><a href="#pass-by-value-and-references">Pass By Value and References</a></div><div><a href="#more-on-scopes">More on Scopes</a></div><div><a href="#constructors">Constructors</a></div><div><a href="#the-typeof-operator">The typeof operator</a></div><div><a href="#the-instanceof-operator">The instanceof operator</a></div><div><a href="#equality-in-javascript">Equality in JavaScript</a></div><div><a href="#null-and-undefined">Null and Undefined</a></div><div><a href="#automatic-semicolon-insertion">Automatic Semicolon Insertion</a></div></div><div id="footer"><p>Copyright (c) 2011 Ivo Wetzel</p></div> </div>
-        <div id="main"><h1>JavaScript Garden</h1><p>Everything you need to know for raising precious JavaScript flowers.</p><h3 class="section" id="objects">Objects<a href="#top">^</a></h3><div class="sub"><p>To make it short, everything in JavaScript <em>acts</em> like an <code>Object</code>, expect for 
+        <div id="main"><h1>JavaScript Garden</h1><p><strong>JavaScript Garden</strong> is a collection of documentation about the most quirky
+parts of the JavaScript language. </p><h3 class="section" id="objects">Objects<a href="#top">^</a></h3><div class="sub"><p>To make it short, everything in JavaScript <em>acts</em> like an <code>Object</code>, expect for 
 <code>null</code> and <code>undefined</code>. This means that all those values inherit from 
 <code>Object.prototype</code> (yet another reason <strong>not</strong> to mess with it).</p>
 
@@ -162,7 +163,7 @@ other way to exclude things that are not defined on the object itself but rather
 somewhere on it's prototype chain.</p>
 
 <p><strong>Best Practice:</strong> Always use <code>hasOwnProperty</code> when checking for properties on
-objects.</p></div><h3 class="section" id="the-for-in-loop">The For In Loop<a href="#top">^</a></h3><div class="sub"><p>Just like the <code>in</code> operator, the <code>for in</code> loop also does traverse the prototype
+objects.</p></div><h3 class="section" id="the-for-in-loop">The For In Loop<a href="#top">^</a></h3><div class="sub"><p>Just like the <code>in</code> operator, the <code>for in</code> loop does also traverse the prototype
 chain when iterating over an object's properties. Although it will <em>not</em> include
 properties that have their <code>enumerable</code> attribute set to false e.g. the <code>length</code>
 property of an array.</p>
