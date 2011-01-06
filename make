@@ -51,4 +51,5 @@ with open('index.html', 'wb') as f:
                             footer = foot_html).encode('utf-8'))
 
 shutil.copyfile('template/garden.css', 'garden.css')
+os.unlink('md.tmp')
 
