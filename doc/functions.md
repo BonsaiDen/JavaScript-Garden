@@ -1,55 +1,63 @@
-### Functions and Closures
+### Functions and Statements
 
-Functions in JavaScript are, yet again, Objects. This makes them extremely
-powerful, you can for example, pass them around as parameters to provide 
-callbacks to other methods.
+Functions in JavaScript are first class objects, that means they can be passed
+around like any other value. One common use of that feature is to pass
+*anonymous funtions* as callbacks to other functions. 
 
-But what really makes them powerful is the fact that JavaScript supports
-**Closures**.
+There are a two of different ways do define functions in JavaScript.
 
-Closures mean that scopes *always* have access to the outer scope they were
-defined in, and since JavaScript only has one type of scope, namely the function
-one, one can use them to great good.
+**The Function Statement**
 
-**The Classic "private" Example**
-
-    function Counter(start) {
-        var count = start;
-        return {
-            increment: function() {
-                count++;
-            },
-
-            get: function() {
-                return count;
-            }
-        }
+    function foo() { 
     }
 
-    var foo = new Counter(4);
-    foo.increment();
-    foo.get(); // 5
+The above function gets created **before** any actual code is run, therefore its
+available everywhere in the scope it was defined in from the start.
 
-In the above example we return **two closures**, both the function `increment`
-as well as `get` keep a reference to the `count` variable defined in the
-constructor.
+**Example**
 
-One **cannot** access `count` from the outside, the only way to interact with it
-is via the two "closured" functions.
+    foo(); // Works because foo was created before this code runs
+    function foo() {
+    }
 
-Remember, closures work by keeping a reference to their outer scopes, so the
-following does **not** work:
+**The Function Expression**
 
-    var foo = new Counter(4);
-    foo.hack = function() {
-        count = 1337;
+    var foo = function() {
     };
 
-This will **not** change the variable `count` that's inside of `Counter` since 
-`foo.hack` was not defined in that scope, instead, it will create or override the
-global variable `count`.
+The above assign the unnamed and therefore *anonymous* function to the variable
+`foo`. But it does **not** do so before the code is run. 
 
-**Best Practice:** Keep in mind that every time you return a function it's
-already a closure, you can use this to hide away internals or as in the above
-example, use it to emulate private variables.
+**Example**
+
+    foo; // 'undefined'
+    foo(); // this raises a TypeError
+    var foo = function() {
+    };
+
+The above may seem strange at first, but `var` is a statement, so the variable
+`foo` will once again get created before any code is run. But `=` is an
+expression, therefore `foo` does not get assigned any value, so it defaults to 
+`undefined`.
+
+**The var Statement**
+
+    function test() {
+        if (foo) {
+            bar = 2;
+
+        } else {
+            var bar = 1;
+        }
+        return foo;
+    }
+
+    if (false) {
+        var foo = 1;
+    }
+
+Since there's **no** [block scope](#more-on-scopes) in JavaScript, therefore 
+the above will **not** assign `2` to the *global* variable `bar`, rather it 
+assigns it to the *local* variable `bar` of `test`. Also, while the if body never
+gets executed, the variable `foo` still gets created and defaults to `undefined`.
 

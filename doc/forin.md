@@ -1,16 +1,19 @@
 ### The For In Loop
 
 Just like the `in` operator, the `for in` loop does also traverse the prototype
-chain when iterating over an object's properties. Although it will *not* include
-properties that have their `enumerable` attribute set to false e.g. the `length`
-property of an array.
+chain when iterating over the properties of an `Object`.
 
-So as you can already imagine you have to use `hasOwnProperty` in order to make
-the iteration over an object's own properties work. Also, since `for in`
-iterates over *anything* that's on the prototype chain, it will get slower for
-more complex cases of inheritance.
+> **Note:** The `for in` loop it will **not** iterate over any properties that have
+> their `enumerable` attribute set to `false`, for example the `length`property of 
+> an `Array`.
 
-**Broken Example**
+Since you cannot change the behavior of the `for in` loop itself, you have to
+filter out the unwanted properties in the loop body by using 
+[`hasOwnProperty`](#hasownproperty). It should also be noted that due to its
+nature of traversing the complete prototype chain, the `for in` loop can get
+incredible slow for complex inheritance structures.
+
+**Example**
 
     Object.prototype.bar = 1; // poisoning the Object.prototype, NEVER do this
     var foo = {moo: 2};
@@ -18,9 +21,9 @@ more complex cases of inheritance.
         console.log(i);
     }
 
-This results in both `bar` and `moo` being printed out.
+The above code results in both `bar` and `moo` being printed out.
 
-**Fixed Version**
+**Example**
 
     for(var i in foo) { // still the foo from above
         if (foo.hasOwnProperty(i)) {
@@ -28,15 +31,15 @@ This results in both `bar` and `moo` being printed out.
         }
     }
 
-This version is the **correct** one, it will *only* print `moo`. If you don't use 
-`hasOwnProperty`, your code is prone to errors when the native prototypes have
-been extended.
+This version is the only correct one, it will **only** print out `moo`. If you 
+don't use  `hasOwnProperty`, your code is prone to errors when the native 
+prototypes - for example `Object.prototype` have been extended.
 
-For example the `Prototype.js` JavaScript Framework **does** do extend the 
-prototypes of built in objects. So if your code ever ends up on a page which 
-includes it (Hint: Ruby on Rails defaults to Prototype.js) and you're not using 
-`hasOwnProperty`, all hell will break loose.
+One widely used Framework which does this, is **Prototype.js**. If your code ever
+ends up on a site which includes that Framework, and it does **not** use
+`hasOwnProperty`, it is basically **guaranteed** to break.
 
-**Best Practice:** Always use `hasOwnProperty` never make any assumptions on the
-built in prototypes being extended or not.
+#### Best Practices
+Always use `hasOwnProperty`. Never make any assumptions on the built in 
+prototypes being extended or not. 
 

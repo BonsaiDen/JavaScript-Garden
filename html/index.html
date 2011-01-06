@@ -7,63 +7,59 @@
     </head>
 
     <body id="top">
-        <div id="nav"><h1>The Shed</h1><div id="navbox"><div><a href="#objects">Objects</a></div><div><a href="#the-prototype">The Prototype</a></div><div><a href="#hasownproperty">hasOwnProperty</a></div><div><a href="#the-for-in-loop">The For In Loop</a></div><div><a href="#arrays">Arrays</a></div><div><a href="#the-array-constructor">The Array Constructor</a></div><div><a href="#functions-and-closures">Functions and Closures</a></div><div><a href="#function-arguments">Function Arguments</a></div><div><a href="#pass-by-value-and-references">Pass By Value and References</a></div><div><a href="#more-on-scopes">More on Scopes</a></div><div><a href="#expressions-and-statements">Expressions and Statements</a></div><div><a href="#how-this-works-in-javascript">How this works in JavaScript</a></div><div><a href="#constructors">Constructors</a></div><div><a href="#the-typeof-operator">The typeof operator</a></div><div><a href="#the-instanceof-operator">The instanceof operator</a></div><div><a href="#equality-in-javascript">Equality in JavaScript</a></div><div><a href="#null-and-undefined">Null and Undefined</a></div><div><a href="#automatic-semicolon-insertion">Automatic Semicolon Insertion</a></div></div><div id="footer"><p>Copyright (c) 2011 Ivo Wetzel</p></div> </div>
+        <div id="nav"><h1>Gardening Topics</h1><div id="navbox"><div><a href="#objects">Objects</a></div><div><a href="#the-prototype">The Prototype</a></div><div><a href="#hasownproperty">hasOwnProperty</a></div><div><a href="#the-for-in-loop">The For In Loop</a></div><div><a href="#arrays">Arrays</a></div><div><a href="#the-array-constructor">The Array Constructor</a></div><div><a href="#functions-and-statements">Functions and Statements</a></div><div><a href="#closures-and-references">Closures and References</a></div><div><a href="#function-arguments">Function Arguments</a></div><div><a href="#more-on-scopes">More on Scopes</a></div><div><a href="#how-this-works-in-javascript">How this works in JavaScript</a></div><div><a href="#constructors">Constructors</a></div><div><a href="#the-typeof-operator">The typeof operator</a></div><div><a href="#the-instanceof-operator">The instanceof operator</a></div><div><a href="#equality-in-javascript">Equality in JavaScript</a></div><div><a href="#null-and-undefined">Null and Undefined</a></div><div><a href="#automatic-semicolon-insertion">Automatic Semicolon Insertion</a></div></div><div id="footer"><p>Copyright (c) 2011 Ivo Wetzel</p></div> </div>
         <div id="main"><h1>JavaScript Garden</h1><p><strong>JavaScript Garden</strong> is a collection of documentation about the most quirky
-parts of the JavaScript language. </p><h3 class="section" id="objects">Objects<a href="#top">^</a></h3><div class="sub"><p>To make it short, everything in JavaScript <em>acts</em> like an <code>Object</code>, expect for 
-<code>null</code> and <code>undefined</code>. This means that all those values inherit from 
-<code>Object.prototype</code> (yet another reason <strong>not</strong> to mess with it).</p>
+parts of the JavaScript language. </p><h3 class="section" id="objects">Objects<a href="#top">^</a></h3><div class="sub"><p>Everything in JavaScript - except for <code>null</code> and <code>undefined</code> -  <strong>acts</strong> like an 
+<code>Object</code>. This means that all types inherit from <code>Object.prototype</code> (yet another 
+reason <strong>not</strong> to mess with it).</p>
 
 <p><strong>Examples</strong></p>
 
 <pre><code>false.toString() // 'false'
 [1, 2, 3].toString(); // '1,2,3'
+2.toString(); // syntax error
 </code></pre>
 
-<p><strong>Common Mistakes</strong></p>
-
-<pre><code>2.toString(); // syntax error
-</code></pre>
-
-<p>The above doesn't work, but this is <strong>not</strong> because of the number not being an
-object (in fact JavaScript interprets it as an Object just fine), but a 
-mis-design in JavaScript's parser. Which tries to parse <em>anything</em> that follows a
-dot - which itself is preceded by whitespace or a number -  as a float.</p>
+<p>The last example doesn't work, but this is <strong>not</strong> because the number literal 
+cannot be used like an object, it's because of a mis-design in JavaScript's 
+parser. Which tries to parse <strong>anything</strong> that follows a dot - which itself is 
+preceded by whitespace or a number literal - as a floating point number.</p>
 
 <p>You can work around this by either inserting a space <code>2. toString()</code> or using
 parenthesis <code>(2).toString()</code>.</p>
 
-<p>Objects can also <em>act</em> like a hashmap in JavaScript by simply mapping <em>keys</em> to
+<p>Objects can also <strong>act</strong> like a hashmap in JavaScript by simply mapping <em>keys</em> to
 <em>values</em>. Using the curly brace notation <code>{}</code> one can create a new plain object, 
-which inherits from <code>Object</code> and has no <em>own properties</em>.</p>
+which inherits from <code>Object.prototype</code> and has no <a href="#hasownproperty">own
+properties</a>.</p>
 
-<p><strong>Examples</strong></p>
+<p><strong>Example</strong></p>
 
 <pre><code>var foo = {}; // a new empty object
 var bar = {test: 12}; // a new object which has one property called 'test'
                       // which value is 12
-</code></pre>
 
-<p><strong>Common Mistakes</strong></p>
-
-<pre><code>var foo = {
-    delete: function() {} // syntax error
+var test = {
+    delete: function() {}
 };
 </code></pre>
 
-<p>The above does not work in JavaScript engines which do not support EcmaScript 5.
-What happens is that <code>delete</code> is a <em>keyword</em> and therefore cannot be used as a key
-here. But you can simply work around this by using a string with the value
-<code>'delete'</code> instead of the plain token.</p>
+<p>The above definition of <code>test</code> raises a <code>SyntaxError</code> in JavaScript engines which 
+do not support the upcoming EcmaScript 5 standard. What happens is that <code>delete</code> 
+is a <em>keyword</em> and therefore cannot be used as a key here (another mis-design of
+the  parser). But you can simply work around this by using a string with the 
+value of <code>'delete'</code> instead of the plain literal.</p></div><h3 class="section" id="the-prototype">The Prototype<a href="#top">^</a></h3><div class="sub"><p>JavaScript does not feature the classical inheritance model, instead it uses a 
+<em>prototypical</em> one. This might at first seem like a limitation, but it's not. a 
+<em>prototypical</em> inheritance model is in fact more powerful than the classical
+one, for example you can emulate the classical model with it, but you can't do it
+the other way around.</p>
 
-<p>This is yet another mis-design in JavaScript's parser that you to watch out for.</p></div><h3 class="section" id="the-prototype">The Prototype<a href="#top">^</a></h3><div class="sub"><p>JavaScript does not feature classical inheritance, but it has prototypical one.</p>
+<p>Due to the fact that JavaScript is practically the only language in that's both in
+widespread <strong>and</strong> uses prototypical inheritance, it takes some time to adjust
+to the differences between the two models. Inheritance in JavaScript is done by
+using <em>prototype chains</em>.</p>
 
-<p><strong>In short:</strong> JavaScript's Model is more powerful (you can for example implement 
-classical inheritance with it, you can't do this the other way around), but also 
-more error prone.</p>
-
-<p>Common mistakes arise from the fact how the prototype chain works.</p>
-
-<p><strong>Examples</strong></p>
+<p><strong>Example</strong></p>
 
 <pre><code>function Foo() {
     this.value = 42;
@@ -83,18 +79,21 @@ var test = new Bar() // create a new bar instance
 </code></pre>
 
 <p>The above <code>test</code> object will inherit from both <code>Bar.prototype</code> and
-<code>Foo.prototype</code> so it will have access to the function <code>method</code> that was defined
+<code>Foo.prototype</code>, so it will have access to the function <code>method</code> that was defined
 on <code>Foo</code>, but it will not have access to the value property of a <code>Foo</code> instance
 since <code>Foo</code> itself never gets called.  </p>
 
-<p><strong>Note:</strong> Don't use <code>Bar.property = Foo;</code> this will <strong>no</strong>t point to <code>Foo</code>'s
-prototype but rather to the function object <code>Foo</code>, so the chain will go over
-<code>Function.prototype</code> in this case.</p>
+<blockquote>
+  <p><strong>Note:</strong> Don't use <code>Bar.property = Foo;</code> this will <strong>not</strong> point to <code>Foo</code> its
+prototype (therefore <code>method</code> is not on the prototype chain), but rather to the 
+function object <code>Foo</code>, so the chain will go over <code>Function.prototype</code> in this 
+case.</p>
+</blockquote>
 
-<p>If you try to access a property of an object, JavaScript will search the
-prototype chain <strong>upwards</strong> until it finds a property with the specified name,
-when it reaches the top of the chain, namely <code>Object.prototype</code>, and still
-hasn't found the property it will return <code>undefined</code>.</p>
+<p>If you try to access a property of an <code>Object</code>, JavaScript will traverse the
+prototype chain <strong>upwards</strong> until it finds a property with the specified name.
+When it reaches the top of the chain - namely <code>Object.prototype</code> - and still
+hasn't found the property it will return the value <code>undefined</code>.</p>
 
 <p><strong>The Prototype Chain in the above Example</strong></p>
 
@@ -104,8 +103,10 @@ hasn't found the property it will return <code>undefined</code>.</p>
             Bar.method()
 </code></pre>
 
-<p><strong>Note:</strong> You can assign <em>any</em> <code>object</code> to the prototype value, so consider
-the following:</p>
+<p>You can actually assign <strong>any</strong> <code>object</code> to the <code>prototype</code> property, so consider
+the following.</p>
+
+<p><strong>Example</strong></p>
 
 <pre><code>Bar.prototype = new Foo();
 var boo = new Bar();
@@ -121,32 +122,36 @@ var boo = new Bar();
 </code></pre>
 
 <p>Now <code>Bar.prototype</code> points to an <strong>instance</strong> of <code>Foo</code>, which of course is just
-another object, but this time has the <code>value</code> property on it. And since <code>Foo</code>
-itself has a prototype, the chain continues with that one afterwards.</p>
+another object, but this time has the <code>value</code> property defined on it. And since 
+<code>Foo</code> itself has a prototype, the chain continues with that one afterwards.</p>
 
-<p>All of this has a couple of implications:</p>
+<p>As a result of this, the lookup time for properties that are high up the chain 
+can have a negative impact on performance critical code. Access to non existent
+properties will always traverse the full chain and when 
+<a href="#the-for-in-loop">iterating</a> over the properties of an <code>Object</code> <strong>every</strong> 
+property that's on the <code>prototype</code> chain will get enumerated.</p>
 
-<ol>
-<li>Having long prototype chains decreases performance due to many lookups</li>
-<li>This can be used as a replacement of the classical inheritance model </li>
-<li>You can't just access a property to check whether it's defined on a specific
-object, since JS will always search the prototype chain upwards</li>
-</ol>
+<h4>Best Practices</h4>
 
-<p><strong>Best Pratice:</strong> Make sure to watch you prototype chains, don't abuse them or
-you will end up with strange bugs and/or horrible performance.</p></div><h3 class="section" id="hasownproperty">hasOwnProperty<a href="#top">^</a></h3><div class="sub"><p>If you want to check whether a object a property defined on <em>itself</em>, you have to 
-use the <code>hasOwnProperty</code> method which all objects inherit from <code>Object.prototype</code>.</p>
+<p>Make sure to that you understand the prototypical inheritance model completely,
+otherwise you will end up with unexpected, seemingly surprising results. Also,
+watch the prototype chains of your objects, remember that they can have a big
+impact on performance when not used correctly.</p></div><h3 class="section" id="hasownproperty">hasOwnProperty<a href="#top">^</a></h3><div class="sub"><p>If you want to check whether a <code>Object</code> has a property defined on <strong>itself</strong> (and 
+not just somewhere on the <a href="#prototype">prototype</a> chain), you have to use the 
+<code>hasOwnProperty</code> method which all objects inherit from <code>Object.prototype</code>.</p>
 
-<p>While it's tempting to just do a <code>Foo.bar !== undefined</code> this is in no way safe.
-While JavaScript does return <code>undefined</code> for non-existent properties, they
-property might very well exist, but it's value is set to <code>undefined</code>.</p>
+<p>While it is tempting to just do a <code>Foo.bar !== undefined</code> this is in no way safe.
+Although JavaScript does return <code>undefined</code> for non-existent properties, they
+property might very well exist, but it's value just happens to be set to 
+<code>undefined</code>.</p>
 
-<p>Also using the <code>in</code> operator doesn't work either, since it <em>does</em> traverse the
-prototype chain upwards until it finds a property with the specified name.</p>
+<p>Additionally, using the <code>in</code> operator doesn't work either, since it <strong>does</strong> 
+traverse the prototype chain upwards until it finds a property with the 
+specified name.</p>
 
-<p><strong>Examples</strong></p>
+<p><strong>Example</strong></p>
 
-<pre><code>// Poisoning Object.prototype, NEVER do this
+<pre><code>// Poisoning Object.prototype, NEVER do this, it calls for trouble
 Object.prototype.bar = 1; 
 var foo = {goo: undefined};
 
@@ -157,23 +162,31 @@ foo.hasOwnProperty('bar'); // false
 foo.hasOwnProperty('goo'); // true
 </code></pre>
 
-<p>As you can see, only <code>hasOwnProperty</code> gives the correct answer, the method is of
-essential use when iterating over the properties of any object, since there's no
-other way to exclude things that are not defined on the object itself but rather
-somewhere on it's prototype chain.</p>
+<p>As you can see, only <code>hasOwnProperty</code> gives the correct and expected result. 
+<code>hasOwnProperty</code> is of essential use when iterating over the properties of any 
+<code>Object</code>, since there's no other way to exclude things that are not defined on 
+the object <strong>itself</strong> but rather somewhere on its prototype chain.  </p>
 
-<p><strong>Best Practice:</strong> Always use <code>hasOwnProperty</code> when checking for properties on
-objects.</p></div><h3 class="section" id="the-for-in-loop">The For In Loop<a href="#top">^</a></h3><div class="sub"><p>Just like the <code>in</code> operator, the <code>for in</code> loop does also traverse the prototype
-chain when iterating over an object's properties. Although it will <em>not</em> include
-properties that have their <code>enumerable</code> attribute set to false e.g. the <code>length</code>
-property of an array.</p>
+<h4>Best Practices</h4>
 
-<p>So as you can already imagine you have to use <code>hasOwnProperty</code> in order to make
-the iteration over an object's own properties work. Also, since <code>for in</code>
-iterates over <em>anything</em> that's on the prototype chain, it will get slower for
-more complex cases of inheritance.</p>
+<p>Always use <code>hasOwnProperty</code> when checking for the existence of properties on an 
+<code>Object</code> and even more important, make sure that <code>hasOwnProperty</code> is part of 
+<strong>every</strong> <a href="#the-for-in-loop"><code>for in</code> loop</a> you write.</p></div><h3 class="section" id="the-for-in-loop">The For In Loop<a href="#top">^</a></h3><div class="sub"><p>Just like the <code>in</code> operator, the <code>for in</code> loop does also traverse the prototype
+chain when iterating over the properties of an <code>Object</code>.</p>
 
-<p><strong>Broken Example</strong></p>
+<blockquote>
+  <p><strong>Note:</strong> The <code>for in</code> loop it will <strong>not</strong> iterate over any properties that have
+their <code>enumerable</code> attribute set to <code>false</code>, for example the <code>length</code>property of 
+an <code>Array</code>.</p>
+</blockquote>
+
+<p>Since you cannot change the behavior of the <code>for in</code> loop itself, you have to
+filter out the unwanted properties in the loop body by using 
+<a href="#hasownproperty"><code>hasOwnProperty</code></a>. It should also be noted that due to its
+nature of traversing the complete prototype chain, the <code>for in</code> loop can get
+incredible slow for complex inheritance structures.</p>
+
+<p><strong>Example</strong></p>
 
 <pre><code>Object.prototype.bar = 1; // poisoning the Object.prototype, NEVER do this
 var foo = {moo: 2};
@@ -182,9 +195,9 @@ for(var i in foo) {
 }
 </code></pre>
 
-<p>This results in both <code>bar</code> and <code>moo</code> being printed out.</p>
+<p>The above code results in both <code>bar</code> and <code>moo</code> being printed out.</p>
 
-<p><strong>Fixed Version</strong></p>
+<p><strong>Example</strong></p>
 
 <pre><code>for(var i in foo) { // still the foo from above
     if (foo.hasOwnProperty(i)) {
@@ -193,34 +206,37 @@ for(var i in foo) {
 }
 </code></pre>
 
-<p>This version is the <strong>correct</strong> one, it will <em>only</em> print <code>moo</code>. If you don't use 
-<code>hasOwnProperty</code>, your code is prone to errors when the native prototypes have
-been extended.</p>
+<p>This version is the only correct one, it will <strong>only</strong> print out <code>moo</code>. If you 
+don't use  <code>hasOwnProperty</code>, your code is prone to errors when the native 
+prototypes - for example <code>Object.prototype</code> have been extended.</p>
 
-<p>For example the <code>Prototype.js</code> JavaScript Framework <strong>does</strong> do extend the 
-prototypes of built in objects. So if your code ever ends up on a page which 
-includes it (Hint: Ruby on Rails defaults to Prototype.js) and you're not using 
-<code>hasOwnProperty</code>, all hell will break loose.</p>
+<p>One widely used Framework which does this, is <strong>Prototype.js</strong>. If your code ever
+ends up on a site which includes that Framework, and it does <strong>not</strong> use
+<code>hasOwnProperty</code>, it is basically <strong>guaranteed</strong> to break.</p>
 
-<p><strong>Best Practice:</strong> Always use <code>hasOwnProperty</code> never make any assumptions on the
-built in prototypes being extended or not.</p></div><h3 class="section" id="arrays">Arrays<a href="#top">^</a></h3><div class="sub"><p>Many people, coming from other languages or not, think that since
-Arrays are objects too, they can use just the <code>For In</code> loop to iterate over them.</p>
+<h4>Best Practices</h4>
 
-<p>Whatever you do, do <strong>NOT</strong> do this. Even though the internals of JavaScript
-make this work, it's horrible slow, and not only that, you have you to use 
-<code>hasOwnProperty</code> too, to make sure you only get the stuff you want.</p>
+<p>Always use <code>hasOwnProperty</code>. Never make any assumptions on the built in 
+prototypes being extended or not. </p></div><h3 class="section" id="arrays">Arrays<a href="#top">^</a></h3><div class="sub"><p>Although the <code>Array</code> in JavaScript is an <code>Object</code>, there's no good reason to use
+the <a href="#the-for-in-loop"><code>for in</code> loop</a> in order to iterate over it. In fact there
+a number of very good reasons <strong>against</strong> the use of <code>for in</code> on an <code>Array</code>.</p>
 
-<p>While one might think that it's a no brainer to trade a small performance loss
-against readability, let me say that were not talking about small losses here.</p>
+<p>While it may seem like a good choice at first, to trade the some speed against
+the readability of the <code>for in</code> construct, this has <strong>major</strong> implications on
+performance.</p>
 
-<p>We're talking about a factor of <strong>10x</strong> to <strong>20x</strong> here, depending on which engine, 
-its version and how many properties there are defined on the array. </p>
+<p>The <code>for in</code> does in fact iterate over the indexes of an <code>Array</code>. But it does
+also traverse the prototype chain. So one already has to use <code>hasOwnProperty</code> in
+order to make sure to filter out unwanted properties, and still if any
+additional properties happen to be defined on the array, they will still make it
+through this filter.</p>
 
-<p>Also if you just want to iterate over a subset of an array, then using <code>For In</code> 
-with an additional <code>if</code> condition is obviously not the way to go.</p>
+<p>Combining the already slow nature of the prototype traversing <code>for in</code> with the
+use of <code>hasOwnProperty</code> results in a performance degradation of a factor of up
+to <strong>20x</strong>.</p>
 
-<p>So how to do iteration over arrays in JavaScript? Well there's only one way
-here, and that is to use the classic <code>for loop</code> (with one little extra).</p>
+<p>So if you want to iterate over an <code>Array</code> in JavaScript, <strong>always</strong> use the
+classic <code>for</code> loop construct.</p>
 
 <p><strong>Example</strong></p>
 
@@ -230,12 +246,20 @@ for(var i = 0, l = list.length; i &lt; l; i++) {
 }
 </code></pre>
 
-<p>The <code>l = list.length</code> part is used to cache the length of the array, because 
-property look ups are <strong>slow</strong>.</p>
+<p>As you can see, there's one extra catch in the above example. That is the
+caching of the length via <code>l = list.length</code>.</p>
 
-<p>The <code>length</code> property of an array is also special. It's <code>getter</code> just returns the
-number of elements in the array. But it also has a <code>setter</code> which can be used to
-<em>truncate</em> the array.</p>
+<p>Although the <code>length</code> property is defined on the array itself, there's still an
+overhead for doing the lookup on each iteration. And while recent JavaScript
+engines <strong>may</strong> apply optimization in this case, one can never be sure that
+those optimizations are actually in place, nor can one be sure whether they
+reach the speed of the above caching. In fact leaving out the caching may result
+in a performance degradation of a factor of up to <strong>2x</strong> (and even more in older
+engines).</p>
+
+<p>The <code>length</code> property of an <code>Array</code> is not just a plain property. While its 
+<code>getter</code> just returns the number of elements in the array, its <code>setter</code> on 
+the other hand can be used to <strong>truncate</strong> the array.</p>
 
 <p><strong>Example</strong></p>
 
@@ -246,50 +270,115 @@ foo.length = 6;
 foo; // [1, 2, 3]
 </code></pre>
 
-<p>As one can see, assigning a smaller length truncates the array but increasing it 
-has no effect on the array whatsoever.</p>
+<p>As one can see, assigning a smaller length truncates the array, but increasing 
+the length it has no effect at all.</p>
 
-<p>But back to caching the length, while newer JavaScript engines are able to
-optimize the access to the <code>length</code> property, there are still cases where <em>not</em>
-caching the length results in a loop that's up to <strong>2x</strong> slower then the version that
-does the caching.</p>
+<h4>Best Practices</h4>
 
-<p><strong>Best Pratice:</strong> Always use the classical <code>for</code> loop and cache the length to
-archieve the best performance, don't make any assumptions about the  engine your 
-code will be running on.</p></div><h3 class="section" id="the-array-constructor">The Array Constructor<a href="#top">^</a></h3><div class="sub"><p>Always use the <code>[]</code> notation to create a new array, the Array constructor has
-a horrible flaw in what kind of arguments it takes.</p>
+<p>Always use the <code>for</code> construct and cache the length to achieve the best 
+performance, don't make any assumptions about the JavaScript engine optimizing 
+<strong>anything</strong>.</p></div><h3 class="section" id="the-array-constructor">The Array Constructor<a href="#top">^</a></h3><div class="sub"><p>Always use the <code>[]</code> notation to create a new array, the <code>Array</code> is ambiguous in 
+how it deals with its parameters.</p>
 
 <p><strong>Example</strong></p>
 
-<pre><code>[1, 2, 3]; // New array with three elements
-new Array(1, 2, 3); // Same as above
+<pre><code>[1, 2, 3]; // Result: [1, 2, 3]
+new Array(1, 2, 3); // Result: [1, 2, 3]
 
-[9]; // New array with one element
-new Array(9); // New array of length 9 filled with `undefined`
+[3]; // Result: [3]
+new Array(3); // Result: [undefined, undefined, undefined] 
+new Array('3') // Result: ['3']
 </code></pre>
 
-<p>When there's only one argument being passed to the constructor it will create
-a new array of that size, if you don't know this, things will explode</p>
+<p>When there's only one argument being passed to the <code>Array</code> constructor and that
+argument is a <code>Number</code>, the constructor will use that number as the length of
+the new array to be create.</p>
 
-<p>There are only a few cases when single parameter constructor comes in handy, on
-of them is to repeat a string:</p>
+<p>There are only a few cases when the above behaviour comes in handy, on of them is
+to repeat a string:</p>
 
 <pre><code>new Array(count - 1).join(stringToRepeat);
 </code></pre>
 
-<p><strong>Best Practice:</strong> Always use the <code>[]</code> notation, it's cleaner and less error
-prone.</p></div><h3 class="section" id="functions-and-closures">Functions and Closures<a href="#top">^</a></h3><div class="sub"><p>Functions in JavaScript are, yet again, Objects. This makes them extremely
-powerful, you can for example, pass them around as parameters to provide 
-callbacks to other methods.</p>
+<h4>Best Practices</h4>
 
-<p>But what really makes them powerful is the fact that JavaScript supports
-<strong>Closures</strong>.</p>
+<p>Always use the <code>[]</code> notation, not only is is shorter and easier to read, it's
+also consistent in its behavior. If you see code that uses the <code>Array</code>
+constructor without any good reason, that a clear sign that somethings wrong.</p></div><h3 class="section" id="functions-and-statements">Functions and Statements<a href="#top">^</a></h3><div class="sub"><p>Functions in JavaScript are first class objects, that means they can be passed
+around like any other value. One common use of that feature is to pass
+<em>anonymous funtions</em> as callbacks to other functions. </p>
 
-<p>Closures mean that scopes <em>always</em> have access to the outer scope they were
-defined in, and since JavaScript only has one type of scope, namely the function
-one, one can use them to great good.</p>
+<p>There are a two of different ways do define functions in JavaScript.</p>
 
-<p><strong>The Classic "private" Example</strong></p>
+<p><strong>The Function Statement</strong></p>
+
+<pre><code>function foo() { 
+}
+</code></pre>
+
+<p>The above function gets created <strong>before</strong> any actual code is run, therefore its
+available everywhere in the scope it was defined in from the start.</p>
+
+<p><strong>Example</strong></p>
+
+<pre><code>foo(); // Works because foo was created before this code runs
+function foo() {
+}
+</code></pre>
+
+<p><strong>The Function Expression</strong></p>
+
+<pre><code>var foo = function() {
+};
+</code></pre>
+
+<p>The above assign the unnamed and therefore <em>anonymous</em> function to the variable
+<code>foo</code>. But it does <strong>not</strong> do so before the code is run. </p>
+
+<p><strong>Example</strong></p>
+
+<pre><code>foo; // 'undefined'
+foo(); // this raises a TypeError
+var foo = function() {
+};
+</code></pre>
+
+<p>The above may seem strange at first, but <code>var</code> is a statement, so the variable
+<code>foo</code> will once again get created before any code is run. But <code>=</code> is an
+expression, therefore <code>foo</code> does not get assigned any value, so it defaults to 
+<code>undefined</code>.</p>
+
+<p><strong>The var Statement</strong></p>
+
+<pre><code>function test() {
+    if (foo) {
+        bar = 2;
+
+    } else {
+        var bar = 1;
+    }
+    return foo;
+}
+
+if (false) {
+    var foo = 1;
+}
+</code></pre>
+
+<p>Since there's <strong>no</strong> <a href="#more-on-scopes">block scope</a> in JavaScript, therefore 
+the above will <strong>not</strong> assign <code>2</code> to the <em>global</em> variable <code>bar</code>, rather it 
+assigns it to the <em>local</em> variable <code>bar</code> of <code>test</code>. Also, while the if body never
+gets executed, the variable <code>foo</code> still gets created and defaults to <code>undefined</code>.</p></div><h3 class="section" id="closures-and-references">Closures and References<a href="#top">^</a></h3><div class="sub"><p>One of JavaScript's most powerful features is the availability of <em>Closures</em>.
+But it's also one of its most misunderstood features.</p>
+
+<p>Closures mean that scopes <strong>always</strong> keep access to the outer scope they were
+defined in. Since JavaScript only has one type of scope - the function scope - 
+all functions are by technically closures,</p>
+
+<p>Although the word closure is most commonly used to refer to functions that were 
+either returned or passed as an argument.</p>
+
+<p><strong>Example</strong></p>
 
 <pre><code>function Counter(start) {
     var count = start;
@@ -309,15 +398,16 @@ foo.increment();
 foo.get(); // 5
 </code></pre>
 
-<p>In the above example we return <strong>two closures</strong>, both the function <code>increment</code>
-as well as <code>get</code> keep a reference to the <code>count</code> variable defined in the
-constructor.</p>
+<p>In the above example we return <strong>two closures</strong>. The function <code>increment</code> as well
+as the function <code>get</code>, both keep a <em>reference</em> to the scope of  <code>Counter</code> and 
+therefore always have access to the <code>count</code> variable that was defined in <strong>that</strong>
+scope.</p>
 
-<p>One <strong>cannot</strong> access <code>count</code> from the outside, the only way to interact with it
-is via the two "closured" functions.</p>
+<p>Since it's not possible to reference or assign scopes, there's <strong>no</strong> way one 
+could access the variable <code>count</code> from the outside, the only way to interact with it
+is via the two "closured" functions. Therefore <code>count</code> is essentially private.</p>
 
-<p>Remember, closures work by keeping a reference to their outer scopes, so the
-following does <strong>not</strong> work:</p>
+<p><strong>Example</strong></p>
 
 <pre><code>var foo = new Counter(4);
 foo.hack = function() {
@@ -325,31 +415,13 @@ foo.hack = function() {
 };
 </code></pre>
 
-<p>This will <strong>not</strong> change the variable <code>count</code> that's inside of <code>Counter</code> since 
+<p>This will <strong>not</strong> change the variable <code>count</code> in the scope of <code>Counter</code> since 
 <code>foo.hack</code> was not defined in that scope, instead, it will create or override the
-global variable <code>count</code>.</p>
+<em>global</em> variable <code>count</code>.</p>
 
-<p><strong>Best Practice:</strong> Keep in mind that every time you return a function it's
-already a closure, you can use this to hide away internals or as in the above
-example, use it to emulate private variables.</p></div><h3 class="section" id="function-arguments">Function Arguments<a href="#top">^</a></h3><div class="sub"><p>Inside a JavaScript function you have access to a special variable called
-<code>arguments</code>, this is useful when writing functions that take a variable number
-of arguments. While one might think that this is just a normal <code>Array</code> containing
-the arguments that were passed to the function, but it's not.</p>
-
-<p>The <code>arguments</code> <code>Object</code> kinda works like an <code>Array</code> but does not inherit from
-<code>Array.prototype</code> so while it has a <code>length</code> property and you can use it with
-a normal <code>for</code> loop, it does <strong>not</strong> have methods like <code>slice</code>, <code>push</code>, <code>pop</code>
-etc.</p>
-
-<p>If you need to have <code>arguments</code> work like a <em>real</em> <code>Array</code> you need to convert
-it: </p>
-
-<pre><code>Array.prototype.slice.call(arguments);
-</code></pre>
-
-<p>This will return a new <code>Array</code> containing all the elements from the <code>arguments</code>
-<code>Object</code>.</p></div><h3 class="section" id="pass-by-value-and-references">Pass By Value and References<a href="#top">^</a></h3><div class="sub"><p>One common pitfall with closures is, that while all values in JavaScript are 
-<strong>passed by value</strong>, closures keep <strong>references</strong>.</p>
+<p>A common mistake made with Closures is not to understand that they keep
+a reference to the scope, and not the variables. It's especially important to
+understand that they do <strong>not</strong> copy the values of primitives.</p>
 
 <p><strong>Example</strong></p>
 
@@ -364,13 +436,13 @@ it: </p>
 <code>9</code> after one second. But in reality, the above simply alerts the number <code>10</code> ten
 times.</p>
 
-<p>Remember, closures keep references, so this makes sense, since <code>i</code> is
-a reference and at the time the timeouts fire, the loop has already finished and
-updated the value of <code>i</code> to <code>10</code>.</p>
+<p>The <em>anonymous</em> function keeps a reference to <code>i</code> and at the time the timeouts 
+fire, the loop has already finished and updated the value of <code>i</code> to <code>10</code>.</p>
 
-<p>So in order to fix it, you have to create a copy of the value of <code>i</code>. Don't
-bother with another variable inside the loop, its value will just as well get
-overridden. The trick here is to use an anonymous wrapper.</p>
+<p>In order to get the desired behavior, one has to create a copy of the value of 
+<code>i</code>. Don't bother with another variable inside the loop, its value will just as 
+well get overridden. The trick here is to use an <a href="#more-on-scopes">anonymous
+wrapper</a>.</p>
 
 <p><strong>Example</strong></p>
 
@@ -384,9 +456,34 @@ overridden. The trick here is to use an anonymous wrapper.</p>
 </code></pre>
 
 <p>Here the outer function gets called immediately with <code>i</code> (which is passed by 
-value) as its parameter, therefore we now have a copy of the <em>current</em> value of 
-<code>i</code> named <code>e</code> inside the function, which then gets referenced by our "closured"
-function that gets passed to <code>setTimeout</code>.</p></div><h3 class="section" id="more-on-scopes">More on Scopes<a href="#top">^</a></h3><div class="sub"><p>JavaScript has <em>only</em> function scope, there's <strong>no</strong> block scope (although the
+value) as its first arguments, therefore we now have a copy of the <strong>value</strong> of 
+<code>i</code> (named <code>e</code>) inside the function</p>
+
+<p>The anonymous function passed to <code>setTimeout</code> now has a reference to <code>e</code> which
+does not get changed by the loop.</p>
+
+<h4>Best Practices</h4>
+
+<p>Understand Closures <strong>and</strong> master them, they are the most powerful feature of
+JavaScript. If you're not able to use them correctly you're wasting a lot of the
+language's potential.</p></div><h3 class="section" id="function-arguments">Function Arguments<a href="#top">^</a></h3><div class="sub"><p>Inside a JavaScript function you have access to a special variable called
+<code>arguments</code>, which is a list of the parameters the function was called with. This 
+is useful when writing functions that deal with variable number of arguments. </p>
+
+<p>It's important to know that <code>arguments</code> is <strong>not</strong> an <code>Array</code>, it has some of
+the semantics of an array - namely the <code>length</code> property - but it does not
+inherit from <code>Array.prototype</code>, it is an <code>Object</code>.</p>
+
+<p>Due to this fact, one cannot use the standard array methods like <code>push</code>, <code>pop</code>,
+<code>slice</code> etc. with it. While iteration with a plain <code>for</code> loop works just fine,
+one has convert it to a real <code>Array</code> in order to use the named methods.</p>
+
+<pre><code>Array.prototype.slice.call(arguments);
+</code></pre>
+
+<p>This will return a new <code>Array</code> containing all the elements from the <code>arguments</code>
+object, note that this is <strong>slow</strong>, try to avoid at all costs in performance
+critical code. </p></div><h3 class="section" id="more-on-scopes">More on Scopes<a href="#top">^</a></h3><div class="sub"><p>JavaScript has <em>only</em> function scope, there's <strong>no</strong> block scope (although the
 language deals fine with the usual syntax for blocks.).</p>
 
 <p>Additionally, there are no distinct namespaces in JavaScript, this means that 
@@ -438,48 +535,7 @@ function to be evaluated works just as well, like for example <code>+function(){
 <p><strong>Best Practice:</strong> Always use the anonymous wrapper to encapsulate your code in
 case there's any chance it might get used by someone else in their project. 
 Also never define any variables in the global namespace, always use <code>var</code> to
-limit the scope of your variables.</p></div><h3 class="section" id="expressions-and-statements">Expressions and Statements<a href="#top">^</a></h3><div class="sub"><p>In JavaScript there's a important difference between expressions and statements.</p>
-
-<p><strong>Example</strong></p>
-
-<pre><code>foo(); // this works just like expected
-function foo() {}                    
-
-bar(); // this raises a TypeError
-console.log(bar); // No ReferenceError but prints 'undefined'
-var bar = function() {}
-</code></pre>
-
-<p>In the above example the call to <code>foo</code> works due to the fact that <code>function
-foo()</code> is a <em>statement</em>, but the call to <code>bar</code> fails since <code>var bar
-= function()</code> is an <em>expression</em>.</p>
-
-<p>Before the code is run, JavaScript executes all <em>statements</em>, since <code>var</code> is
-a statement, the variable <code>bar</code> will get created but the corresponding
-assignment expression will not yet get evaluated, therefore <code>bar</code> defaults to
-the value of <code>undefined</code>.</p>
-
-<p><strong>Another Example</strong></p>
-
-<pre><code>function test() {
-    if (foo) {
-        bar = 2;
-
-    } else {
-        var bar = 1;
-    }
-    return foo;
-}
-
-if (false) {
-    var foo = 1;
-}
-</code></pre>
-
-<p>Remember, there's <strong>no</strong> block scope in JavaScript, therefore the above will
-<em>not</em> assign <code>2</code> to the global variable <code>bar</code> but to the local <code>bar</code> of <code>test</code>.
-Also, while the if body never gets executed, the variable <code>foo</code> still gets
-created and defaults to <code>undefined</code>.</p></div><h3 class="section" id="how-this-works-in-javascript">How this works in JavaScript<a href="#top">^</a></h3><div class="sub"><p><code>this</code> in JavaScript is different from other languages, so many people get 
+limit the scope of your variables.</p></div><h3 class="section" id="how-this-works-in-javascript">How this works in JavaScript<a href="#top">^</a></h3><div class="sub"><p><code>this</code> in JavaScript is different from other languages, so many people get 
 confused by it, but there are only three different cases in which the value of
 <code>this</code> gets set.</p>
 

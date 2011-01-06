@@ -1,25 +1,28 @@
 ### The Array Constructor
 
-Always use the `[]` notation to create a new array, the Array constructor has
-a horrible flaw in what kind of arguments it takes.
+Always use the `[]` notation to create a new array, the `Array` is ambiguous in 
+how it deals with its parameters.
 
 **Example**
 
-    [1, 2, 3]; // New array with three elements
-    new Array(1, 2, 3); // Same as above
+    [1, 2, 3]; // Result: [1, 2, 3]
+    new Array(1, 2, 3); // Result: [1, 2, 3]
 
-    [9]; // New array with one element
-    new Array(9); // New array of length 9 filled with `undefined`
+    [3]; // Result: [3]
+    new Array(3); // Result: [undefined, undefined, undefined] 
+    new Array('3') // Result: ['3']
 
-When there's only one argument being passed to the constructor it will create
-a new array of that size, if you don't know this, things will explode
+When there's only one argument being passed to the `Array` constructor and that
+argument is a `Number`, the constructor will use that number as the length of
+the new array to be create.
 
-There are only a few cases when single parameter constructor comes in handy, on
-of them is to repeat a string:
+There are only a few cases when the above behaviour comes in handy, on of them is
+to repeat a string:
 
     new Array(count - 1).join(stringToRepeat);
 
-
-**Best Practice:** Always use the `[]` notation, it's cleaner and less error
-prone.
+#### Best Practices
+Always use the `[]` notation, not only is is shorter and easier to read, it's
+also consistent in its behavior. If you see code that uses the `Array`
+constructor without any good reason, that a clear sign that somethings wrong.
 

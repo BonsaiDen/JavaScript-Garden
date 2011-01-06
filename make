@@ -16,7 +16,7 @@ def to_markdown(data):
 
 page_title = 'JavaScript Garden'
 doc_html = '' 
-nav_html = '<h1>The Shed</h1><div id="navbox">'
+nav_html = '<h1>Gardening Topics</h1><div id="navbox">'
 for f in files:
     md = open('%s.md' % f).read()                             
     title = md.split('\n')[0]

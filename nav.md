@@ -6,10 +6,9 @@ doc/forin
 doc/arrays
 doc/array_constructor
 doc/functions
+doc/closures
 doc/arguments
-doc/references
 doc/scopes
-doc/statements
 doc/this
 doc/constructors
 doc/typeof

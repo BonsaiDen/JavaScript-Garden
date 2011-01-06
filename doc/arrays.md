@@ -1,23 +1,25 @@
 ### Arrays
 
-Many people, coming from other languages or not, think that since
-Arrays are objects too, they can use just the `For In` loop to iterate over them.
+Although the `Array` in JavaScript is an `Object`, there's no good reason to use
+the [`for in` loop](#the-for-in-loop) in order to iterate over it. In fact there
+a number of very good reasons **against** the use of `for in` on an `Array`.
 
-Whatever you do, do **NOT** do this. Even though the internals of JavaScript
-make this work, it's horrible slow, and not only that, you have you to use 
-`hasOwnProperty` too, to make sure you only get the stuff you want.
+While it may seem like a good choice at first, to trade the some speed against
+the readability of the `for in` construct, this has **major** implications on
+performance.
 
-While one might think that it's a no brainer to trade a small performance loss
-against readability, let me say that were not talking about small losses here.
+The `for in` does in fact iterate over the indexes of an `Array`. But it does
+also traverse the prototype chain. So one already has to use `hasOwnProperty` in
+order to make sure to filter out unwanted properties, and still if any
+additional properties happen to be defined on the array, they will still make it
+through this filter.
 
-We're talking about a factor of **10x** to **20x** here, depending on which engine, 
-its version and how many properties there are defined on the array. 
+Combining the already slow nature of the prototype traversing `for in` with the
+use of `hasOwnProperty` results in a performance degradation of a factor of up
+to **20x**.
 
-Also if you just want to iterate over a subset of an array, then using `For In` 
-with an additional `if` condition is obviously not the way to go.
-
-So how to do iteration over arrays in JavaScript? Well there's only one way
-here, and that is to use the classic `for loop` (with one little extra).
+So if you want to iterate over an `Array` in JavaScript, **always** use the
+classic `for` loop construct.
 
 **Example**
 
@@ -26,12 +28,20 @@ here, and that is to use the classic `for loop` (with one little extra).
         console.log(list[i]);
     }
 
-The `l = list.length` part is used to cache the length of the array, because 
-property look ups are **slow**.
+As you can see, there's one extra catch in the above example. That is the
+caching of the length via `l = list.length`.
 
-The `length` property of an array is also special. It's `getter` just returns the
-number of elements in the array. But it also has a `setter` which can be used to
-*truncate* the array.
+Although the `length` property is defined on the array itself, there's still an
+overhead for doing the lookup on each iteration. And while recent JavaScript
+engines **may** apply optimization in this case, one can never be sure that
+those optimizations are actually in place, nor can one be sure whether they
+reach the speed of the above caching. In fact leaving out the caching may result
+in a performance degradation of a factor of up to **2x** (and even more in older
+engines).
+
+The `length` property of an `Array` is not just a plain property. While its 
+`getter` just returns the number of elements in the array, its `setter` on 
+the other hand can be used to **truncate** the array.
 
 **Example**
 
@@ -41,15 +51,11 @@ number of elements in the array. But it also has a `setter` which can be used to
     foo.length = 6;
     foo; // [1, 2, 3]
 
-As one can see, assigning a smaller length truncates the array but increasing it 
-has no effect on the array whatsoever.
+As one can see, assigning a smaller length truncates the array, but increasing 
+the length it has no effect at all.
 
-But back to caching the length, while newer JavaScript engines are able to
-optimize the access to the `length` property, there are still cases where *not*
-caching the length results in a loop that's up to **2x** slower then the version that
-does the caching.
-
-**Best Pratice:** Always use the classical `for` loop and cache the length to
-archieve the best performance, don't make any assumptions about the  engine your 
-code will be running on.
-
+#### Best Practices
+Always use the `for` construct and cache the length to achieve the best 
+performance, don't make any assumptions about the JavaScript engine optimizing 
+**anything**.
+ 

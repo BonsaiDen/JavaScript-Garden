@@ -1,18 +1,21 @@
 ### hasOwnProperty
 
-If you want to check whether a object a property defined on *itself*, you have to 
-use the `hasOwnProperty` method which all objects inherit from `Object.prototype`.
+If you want to check whether a `Object` has a property defined on **itself** (and 
+not just somewhere on the [prototype](#prototype) chain), you have to use the 
+`hasOwnProperty` method which all objects inherit from `Object.prototype`.
 
-While it's tempting to just do a `Foo.bar !== undefined` this is in no way safe.
-While JavaScript does return `undefined` for non-existent properties, they
-property might very well exist, but it's value is set to `undefined`.
+While it is tempting to just do a `Foo.bar !== undefined` this is in no way safe.
+Although JavaScript does return `undefined` for non-existent properties, they
+property might very well exist, but it's value just happens to be set to 
+`undefined`.
 
-Also using the `in` operator doesn't work either, since it *does* traverse the
-prototype chain upwards until it finds a property with the specified name.
+Additionally, using the `in` operator doesn't work either, since it **does** 
+traverse the prototype chain upwards until it finds a property with the 
+specified name.
 
-**Examples**
+**Example**
                  
-    // Poisoning Object.prototype, NEVER do this
+    // Poisoning Object.prototype, NEVER do this, it calls for trouble
     Object.prototype.bar = 1; 
     var foo = {goo: undefined};
     
@@ -22,11 +25,13 @@ prototype chain upwards until it finds a property with the specified name.
     foo.hasOwnProperty('bar'); // false
     foo.hasOwnProperty('goo'); // true
 
-As you can see, only `hasOwnProperty` gives the correct answer, the method is of
-essential use when iterating over the properties of any object, since there's no
-other way to exclude things that are not defined on the object itself but rather
-somewhere on it's prototype chain.
+As you can see, only `hasOwnProperty` gives the correct and expected result. 
+`hasOwnProperty` is of essential use when iterating over the properties of any 
+`Object`, since there's no other way to exclude things that are not defined on 
+the object **itself** but rather somewhere on its prototype chain.  
 
-**Best Practice:** Always use `hasOwnProperty` when checking for properties on
-objects.
+#### Best Practices
+Always use `hasOwnProperty` when checking for the existence of properties on an 
+`Object` and even more important, make sure that `hasOwnProperty` is part of 
+**every** [`for in` loop](#the-for-in-loop) you write.
 
