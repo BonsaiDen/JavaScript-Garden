@@ -1,8 +1,17 @@
 ### The `typeof` operator
 
-To make it short, both `typeof` and `instanceof` are near to being 
-**completely broken**, although `instanceof` still has its limited uses, 
-but first let's take a look at this nice table:
+The `typeof` operator (together with 
+[instanceof operator](#the-instanceof-operator)) is probably the biggest 
+design flaw of JavaScript. It is near of being **completely broken**.
+
+Although `instanceof` still has its limited uses, `typeof` really has only one
+practical use case, which **not happens** to be checking the type of an object. 
+
+> **Note:** While `typeof` can also be called with a function like syntax
+> i.e. `typeof(obj)`, this is just syntactic sugar. There is **no**
+> `typeof` function.
+
+**The JavaScript Typetable**
 
     Value               Class      Type
     -------------------------------------
@@ -22,18 +31,19 @@ but first let's take a look at this nice table:
     {}                  Object     object
     new Object()        Object     object
 
-In the above table `Type` refers to the value the `typeof` operator returns. As
+In the above table *Type* refers to the value the `typeof` operator returns. As
 you can see this is anything but consistent.
 
-The value of `Class` refers to the *internal [[Class]] property* of an object
-(see the EcmaScript specification for more details.).
+The *Class* refers to the value of the internal `[[Class]]` property of an object.
 
-According to the specification `Class` can be one of the following values:  
+> **From the Specification:**  *Class* can be one of the following values: 
+> `"Arguments"`, `"Array"`, `"Boolean"`, `"Date"`, `"Error"`, `"Function"`,
+> `"JSON"`, `"Math"`, `"Number"`, `"Object"`, `"RegExp"`, `"String"`
 
-    "Arguments", "Array", "Boolean", "Date", "Error", "Function", "JSON", 
-    "Math",  "Number", "Object", "RegExp", "String"
+In order to retrieve the value of *Class* one can has to make use of the
+`toString` method of `Object`.
 
-The following function can be used to check the type of an object:
+**Checking the Class of an Object**
 
     function is(type, obj) {
         return Object.prototype.toString.call(obj).slice(8, -1) === type;
@@ -42,17 +52,23 @@ The following function can be used to check the type of an object:
     is('String', 'test'); // true
     is('String', new String('test')); // true
 
-So before you set up your build tool and pre commit hooks to warn you about 
-every occurrence of `typeof`, let me tell you that there is actually one 
-**and only one** legitimate use for it:
+In the above code `Object.prototype.toString` gets called with 
+[this](#how-this-works-in-javascript) being set to the object which its 
+*Class* value should be retrieved.
+
+**Checking whether a variable has been defined**
 
     typeof foo !== 'undefined'
 
 The above will check whether `foo` was actually declared or not, since just 
-referencing it would result in a `ReferenceError`. But besides that, there's no
-good use for `typeof`.
+referencing it would result in a `ReferenceError`. This is the only thing
+`typeof` is actually useful for.
 
-**Best Practice:** If you're dealing with built in types, always use the `Class` 
-value. It's the only *reliable* and cross engine way of getting the type of an 
-object.
+#### Best Practices
+If you need to check the type of an object, always use the call to
+`Object.prototype.toString` it's the only reliable way of doing so. As shown in
+the type table, some return values of `typeof` are not defined in the
+specification and can therefore differ in different implementations. So unless
+you're checking for a variable being defined, **do not** use the `typeof`
+operator.
 

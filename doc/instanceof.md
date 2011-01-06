@@ -1,11 +1,10 @@
 ### The `instanceof` operator
 
 `instanceof` is only useful when comparing custom made objects, besides that it
-returns a mess much like the `typeof` operator.
+returns a mess similar to the [typeof operator](#the-typeof-operator).
 
-**Example**
+**Comparing custom Objects**
 
-    // Comparing custom objects
     function Foo() {}
     function Bar() {}
     Bar.prototype = Foo;
@@ -13,15 +12,20 @@ returns a mess much like the `typeof` operator.
     new Bar() instanceof Bar; // true
     new Bar() instanceof Foo; // false
 
-    // More mess
+**When used on builtin Types**
+
     new String('foo') instanceof String; // true
     new String('foo') instanceof Object; // true
+
     'foo' instanceof String; // false
     'foo' instanceof Object; // false
 
-Of course `instanceof` does not work cross document wise since the objects were
-created in different contexts.
+Important to note here is that `instanceof` will **of course** not work when the 
+two objects origin from different JavaScript contexts e.g. different documents in
+a Web Browser.
 
-**Best Practice:** Only use `instanceof` when dealing with custom made objects
-and keep its limitations in mind.
+#### Best Practices
+Only use `instanceof` when dealing with custom made objects, **never** use it like
+the `typeof` operator it will behave just as bad and even worse when dealing
+with objects from different contexts.
 

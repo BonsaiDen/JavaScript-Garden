@@ -710,9 +710,20 @@ a <em>factory</em>.</p>
 <p>Make sure you know whether you're calling a <em>constructor</em> or a <em>factory</em>. 
 If in doubt, always use the <code>new</code> keyword, since it doesn't have any side effect
 when its not required, leaving it out on the other hand can lead to subtle and
-hard to track down bugs.</p></div><h3 class="section" id="the-typeof-operator">The typeof operator<a href="#top">^</a></h3><div class="sub"><p>To make it short, both <code>typeof</code> and <code>instanceof</code> are near to being 
-<strong>completely broken</strong>, although <code>instanceof</code> still has its limited uses, 
-but first let's take a look at this nice table:</p>
+hard to track down bugs.</p></div><h3 class="section" id="the-typeof-operator">The typeof operator<a href="#top">^</a></h3><div class="sub"><p>The <code>typeof</code> operator (together with 
+<a href="#the-instanceof-operator">instanceof operator</a>) is probably the biggest 
+design flaw of JavaScript. It is near of being <strong>completely broken</strong>.</p>
+
+<p>Although <code>instanceof</code> still has its limited uses, <code>typeof</code> really has only one
+practical use case, which <strong>not happens</strong> to be checking the type of an object. </p>
+
+<blockquote>
+  <p><strong>Note:</strong> While <code>typeof</code> can also be called with a function like syntax
+i.e. <code>typeof(obj)</code>, this is just syntactic sugar. There is <strong>no</strong>
+<code>typeof</code> function.</p>
+</blockquote>
+
+<p><strong>The JavaScript Typetable</strong></p>
 
 <pre><code>Value               Class      Type
 -------------------------------------
@@ -733,19 +744,21 @@ new RegExp("meow")  RegExp     object (function in Nitro/V8)
 new Object()        Object     object
 </code></pre>
 
-<p>In the above table <code>Type</code> refers to the value the <code>typeof</code> operator returns. As
+<p>In the above table <em>Type</em> refers to the value the <code>typeof</code> operator returns. As
 you can see this is anything but consistent.</p>
 
-<p>The value of <code>Class</code> refers to the <em>internal [[Class]] property</em> of an object
-(see the EcmaScript specification for more details.).</p>
+<p>The <em>Class</em> refers to the value of the internal <code>[[Class]]</code> property of an object.</p>
 
-<p>According to the specification <code>Class</code> can be one of the following values:  </p>
+<blockquote>
+  <p><strong>From the Specification:</strong>  <em>Class</em> can be one of the following values: 
+<code>"Arguments"</code>, <code>"Array"</code>, <code>"Boolean"</code>, <code>"Date"</code>, <code>"Error"</code>, <code>"Function"</code>,
+<code>"JSON"</code>, <code>"Math"</code>, <code>"Number"</code>, <code>"Object"</code>, <code>"RegExp"</code>, <code>"String"</code></p>
+</blockquote>
 
-<pre><code>"Arguments", "Array", "Boolean", "Date", "Error", "Function", "JSON", 
-"Math",  "Number", "Object", "RegExp", "String"
-</code></pre>
+<p>In order to retrieve the value of <em>Class</em> one can has to make use of the
+<code>toString</code> method of <code>Object</code>.</p>
 
-<p>The following function can be used to check the type of an object:</p>
+<p><strong>Checking the Class of an Object</strong></p>
 
 <pre><code>function is(type, obj) {
     return Object.prototype.toString.call(obj).slice(8, -1) === type;
@@ -755,48 +768,71 @@ is('String', 'test'); // true
 is('String', new String('test')); // true
 </code></pre>
 
-<p>So before you set up your build tool and pre commit hooks to warn you about 
-every occurrence of <code>typeof</code>, let me tell you that there is actually one 
-<strong>and only one</strong> legitimate use for it:</p>
+<p>In the above code <code>Object.prototype.toString</code> gets called with 
+<a href="#how-this-works-in-javascript">this</a> being set to the object which its 
+<em>Class</em> value should be retrieved.</p>
+
+<p><strong>Checking whether a variable has been defined</strong></p>
 
 <pre><code>typeof foo !== 'undefined'
 </code></pre>
 
 <p>The above will check whether <code>foo</code> was actually declared or not, since just 
-referencing it would result in a <code>ReferenceError</code>. But besides that, there's no
-good use for <code>typeof</code>.</p>
+referencing it would result in a <code>ReferenceError</code>. This is the only thing
+<code>typeof</code> is actually useful for.</p>
 
-<p><strong>Best Practice:</strong> If you're dealing with built in types, always use the <code>Class</code> 
-value. It's the only <em>reliable</em> and cross engine way of getting the type of an 
-object.</p></div><h3 class="section" id="the-instanceof-operator">The instanceof operator<a href="#top">^</a></h3><div class="sub"><p><code>instanceof</code> is only useful when comparing custom made objects, besides that it
-returns a mess much like the <code>typeof</code> operator.</p>
+<h4>Best Practices</h4>
 
-<p><strong>Example</strong></p>
+<p>If you need to check the type of an object, always use the call to
+<code>Object.prototype.toString</code> it's the only reliable way of doing so. As shown in
+the type table, some return values of <code>typeof</code> are not defined in the
+specification and can therefore differ in different implementations. So unless
+you're checking for a variable being defined, <strong>do not</strong> use the <code>typeof</code>
+operator.</p></div><h3 class="section" id="the-instanceof-operator">The instanceof operator<a href="#top">^</a></h3><div class="sub"><p><code>instanceof</code> is only useful when comparing custom made objects, besides that it
+returns a mess similar to the <a href="#the-typeof-operator">typeof operator</a>.</p>
 
-<pre><code>// Comparing custom objects
-function Foo() {}
+<p><strong>Comparing custom Objects</strong></p>
+
+<pre><code>function Foo() {}
 function Bar() {}
 Bar.prototype = Foo;
 
 new Bar() instanceof Bar; // true
 new Bar() instanceof Foo; // false
+</code></pre>
 
-// More mess
-new String('foo') instanceof String; // true
+<p><strong>When used on builtin Types</strong></p>
+
+<pre><code>new String('foo') instanceof String; // true
 new String('foo') instanceof Object; // true
+
 'foo' instanceof String; // false
 'foo' instanceof Object; // false
 </code></pre>
 
-<p>Of course <code>instanceof</code> does not work cross document wise since the objects were
-created in different contexts.</p>
+<p>Important to note here is that <code>instanceof</code> will <strong>of course</strong> not work when the 
+two objects origin from different JavaScript contexts e.g. different documents in
+a Web Browser.</p>
 
-<p><strong>Best Practice:</strong> Only use <code>instanceof</code> when dealing with custom made objects
-and keep its limitations in mind.</p></div><h3 class="section" id="equality-in-javascript">Equality in JavaScript<a href="#top">^</a></h3><div class="sub"><p>JavaScript has two different ways of comparing the values of objects. For one it
-has the <code>==</code> equal operator and then there is the <code>===</code> equal operator.</p>
+<h4>Best Practices</h4>
 
-<p>There is an important difference why you should <strong>only</strong> ever use the latter one, 
-and that is that the <code>==</code> does <strong>type coercion</strong> which results in the following:</p>
+<p>Only use <code>instanceof</code> when dealing with custom made objects, <strong>never</strong> use it like
+the <code>typeof</code> operator it will behave just as bad and even worse when dealing
+with objects from different contexts.</p></div><h3 class="section" id="equality-in-javascript">Equality in JavaScript<a href="#top">^</a></h3><div class="sub"><p>JavaScript has two different ways of comparing the values of objects for else
+equality. It has both the <code>==</code> <em>double equal</em> operator and the <code>===</code>
+<em>triple equal</em> operator.</p>
+
+<p>There is an important difference between those two and a good reason for 
+<strong>only</strong> triple version</p>
+
+<p>JavaScript has <em>weak typing</em> and therefore the creators of the language built in
+a way of doing <em>type coerion</em> when comparing two values. The only problem is
+that, instead of making <em>type coercin</em> optional, they made it the <strong>default</strong>.</p>
+
+<p>So the <code>==</code> operator will try everything that the language spec allows for to
+convert the two values to the same type and then compare them.</p>
+
+<p><strong>The Double Equal  Operator</strong> </p>
 
 <pre><code>""           ==   "0"           // false
 0            ==   ""            // true
@@ -809,17 +845,34 @@ null         ==   undefined     // true
 " \t\r\n"    ==   0             // true
 </code></pre>
 
-<p>As you can see from this mess, there's absoulutely no <strong>good</strong> reason to use the 
-<code>==</code> operator. All that type coercion does is, to introduce hard to track down
-errors due to implicit conversion of types.</p>
+<p>As you can see from this mess, there's absolutely <strong>no</strong> good reason to use the 
+<code>==</code> operator. All that <em>type coercion</em> does is, is to introduce hard to track 
+down errors due to implicit conversion of types.</p>
 
 <p>There's also a performance impact when type coercion is in play. So <code>==</code> might
-end up being a lot slower, while <code>===</code> on the other hand, is always <em>at least</em> as 
-fast as <code>==</code> or faster, when the types are identical.</p>
+end up being a lot slower, while <code>===</code> on the other hand, is always <strong>at least</strong>
+as fast - or faster, when dealing with different types.</p>
 
-<p><strong>Best Practice:</strong> Always, always use <code>===</code> there is never a good reason to use
-<code>==</code> you will avoid a lot of potentionl bugs this way, in cases where you need
-to coerce types, do it explicitly.</p></div><h3 class="section" id="null-and-undefined">Null and Undefined<a href="#top">^</a></h3><div class="sub"><p>There's some confusion about what those two values are used for.</p>
+<p><strong>The Triple Equal Operator</strong></p>
+
+<pre><code>""           ===   "0"           // false
+0            ===   ""            // false
+0            ===   "0"           // false
+false        ===   "false"       // false
+false        ===   "0"           // false
+false        ===   undefined     // false
+false        ===   null          // false
+null         ===   undefined     // false
+" \t\r\n"    ===   0             // false
+</code></pre>
+
+<p>These are the results one coming from a strongly typed language would expect.</p>
+
+<h4>Best Practices</h4>
+
+<p><strong>Always</strong> <code>===</code> there is never a <strong>any</strong> reason at all to use <code>==</code>. You will 
+avoid a lot of potential, yet again, subtle bugs this way. In cases where you 
+need to coerce types, do so <strong>explicitly</strong>.</p></div><h3 class="section" id="null-and-undefined">Null and Undefined<a href="#top">^</a></h3><div class="sub"><p>There's some confusion about what those two values are used for.</p>
 
 <p><code>undefined</code> is just a type, but there's also the <em>variable</em> <code>undefined</code> which 
 defaults to the value of <code>undefined</code> but its value <strong>can</strong> be changed. All 
