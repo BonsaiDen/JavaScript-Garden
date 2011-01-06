@@ -56,8 +56,8 @@ expression, therefore `foo` does not get assigned any value, so it defaults to
         var foo = 1;
     }
 
-Since there's **no** [block scope](#more-on-scopes) in JavaScript, therefore 
-the above will **not** assign `2` to the *global* variable `bar`, rather it 
-assigns it to the *local* variable `bar` of `test`. Also, while the if body never
-gets executed, the variable `foo` still gets created and defaults to `undefined`.
+Since there's **no** [block scope](#more-on-scopes) in JavaScript, the above will
+**not** assign the value `2` to the *global* variable `bar`, rather it assigns it to the 
+*local* variable `bar` of `test`. Also, while the if body never gets executed, 
+the variable `foo` still gets created and defaults to `undefined`.
 

@@ -137,7 +137,7 @@ property that's on the <code>prototype</code> chain will get enumerated.</p>
 otherwise you will end up with unexpected, seemingly surprising results. Also,
 watch the prototype chains of your objects, remember that they can have a big
 impact on performance when not used correctly.</p></div><h3 class="section" id="hasownproperty">hasOwnProperty<a href="#top">^</a></h3><div class="sub"><p>If you want to check whether a <code>Object</code> has a property defined on <strong>itself</strong> (and 
-not just somewhere on the <a href="#prototype">prototype</a> chain), you have to use the 
+not just somewhere on the <em><a href="#the-prototype">prototype</a> chain</em>, you have to use the 
 <code>hasOwnProperty</code> method which all objects inherit from <code>Object.prototype</code>.</p>
 
 <p>While it is tempting to just do a <code>Foo.bar !== undefined</code> this is in no way safe.
@@ -365,10 +365,10 @@ if (false) {
 }
 </code></pre>
 
-<p>Since there's <strong>no</strong> <a href="#more-on-scopes">block scope</a> in JavaScript, therefore 
-the above will <strong>not</strong> assign <code>2</code> to the <em>global</em> variable <code>bar</code>, rather it 
-assigns it to the <em>local</em> variable <code>bar</code> of <code>test</code>. Also, while the if body never
-gets executed, the variable <code>foo</code> still gets created and defaults to <code>undefined</code>.</p></div><h3 class="section" id="closures-and-references">Closures and References<a href="#top">^</a></h3><div class="sub"><p>One of JavaScript's most powerful features is the availability of <em>Closures</em>.
+<p>Since there's <strong>no</strong> <a href="#more-on-scopes">block scope</a> in JavaScript, the above will
+<strong>not</strong> assign the value <code>2</code> to the <em>global</em> variable <code>bar</code>, rather it assigns it to the 
+<em>local</em> variable <code>bar</code> of <code>test</code>. Also, while the if body never gets executed, 
+the variable <code>foo</code> still gets created and defaults to <code>undefined</code>.</p></div><h3 class="section" id="closures-and-references">Closures and References<a href="#top">^</a></h3><div class="sub"><p>One of JavaScript's most powerful features is the availability of <em>Closures</em>.
 But it's also one of its most misunderstood features.</p>
 
 <p>Closures mean that scopes <strong>always</strong> keep access to the outer scope they were

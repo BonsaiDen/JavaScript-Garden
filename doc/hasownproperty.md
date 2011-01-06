@@ -1,7 +1,7 @@
 ### hasOwnProperty
 
 If you want to check whether a `Object` has a property defined on **itself** (and 
-not just somewhere on the [prototype](#prototype) chain), you have to use the 
+not just somewhere on the *[prototype](#the-prototype) chain*, you have to use the 
 `hasOwnProperty` method which all objects inherit from `Object.prototype`.
 
 While it is tempting to just do a `Foo.bar !== undefined` this is in no way safe.
