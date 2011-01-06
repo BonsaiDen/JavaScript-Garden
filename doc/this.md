@@ -1,49 +1,90 @@
 ### How `this` works in JavaScript
 
-`this` in JavaScript is different from other languages, so many people get 
-confused by it, but there are only three different cases in which the value of
-`this` gets set.
+JavaScript has a, at first, very strange concept of what `this` refers to. If
+one takes a closer look, he can see that there are actually only three different
+ways in which the value of `this` gets determined.
 
-    // function case
-    foo(); // this inside foo will refer to the global object
+**The Function Case**
 
-    // method case
-    test.foo(); // this inside foo will refer to test
+    foo();
 
-    // constructor case
-    new foo(); // this inside foo will refer to the newly created object
+Here `this` will refer to the *global* object.
 
-These are **all** the possible values of `this`, it also gets clear that `this`
-will never refer to an outer function, due to the implicit binding to the
-`global` object in case of a plain function call.
+**The Method Case**
+
+    test.foo(); 
+
+In this example `this` will refer to `test`.
+
+**The Constructor Case**
+
+    new foo(); 
+
+A function call that's preceded by the `new` keyword acts as
+a [constructor](#constructors). Inside the function `this` will refer to a newly
+created `Object`.
+
+The first case is consider a mis-design by many people since it's **never** of 
+any practical use, but leads to many bugs.
 
 **Example**
 
     Foo.method = function() {
         function test() {
-            console.log(this); // this is set to the global object
+            // this is set to the global object
         }
         test();
     }
 
-Another common misconception is that something like this would work:
+A common misconception is that `this` inside of `test` refers to `Foo`, but it 
+does **not**.
 
-    var str = 'Hello World';
-    var ord = str.charCodeAt;
+In order to gain access to `Foo` from within `test` one has to create a local
+variable inside of `method` which refers to `Foo`.
 
-    var out = '';
-    for(var i = 0, l = str.length; i < l; i++) {
-        out += String.fromCharCode(ord(i));
+**Example**
+
+    Foo.method = function() {
+        var that = this;
+        function test() {
+            // Use that instead of this here
+        }
+        test();
     }
-    console.log(out); // prints the string represanation of the global object
 
-Since the value of `this` never gets determined *before* the actual call, the
-above call to `ord` will work like a plain function call. Therefore `charCodeAt` 
-will not use the string `Hello World`, but the results of calling `toString()` 
-on the `global` object.
+`that` is just a normal name, but it's a common idiom to use it as a reference
+to an outer `this`. In combination with [Closures](#closures-and-references), 
+this can also be used to pass `this` around.
 
-The late binding of `this` might seem like a bad thing but in fact it is what
-makes the prototypical inheritance work. The only **real** problem here is the
-implicit setting of `this` to the `global` object when doing a plain function
-call, which is never of any use.
+Another thing that does **not** work in JavaScript is binding a method to
+a variable.
+
+**Example**
+
+    var test = someObject.methodTest();
+    test();
+
+Again due to the first case, `test` now acts like like a plain function call
+therefore the `this` inside it will not refer to `someObject` anymore.
+
+While the late binding of `this` might seem like a bad thing, it is fact what
+makes [prototypical inheritance](#the-prototype) work. 
+
+**Example**
+    
+    function Foo() {}
+    Foo.prototype.method = function() {};
+
+    function Bar() {}
+    Bar.prototype = Foo.prototype;
+
+    new Bar().method();
+
+When `method` gets called on a instance of `Bar`, `this` will now refer to that
+instance.  
+
+#### Best Practices
+Don't try to work around the behavior of `this` in JavaScript. Instead
+**understand** how and why it works the way it does. Otherwise you'll end up with
+a lot of bugs that seem to be there for no good reason.
 

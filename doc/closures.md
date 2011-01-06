@@ -72,7 +72,7 @@ fire, the loop has already finished and updated the value of `i` to `10`.
 In order to get the desired behavior, one has to create a copy of the value of 
 `i`. Don't bother with another variable inside the loop, its value will just as 
 well get overridden. The trick here is to use an [anonymous
-wrapper](#more-on-scopes).
+wrapper](#scopes-and-namespaces).
 
 **Example**
 
