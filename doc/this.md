@@ -1,14 +1,19 @@
 ### How `this` works in JavaScript
 
-JavaScript has a, at first, very strange concept of what `this` refers to. If
-one takes a closer look, he can see that there are actually only three different
-ways in which the value of `this` gets determined.
+JavaScript has a, at first, very strange concept of what `this` refers to.
+There are exactly five different ways in which the value of `this` can get set.
+
+**The Global Case**
+
+    this;
+
+When using `this` in global scope, it will simply refer to the *global* object.
 
 **The Function Case**
 
     foo();
 
-Here `this` will refer to the *global* object.
+Here `this` will again refer to the *global* object.
 
 **The Method Case**
 
@@ -24,8 +29,26 @@ A function call that's preceded by the `new` keyword acts as
 a [constructor](#constructors). Inside the function `this` will refer to a newly
 created `Object`.
 
-The first case is consider a mis-design by many people since it's **never** of 
-any practical use, but leads to many bugs.
+**The Explicit Case**
+
+    function foo(a, b, c) {
+    }
+                          
+    var bar = {};
+    foo.call(bar, [1, 2, 3]);
+    foo.apply(bar, 1, 2, 3);
+
+When using the `call` or `apply` methods of `Function.prototype`, one can 
+explictly set the value of `this` inside the called function, so in the above
+case the *method case* does **not** apply, and `this` inside of `foo` will be
+set to `bar`.
+
+> **Note:** `this` **cannot** be used to refer to the object inside of an `Object`
+> literal. So `var obj = {me: this}` will **not** result in `me` refering to
+> `obj`, since `this` gets determined by one of the above cases.
+
+While most of these cases make sense, the first one is considered a mis-design 
+by many people since it's **never** of any practical use, but leads to many bugs.
 
 **Example**
 

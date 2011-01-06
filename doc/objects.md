@@ -15,8 +15,8 @@ cannot be used like an object, it's because of a mis-design in JavaScript's
 parser. Which tries to parse **anything** that follows a dot - which itself is 
 preceded by whitespace or a number literal - as a floating point number.
 
-You can work around this by either inserting a space `2. toString()` or using
-parenthesis `(2).toString()`.
+You can work around this by either inserting a space `2. toString()`, another dot
+`2..toString()` or using parenthesis `(2).toString()`.
 
 Objects can also **act** like a hashmap in JavaScript by simply mapping *keys* to
 *values*. Using the curly brace notation `{}` one can create a new plain object, 

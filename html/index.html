@@ -25,8 +25,8 @@ cannot be used like an object, it's because of a mis-design in JavaScript's
 parser. Which tries to parse <strong>anything</strong> that follows a dot - which itself is 
 preceded by whitespace or a number literal - as a floating point number.</p>
 
-<p>You can work around this by either inserting a space <code>2. toString()</code> or using
-parenthesis <code>(2).toString()</code>.</p>
+<p>You can work around this by either inserting a space <code>2. toString()</code>, another dot
+<code>2..toString()</code> or using parenthesis <code>(2).toString()</code>.</p>
 
 <p>Objects can also <strong>act</strong> like a hashmap in JavaScript by simply mapping <em>keys</em> to
 <em>values</em>. Using the curly brace notation <code>{}</code> one can create a new plain object, 
@@ -218,7 +218,7 @@ ends up on a site which includes that Framework, and it does <strong>not</strong
 
 <p>Always use <code>hasOwnProperty</code>. Never make any assumptions on the built in 
 prototypes being extended or not. </p></div><h3 class="section" id="arrays">Arrays<a href="#top">^</a></h3><div class="sub"><p>Although the <code>Array</code> in JavaScript is an <code>Object</code>, there's no good reason to use
-the <a href="#the-for-in-loop"><code>for in</code> loop</a> in order to iterate over it. In fact there
+the <a href="#the-for-in-loop">for in loop</a> in order to iterate over it. In fact there
 a number of very good reasons <strong>against</strong> the use of <code>for in</code> on an <code>Array</code>.</p>
 
 <p>While it may seem like a good choice at first, to trade the some speed against
@@ -552,16 +552,22 @@ evaluated works just as well, like for example <code>+function(){}()</code>.</p>
 <p>Always use the <em>anonymous wrapper</em> to encapsulate your code in case there's any 
 chance it might get used by someone else in their project. Also never define any 
 variables in the <em>global namespace</em>, always use <code>var</code> to limit the scope of your 
-variables.</p></div><h3 class="section" id="how-this-works-in-javascript">How this works in JavaScript<a href="#top">^</a></h3><div class="sub"><p>JavaScript has a, at first, very strange concept of what <code>this</code> refers to. If
-one takes a closer look, he can see that there are actually only three different
-ways in which the value of <code>this</code> gets determined.</p>
+variables.</p></div><h3 class="section" id="how-this-works-in-javascript">How this works in JavaScript<a href="#top">^</a></h3><div class="sub"><p>JavaScript has a, at first, very strange concept of what <code>this</code> refers to.
+There are exactly five different ways in which the value of <code>this</code> can get set.</p>
+
+<p><strong>The Global Case</strong></p>
+
+<pre><code>this;
+</code></pre>
+
+<p>When using <code>this</code> in global scope, it will simply refer to the <em>global</em> object.</p>
 
 <p><strong>The Function Case</strong></p>
 
 <pre><code>foo();
 </code></pre>
 
-<p>Here <code>this</code> will refer to the <em>global</em> object.</p>
+<p>Here <code>this</code> will again refer to the <em>global</em> object.</p>
 
 <p><strong>The Method Case</strong></p>
 
@@ -579,8 +585,29 @@ ways in which the value of <code>this</code> gets determined.</p>
 a <a href="#constructors">constructor</a>. Inside the function <code>this</code> will refer to a newly
 created <code>Object</code>.</p>
 
-<p>The first case is consider a mis-design by many people since it's <strong>never</strong> of 
-any practical use, but leads to many bugs.</p>
+<p><strong>The Explicit Case</strong></p>
+
+<pre><code>function foo(a, b, c) {
+}
+
+var bar = {};
+foo.call(bar, [1, 2, 3]);
+foo.apply(bar, 1, 2, 3);
+</code></pre>
+
+<p>When using the <code>call</code> or <code>apply</code> methods of <code>Function.prototype</code>, one can 
+explictly set the value of <code>this</code> inside the called function, so in the above
+case the <em>method case</em> does <strong>not</strong> apply, and <code>this</code> inside of <code>foo</code> will be
+set to <code>bar</code>.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> <code>this</code> <strong>cannot</strong> be used to refer to the object inside of an <code>Object</code>
+literal. So <code>var obj = {me: this}</code> will <strong>not</strong> result in <code>me</code> refering to
+<code>obj</code>, since <code>this</code> gets determined by one of the above cases.</p>
+</blockquote>
+
+<p>While most of these cases make sense, the first one is considered a mis-design 
+by many people since it's <strong>never</strong> of any practical use, but leads to many bugs.</p>
 
 <p><strong>Example</strong></p>
 

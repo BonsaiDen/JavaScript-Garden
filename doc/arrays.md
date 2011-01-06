@@ -1,7 +1,7 @@
 ### Arrays
 
 Although the `Array` in JavaScript is an `Object`, there's no good reason to use
-the [`for in` loop](#the-for-in-loop) in order to iterate over it. In fact there
+the [for in loop](#the-for-in-loop) in order to iterate over it. In fact there
 a number of very good reasons **against** the use of `for in` on an `Array`.
 
 While it may seem like a good choice at first, to trade the some speed against
