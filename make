@@ -44,11 +44,11 @@ foot_html = to_markdown(open('footer.md').read())
 if not os.path.exists('html'):
     os.mkdir('html')
 
-with open('html/index.html', 'wb') as f:
+with open('index.html', 'wb') as f:
     f.write(template.format(title = page_title,
                             nav = nav_html,
                             body = doc_html,
                             footer = foot_html).encode('utf-8'))
 
-shutil.copyfile('template/garden.css', 'html/garden.css')
+shutil.copyfile('template/garden.css', 'garden.css')
 
