@@ -17,12 +17,13 @@ Each time one references a variable, JavaScript will traverse through the scopes
 upwards until it finds it. In the case that it reaches the global scope and still 
 can't find the requested name it will raise a `ReferenceError`.
 
+
+#### Local Variables
+
 If one wants to declare a variable *local* to the current scope thes have to use 
 the `var` keyword. **Always** use the `var` keyword when declaring variables
 otherwise you might **overriding** things that were already defined in outer
 scopes.
-
-**Example**
 
     // global scope
     var foo = 1;
@@ -40,10 +41,33 @@ the *local* scope. Therefore the value of the *global* `foo` does **not** get
 changed. But the assignment `bar = 4` will override the value of the *global*
 `bar` due to the missing `var` keyword.
 
-Having only one global namespace calls for clashes of variable names, luckily
-with the help of *anoynmous function wrappers* one can create his own namespace.
+#### Name Resolution Order
 
-**Example**
+All scopes in JavaScript - including the global one, have the name 
+[this](#how-this-works-in-javascript) defined in them, which refers to the 
+"current object". Function scopes also have the name
+[arguments](#function-arguments) defined, which contains the arguments that were 
+passed to a function.
+
+For example, when you try to access a variable named `foo` inside a function 
+scope, JavaScript will lookup the name in the following order:
+
+ 1. In case there's a `var foo` statement in the current scope use that.
+    
+ 2. If one of the function parameters is named `foo` use that.
+ 
+ 3. If the function itself is called `foo` use that.
+
+ 4. Go to the next outer scope and start from **#1** again.
+
+> **Note:** Having a parameter called `arguments` will **override** the default
+> `arguments` object.
+
+#### Namespaces
+
+One common problem of having only one global namespace is, that its very easy to 
+run into problems where variable names clash. Luckily this can be easily avoided 
+with the help of *anoynmous function wrappers*.
 
     (function() {
         // a self contained "namespace"

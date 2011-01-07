@@ -3,7 +3,7 @@
 `instanceof` is only useful when comparing custom made objects, besides that it
 returns a mess similar to the [typeof operator](#the-typeof-operator).
 
-**Comparing custom Objects**
+#### Comparing custom Objects
 
     function Foo() {}
     function Bar() {}
@@ -12,7 +12,7 @@ returns a mess similar to the [typeof operator](#the-typeof-operator).
     new Bar() instanceof Bar; // true
     new Bar() instanceof Foo; // false
 
-**When used on builtin Types**
+#### Using instanceof on builtins
 
     new String('foo') instanceof String; // true
     new String('foo') instanceof Object; // true

@@ -13,8 +13,6 @@ filter out the unwanted properties in the loop body by using
 nature of traversing the complete prototype chain, the `for in` loop can get
 incredible slow for complex inheritance structures.
 
-**Example**
-
     Object.prototype.bar = 1; // poisoning the Object.prototype, NEVER do this
     var foo = {moo: 2};
     for(var i in foo) {
@@ -23,7 +21,7 @@ incredible slow for complex inheritance structures.
 
 The above code results in both `bar` and `moo` being printed out.
 
-**Example**
+#### Using hasOwnProperty for Filtering
 
     for(var i in foo) { // still the foo from above
         if (foo.hasOwnProperty(i)) {

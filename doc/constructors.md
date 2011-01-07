@@ -13,8 +13,6 @@ If the function that was called has no explicit `return` statement, then it
 implicitly returns the value of `this` (the new object). Otherwise it returns
 the value of the `return` statement.
 
-**Example**
-
     function Foo() {
         this.bla = 1;
     }
@@ -33,10 +31,11 @@ return a new object. While it might still work due to the fact how
 *global* object as the value of `this` and therefore result in completely
 unexpected results.
 
-If you want to omit the `new` keyword you can do that by - as stated above
-- explicitly returning from the constructor.
+#### Factories
 
-**Example**
+If you want to omit the `new` keyword you can do that by - as stated above - 
+explicitly returning from the constructor, which essentially leaves you with a
+factory.
 
     function Bar() {
         var value = 1;
@@ -54,8 +53,7 @@ Now, both these calls return the exact same thing, a newly create object which
 has a property called `method` which is a [Closure](#closures-and-references).
 
 Since `Bar` doesn't make any use of `this`, the `new` keyword is superfluous
-here. But from a technical point of view, this is no longer a *constructor*, but
-a *factory*.
+here. But from a technical point of view, this is no longer a *constructor*.
 
 #### Best Practices
 Make sure you know whether you're calling a *constructor* or a *factory*. 

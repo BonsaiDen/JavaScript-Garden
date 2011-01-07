@@ -4,8 +4,6 @@ The JavaScript parser allows for ommitting semicolons, since they're still
 needed, it will automatically replace newlines (`\n`) with `;` as soon as it
 encounters a parse error due to a missing semicolon.
 
-**Example**
-
     return
     {
         foo: 1
@@ -14,7 +12,7 @@ encounters a parse error due to a missing semicolon.
 This will **not** return an object which has a property called `foo`, it will
 instead simply return `undefined`.
 
-**How the parser "fixes" it**
+#### A Parser making things worse
 
     return // parse error, expected a semicolon, automatic insertion happens
     { // while JS has no block scope, it handles blocks just fine
@@ -24,7 +22,7 @@ instead simply return `undefined`.
 
     } // another automatic insertion of a semicolon happens here
 
-**The results**
+#### Results of the "intelligent" Parser
 
     return;
     // dead code
@@ -32,7 +30,8 @@ instead simply return `undefined`.
         foo: 1
     };
 
-This is the **number one** reason to have your `{}` always on the **same** line
-and to **never** use the short hand syntax of omitting the curly braces for one
-line `if / else` statements.
+#### Best Practices
+Always have your `{}` always on the **same** line to avoid such sublte mistakes. 
+It's also good style to **never** make use the possibility of omitting the curly 
+braces for one line `if / else` statements.
 

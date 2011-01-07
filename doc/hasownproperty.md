@@ -13,8 +13,6 @@ Additionally, using the `in` operator doesn't work either, since it **does**
 traverse the prototype chain upwards until it finds a property with the 
 specified name.
 
-**Example**
-                 
     // Poisoning Object.prototype, NEVER do this, it calls for trouble
     Object.prototype.bar = 1; 
     var foo = {goo: undefined};

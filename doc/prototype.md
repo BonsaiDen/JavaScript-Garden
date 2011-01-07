@@ -11,8 +11,6 @@ widespread **and** uses prototypical inheritance, it takes some time to adjust
 to the differences between the two models. Inheritance in JavaScript is done by
 using *prototype chains*.
 
-**Example**
-    
     function Foo() {
         this.value = 42;
     }
@@ -39,13 +37,14 @@ since `Foo` itself never gets called.
 > function object `Foo`, so the chain will go over `Function.prototype` in this 
 > case.
 
+#### Property Lookup
+
 If you try to access a property of an `Object`, JavaScript will traverse the
 prototype chain **upwards** until it finds a property with the specified name.
 When it reaches the top of the chain - namely `Object.prototype` - and still
 hasn't found the property it will return the value `undefined`.
 
-**The Prototype Chain in the above Example**
-
+    // Prototype chain in the example above
     Object.prototype: {toString: ... /* etc. */};
         Foo.prototype: {method: ...};
             Bar.prototype: Foo.prototype
@@ -54,13 +53,10 @@ hasn't found the property it will return the value `undefined`.
 You can actually assign **any** `object` to the `prototype` property, so consider
 the following.
 
-**Example**
-
     Bar.prototype = new Foo();
     var boo = new Bar();
 
-**The resulting prototype chain**
-
+    // Resulting prototype chain
     Object.prototype: {toString: ... /* etc. */};
         Foo.prototype: {method: ...};
             [Foo Instance]: {value: 42};

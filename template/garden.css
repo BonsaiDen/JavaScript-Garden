@@ -84,7 +84,7 @@ a:hover {
 }
 
 #main .sub {
-    margin-bottom: 48px;
+    margin-bottom: 24px;
 }
 
 #main a {
@@ -158,7 +158,6 @@ strong {
 
 em {
     color: #151515;
-    font-weight: 600;
     text-decoration: underline;
 }
 
@@ -171,5 +170,13 @@ blockquote {
 blockquote p {
     margin-bottom: 4px;
     margin-top: 4px;
+}
+
+blockquote + h4 {
+    margin-top: 12px;
+}
+
+ol {
+    margin-left: 32px;
 }
 

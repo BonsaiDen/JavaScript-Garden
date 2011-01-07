@@ -12,14 +12,18 @@ properties of an object which aren't defined on the object itself and cannot be
 found by searching the prototype chain either, JavaScript will also return 
 the value `undefined`. 
 
+#### Getting a fresh undefined Variable
+
 To procect oneself against changes to the value of the variable `undefined`, you
-can get a *new* one by having an extra argument on your anyonymous wrapper
-function, for which you *don't* pass a value:
+can get a new one by having an extra argument on your anyonymous wrapper
+function, for which you do **not** pass a value:
 
     (function(undefined) {
         // now we have a fresh version of the undefined variable
 
     })(); // don't pass any value so that the argument defaults to undefined
+
+#### A Word about null
 
 The `null` is both a literal and a type.
 

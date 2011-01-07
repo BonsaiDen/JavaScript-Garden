@@ -1,8 +1,8 @@
 ### Equality in JavaScript
 
 JavaScript has two different ways of comparing the values of objects for else
-equality. It has both the `==` *double equal* operator and the `===`
-*triple equal* operator.
+equality. It has both the `==` (double equal) operator and the `===`
+(triple equal) operator.
 
 There is an important difference between those two and a good reason for 
 **only** triple version
@@ -14,7 +14,7 @@ that, instead of making *type coercin* optional, they made it the **default**.
 So the `==` operator will try everything that the language spec allows for to
 convert the two values to the same type and then compare them.
 
-**The Double Equal  Operator** 
+#### The Double Equal Operator
     
     ""           ==   "0"           // false
     0            ==   ""            // true
@@ -34,7 +34,7 @@ There's also a performance impact when type coercion is in play. So `==` might
 end up being a lot slower, while `===` on the other hand, is always **at least**
 as fast - or faster, when dealing with different types.
 
-**The Triple Equal Operator**
+#### The Triple Equal Operator
 
     ""           ===   "0"           // false
     0            ===   ""            // false
@@ -49,7 +49,7 @@ as fast - or faster, when dealing with different types.
 These are the results one coming from a strongly typed language would expect.
 
 #### Best Practices
-**Always** `===` there is never a **any** reason at all to use `==`. You will 
-avoid a lot of potential, yet again, subtle bugs this way. In cases where you 
-need to coerce types, do so **explicitly**.
+**Always** use the `===` operator, there is never a **any** reason at all to 
+use `==`. You will avoid a lot of potential - yet again - subtle bugs this way. 
+In cases where you need to coerce types, do so **explicitly**.
 

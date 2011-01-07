@@ -11,7 +11,7 @@ practical use case, which **not happens** to be checking the type of an object.
 > i.e. `typeof(obj)`, this is just syntactic sugar. There is **no**
 > `typeof` function.
 
-**The JavaScript Typetable**
+#### The JavaScript Typetable
 
     Value               Class      Type
     -------------------------------------
@@ -43,7 +43,9 @@ The *Class* refers to the value of the internal `[[Class]]` property of an objec
 In order to retrieve the value of *Class* one can has to make use of the
 `toString` method of `Object`.
 
-**Checking the Class of an Object**
+#### The Class of an Object
+
+The specification gives exactly one way of accessing the *Class* value.
 
     function is(type, obj) {
         return Object.prototype.toString.call(obj).slice(8, -1) === type;
@@ -52,11 +54,10 @@ In order to retrieve the value of *Class* one can has to make use of the
     is('String', 'test'); // true
     is('String', new String('test')); // true
 
-In the above code `Object.prototype.toString` gets called with 
-[this](#how-this-works-in-javascript) being set to the object which its 
-*Class* value should be retrieved.
+`Object.prototype.toString` gets called with [this](#how-this-works-in-javascript) 
+being set to the object which its *Class* value should be retrieved.
 
-**Checking whether a variable has been defined**
+#### Testing for undefined Variables
 
     typeof foo !== 'undefined'
 

@@ -3,8 +3,6 @@
 Always use the `[]` notation to create a new array, the `Array` is ambiguous in 
 how it deals with its parameters.
 
-**Example**
-
     [1, 2, 3]; // Result: [1, 2, 3]
     new Array(1, 2, 3); // Result: [1, 2, 3]
 

@@ -10,7 +10,7 @@ all functions are by technically closures,
 Although the word closure is most commonly used to refer to functions that were 
 either returned or passed as an argument.
 
-**Example**
+### Emulating private Variables
 
     function Counter(start) {
         var count = start;
@@ -25,7 +25,7 @@ either returned or passed as an argument.
         }
     }
 
-    var foo = new Counter(4);
+    var foo = Counter(4);
     foo.increment();
     foo.get(); // 5
 
@@ -34,11 +34,11 @@ as the function `get`, both keep a *reference* to the scope of  `Counter` and
 therefore always have access to the `count` variable that was defined in **that**
 scope.
 
+#### Why private Variables work
+
 Since it's not possible to reference or assign scopes, there's **no** way one 
 could access the variable `count` from the outside, the only way to interact with it
 is via the two "closured" functions. Therefore `count` is essentially private.
-
-**Example**
 
     var foo = new Counter(4);
     foo.hack = function() {
@@ -53,14 +53,13 @@ A common mistake made with Closures is not to understand that they keep
 a reference to the scope, and not the variables. It's especially important to
 understand that they do **not** copy the values of primitives.
 
-**Example**
+#### Closures inside Loops
 
     for(var i = 0; i < 10; i++) {
         setTimeout(function() {
             console.log(i);  
         }, 1000);
     }
-
 
 A common misconception is that the above will output the numbers `0` through
 `9` after one second. But in reality, the above simply alerts the number `10` ten
@@ -74,7 +73,7 @@ In order to get the desired behavior, one has to create a copy of the value of
 well get overridden. The trick here is to use an [anonymous
 wrapper](#scopes-and-namespaces).
 
-**Example**
+#### Avoding the reference Problem
 
     for(var i = 0; i < 10; i++) {
         (function(e) {

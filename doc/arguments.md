@@ -18,3 +18,6 @@ This will return a new `Array` containing all the elements from the `arguments`
 object, note that this is **slow**, try to avoid at all costs in performance
 critical code. 
 
+> **Note:** Don't use `arguments` as a parameter name for functions, since it will 
+> [override](#scopes-and-namespaces) the default `arguments` object.
+
