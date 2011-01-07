@@ -23,11 +23,11 @@ function, for which you do **not** pass a value:
 
     })(); // don't pass any value so that the argument defaults to undefined
 
-#### A Word about null
+#### null
 
-The `null` is both a literal and a type.
+`null` in JavaScript is both a literal and a type.
 
-While `null` is used a lot in the interals of objects and can at many places be
+While `null` is used a lot in the interals of objects and can, at many places, be
 used in exchange with `undefined`, it's mostly just another data type when it
 comes to JavaScript programming.
 
