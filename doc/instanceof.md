@@ -12,7 +12,7 @@ returns a mess similar to the [typeof operator](#the-typeof-operator).
     new Bar() instanceof Bar; // true
     new Bar() instanceof Foo; // false
 
-#### Using instanceof on builtins
+#### Using instanceof on built in objects
 
     new String('foo') instanceof String; // true
     new String('foo') instanceof Object; // true
@@ -25,7 +25,8 @@ two objects origin from different JavaScript contexts e.g. different documents i
 a Web Browser.
 
 #### Best Practices
+
 Only use `instanceof` when dealing with custom made objects, **never** use it like
-the `typeof` operator it will behave just as bad and even worse when dealing
+the `typeof` operator - it will behave just as bad and even worse when dealing
 with objects from different contexts.
 
