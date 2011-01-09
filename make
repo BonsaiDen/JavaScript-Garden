@@ -27,13 +27,12 @@ for f in files:
         doc_html += '<h1>%s</h1>%s' % (title, html)
 
     else:
-        title = title.strip('#').strip().replace('`', '')
-
-        id = title.replace(' ', '-').lower()
-        doc_html += '<h3 class="section" id="%s">%s<a href="#top">^</a></h3>' % (id, title)
+        title = title.strip('#').strip()
+        id = title.replace(' ', '-').lower().replace('`', '')
+        doc_html += to_markdown('### %s [^](#top)' % title).replace('h3>', 'h3 id="%s" class="section">' % id)
         doc_html += '<div class="sub">%s</div>' % html
 
-        nav_html += '<div><a href="#%s">%s</a></div>' % (id, title)
+        nav_html += to_markdown('[%s](#%s)' % (title, id))
 
 nav_html += '</div>'
 

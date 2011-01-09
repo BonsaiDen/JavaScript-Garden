@@ -114,7 +114,7 @@ h3 {
 
 h4 {
     font-size: 13px;
-    border-bottom: 3px solid #D0D0D0;
+    border-bottom: 2px solid #D0D0D0;
     padding-bottom: 3px;
 }
 
@@ -139,6 +139,14 @@ pre, code {
     border: 1px solid #DEDEDE;
 }
 
+h3 code {
+    font-size: 15px;
+}
+
+h4 code {
+    font-size: 13px;
+}
+
 pre {
     color: #707070;
     margin: 1em 0;
@@ -159,6 +167,15 @@ strong {
 em {
     color: #151515;
     text-decoration: underline;
+}
+
+a em {
+    color: #004363;
+    font-weight: bold;
+}
+
+a em:hover {
+    color: #003a6b;
 }
 
 blockquote {
