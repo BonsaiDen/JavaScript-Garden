@@ -4,7 +4,7 @@ import subprocess
 import shutil
 import os
 
-files = [x.strip() for x in open('nav.md').readlines() if x.strip() != '' ]
+files = [[y.strip() for y in x.strip().split(':')] for x in open('nav.md').readlines() if x.strip() != '' ]
 
 def to_markdown(data):
     with open('md.tmp', 'wb') as f:
@@ -16,23 +16,25 @@ def to_markdown(data):
 
 page_title = 'JavaScript Garden'
 doc_html = '' 
-nav_html = '<h1>Gardening Topics</h1><div id="navbox">'
-for f in files:
+nav_html = '<h1>Covered Topics</h1><div id="navbox">'
+
+file_data = []
+for id, f in files:
     md = open('%s.md' % f).read()                             
     title = md.split('\n')[0]
     html = to_markdown(md[len(title):])
+    file_data.append((id, title, html))
 
-    if f == 'index':
-        title = title.strip('#').strip().replace('`', '')
+for id, title, html in file_data:
+    title = title.strip('#').strip()
+    if id == 'top':
         doc_html += '<h1>%s</h1>%s' % (title, html)
 
     else:
-        title = title.strip('#').strip()
-        id = title.replace(' ', '-').lower().replace('`', '')
         doc_html += to_markdown('### %s [^](#top)' % title).replace('h3>', 'h3 id="%s" class="section">' % id)
         doc_html += '<div class="sub">%s</div>' % html
 
-        nav_html += to_markdown('[%s](#%s)' % (title, id))
+        nav_html += to_markdown('- [%s](#%s)' % (title, id))
 
 nav_html += '</div>'
 

@@ -7,7 +7,7 @@ scope*.
 > **Note:** When not used in an assignment or as a function argument, the `{...}`
 > notation will get interpreted as a block statement and **not** as an `Object`. 
 > This, in conjunction with 
-> [automatic insertion of semicolons](#automatic-semicolon-insertion), can lead
+> [automatic insertion of semicolons](#semicolon), can lead
 > to subtle errors.
 
 Additionally, there are no distinct namespaces in JavaScript, this means that 
@@ -44,9 +44,9 @@ changed. But the assignment `bar = 4` will override the value of the *global*
 #### Name Resolution Order
 
 All scopes in JavaScript - including the global one, have the name 
-[this](#how-this-works-in-javascript) defined in them, which refers to the 
+[this](#this) defined in them, which refers to the 
 "current object". Function scopes also have the name
-[arguments](#function-arguments) defined, which contains the arguments that were 
+[arguments](#arguments) defined, which contains the arguments that were 
 passed to a function.
 
 For example, when you try to access a variable named `foo` inside a function 
@@ -80,7 +80,7 @@ with the help of *anoynmous function wrappers*.
 
 By default you cannot just call a function, you need to **evaluate** it first. 
 In this example, this is done by wrapping the 
-[function expression](#functions-and-statements) in parenthesis. While this is 
+[function expression](#functions) in parenthesis. While this is 
 the most common style to do this, everything else that forces the function to be 
 evaluated works just as well, like for example `+function(){}()`.
 

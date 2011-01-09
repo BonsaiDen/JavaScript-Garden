@@ -71,9 +71,9 @@ fire, the loop has already finished and updated the value of `i` to `10`.
 In order to get the desired behavior, one has to create a copy of the value of 
 `i`. Don't bother with another variable inside the loop, its value will just as 
 well get overridden. The trick here is to use an [anonymous
-wrapper](#scopes-and-namespaces).
+wrapper](#scopes).
 
-#### Avoding the reference Problem
+#### Avoiding the reference Problem
 
     for(var i = 0; i < 10; i++) {
         (function(e) {

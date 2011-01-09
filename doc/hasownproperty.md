@@ -1,7 +1,7 @@
 ### `hasOwnProperty`
 
 If you want to check whether a `Object` has a property defined on **itself** (and 
-not just somewhere on the [prototype chain](#the-prototype), you have to use the 
+not just somewhere on the [prototype chain](#prototype), you have to use the 
 `hasOwnProperty` method which all objects inherit from `Object.prototype`.
 
 While it is tempting to just do a `Foo.bar !== undefined` this is in no way safe.
@@ -31,5 +31,5 @@ the object **itself** but rather somewhere on its prototype chain.
 #### Best Practices
 Always use `hasOwnProperty` when checking for the existence of properties on an 
 `Object` and even more important, make sure that `hasOwnProperty` is part of 
-**every** [for in loop](#the-for-in-loop) you write.
+**every** [for in loop](#forinloop) you write.
 

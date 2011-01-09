@@ -33,7 +33,7 @@ This version is the only correct one, it will **only** print out `moo`. If you
 don't use  `hasOwnProperty`, your code is prone to errors when the native 
 prototypes - for example, `Object.prototype`, have been extended.
 
-One widely used Framework which does this is [**Prototype**][1]. If your code ever
+One widely used Framework which does this is [**Prototype.js**][1]. If your code ever
 ends up on a site which includes that Framework, and it does **not** use
 `hasOwnProperty`, it is basically **guaranteed** to break.
 

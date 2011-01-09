@@ -74,7 +74,7 @@ variable inside of `method` which refers to `Foo`.
     }
 
 `that` is just a normal name, but it's a common idiom to use it as a reference
-to an outer `this`. In combination with [Closures](#closures-and-references), 
+to an outer `this`. In combination with [Closures](#closures), 
 this can also be used to pass `this` around.
 
 #### Assigning Methods
@@ -89,7 +89,7 @@ Again due to the first case, `test` now acts like like a plain function call
 therefore the `this` inside it will not refer to `someObject` anymore.
 
 While the late binding of `this` might seem like a bad thing, it is fact what
-makes [prototypical inheritance](#the-prototype) work. 
+makes [prototypical inheritance](#prototype) work. 
 
     
     function Foo() {}

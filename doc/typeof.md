@@ -1,7 +1,7 @@
 ### The `typeof` operator
 
 The `typeof` operator (together with 
-[instanceof operator](#the-instanceof-operator)) is probably the biggest 
+[instanceof operator](#instanceof)) is probably the biggest 
 design flaw of JavaScript. It is near of being **completely broken**.
 
 Although `instanceof` still has its limited uses, `typeof` really has only one
@@ -54,7 +54,7 @@ The specification gives exactly one way of accessing the *Class* value.
     is('String', 'test'); // true
     is('String', new String('test')); // true
 
-`Object.prototype.toString` gets called with [this](#how-this-works-in-javascript) 
+`Object.prototype.toString` gets called with [this](#this) 
 being set to the object which its *Class* value should be retrieved.
 
 #### Testing for undefined Variables

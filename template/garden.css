@@ -53,16 +53,16 @@ a:hover {
     border: none;
     font-weight: bold;
     padding: 0px;
+    background-color: transparent;
 }
 
-#nav p {
-    display: block;
+#nav li {
     margin-bottom: 0px;
     margin-top: 6px;
 }
 
-#nav p a:before {
-    content: "Ꞁ ";
+#nav ul {
+    margin-left: 16px;
 }
 
 #footer {

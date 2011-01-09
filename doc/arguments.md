@@ -19,5 +19,5 @@ object, note that this is **slow**, try to avoid at all costs in performance
 critical code. 
 
 > **Note:** Don't use `arguments` as a parameter name for functions, since it will 
-> [override](#scopes-and-namespaces) the default `arguments` object.
+> [override](#scopes) the default `arguments` object.
 

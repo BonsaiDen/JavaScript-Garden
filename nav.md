@@ -1,20 +1,20 @@
-index
-doc/objects
-doc/prototype
-doc/hasownproperty
-doc/forin
-doc/arrays
-doc/array_constructor
-doc/functions
-doc/closures
-doc/arguments
-doc/scopes
-doc/this
-doc/constructors
-doc/typeof
-doc/instanceof
-doc/equality
-doc/null_undefined
-doc/semicolon
-doc/settimeout
+top: index
+objects: doc/objects
+prototype: doc/prototype
+hasownproperty: doc/hasownproperty
+forinloop: doc/forin
+arrays: doc/arrays
+arrayctor: doc/array_constructor
+functions: doc/functions
+closures: doc/closures
+arguments: doc/arguments
+scopes: doc/scopes
+this: doc/this
+constructors: doc/constructors
+typeof: doc/typeof
+instanceof: doc/instanceof
+equality: doc/equality
+undefined: doc/null_undefined
+semicolon: doc/semicolon
+settimeout: doc/settimeout
 

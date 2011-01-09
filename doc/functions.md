@@ -48,7 +48,7 @@ There's one more case here, that is when you're assigning a named function.
 Here `bar` is not available in the outer scope, since the function gets only
 assigned to `foo`, however, inside of `bar`, `bar` **is** available, since the
 name of the function itself always available in the functions own scope. For more on
-*name resolution*, read about [scopes](#scopes-and-namespaces).
+*name resolution*, read about [scopes](#scopes).
 
 #### The `var` Statement
 
@@ -66,7 +66,7 @@ name of the function itself always available in the functions own scope. For mor
         var foo = 1;
     }
 
-Since there's **no** [block scope](#scopes-and-namespaces) in JavaScript, the above will
+Since there's **no** [block scope](#scopes) in JavaScript, the above will
 **not** assign the value `2` to the *global* variable `bar`, rather it assigns it to the 
 *local* variable `bar` of `test`. Also, while the statements inside the `if` block never gets executed, 
 the variable `foo` still gets created and defaults to `undefined`.
