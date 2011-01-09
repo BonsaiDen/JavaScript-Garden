@@ -10,6 +10,17 @@ JavaScript Garden does **not** insist on teaching JavaScript. Former knowledge
 of the language is recommended in order to understand the topics covered in this
 guide.
 
+TODO
+----
+
+Besides a lot of copy-editing and rewording / styling for consistency, the
+following topics are currently missing from the guide:
+
+ - The evil `eval`
+ - The Global Object
+ - Casting of Values
+ - Converting of Numbers
+
 License
 -------
 
