@@ -16,4 +16,5 @@ doc/instanceof
 doc/equality
 doc/null_undefined
 doc/semicolon
+doc/settimeout
 

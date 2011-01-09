@@ -176,7 +176,19 @@ blockquote + h4 {
     margin-top: 12px;
 }
 
+ol + h4 {
+    margin-top: 12px;
+}
+
+ul + h4 {
+    margin-top: 12px;
+}
+
 ol {
     margin-left: 32px;
 }
 
+ul {
+    list-style-type: square;
+    margin-left: 32px;
+}
