@@ -1,33 +1,52 @@
 ### Null and Undefined
 
-There's some confusion about what those two values are used for.
+JavaScript has two distinct values for "nothing", the more useful of those two
+being `undefined`.
 
-`undefined` is just a type, but there's also the *variable* `undefined` which 
-defaults to the value of `undefined` but its value **can** be changed. All 
-variables that have not been assigned any value, default to the *value* 
-`undefined`.
+To make matters even more confusing, there's both the `value` (and type) of
+`undefined` as well as a global variable **called** `undefined`, as said this is
+a variable and **not** a literal or keyword.
 
-In the case of unsupplied function arguments *or* when trying to access 
-properties of an object which aren't defined on the object itself and cannot be 
-found by searching the prototype chain either, JavaScript will also return 
-the value `undefined`. 
+This variable **can** be overridden, leading to abstruse bugs.
 
-#### Getting a fresh undefined Variable
+#### The value undefined
 
-To procect oneself against changes to the value of the variable `undefined`, you
-can get a new one by having an extra argument on your anyonymous wrapper
-function, for which you do **not** pass a value:
+The value `undefined` is returned in the following cases:
 
-    (function(undefined) {
-        // now we have a fresh version of the undefined variable
+ - Implicit returns of functions due to missing `return` statements
+ - `return` statements which don't explicitly return anything
+ - Lookups of non existent properties
+ - Function parameters which don't had any explicit value passed
+ - Anything that has been set to the value of `undefined`
 
-    })(); // don't pass any value so that the argument defaults to undefined
 
-#### null
+#### The case of the "overridden" undefined
 
-`null` in JavaScript is both a literal and a type.
+Again, the variable `undefined` is just another normal variable, changing its
+value does not change the value of the **type** `undefined`.
 
-While `null` is used a lot in the interals of objects and can, at many places, be
-used in exchange with `undefined`, it's mostly just another data type when it
-comes to JavaScript programming.
+Still, in order to compare something against the value of `undefined` one has
+to get the value in the first place.
+
+In order to protect code against the possibility of an overridden variable
+`undefined` (which definitely happens in the wild) a common idiom is to use the
+anonymous function wrapper and add an additional parameter which one passed
+**no** argument for.
+
+    var undefined = 123;
+    (function(something, foo, undefined) {
+        // undefined in the local scope does now again refer to the value
+        // undefined
+
+    })('Hello World', 42);
+
+#### Uses of null
+
+While `undefined` in the context of the JavaScript language is mostly used in
+the sense of a traditional null, the actual `null` (both a literal and a type)
+is more or less just another data type.
+
+While it is uses in some JavaScript internals (like declaring the end of the
+prototype chain by setting `Foo.prototype = null`), it can almost ever be
+replace by `undefined`.
 

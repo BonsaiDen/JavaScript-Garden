@@ -1,37 +1,47 @@
 ### Automatic Semicolon Insertion
 
-The JavaScript parser allows for ommitting semicolons, since they're still 
-needed, it will automatically replace newlines (`\n`) with `;` as soon as it
-encounters a parse error due to a missing semicolon.
+Although JavaScript has C style syntax, it does not enforce the use of
+semicolons in the source code, but since the parser still needs them in order to
+be able to figure out what the code should do, it inserts them automatically.
+
+When the parser encounters an error due to new line that is not preceded by a 
+semicolon, it will insert a semicolon automatically and try again. When the
+parser still hits an error, it will raise it, otherwise it will simply proceed.
+
+This is one of the **biggest** flaws in the language since it makes the below
+code work with a completely different result than intended.
 
     return
     {
         foo: 1
     }
 
-This will **not** return an object which has a property called `foo`, it will
-instead simply return `undefined`.
+After the JavaScript parser fixed it, this will **not** return an object which 
+has a property called `foo`, it will instead simply return `undefined`.
 
-#### A Parser making things worse
+#### How the Parser "fixes" missing Semicolons
 
-    return // parse error, expected a semicolon, automatic insertion happens
-    { // while JS has no block scope, it handles blocks just fine
-        foo: 1 // this doesn't break either, foo is seen as a label here
-               // JavaScript does support single expression evaluation so 
-               // the number evaluates to 1 just fine
+    return // parse error, expected a semicolon. Automatic insertion happens
+    { // Although there's no block scope in JS, block syntax is handle fined
 
-    } // another automatic insertion of a semicolon happens here
+        // foo is not interpreted as an object key, but as a label
+        foo: 1 // JavaScript supports single expression evaluation
+               // So 1 evaluates to 1, and yet again does not raise any error
 
-#### Results of the "intelligent" Parser
+    } // Another semicolon gets inserted here
 
-    return;
+After the parser has done its "magic", the resulting code has completely
+different behavior.
+
+    return; // implicitly returns undefined
+
     // dead code
     {
         foo: 1
     };
 
 #### Best Practices
-Always have your `{}` always on the **same** line to avoid such sublte mistakes. 
-It's also good style to **never** make use the possibility of omitting the curly 
-braces for one line `if / else` statements.
+**Never** omit semicolons. Also, always keep your `{}` on the **same** line to 
+avoid such subtle mistakes. It's also good style to **never** make use the 
+possibility of omitting the curly braces for one line `if / else` statements.
 
