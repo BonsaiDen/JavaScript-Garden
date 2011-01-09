@@ -18,7 +18,7 @@ You can work around this by either inserting a space `2. toString()`, another do
 
 #### Objects as a Datatype
 
-Objects can also **act** like a *Hashmap* in JavaScript by simply mapping *keys* to
+Objects can also **act** like a [*Hashmap*][1] in JavaScript by simply mapping *keys* to
 *values*. Using the curly brace notation `{}` one can create a new plain object, 
 which inherits from `Object.prototype` and has no [own
 properties](#hasownproperty).
@@ -37,3 +37,4 @@ is a *keyword* and therefore cannot be used as a key here (another mis-design of
 the  parser). But you can simply work around this by using a string with the 
 value of `'delete'` instead of the plain literal.
 
+ [1]: http://en.wikipedia.org/wiki/Hashmap

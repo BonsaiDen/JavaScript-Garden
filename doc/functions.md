@@ -1,24 +1,24 @@
 ### Functions and Statements
 
-Functions in JavaScript are first class objects, that means they can be passed
+Functions in JavaScript are first class objects, and that means they can be passed
 around like any other value. One common use of that feature is to pass
-*anonymous funtions* as callbacks to other functions. 
+*anonymous functions* as callbacks to other functions. 
 
-There are a two of different ways do define functions in JavaScript.
+There are two different ways to define a function in JavaScript.
 
-#### The Function Statement
+#### The `function` Statement
 
     function foo() { 
     }
 
-The above function gets created **before** any actual code is run, therefore its
+The above function gets created **before** any actual code is run, and therefore it is
 available everywhere in the scope it was defined in from the start.
 
     foo(); // Works because foo was created before this code runs
     function foo() {
     }
 
-#### The Function Expression
+#### The `function` Expression
 
     var foo = function() {
     };
@@ -47,10 +47,10 @@ There's one more case here, that is when you're assigning a named function.
 
 Here `bar` is not available in the outer scope, since the function gets only
 assigned to `foo`, however, inside of `bar`, `bar` **is** available, since the
-name of the function itself always available in the functions own scope, for more on
-*name resolution* read about [scopes](#scopes-and-namespaces).
+name of the function itself always available in the functions own scope. For more on
+*name resolution*, read about [scopes](#scopes-and-namespaces).
 
-#### The var Statement
+#### The `var` Statement
 
     function test() {
         if (foo) {
@@ -68,6 +68,6 @@ name of the function itself always available in the functions own scope, for mor
 
 Since there's **no** [block scope](#scopes-and-namespaces) in JavaScript, the above will
 **not** assign the value `2` to the *global* variable `bar`, rather it assigns it to the 
-*local* variable `bar` of `test`. Also, while the if body never gets executed, 
+*local* variable `bar` of `test`. Also, while the statements inside the `if` block never gets executed, 
 the variable `foo` still gets created and defaults to `undefined`.
 

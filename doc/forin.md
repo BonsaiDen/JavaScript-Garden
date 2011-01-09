@@ -4,7 +4,7 @@ Just like the `in` operator, the `for in` loop does also traverse the prototype
 chain when iterating over the properties of an `Object`.
 
 > **Note:** The `for in` loop it will **not** iterate over any properties that have
-> their `enumerable` attribute set to `false`, for example the `length`property of 
+> their `enumerable` attribute set to `false`, for example the `length` property of 
 > an `Array`.
 
 Since you cannot change the behavior of the `for in` loop itself, you have to
@@ -31,9 +31,9 @@ The above code results in both `bar` and `moo` being printed out.
 
 This version is the only correct one, it will **only** print out `moo`. If you 
 don't use  `hasOwnProperty`, your code is prone to errors when the native 
-prototypes - for example `Object.prototype` have been extended.
+prototypes - for example, `Object.prototype`, have been extended.
 
-One widely used Framework which does this, is **Prototype.js**. If your code ever
+One widely used Framework which does this is [**Prototype**][1]. If your code ever
 ends up on a site which includes that Framework, and it does **not** use
 `hasOwnProperty`, it is basically **guaranteed** to break.
 
@@ -41,3 +41,4 @@ ends up on a site which includes that Framework, and it does **not** use
 Always use `hasOwnProperty`. Never make any assumptions on the built in 
 prototypes being extended or not. 
 
+ [1]: http://www.prototypejs.org/
