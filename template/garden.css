@@ -47,11 +47,21 @@ a:hover {
     font-size: 13px;
 }
 
-#nav div {
+#nav a code {
+    color: #004363;
+    font-size: 13px;
+    border: none;
+    font-weight: bold;
+    padding: 0px;
+}
+
+#nav p {
+    display: block;
+    margin-bottom: 0px;
     margin-top: 6px;
 }
 
-#nav div a:before {
+#nav p a:before {
     content: "Ꞁ ";
 }
 
