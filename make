@@ -29,6 +29,7 @@ for id, title, html in file_data:
     title = title.strip('#').strip()
     if id == 'top':
         doc_html += '<h1>%s</h1>%s' % (title, html)
+        nav_html += to_markdown('- [About the Garden](#%s)' % (id))
 
     else:
         doc_html += to_markdown('### %s [^](#top)' % title).replace('h3>', 'h3 id="%s" class="section">' % id)
