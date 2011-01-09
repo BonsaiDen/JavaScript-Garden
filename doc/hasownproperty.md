@@ -1,4 +1,4 @@
-### hasOwnProperty
+### `hasOwnProperty`
 
 If you want to check whether a `Object` has a property defined on **itself** (and 
 not just somewhere on the [prototype chain](#the-prototype), you have to use the 

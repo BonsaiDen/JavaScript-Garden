@@ -1,4 +1,4 @@
-### The Array Constructor
+### The `Array` Constructor
 
 Always use the `[]` notation to create a new array, the `Array` is ambiguous in 
 how it deals with its parameters.

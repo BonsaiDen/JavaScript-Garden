@@ -10,7 +10,7 @@ all functions are by technically closures,
 Although the word closure is most commonly used to refer to functions that were 
 either returned or passed as an argument.
 
-### Emulating private Variables
+#### Emulating private Variables
 
     function Counter(start) {
         var count = start;

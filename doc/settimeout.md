@@ -1,4 +1,4 @@
-### setTimeout and setInterval
+### `setTimeout` and `setInterval`
 
 Since JavaScript is asynchronous, one can schedule the execution of a function by
 using the `setTimeout` and `setInterval` functions.
@@ -22,7 +22,7 @@ timeout they specified when calling `setTimeout`.
 > most of the time, a silent error, since when the function returns `undefined`
 > `setTimeout` won't raise an error, but simply do nothing.
 
-#### Stacking calls with setInterval
+#### Stacking calls with `setInterval`
 
 While `setTimeout` only runs the function once, `setInterval` - as the name 
 suggests - will execute the function **every** `X` milliseconds. But its use is 

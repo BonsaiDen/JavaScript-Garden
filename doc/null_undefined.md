@@ -1,4 +1,4 @@
-### Null and Undefined
+### `null` and `undefined`
 
 JavaScript has two distinct values for "nothing", the more useful of those two
 being `undefined`.
@@ -9,7 +9,7 @@ a variable and **not** a literal or keyword.
 
 This variable **can** be overridden, leading to abstruse bugs.
 
-#### The value undefined
+#### The value `undefined`
 
 The value `undefined` is returned in the following cases:
 
@@ -20,7 +20,7 @@ The value `undefined` is returned in the following cases:
  - Anything that has been set to the value of `undefined`
 
 
-#### The case of the "overridden" undefined
+#### The case of the "overridden" `undefined`
 
 Again, the variable `undefined` is just another normal variable, changing its
 value does not change the value of the **type** `undefined`.
@@ -40,7 +40,7 @@ anonymous function wrapper and add an additional parameter which one passed
 
     })('Hello World', 42);
 
-#### Uses of null
+#### Uses of `null`
 
 While `undefined` in the context of the JavaScript language is mostly used in
 the sense of a traditional null, the actual `null` (both a literal and a type)

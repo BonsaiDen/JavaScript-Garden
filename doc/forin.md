@@ -21,7 +21,7 @@ incredible slow for complex inheritance structures.
 
 The above code results in both `bar` and `moo` being printed out.
 
-#### Using hasOwnProperty for Filtering
+#### Using `hasOwnProperty` for Filtering
 
     for(var i in foo) { // still the foo from above
         if (foo.hasOwnProperty(i)) {
