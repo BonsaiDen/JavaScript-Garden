@@ -17,6 +17,55 @@ Each time one references a variable, JavaScript will traverse through the scopes
 upwards until it finds it. In the case that it reaches the global scope and still 
 can't find the requested name it will raise a `ReferenceError`.
 
+#### The Bane of global Variables
+
+    // script A
+    foo = '42';
+
+    // script B
+    var foo = '42'
+
+The above two scripts do **not** have the same effect. Script A defines a 
+variable called `foo` in the *global* scope and script B defines a `foo` in the
+*local* scope.
+
+Again, that's **not** at all the same effect, forgetting to use a `var` can have
+major implications.
+
+    // global scope
+    var foo = 42;
+    function test() {
+        // local scope
+        foo = 21;
+    }
+    test();
+    foo; // 21
+
+Leaving out the `var` statement will override the value of `foo`, this might not
+seem like a big deal at first, but consider you have a ten-thousand line
+JavaScript file with lots and lots of different variable names, not using `var`
+will introduce bugs for sure. And additionally those bugs are very often hard to
+track down.
+
+For example, when using generic variable names like `i` in loops.
+    
+    // global scope
+    var items = [/* some list */];
+    for(var i = 0; i < 10; i++) {
+        subLoop();
+    }
+
+    function subLoop() {
+        // scope of subLoop
+        for(i = 0; i < 10; i++) { // missing var statement
+            // do amazing stuff!
+        }
+    }
+    
+The outer loop will terminate after the first call to `subLoop` since that
+function had overriden the global value of `i`. Using a `var` for the second
+`for` loop would have easily avoided this, therefore never leave out `var`
+unless you really want to access the variable of an outer scope.
 
 #### Local Variables
 
@@ -87,6 +136,6 @@ evaluated works just as well, like for example `+function(){}()`.
 #### Best Practices
 Always use the *anonymous wrapper* to encapsulate your code in case there's any 
 chance it might get used by someone else in their project. Also never define any 
-variables in the *global namespace*, always use `var` to limit the scope of your 
+variables in the *global* namespace, always use `var` to limit the scope of your 
 variables.
 
