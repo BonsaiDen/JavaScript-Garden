@@ -4,7 +4,7 @@ prototype: doc/prototype
 hasownproperty: doc/hasownproperty
 forinloop: doc/forin
 arrays: doc/arrays
-arrayctor: doc/array_constructor
+arrayctor: doc/arrays.ctor
 functions: doc/functions
 closures: doc/closures
 arguments: doc/arguments
@@ -14,8 +14,8 @@ constructors: doc/constructors
 typeof: doc/typeof
 instanceof: doc/instanceof
 equality: doc/equality
-undefined: doc/null_undefined
+undefined: doc/undefined.null
 casting: doc/casting
 semicolon: doc/semicolon
-settimeout: doc/settimeout
+settimeout: doc/timeouts
 

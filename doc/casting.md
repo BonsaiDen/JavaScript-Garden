@@ -17,11 +17,11 @@ in your code can break everything.
     10 == '010'; // And more 
 
     // These are false
-    10 == 010; // A 0 prefixed number is consided octal
+    10 == 010;
     10 == '-10'
 
-> **Note:** Number literals that start with a `0` are interpreted as octal (base
-> 8). 
+> **Note:** Number literals that start with a `0` are interpreted as octal that
+> is base 8. 
 
 #### Madness with `new` and built in Types
 
@@ -69,5 +69,4 @@ value.
     !!'-1'     // true
     !!{};      // true
     !!true;    // true
-
 

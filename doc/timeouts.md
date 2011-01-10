@@ -3,6 +3,9 @@
 Since JavaScript is asynchronous, one can schedule the execution of a function by
 using the `setTimeout` and `setInterval` functions.
 
+> **Note:** Timeouts are **not** part of the EcmaScript Standard, they are
+> implemented as part of the [DOM][1].
+
     function foo() {
     }
     var id = setTimeout(foo, 1000); // returns a Number > 0
@@ -117,4 +120,6 @@ sign of **really** bad code, if you need to supply arguments to the function,
 pass an anonymous function which then calls your function. Also avoid
 `setInterval` since its hard to control and when you loose the returned ID,
 there's no easy way to clear it.
+
+[1]: http://en.wikipedia.org/wiki/Document_Object_Model 
 
