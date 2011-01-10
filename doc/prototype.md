@@ -1,8 +1,8 @@
 ### The Prototype
 
 JavaScript does not feature the classical inheritance model, instead it uses a 
-*prototypical* one. This might at first seem like a limitation, but it's not. a 
-*prototypical* inheritance model is in fact more powerful than the classical
+*prototypal* one. This might at first seem like a limitation, but it's not. a 
+*prototypal* inheritance model is in fact more powerful than the classical
 one, for example you can emulate the classical model with it, but you can't do it
 the other way around.
 

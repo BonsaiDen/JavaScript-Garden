@@ -71,3 +71,14 @@ Since there's **no** [block scope](#scopes) in JavaScript, the above will
 *local* variable `bar` of `test`. Also, while the statements inside the `if` block never gets executed, 
 the variable `foo` still gets created and defaults to `undefined`.
 
+#### `var` vs. `function`
+
+All `var` statements get parsed **before** the `function` statements, subsequent
+statements override the previous ones.
+
+    function foo() {
+    }
+    var foo;
+    foo; // [function foo] before the next line gets evaluated
+    var foo = 2;
+

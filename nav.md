@@ -15,6 +15,7 @@ typeof: doc/typeof
 instanceof: doc/instanceof
 equality: doc/equality
 undefined: doc/null_undefined
+casting: doc/casting
 semicolon: doc/semicolon
 settimeout: doc/settimeout
 

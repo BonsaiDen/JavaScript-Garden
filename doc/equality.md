@@ -48,6 +48,21 @@ as fast - or faster, when dealing with different types.
 
 These are the results one coming from a strongly typed language would expect.
 
+#### Comparing Objects
+
+While both `==` and `===` are stated as equality operators, they behave different
+when used with at least one `Object`.
+
+    {} === {}; // false
+    new String('foo') === 'foo'; // false
+    new Number(10) === 10; // false
+    var foo = {};
+    foo === foo; // true
+
+Here both operators compare for **indentity** and not equality, that is they
+will compare for the same **instance** of the object, much like `is` in Python and a
+pointer comparison in C.
+
 #### Best Practices
 **Always** use the `===` operator, there is never a **any** reason at all to 
 use `==`. You will avoid a lot of potential - yet again - subtle bugs this way. 

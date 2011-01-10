@@ -90,6 +90,17 @@ value) as its first arguments, therefore we now have a copy of the **value** of
 The anonymous function passed to `setTimeout` now has a reference to `e` which
 does not get changed by the loop.
 
+There's another possibility, which is to return a function from an anonymous
+wrapper:
+
+    for(var i = 0; i < 10; i++) {
+        setTimeout((function(e) {
+            return function() {
+                console.log(e);
+            }
+        })(i), 1000)
+    }
+
 #### Best Practices
 Understand Closures **and** master them, they are the most powerful feature of
 JavaScript. If you're not able to use them correctly you're wasting a lot of the
