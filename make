@@ -32,7 +32,7 @@ for id, title, html in file_data:
         nav_html += ' - [About the Garden](#%s)\n' % (id)
 
     else:
-        doc_html += to_markdown('### %s [^](#top)' % title).replace('h3>', 'h3 id="%s" class="section">' % id)
+        doc_html += to_markdown('### %s [^](#top)' % title).replace('<h3>', '<h3 id="%s" class="section">' % id)
         doc_html += '<div class="sub">%s</div>' % html
 
         nav_html += ' - [%s](#%s)\n' % (title, id)
