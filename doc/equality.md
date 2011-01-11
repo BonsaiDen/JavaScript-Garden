@@ -1,4 +1,4 @@
-### Equality in JavaScript
+### Equality and Comparisons
 
 JavaScript has two different ways of comparing the values of objects for else
 equality. It has both the `==` (double equal) operator and the `===`

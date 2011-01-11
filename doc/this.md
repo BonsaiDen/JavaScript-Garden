@@ -1,4 +1,4 @@
-### How `this` works in JavaScript
+### How `this` works
 
 JavaScript has a, at first, very strange concept of what `this` refers to.
 There are exactly five different ways in which the value of `this` can get set.
