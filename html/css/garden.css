@@ -17,6 +17,10 @@ article {
     padding-left: 16px;
 }
 
+section {
+    margin-bottom: 18px;
+}
+
 /* Footer */
 footer {
     padding-right: 308px;
@@ -60,7 +64,7 @@ h1 {
 h2 {
     padding-top: 18px;
     font-size: 16px;
-    padding-bottom: 2px;
+    padding-bottom: 1px;
     border-bottom: 3px solid #B0B0B0;
 }
 
@@ -122,10 +126,6 @@ blockquote p {
     margin-top: 4px;
 }
 
-blockquote + h3 {
-    margin-top: 12px;
-}
-
 
 /* Navigation */
 nav {
@@ -165,11 +165,11 @@ nav ul {
 
 
 /* Lists */
-ol + h3 {
+ol + header {
     margin-top: 12px;
 }
 
-ul + h3 {
+ul + header {
     margin-top: 12px;
 }
 
