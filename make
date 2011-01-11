@@ -1,58 +1,79 @@
 #!/usr/bin/python3
-
 import subprocess
 import shutil
 import os
 
-files = [[y.strip() for y in x.strip().split(':')] for x in open('nav.md').readlines() if x.strip() != '' ]
+def create_index():
+    articles = []
+
+    page = {}
+    doc = create_navigation('doc/index')
+
+    # Page & Navigation
+    page['title'] = doc['title']
+    page['navigation'] = doc['navigation']
+    page['description'] = 'Guide to JavaScript\'s Quirks and Flaws'
+
+    # Intro
+    intro = to_content('doc/%s' % doc['articles'][0])
+    page['intro'] = create_article(doc['articles'][0], intro[0], intro[2])
+
+    # Articles
+    for a in doc['articles'][1:]:
+        content = to_content('doc/%s' % a)
+        articles.append(create_article(a, content[0], content[2], top = doc['articles'][0]))
+
+    page['articles'] = '\n\n'.join(articles)
+
+    # Create HTML
+    template = open('html/template.html').read()
+    with open('html/index.html', 'wb') as f:
+        f.write(template.format(**page).encode('utf-8'))
+
+
+def create_navigation(file):
+    content = to_content(file)
+
+    articles = []
+    links = content[1].split('\n')
+    for l in links:
+        articles.append(l.split('#')[1].strip(')'))
+
+    return {
+        'articles': articles,
+        'title': content[0],
+        'navigation': content[2]
+    }
+
+
+def create_article(link, title, html, top = None):
+    if top is not None:
+        title = to_markdown('### %s [^](#%s)' % (title, top)).replace('<h3>', '<h3 id="%s">' % link)
+
+    else:
+        title = to_markdown('# %s' % title).replace('<h1>', '<h1 id="%s">' % link)
+
+    return '<article>%s\n%s</article>' % (title, html)
+
+
+def to_content(file):
+    markdown = open('%s.md' % file).read()
+    title = markdown.split('\n')[0]
+    content = markdown[len(title):].strip()
+    html = to_markdown(content)
+    title = title.strip('#').strip()
+    return (title, content, html)
+
 
 def to_markdown(data):
     with open('md.tmp', 'wb') as f:
         f.write(data.encode('utf-8'))
 
     html = subprocess.getoutput('./tools/Markdown.pl md.tmp')
+    os.unlink('md.tmp')
     return html
 
 
-page_title = 'JavaScript Garden'
-doc_html = '' 
-nav_html = '# Covered Topics\n\n'
-
-file_data = []
-for id, f in files:
-    md = open('%s.md' % f).read()                             
-    title = md.split('\n')[0]
-    html = to_markdown(md[len(title):])
-    file_data.append((id, title, html))
-
-for id, title, html in file_data:
-    title = title.strip('#').strip()
-    if id == 'top':
-        doc_html += '<h1>%s</h1>%s' % (title, html)
-        nav_html += ' - [About the Garden](#%s)\n' % (id)
-
-    else:
-        doc_html += to_markdown('### %s [^](#top)' % title).replace('<h3>', '<h3 id="%s" class="section">' % id)
-        doc_html += '<div class="sub">%s</div>' % html
-
-        nav_html += ' - [%s](#%s)\n' % (title, id)
-
-nav_html = to_markdown(nav_html)
-nav_html = nav_html.replace('<ul>', '<ul id="navbox">')
-
-template = open('template/template.html').read()
-
-foot_html = to_markdown(open('footer.md').read())
-
-if not os.path.exists('html'):
-    os.mkdir('html')
-
-with open('index.html', 'wb') as f:
-    f.write(template.format(title = page_title,
-                            nav = nav_html,
-                            body = doc_html,
-                            footer = foot_html).encode('utf-8'))
-
-shutil.copyfile('template/garden.css', 'garden.css')
-os.unlink('md.tmp')
+if __name__ == '__main__':
+    create_index()
 
