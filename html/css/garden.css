@@ -175,6 +175,17 @@ ul + header {
 
 ol {
     margin-left: 32px;
+    margin-bottom: 12px;
+}
+
+ol li {
+    font-size: 12px;
+    padding-bottom: 2px;
+}
+
+ul li {
+    font-size: 12px;
+    padding-bottom: 2px;
 }
 
 ul {

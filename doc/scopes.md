@@ -102,11 +102,8 @@ For example, when you try to access a variable named `foo` inside a function
 scope, JavaScript will lookup the name in the following order:
 
  1. In case there's a `var foo` statement in the current scope use that.
-    
  2. If one of the function parameters is named `foo` use that.
- 
  3. If the function itself is called `foo` use that.
-
  4. Go to the next outer scope and start from **#1** again.
 
 > **Note:** Having a parameter called `arguments` will **override** the default
