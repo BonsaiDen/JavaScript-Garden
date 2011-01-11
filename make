@@ -16,7 +16,7 @@ def to_markdown(data):
 
 page_title = 'JavaScript Garden'
 doc_html = '' 
-nav_html = '<h1>Covered Topics</h1><div id="navbox">'
+nav_html = '# Covered Topics\n\n'
 
 file_data = []
 for id, f in files:
@@ -29,15 +29,16 @@ for id, title, html in file_data:
     title = title.strip('#').strip()
     if id == 'top':
         doc_html += '<h1>%s</h1>%s' % (title, html)
-        nav_html += to_markdown('- [About the Garden](#%s)' % (id))
+        nav_html += ' - [About the Garden](#%s)\n' % (id)
 
     else:
         doc_html += to_markdown('### %s [^](#top)' % title).replace('h3>', 'h3 id="%s" class="section">' % id)
         doc_html += '<div class="sub">%s</div>' % html
 
-        nav_html += to_markdown('- [%s](#%s)' % (title, id))
+        nav_html += ' - [%s](#%s)\n' % (title, id)
 
-nav_html += '</div>'
+nav_html = to_markdown(nav_html)
+nav_html = nav_html.replace('<ul>', '<ul id="navbox">')
 
 template = open('template/template.html').read()
 
