@@ -15,7 +15,8 @@ in your code can break everything.
     10 == '10'; // Strings gets converted to Number
     10 == '+10 '; // More string madness
     10 == '010'; // And more 
-
+    isNaN(null) == false; // null converts to 0, which of cours is not NaN
+    
     // These are false
     10 == 010;
     10 == '-10'
