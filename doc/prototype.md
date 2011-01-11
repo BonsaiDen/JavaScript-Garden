@@ -1,4 +1,4 @@
-### The Prototype
+## The Prototype
 
 JavaScript does not feature the classical inheritance model, instead it uses a 
 *prototypal* one. This might at first seem like a limitation, but it's not. a 
@@ -37,7 +37,7 @@ since `Foo` itself never gets called.
 > function object `Foo`, so the chain will go over `Function.prototype` in this 
 > case.
 
-#### Property Lookup
+### Property Lookup
 
 If you try to access a property of an `Object`, JavaScript will traverse the
 prototype chain **upwards** until it finds a property with the specified name.
@@ -73,7 +73,8 @@ properties will always traverse the full chain and when
 [iterating](#the-for-in-loop) over the properties of an `Object` **every** 
 property that's on the `prototype` chain will get enumerated.
 
-#### Best Practices
+### Best Practices
+
 Make sure to that you understand the prototypical inheritance model completely,
 otherwise you will end up with unexpected, seemingly surprising results. Also,
 watch the prototype chains of your objects, remember that they can have a big

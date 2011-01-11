@@ -1,27 +1,27 @@
-### How `this` works
+## How `this` works
 
 JavaScript has a, at first, very strange concept of what `this` refers to.
 There are exactly five different ways in which the value of `this` can get set.
 
-#### The global scope
+### The global scope
 
     this;
 
 When using `this` in global scope, it will simply refer to the *global* object.
 
-#### Calling a Function
+### Calling a Function
 
     foo();
 
 Here `this` will again refer to the *global* object.
 
-#### Calling a Method
+### Calling a Method
 
     test.foo(); 
 
 In this example `this` will refer to `test`.
 
-#### Calling a Constructor
+### Calling a Constructor
 
     new foo(); 
 
@@ -29,7 +29,7 @@ A function call that's preceded by the `new` keyword acts as
 a [constructor](#constructors). Inside the function `this` will refer to a newly
 created `Object`.
 
-#### Explicit setting
+### Explicit setting
 
     function foo(a, b, c) {
     }
@@ -47,7 +47,7 @@ set to `bar`.
 > literal. So `var obj = {me: this}` will **not** result in `me` refering to
 > `obj`, since `this` gets determined by one of the above cases.
 
-#### Common Pitfalls
+### Common Pitfalls
 
 While most of these cases make sense, the first one is considered a mis-design 
 by many people since it's **never** of any practical use, but leads to many bugs.
@@ -77,7 +77,7 @@ variable inside of `method` which refers to `Foo`.
 to an outer `this`. In combination with [Closures](#closures), 
 this can also be used to pass `this` around.
 
-#### Assigning Methods
+### Assigning Methods
 
 Another thing that does **not** work in JavaScript is **assigning** a method to
 a variable.
@@ -103,7 +103,8 @@ makes [prototypical inheritance](#prototype) work.
 When `method` gets called on a instance of `Bar`, `this` will now refer to that
 instance.  
 
-#### Best Practices
+### Best Practices
+
 Don't try to work around the behavior of `this` in JavaScript. Instead
 **understand** how and why it works the way it does. Otherwise you'll end up with
 a lot of bugs that seem to be there for no good reason.

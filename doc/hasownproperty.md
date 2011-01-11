@@ -1,4 +1,4 @@
-### `hasOwnProperty`
+## `hasOwnProperty`
 
 If you want to check whether a `Object` has a property defined on **itself** (and 
 not just somewhere on the [prototype chain](#prototype), you have to use the 
@@ -28,7 +28,8 @@ As you can see, only `hasOwnProperty` gives the correct and expected result.
 `Object`, since there's no other way to exclude things that are not defined on 
 the object **itself** but rather somewhere on its prototype chain.  
 
-#### Best Practices
+### Best Practices
+
 Always use `hasOwnProperty` when checking for the existence of properties on an 
 `Object` and even more important, make sure that `hasOwnProperty` is part of 
 **every** [for in loop](#forinloop) you write.

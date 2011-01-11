@@ -1,4 +1,4 @@
-### Function Arguments
+## Function Arguments
 
 Inside a JavaScript function you have access to a special variable called
 `arguments`, which is a list of the parameters the function was called with. This 

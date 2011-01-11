@@ -1,4 +1,4 @@
-### Equality and Comparisons
+## Equality and Comparisons
 
 JavaScript has two different ways of comparing the values of objects for else
 equality. It has both the `==` (double equal) operator and the `===`
@@ -14,7 +14,7 @@ that, instead of making *type coercin* optional, they made it the **default**.
 So the `==` operator will try everything that the language spec allows for to
 convert the two values to the same type and then compare them.
 
-#### The Double Equal Operator
+### The Double Equal Operator
     
     ""           ==   "0"           // false
     0            ==   ""            // true
@@ -34,7 +34,7 @@ There's also a performance impact when type coercion is in play. So `==` might
 end up being a lot slower, while `===` on the other hand, is always **at least**
 as fast - or faster, when dealing with different types.
 
-#### The Triple Equal Operator
+### The Triple Equal Operator
 
     ""           ===   "0"           // false
     0            ===   ""            // false
@@ -48,7 +48,7 @@ as fast - or faster, when dealing with different types.
 
 These are the results one coming from a strongly typed language would expect.
 
-#### Comparing Objects
+### Comparing Objects
 
 While both `==` and `===` are stated as equality operators, they behave different
 when used with at least one `Object`.
@@ -63,7 +63,8 @@ Here both operators compare for **indentity** and not equality, that is they
 will compare for the same **instance** of the object, much like `is` in Python and a
 pointer comparison in C.
 
-#### Best Practices
+### Best Practices
+
 **Always** use the `===` operator, there is never a **any** reason at all to 
 use `==`. You will avoid a lot of potential - yet again - subtle bugs this way. 
 In cases where you need to coerce types, do so **explicitly**.

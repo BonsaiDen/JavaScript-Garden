@@ -1,4 +1,4 @@
-### Objects
+## Objects
 
 Everything in JavaScript - except for `null` and `undefined` -  **acts** like an 
 `Object`. This means that all types inherit from `Object.prototype` (yet another 
@@ -16,7 +16,7 @@ preceded by whitespace or a number literal - as a floating point number.
 You can work around this by either inserting a space `2. toString()`, another dot
 `2..toString()` or using parenthesis `(2).toString()`.
 
-#### Objects as a Datatype
+### Objects as a Datatype
 
 Objects can also **act** like a [*Hashmap*][1] in JavaScript by simply mapping *keys* to
 *values*. Using the curly brace notation `{}` one can create a new plain object, 

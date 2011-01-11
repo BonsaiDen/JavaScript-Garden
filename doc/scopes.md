@@ -1,4 +1,4 @@
-### Scopes and Namespaces
+## Scopes and Namespaces
 
 Although JavaScript deals fine with the block scope syntax of two matching curly
 braces, it does **not** support block scope. Therefore all that's left is *function
@@ -17,7 +17,7 @@ Each time one references a variable, JavaScript will traverse through the scopes
 upwards until it finds it. In the case that it reaches the global scope and still 
 can't find the requested name it will raise a `ReferenceError`.
 
-#### The Bane of global Variables
+### The Bane of global Variables
 
     // script A
     foo = '42';
@@ -67,7 +67,7 @@ function had overriden the global value of `i`. Using a `var` for the second
 `for` loop would have easily avoided this, therefore never leave out `var`
 unless you really want to access the variable of an outer scope.
 
-#### Local Variables
+### Local Variables
 
 If one wants to declare a variable *local* to the current scope thes have to use 
 the `var` keyword. **Always** use the `var` keyword when declaring variables
@@ -90,7 +90,7 @@ the *local* scope. Therefore the value of the *global* `foo` does **not** get
 changed. But the assignment `bar = 4` will override the value of the *global*
 `bar` due to the missing `var` keyword.
 
-#### Name Resolution Order
+### Name Resolution Order
 
 All scopes in JavaScript - including the global one, have the name 
 [this](#this) defined in them, which refers to the 
@@ -112,7 +112,7 @@ scope, JavaScript will lookup the name in the following order:
 > **Note:** Having a parameter called `arguments` will **override** the default
 > `arguments` object.
 
-#### Namespaces
+### Namespaces
 
 One common problem of having only one global namespace is, that its very easy to 
 run into problems where variable names clash. Luckily this can be easily avoided 
@@ -133,7 +133,8 @@ In this example, this is done by wrapping the
 the most common style to do this, everything else that forces the function to be 
 evaluated works just as well, like for example `+function(){}()`.
 
-#### Best Practices
+### Best Practices
+
 Always use the *anonymous wrapper* to encapsulate your code in case there's any 
 chance it might get used by someone else in their project. Also never define any 
 variables in the *global* namespace, always use `var` to limit the scope of your 

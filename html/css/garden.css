@@ -1,11 +1,12 @@
 * {
     line-height: 1.4em;
+    font-family: Verdana, Helvetica, Arial, Sans-Serif;
 }
 
 /* Basics */
 p {
-    font: 12px Verdana, Helvetica, Arial, Sans-Serif;
     margin: 12px 0px;
+    font-size: 12px;
 }
 
 
@@ -56,25 +57,25 @@ h1 {
     border-bottom: 3px solid #B0B0B0;
 }
 
-h3 {
+h2 {
     padding-top: 18px;
     font-size: 16px;
     padding-bottom: 2px;
     border-bottom: 3px solid #B0B0B0;
 }
 
-h3 code {
+h2 code {
     font-size: 16px;
     font-weight: bold;
 }
 
-h4 {
+h3 {
     font-size: 12px;
     border-bottom: 2px solid #D0D0D0;
     padding-bottom: 3px;
 }
 
-h4 code {
+h3 code {
     font-size: 12px;
 }
 
@@ -91,7 +92,7 @@ a:hover {
     text-decoration: underline;
 }
 
-h3 a {
+h2 a {
     font-size: 20px;
     line-height: 15px;
     top: 5px;
@@ -100,7 +101,7 @@ h3 a {
     color: #CCCCCC;
 }
 
-h3 a:hover {
+h2 a:hover {
     text-decoration: none;
 }
 
@@ -121,7 +122,7 @@ blockquote p {
     margin-top: 4px;
 }
 
-blockquote + h4 {
+blockquote + h3 {
     margin-top: 12px;
 }
 
@@ -164,11 +165,11 @@ nav ul {
 
 
 /* Lists */
-ol + h4 {
+ol + h3 {
     margin-top: 12px;
 }
 
-ul + h4 {
+ul + h3 {
     margin-top: 12px;
 }
 

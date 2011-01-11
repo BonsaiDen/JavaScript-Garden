@@ -1,3 +1,4 @@
-### Global Scope and Global Variables
+## Global Scope and Global Variables
 
-As already
+Here be Dragons. 
+

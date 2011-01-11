@@ -1,4 +1,4 @@
-### Arrays
+## Arrays
 
 Although the `Array` in JavaScript is an `Object`, there's no good reason to use
 the [for in loop](#forinloop) in order to iterate over it. In fact there
@@ -22,7 +22,7 @@ Combining the already slow nature of the prototype traversing `for in` with the
 use of `hasOwnProperty` results in a performance degradation of a factor of up
 to **20x**.
 
-#### Efficient Iterating 
+### Efficient Iterating 
 
 If you want to iterate over an `Array` in JavaScript, **always** use the
 classic `for` loop construct.
@@ -43,7 +43,7 @@ reach the speed of the above caching. In fact leaving out the caching may result
 in a performance degradation of a factor of up to **2x** (and even more in older
 engines).
 
-#### The `length` Property
+### The `length` Property
 
 The `length` property of an `Array` is not just a plain property. While its 
 `getter` just returns the number of elements in the array, its `setter` on 
@@ -58,7 +58,8 @@ the other hand can be used to **truncate** the array.
 As one can see, assigning a smaller length truncates the array, but increasing 
 the length it has no effect at all.
 
-#### Best Practices
+### Best Practices
+
 Always use the `for` construct and cache the length to achieve the best 
 performance, don't make any assumptions about the JavaScript engine optimizing 
 **anything**.

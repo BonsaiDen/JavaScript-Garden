@@ -1,4 +1,4 @@
-### The For In Loop
+## The For In Loop
 
 Just like the `in` operator, the `for in` loop does also traverse the prototype
 chain when iterating over the properties of an `Object`.
@@ -21,7 +21,7 @@ incredible slow for complex inheritance structures.
 
 The above code results in both `bar` and `moo` being printed out.
 
-#### Using `hasOwnProperty` for Filtering
+### Using `hasOwnProperty` for Filtering
 
     for(var i in foo) { // still the foo from above
         if (foo.hasOwnProperty(i)) {
@@ -37,7 +37,8 @@ One widely used Framework which does this is [**Prototype.js**][1]. If your code
 ends up on a site which includes that Framework, and it does **not** use
 `hasOwnProperty`, it is basically **guaranteed** to break.
 
-#### Best Practices
+### Best Practices
+
 Always use `hasOwnProperty`. Never make any assumptions on the built in 
 prototypes being extended or not. 
 

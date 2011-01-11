@@ -1,4 +1,4 @@
-### Closures and References
+## Closures and References
 
 One of JavaScript's most powerful features is the availability of *Closures*.
 But it's also one of its most misunderstood features.
@@ -10,7 +10,7 @@ all functions are by technically closures,
 Although the word closure is most commonly used to refer to functions that were 
 either returned or passed as an argument.
 
-#### Emulating private Variables
+### Emulating private Variables
 
     function Counter(start) {
         var count = start;
@@ -34,7 +34,7 @@ as the function `get`, both keep a *reference* to the scope of  `Counter` and
 therefore always have access to the `count` variable that was defined in **that**
 scope.
 
-#### Why private Variables work
+### Why private Variables work
 
 Since it's not possible to reference or assign scopes, there's **no** way one 
 could access the variable `count` from the outside, the only way to interact with it
@@ -53,7 +53,7 @@ A common mistake made with Closures is not to understand that they keep
 a reference to the scope, and not the variables. It's especially important to
 understand that they do **not** copy the values of primitives.
 
-#### Closures inside Loops
+### Closures inside Loops
 
     for(var i = 0; i < 10; i++) {
         setTimeout(function() {
@@ -73,7 +73,7 @@ In order to get the desired behavior, one has to create a copy of the value of
 well get overridden. The trick here is to use an [anonymous
 wrapper](#scopes).
 
-#### Avoiding the reference Problem
+### Avoiding the reference Problem
 
     for(var i = 0; i < 10; i++) {
         (function(e) {
@@ -101,7 +101,8 @@ wrapper:
         })(i), 1000)
     }
 
-#### Best Practices
+### Best Practices
+
 Understand Closures **and** master them, they are the most powerful feature of
 JavaScript. If you're not able to use them correctly you're wasting a lot of the
 language's potential.

@@ -1,4 +1,4 @@
-### Functions and Statements
+## Functions and Statements
 
 Functions in JavaScript are first class objects, and that means they can be passed
 around like any other value. One common use of that feature is to pass
@@ -6,7 +6,7 @@ around like any other value. One common use of that feature is to pass
 
 There are two different ways to define a function in JavaScript.
 
-#### The `function` Statement
+### The `function` Statement
 
     function foo() { 
     }
@@ -18,7 +18,7 @@ available everywhere in the scope it was defined in from the start.
     function foo() {
     }
 
-#### The `function` Expression
+### The `function` Expression
 
     var foo = function() {
     };
@@ -36,7 +36,7 @@ The above may seem strange at first, but `var` is a statement, so the variable
 expression, therefore `foo` does not get assigned any value, so it defaults to 
 `undefined`.
 
-#### Named Function Expression
+### Named Function Expression
 
 There's one more case here, that is when you're assigning a named function.
 
@@ -50,7 +50,7 @@ assigned to `foo`, however, inside of `bar`, `bar` **is** available, since the
 name of the function itself always available in the functions own scope. For more on
 *name resolution*, read about [scopes](#scopes).
 
-#### The `var` Statement
+### The `var` Statement
 
     function test() {
         if (foo) {
@@ -71,7 +71,7 @@ Since there's **no** [block scope](#scopes) in JavaScript, the above will
 *local* variable `bar` of `test`. Also, while the statements inside the `if` block never gets executed, 
 the variable `foo` still gets created and defaults to `undefined`.
 
-#### `var` vs. `function`
+### `var` vs. `function`
 
 All `var` statements get parsed **before** the `function` statements, subsequent
 statements override the previous ones.
