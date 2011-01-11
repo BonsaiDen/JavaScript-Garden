@@ -17,7 +17,7 @@ the new array to be create.
 There are only a few cases when the above behaviour comes in handy, on of them is
 to repeat a string:
 
-    new Array(count - 1).join(stringToRepeat);
+    new Array(count + 1).join(stringToRepeat);
 
 ### Best Practices
 
