@@ -1,4 +1,4 @@
-# JavaScript Garden
+# Intro
 
 **JavaScript Garden** is a growing collection of documentation about the most 
 quirky parts of the JavaScript. It gives advice to avoid common coding

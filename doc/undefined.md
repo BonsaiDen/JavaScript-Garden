@@ -1,4 +1,4 @@
-### `null` and `undefined`
+### `undefined` and `null`
 
 JavaScript has two distinct values for "nothing", the more useful of those two
 being `undefined`.
