@@ -48,7 +48,7 @@ def create_navigation(file):
 
 def create_article(link, title, html, top = None):
     if top is not None:
-        title = to_markdown('## %s [^](#%s)' % (title, top)).replace('<h3>', '<h3 id="%s">' % link)
+        title = to_markdown('## %s [^](#%s)' % (title, top)).replace('<h2>', '<h2 id="%s">' % link)
 
     else:
         title = to_markdown('# %s' % title).replace('<h1>', '<h1 id="%s">' % link)
