@@ -25,7 +25,7 @@ timeout they specified when calling `setTimeout`.
 > most of the time, a silent error, since when the function returns `undefined`
 > `setTimeout` won't raise an error, but simply do nothing.
 
-#### Stacking calls with `setInterval`
+### Stacking calls with `setInterval`
 
 While `setTimeout` only runs the function once, `setInterval` - as the name 
 suggests - will execute the function **every** `X` milliseconds. But its use is 
@@ -45,7 +45,7 @@ While `foo` blocks the code `setInterval` will still schedule further calls to
 it. Now when `foo` has finished, there will already be **ten** further calls to
 waiting to for execution.
 
-#### Dealing with possible blocking code
+### Dealing with possible blocking code
 
 The easiest as well as most controllable solution is to use `setTimeout` within
 the function itself.
@@ -60,7 +60,7 @@ Not only does this encapsulate the `setTimeout` call, but it also prevents the
 stacking of calls from happening and it gives additional control since `foo` can
 now decide on its own whether it wants to run again or not.
 
-#### Manually clearing timeouts
+### Manually clearing timeouts
 
 In order to remove set timeouts and intervals one has to use `clearTimeout` and
 `clearInterval` and supply to them the ID that was return by the corresponding
@@ -69,7 +69,7 @@ In order to remove set timeouts and intervals one has to use `clearTimeout` and
     var id = setTimeout(foo, 1000);
     clearTimeout(id);
 
-#### Clearing all timeouts
+### Clearing all timeouts
 
 There's no built in way to clear all timeouts or intervals, one has to use brute
 force.
@@ -82,7 +82,7 @@ force.
 Note that there might be even higher IDs then in the above example, so make sure 
 to keep track of your timeout IDs, so you can avoid code such as the above.
 
-#### Things to avoid at all costs
+### Things to avoid at all costs
 
 `setTimeout` and `setInterval` can also take a string as their first parameter.
 Do **not** make use of this feature, since it internally makes use of `eval`.
@@ -114,7 +114,8 @@ function.
         foo(a, b, c);
     }, 1000)
 
-#### Best Practices
+### Best Practices
+
 **Never** use a string as the parameter of `setTimeout` or `setInterval` its a
 sign of **really** bad code, if you need to supply arguments to the function,
 pass an anonymous function which then calls your function. Also avoid

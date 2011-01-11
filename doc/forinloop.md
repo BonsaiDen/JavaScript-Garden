@@ -3,9 +3,9 @@
 Just like the `in` operator, the `for in` loop does also traverse the prototype
 chain when iterating over the properties of an `Object`.
 
-> **Note:** The `for in` loop it will **not** iterate over any properties that have
-> their `enumerable` attribute set to `false`, for example the `length` property of 
-> an `Array`.
+> **Note:** The `for in` loop it will **not** iterate over any properties that 
+> have their `enumerable` attribute set to `false`, for example the `length` 
+> property of an `Array`.
 
 Since you cannot change the behavior of the `for in` loop itself, you have to
 filter out the unwanted properties in the loop body by using 
@@ -13,7 +13,7 @@ filter out the unwanted properties in the loop body by using
 nature of traversing the complete prototype chain, the `for in` loop can get
 incredible slow for complex inheritance structures.
 
-    Object.prototype.bar = 1; // poisoning the Object.prototype, NEVER do this
+    Object.prototype.bar = 1; // poisoning the Object.prototype
     var foo = {moo: 2};
     for(var i in foo) {
         console.log(i);

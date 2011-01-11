@@ -2,6 +2,7 @@
 
 - [Intro](#intro)
 - [Objects](#objects)
+- [The Prototype](#prototype)
 - [`hasOwnProperty`](#hasownproperty)
 - [The For In Loop](#forinloop)
 - [Arrays](#arrays)

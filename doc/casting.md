@@ -15,7 +15,8 @@ in your code can break everything.
     10 == '10'; // Strings gets converted to Number
     10 == '+10 '; // More string madness
     10 == '010'; // And more 
-    isNaN(null) == false; // null converts to 0, which of cours is not NaN
+    isNaN(null) == false; // null converts to 0
+                          // which of course is not NaN
     
     // These are false
     10 == 010;
@@ -31,8 +32,7 @@ differently when being used with the `new` keyword and without it.
 
     new Number(10) === 10; // False, Object and Number
     Number(10) === 10; // True, Number and Number
-    new Number(10) + 0 === 10; // True
-                               // The former is now being converted to a Number
+    new Number(10) + 0 === 10; // True, due to implicit conversion
 
 As you can see above, using the built in type like `Number` as a constructor,
 will create a new Number `Object`, but leaving out the `new` keyword will make

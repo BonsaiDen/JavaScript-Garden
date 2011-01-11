@@ -26,7 +26,7 @@ has a property called `foo`, it will instead simply return `undefined`.
 
         // foo is not interpreted as an object key, but as a label
         foo: 1 // JavaScript supports single expression evaluation
-               // So 1 evaluates to 1, and yet again does not raise any error
+               // So 1 evaluates to 1 and no error is being raised
 
     } // Another semicolon gets inserted here
 

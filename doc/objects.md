@@ -18,14 +18,13 @@ You can work around this by either inserting a space `2. toString()`, another do
 
 ### Objects as a Datatype
 
-Objects can also **act** like a [*Hashmap*][1] in JavaScript by simply mapping *keys* to
-*values*. Using the curly brace notation `{}` one can create a new plain object, 
-which inherits from `Object.prototype` and has no [own
-properties](#hasownproperty).
+Objects can also **act** like a [*Hashmap*][1] in JavaScript by simply mapping 
+*keys* to *values*. Using the curly brace notation `{}` one can create a new 
+plain object,  which inherits from `Object.prototype` and has no 
+[own properties](#hasownproperty).
 
     var foo = {}; // a new empty object
-    var bar = {test: 12}; // a new object which has one property called 'test'
-                          // which value is 12
+    var bar = {test: 12}; // a new object with a property
 
     var test = {
         delete: function() {}
@@ -38,3 +37,4 @@ the  parser). But you can simply work around this by using a string with the
 value of `'delete'` instead of the plain literal.
 
  [1]: http://en.wikipedia.org/wiki/Hashmap
+
