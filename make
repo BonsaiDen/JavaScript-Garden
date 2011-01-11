@@ -53,7 +53,7 @@ def create_article(link, title, html, top = None):
     else:
         title = to_markdown('# %s' % title).replace('<h1>', '<h1 id="%s">' % link)
 
-    return '<article>%s\n%s</article>' % (title, html)
+    return '<article><header>%s</header>\n%s</article>' % (title, html)
 
 
 def to_content(file):
