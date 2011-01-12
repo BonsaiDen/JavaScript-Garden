@@ -99,11 +99,11 @@ Do **not** make use of this feature, since it internally makes use of `eval`.
     }
     bar();
 
-Since `eval` always works in the global scope it will not use the local `foo` of
-bar, but the global one. Also, `eval` is slow and a security problem since it
-will **execute** any code given to it.
+Since `eval` is not getting [called directly](#eval) here, the string passed to
+`setTimeout` will get exectuted in the global scope and will therefore not use 
+the local `foo` of `bar`.
 
-Also if you need to pass parameters to the function you're scheduling a timeout
+Also, if you need to pass parameters to the function you're scheduling a timeout
 for, do **not** use `setTimeout('foo(1,2, 3)', 1000)`, simply use an anonymous
 function.
 

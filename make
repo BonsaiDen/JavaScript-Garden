@@ -61,6 +61,7 @@ def to_content(file):
     title = markdown.split('\n')[0]
     content = markdown[len(title):].strip()
     html = to_markdown(content)
+    html = html.replace('<blockquote>', '<aside>').replace('</blockquote>', '</aside>')
     html = '</section><section><h3>'.join(html.split('<h3>')) + '</section>'
     html = html.replace('<h3>', '<header><h3>').replace('</h3>', '</h3></header>')
     title = title.strip('#').strip()

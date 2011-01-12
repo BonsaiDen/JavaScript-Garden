@@ -1,215 +1,237 @@
-* {
-    line-height: 1.4em;
-    font-family: Verdana, Helvetica, Arial, Sans-Serif;
+/* Reset + layout */
+
+/* Eric Meyer's reset.css v1.0 | 20080212 */
+
+html, body, div, span,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, cite, code,
+del, em, img, ins, kbd,
+strong, sub, sup,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
 }
 
-/* Basics */
-p {
-    margin: 12px 0px;
-    font-size: 12px;
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
 }
 
-
-/* Articles */
-article {
-    margin-bottom: 24px;
-    padding-right: 308px;
-    padding-left: 16px;
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-section {
-    margin-bottom: 18px;
+article, aside, figure, footer, header, hgroup,  menu, nav, section {
+	display: block;
 }
 
-/* Footer */
-footer {
-    padding-right: 308px;
-    background-color: #F0f0f0;
-    border-top: 2px solid #e5e5e5;
-    background-color: #F0f0f0;
-    font-size: 12px;
+body {
+	width: 960px;
+	margin: 0 auto;
+	font-family: Georgia, 'Nimbus Roman No9 L', 'Norasi', 'Liberation Serif', serif;
+	font-size: 14px;
 }
 
-/* Code */
-pre, code {
-    font: 11px 'Consolas', Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
-    background-color: #F0F0F0;
-    color: #151515;
-    padding: 0 0.2em;
-    border: 1px solid #DEDEDE;
-}
-
-pre {
-    color: #707070;
-    margin: 1em 0;
-    padding: 0.3em;
-    line-height: 1.5em;
-    overflow: auto;
-}
-
-pre > code {
-    border: none;
-    padding: 0;
-}
-
-
-/* Headings */
-h1 {
-    font-size: 20px;
-    padding-top: 8px;
-    padding-bottom: 6px;
-    border-bottom: 3px solid #B0B0B0;
-}
-
-h2 {
-    padding-top: 18px;
-    font-size: 16px;
-    padding-bottom: 1px;
-    border-bottom: 3px solid #B0B0B0;
-}
-
-h2 code {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-h3 {
-    font-size: 12px;
-    border-bottom: 2px solid #D0D0D0;
-    padding-bottom: 3px;
-}
-
-h3 code {
-    font-size: 12px;
-}
-
-
-/* Links */
-a {
-    color: #004363;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #003a6b;
-    text-decoration: underline;
-}
-
-h2 a {
-    font-size: 20px;
-    line-height: 15px;
-    top: 5px;
-    position: relative;
-    margin-left: 8px;
-    color: #CCCCCC;
-}
-
-h2 a:hover {
-    text-decoration: none;
-}
-
-p a:after {
-    content: " Ꝉ";
-}
-
-
-/* Quotes */
-blockquote {
-    margin-left: 24px;
-    border-bottom: 2px solid #eaeaea;
-    border-top: 2px solid #eaeaea;
-}
-
-blockquote p {
-    margin-bottom: 4px;
-    margin-top: 4px;
-}
-
-
-/* Navigation */
 nav {
-    padding: 0px 16px;
-    float: right;
-    position: fixed;
-    width: 256px;
-    right: 0px;
-    top: 0px;
-    border-left: 2px solid #e5e5e5;
-    background-color: #F0f0f0;
-    height: 100%;
+	position: fixed;
+	margin-left: 680px;
+	top: 0;
+	padding: 30px 0;
+	height: 100%;
+	background-color: #556c81;
+}
+
+body > div {
+	margin-right: 350px;
+}
+
+header h1 {
+	margin: 40px 0 30px;
+}
+
+nav h1 {
+	margin: 20px 0 20px 30px;
+}
+
+article {
+	padding-bottom: 20px;
+	border-bottom: 4px dotted #8696a5;
+}
+
+/* Typography */
+
+header h1 {
+	font-size: 75px;
+	line-height: 1.2em;
+	font-weight: normal;
+}
+
+nav {
+	text-shadow: none;
+}
+
+nav h1 {
+	font-size: 24px;
+	font-weight: normal;
+}
+
+nav ul li {
+	font-size: 16px;
+    margin: 0px;
+    list-style: none;
+	background-color: #556c81;
 }
 
 nav a {
-    font-size: 13px;
+	color: white;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	display: block;
+	padding: 4px 30px 6px;
 }
 
-nav a code {
-    color: #004363;
-    font-size: 13px;
-    border: none;
-    font-weight: bold;
+nav a:hover {
+	background: #0D2E4C;
+}
+
+p {
+	line-height: 1.4em;
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+pre, code {
+	font-family: Consolas, Inconsolata, 'Bitstream Vera Sans Mono', Menlo, Monaco, 'Andale Mono', 'Courier New', monospace;
+}
+
+pre {
+	padding: 4px 0 8px 30px;
+	border-left: 4px solid #566D82;
+	margin-bottom: 30px;
+	background: #092136;
+}
+
+article pre code {
+	font-size: 14px;
+	line-height: 1.3em;
     padding: 0px;
-    background-color: transparent;
-}
-
-nav li {
+    margin-top: 3px;
     margin-bottom: 1px;
+	background: #092136;
 }
 
-nav ul {
-    margin-top: 6px;
-    list-style-type: square;
-    margin-left: 16px;
+article code {
+	font-size: 0.85em;
+	text-shadow: none;
+	background: #071929;
 }
 
-
-/* Lists */
-ol + header {
-    margin-top: 12px;
+h2 {
+	font-size: 24px;
+	margin: 15px 0 20px;
+	padding-top: 30px; /* A little padding here so that document
+					     fragment anchors scroll to slightly above the exact
+					     top of the heading */
 }
 
-ul + header {
-    margin-top: 12px;
+h3 {
+	font-size: 18px;
+	margin: 25px 0 15px;
+}
+
+h2, h3 {
+	font-family: Arial, sans-serif;
+}
+
+aside {
+	padding: 15px 30px 20px;
+	border: 1px solid #9eabb7;
+	border-width: 1px 0;
+	margin-bottom: 25px;
+}
+
+aside p {
+	margin: 0;
 }
 
 ol {
-    margin-left: 32px;
-    margin-bottom: 12px;
+    margin-bottom:32px;
+}
+
+li {
+	font-size: 16px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: 50px;
 }
 
 ol li {
-    font-size: 12px;
-    padding-bottom: 2px;
+    list-style: decimal;
 }
 
 ul li {
-    font-size: 12px;
-    padding-bottom: 2px;
+    list-style: square;
 }
 
-ul {
-    list-style-type: square;
-    margin-left: 32px;
+footer {
+   padding-top: 10px; 
 }
 
+/* Color */
 
-/* Emphasis */
-strong {
-    font-weight: bolder;
+body {
+	background: #0D2E4C;
+	color: white;
+	text-shadow: 0 1px 1px #000000;
 }
 
-em {
-    color: #151515;
-    text-decoration: underline;
+a {
+	color: #FFA500;
+	text-decoration: none;
 }
 
-a em {
-    color: #004363;
-    font-weight: bold;
+a:hover {
+	color: #FFC76D;
 }
 
-a em:hover {
-    color: #003a6b;
+article code {
+	padding: 3px 4px 1px;
+	background: #607589;
+}
+
+/* Behavior */
+
+h2 a {
+	display: none;
+}
+
+h2:hover a {
+	display: inline;
 }
 
