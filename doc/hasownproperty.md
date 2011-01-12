@@ -28,9 +28,9 @@ As you can see, only `hasOwnProperty` gives the correct and expected result.
 `Object`, since there's no other way to exclude things that are not defined on 
 the object **itself** but rather somewhere on its prototype chain.  
 
-### Best Practices
+### Best practices
 
-Always use `hasOwnProperty` when checking for the existence of properties on an 
-`Object` and even more important, make sure that `hasOwnProperty` is part of 
-**every** [for in loop](#forinloop) you write.
+When checking for the existence of a property on a object, `hasOwnProperty` is 
+the only way to go. It's also recommended to make sure that `hasOwnProperty` is 
+part of **every** [for in loop](#forinloop).
 

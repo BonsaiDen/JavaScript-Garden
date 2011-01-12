@@ -1,19 +1,21 @@
 ## The For In Loop
 
-Just like the `in` operator, the `for in` loop does also traverse the prototype
-chain when iterating over the properties of an `Object`.
+Just like the `in` operator, the `for in` loop also traverses the prototype
+chain when iterating over the properties of an object.
 
 > **Note:** The `for in` loop it will **not** iterate over any properties that 
 > have their `enumerable` attribute set to `false`, for example the `length` 
-> property of an `Array`.
+> property of an array.
 
-Since you cannot change the behavior of the `for in` loop itself, you have to
-filter out the unwanted properties in the loop body by using 
-[`hasOwnProperty`](#hasownproperty). It should also be noted that due to its
-nature of traversing the complete prototype chain, the `for in` loop can get
-incredible slow for complex inheritance structures.
+Since it's not possible to change the behavior of the `for in` loop itself, one 
+has to filter out the unwanted properties inside the loop body itself by using 
+the [hasOwnProperty](#hasownproperty) method of the object. It should also be 
+noted that due to its nature of traversing the complete prototype chain, the 
+`for in` loop gets slower for each layer of inheritance.
 
-    Object.prototype.bar = 1; // poisoning the Object.prototype
+    // poisoning Object.prototype
+    Object.prototype.bar = 1;
+
     var foo = {moo: 2};
     for(var i in foo) {
         console.log(i);
@@ -21,25 +23,29 @@ incredible slow for complex inheritance structures.
 
 The above code results in both `bar` and `moo` being printed out.
 
-### Using `hasOwnProperty` for Filtering
+### Using `hasOwnProperty` for filtering
 
-    for(var i in foo) { // still the foo from above
+    // still the foo from above
+    for(var i in foo) {
         if (foo.hasOwnProperty(i)) {
             console.log(i);
         }
     }
 
-This version is the only correct one, it will **only** print out `moo`. If you 
-don't use  `hasOwnProperty`, your code is prone to errors when the native 
-prototypes - for example, `Object.prototype`, have been extended.
+This version is the only correct one to use. Due to the use of `hasOwnPropery` it
+will **only** print out `moo`. When `hasOwnProperty` is left out, the code is 
+prone to errors when the native prototypes - for example `Object.prototype` - 
+have been extended.
 
-One widely used Framework which does this is [**Prototype.js**][1]. If your code ever
-ends up on a site which includes that Framework, and it does **not** use
+One widely used framework which does this is [**Prototype.js**][1]. In case code 
+ends up being used together with this framework and this code does **not** use
 `hasOwnProperty`, it is basically **guaranteed** to break.
 
-### Best Practices
+### Best practices
 
-Always use `hasOwnProperty`. Never make any assumptions on the built in 
-prototypes being extended or not. 
+It's recommended to always use `hasOwnProperty`, never should any assumptions be
+made about the environment code is running in or whether the built in prototypes 
+have been extended or not. 
 
  [1]: http://www.prototypejs.org/
+
