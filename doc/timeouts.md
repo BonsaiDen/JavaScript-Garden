@@ -4,7 +4,7 @@ Since JavaScript is asynchronous, one can schedule the execution of a function b
 using the `setTimeout` and `setInterval` functions.
 
 > **Note:** Timeouts are **not** part of the EcmaScript Standard, they are
-> implemented as part of the [DOM][1].
+> implemented as part of the [<abbr title="Document Object Model">DOM</abbr>][1].
 
     function foo() {
     }
@@ -19,8 +19,8 @@ and the fact that JavaScript is single threaded and other code that gets execute
 might block the thread, it's by no means a safe bet that one will get the exact 
 timeout they specified when calling `setTimeout`.
 
-> **Note:** `setTimeout` takes a **function object** as its first parameter, an
-> often made mistake is to use something like `setTimeout(foo(), 1000)` which
+> **Note:** As `setTimeout` takes a **function object** as its first parameter, an
+> oft made mistake is to use something like `setTimeout(foo(), 1000)`, which
 > will use the **return value** of the call `foo` and **not** `foo`. This is,
 > most of the time, a silent error, since when the function returns `undefined`
 > `setTimeout` won't raise an error, but simply do nothing.
@@ -32,7 +32,7 @@ suggests - will execute the function **every** `X` milliseconds. But its use is
 discouraged. 
 
 When executing code blocks the timeout call, `setInterval` will still issue more
-calls to the specified function. This can, especially with low timeouts, result 
+calls to the specified function. This can, especially with small intervals, result 
 in function calls stacking up.
 
     function foo(){
@@ -71,8 +71,8 @@ In order to remove set timeouts and intervals one has to use `clearTimeout` and
 
 ### Clearing all timeouts
 
-There's no built in way to clear all timeouts or intervals, one has to use brute
-force.
+As there is no built in method to clear all timeouts or intervals, one has to use brute
+force:
 
     // clear "all" timeouts
     for(var i = 0; i < 1000000; i++) {
@@ -100,7 +100,7 @@ Do **not** make use of this feature, since it internally makes use of `eval`.
     bar();
 
 Since `eval` is not getting [called directly](#eval) here, the string passed to
-`setTimeout` will get exectuted in the global scope and will therefore not use 
+`setTimeout` will get executed in the global scope and will therefore not use 
 the local `foo` of `bar`.
 
 Also, if you need to pass parameters to the function you're scheduling a timeout
@@ -122,5 +122,5 @@ pass an anonymous function which then calls your function. Also avoid
 `setInterval` since its hard to control and when you loose the returned ID,
 there's no easy way to clear it.
 
-[1]: http://en.wikipedia.org/wiki/Document_Object_Model 
+ [1]: http://en.wikipedia.org/wiki/Document_Object_Model 
 
