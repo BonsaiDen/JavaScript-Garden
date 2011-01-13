@@ -1,9 +1,9 @@
 ## Constructors 
 
-Constructors in JavaScript are another thing many people get wrong, their
-workings are pretty simple though.
+Constructors in JavaScript are another thing many people get wrong, but actually, their
+workings are pretty simple to understand.
 
-Any function call that's preceded by the `new` keyword acts as a constructor.
+Any function call that is preceded by the `new` keyword acts as a constructor.
 
 Inside the constructor (the called function) the value of `this` refers to a 
 newly created `Object`. The `prototype` of this **new** object is set to the 
@@ -16,6 +16,7 @@ the value of the `return` statement.
     function Foo() {
         this.bla = 1;
     }
+
     Foo.prototype.test = function() {
         console.log(this.bla);
     };
@@ -26,8 +27,8 @@ The above calls `Foo` as constructor and sets the `prototype` of the newly
 created object to `Foo.prototype`.
 
 Keep in mind that if you don't use the `new` keyword the function will **not**
-return a new object. While it might still work due to the fact how
-[this](#how-this-works-in-javascript) works in JavaScript, it will use the
+return a new object. While it might still work due to how
+[`this`](#how-this-works-in-javascript) works in JavaScript, it will use the
 *global* object as the value of `this` and therefore result in completely
 unexpected results.
 
@@ -59,6 +60,6 @@ here. But from a technical point of view, this is no longer a *constructor*.
 
 Make sure you know whether you're calling a *constructor* or a *factory*. 
 If in doubt, always use the `new` keyword, since it doesn't have any side effect
-when its not required, leaving it out on the other hand can lead to subtle and
+when its not required, while leaving it out can lead to subtle and
 hard to track down bugs.
 
