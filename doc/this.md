@@ -1,6 +1,6 @@
 ## How `this` works
 
-JavaScript has a, at first, very strange concept of what `this` refers to.
+JavaScript has, at first glance, a very strange concept of what `this` refers to.
 There are exactly five different ways in which the value of `this` can get set.
 
 ### The global scope
@@ -44,7 +44,7 @@ case the *method case* does **not** apply, and `this` inside of `foo` will be
 set to `bar`.
 
 > **Note:** `this` **cannot** be used to refer to the object inside of an `Object`
-> literal. So `var obj = {me: this}` will **not** result in `me` refering to
+> literal. So `var obj = {me: this}` will **not** result in `me` referring to
 > `obj`, since `this` gets determined by one of the above cases.
 
 ### Common Pitfalls
@@ -86,12 +86,11 @@ a variable.
     test();
 
 Again due to the first case, `test` now acts like like a plain function call
-therefore the `this` inside it will not refer to `someObject` anymore.
+therefore the `this` inside it will not refer to `someObject` any more.
 
 While the late binding of `this` might seem like a bad thing, it is fact what
 makes [prototypical inheritance](#prototype) work. 
 
-    
     function Foo() {}
     Foo.prototype.method = function() {};
 
@@ -101,11 +100,10 @@ makes [prototypical inheritance](#prototype) work.
     new Bar().method();
 
 When `method` gets called on a instance of `Bar`, `this` will now refer to that
-instance.  
+instance. 
 
 ### Best Practices
 
-Don't try to work around the behavior of `this` in JavaScript. Instead
+Don't try to work around the behavior of `this` in JavaScript. Instead,
 **understand** how and why it works the way it does. Otherwise you'll end up with
 a lot of bugs that seem to be there for no good reason.
-
