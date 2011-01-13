@@ -3,15 +3,15 @@
 Just like the `in` operator, the `for in` loop also traverses the prototype
 chain when iterating over the properties of an object.
 
-> **Note:** The `for in` loop it will **not** iterate over any properties that 
+> **Note:** The `for in` loop will **not** iterate over any properties that 
 > have their `enumerable` attribute set to `false`, for example the `length` 
 > property of an array.
 
 Since it's not possible to change the behavior of the `for in` loop itself, one 
 has to filter out the unwanted properties inside the loop body itself by using 
-the [hasOwnProperty](#hasownproperty) method of the object. It should also be 
+the [`hasOwnProperty`](#hasownproperty) method of the object. It should also be 
 noted that due to its nature of traversing the complete prototype chain, the 
-`for in` loop gets slower for each layer of inheritance.
+`for in` loop gets slower with each layer of inheritance.
 
     // poisoning Object.prototype
     Object.prototype.bar = 1;
@@ -37,14 +37,13 @@ will **only** print out `moo`. When `hasOwnProperty` is left out, the code is
 prone to errors when the native prototypes - for example `Object.prototype` - 
 have been extended.
 
-One widely used framework which does this is [**Prototype.js**][1]. In case code 
-ends up being used together with this framework and this code does **not** use
-`hasOwnProperty`, it is basically **guaranteed** to break.
+One widely used framework which does this is [**Prototype**][1]. When this 
+framework is included, `for in` loops without `hasOwnProperty` are guaranteed to break. 
 
 ### Best practices
 
-It's recommended to always use `hasOwnProperty`, never should any assumptions be
-made about the environment code is running in or whether the built in prototypes 
+It is recommended to always use `hasOwnProperty` - never should any assumptions be
+made about the environment the code is running in or whether the built in prototypes 
 have been extended or not. 
 
  [1]: http://www.prototypejs.org/
