@@ -20,7 +20,7 @@ The above will return a new `Array` containing all the elements of the `argument
 object. This conversion is **slow**, it is not recommended to use it in
 performance critical code.
 
-> **Note:** Don't use `arguments` as the name of a function parameter, since it
-> due the nature of [name resolution](#scopes) in JavaScript this parameter will
-> override the `arguments` object.
+> **Note:** Do **not** use `arguments` as the name of a function parameter, due 
+> to the fact how [name resolution](#scopes) in JavaScript works, the parameter 
+> will override the default `arguments` object.
 
