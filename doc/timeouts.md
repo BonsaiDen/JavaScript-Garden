@@ -4,10 +4,9 @@ Since JavaScript is asynchronous, one can schedule the execution of a function b
 using the `setTimeout` and `setInterval` functions.
 
 > **Note:** Timeouts are **not** part of the EcmaScript Standard, they are
-> implemented as part of the [<abbr title="Document Object Model">DOM</abbr>][1].
+> implemented as part of the [DOM][1].
 
-    function foo() {
-    }
+    function foo() {}
     var id = setTimeout(foo, 1000); // returns a Number > 0
 
 When `setTimeout` gets called, it will return the ID of the timeout, and schedule
@@ -18,6 +17,21 @@ Depending on the timer resolution of the JavaScript engine running  the code,
 and the fact that JavaScript is single threaded and other code that gets executed
 might block the thread, it's by no means a safe bet that one will get the exact 
 timeout they specified when calling `setTimeout`.
+
+The function that was passed as the first parameter will get called by the
+global object, that means that [this](#this) inside the called function refers 
+to that object.
+
+    function Foo() {
+        this.value = 42;
+        this.method = function() {
+            // this refers to the global object
+            console.log(this.value); // will log undefined
+        };
+        setTimeout(this.method, 500);
+    }
+    new Foo();
+
 
 > **Note:** As `setTimeout` takes a **function object** as its first parameter, an
 > oft made mistake is to use something like `setTimeout(foo(), 1000)`, which
@@ -107,12 +121,15 @@ Also, if you need to pass parameters to the function you're scheduling a timeout
 for, do **not** use `setTimeout('foo(1,2, 3)', 1000)`, simply use an anonymous
 function.
 
-    function foo(a, b, c) {
-    }
+    function foo(a, b, c) {}
 
     setTimeout(function() {
         foo(a, b, c);
     }, 1000)
+
+> **Note:** While it is also possible to use the syntax 
+> `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
+> to subtle errors when used with methods.
 
 ### Best Practices
 
@@ -122,5 +139,6 @@ pass an anonymous function which then calls your function. Also avoid
 `setInterval` since its hard to control and when you loose the returned ID,
 there's no easy way to clear it.
 
- [1]: http://en.wikipedia.org/wiki/Document_Object_Model 
+[1]: http://en.wikipedia.org/wiki/Document_Object_Model 
+*[DOM]: Document Object Model
 
