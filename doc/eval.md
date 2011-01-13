@@ -1,7 +1,6 @@
 ## `eval`
 
-The `eval` function is supposed to execute a string of JavaScript syntax in the
-local scope. But it only does so for [function statements](#functions).
+The `eval` function will execute a string of JavaScript code in the local scope.
 
     var foo = 1;
     function test() {
@@ -10,42 +9,28 @@ local scope. But it only does so for [function statements](#functions).
         return foo;
     }
     test(); // 3
-    foo;    // 1
+    foo; // 1
 
-But when used inside of a function expression, `eval` gets executed in the
-*global scope*.
+But `eval` only exectues in local scope when it is being called directly and the 
+name of the function that was actually called is `eval`.
 
     var foo = 1;
-    var test = function() {
+    function test() {
         var foo = 2;
-        eval('foo = 3');
+        var bar = eval;
+        bar('foo = 3');
         return foo;
     }
     test(); // 2
-    foo;    // 3
-
-This, of course, also applies to anonymous functions since these are also
-expressions and not statements, and even works when a function statement was 
-declared inside of an expression.
-
-    var foo = 1;
-    var test = function() {
-        var foo = 2;
-        function bar() {
-            eval('foo = 3');
-            return foo;
-        }
-        return bar();
-    }
-    test(); // 2
-    foo;    // 3
-
-This inconsistency is enough reason not to use `eval`.
-
+    foo; // 3
+    
 ## `eval` in disguise
 
 The [timeout functions](#timeouts) `setTimeout` and `setInterval` can both take a string as
 their first argument. This string will **always** get executed in the global 
 scope since `eval` is not being called directly in that case.
 
+## Security issues
+
 Also, `eval` is slow and a security problem since it will **execute** any code given to it.
+
