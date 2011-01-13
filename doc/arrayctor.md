@@ -1,7 +1,7 @@
 ## The `Array` constructor
 
-It's good practice to always use `[]` notation to create a new array, the `Array`
-constructor is ambiguous in how it deals with its parameters.
+It's good practice to always use the `[]` notation to create new arrays. The `Array`
+constructor is ambiguous in how it deals with its parameters:
 
     [1, 2, 3]; // Result: [1, 2, 3]
     new Array(1, 2, 3); // Result: [1, 2, 3]
@@ -20,6 +20,6 @@ This behavior only comes in handy in a few cases, like repeating a string.
 
 ### Best practices
 
-The use of the `Array` constructor should be avoided if possible, the `[]` is
-definitely favored here.
+The use of the `Array` constructor should be avoided if possible. The `[]` notation is
+definitely preferred here.
 
