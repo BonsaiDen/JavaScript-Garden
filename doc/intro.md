@@ -12,9 +12,11 @@ guide. If you want to learn the language first, please head over to the excellen
 
 ### License
 
-JavaScript Garden is published under the MIT license and hosted on
+JavaScript Garden is published under the [MIT license][2] and hosted on
 [GitHub](https://github.com/BonsaiDen/JavaScript-Garden). If you find errors or
-typos please file an issue or a pull request on the repository.
+typos please [file an issue][3] or a pull request on the repository.
 
 [1]: https://developer.mozilla.org/en/JavaScript/Guide
+[2]: https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE
+[3]: https://github.com/BonsaiDen/JavaScript-Garden/issues
 
