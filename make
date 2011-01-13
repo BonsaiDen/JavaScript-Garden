@@ -1,5 +1,5 @@
-#!/usr/bin/python3
-import subprocess
+#!/usr/bin/python
+import markdown
 import shutil
 import os
 
@@ -57,10 +57,14 @@ def create_article(link, title, html, top = None):
 
 
 def to_content(file):
-    markdown = open('%s.md' % file).read()
-    title = markdown.split('\n')[0]
-    content = markdown[len(title):].strip()
+    md = open('%s.md' % file).read()
+    title = md.split('\n')[0]
+    content = md[len(title):].strip()
     html = to_markdown(content)
+    print file
+    if file == 'doc/timeouts':
+        print html
+
     html = html.replace('<blockquote>', '<aside>').replace('</blockquote>', '</aside>')
     html = '</section><section><h3>'.join(html.split('<h3>')) + '</section>'
     html = html.replace('<h3>', '<header><h3>').replace('</h3>', '</h3></header>')
@@ -68,13 +72,8 @@ def to_content(file):
     return (title, content, html)
 
 
-def to_markdown(data):
-    with open('md.tmp', 'wb') as f:
-        f.write(data.encode('utf-8'))
-
-    html = subprocess.getoutput('./tools/Markdown.pl md.tmp')
-    os.unlink('md.tmp')
-    return html
+def to_markdown(text):
+    return markdown.markdown(text, ['abbr'])
 
 
 if __name__ == '__main__':
