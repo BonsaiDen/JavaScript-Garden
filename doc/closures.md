@@ -25,14 +25,14 @@ defined in. Since the only scope that JavaScript has is the
     foo.increment();
     foo.get(); // 5
 
-In the above example `Counter` returns **two closures**. The function `increment`
-as well as the function `get`, both keep a **reference** to the scope of
-`Counter` and therefore always have access to the `count` variable that was 
-defined in that very scope.
+In the above example `Counter` returns **two** closures. The function `increment`
+as well as the function `get`. Both of these functions keep a **reference** to 
+the scope of `Counter` and therefore always have access to the `count` variable 
+that was defined in that **very** scope.
 
 ### Why private variables work
 
-Since it's not possible to reference or assign scopes in JavaScript, there's 
+Since it is not possible to reference or assign scopes in JavaScript, there is 
 **no** way of accessing the variable `count` from the outside. The only way to 
 interact with it is via the two closures.
 
@@ -45,10 +45,11 @@ This code will **not** change the variable `count` in the scope of `Counter`,
 since `foo.hack` was not defined in **that** scope, instead, it will create 
 (or override) the *global* variable `count`.
 
-One common mistake made about closures is that they do **not** copy the
-variables of their outer scope, they **reference** them.
-
 ### Closures inside loops
+
+One mistake that is often made with closures is that they are used like if they
+were copying primitive values, while they are in fact **referencing** the
+variables which hold those values.
 
     for(var i = 0; i < 10; i++) {
         setTimeout(function() {
@@ -56,11 +57,11 @@ variables of their outer scope, they **reference** them.
         }, 1000);
     }
 
-A common misconception is that the above will output the numbers `0` through
-`9`, while in reality, is simply prints the number `10` ten times.
+The above will **not** output the numbers `0` through `9`, it will simply print
+the number `10` ten times.
 
-The *anonymous* function keeps a reference to `i` and at the time `conole.log`
-gets called the `for loop` has already finished and updated the value of `i` to 
+The *anonymous* function keeps a reference to `i` and at the time `console.log`
+gets called, the `for` loop has already finished and updated the value of `i` to 
 `10`.
 
 In order to get the desired behavior, it is necessary to create a **copy** of 
@@ -68,7 +69,7 @@ the value of `i`.
 
 ### Avoiding the reference problem
 
-In order to copy the value of the loop's index variable, it is best to use an 
+In order to copy the value of the loop its index variable, it is best to use an 
 [anonymous wrapper](#scopes).
 
     for(var i = 0; i < 10; i++) {
@@ -84,10 +85,11 @@ argument, therefore it will receive a copy of the **value** of `i` as its
 parameter `e`.
 
 The anonymous function that gets passed to `setTimeout` now has a reference to 
-`e`, which value does not get changed by the loop.
+`e`, which value does **not** get changed by the loop.
 
-There's another possibility, which is to return a function from the anonymous
-wrapper.
+There is another possible way of achieving this. It is possible to return a 
+function from the anonymous wrapper, which will then have the same result as the
+code above.
 
     for(var i = 0; i < 10; i++) {
         setTimeout((function(e) {
@@ -99,6 +101,6 @@ wrapper.
 
 ### Best practices
 
-It is important to understand **and** master closures, they are the most powerful feature of
-JavaScript and are use pretty much everywhere in the language.
+It is important to understand **and** master closures, they are the most powerful
+feature of JavaScript and are use pretty much everywhere in the language.
 
