@@ -35,8 +35,8 @@ anonymous function wrapper and add an additional parameter which one passed
 
     var undefined = 123;
     (function(something, foo, undefined) {
-        // undefined in the local scope does now again refer to the value
-        // undefined
+        // undefined in the local scope does 
+        // now again refer to the value
 
     })('Hello World', 42);
 
