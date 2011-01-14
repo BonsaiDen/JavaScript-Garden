@@ -3,17 +3,17 @@
 JavaScript does not feature the classical inheritance model, instead it uses a 
 *prototypical* one. 
 
+While this is often considered to be one of JavaScript's weaknesses, the 
+prototypical inheritance model is in fact more powerful than the classic model. 
+For example, it is fairly trivial to build a classic model on top the it while the 
+other way around is a far more difficult task.
 
-While this is often considered to be one of JavaScript's weak points, the 
-prototypical inheritance model is in fact more powerful than the classic
-inheritance model. It fairly trivial to built the classic model on top the it, 
-while the other way around is a far more difficult task.
+Due to the fact that JavaScript is basically the only widely used language that
+features prototypical inheritance, it takes some time to adjust to the 
+differences between the two models. 
 
-Due to the fact that JavaScript is practically the only language that is both in
-widespread **and** uses prototypical inheritance, it takes some time to adjust
-to the differences between the two models. 
-
-For example, inheritance in JavaScript is done by using *prototype chains*.
+The first major difference is that inheritance in JavaScript is done by using 
+*prototype chains*.
 
     function Foo() {
         this.value = 42;
@@ -36,28 +36,36 @@ For example, inheritance in JavaScript is done by using *prototype chains*.
                 Bar.method()
 
 The above object `test` will inherit from both `Bar.prototype` and
-`Foo.prototype`, so it will have access to the function `method` that was defined
-on `Foo`, but it will not have access to the property `value` of a `Foo` instance
-since the [constructor](#constructor) `Foo` never gets called in this case.
+`Foo.prototype`. It will therefore have access to the function `method` that was 
+defined on `Foo`, but it will not have access to the **property** `value` of a 
+`Foo` instance since that property gets defined in the [constructor](#constructor)
+of `Foo`. Which, in this case, never gets called.
 
-> **Note:** Don't use `Bar.property = Foo;`, since this will **not** point to 
-> the prototype of `Foo` but rather to the function object `Foo`, so the chain 
-> will go over `Function.prototype` in this case (therefore the function `method`
-> is not on the prototype chain).
+> **Note:** Do **not** use `Bar.property = Foo`, since it will not point to 
+> the prototype of `Foo` but rather to the function object `Foo`. Therefore the 
+> prototype chain will go over `Function.prototype` in this case, which results
+> in `method` not being on the prototype chain.
 
 ### Property lookup
 
-When accessing the property of an object, JavaScript will traverse the
+When accessing the properties of an object, JavaScript will traverse the
 prototype chain **upwards** until it finds a property with the requested name.
 
 When it reaches the top of the chain - namely `Object.prototype` - and still
 hasn't found the specified property, it will return the value
-[undefined](#undefined).
+[undefined](#undefined) instead.
 
-### Dynamically created prototypes
+### The prototype property
 
-It is possible to assign **any** given object as the value of the `prototype` 
-property.
+The `prototype` property is in no way special, it is possible to assign **any**
+given value to it, although primitives will simply get ignored.
+
+    function Foo() {
+    }
+    Foo.prototype = 1; // no effect
+
+Assigning objects on the other hand allows for dynamic creation of prototype
+chains.
 
     function Foo() {
         this.value = 42;
@@ -78,21 +86,23 @@ property.
                 Bar.prototype: [Foo Instance]
                     Bar.method()
 
-Now `Bar.prototype` points to an **instance** of `Foo`, therefore the property
-**value** is now on the prototype chain and since `Foo` itself has a prototype, 
-the chain continues with that one afterwards.
+Now `Bar.prototype` points to an *instance* of `Foo`, therefore the property
+`value` of **that** instance is now on the prototype chain and since `Foo` itself
+has a prototype, the chain continues with that one afterwards.
 
 ### Performance
 
 As a result of all of this this, the lookup time for properties that are high up 
 the prototype chain can have a negative impact on performance critical code. 
-Access to non existent properties will always traverse the full prototype chain 
-and when [iterating](#the-for-in-loop) over the properties of an object  **every** 
-property that's on the prototype chain will get enumerated.
+Accessing non existent properties will always traverse the complete chain. 
+
+Also, when [iterating](#the-for-in-loop) over the properties of an object 
+**every** property that is on the prototype chain will get enumerated.
 
 ### Best practices
 
-It's a must to understand the prototypical inheritance model completely before
-writing complex code that makes use of it. Also, watching the length of the 
-prototype chains and breaking them up if necessary can avoid performance issues.
+It is a must to understand the prototypical inheritance model completely before
+writing complex code which makes use of it. Also, watching the length of all the 
+prototype chains and breaking them up if necessary can avoid possible performance
+issues.
 

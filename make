@@ -61,9 +61,6 @@ def to_content(file):
     title = md.split('\n')[0]
     content = md[len(title):].strip()
     html = to_markdown(content)
-    print file
-    if file == 'doc/timeouts':
-        print html
 
     html = html.replace('<blockquote>', '<aside>').replace('</blockquote>', '</aside>')
     html = '</section><section><h3>'.join(html.split('<h3>')) + '</section>'

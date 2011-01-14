@@ -1,26 +1,19 @@
 ## Arrays
 
-Although arrays in JavaScript are objects, there's are no good reasons to use
-the [for in loop](#forinloop) in order to iterate over them. In fact there
-a number of good reasons **against** the use of `for in` on arrays.
+Although arrays in JavaScript are objects, there is are no good reasons to use
+the [for in loop](#forinloop) in for iteration on them. In fact there are a 
+number of good reasons **against** the use of `for in` on arrays.
 
 > **Note:** JavaScript arrays are **not** *associative arrays*. JavaScript only 
 > has [objects](#objects) for mapping keys to values. And while associative 
 > arrays **preserve** order, objects do **not**.
 
-While the `for in` loop does in fact iterate over the indexes of an array, this 
-it not the only thing it iterates over - it will also traverse the prototype chain. 
+Since the `for in` loop enumerates all properties on the prototype chain and 
+the only way to exclude those properties is to use 
+[`hasOwnProperty`](#hasownproperty), it is already up to **twenty times** slower
+than a normal `for` loop.
 
-This already adds the overhead of using `hasOwnProperty` in order to ensure that 
-everything besides the indexes is ignored. And still, if any additional 
-properties happen to be defined on the array itself, those will still pass the 
-filtering via `hasOwnProperty`.
-
-Combining the already slow nature of the prototype traversing `for in` loop with
-the use of `hasOwnProperty` results in a performance degradation of a factor of 
-up to **20x**.
-
-### Efficient iterating
+### Iteration
 
 In order to achieve the best performance when iterating over arrays, it is best
 to use the classic `for` loop.
@@ -33,17 +26,19 @@ to use the classic `for` loop.
 There is one extra catch in the above example, which is the caching of the 
 length of the array via `l = list.length`.
 
-Although the `length` property is defined on the array itself, there's still an
+Although the `length` property is defined on the array itself, there is still an
 overhead for doing the lookup on each iteration of the loop. And while recent 
 JavaScript engines **may** apply optimization in this case, there is no way of
-telling whether the code will run on one of these newer engines or not, and 
-leaving out the caching may result in a performance degradation of a factor of 
-up to **2x** or more.
+telling whether the code will run on one of these newer engines or not. 
+
+In fact, leaving out the caching may result in the loop being only **half as
+fast** as with the cached length.
 
 ### The `length` property
 
-While the *getter* of the `length` property simply act like such one, the
-*setter* can be used to **truncate** the array.
+While the *getter* of the `length` property simply returns the number of
+elements that are contained in the array, the *setter* can be used to 
+**truncate** the array.
 
     var foo = [1, 2, 3, 4, 5, 6];
     foo.length = 3;
@@ -52,12 +47,12 @@ While the *getter* of the `length` property simply act like such one, the
     foo.length = 6;
     foo; // [1, 2, 3]
 
-Assigning a smaller length does truncate the array, but increasing the length has no 
-effect on the array.
+Assigning a smaller length does truncate the array, but increasing the length 
+does not have any effect on the array.
 
 ### Best practices
 
-Always use the `for` construct and cache the length to achieve the best 
-performance, and don't make any assumptions about the JavaScript engine optimizing 
-**anything**.
- 
+For the best performance it is recommended to always use the plain `for` loop
+and cache the `length` property. Never should any assumptions be made whether
+the JavaScript engine will apply optimization to the `for` loop or not.
+

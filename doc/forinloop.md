@@ -3,17 +3,7 @@
 Just like the `in` operator, the `for in` loop also traverses the prototype
 chain when iterating over the properties of an object.
 
-> **Note:** The `for in` loop will **not** iterate over any properties that 
-> have their `enumerable` attribute set to `false`, for example the `length` 
-> property of an array.
-
-Since it's not possible to change the behavior of the `for in` loop itself, one 
-has to filter out the unwanted properties inside the loop body itself by using 
-the [`hasOwnProperty`](#hasownproperty) method of the object. It should also be 
-noted that due to its nature of traversing the complete prototype chain, the 
-`for in` loop gets slower with each layer of inheritance.
-
-    // poisoning Object.prototype
+    // Poisoning Object.prototype
     Object.prototype.bar = 1;
 
     var foo = {moo: 2};
@@ -22,6 +12,18 @@ noted that due to its nature of traversing the complete prototype chain, the
     }
 
 The above code results in both `bar` and `moo` being printed out.
+
+> **Note:** The `for in` loop will **not** iterate over any properties that 
+> have their `enumerable` attribute set to `false`, for example the `length` 
+> property of an array.
+
+Since it is not possible to change the behavior of the `for in` loop itself, it
+is necessary to filter out the unwanted properties inside the loop body itself, 
+this is done by using the [`hasOwnProperty`](#hasownproperty) method of the 
+object. 
+
+> **Note:** Since the `for in` always traverses the complete prototype chain, it
+> will get slow with each additional layer of inheritance added to an object.
 
 ### Using `hasOwnProperty` for filtering
 
@@ -38,13 +40,14 @@ prone to errors when the native prototypes - for example `Object.prototype` -
 have been extended.
 
 One widely used framework which does this is [**Prototype**][1]. When this 
-framework is included, `for in` loops without `hasOwnProperty` are guaranteed to break. 
+framework is included, `for in` loops that doe not use `hasOwnProperty` are 
+guaranteed to break.
 
 ### Best practices
 
-It is recommended to always use `hasOwnProperty` - never should any assumptions be
-made about the environment the code is running in or whether the built in prototypes 
-have been extended or not. 
+It is recommended to **always** use `hasOwnProperty`. Never should any 
+assumptions be made about the environment the code is running in, or whether the 
+native prototypes have been extended or not. 
 
  [1]: http://www.prototypejs.org/
 
