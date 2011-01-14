@@ -1,16 +1,17 @@
 ## Function arguments
 
-Inside of functions JavaScript injects a special variable into the scope of the
-function. This variable is called `arguments`, and holds a list of all the
-arguments that were passed to the function.
+Inside the scope of a function JavaScript injects a special variable into. This 
+variable is called `arguments` and holds a list of all the arguments that were 
+passed to the function.
 
-It's important to know that `arguments` is **not** an `Array`. It has some of
-the semantics of an array - namely the `length` property - but it does not
-inherit from `Array.prototype`, and is in fact an `Object`.
+This `arguments` variable is **not** an `Array`. It has some of the semantics of
+an array - namely the `length` property - but it does not inherit from 
+`Array.prototype`. It is in fact an `Object`.
 
 Due to this, it is not possible to use standard array methods like `push`,
-`pop` or `slice` on it. While iteration with a plain `for` loop works just fine,
-one has convert it to a real `Array` in order to use the those methods.
+`pop` or `slice` on `arguments`. While iteration with a plain `for` loop works 
+just fine, one has convert it to a real `Array` in order to use the array like 
+methods.
 
 ### Converting to an array
 

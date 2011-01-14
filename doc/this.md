@@ -1,7 +1,8 @@
 ## How `this` works
 
-JavaScript has, at first glance, a very strange concept of what `this` refers to.
-There are exactly five different ways in which the value of `this` can get set.
+JavaScript has a different concept of what `this` refers to than most other
+languages do. There are exactly **five** different ways in which the value of `this` 
+can be bound in the language.
 
 ### The global scope
 
@@ -25,32 +26,33 @@ In this example `this` will refer to `test`.
 
     new foo(); 
 
-A function call that's preceded by the `new` keyword acts as
+A function call that is preceded by the `new` keyword acts as
 a [constructor](#constructors). Inside the function `this` will refer to a newly
 created `Object`.
 
 ### Explicit setting
 
-    function foo(a, b, c) {
-    }
+    function foo(a, b, c) {}
                           
     var bar = {};
     foo.call(bar, [1, 2, 3]);
     foo.apply(bar, 1, 2, 3);
 
-When using the `call` or `apply` methods of `Function.prototype`, one can 
-explicitly set the value of `this` inside the called function, so in the above
-case the *method case* does **not** apply, and `this` inside of `foo` will be
-set to `bar`.
+When using the `call` or `apply` methods of `Function.prototype`, the value of
+`this` inside the called function gets explicitly set to the first arguments of
+those function calls. 
+
+In the above example the *method case* does **not** apply, and `this` inside of 
+`foo` will be set to `bar`.
 
 > **Note:** `this` **cannot** be used to refer to the object inside of an `Object`
 > literal. So `var obj = {me: this}` will **not** result in `me` referring to
 > `obj`, since `this` gets determined by one of the above cases.
 
-### Common Pitfalls
+### Common pitfalls
 
 While most of these cases make sense, the first one is considered a mis-design 
-by many people since it's **never** of any practical use, but leads to many bugs.
+by many people as it is **never** of any practical use.
 
     Foo.method = function() {
         function test() {
@@ -73,20 +75,20 @@ variable inside of `method` which refers to `Foo`.
         test();
     }
 
-`that` is just a normal name, but it's a common idiom to use it as a reference
-to an outer `this`. In combination with [Closures](#closures), 
-this can also be used to pass `this` around.
+`that` is just a normal name, but it is commonly used for the reference to an 
+outer `this`. In combination with [Closures](#closures), it can also be used to 
+pass `this` values around.
 
-### Assigning Methods
+### Assigning methods
 
-Another thing that does **not** work in JavaScript is **assigning** a method to
-a variable.
+Another thing that does **not** work in JavaScript is **assigning** a method
+reference to a variable.
 
     var test = someObject.methodTest();
     test();
 
-Again due to the first case, `test` now acts like like a plain function call
-therefore the `this` inside it will not refer to `someObject` any more.
+Again due to the first case, `test` now acts like like a plain function call and 
+therefore the `this` inside it will no longer refer to `someObject`.
 
 While the late binding of `this` might seem like a bad thing, it is fact what
 makes [prototypical inheritance](#prototype) work. 
@@ -102,8 +104,9 @@ makes [prototypical inheritance](#prototype) work.
 When `method` gets called on a instance of `Bar`, `this` will now refer to that
 instance. 
 
-### Best Practices
+### Best practices
 
-Don't try to work around the behavior of `this` in JavaScript. Instead,
-**understand** how and why it works the way it does. Otherwise you'll end up with
-a lot of bugs that seem to be there for no good reason.
+Understand the exact workings of `this` and not trying to work around them is a 
+requirement for writing efficient, well designed code that can make use of 
+features such as [prototypical inheritance](#prototype) and [closures](#closures). 
+
