@@ -1,21 +1,19 @@
-## The For In Loop
+## The `for in` loop
 
 Just like the `in` operator, the `for in` loop also traverses the prototype
 chain when iterating over the properties of an object.
 
+> **Note:** The `for in` loop will **not** iterate over any properties that 
+> have their `enumerable` attribute set to `false`, for example the `length` 
+> property of an array.
+    
     // Poisoning Object.prototype
     Object.prototype.bar = 1;
 
     var foo = {moo: 2};
     for(var i in foo) {
-        console.log(i);
+        console.log(i); // prints both bar and moo
     }
-
-The above code results in both `bar` and `moo` being printed out.
-
-> **Note:** The `for in` loop will **not** iterate over any properties that 
-> have their `enumerable` attribute set to `false`, for example the `length` 
-> property of an array.
 
 Since it is not possible to change the behavior of the `for in` loop itself, it
 is necessary to filter out the unwanted properties inside the loop body itself, 
@@ -49,5 +47,5 @@ It is recommended to **always** use `hasOwnProperty`. Never should any
 assumptions be made about the environment the code is running in, or whether the 
 native prototypes have been extended or not. 
 
- [1]: http://www.prototypejs.org/
+[1]: http://www.prototypejs.org/
 

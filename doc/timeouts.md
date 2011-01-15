@@ -1,7 +1,7 @@
 ### `setTimeout` and `setInterval`
 
-Since JavaScript is asynchronous, one can schedule the execution of a function by
-using the `setTimeout` and `setInterval` functions.
+Since JavaScript is asynchronous, it is possible to schedule the execution of a 
+function by using the `setTimeout` and `setInterval` functions.
 
 > **Note:** Timeouts are **not** part of the EcmaScript Standard, they are
 > implemented as part of the [DOM][1].
@@ -9,18 +9,18 @@ using the `setTimeout` and `setInterval` functions.
     function foo() {}
     var id = setTimeout(foo, 1000); // returns a Number > 0
 
-When `setTimeout` gets called, it will return the ID of the timeout, and schedule
+When `setTimeout` gets called, it will return the ID of the timeout and schedule
 `foo` to run in **approximately** one thousand milliseconds in the future. 
-`foo` will then executed exactly once.
+`foo` will then executed exactly **once**.
 
-Depending on the timer resolution of the JavaScript engine running  the code, 
-and the fact that JavaScript is single threaded and other code that gets executed
-might block the thread, it's by no means a safe bet that one will get the exact 
-timeout they specified when calling `setTimeout`.
+Depending on the timer resolution of the JavaScript engine that is running the 
+code, as well as the fact that JavaScript is single threaded and other code that 
+gets executed might block the thread, it is by no means a safe bet that one will 
+get the exact timeout they specified when calling `setTimeout`.
 
 The function that was passed as the first parameter will get called by the
 global object, that means that [this](#this) inside the called function refers 
-to that object.
+to that very object.
 
     function Foo() {
         this.value = 42;
@@ -34,10 +34,10 @@ to that object.
 
 
 > **Note:** As `setTimeout` takes a **function object** as its first parameter, an
-> oft made mistake is to use something like `setTimeout(foo(), 1000)`, which
-> will use the **return value** of the call `foo` and **not** `foo`. This is,
-> most of the time, a silent error, since when the function returns `undefined`
-> `setTimeout` won't raise an error, but simply do nothing.
+> often made mistake is to use `setTimeout(foo(), 1000)`, which will use the 
+> **return value** of the call `foo` and **not** `foo`. This is, most of the time, 
+> a silent error, since when the function returns `undefined` `setTimeout` will 
+> **not** raise any error.
 
 ### Stacking calls with `setInterval`
 
@@ -45,23 +45,24 @@ While `setTimeout` only runs the function once, `setInterval` - as the name
 suggests - will execute the function **every** `X` milliseconds. But its use is 
 discouraged. 
 
-When executing code blocks the timeout call, `setInterval` will still issue more
-calls to the specified function. This can, especially with small intervals, result 
-in function calls stacking up.
+When code that is being executed blocks the timeout call, `setInterval` will 
+still issue more calls to the specified function. This can, especially with small
+intervals, result in function calls stacking up.
 
     function foo(){
         // something that blocks for 1 second
     }
     setInterval(foo, 100);
 
-In the above code `foo` will get called once and then block for one second.
+In the above code `foo` will get called once and will then block for one second.
+
 While `foo` blocks the code `setInterval` will still schedule further calls to
-it. Now when `foo` has finished, there will already be **ten** further calls to
-waiting to for execution.
+it. Now, when `foo` has finished, there will already be **ten** further calls to
+it waiting for execution.
 
 ### Dealing with possible blocking code
 
-The easiest as well as most controllable solution is to use `setTimeout` within
+The easiest as well as most controllable solution, is to use `setTimeout` within
 the function itself.
 
     function foo(){
@@ -71,35 +72,36 @@ the function itself.
     foo();
 
 Not only does this encapsulate the `setTimeout` call, but it also prevents the
-stacking of calls from happening and it gives additional control since `foo` can
-now decide on its own whether it wants to run again or not.
+stacking of calls and it gives additional control.`foo` itself can now decide 
+whether it wants to run again or not.
 
 ### Manually clearing timeouts
 
-In order to remove set timeouts and intervals one has to use `clearTimeout` and
-`clearInterval` and supply to them the ID that was return by the corresponding
-`set` calls.
+Clearing timeouts and intervals works by passing the respective ID to
+`clearTimeout` or `clearInterval`, depending which `set` function was used in
+the first place.
 
     var id = setTimeout(foo, 1000);
     clearTimeout(id);
 
 ### Clearing all timeouts
 
-As there is no built in method to clear all timeouts or intervals, one has to use brute
-force:
+As there is no built in method for clearing all timeouts and/or intervals, 
+it is necessary to use brute force in order to achieve this functionality.
 
     // clear "all" timeouts
-    for(var i = 0; i < 1000000; i++) {
+    for(var i = 1; i < 1000; i++) {
         clearTimeout(i);
     }
 
-Note that there might be even higher IDs then in the above example, so make sure 
-to keep track of your timeout IDs, so you can avoid code such as the above.
+There might still be timeouts that are unaffected by this arbitrary number, it
+is therefore recommended to keep track of all the timeouts and intervals IDs
+instead.
 
 ### Things to avoid at all costs
 
 `setTimeout` and `setInterval` can also take a string as their first parameter.
-Do **not** make use of this feature, since it internally makes use of `eval`.
+This feature should **never** be used, since it internally makes use of `eval`.
 
     function foo() {
         // will get called
@@ -117,21 +119,24 @@ Since `eval` is not getting [called directly](#eval) here, the string passed to
 `setTimeout` will get executed in the global scope and will therefore not use 
 the local `foo` of `bar`.
 
-Also, if you need to pass parameters to the function you're scheduling a timeout
-for, do **not** use `setTimeout('foo(1,2, 3)', 1000)`, simply use an anonymous
-function.
+It is further recommended to **not** use a string to pass arguments to the
+function that will get called. 
 
     function foo(a, b, c) {}
+    
+    // NEVER use this
+    setTimeout('foo(1,2, 3)', 1000)
 
+    // Instead use an anonymous function
     setTimeout(function() {
         foo(a, b, c);
     }, 1000)
 
 > **Note:** While it is also possible to use the syntax 
 > `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
-> to subtle errors when used with methods.
+> to subtle errors when used with [methods](#this).
 
-### Best Practices
+### Best practices
 
 **Never** use a string as the parameter of `setTimeout` or `setInterval` its a
 sign of **really** bad code, if you need to supply arguments to the function,
