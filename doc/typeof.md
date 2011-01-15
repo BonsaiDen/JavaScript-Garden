@@ -48,7 +48,8 @@ In order to retrieve the value of *Class* one can has to make use of the
 The specification gives exactly one way of accessing the *Class* value.
 
     function is(type, obj) {
-        return Object.prototype.toString.call(obj).slice(8, -1) === type;
+        var cls = Object.prototype.toString.call(obj).slice(8, -1);
+        return cls === type;
     }
     
     is('String', 'test'); // true
