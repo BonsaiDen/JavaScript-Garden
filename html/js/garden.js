@@ -53,5 +53,7 @@ $(document).ready(function() {
         highlightSection();
     });
     setTimeout(highlightSection, 0);
+
+    prettyPrint();
 });
 
