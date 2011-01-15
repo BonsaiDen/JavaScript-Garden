@@ -18,7 +18,7 @@
 - [The `instanceof` operator](#instanceof)
 - [Type casting](#casting)
 - [`undefined` and `null`](#undefined)
-- [The eval `evil`](#eval)
+- [The evil `eval`](#eval)
 - [`setTimeout` and `setInterval`](#timeouts)
 - [Automatic semicolon insertion](#semicolon)
 
