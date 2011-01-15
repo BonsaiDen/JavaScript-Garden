@@ -40,6 +40,7 @@ $(document).ready(function() {
     }
 
     function highlightSection() {
+        console.log('foo');
         var offset = $(window).scrollTop();
         var id = articles[0][1];
         for(var i = 0, l = articles.length; i < l; i++) {
@@ -49,11 +50,12 @@ $(document).ready(function() {
         }
         selectNavigation(id, offset === 0);
     }
+
+    var initSelection = setTimeout(highlightSection, 50);
     $(document).scroll(function() {
+        clearTimeout(initSelection);
         highlightSection();
     });
-    setTimeout(highlightSection, 0);
-
     prettyPrint();
 });
 
