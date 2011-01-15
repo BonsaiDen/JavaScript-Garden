@@ -26,9 +26,10 @@ essential when iterating over the properties of any object, since there is no
 other way to exclude things that are not defined on the object **itself** but 
 rather are somewhere on its prototype chain.  
 
-### Best practices
+### In conclusion
 
 When checking for the existence of a property on a object, `hasOwnProperty` is 
-the only way to go. It is also recommended to make sure that `hasOwnProperty` is 
-part of **every** [`for in` loop](#forinloop).
+the **only** way to go. It is also recommended to make sure that `hasOwnProperty`
+is part of **every** [`for in` loop](#forinloop) to avoid errors from extended
+native [prototypes](#prototype).
 

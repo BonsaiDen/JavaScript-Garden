@@ -99,8 +99,9 @@ code above.
         })(i), 1000)
     }
 
-### Best practices
+### In conclusion
 
 It is important to understand **and** master closures, they are the most powerful
-feature of JavaScript and are use pretty much everywhere in the language.
+feature of JavaScript and are used pretty much everywhere when it comes to
+elegant and efficient code.
 

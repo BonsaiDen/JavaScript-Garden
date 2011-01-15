@@ -50,9 +50,11 @@ elements that are contained in the array, the *setter* can be used to
 Assigning a smaller length does truncate the array, but increasing the length 
 does not have any effect on the array.
 
-### Best practices
+### In conclusion
 
 For the best performance it is recommended to always use the plain `for` loop
-and cache the `length` property. Never should any assumptions be made whether
-the JavaScript engine will apply optimization to the `for` loop or not.
+and cache the `length` property. The use of `for in` on an array is a sign of
+badly written code that is prone to bugs and bad performance. Additionally, 
+never should any assumptions be made whether the JavaScript engine will apply 
+optimization to the code or not.
 

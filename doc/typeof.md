@@ -65,7 +65,7 @@ The above will check whether `foo` was actually declared or not, since just
 referencing it would result in a `ReferenceError`. This is the only thing
 `typeof` is actually useful for.
 
-### Best practices
+### In conclusion
 
 In order to check the type of an object, it is highly recommended to use 
 `Object.prototype.toString`, as it is the only reliable way of doing so. 
@@ -73,5 +73,5 @@ As shown in the type table, some return values of `typeof` are not defined in th
 specification and can therefore differ in various implementations.
 
 Unless checking for a variable to be defined, `typeof` should be avoided at
-all costs.
+**all costs**.
 

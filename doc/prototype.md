@@ -99,10 +99,29 @@ Accessing non existent properties will always traverse the complete chain.
 Also, when [iterating](#the-for-in-loop) over the properties of an object 
 **every** property that is on the prototype chain will get enumerated.
 
-### Best practices
+### Extension of native prototypes
+
+One mis-feature that is often used is to extend `Object.prototype` or on of the
+other built in prototypes.
+
+This technique is called [monkey patching][1] and breaks *encapsulation* at its
+very root. While used by widely spread frameworks such as [Prototype][2], there
+is still no good reason for cluttering built in types with additional
+non-standard functionality.
+
+The **only** good reason for extending a built in prototype is to back port 
+the features of newer JavaScript engines to older ones, like for example
+[`Array.forEach`][3].
+
+### In conclusion
 
 It is a must to understand the prototypical inheritance model completely before
 writing complex code which makes use of it. Also, watching the length of all the 
 prototype chains and breaking them up if necessary can avoid possible performance
-issues.
+issues. Further, the native prototypes should **never** be extended unless it is
+down for the sake of compatibility with newer JavaScript features.
+
+[1]: http://en.wikipedia.org/wiki/Monkey_patch
+[2]: http://prototypejs.org/
+[3]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach
 

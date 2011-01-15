@@ -66,7 +66,7 @@ Here both operators compare for **identity** and not equality - that is, they
 will compare for the same **instance** of the object, much like `is` in Python 
 and a pointer comparison in C do.
 
-### Best practices
+### In conclusion
 
 It is highly recommended to **only** use the strict equals operator. In cases
 where types need to be coerced, it should be done [explicitly](#casting) and not

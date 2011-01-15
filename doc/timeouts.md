@@ -136,13 +136,15 @@ function that will get called.
 > `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
 > to subtle errors when used with [methods](#this).
 
-### Best practices
+### In conclusion
 
-**Never** use a string as the parameter of `setTimeout` or `setInterval` its a
-sign of **really** bad code, if you need to supply arguments to the function,
-pass an anonymous function which then calls your function. Also avoid
-`setInterval` since its hard to control and when you loose the returned ID,
-there's no easy way to clear it.
+**Never** should a string be used as the parameter of `setTimeout` or 
+`setInterval`. It is a clear sign of **really** bad code, when arguments need 
+to be supplied to the function that gets called, an anonymous function should
+be passed which handles the actual calling. 
+
+Additionally, `setInterval` should be avoided since it is hard to control and
+does not adjust to the single threaded nature of the language.
 
 [1]: http://en.wikipedia.org/wiki/Document_Object_Model 
 *[DOM]: Document Object Model

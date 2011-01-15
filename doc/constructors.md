@@ -92,10 +92,10 @@ While the above is robust against forgetting to use `new` and makes the use of
  3. It somehow goes against the spirit of the language, by dropping prototype
     chain just because a left out `new` keyword can break code
 
-### Best practices
+### In conclusion
 
-While omitting the `new` keyword might lead to bugs, it is certainly not a reason
-to drop the use of prototypes altogether. In the end it comes down which
-solution is better suited for the needs of the application, it is especially
-important to choose a specific style of object creation and stick with it.
+While omitting the `new` keyword might lead to bugs, it is certainly **not** a 
+reason to drop the use of prototypes altogether. In the end it comes down to 
+which solution is better suited for the needs of the application, it is especially
+important to choose a specific style of object creation **and** stick with it.
 

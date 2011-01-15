@@ -19,7 +19,7 @@ which it avoids the use of a `for` loop.
 
     new Array(count + 1).join(stringToRepeat);
 
-### Best practices
+### In conclusion
 
 The use of the `Array` constructor should be avoided as much as possible. The `[]` 
 notation is definitely preferred. It is shorter and has a clear syntax, and is

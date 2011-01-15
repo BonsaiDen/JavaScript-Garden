@@ -104,9 +104,9 @@ makes [prototypical inheritance](#prototype) work.
 When `method` gets called on a instance of `Bar`, `this` will now refer to that
 instance. 
 
-### Best practices
+### In conclusion
 
-Understand the exact workings of `this` and not trying to work around them is a 
-requirement for writing efficient, well designed code that can make use of 
+Understand the exact workings of `this` and **not** trying to work around them is
+a requirement for writing efficient and well designed code, that can make use of 
 features such as [prototypical inheritance](#prototype) and [closures](#closures). 
 

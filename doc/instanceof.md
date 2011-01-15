@@ -25,9 +25,9 @@ objects that origin from different JavaScript contexts. For example: Different
 documents in a web browser.
 a Web Browser.
 
-### Best practices
+### In conclusion
 
-The `instanceof` operator should only be used when dealing with custom made 
-objects that origin from the same JavaScript context. Just like the `typeof` 
-operator, every other use of it should be **avoided**.
+The `instanceof` operator should **only** be used when dealing with custom made 
+objects that origin from the same JavaScript context. Just like the
+[`typeof`](#typeof) operator, every other use of it should be **avoided**.
 

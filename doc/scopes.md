@@ -138,12 +138,13 @@ while different in syntax - do the exact same thing.
     +function(){}();
     (function(){}());
 
-### Best Practices
+### In conclusion
 
 It is recommended to always use an *anonymous wrapper* for encapsulating code in 
 its own namespace. This does not only protect against name clashes, but it also
 allows for better modularization.
 
-Additionally the use of global variables is consider **bad practice**, any use
-of them indicates badly written, hard to maintain code.
+Additionally, the use of global variables is considered **bad practice**, any use
+of them indicates badly written code that is prone to failure and hard to 
+maintain.
 

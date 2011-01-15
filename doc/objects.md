@@ -69,5 +69,10 @@ another mis-design in JavaScript's parser, the above raises a `SyntaxError`.
 The error is getting raised because `delete` is a *keyword* of the language, 
 therefore it must be, just like `case`, notated as a string literal.
 
+### In conclusion
+
+Objects are the bread and butter of JavaScript, nearly everything in the
+language is based on top of them.
+
 [1]: http://en.wikipedia.org/wiki/Hashmap
 

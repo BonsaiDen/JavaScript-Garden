@@ -42,9 +42,11 @@ different behavior.
         foo: 1
     };
 
-### Best practices
+### In conclusion
 
-It is **highly** recommended to **never** omit semicolons, it is further
-recommended to keep braces on the same line with their associated statements and
-never omit them for one line `if` / `else` statements.
+Semicolons should **never** be omitted, it is also recommended to keep braces 
+on the same line with their associated statements and never omit them for one 
+line `if` / `else` statements. This will not only improve the consistency of the
+code, it will also prevent the JavaScript parser from applying too much "magic"
+to the code.
 
