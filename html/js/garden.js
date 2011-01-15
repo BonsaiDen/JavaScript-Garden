@@ -40,7 +40,6 @@ $(document).ready(function() {
     }
 
     function highlightSection() {
-        console.log('foo');
         var offset = $(window).scrollTop();
         var id = articles[0][1];
         for(var i = 0, l = articles.length; i < l; i++) {
