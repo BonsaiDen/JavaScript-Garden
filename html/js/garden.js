@@ -43,7 +43,7 @@ $(document).ready(function() {
         var offset = $(window).scrollTop();
         var id = articles[0][1];
         for(var i = 0, l = articles.length; i < l; i++) {
-            if (articles[i][0] < offset + 10) {
+            if (articles[i][0] < offset + 200) {
                 id = articles[i][1];
             }
         }
