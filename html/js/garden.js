@@ -50,7 +50,7 @@ $(document).ready(function() {
         selectNavigation(id, offset === 0);
     }
 
-    var initSelection = setTimeout(highlightSection, 50);
+    var initSelection = setTimeout(highlightSection, 100);
     $(document).scroll(function() {
         clearTimeout(initSelection);
         highlightSection();
