@@ -11,6 +11,13 @@ of the language is strongly recommended in order to understand the topics covere
 in this guide. If you want to learn the language first, please head over to the 
 excellent [Guide][1] on the Mozilla Developer Network.
 
+JavaScript Garden also focuses on the 3rd Edition of the EcmaScript 
+
+### The authors
+
+This guide is the work of two lovely Stackoverflow users, [Ivo Wetzel][6]
+(Writing) and [Zhang Yi Jiang][5] (Design).
+
 ### License
 
 JavaScript Garden is published under the [MIT license][2] and hosted on
@@ -21,4 +28,6 @@ request on the repository.
 [2]: https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE
 [3]: https://github.com/BonsaiDen/JavaScript-Garden/issues
 [4]: https://github.com/BonsaiDen/JavaScript-Garden
+[5]: http://stackoverflow.com/users/313758/yi-jiang
+[6]: http://stackoverflow.com/users/170224/ivo-wetzel
 
