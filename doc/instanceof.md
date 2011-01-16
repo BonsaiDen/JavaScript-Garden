@@ -21,9 +21,8 @@ returns a mess similar to the [typeof operator](#typeof).
     'foo' instanceof Object; // false
 
 One important thing to note is that `instanceof` does of course not work on
-objects that origin from different JavaScript contexts. For example: Different
+objects that origin from different JavaScript contexts;rFor example, different
 documents in a web browser.
-a Web Browser.
 
 ### In conclusion
 

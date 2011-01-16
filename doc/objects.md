@@ -66,8 +66,8 @@ the use of property names that would otherwise lead to a syntax error.
 Object properties can be both notated as plain characters and as strings. Due to
 another mis-design in JavaScript's parser, the above raises a `SyntaxError`.
 
-The error is getting raised because `delete` is a *keyword* of the language, 
-therefore it must be, just like `case`, notated as a string literal.
+The error is getting raised because `delete` is a *keyword* of the language;
+therefore, it must be notated as a string literal.
 
 ### In conclusion
 

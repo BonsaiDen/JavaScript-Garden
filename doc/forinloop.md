@@ -4,7 +4,7 @@ Just like the `in` operator, the `for in` loop also traverses the prototype
 chain when iterating over the properties of an object.
 
 > **Note:** The `for in` loop will **not** iterate over any properties that 
-> have their `enumerable` attribute set to `false`, for example the `length` 
+> have their `enumerable` attribute set to `false`; for example, the `length` 
 > property of an array.
     
     // Poisoning Object.prototype
@@ -34,8 +34,8 @@ object.
 
 This version is the only correct one to use. Due to the use of `hasOwnPropery` it
 will **only** print out `moo`. When `hasOwnProperty` is left out, the code is 
-prone to errors when the native prototypes - for example `Object.prototype` - 
-have been extended.
+prone to errors when the native prototypes have been extended; for example,
+`Object.prototype`.
 
 One widely used framework which does this is [**Prototype**][1]. When this 
 framework is included, `for in` loops that doe not use `hasOwnProperty` are 

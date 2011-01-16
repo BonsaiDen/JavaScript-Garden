@@ -94,11 +94,11 @@ it is necessary to use brute force in order to achieve this functionality.
         clearTimeout(i);
     }
 
-There might still be timeouts that are unaffected by this arbitrary number, it
-is therefore recommended to keep track of all the timeouts and intervals IDs
-instead.
+There might still be timeouts that are unaffected by this arbitrary number;
+therefore, is is instead recommended to keep track of all the timeout IDs, so
+they can be cleared one by one.
 
-### Things to avoid at all costs
+### Hidden `eval` magic
 
 `setTimeout` and `setInterval` can also take a string as their first parameter.
 This feature should **never** be used, since it internally makes use of `eval`.
@@ -116,8 +116,8 @@ This feature should **never** be used, since it internally makes use of `eval`.
     bar();
 
 Since `eval` is not getting [called directly](#eval) here, the string passed to
-`setTimeout` will get executed in the global scope and will therefore not use 
-the local `foo` of `bar`.
+`setTimeout` will get executed in the global scope; thus, it will not use the 
+local variable `foo` from the scope of `bar`.
 
 It is further recommended to **not** use a string to pass arguments to the
 function that will get called. 

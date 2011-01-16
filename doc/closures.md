@@ -27,7 +27,7 @@ defined in. Since the only scope that JavaScript has is the
 
 In the above example `Counter` returns **two** closures. The function `increment`
 as well as the function `get`. Both of these functions keep a **reference** to 
-the scope of `Counter` and therefore always have access to the `count` variable 
+the scope of `Counter` and, therefore, always have access to the `count` variable 
 that was defined in that **very** scope.
 
 ### Why private variables work
@@ -81,8 +81,7 @@ In order to copy the value of the loop its index variable, it is best to use an
     }
 
 The anonymous outer function gets called immediately with `i` as the first 
-argument, therefore it will receive a copy of the **value** of `i` as its 
-parameter `e`.
+argument and will receive a copy of the **value** of `i` as its parameter `e`.
 
 The anonymous function that gets passed to `setTimeout` now has a reference to 
 `e`, which value does **not** get changed by the loop.

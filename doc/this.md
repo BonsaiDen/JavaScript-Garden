@@ -87,10 +87,10 @@ reference to a variable.
     var test = someObject.methodTest();
     test();
 
-Again due to the first case, `test` now acts like like a plain function call and 
-therefore the `this` inside it will no longer refer to `someObject`.
+Again due to the first case `test` now acts like like a plain function call;
+therefore, `this` inside it will no longer refer to `someObject`.
 
-While the late binding of `this` might seem like a bad thing, it is fact what
+While the late binding of `this` might seem like a bad idea, it is in fact what
 makes [prototypical inheritance](#prototype) work. 
 
     function Foo() {}

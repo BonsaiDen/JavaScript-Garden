@@ -24,9 +24,9 @@ The above table shows the results of the type coercion and it is the main reason
 why the use of `==` is regarded as bad practice, it introduces hard to track down
 bugs due to its complicated conversion rules.
 
-Additionally there is also a performance impact when type coercion is in play,
-since for example a string has to be converted to a number before the comparison
-is done. 
+Additionally there is also a performance impact when type coercion is in play;
+for example, a string has to be converted to a number before it can be compared
+with another number.
 
 ### The strict equals operator
 

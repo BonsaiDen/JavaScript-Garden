@@ -1,8 +1,8 @@
 ## Scopes and Namespaces
 
 Although JavaScript deals fine with the block scope syntax of two matching curly
-braces, it does **not** support block scope. Therefore all that's left is *function
-scope*.
+braces, it does **not** support block scope; thus, all that is left is the 
+*function scope*.
 
 > **Note:** When not used in an assignment or as a function argument, the `{...}`
 > notation will get interpreted as a block statement and **not** as an `Object`. 
@@ -44,8 +44,6 @@ Leaving out the `var` statement will override the value of `foo`, this might not
 seem like a big deal at first, but consider having a ten-thousand line
 JavaScript file with lots and lots of different variable names, not using `var`
 will introduce hard to track down bugs.
-
-For example, when using generic variable names like `i` in loops.
     
     // global scope
     var items = [/* some list */];
@@ -62,8 +60,8 @@ For example, when using generic variable names like `i` in loops.
     
 The outer loop will terminate after the first call to `subLoop` since that
 function overwrites the global value of `i`. Using a `var` for the second
-`for` loop would have easily avoided this error, therefore `var` should never be
-left out unless the desired effect **is** to affect the outer scope.
+`for` loop would have easily avoided this error. The `var` statement should never
+be left out unless the desired effect **is** to affect the outer scope.
 
 ### Local variables
 

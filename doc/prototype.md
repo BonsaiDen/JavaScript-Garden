@@ -36,15 +36,15 @@ The first major difference is that inheritance in JavaScript is done by using
                 Bar.method()
 
 The above object `test` will inherit from both `Bar.prototype` and
-`Foo.prototype`. It will therefore have access to the function `method` that was 
+`Foo.prototype`. Hence, it will have access to the function `method` that was 
 defined on `Foo`, but it will not have access to the **property** `value` of a 
 `Foo` instance since that property gets defined in the [constructor](#constructor)
 of `Foo`. Which, in this case, never gets called.
 
 > **Note:** Do **not** use `Bar.property = Foo`, since it will not point to 
-> the prototype of `Foo` but rather to the function object `Foo`. Therefore the 
-> prototype chain will go over `Function.prototype` in this case, which results
-> in `method` not being on the prototype chain.
+> the prototype of `Foo` but rather to the function object `Foo`. Because of
+> that, the prototype chain will go over `Function.prototype`, which results
+> in `method` not being on it.
 
 ### Property lookup
 
@@ -86,9 +86,9 @@ chains.
                 Bar.prototype: [Foo Instance]
                     Bar.method()
 
-Now `Bar.prototype` points to an *instance* of `Foo`, therefore the property
-`value` of **that** instance is now on the prototype chain and since `Foo` itself
-has a prototype, the chain continues with that one afterwards.
+Now `Bar.prototype` points to an *instance* of `Foo`; thus, the property
+`value` of that very instance is now on the prototype chain. And since `Foo` 
+itself has a prototype, the chain continues with that one afterwards.
 
 ### Performance
 
@@ -110,7 +110,7 @@ is still no good reason for cluttering built in types with additional
 non-standard functionality.
 
 The **only** good reason for extending a built in prototype is to back port 
-the features of newer JavaScript engines to older ones, like for example
+the features of newer JavaScript engines to older ones; for example, 
 [`Array.forEach`][3].
 
 ### In conclusion

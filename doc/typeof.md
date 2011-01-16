@@ -36,9 +36,9 @@ you can see this is anything but consistent.
 
 The *Class* refers to the value of the internal `[[Class]]` property of an object.
 
-> **From the Specification:**  *Class* can be one of the following values: 
-> `"Arguments"`, `"Array"`, `"Boolean"`, `"Date"`, `"Error"`, `"Function"`,
-> `"JSON"`, `"Math"`, `"Number"`, `"Object"`, `"RegExp"`, `"String"`
+> **From the Specification:** The value of `[[Class]]` can be one of the
+> following strings. `Arguments`, `Array`, `Boolean`, `Date`, `Error`, 
+> `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`.
 
 In order to retrieve the value of *Class* one can has to make use of the
 `toString` method of `Object`.
@@ -69,10 +69,10 @@ referencing it would result in a `ReferenceError`. This is the only thing
 ### In conclusion
 
 In order to check the type of an object, it is highly recommended to use 
-`Object.prototype.toString`, as it is the only reliable way of doing so. 
-As shown in the type table, some return values of `typeof` are not defined in the
-specification and can therefore differ in various implementations.
+`Object.prototype.toString`; as this is the only reliable way of doing so. 
+As shown in the above type table, some return values of `typeof` are not defined 
+in the specification; thus, the can across various implementations.
 
-Unless checking for a variable to be defined, `typeof` should be avoided at
+Unless checking whether a variable is defined, `typeof` should be avoided at
 **all costs**.
 

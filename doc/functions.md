@@ -8,9 +8,9 @@ passed around like any other value. One common use of this feature is to pass
 
     function foo() {}
 
-The above function gets created **before** the execution of the program starts.
-Therefore it is available everywhere in the scope it was *defined* in, even if it
-is called before its actual definition in the source.
+The above function gets created **before** the execution of the program starts;
+thus, it is available *everywhere* in the scope it was *defined* in, even if 
+called before the actual definition in the source.
 
     foo(); // Works because foo was created before this code runs
     function foo() {}
@@ -19,8 +19,8 @@ is called before its actual definition in the source.
 
     var foo = function() {};
 
-The above assigns the unnamed and therefore *anonymous* function, to the variable
-`foo`. 
+The above assigns the unnamed and, therefore, *anonymous* function, to the 
+variable `foo`. 
 
     foo; // 'undefined'
     foo(); // this raises a TypeError
@@ -72,7 +72,7 @@ Also, while the statements inside the `if` block never get executed, the variabl
 
 ### `var` vs. `function`
 
-All `var` statements get parsed **before** `function` statements, therefore 
+All `var` statements get parsed **before** `function` statements; hence,
 subsequent statements will override the previous ones.
 
     function foo() {}

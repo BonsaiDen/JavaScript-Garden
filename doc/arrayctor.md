@@ -22,6 +22,6 @@ which it avoids the use of a `for` loop.
 ### In conclusion
 
 The use of the `Array` constructor should be avoided as much as possible. The `[]` 
-notation is definitely preferred. It is shorter and has a clear syntax, and is
-therefore increasing the readability of code and helps to avoid subtle mistakes.
+notation is definitely preferred. It is shorter and has a clearer syntax; thus, 
+it also  increases the readability of code.
 
