@@ -11,8 +11,6 @@ of the language is strongly recommended in order to understand the topics covere
 in this guide. If you want to learn the language first, please head over to the 
 excellent [Guide][1] on the Mozilla Developer Network.
 
-JavaScript Garden also focuses on the 3rd Edition of the EcmaScript 
-
 ### The authors
 
 This guide is the work of two lovely Stack Overflow users, [Ivo Wetzel][6]
