@@ -15,7 +15,7 @@ JavaScript Garden also focuses on the 3rd Edition of the EcmaScript
 
 ### The authors
 
-This guide is the work of two lovely Stackoverflow users, [Ivo Wetzel][6]
+This guide is the work of two lovely Stack Overflow users, [Ivo Wetzel][6]
 (Writing) and [Zhang Yi Jiang][5] (Design).
 
 ### License
