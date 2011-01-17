@@ -49,6 +49,18 @@ $(document).ready(function() {
         }
         selectNavigation(id, offset === 0);
     }
+    var hash = document.location.hash.substr(1);
+    if (hash !== '') {
+        _gaq.push(['_trackEvent', hash, 'landed']);
+    }
+    $('nav ul li a').each(function() {
+        $(this).bind('click', function() {
+            var hash = document.location.hash.substr(1);
+            if (hash !== '') {
+                _gaq.push(['_trackEvent', hash, 'clicked']);
+            }
+        });
+    });
 
     var initSelection = setTimeout(highlightSection, 100);
     $(document).scroll(function() {
