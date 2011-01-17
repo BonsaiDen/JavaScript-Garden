@@ -1,4 +1,4 @@
-## Scopes and Namespaces
+## Scopes and namespaces
 
 Although JavaScript deals fine with the block scope syntax of two matching curly
 braces, it does **not** support block scope; thus, all that is left is the 
@@ -16,7 +16,7 @@ Each time a variable is referenced, JavaScript will traverse upwards through all
 the scopes until it finds it. In the case that it reaches the global scope and 
 still has not found the requested name, it will raise a `ReferenceError`.
 
-### The Bane of global Variables
+### The bane of global variables
 
     // script A
     foo = '42';
@@ -129,8 +129,8 @@ evaluate and then called.
     ) // and return the function object
     () // call the result of the evaluation
 
-There are other ways for evaluating and calling the function expression which - 
-while different in syntax - do the exact same thing.
+There are other ways for evaluating and calling the function expression; which 
+while different in syntax, do the exact same thing.
 
     // Two other ways
     +function(){}();

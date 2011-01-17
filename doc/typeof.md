@@ -40,12 +40,12 @@ The *Class* refers to the value of the internal `[[Class]]` property of an objec
 > following strings. `Arguments`, `Array`, `Boolean`, `Date`, `Error`, 
 > `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`.
 
-In order to retrieve the value of *Class* one can has to make use of the
+In order to retrieve the value of `[[Class]]` one can has to make use of the
 `toString` method of `Object`.
 
 ### The Class of an object
 
-The specification gives exactly one way of accessing the *Class* value.
+The specification gives exactly one way of accessing the `[[Class]]` value.
 
     function is(type, obj) {
         var cls = Object.prototype.toString.call(obj).slice(8, -1);
@@ -55,8 +55,8 @@ The specification gives exactly one way of accessing the *Class* value.
     is('String', 'test'); // true
     is('String', new String('test')); // true
 
-`Object.prototype.toString` gets called with [this](#this) 
-being set to the object which its *Class* value should be retrieved.
+`Object.prototype.toString` gets called with the value of [this](#this) being set
+to the object whose `[[Class]]` value should be retrieved.
 
 ### Testing for undefined variables
 

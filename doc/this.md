@@ -10,19 +10,19 @@ can be bound in the language.
 
 When using `this` in global scope, it will simply refer to the *global* object.
 
-### Calling a Function
+### Calling a function
 
     foo();
 
 Here `this` will again refer to the *global* object.
 
-### Calling a Method
+### Calling a method
 
     test.foo(); 
 
 In this example `this` will refer to `test`.
 
-### Calling a Constructor
+### Calling a constructor
 
     new foo(); 
 
@@ -30,7 +30,7 @@ A function call that is preceded by the `new` keyword acts as
 a [constructor](#constructors). Inside the function `this` will refer to a newly
 created `Object`.
 
-### Explicit setting
+### Explicit setting of `this`
 
     function foo(a, b, c) {}
                           
@@ -76,7 +76,7 @@ variable inside of `method` which refers to `Foo`.
     }
 
 `that` is just a normal name, but it is commonly used for the reference to an 
-outer `this`. In combination with [Closures](#closures), it can also be used to 
+outer `this`. In combination with [closures](#closures), it can also be used to 
 pass `this` values around.
 
 ### Assigning methods

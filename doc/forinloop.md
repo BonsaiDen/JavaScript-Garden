@@ -37,8 +37,8 @@ will **only** print out `moo`. When `hasOwnProperty` is left out, the code is
 prone to errors when the native prototypes have been extended; for example,
 `Object.prototype`.
 
-One widely used framework which does this is [**Prototype**][1]. When this 
-framework is included, `for in` loops that doe not use `hasOwnProperty` are 
+One widely used framework which does this is [Prototype][1]. When this 
+framework is included, `for in` loops that do not use `hasOwnProperty` are 
 guaranteed to break.
 
 ### Best practices
