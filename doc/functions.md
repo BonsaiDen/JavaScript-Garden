@@ -2,7 +2,7 @@
 
 Functions in JavaScript are first class objects, which means that they can be 
 passed around like any other value. One common use of this feature is to pass
-*anonymous functions* as callbacks arguments to other functions. 
+an *anonymous function* as a callback to another, possible asynchronous function.
 
 ### The `function` statement
 
@@ -19,8 +19,7 @@ called before the actual definition in the source.
 
     var foo = function() {};
 
-The above assigns the unnamed and, therefore, *anonymous* function, to the 
-variable `foo`. 
+The above assigns the unnamed and - *anonymous* - function to the variable `foo`. 
 
     foo; // 'undefined'
     foo(); // this raises a TypeError
@@ -43,9 +42,9 @@ Another special case is the assignment of named functions.
     bar(); // ReferenceError
 
 Here `bar` is not available in the outer scope, since the function only gets
-assigned to `foo`, however, inside of `bar` it is available. This is due to the
-fact how [name resolution](#scopes) in JavaScript works. The name of the function
-itself is always made available in the local scope of the function.
+assigned to `foo`; however, inside of `bar` it **is** available. This is due to 
+how [name resolution](#scopes) in JavaScript works, the name of the function
+is always made available in the local scope of the function itself.
 
 ### The `var` statement
 
@@ -68,9 +67,10 @@ Since there is **no** [block scope](#scopes) in JavaScript, the above will
 assign the value of `2` to the *local* variable `bar` of `test`. 
 
 Also, while the statements inside the `if` block never get executed, the variable
-`foo` still gets created and defaults to the value of `undefined`.
+`foo` still gets created and defaults to the value of `undefined`; again, this
+is due to the lack of block scoping.
 
-### `var` vs. `function`
+### Order of parsing
 
 All `var` statements get parsed **before** `function` statements; hence,
 subsequent statements will override the previous ones.

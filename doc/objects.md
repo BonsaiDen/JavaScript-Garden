@@ -10,14 +10,14 @@ Everything in JavaScript acts like an object, with the only two exceptions being
     Foo.bar = 1;
     Foo.bar; // 1
 
-A commonly made mis-assumption is that number literals cannot be used as objects,
-since a mis-design in JavaScript's parser tries to parse the following as a 
-floating point literal instead.
+A mis-assumption that is commonly made, is that number literals cannot be used as
+objects. That is because a flaw in JavaScript's parser tries to parse the *dot 
+notation* on a number as a floating point literal.
 
     2.toString(); // raises SyntaxError
 
-But a couple of workarounds can be used in order make number literals work as
-object too.
+There are a couple of workarounds which can be used in order make number 
+literals act as object too.
 
     2..toString(); // the second point is correctly recognized
     2. toString(); // note the space
@@ -25,12 +25,12 @@ object too.
 
 ### Objects as a data type
 
-Objects in JavaScript can also be used as a [*Hashmap*][1], since they mainly 
-consist of named properties that map to values.
+Objects in JavaScript can also be used as a [*Hashmap*][1], they mainly consist 
+of named properties mapping to values.
 
 Using the curly brace notation `{}` one can create a plain object. This new
 object [inherits](#prototype) from `Object.prototype` and has no 
-[own properties](#hasownproperty) set on it.
+[own properties](#hasownproperty) defined on it.
 
     var foo = {}; // a new empty object
 
@@ -52,8 +52,8 @@ notation, or the square bracket notation.
     foo.1234; // SyntaxError
     foo['1234']; // works
 
-Both notation are identical in their workings, the only difference being that
-the square bracket notation allows for dynamic setting of properties as well as
+Both notations are identical in their workings, the only difference being that
+the square bracket notation allows for dynamic setting of properties, as well as
 the use of property names that would otherwise lead to a syntax error.
 
 ### Deleting properties
@@ -90,13 +90,8 @@ removed and is therefore missing from the output.
 Object properties can be both notated as plain characters and as strings. Due to
 another mis-design in JavaScript's parser, the above raises a `SyntaxError`.
 
-The error is getting raised because `delete` is a *keyword* of the language;
+This error arises from the fact that `delete` is a *keyword* of the language;
 therefore, it must be notated as a string literal.
-
-### In conclusion
-
-Objects are the bread and butter of JavaScript, nearly everything in the
-language is based on top of them.
 
 [1]: http://en.wikipedia.org/wiki/Hashmap
 
