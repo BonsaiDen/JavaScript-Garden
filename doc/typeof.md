@@ -62,7 +62,7 @@ to the object whose `[[Class]]` value should be retrieved.
 
     typeof foo !== 'undefined'
 
-The above will check whether `foo` was actually declared or not, since just 
+The above will check whether `foo` was actually declared or not; just 
 referencing it would result in a `ReferenceError`. This is the only thing
 `typeof` is actually useful for.
 

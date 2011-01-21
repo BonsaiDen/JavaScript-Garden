@@ -37,7 +37,7 @@ object [inherits](#prototype) from `Object.prototype` and has no
     // a new object with a property called 'test' with value 12
     var bar = {test: 12}; 
 
-### Access of properties
+### Accessing properties
 
 The properties of an object can be accessed in two ways. Either via the dot
 notation, or the square bracket notation.
@@ -55,6 +55,30 @@ notation, or the square bracket notation.
 Both notation are identical in their workings, the only difference being that
 the square bracket notation allows for dynamic setting of properties as well as
 the use of property names that would otherwise lead to a syntax error.
+
+### Deleting properties
+
+The only way to actually remove a property from an object is to use the `delete`
+keyword, setting the property to `undefined` or `null` does **only** remove the
+value associated with the property, but not the key.
+
+    var obj = {
+        bar: 1,
+        foo: 2,
+        baz: 3
+    };
+    obj.bar = undefined;
+    obj.foo = null;
+    delete obj.baz;
+
+    for(var i in obj) {
+        if (obj.hasOwnProperty(i)) {
+            console.log(i, '' + obj[i]);
+        }
+    }
+    
+The aboves outputs both `bar undefined` and `foo null`, only `baz` got actually
+removed and is therefore missing from the output.
 
 ### Notation of keys
 

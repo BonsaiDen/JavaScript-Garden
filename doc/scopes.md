@@ -1,8 +1,15 @@
 ## Scopes and namespaces
 
-Although JavaScript deals fine with the block scope syntax of two matching curly
+Although JavaScript deals fine with the block syntax of two matching curly
 braces, it does **not** support block scope; thus, all that is left is the 
 *function scope*.
+
+    function test() { // a scope
+        for(var i = 0; i < 10; i++) { // not a scope
+            // count
+        }
+        console.log(i); // 10
+    }
 
 > **Note:** When not used in an assignment or as a function argument, the `{...}`
 > notation will get interpreted as a block statement and **not** as an `Object`. 
