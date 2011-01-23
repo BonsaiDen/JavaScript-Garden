@@ -1,10 +1,10 @@
-## Functions and statements
+## Functions
 
 Functions in JavaScript are first class objects, which means that they can be 
 passed around like any other value. One common use of this feature is to pass
 an *anonymous function* as a callback to another, possible asynchronous function.
 
-### The `function` statement
+### The `function` declaration
 
     function foo() {}
 
@@ -26,7 +26,7 @@ The above assigns the unnamed and - *anonymous* - function to the variable `foo`
     var foo = function() {};
 
 Due to the fact that `var` is a *statement*, which - just like the function 
-statement - creates the variable `foo` before the actual execution of the code
+declaration - creates the variable `foo` before the actual execution of the code
 starts, `foo` is already defined when the script gets executed.
 
 Since assignments only happens at runtime, the value of `Foo` will default
@@ -72,7 +72,7 @@ is due to the lack of block scoping.
 
 ### Order of parsing
 
-All `var` statements get parsed **before** `function` statements; hence,
+All `var` statements get parsed **before** `function` declartions; hence,
 subsequent statements will override the previous ones.
 
     function foo() {}

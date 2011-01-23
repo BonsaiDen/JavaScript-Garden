@@ -9,7 +9,8 @@ set to the `prototype` of the function object that was called.
 
 If the function that was called has no explicit `return` statement, then it
 implicitly returns the value of `this` (the new object). Otherwise it returns
-the value of the `return` statement.
+the value of the `return` statement, **but** only if `typeof returnValue` is
+`object`.
 
     function Foo() {
         this.bla = 1;
@@ -24,10 +25,10 @@ the value of the `return` statement.
 The above calls `Foo` as constructor and sets the `prototype` of the newly
 created object to `Foo.prototype`.
 
-Keep in mind that if you don not use the `new` keyword the function will **not**
-return a new object. While it might still work due to how
-[`this`](#how-this-works-in-javascript) works in JavaScript, it will use the
-*global* object as the value of `this`.
+Keep in mind that if you do not use the `new` keyword the function will **not**
+return a new object. While it might still work due to the workings of
+[`this`](#how-this-works-in-javascript) in JavaScript, it will use the *global*
+object as the value of `this`.
 
 ### Factories
 

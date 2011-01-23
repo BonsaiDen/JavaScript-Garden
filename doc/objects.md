@@ -59,7 +59,7 @@ the use of property names that would otherwise lead to a syntax error.
 ### Deleting properties
 
 The only way to actually remove a property from an object is to use the `delete`
-keyword, setting the property to `undefined` or `null` does **only** remove the
+keyword; setting the property to `undefined` or `null` does **only** remove the
 value associated with the property, but not the key.
 
     var obj = {
@@ -88,10 +88,12 @@ removed and is therefore missing from the output.
     };
 
 Object properties can be both notated as plain characters and as strings. Due to
-another mis-design in JavaScript's parser, the above raises a `SyntaxError`.
+another mis-design in JavaScript's parser, prior to EcmaScript 5 the above threw 
+a `SyntaxError`.
 
 This error arises from the fact that `delete` is a *keyword* of the language;
-therefore, it must be notated as a string literal.
+therefore, it must be notated as a string literal in order to ensure working
+code under older JavaScript engines.
 
 [1]: http://en.wikipedia.org/wiki/Hashmap
 

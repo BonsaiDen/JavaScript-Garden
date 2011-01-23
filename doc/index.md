@@ -4,7 +4,7 @@
 - [Objects](#objects)
 - [The prototype](#prototype)
 - [`hasOwnProperty`](#hasownproperty)
-- [Functions and statements](#functions)
+- [Functions](#functions)
 - [How `this` works](#this)
 - [Closures and references](#closures)
 - [Function arguments](#arguments)

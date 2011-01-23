@@ -93,7 +93,7 @@ itself has a prototype, the chain goes on with that one afterwards.
 ### Performance
 
 The lookup time for properties that are high up on the prototype chain can have a
-negative impact on performance critical sections of code. Additionally, tying to 
+negative impact on performance critical sections of code. Additionally, trying to 
 access non-existent properties will always traverse the full prototype chain. 
 
 Also, when [iterating](#the-for-in-loop) over the properties of an object 

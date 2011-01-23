@@ -1,10 +1,9 @@
 ## Closures and references
 
-One of JavaScript's most powerful features is the availability of *closures*.
-
-Closures mean that scopes **always** keep access to the outer scope they were
+One of JavaScript's most powerful features is the availability of *closures*,
+this means that scopes **always** keep access to the outer scope they were
 defined in. Since the only scope that JavaScript has is the 
-[function scope](#scopes), all functions, by default, act like closures.
+[function scope](#scopes), all functions, by default, act as closures.
 
 ### Emulating private variables
 
@@ -25,10 +24,10 @@ defined in. Since the only scope that JavaScript has is the
     foo.increment();
     foo.get(); // 5
 
-In the above example `Counter` returns **two** closures. The function `increment`
-as well as the function `get`. Both of these functions keep a **reference** to 
-the scope of `Counter` and, therefore, always have access to the `count` variable 
-that was defined in that **very** scope.
+Here, `Counter` returns **two** closures. The function `increment` as well as 
+the function `get`. Both of these functions keep a **reference** to the scope of 
+`Counter` and, therefore, always have access to the `count` variable that was 
+defined in that very scope.
 
 ### Why private variables work
 
@@ -41,15 +40,14 @@ interact with it is via the two closures.
         count = 1337;
     };
 
-This code will **not** change the variable `count` in the scope of `Counter`, 
-since `foo.hack` was not defined in **that** scope, instead, it will create 
-(or override) the *global* variable `count`.
+The above code will **not** change the variable `count` in the scope of `Counter`, 
+since `foo.hack` was not defined in **that** scope. It will instead create - or 
+override - the *global* variable `count`.
 
 ### Closures inside loops
 
-One mistake that is often made with closures is that they are used like if they
-were copying primitive values, while they are in fact **referencing** the
-variables which hold those values.
+One often made mistake is to use closures inside of loops, as if they were
+copying the value of the loops index variable.
 
     for(var i = 0; i < 10; i++) {
         setTimeout(function() {
@@ -61,8 +59,7 @@ The above will **not** output the numbers `0` through `9`, it will simply print
 the number `10` ten times.
 
 The *anonymous* function keeps a reference to `i` and at the time `console.log`
-gets called, the `for` loop has already finished and updated the value of `i` to 
-`10`.
+gets called, the `for` loop has already finished and the value of `i` is now `10`.
 
 In order to get the desired behavior, it is necessary to create a **copy** of 
 the value of `i`.
@@ -86,9 +83,9 @@ argument and will receive a copy of the **value** of `i` as its parameter `e`.
 The anonymous function that gets passed to `setTimeout` now has a reference to 
 `e`, which value does **not** get changed by the loop.
 
-There is another possible way of achieving this. It is possible to return a 
-function from the anonymous wrapper, which will then have the same result as the
-code above.
+There is another possible way of achieving this; that is to return a function 
+from the anonymous wrapper, which will then have the same behavior as the code 
+above.
 
     for(var i = 0; i < 10; i++) {
         setTimeout((function(e) {
@@ -97,10 +94,4 @@ code above.
             }
         })(i), 1000)
     }
-
-### In conclusion
-
-It is important to understand **and** master closures, they are the most powerful
-feature of JavaScript and are used pretty much everywhere when it comes to
-elegant and efficient code.
 

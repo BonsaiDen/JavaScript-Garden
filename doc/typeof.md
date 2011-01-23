@@ -8,8 +8,9 @@ Although `instanceof` still has its limited uses, `typeof` really has only one
 practical use case, which **not happens** to be checking the type of an object. 
 
 > **Note:** While `typeof` can also be called with a function like syntax
-> i.e. `typeof(obj)`, this is just syntactic sugar. There is **no**
-> `typeof` function.
+> i.e. `typeof(obj)`, this is not a function call. The two parenthesis will
+> behave like normal and there return value will be used as the operand of the
+> `typeof` operator. There is **no** `typeof` function.
 
 ### The JavaScript type table
 
