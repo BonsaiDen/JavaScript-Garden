@@ -9,8 +9,8 @@ set to the `prototype` of the function object that was called.
 
 If the function that was called has no explicit `return` statement, then it
 implicitly returns the value of `this` (the new object). Otherwise it returns
-the value of the `return` statement, **but** only if `typeof returnValue` is
-`object`.
+the value of the `return` statement, **but** only if the return value is an
+object.
 
     function Foo() {
         this.bla = 1;

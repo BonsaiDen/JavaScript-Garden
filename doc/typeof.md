@@ -5,7 +5,8 @@ The `typeof` operator (together with
 design flaw of JavaScript, as it is near of being **completely broken**.
 
 Although `instanceof` still has its limited uses, `typeof` really has only one
-practical use case, which **not happens** to be checking the type of an object. 
+practical use case, which does **not** happen to be checking the type of an 
+object. 
 
 > **Note:** While `typeof` can also be called with a function like syntax
 > i.e. `typeof(obj)`, this is not a function call. The two parenthesis will
