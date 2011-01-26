@@ -59,7 +59,7 @@ the use of property names that would otherwise lead to a syntax error.
 ### Deleting properties
 
 The only way to actually remove a property from an object is to use the `delete`
-keyword; setting the property to `undefined` or `null` does **only** remove the
+operator; setting the property to `undefined` or `null` does **only** remove the
 value associated with the property, but not the key.
 
     var obj = {
