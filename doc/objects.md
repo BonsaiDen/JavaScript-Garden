@@ -10,7 +10,7 @@ Everything in JavaScript acts like an object, with the only two exceptions being
     Foo.bar = 1;
     Foo.bar; // 1
 
-A mis-assumption that is commonly made, is that number literals cannot be used as
+A common misconception is that number literals cannot be used as
 objects. That is because a flaw in JavaScript's parser tries to parse the *dot 
 notation* on a number as a floating point literal.
 
@@ -39,7 +39,7 @@ object [inherits](#prototype) from `Object.prototype` and has no
 
 ### Accessing properties
 
-The properties of an object can be accessed in two ways. Either via the dot
+The properties of an object can be accessed in two ways, via either the dot
 notation, or the square bracket notation.
     
     var foo = {name: 'Kitten'}
@@ -52,7 +52,7 @@ notation, or the square bracket notation.
     foo.1234; // SyntaxError
     foo['1234']; // works
 
-Both notations are identical in their workings, the only difference being that
+Both notations are identical in their workings, with the only difference being that
 the square bracket notation allows for dynamic setting of properties, as well as
 the use of property names that would otherwise lead to a syntax error.
 
@@ -76,8 +76,8 @@ value associated with the property, but not the key.
             console.log(i, '' + obj[i]);
         }
     }
-    
-The aboves outputs both `bar undefined` and `foo null`, only `baz` got actually
+
+The above outputs both `bar undefined` and `foo null` - only `baz` got actually
 removed and is therefore missing from the output.
 
 ### Notation of keys
@@ -88,7 +88,7 @@ removed and is therefore missing from the output.
     };
 
 Object properties can be both notated as plain characters and as strings. Due to
-another mis-design in JavaScript's parser, prior to EcmaScript 5 the above threw 
+another mis-design in JavaScript's parser, prior to ECMAScript 5 the above will throw 
 a `SyntaxError`.
 
 This error arises from the fact that `delete` is a *keyword* of the language;
@@ -96,4 +96,3 @@ therefore, it must be notated as a string literal in order to ensure working
 code under older JavaScript engines.
 
 [1]: http://en.wikipedia.org/wiki/Hashmap
-
