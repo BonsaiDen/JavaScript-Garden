@@ -7,7 +7,7 @@
 - [Functions](#functions)
 - [How `this` works](#this)
 - [Closures and references](#closures)
-- [Function arguments](#arguments)
+- [The `arguments` object](#arguments)
 - [Scopes and namespaces](#scopes)
 - [Constructors](#constructors)
 - [Equality and comparisons](#equality)
