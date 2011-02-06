@@ -26,7 +26,7 @@ def create_index():
     page['articles'] = '\n\n'.join(articles)
 
     # Create HTML
-    template = open('html/template.html').read()
+    template = open('html/template.html').read().decode('utf-8')
     with open('html/index.html', 'wb') as f:
         f.write(template.format(**page).encode('utf-8'))
 
@@ -57,7 +57,7 @@ def create_article(link, title, html, top = None):
 
 
 def to_content(file):
-    md = open('%s.md' % file).read()
+    md = open('%s.md' % file).read().decode('utf-8')
     title = md.split('\n')[0]
     content = md[len(title):].strip()
     html = to_markdown(content)
