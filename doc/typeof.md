@@ -47,18 +47,19 @@ In order to retrieve the value of `[[Class]]` one can has to make use of the
 
 ### The Class of an object
 
-The specification gives exactly one way of accessing the `[[Class]]` value.
+The specification gives exactly one way of accessing the `[[Class]]` value,
+which the use of `Object.prototype.toString`. 
 
     function is(type, obj) {
-        var cls = Object.prototype.toString.call(obj).slice(8, -1);
-        return cls === type;
+        var clas = Object.prototype.toString.call(obj).slice(8, -1);
+        return obj !== undefined && obj !== null && clas === type;
     }
     
     is('String', 'test'); // true
     is('String', new String('test')); // true
 
-`Object.prototype.toString` gets called with the value of [this](#this) being set
-to the object whose `[[Class]]` value should be retrieved.
+In the above example, `Object.prototype.toString` gets called with the value of
+[this](#this) being set to the object whose `[[Class]]` value should be retrieved.
 
 ### Testing for undefined variables
 
