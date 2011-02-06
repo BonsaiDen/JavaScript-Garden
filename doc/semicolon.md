@@ -42,6 +42,25 @@ different behavior.
         foo: 1
     };
 
+### Missing semicolons and evaluation
+
+    var foo = function() {
+    } // missing semicolon after assignment
+    
+    (function() {
+        // do something in it's own scope
+    })();
+
+Again, the above code will behave **drastically different**.
+
+    var foo = function(){
+        
+    }( // The parser does NOT insert a semicolon here
+        // call the anonymous function and pass another function in
+        function() {
+        }
+    )() // now call the result of the previous call
+
 ### In conclusion
 
 Semicolons should **never** be omitted, it is also recommended to keep braces 
