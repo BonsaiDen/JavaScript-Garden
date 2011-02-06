@@ -10,11 +10,15 @@ can be bound in the language.
 
 When using `this` in global scope, it will simply refer to the *global* object.
 
+
 ### Calling a function
 
     foo();
 
 Here `this` will again refer to the *global* object.
+
+> **ES5 Note:** In strict mode, `this` will **no longer** refer to the global object. 
+> It will instead have the value of `undefined`.
 
 ### Calling a method
 
