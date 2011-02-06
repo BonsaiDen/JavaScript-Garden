@@ -3,7 +3,7 @@
 Since JavaScript is asynchronous, it is possible to schedule the execution of a 
 function by using the `setTimeout` and `setInterval` functions.
 
-> **Note:** Timeouts are **not** part of the EcmaScript Standard, they are
+> **Note:** Timeouts are **not** part of the ECMAScript Standard, they are
 > implemented as part of the [DOM][1].
 
     function foo() {}
