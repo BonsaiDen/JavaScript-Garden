@@ -72,7 +72,7 @@ is due to the lack of block scoping.
 
 ### Order of parsing
 
-All `var` statements get parsed **before** `function` declartions; hence,
+All `var` statements get parsed **before** `function` declarations; hence,
 subsequent statements will override the previous ones.
 
     function foo() {}

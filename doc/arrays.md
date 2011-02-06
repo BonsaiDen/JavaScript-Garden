@@ -1,6 +1,6 @@
 ## Arrays
 
-Although arrays in JavaScript are objects, there is are no good reasons to use
+Although arrays in JavaScript are objects, there are no good reasons to use
 the [for in loop](#forinloop) in for iteration on them. In fact there are a 
 number of good reasons **against** the use of `for in` on arrays.
 

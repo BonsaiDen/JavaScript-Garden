@@ -1,6 +1,6 @@
 ## Type casting
 
-JavaScript is a *weakly typed* language, so it will apply *type ceorcion*
+JavaScript is a *weakly typed* language, so it will apply *type coercion*
 wherever possible.
 
     // These are true

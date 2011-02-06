@@ -30,7 +30,7 @@ has a property called `foo`, it will instead simply return `undefined`.
         foo: 1 // JavaScript supports single expression evaluation
                // So 1 evaluates to 1 and no error is being raised
 
-    } // Automatic semicolon insertioN
+    } // Automatic semicolon insertion
 
 After the parser has done its "magic", the resulting code has completely
 different behavior.
