@@ -1,4 +1,5 @@
-## Intro
+JavaScript Garden
+=================
 
 **JavaScript Garden** is a growing collection of documentation about the most 
 quirky parts of the JavaScript programming language. It gives advice to 
@@ -24,7 +25,8 @@ contact him via [e-mail][7] for further details.
 
  - [Caio Romão][8] (Spelling corrections)
 
-### License
+License
+-------
 
 JavaScript Garden is published under the [MIT license][2] and hosted on
 [GitHub][4]. If you find errors or typos please [file an issue][3] or a pull 
