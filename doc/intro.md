@@ -20,6 +20,10 @@ If case you are interested in additional guidance or reviews concerning your Jav
 projects, Ivo Wetzel offers these on a freelance basis. Please feel free to 
 contact him via [e-mail][7] for further details.
 
+### Contributors
+
+ - [Caio Romão][8] (Spelling corrections)
+
 ### License
 
 JavaScript Garden is published under the [MIT license][2] and hosted on
@@ -33,4 +37,5 @@ request on the repository.
 [5]: http://stackoverflow.com/users/313758/yi-jiang
 [6]: http://stackoverflow.com/users/170224/ivo-wetzel
 [7]: mailto:ivo.wetzel@googlemail.com
+[8]: https://github.com/caio
 
