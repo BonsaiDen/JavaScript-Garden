@@ -39,8 +39,8 @@ created `Object`.
     function foo(a, b, c) {}
                           
     var bar = {};
-    foo.apply(bar, [1, 2, 3]);
-    foo.call(bar, 1, 2, 3);
+    foo.apply(bar, [1, 2, 3]); // array will expand to the below
+    foo.call(bar, 1, 2, 3); // results in a = 1, b = 2, c = 3
 
 When using the `call` or `apply` methods of `Function.prototype`, the value of
 `this` inside the called function gets explicitly set to the first argument of
