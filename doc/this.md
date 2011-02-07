@@ -39,8 +39,8 @@ created `Object`.
     function foo(a, b, c) {}
                           
     var bar = {};
-    foo.call(bar, [1, 2, 3]);
-    foo.apply(bar, 1, 2, 3);
+    foo.apply(bar, [1, 2, 3]);
+    foo.call(bar, 1, 2, 3);
 
 When using the `call` or `apply` methods of `Function.prototype`, the value of
 `this` inside the called function gets explicitly set to the first argument of
@@ -88,7 +88,7 @@ pass `this` values around.
 Another thing that does **not** work in JavaScript is **assigning** a method
 reference to a variable.
 
-    var test = someObject.methodTest();
+    var test = someObject.methodTest;
     test();
 
 Again due to the first case `test` now acts like like a plain function call;
