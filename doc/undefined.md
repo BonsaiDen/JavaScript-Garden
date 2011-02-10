@@ -29,8 +29,8 @@ value does not change the value of the **type** `undefined`.
 Still, in order to compare something against the value of `undefined` it is
 necessary to retrieve the value of `undefined` in the first place.
 
-In order to protect code against a possible overwritten `undefined` variable a 
-, common technique used is to add an additional parameter to the encapsulation
+In order to protect code against a possible overwritten `undefined` variable, a 
+common technique used is to add an additional parameter to the encapsulation
 [anonymous wrapper](#scopes), which gets no argument passed to it.
 
     var undefined = 123;

@@ -74,7 +74,7 @@ referencing it would result in a `ReferenceError`. This is the only thing
 In order to check the type of an object, it is highly recommended to use 
 `Object.prototype.toString`; as this is the only reliable way of doing so. 
 As shown in the above type table, some return values of `typeof` are not defined 
-in the specification; thus, the can across various implementations.
+in the specification; thus, they can differ across various implementations.
 
 Unless checking whether a variable is defined, `typeof` should be avoided at
 **all costs**.
