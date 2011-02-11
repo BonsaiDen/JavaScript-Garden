@@ -62,10 +62,22 @@ $(document).ready(function() {
         });
     });
 
+    function changeNavigationPosition() {
+        $('nav').css('top', window.pageYOffset + 'px');
+    }
+
     var initSelection = setTimeout(highlightSection, 100);
     $(document).scroll(function() {
         clearTimeout(initSelection);
         highlightSection();
+
+        // http://davidwalsh.name/detect-ipad
+        var isiPad = navigator.userAgent.match(/iPad/i) != null;
+
+        if(isiPad) {
+            // iPad navigation
+            changeNavigationPosition();
+        }
     });
     prettyPrint();
 });
