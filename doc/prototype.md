@@ -41,7 +41,7 @@ defined on `Foo`. But it will not have access to the property `value` of a
 `Foo` instance, since that property gets defined in the [constructor](#constructor)
 of `Foo`. But this constructor has to be called explicitly.
 
-> **Note:** Do **not** use `Bar.property = Foo`, since it will not point to 
+> **Note:** Do **not** use `Bar.prototype = Foo`, since it will not point to 
 > the prototype of `Foo` but rather to the function object `Foo`. So the 
 > prototype chain will go over `Function.prototype` and not `Foo.prototype`;
 > therefore, `method` will not be on the prototype chain.
