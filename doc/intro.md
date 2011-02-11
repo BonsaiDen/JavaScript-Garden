@@ -23,6 +23,7 @@ contact him via [e-mail][7] for further details.
 ### Contributors
 
  - [Caio Romão][8] (Spelling corrections)
+ - [Andreas Blixt][9] (Language corrections)
 
 ### License
 
@@ -38,4 +39,5 @@ request on the repository.
 [6]: http://stackoverflow.com/users/170224/ivo-wetzel
 [7]: mailto:ivo.wetzel@googlemail.com
 [8]: https://github.com/caio
+[9]: https://github.com/blixt
 
