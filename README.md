@@ -24,9 +24,9 @@ contact him via [e-mail][7] for further details.
 ### Contributors
 
  - [Caio Romão][8] (Spelling corrections)
+ - [Andreas Blixt][9] (Language corrections)
 
-License
--------
+### License
 
 JavaScript Garden is published under the [MIT license][2] and hosted on
 [GitHub][4]. If you find errors or typos please [file an issue][3] or a pull 
@@ -40,4 +40,5 @@ request on the repository.
 [6]: http://stackoverflow.com/users/170224/ivo-wetzel
 [7]: mailto:ivo.wetzel@googlemail.com
 [8]: https://github.com/caio
+[9]: https://github.com/blixt
 
