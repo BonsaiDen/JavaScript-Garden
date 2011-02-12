@@ -20,7 +20,7 @@ There are a couple of workarounds which can be used in order make number
 literals act as object too.
 
     2..toString(); // the second point is correctly recognized
-    2 .toString(); // note the space
+    2 .toString(); // note the space left to the dot
     (2).toString(); // 2 is evaluated first
 
 ### Objects as a data type
