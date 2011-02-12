@@ -1,36 +1,137 @@
-nav a {
-    color: black !important;
-    text-decoration: none;
+body {
+	font-family: Arial, sans-serif;
+	width: 100%;
+	background: #fff;
+	color: #000;
 }
 
-nav a:active {
-    color: black !important;
+body > div {
+	margin-right: 0;
 }
 
-nav a:visited {
-    color: black !important;
-}
-
-a {
-    font-weight: bold;
-    text-decoration: none;
-    color: black !important;
+nav {
+    display: none;
 }
 
 header h1 {
-    font-size: 75px;
+    font-size: 35px;
+	padding: 20px 0;
 }
 
 h2 {
-    margin-top: 30px;
-	font-size: 30px;
+	margin: 20px 0 10px;
+	font-size: 16px;
+	padding-top: 0;
+}
+
+h3 {
+	font-size: 13px;
+	margin: 15px 0 8px; 
+}
+
+h2, h3 {
+	font-variant: normal;
+	text-transform: capitalize;
+	page-break-after: avoid;
+}
+
+header h1, h2, h3 {
+	text-shadow: none;
+}
+
+article h2 > code, article h3 > code {
+	text-transform: none;
+	font-size: 0.9em;
+	vertical-align: 2px;
 }
 
 article h2 a {
     display: none;
 }
 
-h3 {
-	font-size: 18px;
+article {
+	width: 78%;
+	padding-bottom: 0;
+	border-bottom-width: 2px;
 }
 
+aside {
+	width: 26%;
+	right: -28%;
+	padding-bottom: 6px;
+	opacity: 1;
+}
+
+a {
+	color: inherit;
+}
+
+p, ul, ol {
+	font-size: 11px;
+	margin-bottom: 8px;
+	orphans: 3;
+	line-height: 1.3em;
+}
+
+pre {
+	background: #eee;
+}
+
+aside p {
+	font-size: 10px;
+	color: #666;
+}
+
+article code, article pre code {
+	background: #eee;
+	font-size: 10px;
+}
+
+article code {
+	padding: 1px 3px;
+}
+
+article li {
+	font-size: 13px;
+	margin-top: 6px;
+}
+
+article ul, article ol {
+	list-style-position: inside;
+	margin-left: 8px;
+}
+
+.com {
+	color: #600;
+	font-style: italic;
+}
+
+.typ {
+	color: #404;
+	font-weight: bold;
+}
+
+.lit {
+	color: #044;
+}
+
+.pun {
+	color: #440;
+}
+
+.pln {
+	color: #444;
+}
+
+.atn {
+	color: #404;
+}
+
+.str, .atv {
+	color: #060;
+}
+
+.kwd, .tag {
+	color: #006;
+	font-weight: bold;
+}
