@@ -1,56 +1,52 @@
-### Functions and Statements
+## Functions
 
-Functions in JavaScript are first class objects, and that means they can be passed
-around like any other value. One common use of that feature is to pass
-*anonymous functions* as callbacks to other functions. 
+Functions in JavaScript are first class objects, which means that they can be 
+passed around like any other value. One common use of this feature is to pass
+an *anonymous function* as a callback to another, possible asynchronous function.
 
-There are two different ways to define a function in JavaScript.
+### The `function` declaration
 
-#### The `function` Statement
+    function foo() {}
 
-    function foo() { 
-    }
-
-The above function gets created **before** any actual code is run, and therefore it is
-available everywhere in the scope it was defined in from the start.
+The above function gets created **before** the execution of the program starts;
+thus, it is available *everywhere* in the scope it was *defined* in, even if 
+called before the actual definition in the source.
 
     foo(); // Works because foo was created before this code runs
-    function foo() {
-    }
+    function foo() {}
 
-#### The `function` Expression
+### The `function` expression
 
-    var foo = function() {
-    };
+    var foo = function() {};
 
-The above assign the unnamed and therefore *anonymous* function to the variable
-`foo`. But it does **not** do so before the code is run. 
+The above assigns the unnamed and - *anonymous* - function to the variable `foo`. 
 
     foo; // 'undefined'
     foo(); // this raises a TypeError
-    var foo = function() {
-    };
+    var foo = function() {};
 
-The above may seem strange at first, but `var` is a statement, so the variable
-`foo` will once again get created before any code is run. But `=` is an
-expression, therefore `foo` does not get assigned any value, so it defaults to 
-`undefined`.
+Due to the fact that `var` is a *statement*, which - just like the function 
+declaration - creates the variable `foo` before the actual execution of the code
+starts, `foo` is already defined when the script gets executed.
 
-#### Named Function Expression
+Since assignments only happens at runtime, the value of `Foo` will default
+to [undefined](#undefined) before the corresponding code is executed.
 
-There's one more case here, that is when you're assigning a named function.
+### Named function expression
+
+Another special case is the assignment of named functions.
 
     var foo = function bar() {
         bar(); // Works
     }
     bar(); // ReferenceError
 
-Here `bar` is not available in the outer scope, since the function gets only
-assigned to `foo`, however, inside of `bar`, `bar` **is** available, since the
-name of the function itself always available in the functions own scope. For more on
-*name resolution*, read about [scopes](#scopes).
+Here `bar` is not available in the outer scope, since the function only gets
+assigned to `foo`; however, inside of `bar` it **is** available. This is due to 
+how [name resolution](#scopes) in JavaScript works, the name of the function
+is always made available in the local scope of the function itself.
 
-#### The `var` Statement
+### The `var` statement
 
     function test() {
         if (foo) {
@@ -66,19 +62,23 @@ name of the function itself always available in the functions own scope. For mor
         var foo = 1;
     }
 
-Since there's **no** [block scope](#scopes) in JavaScript, the above will
-**not** assign the value `2` to the *global* variable `bar`, rather it assigns it to the 
-*local* variable `bar` of `test`. Also, while the statements inside the `if` block never gets executed, 
-the variable `foo` still gets created and defaults to `undefined`.
+Since there is **no** [block scope](#scopes) in JavaScript, the above will
+**not** assign the value `2` to the *global* variable `bar`. It will rather 
+assign the value of `2` to the *local* variable `bar` of `test`. 
 
-#### `var` vs. `function`
+Also, while the statements inside the `if` block never get executed, the variable
+`foo` still gets created and defaults to the value of `undefined`; again, this
+is due to the lack of block scoping.
 
-All `var` statements get parsed **before** the `function` statements, subsequent
-statements override the previous ones.
+### Order of parsing
 
-    function foo() {
-    }
+All `var` statements get parsed **before** `function` declarations; hence,
+subsequent statements will override the previous ones.
+
+    function foo() {}
     var foo;
-    foo; // [function foo] before the next line gets evaluated
+
+    foo; // [function foo]
     var foo = 2;
+    foo; // 2
 

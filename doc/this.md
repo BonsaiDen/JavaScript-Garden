@@ -1,56 +1,62 @@
-### How `this` works in JavaScript
+## How `this` works
 
-JavaScript has a, at first, very strange concept of what `this` refers to.
-There are exactly five different ways in which the value of `this` can get set.
+JavaScript has a different concept of what `this` refers to than most other
+languages do. There are exactly **five** different ways in which the value of `this` 
+can be bound in the language.
 
-#### The global scope
+### The global scope
 
     this;
 
 When using `this` in global scope, it will simply refer to the *global* object.
 
-#### Calling a Function
+
+### Calling a function
 
     foo();
 
 Here `this` will again refer to the *global* object.
 
-#### Calling a Method
+> **ES5 Note:** In strict mode, `this` will **no longer** refer to the global object. 
+> It will instead have the value of `undefined`.
+
+### Calling a method
 
     test.foo(); 
 
 In this example `this` will refer to `test`.
 
-#### Calling a Constructor
+### Calling a constructor
 
     new foo(); 
 
-A function call that's preceded by the `new` keyword acts as
+A function call that is preceded by the `new` keyword acts as
 a [constructor](#constructors). Inside the function `this` will refer to a newly
 created `Object`.
 
-#### Explicit setting
+### Explicit setting of `this`
 
-    function foo(a, b, c) {
-    }
+    function foo(a, b, c) {}
                           
     var bar = {};
-    foo.call(bar, [1, 2, 3]);
-    foo.apply(bar, 1, 2, 3);
+    foo.apply(bar, [1, 2, 3]); // array will expand to the below
+    foo.call(bar, 1, 2, 3); // results in a = 1, b = 2, c = 3
 
-When using the `call` or `apply` methods of `Function.prototype`, one can 
-explicitly set the value of `this` inside the called function, so in the above
-case the *method case* does **not** apply, and `this` inside of `foo` will be
-set to `bar`.
+When using the `call` or `apply` methods of `Function.prototype`, the value of
+`this` inside the called function gets explicitly set to the first argument of
+the corresponding function call.
+
+In the above example the *method case* does **not** apply, and `this` inside of 
+`foo` will be set to `bar`.
 
 > **Note:** `this` **cannot** be used to refer to the object inside of an `Object`
-> literal. So `var obj = {me: this}` will **not** result in `me` refering to
-> `obj`, since `this` gets determined by one of the above cases.
+> literal. So `var obj = {me: this}` will **not** result in `me` referring to
+> `obj`, since `this` only gets bound by one of the above five cases.
 
-#### Common Pitfalls
+### Common pitfalls
 
-While most of these cases make sense, the first one is considered a mis-design 
-by many people since it's **never** of any practical use, but leads to many bugs.
+While most of these cases make sense, the first one is to be considered another
+mis-design of the language, as it **never** has any practical use.
 
     Foo.method = function() {
         function test() {
@@ -62,8 +68,8 @@ by many people since it's **never** of any practical use, but leads to many bugs
 A common misconception is that `this` inside of `test` refers to `Foo`, but it 
 does **not**.
 
-In order to gain access to `Foo` from within `test` one has to create a local
-variable inside of `method` which refers to `Foo`.
+In order to gain access to `Foo` from within `test` it is necessary to create a 
+local variable inside of `method` which refers to `Foo`.
 
     Foo.method = function() {
         var that = this;
@@ -73,25 +79,24 @@ variable inside of `method` which refers to `Foo`.
         test();
     }
 
-`that` is just a normal name, but it's a common idiom to use it as a reference
-to an outer `this`. In combination with [Closures](#closures), 
-this can also be used to pass `this` around.
+`that` is just a normal name, but it is commonly used for the reference to an 
+outer `this`. In combination with [closures](#closures), it can also be used to 
+pass `this` values around.
 
-#### Assigning Methods
+### Assigning methods
 
-Another thing that does **not** work in JavaScript is **assigning** a method to
-a variable.
+Another thing that does **not** work in JavaScript is **assigning** a method
+reference to a variable.
 
-    var test = someObject.methodTest();
+    var test = someObject.methodTest;
     test();
 
-Again due to the first case, `test` now acts like like a plain function call
-therefore the `this` inside it will not refer to `someObject` anymore.
+Again due to the first case `test` now acts like like a plain function call;
+therefore, `this` inside it will no longer refer to `someObject`.
 
-While the late binding of `this` might seem like a bad thing, it is fact what
+While the late binding of `this` might seem like a bad idea, it is in fact what
 makes [prototypical inheritance](#prototype) work. 
 
-    
     function Foo() {}
     Foo.prototype.method = function() {};
 
@@ -101,10 +106,5 @@ makes [prototypical inheritance](#prototype) work.
     new Bar().method();
 
 When `method` gets called on a instance of `Bar`, `this` will now refer to that
-instance.  
-
-#### Best Practices
-Don't try to work around the behavior of `this` in JavaScript. Instead
-**understand** how and why it works the way it does. Otherwise you'll end up with
-a lot of bugs that seem to be there for no good reason.
+instance. 
 

@@ -1,0 +1,258 @@
+/* Eric Meyer's reset.css v1.0 | 20080212 */
+
+html, body, div, span,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, cite, code,
+del, em, img, ins, kbd,
+strong, sub, sup,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+article, aside, figure, footer, header, hgroup,  menu, nav, section {
+	display: block;
+}
+
+body {
+	width: 960px;
+	margin: 0 auto;
+	font-family: Georgia, 'Nimbus Roman No9 L', 'Liberation Serif', monospace;
+	font-size: 14px;
+	background: #0D2E4C;
+	color: #E6EAED;
+}
+
+body > div {
+	margin-right: 410px;
+}
+
+header h1 {
+	padding: 40px 0 30px;
+	font-size: 75px;
+	line-height: 1.2em;
+	font-weight: normal;
+	text-shadow: 0 2px 2px #000;
+}
+
+nav {
+	position: fixed;
+	margin-left: 750px;
+	top: 0;
+	padding: 20px 0;
+	height: 100%;
+	background-color: #556c81;
+	text-shadow: none;
+	width: 240px;
+}
+
+nav h1 {
+	margin: 0 0 20px 30px;
+	font-size: 22px;
+	font-weight: normal;
+}
+
+article {
+	padding-bottom: 20px;
+	border-bottom: 4px dotted #8696a5;
+}
+
+article section {
+	position: relative;
+}
+
+nav ul li {
+	font-size: 16px;
+    margin: 0px;
+    list-style: none;
+	background-color: #556c81;
+}
+
+nav a {
+	color: white;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	display: block;
+	padding: 4px 30px 6px;
+}
+
+nav a:hover {
+	background: #0D2E4C;
+}
+
+p {
+	line-height: 1.6em;
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+pre, code {
+	font-family: Consolas, Inconsolata, 'Bitstream Vera Sans Mono', Menlo, Monaco, 'Andale Mono', 'Courier New', monospace;
+}
+
+pre {
+	padding: 8px 0 12px 20px;
+	border-left: 4px solid #566D82;
+	margin-bottom: 20px;
+	background: #0F192A;
+}
+
+article pre code {
+	font-size: 13px;
+	line-height: 1.4em;
+    padding: 0px;
+    margin-top: 3px;
+    margin-bottom: 1px;
+	background: #0F192A;
+}
+
+article code {
+	font-size: 0.85em;
+	text-shadow: none;
+	background: #314D67;
+	padding: 3px 4px 1px;
+}
+
+h2, h3 {
+	font-family: Arial, sans-serif;
+	text-shadow: 0 1px 1px #222;
+	font-variant: small-caps;
+}
+
+h2 {
+	font-size: 30px;
+	margin: 15px 0 20px;
+	padding-top: 50px;
+}
+
+h3 {
+	font-size: 18px;
+	margin: 25px 0 15px;
+}
+
+h2 code, h3 code {
+	font-variant: normal;
+}
+
+aside {
+	border-bottom: 1px solid #9eabb7;
+	padding-bottom: 10px;
+	position: absolute;
+	width: 180px;
+	right: -190px;
+	opacity: 0.7;
+}
+
+aside:last-child {
+	bottom: 0;
+}
+
+aside p {
+	margin: 0;
+	font-size: 13px;
+	font-family: Arial;
+	line-height: 1.3em;
+}
+
+article ol {
+    margin-bottom: 32px;
+	list-style: decimal;
+}
+
+article ul {
+	list-style: square;
+}
+
+article li {
+	font-size: 15px;
+    margin-top: 9px;
+}
+
+article ul li {
+	margin-left: -3px;
+	padding-left: 3px;
+}
+
+footer {
+   padding-top: 10px; 
+}
+
+a {
+	color: #FFA500;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #FFC76D;
+}
+
+article h2 a {
+	color: #ccc;
+	font-size: 16px;
+	vertical-align: baseline;
+	display: none;
+	font-weight: normal;
+	font-variant: normal;
+}
+
+article:hover h2 a {
+	display: inline;
+}
+
+abbr {
+	cursor: help;
+	border-bottom: 1px dotted;
+}
+
+a abbr {
+	cursor: pointer;
+}
+
+/*  Syntax Highlighting */
+
+.str { color: #1DC116; }
+.kwd { color: #E83737; }
+.com { color: #428BDD; }
+.typ { color: #FFAA3E; }
+.lit { color: #D1EDFF; }
+.pun { color: #D1EDFF; }
+.tag { color: #008; }
+.atn { color: #606; }
+.atv { color: #080; }
+.dec { color: #606; }
+.pln { color: #FFAA3E; }

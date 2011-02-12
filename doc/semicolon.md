@@ -1,15 +1,17 @@
-### Automatic Semicolon Insertion
+## Automatic semicolon insertion
 
-Although JavaScript has C style syntax, it does not enforce the use of
-semicolons in the source code, but since the parser still needs them in order to
-be able to figure out what the code should do, it inserts them automatically.
+Although JavaScript has C style syntax, it does **not** enforce the use of
+semicolons in the source code. Since the parser still needs semicolons in order 
+to be able to figure out what the code should do, it inserts them 
+**automatically**.
 
-When the parser encounters an error due to new line that is not preceded by a 
+When the parser encounters an error due to newline that is not preceded by a 
 semicolon, it will insert a semicolon automatically and try again. When the
 parser still hits an error, it will raise it, otherwise it will simply proceed.
 
-This is one of the **biggest** flaws in the language since it makes the below
-code work with a completely different result than intended.
+The automatic insertion of semicolon is considered to be one of **biggest**
+design flaws in the language. It makes the below code work, but  with a 
+completely different result than intended.
 
     return
     {
@@ -19,16 +21,16 @@ code work with a completely different result than intended.
 After the JavaScript parser fixed it, this will **not** return an object which 
 has a property called `foo`, it will instead simply return `undefined`.
 
-#### How the Parser "fixes" missing Semicolons
+### How the parser "fixes" missing semicolons
 
-    return // parse error, expected a semicolon. Automatic insertion happens
-    { // Although there's no block scope in JS, block syntax is handle fined
+    return // Error, semicolon expected. Automatic insertion happens
+    { // Block syntax is handle just fine
 
-        // foo is not interpreted as an object key, but as a label
+        // foo is not interpreted as property name, but as a label
         foo: 1 // JavaScript supports single expression evaluation
-               // So 1 evaluates to 1, and yet again does not raise any error
+               // So 1 evaluates to 1 and no error is being raised
 
-    } // Another semicolon gets inserted here
+    } // Automatic semicolon insertion
 
 After the parser has done its "magic", the resulting code has completely
 different behavior.
@@ -40,8 +42,30 @@ different behavior.
         foo: 1
     };
 
-#### Best Practices
-**Never** omit semicolons. Also, always keep your `{}` on the **same** line to 
-avoid such subtle mistakes. It's also good style to **never** make use the 
-possibility of omitting the curly braces for one line `if / else` statements.
+### Missing semicolons and evaluation
+
+    var foo = function() {
+    } // missing semicolon after assignment
+    
+    (function() {
+        // do something in it's own scope
+    })();
+
+Again, the above code will behave **drastically different**.
+
+    var foo = function(){
+        
+    }( // The parser does NOT insert a semicolon here
+        // call the anonymous function and pass another function in
+        function() {
+        }
+    )() // now call the result of the previous call
+
+### In conclusion
+
+Semicolons should **never** be omitted, it is also recommended to keep braces 
+on the same line with their associated statements and never omit them for one 
+line `if` / `else` statements. This will not only improve the consistency of the
+code, it will also prevent the JavaScript parser from applying too much "magic"
+to the code.
 

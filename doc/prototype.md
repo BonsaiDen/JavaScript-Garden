@@ -1,57 +1,80 @@
-### The Prototype
+## The prototype
 
 JavaScript does not feature the classical inheritance model, instead it uses a 
-*prototypal* one. This might at first seem like a limitation, but it's not. a 
-*prototypal* inheritance model is in fact more powerful than the classical
-one, for example you can emulate the classical model with it, but you can't do it
-the other way around.
+*prototypical* one. 
 
-Due to the fact that JavaScript is practically the only language in that's both in
-widespread **and** uses prototypical inheritance, it takes some time to adjust
-to the differences between the two models. Inheritance in JavaScript is done by
-using *prototype chains*.
+While this is often considered to be one of JavaScript's weaknesses, the 
+prototypical inheritance model is in fact more powerful than the classic model. 
+For example, it is fairly trivial to build a classic model on top of it, while 
+the other way around is a far more difficult task.
+
+Due to the fact that JavaScript is basically the only widely used language that
+features prototypical inheritance, it takes some time to adjust to the 
+differences between the two models. 
+
+The first major difference is that inheritance in JavaScript is done by using so
+called *prototype chains*.
 
     function Foo() {
         this.value = 42;
     }
     Foo.prototype = {
-        method: function() {
-        }
+        method: function() {}
     };
 
-    function Bar() {
-    }
+    function Bar() {}
 
     // Set Bar's prototype to the prototype object of Foo
     Bar.prototype = Foo.prototype;
 
     var test = new Bar() // create a new bar instance
 
-The above `test` object will inherit from both `Bar.prototype` and
-`Foo.prototype`, so it will have access to the function `method` that was defined
-on `Foo`, but it will not have access to the value property of a `Foo` instance
-since `Foo` itself never gets called.  
-
-> **Note:** Don't use `Bar.property = Foo;` this will **not** point to `Foo` its
-> prototype (therefore `method` is not on the prototype chain), but rather to the 
-> function object `Foo`, so the chain will go over `Function.prototype` in this 
-> case.
-
-#### Property Lookup
-
-If you try to access a property of an `Object`, JavaScript will traverse the
-prototype chain **upwards** until it finds a property with the specified name.
-When it reaches the top of the chain - namely `Object.prototype` - and still
-hasn't found the property it will return the value `undefined`.
-
-    // Prototype chain in the example above
+    // The resulting prototype chain
     Object.prototype: {toString: ... /* etc. */};
         Foo.prototype: {method: ...};
             Bar.prototype: Foo.prototype
                 Bar.method()
 
-You can actually assign **any** `object` to the `prototype` property, so consider
-the following.
+In the above, the object `test` will inherit from both `Bar.prototype` and
+`Foo.prototype`; hence, it will have access to the function `method` that was 
+defined on `Foo`. But it will not have access to the property `value` of a 
+`Foo` instance, since that property gets defined in the [constructor](#constructor)
+of `Foo`. But this constructor has to be called explicitly.
+
+> **Note:** Do **not** use `Bar.prototype = Foo`, since it will not point to 
+> the prototype of `Foo` but rather to the function object `Foo`. So the 
+> prototype chain will go over `Function.prototype` and not `Foo.prototype`;
+> therefore, `method` will not be on the prototype chain.
+
+### Property lookup
+
+When accessing the properties of an object, JavaScript will traverse the
+prototype chain **upwards** until it finds a property with the requested name.
+
+When it reaches the top of the chain - namely `Object.prototype` - and still
+hasn't found the specified property, it will return the value
+[undefined](#undefined) instead.
+
+### The prototype property
+
+While the prototype property is used by the language to build the prototype
+chains, it is still possible to assign **any** given value to it. Although 
+primitives will simply get ignored when assigned as a prototype.
+
+    function Foo() {}
+    Foo.prototype = 1; // no effect
+
+Assigning objects on the other hand will work, and allows for dynamic creation of
+prototype chains.
+
+    function Foo() {
+        this.value = 42;
+    }
+    Foo.prototype = {
+        method: function() {}
+    };
+
+    function Bar() {}
 
     Bar.prototype = new Foo();
     var boo = new Bar();
@@ -63,19 +86,41 @@ the following.
                 Bar.prototype: [Foo Instance]
                     Bar.method()
 
-Now `Bar.prototype` points to an **instance** of `Foo`, which of course is just
-another object, but this time has the `value` property defined on it. And since 
-`Foo` itself has a prototype, the chain continues with that one afterwards.
+Now `Bar.prototype` points to an *instance* of `Foo`; thus, the property
+`value` of that very instance is now on the prototype chain. And since `Foo` 
+itself has a prototype, the chain goes on with that one afterwards.
 
-As a result of this, the lookup time for properties that are high up the chain 
-can have a negative impact on performance critical code. Access to non existent
-properties will always traverse the full chain and when 
-[iterating](#the-for-in-loop) over the properties of an `Object` **every** 
-property that's on the `prototype` chain will get enumerated.
+### Performance
 
-#### Best Practices
-Make sure to that you understand the prototypical inheritance model completely,
-otherwise you will end up with unexpected, seemingly surprising results. Also,
-watch the prototype chains of your objects, remember that they can have a big
-impact on performance when not used correctly.
+The lookup time for properties that are high up on the prototype chain can have a
+negative impact on performance critical sections of code. Additionally, trying to 
+access non-existent properties will always traverse the full prototype chain. 
+
+Also, when [iterating](#the-for-in-loop) over the properties of an object 
+**every** property that is on the prototype chain will get enumerated.
+
+### Extension of native prototypes
+
+One mis-feature that is often used is to extend `Object.prototype` or one of the
+other built in prototypes.
+
+This technique is called [monkey patching][1] and breaks *encapsulation*. While 
+used by widely spread frameworks such as [Prototype][2], there is still no good 
+reason for cluttering built in types with additional non-standard functionality.
+
+The **only** good reason for extending a built in prototype is to back port 
+the features of newer JavaScript engines; for example, 
+[`Array.forEach`][3].
+
+### In conclusion
+
+It is a must to understand the prototypical inheritance model completely before
+writing complex code which makes use of it. Also, watching the length of the 
+prototype chains and breaking them up if necessary can avoid possible performance
+issues. Further, the native prototypes should **never** be extended unless it is
+for the sake of compatibility with newer JavaScript features.
+
+[1]: http://en.wikipedia.org/wiki/Monkey_patch
+[2]: http://prototypejs.org/
+[3]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach
 

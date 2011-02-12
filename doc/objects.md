@@ -1,40 +1,98 @@
-### Objects
+## Objects
 
-Everything in JavaScript - except for `null` and `undefined` -  **acts** like an 
-`Object`. This means that all types inherit from `Object.prototype` (yet another 
-reason **not** to mess with it).
+Everything in JavaScript acts like an object, with the only two exceptions being 
+[`null`](#undefined) and [`undefined`](#undefined).
 
     false.toString() // 'false'
     [1, 2, 3].toString(); // '1,2,3'
-    2.toString(); // syntax error
+    
+    function Foo(){}
+    Foo.bar = 1;
+    Foo.bar; // 1
 
-The last example doesn't work, but this is **not** because the number literal 
-cannot be used like an object, it's because of a mis-design in JavaScript's 
-parser. Which tries to parse **anything** that follows a dot - which itself is 
-preceded by whitespace or a number literal - as a floating point number.
+A common misconception is that number literals cannot be used as
+objects. That is because a flaw in JavaScript's parser tries to parse the *dot 
+notation* on a number as a floating point literal.
 
-You can work around this by either inserting a space `2. toString()`, another dot
-`2..toString()` or using parenthesis `(2).toString()`.
+    2.toString(); // raises SyntaxError
 
-#### Objects as a Datatype
+There are a couple of workarounds which can be used in order make number 
+literals act as object too.
 
-Objects can also **act** like a [*Hashmap*][1] in JavaScript by simply mapping *keys* to
-*values*. Using the curly brace notation `{}` one can create a new plain object, 
-which inherits from `Object.prototype` and has no [own
-properties](#hasownproperty).
+    2..toString(); // the second point is correctly recognized
+    2. toString(); // note the space
+    (2).toString(); // 2 is evaluated first
+
+### Objects as a data type
+
+Objects in JavaScript can also be used as a [*Hashmap*][1], they mainly consist 
+of named properties mapping to values.
+
+Using the curly brace notation `{}` one can create a plain object. This new
+object [inherits](#prototype) from `Object.prototype` and has no 
+[own properties](#hasownproperty) defined on it.
 
     var foo = {}; // a new empty object
-    var bar = {test: 12}; // a new object which has one property called 'test'
-                          // which value is 12
+
+    // a new object with a property called 'test' with value 12
+    var bar = {test: 12}; 
+
+### Accessing properties
+
+The properties of an object can be accessed in two ways, via either the dot
+notation, or the square bracket notation.
+    
+    var foo = {name: 'Kitten'}
+    foo.name; // kitten
+    foo['name']; // kitten
+    
+    var get = 'name';
+    foo[get]; // kitten
+    
+    foo.1234; // SyntaxError
+    foo['1234']; // works
+
+Both notations are identical in their workings, with the only difference being that
+the square bracket notation allows for dynamic setting of properties, as well as
+the use of property names that would otherwise lead to a syntax error.
+
+### Deleting properties
+
+The only way to actually remove a property from an object is to use the `delete`
+operator; setting the property to `undefined` or `null` does **only** remove the
+value associated with the property, but not the key.
+
+    var obj = {
+        bar: 1,
+        foo: 2,
+        baz: 3
+    };
+    obj.bar = undefined;
+    obj.foo = null;
+    delete obj.baz;
+
+    for(var i in obj) {
+        if (obj.hasOwnProperty(i)) {
+            console.log(i, '' + obj[i]);
+        }
+    }
+
+The above outputs both `bar undefined` and `foo null` - only `baz` got actually
+removed and is therefore missing from the output.
+
+### Notation of keys
 
     var test = {
-        delete: function() {}
+        'case': 'I am a keyword so I must be notated as a string',
+        delete: 'I am a keyword too so me' // raises SyntaxError
     };
 
-The above definition of `test` raises a `SyntaxError` in JavaScript engines which 
-do not support the upcoming EcmaScript 5 standard. What happens is that `delete` 
-is a *keyword* and therefore cannot be used as a key here (another mis-design of
-the  parser). But you can simply work around this by using a string with the 
-value of `'delete'` instead of the plain literal.
+Object properties can be both notated as plain characters and as strings. Due to
+another mis-design in JavaScript's parser, prior to ECMAScript 5 the above will throw 
+a `SyntaxError`.
 
- [1]: http://en.wikipedia.org/wiki/Hashmap
+This error arises from the fact that `delete` is a *keyword* of the language;
+therefore, it must be notated as a string literal in order to ensure working
+code under older JavaScript engines.
+
+[1]: http://en.wikipedia.org/wiki/Hashmap

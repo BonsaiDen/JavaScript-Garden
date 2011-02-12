@@ -1,20 +1,14 @@
-### Equality in JavaScript
+## Equality and comparisons
 
 JavaScript has two different ways of comparing the values of objects for else
-equality. It has both the `==` (double equal) operator and the `===`
-(triple equal) operator.
+equality. 
 
-There is an important difference between those two and a good reason for 
-**only** triple version
+### The equals operator
 
-JavaScript has *weak typing* and therefore the creators of the language built in
-a way of doing *type coerion* when comparing two values. The only problem is
-that, instead of making *type coercin* optional, they made it the **default**.
+The equals operator consists of two equal signs: `==`
 
-So the `==` operator will try everything that the language spec allows for to
-convert the two values to the same type and then compare them.
-
-#### The Double Equal Operator
+JavaScript features *weak typing*, that means, the equals operator does
+**coerce** types in order to compare them.
     
     ""           ==   "0"           // false
     0            ==   ""            // true
@@ -26,15 +20,20 @@ convert the two values to the same type and then compare them.
     null         ==   undefined     // true
     " \t\r\n"    ==   0             // true
 
-As you can see from this mess, there's absolutely **no** good reason to use the 
-`==` operator. All that *type coercion* does is, is to introduce hard to track 
-down errors due to implicit conversion of types.
+The above table shows the results of the type coercion and it is the main reason 
+why the use of `==` is regarded as bad practice, it introduces hard to track down
+bugs due to its complicated conversion rules.
 
-There's also a performance impact when type coercion is in play. So `==` might
-end up being a lot slower, while `===` on the other hand, is always **at least**
-as fast - or faster, when dealing with different types.
+Additionally there is also a performance impact when type coercion is in play;
+for example, a string has to be converted to a number before it can be compared
+with another number.
 
-#### The Triple Equal Operator
+### The strict equals operator
+
+The strict equals operator consists of **three** equal signs: `===`
+
+Other than the normal equals operator, the strict equals operator does **not**
+coerce the types of its operands.
 
     ""           ===   "0"           // false
     0            ===   ""            // false
@@ -46,25 +45,30 @@ as fast - or faster, when dealing with different types.
     null         ===   undefined     // false
     " \t\r\n"    ===   0             // false
 
-These are the results one coming from a strongly typed language would expect.
+The above results not only make a lot more sense, they also get rid of most of
+the weak typing in the language. This makes writing code a lot easier since
+things will break earlier and a lot of subtle bugs can be avoided.
 
-#### Comparing Objects
+It will also be a lot faster when the operands are of different types.
 
-While both `==` and `===` are stated as equality operators, they behave different
-when used with at least one `Object`.
+### Comparing objects
 
-    {} === {}; // false
+While both `==` and `===` are stated as **equality** operators, they behave 
+different when at least one of their operands happens to be an `Object`.
+
+    {} === {};                   // false
     new String('foo') === 'foo'; // false
-    new Number(10) === 10; // false
+    new Number(10) === 10;       // false
     var foo = {};
-    foo === foo; // true
+    foo === foo;                 // true
 
-Here both operators compare for **indentity** and not equality, that is they
-will compare for the same **instance** of the object, much like `is` in Python and a
-pointer comparison in C.
+Here both operators compare for **identity** and not equality - that is, they
+will compare for the same **instance** of the object, much like `is` in Python 
+and a pointer comparison in C do.
 
-#### Best Practices
-**Always** use the `===` operator, there is never a **any** reason at all to 
-use `==`. You will avoid a lot of potential - yet again - subtle bugs this way. 
-In cases where you need to coerce types, do so **explicitly**.
+### In conclusion
+
+It is highly recommended to **only** use the strict equals operator. In cases
+where types need to be coerced, it should be done [explicitly](#casting) and not
+left to the "magic" of the languages complicated coercing rules.
 

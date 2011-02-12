@@ -1,0 +1,36 @@
+nav a {
+    color: black !important;
+    text-decoration: none;
+}
+
+nav a:active {
+    color: black !important;
+}
+
+nav a:visited {
+    color: black !important;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+    color: black !important;
+}
+
+header h1 {
+    font-size: 75px;
+}
+
+h2 {
+    margin-top: 30px;
+	font-size: 30px;
+}
+
+article h2 a {
+    display: none;
+}
+
+h3 {
+	font-size: 18px;
+}
+
