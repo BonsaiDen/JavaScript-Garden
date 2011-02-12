@@ -29,7 +29,8 @@ contact him via [e-mail][7] for further details.
 
 JavaScript Garden is published under the [MIT license][2] and hosted on
 [GitHub][4]. If you find errors or typos please [file an issue][3] or a pull 
-request on the repository.
+request on the repository. You can also find us in the [JavaScript room][10] on
+Stack Overflow chat. 
 
 [1]: https://developer.mozilla.org/en/JavaScript/Guide
 [2]: https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE
@@ -40,4 +41,4 @@ request on the repository.
 [7]: mailto:ivo.wetzel@googlemail.com
 [8]: https://github.com/caio
 [9]: https://github.com/blixt
-
+[10]: http://chat.stackoverflow.com/rooms/17/javascript
