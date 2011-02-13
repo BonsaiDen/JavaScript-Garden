@@ -141,7 +141,7 @@ def merge_git():
 
         git = subprocess.Popen(['git', 'status'], stdout=subprocess.PIPE)
         result = git.communicate()[0].strip().split('\n')
-        if not result[-1].startswith('nothing to commit'):
+        if result[-1].startswith('nothing to commit'):
             print 'ERROR: Nothing to merge'
             return 1
 
