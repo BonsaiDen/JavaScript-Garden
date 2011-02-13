@@ -102,6 +102,7 @@ def merge_pages():
             git = subprocess.Popen(['git', 'checkout', 'gh-pages'],
                                     stdout=subprocess.PIPE)
 
+            print get_branch()
             if get_branch() != 'gh-pages':
                 print 'ERROR: Failed to switch to gh-pages'
                 return 1
