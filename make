@@ -118,6 +118,12 @@ def merge_pages():
 
 def merge_git():
     if os.path.exists('build'):
+        if os.path.exists('css'):
+            shutil.rmtree('css')
+
+        if os.path.exists('js'):
+            shutil.rmtree('js')
+
         shutil.copytree('build/css', 'css')
         shutil.copytree('build/js', 'js')
         shutil.copyfile('build/index.html', 'index.html')
