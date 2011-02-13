@@ -90,6 +90,7 @@ nav h1 {
 article {
 	padding-bottom: 20px;
 	border-bottom: 4px dotted #8696a5;
+	font-size: 16px;
 }
 
 article section {
@@ -117,8 +118,7 @@ nav a:hover {
 
 p {
 	line-height: 1.6em;
-	font-size: 16px;
-	margin-bottom: 20px;
+	margin-bottom: 1.25em;
 }
 
 pre, code {
@@ -128,12 +128,12 @@ pre, code {
 pre {
 	padding: 8px 0 12px 20px;
 	border-left: 4px solid #566D82;
-	margin-bottom: 20px;
+	margin-bottom: 1.25em;
 	background: #0F192A;
 }
 
 article pre code {
-	font-size: 13px;
+	font-size: 0.8125em;
 	line-height: 1.4em;
     padding: 0px;
     margin-top: 3px;
@@ -142,7 +142,7 @@ article pre code {
 }
 
 article code {
-	font-size: 0.85em;
+	font-size: 0.875em;
 	text-shadow: none;
 	background: #314D67;
 	padding: 3px 4px 1px;
@@ -155,14 +155,14 @@ h2, h3 {
 }
 
 h2 {
-	font-size: 30px;
-	margin: 15px 0 20px;
-	padding-top: 50px;
+	font-size: 2em;
+	margin: 0.5em 0 0.625em;
+	padding-top: 1.5em;
 }
 
 h3 {
-	font-size: 18px;
-	margin: 25px 0 15px;
+	font-size: 1.125em;
+	margin: 1.33em 0 0.88em;
 }
 
 h2 code, h3 code {
@@ -171,7 +171,7 @@ h2 code, h3 code {
 
 aside {
 	border-bottom: 1px solid #9eabb7;
-	padding-bottom: 10px;
+	padding-bottom: 0.625em;
 	position: absolute;
 	width: 180px;
 	right: -190px;
@@ -184,13 +184,13 @@ aside:last-child {
 
 aside p {
 	margin: 0;
-	font-size: 13px;
+	font-size: 0.8125em;
 	font-family: Arial;
 	line-height: 1.3em;
 }
 
 article ol {
-    margin-bottom: 32px;
+    margin-bottom: 2em;
 	list-style: decimal;
 }
 
@@ -199,7 +199,7 @@ article ul {
 }
 
 article li {
-	font-size: 15px;
+	font-size: 0.9375em;
     margin-top: 9px;
 }
 
@@ -256,3 +256,52 @@ a abbr {
 .atv { color: #080; }
 .dec { color: #606; }
 .pln { color: #FFAA3E; }
+
+@media screen and (max-width: 1000px) {
+	body {
+		width: 100%;
+	}
+	
+	body > div {
+		padding-left: 30px;
+		margin-right: 0;
+	}
+	
+	nav {
+		margin-left: 100%;
+		width: 36%;
+	}
+	
+	article {
+		width: 70%;
+	}
+	
+	aside {
+		right: -42%;
+		width: 38%;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	body > div {
+		padding-right: 30px;
+	}
+	
+	article {
+		font-size: 15px;
+		width: 100%;
+	}
+	
+	aside {
+		position: static;
+		width: auto;
+		margin: 30px;
+		padding: 0.6em 1em 0.625em;
+		border-top: 1px solid #9eabb7;
+		opacity: 0.85;
+	}
+	
+	aside p {
+		font-size: 13px;
+	}
+}

@@ -50,6 +50,7 @@ article h2 a {
 }
 
 article {
+	font-size: 11px;
 	width: 78%;
 	padding-bottom: 0;
 	border-bottom-width: 2px;
@@ -67,14 +68,13 @@ a {
 }
 
 p, ul, ol {
-	font-size: 11px;
-	margin-bottom: 8px;
 	orphans: 3;
 	line-height: 1.3em;
 }
 
 pre {
 	background: #eee;
+	padding: 6px 0 6px 20px; 
 }
 
 aside p {
@@ -84,7 +84,6 @@ aside p {
 
 article code, article pre code {
 	background: #eee;
-	font-size: 10px;
 }
 
 article code {
@@ -92,7 +91,6 @@ article code {
 }
 
 article li {
-	font-size: 13px;
 	margin-top: 6px;
 }
 
