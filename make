@@ -139,12 +139,21 @@ def merge_git():
         shutil.copyfile('build/index.html', 'index.html')
         shutil.rmtree('build')
 
+        git = subprocess.Popen(['git', 'status'], stdout=subprocess.PIPE)
+        result = git.communicate()[0].strip().split('\n')
+        if not result[-1].startswith('nothing to commit'):
+            print 'ERROR: Nothing to merge'
+            return 1
+
+        print 'Adding changes...'
         subprocess.Popen(['git', 'add', '-A'],
                         stdout=subprocess.PIPE).communicate()
 
+        print 'Committing...'
         subprocess.Popen(['git', 'commit', '-m', 'Automatic merge from master.'],
                         stdout=subprocess.PIPE).communicate()
 
+        print 'Commit successful'
         return 0
 
     else:
