@@ -2,6 +2,8 @@
 import markdown
 import shutil
 import os
+import sys
+import subprocess
 
 def create_index():
     articles = []
@@ -73,6 +75,33 @@ def to_markdown(text):
     return markdown.markdown(text, ['abbr'])
 
 
-if __name__ == '__main__':
-    create_index()
+def merge_pages():
+    git = subprocess.Popen(['git', 'status'], stdout=subprocess.PIPE)
 
+    result = git.communicate()[0].strip().split('\n')
+    if not result[-1].startswith('nothing to commit'):
+        print 'ERROR: Please commit to master first'
+        print 'Merge aborted.'
+
+    else:
+        print 'Copying files...'
+        if not os.path.exists('build'):
+            os.mkdir('build')
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        if sys.argv[1] == 'pages':
+            print 'Merging into pages...'
+            merge_pages()
+
+        elif sys.argv[1] == 'all':
+            print 'Generating index...'
+            create_index()
+
+            print 'Merging into pages...'
+            merge_pages()
+
+    else:
+        print 'Generating index...'
+        create_index()
+    
