@@ -94,7 +94,20 @@ def merge_pages():
             shutil.copytree('html/js', 'build/js')
             shutil.copyfile('html/index.html', 'build/index.html')
             print 'Files copied sucessfully'
-            return merge_git()
+
+            print 'Switching to gh-pages...'
+            git = subprocess.Popen(['git', 'checkout', 'gh-pages'],
+                                    stdout=subprocess.PIPE)
+
+            print git.communicate()
+            status = merge_git()
+
+            print 'Returning to master...'
+            git = subprocess.Popen(['git', 'checkout', 'master'],
+                                    stdout=subprocess.PIPE)
+
+            print git.communicate()
+            return status
 
         else:
             print 'ERROR: Failed to remove old build directory'
@@ -104,9 +117,16 @@ def merge_pages():
 
 
 def merge_git():
-    git = subprocess.Popen(['git', 'checkout', 'gh-pages'], stdout=subprocess.PIPE)
-    print git.communicate()[0].strip().split('\n')
-    return 0
+    if os.path.exists('build'):
+        shutil.copytree('build/css', 'css')
+        shutil.copytree('build/js', 'js')
+        shutil.copyfile('build/index.html', 'index.html')
+        shutil.rmtree('build')
+        return 0
+
+    else:
+        print 'ERROR: build directory missing'
+        return 1
 
 
 def merge():
