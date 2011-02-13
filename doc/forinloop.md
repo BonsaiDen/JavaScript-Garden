@@ -17,11 +17,11 @@ chain when iterating over the properties of an object.
 
 Since it is not possible to change the behavior of the `for in` loop itself, it
 is necessary to filter out the unwanted properties inside the loop body itself, 
-this is done by using the [`hasOwnProperty`](#hasownproperty) method of the 
-object. 
+this is done by using the [`hasOwnProperty`](#hasownproperty) method of 
+objects. 
 
 > **Note:** Since the `for in` always traverses the complete prototype chain, it
-> will get slow with each additional layer of inheritance added to an object.
+> will get slower with each additional layer of inheritance added to an object.
 
 ### Using `hasOwnProperty` for filtering
 
@@ -34,8 +34,8 @@ object.
 
 This version is the only correct one to use. Due to the use of `hasOwnPropery` it
 will **only** print out `moo`. When `hasOwnProperty` is left out, the code is 
-prone to errors when the native prototypes have been extended; for example,
-`Object.prototype`.
+prone to errors when the native prototypes (for example,
+`Object.prototype`) have been extended.
 
 One widely used framework which does this is [Prototype][1]. When this 
 framework is included, `for in` loops that do not use `hasOwnProperty` are 

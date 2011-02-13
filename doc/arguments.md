@@ -47,8 +47,6 @@ corresponding formal parameter, and the other way around.
     }
     foo(1, 2, 3);
 
-> **ES5 Note:** These getters and setters are not created in strict mode.
-
 ### Performance myths and truths
 
 The `arguments` is, except for the two cases named at the start of this section,
@@ -56,6 +54,8 @@ always created. It doesn't matter whether it is used or not. Both getters and
 setters are **always** created; thus, using it has nearly no performance impact
 at all, especially not in real world code where there is more than an access to
 the arguments object properties.
+
+> **ES5 Note:** These getters and setters are not created in strict mode.
 
 However, there is one case which will drastically reduce the performance in
 modern JavaScript engines. That case is the use of `arguments.callee`.

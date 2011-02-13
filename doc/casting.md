@@ -15,7 +15,7 @@ wherever possible.
     
     // These are false
     10 == 010;
-    10 == '-10'
+    10 == '-10';
 
 > **Note:** Number literals that start with a `0` are interpreted as octal (Base
 > 8).
