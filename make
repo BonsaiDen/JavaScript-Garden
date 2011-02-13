@@ -96,13 +96,16 @@ def merge_pages():
             print 'Files copied sucessfully'
 
             print 'Switching to gh-pages...'
-            git = subprocess.Popen(['git', 'checkout gh-pages'],
+            git = subprocess.Popen(['git', 'checkout', 'gh-pages'],
                                     stdout=subprocess.PIPE)
 
+            git = subprocess.Popen(['git', 'branch'], stdout=subprocess.PIPE)
+            print git.communicate()
+            return 1
             status = merge_git()
 
             print 'Returning to master...'
-            git = subprocess.Popen(['git', 'checkout master'],
+            git = subprocess.Popen(['git', 'checkout', 'master'],
                                     stdout=subprocess.PIPE)
 
             if git.communicate()[0].strip() == 'Aborting':
