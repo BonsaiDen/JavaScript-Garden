@@ -138,6 +138,13 @@ def merge_git():
         shutil.copytree('build/js', 'js')
         shutil.copyfile('build/index.html', 'index.html')
         shutil.rmtree('build')
+
+        subprocess.Popen(['git', 'add', '-A'],
+                        stdout=subprocess.PIPE).communicate()
+
+        subprocess.Popen(['git', 'commit', '-m', 'Automatic merge from master.'],
+                        stdout=subprocess.PIPE).communicate()
+
         return 0
 
     else:
