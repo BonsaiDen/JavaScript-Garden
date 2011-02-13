@@ -6,6 +6,7 @@ import sys
 import subprocess
 
 def create_index():
+    print 'Generating index...'
     articles = []
 
     page = {}
@@ -81,27 +82,48 @@ def merge_pages():
     result = git.communicate()[0].strip().split('\n')
     if not result[-1].startswith('nothing to commit'):
         print 'ERROR: Please commit to master first'
+        return 1
+
+    else:
+        shutil.rmtree('build')
+        if not os.path.exists('build'):
+            print 'Copying files...'
+            os.mkdir('build')
+            shutil.copytree('html/css', 'build/css')
+            shutil.copytree('html/js', 'build/js')
+            shutil.copyfile('html/index.html', 'build/index.html')
+            print 'Files copied sucessfully'
+            return merge_git()
+
+        else:
+            print 'ERROR: Failed to remove old build directory'
+            return 1
+
+    return 0
+
+
+def merge_git():
+    return 0
+
+
+def merge():
+    print 'Merging into pages...'
+    if merge_pages() == 1:
         print 'Merge aborted.'
 
     else:
-        print 'Copying files...'
-        if not os.path.exists('build'):
-            os.mkdir('build')
+        print 'Merge successful'
+    
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         if sys.argv[1] == 'pages':
-            print 'Merging into pages...'
-            merge_pages()
+            merge()
 
         elif sys.argv[1] == 'all':
-            print 'Generating index...'
             create_index()
-
-            print 'Merging into pages...'
-            merge_pages()
+            merge()
 
     else:
-        print 'Generating index...'
         create_index()
     
