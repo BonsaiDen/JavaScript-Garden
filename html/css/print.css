@@ -42,7 +42,6 @@ header h1, h2, h3 {
 article h2 > code, article h3 > code {
 	text-transform: none;
 	font-size: 0.9em;
-	vertical-align: 2px;
 }
 
 article h2 a {
@@ -54,6 +53,11 @@ article {
 	width: 78%;
 	padding-bottom: 0;
 	border-bottom-width: 2px;
+    page-break-before: always;
+}
+
+header article {
+    page-break-before: auto;
 }
 
 aside {
@@ -88,6 +92,10 @@ article code, article pre code {
 
 article code {
 	padding: 1px 3px;
+}
+
+article pre code {
+    padding: 0px;
 }
 
 article li {
