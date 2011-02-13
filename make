@@ -96,18 +96,21 @@ def merge_pages():
             print 'Files copied sucessfully'
 
             print 'Switching to gh-pages...'
-            git = subprocess.Popen(['git', 'checkout', 'gh-pages'],
+            git = subprocess.Popen(['git', 'checkout gh-pages'],
                                     stdout=subprocess.PIPE)
 
-            print git.communicate()
             status = merge_git()
 
             print 'Returning to master...'
-            git = subprocess.Popen(['git', 'checkout', 'master'],
+            git = subprocess.Popen(['git', 'checkout master'],
                                     stdout=subprocess.PIPE)
 
-            print git.communicate()
-            return status
+            if git.communicate()[0].strip() == 'Aborting':
+                print 'ERROR: Automatic commit failed. Please commit to gh-pages manually'
+                return 1
+
+            else:
+                return status
 
         else:
             print 'ERROR: Failed to remove old build directory'
