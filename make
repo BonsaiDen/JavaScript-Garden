@@ -85,7 +85,9 @@ def merge_pages():
         return 1
 
     else:
-        shutil.rmtree('build')
+        if os.path.exists('build'):
+            shutil.rmtree('build')
+
         if not os.path.exists('build'):
             print 'Copying files...'
             os.mkdir('build')
