@@ -78,7 +78,6 @@ def to_markdown(text):
 
 def merge_pages():
     git = subprocess.Popen(['git', 'status'], stdout=subprocess.PIPE)
-
     result = git.communicate()[0].strip().split('\n')
     if not result[-1].startswith('nothing to commit'):
         print 'ERROR: Please commit to master first'
@@ -105,6 +104,8 @@ def merge_pages():
 
 
 def merge_git():
+    git = subprocess.Popen(['git', 'checkout', 'gh-pages'], stdout=subprocess.PIPE)
+    print git.communicate()[0].strip().split('\n')
     return 0
 
 
