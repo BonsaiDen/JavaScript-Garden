@@ -77,6 +77,10 @@ def to_markdown(text):
 
 
 def merge_pages():
+    if get_branch() != 'master':
+        print 'ERROR: Not on master'
+        return 1
+
     git = subprocess.Popen(['git', 'status'], stdout=subprocess.PIPE)
     result = git.communicate()[0].strip().split('\n')
     if not result[-1].startswith('nothing to commit'):
@@ -95,16 +99,14 @@ def merge_pages():
             shutil.copyfile('html/index.html', 'build/index.html')
             print 'Files copied sucessfully'
 
-            print 'Switching to gh-pages...'
             git = subprocess.Popen(['git', 'checkout', 'gh-pages'],
                                     stdout=subprocess.PIPE)
 
-            git = subprocess.Popen(['git', 'branch'], stdout=subprocess.PIPE)
-            print git.communicate()
-            return 1
-            status = merge_git()
+            if get_branch() != 'gh-pages':
+                print 'ERROR: Failed to switch to gh-pages'
+                return 1
 
-            print 'Returning to master...'
+            status = merge_git()
             git = subprocess.Popen(['git', 'checkout', 'master'],
                                     stdout=subprocess.PIPE)
 
@@ -149,6 +151,14 @@ def merge():
     else:
         print 'Merge successful'
     
+def get_branch():
+    git = subprocess.Popen(['git', 'branch'], stdout=subprocess.PIPE)
+    branches = git.communicate()[0].strip().split('\n')
+    for i in branches:
+        if i.startswith('*'):
+            return i[1:].strip()
+
+    return None
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
