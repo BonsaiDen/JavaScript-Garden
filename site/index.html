@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>JavaScript Garden</title><meta charset="utf-8"><meta name="description" content="A Guide to JavaScript's Quirks and Flaws."><link rel="stylesheet" href="style/garden.css" media="all"><link rel="stylesheet" href="style/print.css" media="print"></head><body><!-- Navigation--><nav><ul><li><h1><a href="#intro">Intro</a></h1></li><li><h1><a href="#object">Objects</a></h1><ul><li><a href="#object.general">Object usage and properties</a></li><li><a href="#object.prototype">The prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">The <code>for in</code> loop</a></li></ul></li><li><h1><a href="#function">Functions</a></h1><ul><li><a href="#function.general">Function declarations and expressions</a></li><li><a href="#function.this">How <code>this</code> works</a></li><li><a href="#function.closures">Closures and references</a></li><li><a href="#function.arguments">The <code>arguments</code> object</a></li><li><a href="#function.constructors">Constructors</a></li><li><a href="#function.scopes">Scopes and namespaces</a></li></ul></li><li><h1><a href="#array">Arrays</a></h1><ul><li><a href="#array.general">Array iteration and properties</a></li><li><a href="#array.constructor">The <code>Array</code> constructor</a></li></ul></li><li><h1><a href="#types">Types</a></h1><ul><li><a href="#types.equality">Equality and comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> operator</a></li><li><a href="#types.casting">Type casting</a></li></ul></li><li><h1><a href="#core">Core</a></h1><ul><li><a href="#core.eval">The evil <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> and <code>null</code></a></li><li><a href="#core.semicolon">Automatic semicolon insertion</a></li></ul></li><li><h1><a href="#other">Other</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Sections--><section id="intro"><!-- Introduction--><header><h1>Intro</h1><div><p><strong>JavaScript Garden</strong> is a growing collection of documentation about the most 
+<!DOCTYPE html><html lang="en"><head><title>JavaScript Garden</title><meta charset="utf-8"><meta name="description" content="A Guide to JavaScript's Quirks and Flaws."><link rel="stylesheet" href="style/garden.css" media="all"><link rel="stylesheet" href="style/print.css" media="print"></head><body><!-- Navigation--><nav><ul><li><h1><a href="#intro">Intro</a></h1><ul><li><a href="#intro.intro">Overview</a></li><li><a href="#intro.authors">The authors</a></li><li><a href="#intro.contributors">Contributors</a></li><li><a href="#intro.license">License</a></li></ul></li><li><h1><a href="#object">Objects</a></h1><ul><li><a href="#object.intro">Overview</a></li><li><a href="#object.general">Object usage and properties</a></li><li><a href="#object.prototype">The prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">The <code>for in</code> loop</a></li></ul></li><li><h1><a href="#function">Functions</a></h1><ul><li><a href="#function.intro">Overview</a></li><li><a href="#function.general">Function declarations and expressions</a></li><li><a href="#function.this">How <code>this</code> works</a></li><li><a href="#function.closures">Closures and references</a></li><li><a href="#function.arguments">The <code>arguments</code> object</a></li><li><a href="#function.constructors">Constructors</a></li><li><a href="#function.scopes">Scopes and namespaces</a></li></ul></li><li><h1><a href="#array">Arrays</a></h1><ul><li><a href="#array.intro">Overview</a></li><li><a href="#array.general">Array iteration and properties</a></li><li><a href="#array.constructor">The <code>Array</code> constructor</a></li></ul></li><li><h1><a href="#types">Types</a></h1><ul><li><a href="#types.intro">Overview</a></li><li><a href="#types.equality">Equality and comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> operator</a></li><li><a href="#types.casting">Type casting</a></li></ul></li><li><h1><a href="#core">Core</a></h1><ul><li><a href="#core.intro">Overview</a></li><li><a href="#core.eval">The evil <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> and <code>null</code></a></li><li><a href="#core.semicolon">Automatic semicolon insertion</a></li></ul></li><li><h1><a href="#other">Other</a></h1><ul><li><a href="#other.intro">Overview</a></li><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>Intro</h1><div><p><strong>JavaScript Garden</strong> is a growing collection of documentation about the most 
 quirky parts of the JavaScript programming language. It gives advice to 
 avoid common mistakes, subtle bugs, as well as performance issues and bad 
 practices that non-expert JavaScript programmers may encounter on their 
@@ -7,30 +7,18 @@ endeavours into the depths of the language.</p>
 <p>JavaScript Garden does <strong>not</strong> aim to teach you JavaScript. Former knowledge
 of the language is strongly recommended in order to understand the topics covered
 in this guide. In order to learn the basics of the language, please head over to 
-the excellent <a href="https://developer.mozilla.org/en/JavaScript/Guide">guide</a> on the Mozilla Developer Network.</p>
-
-<h3>The authors</h3>
-
-<p>This guide is the work of two lovely Stack Overflow users, <a href="http://stackoverflow.com/users/170224/ivo-wetzel">Ivo Wetzel</a>
-(Writing) and <a href="http://stackoverflow.com/users/313758/yi-jiang">Zhang Yi Jiang</a> (Design).</p>
+the excellent <a href="https://developer.mozilla.org/en/JavaScript/Guide">guide</a> on the Mozilla Developer Network.</p></div></header><!-- Articles--><article id="intro.authors"><h2>The authors</h2><div><p>This guide is the work of two lovely Stack Overflow users, <a href="http://stackoverflow.com/users/313758/yi-jiang">Ivo Wetzel</a>
+(Writing) and <a href="http://stackoverflow.com/users/170224/ivo-wetzel">Zhang Yi Jiang</a> (Design).</p>
 
 <p>In case you are interested in additional guidance or reviews concerning your JavaScript 
 projects, Ivo Wetzel offers these on a freelance basis. Please feel free to 
-contact him via <a href="mailto:ivo.wetzel@googlemail.com">e-mail</a> for further details.</p>
-
-<h3>Contributors</h3>
-
-<ul>
+contact him via <a href="mailto:ivo.wetzel@googlemail.com">e-mail</a> for further details.</p></div></article><article id="intro.contributors"><h2>Contributors</h2><div><ul>
 <li><a href="https://github.com/caio">Caio Romão</a> (Spelling corrections)</li>
 <li><a href="https://github.com/blixt">Andreas Blixt</a> (Language corrections)</li>
-</ul>
-
-<h3>License</h3>
-
-<p>JavaScript Garden is published under the <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a> and hosted on
+</ul></div></article><article id="intro.license"><h2>License</h2><div><p>JavaScript Garden is published under the <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a> and hosted on
 <a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>. If you find errors or typos please <a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">file an issue</a> or a pull 
 request on the repository. You can also find us in the <a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript room</a> on
-Stack Overflow chat. </p></div></header><!-- Articles--></section><section id="object"><!-- Introduction--><header><h1>Objects</h1><div><strong>TODO: Add section intro in "doc/object/index.md"</strong></div></header><!-- Articles--><article id="object.general"><h2>Object usage and properties</h2><div><p>Everything in JavaScript acts like an object, with the only two exceptions being 
+Stack Overflow chat. </p></div></article></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>Objects</h1><div><strong>TODO: Add section intro in "doc/object/index.md"</strong></div></header><!-- Articles--><article id="object.general"><h2>Object usage and properties</h2><div><p>Everything in JavaScript acts like an object, with the only two exceptions being 
 <a href="#core.undefined"><code>null</code></a> and <a href="#core.undefined"><code>undefined</code></a>.</p>
 
 <pre><code>false.toString() // &#39;false&#39;
@@ -253,7 +241,24 @@ foo.hasOwnProperty(&#39;goo&#39;); // true
 <p>Only <code>hasOwnProperty</code> will give the correct and expected result. This is 
 essential when iterating over the properties of any object. There is no other 
 way to exclude properties that are not defined on the object <strong>itself</strong>, but 
-somewhere on its prototype chain.  </p></div><div><h3>In conclusion</h3>
+somewhere on its prototype chain.  </p></div><div><h3><code>hasOwnProperty</code> as a property</h3>
+
+<p>JavaScript does not protect the property name <code>hasOwnProperty</code>; therefore, if the
+possibility exists that an object might have a property with this name, it is
+necessary to use an <em>external</em> <code>hasOwnProperty</code> in order to get correct results.</p>
+
+<pre><code>var foo = {
+    hasOwnProperty: function() {
+        return false;
+    },
+    bar: &#39;Here be dragons&#39;
+};
+
+foo.hasOwnProperty(&#39;bar&#39;); // always returns false
+
+// Use another hasOwnProperty and call it with &#39;this&#39; set to foo
+{}.hasOwnProperty.call(foo, &#39;bar&#39;); // true
+</code></pre></div><div><h3>In conclusion</h3>
 
 <p>When checking for the existence of a property on a object, <code>hasOwnProperty</code> is 
 the <strong>only</strong> method of doing so. It is also recommended to make <code>hasOwnProperty</code>
@@ -305,7 +310,7 @@ guaranteed to break.</p></div><div><h3>Best practices</h3>
 
 <p>It is recommended to <strong>always</strong> use <code>hasOwnProperty</code>. Never should any 
 assumptions be made about the environment the code is running in, or whether the 
-native prototypes have been extended or not. </p></div></article></section><section id="function"><!-- Introduction--><header><h1>Functions</h1><div><strong>TODO: Add section intro in "doc/function/index.md"</strong></div></header><!-- Articles--><article id="function.general"><h2>Function declarations and expressions</h2><div><p>Functions in JavaScript are first class objects, which means that they can be 
+native prototypes have been extended or not. </p></div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>Functions</h1><div><strong>TODO: Add section intro in "doc/function/index.md"</strong></div></header><!-- Articles--><article id="function.general"><h2>Function declarations and expressions</h2><div><p>Functions in JavaScript are first class objects, which means that they can be 
 passed around like any other value. One common use of this feature is to pass
 an <em>anonymous function</em> as a callback to another, possibly asynchronous function.</p></div><div><h3>The <code>function</code> declaration</h3>
 
@@ -908,7 +913,7 @@ its own namespace. This does not only protect the code against name clashes, it
 also allows for better modularization.</p>
 
 <p>Additionally, the use of global variables is considered <strong>bad practice</strong>, any use
-of them indicates badly written code that is prone to errors and hard to maintain.</p></div></article></section><section id="array"><!-- Introduction--><header><h1>Arrays</h1><div><strong>TODO: Add section intro in "doc/array/index.md"</strong></div></header><!-- Articles--><article id="array.general"><h2>Array iteration and properties</h2><div><p>Although arrays in JavaScript are objects, there are no good reasons to use
+of them indicates badly written code that is prone to errors and hard to maintain.</p></div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>Arrays</h1><div><strong>TODO: Add section intro in "doc/array/index.md"</strong></div></header><!-- Articles--><article id="array.general"><h2>Array iteration and properties</h2><div><p>Although arrays in JavaScript are objects, there are no good reasons to use
 the <a href="#object.forinloop">for in loop</a> in for iteration on them. In fact there are 
 a  number of good reasons <strong>against</strong> the use of <code>for in</code> on arrays.</p>
 
@@ -985,7 +990,7 @@ which it avoids the use of a <code>for</code> loop.</p>
 
 <p>The use of the <code>Array</code> constructor should be avoided as much as possible. The <code>[]</code> 
 notation is definitely preferred. It is shorter and has a clearer syntax; thus, 
-it also  increases the readability of code.</p></div></article></section><section id="types"><!-- Introduction--><header><h1>Types</h1><div><strong>TODO: Add section intro in "doc/types/index.md"</strong></div></header><!-- Articles--><article id="types.equality"><h2>Equality and comparisons</h2><div><p>JavaScript has two different ways of comparing the values of objects for else
+it also  increases the readability of code.</p></div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>Types</h1><div><strong>TODO: Add section intro in "doc/types/index.md"</strong></div></header><!-- Articles--><article id="types.equality"><h2>Equality and comparisons</h2><div><p>JavaScript has two different ways of comparing the values of objects for else
 equality. </p></div><div><h3>The equals operator</h3>
 
 <p>The equals operator consists of two equal signs: <code>==</code></p>
@@ -1222,7 +1227,7 @@ value. </p>
 !!&#39;-1&#39;     // true
 !!{};      // true
 !!true;    // true
-</code></pre></div></article></section><section id="core"><!-- Introduction--><header><h1>Core</h1><div><strong>TODO: Add section intro in "doc/core/index.md"</strong></div></header><!-- Articles--><article id="core.eval"><h2>The evil <code>eval</code></h2><div><p>The <code>eval</code> function will execute a string of JavaScript code in the local scope.</p>
+</code></pre></div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>Core</h1><div><strong>TODO: Add section intro in "doc/core/index.md"</strong></div></header><!-- Articles--><article id="core.eval"><h2>The evil <code>eval</code></h2><div><p>The <code>eval</code> function will execute a string of JavaScript code in the local scope.</p>
 
 <pre><code>var foo = 1;
 function test() {
@@ -1372,7 +1377,7 @@ different behavior.</p>
 on the same line with their associated statements and never omit them for one 
 line <code>if</code> / <code>else</code> statements. This will not only improve the consistency of the
 code, it will also prevent the JavaScript parser from applying too much "magic"
-to the code.</p></div></article></section><section id="other"><!-- Introduction--><header><h1>Other</h1><div><strong>TODO: Add section intro in "doc/other/index.md"</strong></div></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> and <code>setInterval</code></h2><div><p>Since JavaScript is asynchronous, it is possible to schedule the execution of a 
+to the code.</p></div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>Other</h1><div><strong>TODO: Add section intro in "doc/other/index.md"</strong></div></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> and <code>setInterval</code></h2><div><p>Since JavaScript is asynchronous, it is possible to schedule the execution of a 
 function by using the <code>setTimeout</code> and <code>setInterval</code> functions.</p>
 
 <aside>

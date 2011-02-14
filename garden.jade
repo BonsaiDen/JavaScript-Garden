@@ -17,18 +17,20 @@ html(lang='en')
             h1
               a(href='#' + section.link) #{section.title}
 
-            - if (section.articles.length > 0)
-              ul
-                - each article in section.articles
-                  li
-                    a(href='#' + article.link)!=article.title
+            ul
+              li
+                a(href='#' + section.link + '.intro') Overview
+                
+              - each article in section.articles
+                li
+                  a(href='#' + article.link)!=article.title
 
     // Sections
     - each section in sections
       section(id=section.link)
 
         // Introduction
-        header
+        header(id=section.link + '.intro')
           h1 #{section.title}
           - if (section.parsed.index)
             div!=section.parsed.index.text

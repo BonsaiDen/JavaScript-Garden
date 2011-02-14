@@ -92,6 +92,11 @@ section header {
 	border-bottom: 1px solid #8696a5;
 }
 
+#intro article, #intro header {
+	padding-bottom: 0px;
+	border-bottom: 0;
+}
+
 section article:last-child,
 section header:last-child {
 	border-bottom: 0;
@@ -112,6 +117,7 @@ nav li {
     margin: 0px;
     list-style: none;
 	background-color: #556c81;
+	text-transform: capitalize;
 }
 
 nav > ul > li {
@@ -134,19 +140,20 @@ nav a {
 	padding: 4px 20px 6px;
 }
 
-nav li li a {
-	color: rgba(255, 255, 255, 0.8);
-}
 
 nav li ul {
 	padding-bottom: 5px;
 }
 
-nav a:hover, nav a.active {
+nav ul.active a:hover, nav a.active {
 	background: #0D2E4C;
 }
 
-p {
+nav a:hover {
+	background-color: #344f68;
+}
+
+article ul, p {
 	line-height: 1.6em;
 	margin-bottom: 1.25em;
 }

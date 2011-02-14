@@ -4,7 +4,12 @@
     "sections": [
         {
             "title": "Intro",
-            "dir": "intro"
+            "dir": "intro",
+            "articles": [
+                "authors",
+                "contributors",
+                "license"
+            ]
         },
         {
             "title": "Objects",
