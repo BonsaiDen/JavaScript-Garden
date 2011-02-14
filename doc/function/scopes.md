@@ -14,7 +14,7 @@ is in the language is *function scope*.
 > **Note:** When not used in an assignment, return statement or as a function 
 > argument, the `{...}` notation will get interpreted as a block statement and 
 > **not** as an object literal. This, in conjunction with 
-> [automatic insertion of semicolons](#semicolon), can lead to subtle errors.
+> [automatic insertion of semicolons](#core.semicolon), can lead to subtle errors.
 
 There are also no distinct namespaces in JavaScript. This means that everything 
 gets defined in **one** globally shared namespace.
@@ -72,8 +72,9 @@ unless the desired effect **is** to affect the outer scope.
 
 ### Local variables
 
-The only source for local variables in JavaScript are [function](#functions)
-parameters and variables that were declared via the `var` statement.
+The only source for local variables in JavaScript are
+[function](#function.general) parameters and variables that were declared via the
+`var` statement.
 
     // global scope
     var foo = 1;
@@ -95,9 +96,9 @@ the assignment of `bar` will override the global variable with the same name.
 ### Name resolution order
 
 All scopes in JavaScript - including the global one - have the name 
-[this](#this) defined in them, which refers to the  "current object". 
+[this](#function.this) defined in them, which refers to the  "current object". 
 
-Function scopes also have the name [arguments](#arguments) defined, which 
+Function scopes also have the name [arguments](#function.arguments) defined, which 
 contains the arguments that were passed to a function.
 
 For example, when trying to access a variable named `foo` inside the scope of a 
@@ -127,8 +128,8 @@ easily avoided with the help of anonymous *function wrappers*.
     })(); // execute the function immediately
 
 
-Unnamed functions are considered [expressions](#functions); so in order to being
-callable, they must first be evaluated.
+Unnamed functions are considered [expressions](#function.general); so in order to
+being callable, they must first be evaluated.
 
     ( // evaluate the function inside the paranthesis
     function() {}

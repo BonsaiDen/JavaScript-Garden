@@ -2,7 +2,7 @@
 
 The `instanceof` operator compares the constructors of its two operands. It is 
 only useful when comparing custom made objects. Using it on built in types is
-nearly as useless as the [typeof operator](#typeof).
+nearly as useless as the [typeof operator](#types.typeof).
 
 ### Comparing custom objects
 
@@ -34,5 +34,5 @@ in a web browser), since their constructors will not be the exact same object.
 
 The `instanceof` operator should **only** be used when dealing with custom made 
 objects that origin from the same JavaScript context. Just like the
-[`typeof`](#typeof) operator, every other use of it should be **avoided**.
+[`typeof`](#types.typeof) operator, every other use of it should be **avoided**.
 

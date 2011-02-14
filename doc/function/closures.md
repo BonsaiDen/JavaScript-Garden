@@ -3,7 +3,7 @@
 One of JavaScript's most powerful features is the availability of *closures*,
 this means that scopes **always** keep access to the outer scope they were
 defined in. Since the only scope that JavaScript has is the 
-[function scope](#scopes), all functions, by default, act as closures.
+[function scope](#function.scopes), all functions, by default, act as closures.
 
 ### Emulating private variables
 
@@ -67,7 +67,7 @@ the value of `i`.
 ### Avoiding the reference problem
 
 In order to copy the value of the loop its index variable, it is best to use an 
-[anonymous wrapper](#scopes).
+[anonymous wrapper](#function.scopes).
 
     for(var i = 0; i < 10; i++) {
         (function(e) {

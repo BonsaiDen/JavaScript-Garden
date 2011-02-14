@@ -52,22 +52,20 @@ article, aside, figure, footer, header, hgroup,  menu, nav, section {
 body {
 	width: 960px;
 	margin: 0 auto;
-	font-family: Georgia, 'Nimbus Roman No9 L', 'Liberation Serif', monospace;
+	font-family: Georgia, 'Nimbus Roman No9 L', 'Liberation Serif', serif;
 	font-size: 14px;
 	background: #0D2E4C;
 	color: #E6EAED;
 }
 
-body > div {
-	margin-right: 410px;
-}
-
-header h1 {
+#intro h1 {
 	padding: 40px 0 30px;
+	margin: 0;
 	font-size: 75px;
 	line-height: 1.2em;
 	font-weight: normal;
 	text-shadow: 0 2px 2px #000;
+	font-family: Georgia, serif;
 }
 
 nav {
@@ -81,27 +79,51 @@ nav {
 	width: 240px;
 }
 
-nav h1 {
-	margin: 0 0 20px 30px;
-	font-size: 22px;
-	font-weight: normal;
-}
 
-article {
-	padding-bottom: 20px;
+section {
 	border-bottom: 4px dotted #8696a5;
 	font-size: 16px;
+	margin-right: 410px;
 }
 
-article section {
-	position: relative;
+section article,
+section header {
+	padding-bottom: 20px;
+	border-bottom: 1px solid #8696a5;
 }
 
-nav ul li {
+section article:last-child,
+section header:last-child {
+	border-bottom: 0;
+}
+
+nav li h1 a {
+	font-size: 16px;
+	font-weight: bold;
+	padding: 6px 20px 8px;
+}
+
+nav h1 a:hover {
+	background-color: #344f68;
+}
+
+nav li {
 	font-size: 16px;
     margin: 0px;
     list-style: none;
 	background-color: #556c81;
+}
+
+nav > ul > li {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+nav li.active {
+	background-color: #344f68;
+}
+
+nav li.active li {
+	background-color: #344f68;
 }
 
 nav a {
@@ -109,10 +131,18 @@ nav a {
 	font-family: Arial, sans-serif;
 	font-size: 13px;
 	display: block;
-	padding: 4px 30px 6px;
+	padding: 4px 20px 6px;
 }
 
-nav a:hover {
+nav li li a {
+	color: rgba(255, 255, 255, 0.8);
+}
+
+nav li ul {
+	padding-bottom: 5px;
+}
+
+nav a:hover, nav a.active {
 	background: #0D2E4C;
 }
 
@@ -132,7 +162,7 @@ pre {
 	background: #0F192A;
 }
 
-article pre code {
+section pre code {
 	font-size: 0.8125em;
 	line-height: 1.4em;
     padding: 0px;
@@ -141,7 +171,7 @@ article pre code {
 	background: #0F192A;
 }
 
-article code {
+section code {
 	font-size: 0.875em;
 	text-shadow: none;
 	background: #314D67;
@@ -151,12 +181,22 @@ article code {
 h2, h3 {
 	font-family: Arial, sans-serif;
 	text-shadow: 0 1px 1px #222;
-	font-variant: small-caps;
+	text-transform: capitalize;
+}
+
+section h1 {
+	font-size: 2.6em;
+	padding: 1.2em 0 1.2em;
+	font-weight: normal;
+}
+
+section header + section h1 {
+	
 }
 
 h2 {
-	font-size: 2em;
-	margin: 0.5em 0 0.625em;
+	font-size: 1.5em;
+	margin: 0 0 0.7em;
 	padding-top: 1.5em;
 }
 
@@ -166,7 +206,11 @@ h3 {
 }
 
 h2 code, h3 code {
-	font-variant: normal;
+	text-transform: none;
+}
+
+article div {
+	position: relative;
 }
 
 aside {
@@ -189,27 +233,27 @@ aside p {
 	line-height: 1.3em;
 }
 
-article ol {
+section ol {
     margin-bottom: 2em;
 	list-style: decimal;
 }
 
-article ul {
+section ul {
 	list-style: square;
 }
 
-article li {
+section li {
 	font-size: 0.9375em;
     margin-top: 9px;
 }
 
-article ul li {
+section ul li {
 	margin-left: -3px;
 	padding-left: 3px;
 }
 
 footer {
-   padding-top: 10px; 
+   padding-top: 10px;
 }
 
 a {
@@ -217,21 +261,8 @@ a {
 	text-decoration: none;
 }
 
-a:hover {
+a:hover, a.active {
 	color: #FFC76D;
-}
-
-article h2 a {
-	color: #ccc;
-	font-size: 16px;
-	vertical-align: baseline;
-	display: none;
-	font-weight: normal;
-	font-variant: normal;
-}
-
-article:hover h2 a {
-	display: inline;
 }
 
 abbr {
@@ -261,37 +292,34 @@ a abbr {
 	body {
 		width: 100%;
 	}
-	
-	body > div {
+
+	section {
 		padding-left: 30px;
 		margin-right: 0;
 	}
-	
+
 	nav {
 		margin-left: 100%;
 		width: 36%;
 	}
-	
-	article {
+
+	section {
 		width: 70%;
 	}
-	
+
 	aside {
-		right: -42%;
-		width: 38%;
+		right: -40%;
+		width: 36%;
 	}
 }
 
 @media screen and (max-width: 700px) {
-	body > div {
+	section {
 		padding-right: 30px;
-	}
-	
-	article {
 		font-size: 15px;
-		width: 100%;
+		width: auto;
 	}
-	
+
 	aside {
 		position: static;
 		width: auto;
@@ -300,7 +328,7 @@ a abbr {
 		border-top: 1px solid #9eabb7;
 		opacity: 0.85;
 	}
-	
+
 	aside p {
 		font-size: 13px;
 	}

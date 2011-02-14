@@ -1,7 +1,7 @@
-## Objects
+## Object usage and properties
 
 Everything in JavaScript acts like an object, with the only two exceptions being 
-[`null`](#undefined) and [`undefined`](#undefined).
+[`null`](#core.undefined) and [`undefined`](#core.undefined).
 
     false.toString() // 'false'
     [1, 2, 3].toString(); // '1,2,3'
@@ -29,8 +29,8 @@ Objects in JavaScript can also be used as a [*Hashmap*][1], they mainly consist
 of named properties mapping to values.
 
 Using the curly brace notation `{}` one can create a plain object. This new
-object [inherits](#prototype) from `Object.prototype` and has no 
-[own properties](#hasownproperty) defined on it.
+object [inherits](#object.prototype) from `Object.prototype` and has no 
+[own properties](#object.hasownproperty) defined on it.
 
     var foo = {}; // a new empty object
 
@@ -96,3 +96,4 @@ therefore, it must be notated as a string literal in order to ensure working
 code under older JavaScript engines.
 
 [1]: http://en.wikipedia.org/wiki/Hashmap
+

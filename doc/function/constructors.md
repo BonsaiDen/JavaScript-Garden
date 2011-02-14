@@ -4,8 +4,8 @@ Constructors in JavaScript are yet again different from many other languages. An
 function call that is preceded by the `new` keyword acts as a constructor.
 
 Inside the constructor (the called function) the value of `this` refers to a 
-newly created `Object`. The [`prototype`](#prototype) of this **new** object is 
-set to the `prototype` of the function object that was called.
+newly created `Object`. The [`prototype`](#object.prototype) of this **new** 
+object is set to the `prototype` of the function object that was called.
 
 If the function that was called has no explicit `return` statement, then it
 implicitly returns the value of `this` (the new object). Otherwise it returns
@@ -27,8 +27,8 @@ created object to `Foo.prototype`.
 
 Keep in mind that if you do not use the `new` keyword the function will **not**
 return a new object. While it might still work due to the workings of
-[`this`](#how-this-works-in-javascript) in JavaScript, it will use the *global*
-object as the value of `this`.
+[`this`](#function.this) in JavaScript, it will use the *global* object as the 
+value of `this`.
 
 ### Factories
 
@@ -51,7 +51,7 @@ explicitly return a value.
     Bar();
 
 Both these calls return the exact same thing, a newly create object which
-has a property called `method` which is a [Closure](#closures-and-references).
+has a property called `method` which is a [Closure](#function.closures).
 
 Also note that the call `new Bar()` does **not** affect the prototype of the
 returned object. While the prototype will be set on the newly created object,
@@ -85,7 +85,7 @@ object inside it.
     }
 
 While the above is robust against forgetting to use `new` and makes the use of
-[private variables](#closures) certainly easier, it comes with some down sides.
+[private variables](#function.closures) certainly easier, it comes with some down sides.
 
  1. It uses more memory since the created objects do **not** share the methods
  2. In order to inherit the factory needs to copy all the methods from another

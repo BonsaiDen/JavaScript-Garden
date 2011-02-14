@@ -31,7 +31,7 @@ necessary to retrieve the value of `undefined` in the first place.
 
 In order to protect code against a possible overwritten `undefined` variable, a 
 common technique used is to add an additional parameter to the encapsulation
-[anonymous wrapper](#scopes), which gets no argument passed to it.
+[anonymous wrapper](#function.scopes), which gets no argument passed to it.
 
     var undefined = 123;
     (function(something, foo, undefined) {

@@ -69,6 +69,6 @@ and a pointer comparison in C do.
 ### In conclusion
 
 It is highly recommended to **only** use the strict equals operator. In cases
-where types need to be coerced, it should be done [explicitly](#casting) and not
-left to the "magic" of the languages complicated coercing rules.
+where types need to be coerced, it should be done [explicitly](#types.casting)
+and not left to the "magic" of the languages complicated coercing rules.
 

@@ -43,15 +43,16 @@ called *prototype chains*.
         Bar.prototype [instance of Foo] 
             { foo: 'Hello World' }
             Foo.prototype
-                {method: ...};
+                {method: ...}
                 Object.prototype
-                    {toString: ... /* etc. */};
+                    { toString: ... /* etc. */ }
 
 In the above, the object `test` will inherit from both `Bar.prototype` and
 `Foo.prototype`; hence, it will have access to the function `method` that was 
 defined on `Foo`. But it will not have access to the property `value` of a 
-`Foo` instance, since that property gets defined in the [constructor](#constructor)
-of `Foo`. But this constructor has to be called explicitly.
+`Foo` instance, since that property gets defined in the 
+[constructor](#function.constructor) of `Foo`. But this constructor has to be 
+called explicitly.
 
 > **Note:** Do **not** use `Bar.prototype = Foo`, since it will not point to 
 > the prototype of `Foo` but rather to the function object `Foo`. So the 
@@ -65,7 +66,7 @@ prototype chain **upwards** until it finds a property with the requested name.
 
 When it reaches the top of the chain - namely `Object.prototype` - and still
 hasn't found the specified property, it will return the value
-[undefined](#undefined) instead.
+[undefined](#core.undefined) instead.
 
 ### The prototype property
 
@@ -76,8 +77,8 @@ primitives will simply get ignored when assigned as a prototype.
     function Foo() {}
     Foo.prototype = 1; // no effect
 
-Assigning objects, as shown in the example above, will work, and allows for dynamic
-creation of prototype chains.
+Assigning objects, as shown in the example above, will work, and allows for 
+dynamic creation of prototype chains.
 
 ### Performance
 
@@ -85,7 +86,7 @@ The lookup time for properties that are high up on the prototype chain can have 
 negative impact on performance critical sections of code. Additionally, trying to 
 access non-existent properties will always traverse the full prototype chain. 
 
-Also, when [iterating](#the-for-in-loop) over the properties of an object 
+Also, when [iterating](#object.forinloop) over the properties of an object 
 **every** property that is on the prototype chain will get enumerated.
 
 ### Extension of native prototypes

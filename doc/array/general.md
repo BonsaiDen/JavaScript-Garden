@@ -1,17 +1,17 @@
-## Arrays
+## Array iteration and properties
 
 Although arrays in JavaScript are objects, there are no good reasons to use
-the [for in loop](#forinloop) in for iteration on them. In fact there are a 
-number of good reasons **against** the use of `for in` on arrays.
+the [for in loop](#object.forinloop) in for iteration on them. In fact there are 
+a  number of good reasons **against** the use of `for in` on arrays.
 
 > **Note:** JavaScript arrays are **not** *associative arrays*. JavaScript only 
-> has [objects](#objects) for mapping keys to values. And while associative 
+> has [objects](#object.general) for mapping keys to values. And while associative 
 > arrays **preserve** order, objects do **not**.
 
 Since the `for in` loop enumerates all properties on the prototype chain and 
 the only way to exclude those properties is to use 
-[`hasOwnProperty`](#hasownproperty), it is already up to **twenty times** slower
-than a normal `for` loop.
+[`hasOwnProperty`](#object.hasownproperty), it is already up to **twenty times**
+slower than a normal `for` loop.
 
 ### Iteration
 

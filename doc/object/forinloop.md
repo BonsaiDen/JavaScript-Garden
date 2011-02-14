@@ -17,7 +17,7 @@ chain when iterating over the properties of an object.
 
 Since it is not possible to change the behavior of the `for in` loop itself, it
 is necessary to filter out the unwanted properties inside the loop body itself, 
-this is done by using the [`hasOwnProperty`](#hasownproperty) method of 
+this is done by using the [`hasOwnProperty`](#object.hasownproperty) method of 
 objects. 
 
 > **Note:** Since the `for in` always traverses the complete prototype chain, it

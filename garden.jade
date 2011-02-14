@@ -1,0 +1,61 @@
+!!! 5
+html(lang='en')
+  head
+    title #{title}
+    meta(charset='utf-8')
+    meta(name='description', content=description)
+    link(rel='stylesheet', href='style/garden.css', media='all')
+    link(rel='stylesheet', href='style/print.css', media='print')
+
+  body
+
+    // Navigation
+    nav
+      ul
+        - each section in navigation
+          li
+            h1
+              a(href='#' + section.link) #{section.title}
+
+            - if (section.articles.length > 0)
+              ul
+                - each article in section.articles
+                  li
+                    a(href='#' + article.link)!=article.title
+
+    // Sections
+    - each section in sections
+      section(id=section.link)
+
+        // Introduction
+        header
+          h1 #{section.title}
+          - if (section.parsed.index)
+            div!=section.parsed.index.text
+
+          - else
+            div
+              strong TODO: Add section intro in "doc/#{section.dir}/index.md"
+
+        // Articles
+        - each article in section.articles
+          article(id=article.link)
+            h2!=article.title
+
+            - each sub in article.parsed.subs
+              div!=sub
+
+    // Footer
+    footer
+      p Copyright &copy; 2011. Built with
+        | 
+        a(href='http://nodejs.org/') Node.js
+        | using a
+        a(href='https://github.com/visionmedia/jade/') jade
+        | template.
+
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js')
+    script(src='javascript/prettify.js')
+    script(src='javascript/plugin.js')
+    script(src='javascript/garden.js')
+

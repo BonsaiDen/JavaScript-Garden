@@ -1,7 +1,7 @@
 ## `hasOwnProperty`
 
 In order to check whether a object has a property defined on itself and **not** 
-somewhere on its [prototype chain](#prototype), it is necessary to use the 
+somewhere on its [prototype chain](#object.prototype), it is necessary to use the 
 `hasOwnProperty` method which all objects inherit from `Object.prototype`.
 
 > **Note:** It is **not** enough to check whether a property is `undefined`. The
@@ -30,6 +30,6 @@ somewhere on its prototype chain.
 
 When checking for the existence of a property on a object, `hasOwnProperty` is 
 the **only** method of doing so. It is also recommended to make `hasOwnProperty`
-part of **every** [`for in` loop](#forinloop), this will avoid errors from 
-extended native [prototypes](#prototype).
+part of **every** [`for in` loop](#object.forinloop), this will avoid errors from 
+extended native [prototypes](#object.prototype).
 

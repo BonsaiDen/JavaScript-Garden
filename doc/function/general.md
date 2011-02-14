@@ -1,4 +1,4 @@
-## Functions
+## Function declarations and expressions
 
 Functions in JavaScript are first class objects, which means that they can be 
 passed around like any other value. One common use of this feature is to pass
@@ -30,7 +30,7 @@ declaration - creates the variable `foo` before the actual execution of the code
 starts, `foo` is already defined when the script gets executed.
 
 Since assignments only happens at runtime, the value of `Foo` will default
-to [undefined](#undefined) before the corresponding code is executed.
+to [undefined](#core.undefined) before the corresponding code is executed.
 
 ### Named function expression
 
@@ -43,7 +43,7 @@ Another special case is the assignment of named functions.
 
 Here `bar` is not available in the outer scope, since the function only gets
 assigned to `foo`; however, inside of `bar` it **is** available. This is due to 
-how [name resolution](#scopes) in JavaScript works, the name of the function
+how [name resolution](#function.scopes) in JavaScript works, the name of the function
 is always made available in the local scope of the function itself.
 
 ### The `var` statement
@@ -62,8 +62,8 @@ is always made available in the local scope of the function itself.
         var foo = 1;
     }
 
-Since there is **no** [block scope](#scopes) in JavaScript, the above will
-**not** assign the value `2` to the *global* variable `bar`. It will rather 
+Since there is **no** [block scope](#function.scopes) in JavaScript, the above 
+will **not** assign the value `2` to the *global* variable `bar`. It will rather 
 assign the value of `2` to the *local* variable `bar` of `test`. 
 
 Also, while the statements inside the `if` block never get executed, the variable

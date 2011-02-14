@@ -4,7 +4,7 @@ Since JavaScript is asynchronous, it is possible to schedule the execution of a
 function by using the `setTimeout` and `setInterval` functions.
 
 > **Note:** Timeouts are **not** part of the ECMAScript Standard, they are
-> implemented as part of the [DOM][1].
+> implemented as part of the [Document Object Model][1].
 
     function foo() {}
     var id = setTimeout(foo, 1000); // returns a Number > 0
@@ -19,8 +19,8 @@ gets executed might block the thread, it is by no means a safe bet that one will
 get the exact timeout they specified when calling `setTimeout`.
 
 The function that was passed as the first parameter will get called by the
-global object, that means that [this](#this) inside the called function refers 
-to that very object.
+global object, that means that [this](#function.this) inside the called function 
+refers to that very object.
 
     function Foo() {
         this.value = 42;
@@ -115,8 +115,8 @@ This feature should **never** be used, since it internally makes use of `eval`.
     }
     bar();
 
-Since `eval` is not getting [called directly](#eval) here, the string passed to
-`setTimeout` will get executed in the global scope; thus, it will not use the 
+Since `eval` is not getting [called directly](#core.eval) here, the string passed 
+to `setTimeout` will get executed in the global scope; thus, it will not use the 
 local variable `foo` from the scope of `bar`.
 
 It is further recommended to **not** use a string to pass arguments to the
@@ -134,7 +134,7 @@ function that will get called.
 
 > **Note:** While it is also possible to use the syntax 
 > `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
-> to subtle errors when used with [methods](#this).
+> to subtle errors when used with [methods](#function.this).
 
 ### In conclusion
 
@@ -147,5 +147,4 @@ Additionally, `setInterval` should be avoided since it is hard to control and
 does not adjust to the single threaded nature of the language.
 
 [1]: http://en.wikipedia.org/wiki/Document_Object_Model 
-*[DOM]: Document Object Model
 

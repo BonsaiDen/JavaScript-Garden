@@ -1,8 +1,8 @@
 ## How `this` works
 
 JavaScript has a different concept of what `this` refers to than most other
-languages do. There are exactly **five** different ways in which the value of `this` 
-can be bound in the language.
+languages do. There are exactly **five** different ways in which the value of 
+`this` can be bound in the language.
 
 ### The global scope
 
@@ -17,8 +17,8 @@ When using `this` in global scope, it will simply refer to the *global* object.
 
 Here `this` will again refer to the *global* object.
 
-> **ES5 Note:** In strict mode, `this` will **no longer** refer to the global object. 
-> It will instead have the value of `undefined`.
+> **ES5 Note:** In strict mode, `this` will **no longer** refer to the global 
+> object. It will instead have the value of `undefined`.
 
 ### Calling a method
 
@@ -31,8 +31,8 @@ In this example `this` will refer to `test`.
     new foo(); 
 
 A function call that is preceded by the `new` keyword acts as
-a [constructor](#constructors). Inside the function `this` will refer to a newly
-created `Object`.
+a [constructor](#function.constructors). Inside the function `this` will refer 
+to a newly created `Object`.
 
 ### Explicit setting of `this`
 
@@ -80,8 +80,8 @@ local variable inside of `method` which refers to `Foo`.
     }
 
 `that` is just a normal name, but it is commonly used for the reference to an 
-outer `this`. In combination with [closures](#closures), it can also be used to 
-pass `this` values around.
+outer `this`. In combination with [closures](#function.closures), it can also 
+be used to pass `this` values around.
 
 ### Assigning methods
 
@@ -95,7 +95,7 @@ Again due to the first case `test` now acts like like a plain function call;
 therefore, `this` inside it will no longer refer to `someObject`.
 
 While the late binding of `this` might seem like a bad idea, it is in fact what
-makes [prototypical inheritance](#prototype) work. 
+makes [prototypical inheritance](#object.prototype) work. 
 
     function Foo() {}
     Foo.prototype.method = function() {};

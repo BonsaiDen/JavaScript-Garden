@@ -20,7 +20,7 @@ wherever possible.
 > **Note:** Number literals that start with a `0` are interpreted as octal (Base
 > 8).
 
-In order to avoid that the use of the [strict equal operator](#equality) is
+In order to avoid that the use of the [strict equal operator](#types.equality) is
 recommended.
 
 But this does still not solve all the issues that arise from JavaScript's weak 
