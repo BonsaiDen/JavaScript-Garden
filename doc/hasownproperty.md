@@ -26,6 +26,24 @@ essential when iterating over the properties of any object. There is no other
 way to exclude properties that are not defined on the object **itself**, but 
 somewhere on its prototype chain.  
 
+### `hasOwnProperty` as a property
+
+JavaScript does not protect the property name `hasOwnProperty`; therefore, if the
+possibility exists that an object might have a property with this name, it is
+necessary to use an *external* `hasOwnProperty` in order to get correct results.
+
+    var foo = {
+        hasOwnProperty: function() {
+            return false;
+        },
+        bar: 'Here be dragons'
+    };
+
+    foo.hasOwnProperty('bar'); // always returns false
+
+    // Use another hasOwnProperty and call it with 'this' set to foo
+    {}.hasOwnProperty.call(foo, 'bar'); // true
+
 ### In conclusion
 
 When checking for the existence of a property on a object, `hasOwnProperty` is 
