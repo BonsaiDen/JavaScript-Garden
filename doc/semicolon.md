@@ -1,10 +1,10 @@
 ## Automatic semicolon insertion
 
 Although JavaScript has C style syntax, it does **not** enforce the use of
-semicolons in the source code, it is possible to omot them.
+semicolons in the source code, it is possible to omit them.
 
 But JavaScript is not a semicolon-less language, it in fact needs the 
-semicolons in order to understand the sourcecode. Therefore the JavaScript
+semicolons in order to understand the source code. Therefore the JavaScript
 parser **automatically** inserts them whenever it encounters a parse
 error due to a missing semicolon.
 
@@ -53,7 +53,7 @@ to insert them.
 
     })(window)
 
-Below is the result of the parsers "guessing" game.
+Below is the result of the parser's "guessing" game.
 
     (function(window, undefined) {
         function test(options) {
