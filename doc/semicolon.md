@@ -1,71 +1,122 @@
 ## Automatic semicolon insertion
 
 Although JavaScript has C style syntax, it does **not** enforce the use of
-semicolons in the source code. Since the parser still needs semicolons in order 
-to be able to figure out what the code should do, it inserts them 
-**automatically**.
+semicolons in the source code, it is possible to omot them.
 
-When the parser encounters an error due to newline that is not preceded by a 
-semicolon, it will insert a semicolon automatically and try again. When the
-parser still hits an error, it will raise it, otherwise it will simply proceed.
-
-The automatic insertion of semicolon is considered to be one of **biggest**
-design flaws in the language. It makes the below code work, but  with a 
-completely different result than intended.
-
-    return
-    {
-        foo: 1
-    }
-
-After the JavaScript parser fixed it, this will **not** return an object which 
-has a property called `foo`, it will instead simply return `undefined`.
-
-### How the parser "fixes" missing semicolons
-
-    return // Error, semicolon expected. Automatic insertion happens
-    { // Block syntax is handle just fine
-
-        // foo is not interpreted as property name, but as a label
-        foo: 1 // JavaScript supports single expression evaluation
-               // So 1 evaluates to 1 and no error is being raised
-
-    } // Automatic semicolon insertion
-
-After the parser has done its "magic", the resulting code has completely
-different behavior.
-
-    return; // implicitly returns undefined
-
-    // dead code
-    {
-        foo: 1
-    };
-
-### Missing semicolons and evaluation
+But JavaScript is not a semicolon-less language, it in fact needs the 
+semicolons in order to understand the sourcecode. Therefore the JavaScript
+parser **automatically** inserts them whenever it encounters a parse
+error due to a missing semicolon.
 
     var foo = function() {
-    } // missing semicolon after assignment
-    
-    (function() {
-        // do something in it's own scope
-    })();
+    } // parse error, semicolon expected
+    test()
 
-Again, the above code will behave **drastically different**.
+Insertion happens, and the parser tries again.
 
-    var foo = function(){
-        
-    }( // The parser does NOT insert a semicolon here
-        // call the anonymous function and pass another function in
-        function() {
+    var foo = function() {
+    }; // no error, parser continues
+    test()
+
+The automatic insertion of semicolon is considered to be one of **biggest**
+design flaws in the language as it *can* change the behavior of code.
+
+### How it works
+
+The code below has no semicolons in it, so it is up to the parser to decide where
+to insert them.
+
+    (function(window, undefined) {
+        function test(options) {
+            log('testing!')
+
+            (options.list || []).forEach(function(i) {
+
+            })
+
+            options.value.test(
+                'long string to pass here',
+                'and another long string to pass'
+            )
+
+            return
+            {
+                foo: function() {}
+            }
         }
-    )() // now call the result of the previous call
+        window.test = test
+
+    })(window)
+
+    (function(window) {
+        window.someLibrary = {}
+
+    })(window)
+
+Below is the result of the parsers "guessing" game.
+
+    (function(window, undefined) {
+        function test(options) {
+
+            // Not inserted, lines got merged
+            log('testing!')(options.list || []).forEach(function(i) {
+
+            }); // <- inserted
+
+            options.value.test(
+                'long string to pass here',
+                'and another long string to pass'
+            ); // <- inserted
+
+            return; <- inserted, breaks the return statement
+            { 
+                foo: function() {} 
+            }; // <- inserted
+        }
+        window.test = test; // <- inserted
+
+    // The lines got merged again
+    })(window)(function(window) {
+        window.someLibrary = {}; //<- inserted
+
+    })(window); //<- inserted
+
+The parser drastically changed the behavior of the code above, in certain cases
+it does the **wrong** thing.
+
+### Leading parenthesis
+
+In case of a leading parenthesis, the parse will **not** insert a semicolon.
+
+    log('testing!')
+    (options.list || []).forEach(function(i) {})
+
+This code gets transformed into one line.
+
+    log('testing!')(options.list || []).forEach(function(i) {})
+
+Chances are **very** high that `log` does **not** return a function, therefore the
+above will yield `TypeError` saying that `undefined is not a function`.
+
+### Broken `return` statements
+
+The JavaScript parse also does not correctly handle return statements which are
+followed by a new line. 
+
+    return;
+    { // gets interpreted as a block
+
+        // a label and a single expression statement
+        foo: function() {} 
+    };
+
+Instead it produces the above, which simply is a silent error
 
 ### In conclusion
 
-Semicolons should **never** be omitted, it is also recommended to keep braces 
-on the same line with their associated statements and never omit them for one 
-line `if` / `else` statements. This will not only improve the consistency of the
-code, it will also prevent the JavaScript parser from applying too much "magic"
-to the code.
+It is highly recommended to **never** omit semicolons, it is also advocated to 
+keep braces on the same line with their corresponding statements and to never omit 
+them for one single-line `if` / `else` statements. Both of these measures will 
+not only improve the consistency of the code, they will also prevent the 
+JavaScript parser from changing its behavior.
 
