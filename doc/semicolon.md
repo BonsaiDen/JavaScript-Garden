@@ -110,7 +110,7 @@ followed by a new line.
         foo: function() {} 
     };
 
-Instead it produces the above, which simply is a silent error
+Instead it produces the above, that is simply a silent error
 
 ### In conclusion
 
