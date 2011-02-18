@@ -305,3 +305,27 @@ a abbr {
 		font-size: 13px;
 	}
 }
+
+@media screen and (max-device-width: 480px) {
+	body > div {
+		padding-right: 30px;
+	}
+	
+	article {
+		font-size: 15px;
+		width: 100%;
+	}
+	
+	aside {
+		position: static;
+		width: auto;
+		margin: 30px;
+		padding: 0.6em 1em 0.625em;
+		border-top: 1px solid #9eabb7;
+		opacity: 0.85;
+	}
+	
+	aside p {
+		font-size: 13px;
+	}
+}
