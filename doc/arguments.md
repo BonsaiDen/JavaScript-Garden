@@ -29,7 +29,7 @@ critical sections of code.
 ### Modification "magic"
 
 The `arguments` object creates getter and setter functions for both its properties
-as well as the functions formal parameters.
+as well as the function's formal parameters.
 
 As a result, changing the value of a formal parameter will also change the value
 corresponding formal parameter, and the other way around.
