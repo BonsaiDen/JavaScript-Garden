@@ -3,7 +3,7 @@
 Every function scope in JavaScript can access the special variable `arguments`.
 This variable holds a list of all the arguments that were passed to the function.
 
-> **Note:** In case `arguments` has already been defined inside the functions
+> **Note:** In case `arguments` has already been defined inside the function's
 > scope either via a `var` statement or being the name of a formal parameter,
 > the `arguments` object will not be created.
 
@@ -29,7 +29,7 @@ critical sections of code.
 ### Modification "magic"
 
 The `arguments` object creates getter and setter functions for both its properties
-as well as the functions formal parameters.
+as well as the function's formal parameters.
 
 As a result, changing the value of a formal parameter will also change the value
 corresponding formal parameter, and the other way around.
