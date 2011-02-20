@@ -63,7 +63,7 @@ is always made available in the local scope of the function itself.
     }
 
 Since there is **no** [block scope](#scopes) in JavaScript, the above will
-**not** assign the value `2` to the *global* variable `bar`. It will rather 
+**not** assign the value `2` to the *global* variable `bar`. Instead, it will
 assign the value of `2` to the *local* variable `bar` of `test`. 
 
 Also, while the statements inside the `if` block never get executed, the variable
