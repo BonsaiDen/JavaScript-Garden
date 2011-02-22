@@ -33,7 +33,7 @@ still has not found the requested name, it will raise a `ReferenceError`.
 
 The above two scripts do **not** have the same effect. Script A defines a 
 variable called `foo` in the *global* scope and script B defines a `foo` in the
-*local* scope.
+*current* scope.
 
 Again, that is **not** at all the same effect, not using `var` can have major 
 implications.
