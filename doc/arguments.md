@@ -7,7 +7,7 @@ This variable holds a list of all the arguments that were passed to the function
 > scope either via a `var` statement or being the name of a formal parameter,
 > the `arguments` object will not be created.
 
-The `arguments` variable is **not** an `Array`. While it has some of the 
+The `arguments` object is **not** an `Array`. While it has some of the 
 semantics of an array - namely the `length` property - it does not inherit from 
 `Array.prototype` and is in fact an `Object`.
 
@@ -62,7 +62,7 @@ The `arguments` object creates getter and setter functions for both its properti
 as well as the function's formal parameters.
 
 As a result, changing the value of a formal parameter will also change the value
-corresponding formal parameter, and the other way around.
+of the corresponding property of the arguments object, and the other way around.
 
     function foo(a, b, c) {
         arguments[0] = 2;
@@ -79,11 +79,13 @@ corresponding formal parameter, and the other way around.
 
 ### Performance myths and truths
 
-The `arguments` is, except for the two cases named at the start of this section,
-always created. It doesn't matter whether it is used or not. Both getters and
-setters are **always** created; thus, using it has nearly no performance impact
-at all, especially not in real world code where there is more than an access to
-the arguments object properties.
+The `arguments` object is always created the only two exceptions being the cases 
+where it is declared as a name inside of a function or one of its formal 
+parameters. It does not matter whether it is used or not.
+
+Both getters and setters are **always** created; thus, using it has nearly 
+no performance impact at all, especially not in real world code where there is 
+more than an access to the arguments object properties.
 
 > **ES5 Note:** These getters and setters are not created in strict mode.
 
