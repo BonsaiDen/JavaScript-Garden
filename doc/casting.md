@@ -17,8 +17,9 @@ wherever possible.
     10 == 010;
     10 == '-10';
 
-> **Note:** Number literals that start with a `0` are interpreted as octal (Base
-> 8).
+> **ES5 Note:** Number literals that start with a `0` are interpreted as octal 
+> (Base 8). Octal support for these has been **removed** in ECMAScript 5 strict 
+> mode.
 
 In order to avoid that the use of the [strict equal operator](#equality) is
 recommended.

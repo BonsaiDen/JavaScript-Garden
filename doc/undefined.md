@@ -11,6 +11,10 @@ The language also defines a global variable that has the value of `undefined`,
 this variable is also called `undefined`. But this variable is **not** a constant,
 meaning that it can be easily overwritten which then leads to abstruse bugs. 
 
+> **ES5 Note:** `undefined` in ECMAScript 5 is **no longer** *writable* in strict
+> mode, but its name can still be shadowed by for example a function with the name 
+> `undefined`.
+
 Some examples for when the value `undefined` is returned:
 
  - Accessing the (unmodified) global variable `undefined`
