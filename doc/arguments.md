@@ -23,8 +23,38 @@ The code below will return a new `Array` containing all the elements of the
 
     Array.prototype.slice.call(arguments);
 
-This conversion is **slow**, it is not recommended to use it in performance 
+This conversion is **slow**, it is **not** recommended to use it in performance 
 critical sections of code.
+
+### Passing arguments
+
+The following is the recommended way of passing arguments from one function to
+another.
+
+    function foo() {
+        bar.apply(null, arguments);
+    }
+    function bar(a, b, c) {
+        // do stuff here
+    }
+
+Another trick is to use both `call` and `apply` together to create fast, unbound
+wrappers.
+
+    function Foo() {}
+
+    Foo.prototype.method = function(a, b, c) {
+        console.log(this, a, b, c);
+    };
+
+    // Create an unbound version of "method" 
+    // It takes the parameters: this, arg1, arg2...argN
+    Foo.method = function() {
+
+        // Result: Foo.prototype.method.call(this, arg1, arg2... argN)
+        Function.call.apply(Foo.prototype.method, arguments);
+    };
+
 
 ### Modification "magic"
 
