@@ -29,7 +29,7 @@ Due to the fact that `var` is a *statement*, which - just like the function
 declaration - creates the variable `foo` before the actual execution of the code
 starts, `foo` is already defined when the script gets executed.
 
-Since assignments only happens at runtime, the value of `Foo` will default
+Since assignments only happens at runtime, the value of `foo` will default
 to [undefined](#undefined) before the corresponding code is executed.
 
 ### Named function expression
