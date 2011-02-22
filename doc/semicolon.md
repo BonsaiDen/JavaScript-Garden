@@ -69,7 +69,9 @@ Below is the result of the parser's "guessing" game.
             ); // <- inserted
 
             return; <- inserted, breaks the return statement
-            { 
+            { // treated as a block
+
+                // a label and a single expression statement
                 foo: function() {} 
             }; // <- inserted
         }
@@ -80,6 +82,10 @@ Below is the result of the parser's "guessing" game.
         window.someLibrary = {}; //<- inserted
 
     })(window); //<- inserted
+
+> **Note:** The JavaScript parser does not "correctly" handle return statements 
+> which are followed by a new line, while this is not neccessarily the fault of 
+> the automatic semicolon insertion, it can still be an unwanted side-effect. 
 
 The parser drastically changed the behavior of the code above, in certain cases
 it does the **wrong** thing.
@@ -97,20 +103,6 @@ This code gets transformed into one line.
 
 Chances are **very** high that `log` does **not** return a function, therefore the
 above will yield `TypeError` saying that `undefined is not a function`.
-
-### Broken `return` statements
-
-The JavaScript parse also does not correctly handle return statements which are
-followed by a new line. 
-
-    return;
-    { // gets interpreted as a block
-
-        // a label and a single expression statement
-        foo: function() {} 
-    };
-
-Instead it produces the above, that is simply a silent error
 
 ### In conclusion
 
