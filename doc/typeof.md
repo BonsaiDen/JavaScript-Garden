@@ -42,6 +42,9 @@ The *Class* refers to the value of the internal `[[Class]]` property of an objec
 > following strings. `Arguments`, `Array`, `Boolean`, `Date`, `Error`, 
 > `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`.
 
+> **ES5 Note:** The `[[Class]]` value of `null` and `undefined` in ECMAScript 5
+> was changed from `Object` to `Null` and `Undefined`.
+
 In order to retrieve the value of `[[Class]]` one can has to make use of the
 `toString` method of `Object`.
 
