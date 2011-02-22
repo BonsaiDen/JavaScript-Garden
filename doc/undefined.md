@@ -11,7 +11,7 @@ The language also defines a global variable that has the value of `undefined`,
 this variable is also called `undefined`. But this variable is **not** a constant,
 meaning that it can be easily overwritten which then leads to abstruse bugs. 
 
-The value `undefined` is returned in the following cases:
+Some examples for when the value `undefined` is returned:
 
  - Accessing the (unmodified) global variable `undefined`
  - Implicit returns of functions due to missing `return` statements
@@ -19,7 +19,6 @@ The value `undefined` is returned in the following cases:
  - Lookups of non existent properties
  - Function parameters which don't had any explicit value passed
  - Anything that has been set to the value of `undefined`
-
 
 ### The case of the "overridden" `undefined`
 
@@ -39,6 +38,20 @@ common technique used is to add an additional parameter to the encapsulation
         // now again refer to the value
 
     })('Hello World', 42);
+
+Another way to achieve the same effect would be to use a declaration inside the 
+wrapper.
+
+    var undefined = 123;
+    (function(something, foo) {
+        var undefined;
+        ...
+
+    })('Hello World', 42);
+
+The only difference being here, that this version results in 4 more bytes being
+used in case it is minified and there is no other `var` statement inside the
+anonymous wrapper.
 
 ### Uses of `null`
 
