@@ -1,0 +1,16 @@
+{
+    "title": "JavaScript Garden",
+    "langTitle": "JavaScript Garden auf Deutsch",
+    "description": "Ein Guide zu JavaScript Ecken und Kanten.",
+    "sections": [
+        {
+            "title": "Einführung",
+            "dir": "intro",
+            "articles": [
+                "authors",
+                "contributors",
+                "license"
+            ]
+        }
+    ]
+}

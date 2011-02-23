@@ -64,15 +64,10 @@ $(document).ready(function() {
                     ul.removeClass('active');
                 }
             }
-            if (active) {
-                if (!el.hasClass('active')) {
-                    el.addClass('active');
-                }
-
-            } else {
-                if (el.hasClass('active')) {
-                    el.removeClass('active');
-                }
+            if (active && !el.hasClass('active')) {
+                el.addClass('active');
+            } else if (!active && el.hasClass('active')) {
+                el.removeClass('active');
             }
         }
     }
@@ -86,9 +81,8 @@ $(document).ready(function() {
                         $(this).hide();
                     }
                 });
-                ul.toggle();
+                ul.slideToggle(100);
             }
-            return false;
         });
     });
     if ($.mobile) {

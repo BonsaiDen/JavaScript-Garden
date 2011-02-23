@@ -1,28 +1,69 @@
-var fs = require('fs');
-var jade = require('jade');
-var md = require('node-markdown');
-var Class = require('neko').Class;
+var fs = require('fs'),
+    path = require('path');
+    jade = require('jade'),
+    md = require('node-markdown'),
+    Class = require('neko').Class;
+
+var format = new require('fomatto').Formatter();
 
 
 // Garden Generator -------------------------------------------------------------
 // ------------------------------------------------------------------------------
 var Garden = Class(function(options) {
+    var languages = fs.readdirSync(options.dir);
+    this.languages = {};
     this.options = options;
-    this.index = this.json(this.options.dir + '/index.json');
-    this.loadIndex();
+
+    var that = this;
+    languages.forEach(function(lang) {
+        if (fs.statSync(that.options.dir + '/' + lang).isDirectory()) {
+            that.log('Parsing language "{}"...', lang);
+            that.lang = {
+                id: lang,
+                navigation: [],
+                index: []
+            };
+
+            if (that.loadIndex()) {
+                that.languages[lang] = that.lang;
+                that.log('    Done.')
+
+            } else {
+                that.log('    Error: Could not find "index.json"!')
+            }
+        }
+    });
+
+    delete this.lang;
+    this.log('');
+    this.generateAll();
 
 }, {
+    log: function() {
+        console.log(format.apply(null, arguments));
+    },
+
     loadIndex: function() {
         var that = this;
-        this.navigation = [];
-        this.index.sections.forEach(function(section, i) {
+        this.lang.index = this.json([this.options.dir,
+                                     this.lang.id, 'index.json'].join('/'));
+
+        if (this.lang.index === null) {
+            return false;
+        }
+
+        that.lang.title = that.lang.index.langTitle;
+        this.lang.navigation = [];
+        this.lang.index.sections.forEach(function(section, i) {
             that.loadSection(section);
-            that.navigation.push({
+            that.lang.navigation.push({
                 title: section.title,
                 link: section.dir,
-                articles: section.articles
+                articles: section.articles,
+                parsed: section.parsed
             });
         });
+        return true;
     },
 
     loadSection: function(section) {
@@ -52,17 +93,18 @@ var Garden = Class(function(options) {
         var title = text.substring(0, text.indexOf('\n'));
         text = text.substring(title.length);
         title = md.Markdown(title.replace(/\#/g, '').trim());
+        text = this.toMarkdown(text);
 
-        var parts = text.split('###');
+        var parts = text.split('<h3>');
         var subs = [];
         for(var i = 0, l = parts.length; i < l; i++) {
             var sub = parts[i];
-            subs.push(this.toMarkdown((i > 0 ? '###' : '') + sub));
+            subs.push((i > 0 ? '<h3>' : '') + sub);
         }
 
         return {
             title: title.substring(3, title.length - 4),
-            text: this.toMarkdown(text),
+            text: text,
             subs: subs
         };
     },
@@ -74,7 +116,12 @@ var Garden = Class(function(options) {
     },
 
     json: function(file) {
-        return JSON.parse(fs.readFileSync(file).toString());
+        try {
+            return JSON.parse(fs.readFileSync(file).toString());
+
+        } catch (err) {
+            return null;
+        }
     },
 
     md: function(section, article) {
@@ -83,24 +130,57 @@ var Garden = Class(function(options) {
     },
 
     folder: function(section) {
-        return [this.options.dir, section].join('/');
+        return [this.options.dir, this.lang.id, section].join('/');
     },
 
-    render: function(template, out) {
-        var options = {
-            title: this.index.title,
-            description: this.index.description,
-            navigation: this.navigation,
-            sections: this.index.sections,
-            top: this.navigation[0]
-        };
+    render: function(language, template, out) {
+        var lang = this.languages[language];
+        if (lang) {
+            this.log('Rendering "{}" to "{}"...', language, out);
+            var options = {
+                baseLanguage: this.options.base,
+                language: language,
+                languages: this.languages,
+                title: lang.index.title,
+                description: lang.index.description,
+                navigation: lang.navigation,
+                sections: lang.index.sections,
+                top: lang.navigation[0]
+            };
 
-        jade.renderFile(template, {locals: options}, function(err, html){
-            if (err) throw err;
-            fs.writeFileSync(out, html);
+            jade.renderFile(template, {locals: options}, function(err, html){
+                if (err) throw err;
+                fs.writeFileSync(out, html);
+            });
+            this.log('    Done.');
+        }
+    },
+
+    generateAll: function() {
+        for(var i in this.languages) {
+            if (this.languages.hasOwnProperty(i)) {
+                this.generate(i);
+            }
+        }
+    },
+
+    generate: function(lang) {
+        var that = this;
+
+        var dir = [this.options.out];
+        if (lang !== this.options.base) {
+            dir.push(lang);
+        }
+        dir = dir.join('/');
+
+        path.exists(dir, function(exists) {
+            if (!exists) {
+                fs.mkdirSync(dir, '777');
+            }
+            that.render(lang, that.options.template, dir + '/index.html');
         });
     }
 });
 
-new Garden({dir: 'doc'}).render('garden.jade', 'site/index.html');
+new Garden({dir: 'doc', base: 'en', template: 'garden.jade', out: 'site'});
 

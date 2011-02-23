@@ -4,26 +4,47 @@ html(lang='en')
     title #{title}
     meta(charset='utf-8')
     meta(name='description', content=description)
-    link(rel='stylesheet', href='style/garden.css', media='all')
-    link(rel='stylesheet', href='style/print.css', media='print')
+
+    - if (language === baseLanguage)
+      link(rel='stylesheet', href='style/garden.css', media='all')
+      link(rel='stylesheet', href='style/print.css', media='print')
+
+    - else
+      link(rel='stylesheet', href='../style/garden.css', media='all')
+      link(rel='stylesheet', href='../style/print.css', media='print')
+
+    <!--[if lt IE 9]>
+    <script src="/javascript/html5.js"></script>
+    <![endif]-->
 
   body
 
     // Navigation
     nav
+      div
+        ul 
+          - each lang in languages
+            li(class=lang.id === language ? 'active' : '')
+              - if (lang.id === baseLanguage)
+                a(href= '/', title=lang.title) #{lang.id}
+
+              - else
+                a(href= '/' + lang.id, title=lang.title) #{lang.id}
       ul
         - each section in navigation
-          li
+          li(class='nav_' + section.link.replace(/\./g, '_'))
             h1
               a(href='#' + section.link) #{section.title}
 
-            ul
-              li
-                a(href='#' + section.link + '.intro') Overview
-                
-              - each article in section.articles
-                li
-                  a(href='#' + article.link)!=article.title
+            - if (section.parsed.index || section.articles.length > 0)
+              ul
+                - if (section.parsed.index )
+                  li
+                    a(href='#' + section.link + '.intro') Overview
+                  
+                - each article in section.articles
+                  li
+                    a(href='#' + article.link)!=article.title
 
     // Sections
     - each section in sections
@@ -34,10 +55,6 @@ html(lang='en')
           h1 #{section.title}
           - if (section.parsed.index)
             div!=section.parsed.index.text
-
-          - else
-            div
-              strong TODO: Add section intro in "doc/#{section.dir}/index.md"
 
         // Articles
         - each article in section.articles
