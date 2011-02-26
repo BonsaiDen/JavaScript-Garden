@@ -62,7 +62,7 @@ In the above example, `Object.prototype.toString` gets called with the value of
 [this](#this) being set to the object whose `[[Class]]` value should be retrieved.
 
 > **ES5 Note:** For convenience the return value of `Object.prototype.toString` 
-> for both null` and `undefined` was **changed** from `Object` to `Null` and 
+> for both `null` and `undefined` was **changed** from `Object` to `Null` and 
 > `Undefined` in ECMAScript 5.
 
 ### Testing for undefined variables
