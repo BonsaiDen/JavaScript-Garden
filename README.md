@@ -17,10 +17,6 @@ the excellent [guide][1] on the Mozilla Developer Network.
 This guide is the work of two lovely Stack Overflow users, [Ivo Wetzel][6]
 (Writing) and [Zhang Yi Jiang][5] (Design).
 
-In case you are interested in additional guidance or reviews concerning your JavaScript 
-projects, Ivo Wetzel offers these on a freelance basis. Please feel free to 
-contact him via [e-mail][7] for further details.
-
 ### Contributors
 
  - [Caio Romão][8] (Spelling corrections)
@@ -39,7 +35,7 @@ Stack Overflow chat.
 [4]: https://github.com/BonsaiDen/JavaScript-Garden
 [5]: http://stackoverflow.com/users/313758/yi-jiang
 [6]: http://stackoverflow.com/users/170224/ivo-wetzel
-[7]: mailto:ivo.wetzel@googlemail.com
 [8]: https://github.com/caio
 [9]: https://github.com/blixt
 [10]: http://chat.stackoverflow.com/rooms/17/javascript
+
