@@ -44,7 +44,7 @@ The above code will **not** change the variable `count` in the scope of `Counter
 since `foo.hack` was not defined in **that** scope. It will instead create - or 
 override - the *global* variable `count`.
 
-### Closures inside of loops
+### Closures inside loops
 
 One often made mistake is to use closures inside of loops, as if they were
 copying the value of the loops index variable.

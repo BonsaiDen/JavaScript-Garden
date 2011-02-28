@@ -67,5 +67,5 @@ and a pointer comparison in C do.
 
 It is highly recommended to only use the **strict equals** operator. In cases
 where types need to be coerced, it should be done [explicitly](#casting) and not
-left to the language's complicated coercing rules.
+left to the language's complicated coercion rules.
 
