@@ -1,6 +1,6 @@
 ## `hasOwnProperty`
 
-In order to check whether a object has a property defined on itself and **not** 
+In order to check whether a object has a property defined on *itself* and **not** 
 somewhere on its [prototype chain](#prototype), it is necessary to use the 
 `hasOwnProperty` method which all objects inherit from `Object.prototype`.
 
@@ -21,14 +21,14 @@ does **not** traverse the prototype chain.
     foo.hasOwnProperty('bar'); // false
     foo.hasOwnProperty('goo'); // true
 
-Only `hasOwnProperty` will give the correct and expected result. This is 
-essential when iterating over the properties of any object. There is no other 
-way to exclude properties that are not defined on the object **itself**, but 
+Only `hasOwnProperty` will give the correct and expected result, this is 
+essential when iterating over the properties of any object. There is **no** other 
+way to exclude properties that are not defined on the object *itself*, but 
 somewhere on its prototype chain.  
 
 ### `hasOwnProperty` as a property
 
-JavaScript does not protect the property name `hasOwnProperty`; therefore, if the
+JavaScript does **not** protect the property name `hasOwnProperty`; thus, if the
 possibility exists that an object might have a property with this name, it is
 necessary to use an *external* `hasOwnProperty` in order to get correct results.
 

@@ -17,7 +17,7 @@ notation* on a number as a floating point literal.
     2.toString(); // raises SyntaxError
 
 There are a couple of workarounds which can be used in order make number 
-literals act as object too.
+literals act as objects too.
 
     2..toString(); // the second point is correctly recognized
     2 .toString(); // note the space left to the dot
@@ -28,9 +28,9 @@ literals act as object too.
 Objects in JavaScript can also be used as a [*Hashmap*][1], they mainly consist 
 of named properties mapping to values.
 
-Using the curly brace notation `{}` one can create a plain object. This new
-object [inherits](#prototype) from `Object.prototype` and has no 
-[own properties](#hasownproperty) defined on it.
+Using a object literal - curly brace notation `{}` - it is possible to create a 
+plain object. This new object [inherits](#prototype) from `Object.prototype` and 
+has no [own properties](#hasownproperty) defined on it.
 
     var foo = {}; // a new empty object
 
@@ -88,11 +88,12 @@ removed and is therefore missing from the output.
     };
 
 Object properties can be both notated as plain characters and as strings. Due to
-another mis-design in JavaScript's parser, prior to ECMAScript 5 the above will throw 
-a `SyntaxError`.
+another mis-design in JavaScript's parser, the above will throw 
+a `SyntaxError` prior to ECMAScript 5.
 
 This error arises from the fact that `delete` is a *keyword* of the language;
-therefore, it must be notated as a string literal in order to ensure working
+therefore, it must be notated as a *string literal* in order to ensure working
 code under older JavaScript engines.
 
 [1]: http://en.wikipedia.org/wiki/Hashmap
+
