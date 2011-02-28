@@ -33,8 +33,8 @@ object.
     {}                  Object     object
     new Object()        Object     object
 
-In the above table *Type* refers to the value the `typeof` operator returns. As
-you can see this is anything but consistent.
+In the above table *Type* refers to the value, that the `typeof` operator returns.
+As can be clearly seen, this value is anything but consistent.
 
 The *Class* refers to the value of the internal `[[Class]]` property of an object.
 
@@ -43,7 +43,7 @@ The *Class* refers to the value of the internal `[[Class]]` property of an objec
 > `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`.
 
 In order to retrieve the value of `[[Class]]` one can has to make use of the
-`toString` method of `Object`.
+`toString` method of `Object.prototype`.
 
 ### The Class of an object
 

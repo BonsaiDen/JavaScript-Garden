@@ -19,7 +19,7 @@ Insertion happens, and the parser tries again.
     test()
 
 The automatic insertion of semicolon is considered to be one of **biggest**
-design flaws in the language as it *can* change the behavior of code.
+design flaws in the language, as it *can* change the behavior of code.
 
 ### How it works
 
@@ -88,11 +88,11 @@ Below is the result of the parser's "guessing" game.
 > the automatic semicolon insertion, it can still be an unwanted side-effect. 
 
 The parser drastically changed the behavior of the code above, in certain cases
-it does the **wrong** thing.
+it does the **wrong thing**.
 
 ### Leading parenthesis
 
-In case of a leading parenthesis, the parse will **not** insert a semicolon.
+In case of a leading parenthesis, the parser will **not** insert a semicolon.
 
     log('testing!')
     (options.list || []).forEach(function(i) {})
@@ -101,8 +101,8 @@ This code gets transformed into one line.
 
     log('testing!')(options.list || []).forEach(function(i) {})
 
-Chances are **very** high that `log` does **not** return a function, therefore the
-above will yield `TypeError` saying that `undefined is not a function`.
+Chances are **very** high that `log` does **not** return a function; therefore,
+the above will yield a `TypeError` stating that `undefined is not a function`.
 
 ### In conclusion
 

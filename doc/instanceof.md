@@ -1,7 +1,7 @@
 ## The `instanceof` operator
 
 The `instanceof` operator compares the constructors of its two operands. It is 
-only useful when comparing custom made objects. Using it on built in types is
+only useful when comparing custom made objects. Used on built-in types, it is
 nearly as useless as the [typeof operator](#typeof).
 
 ### Comparing custom objects
@@ -26,8 +26,8 @@ nearly as useless as the [typeof operator](#typeof).
     'foo' instanceof String; // false
     'foo' instanceof Object; // false
 
-One important thing to note is that `instanceof` does of course not work on
-objects that origin from different JavaScript contexts (e.g. different documents
+One important thing to note here is, that `instanceof` does not work on objects 
+that origin from different JavaScript contexts (e.g. different documents
 in a web browser), since their constructors will not be the exact same object.
 
 ### In conclusion

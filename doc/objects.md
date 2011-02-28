@@ -28,7 +28,7 @@ literals act as objects too.
 Objects in JavaScript can also be used as a [*Hashmap*][1], they mainly consist 
 of named properties mapping to values.
 
-Using a object literal - curly brace notation `{}` - it is possible to create a 
+Using a object literal - `{}` notation - it is possible to create a 
 plain object. This new object [inherits](#prototype) from `Object.prototype` and 
 has no [own properties](#hasownproperty) defined on it.
 
