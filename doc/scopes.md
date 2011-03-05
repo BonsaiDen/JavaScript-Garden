@@ -92,6 +92,62 @@ parameters and variables that were declared via the `var` statement.
 While `foo` and `i` are local variables inside the scope of the function `test`,
 the assignment of `bar` will override the global variable with the same name.
 
+### Hoisting
+
+JavaScript **hoists** declarations, that means that both `var` statements and
+`function` declarations will get moved to the top of their respective scope.
+
+    bar();
+    var bar = function() {};
+    var someValue = 42;
+
+    test();
+    function test(data) {
+        if (false) {
+            goo = 1;
+
+        } else {
+            var goo = 2;
+        }
+        for(var i = 0; i < 100; i++) {
+            var e = data[i];
+        }
+    }
+
+The above code gets transformed before execution is started, JavaScript moves
+the `var` statements, followed by the `function` declarations, at the top of the 
+next surrounding scope.
+
+    var bar, someValue; // default to undefined
+
+    // test got moved up
+    function test(data) {
+        var goo, i, e; // missing block scope moves these here
+        if (false) {
+            goo = 1;
+
+        } else {
+            goo = 2;
+        }
+        for(i = 0; i < 100; i++) {
+            e = data[i];
+        }
+    }
+
+    bar(); // fails with a TypeError since bar is still undefined
+    someValue = 42;
+    bar = function() {};
+
+    test();
+
+The missing block scoping will not only move `var` statements out of loops and
+their bodies, it will also make the results of certain `if` constructs 
+non-intuitive.
+
+In the original code it seemed like the `if` statement would modify the *global 
+variable* `goo` while it reallydoes modify the *local variable* after hoisting 
+has been applied.
+
 ### Name resolution order
 
 All scopes in JavaScript, including the *global scope*, have the special name 
