@@ -118,9 +118,10 @@ The above code gets transformed before execution is started, JavaScript moves
 the `var` statements, followed by the `function` declarations, at the top of the 
 next surrounding scope.
 
-    var bar, someValue; // default to undefined
+    // var statements got moved here
+    var bar, someValue; // default to 'undefined'
 
-    // test got moved up
+    // the function declartion got moved up too
     function test(data) {
         var goo, i, e; // missing block scope moves these here
         if (false) {
@@ -134,8 +135,8 @@ next surrounding scope.
         }
     }
 
-    bar(); // fails with a TypeError since bar is still undefined
-    someValue = 42;
+    bar(); // fails with a TypeError since bar is still 'undefined'
+    someValue = 42; // assignments are not affected by hoisting
     bar = function() {};
 
     test();
@@ -145,8 +146,28 @@ their bodies, it will also make the results of certain `if` constructs
 non-intuitive.
 
 In the original code it seemed like the `if` statement would modify the *global 
-variable* `goo` while it reallydoes modify the *local variable* after hoisting 
+variable* `goo` while it really does modify the *local variable* after hoisting 
 has been applied.
+
+Without the knowledge about *hoisting*, below code might look like it would
+raise a `ReferenceError`.
+
+    // check whether SomeImportantThing has been initiliazed
+    if (!SomeImportantThing) {
+        var SomeImportantThing = {};
+    }
+
+But of course the above code works due to the `var` statement being moved to the 
+top of the global scope.
+
+    var SomeImportantThing;
+
+    // other code might initiliaze SomeImportantThing here, or not
+
+    // make sure it's there
+    if (!SomeImportantThing) {
+        SomeImportantThing = {};
+    }
 
 ### Name resolution order
 
