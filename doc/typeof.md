@@ -42,7 +42,7 @@ The *Class* refers to the value of the internal `[[Class]]` property of an objec
 > following strings. `Arguments`, `Array`, `Boolean`, `Date`, `Error`, 
 > `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`.
 
-In order to retrieve the value of `[[Class]]` one can has to make use of the
+In order to retrieve the value of `[[Class]]` one has to make use of the
 `toString` method of `Object.prototype`.
 
 ### The Class of an object
