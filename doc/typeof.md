@@ -10,7 +10,7 @@ object.
 
 > **Note:** While `typeof` can also be called with a function like syntax
 > i.e. `typeof(obj)`, this is not a function call. The two parenthesis will
-> behave like normal and there return value will be used as the operand of the
+> behave like normal and the return value will be used as the operand of the
 > `typeof` operator. There is **no** `typeof` function.
 
 ### The JavaScript type table
@@ -42,13 +42,13 @@ The *Class* refers to the value of the internal `[[Class]]` property of an objec
 > following strings. `Arguments`, `Array`, `Boolean`, `Date`, `Error`, 
 > `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`.
 
-In order to retrieve the value of `[[Class]]` one can has to make use of the
+In order to retrieve the value of `[[Class]]` one has to make use of the
 `toString` method of `Object.prototype`.
 
 ### The Class of an object
 
 The specification gives exactly one way of accessing the `[[Class]]` value,
-which the use of `Object.prototype.toString`. 
+with the use of `Object.prototype.toString`. 
 
     function is(type, obj) {
         var clas = Object.prototype.toString.call(obj).slice(8, -1);
