@@ -94,8 +94,8 @@ the assignment of `bar` will override the global variable with the same name.
 
 ### Hoisting
 
-JavaScript **hoists** declarations, that means that both `var` statements and
-`function` declarations will get moved to the top of their respective scope.
+JavaScript **hoists** declarations. This means that both `var` statements and
+`function` declarations will be moved to the top of their enclosing scope.
 
     bar();
     var bar = function() {};
@@ -114,9 +114,9 @@ JavaScript **hoists** declarations, that means that both `var` statements and
         }
     }
 
-The above code gets transformed before execution is started, JavaScript moves
-the `var` statements, followed by the `function` declarations, at the top of the 
-next surrounding scope.
+The above code gets transformed before any execution is started. JavaScript moves
+the `var` statements as well as the `function` declarations to the top of the 
+nearest surrounding scope.
 
     // var statements got moved here
     var bar, someValue; // default to 'undefined'
@@ -141,24 +141,24 @@ next surrounding scope.
 
     test();
 
-The missing block scoping will not only move `var` statements out of loops and
+Missing block scoping will not only move `var` statements out of loops and
 their bodies, it will also make the results of certain `if` constructs 
 non-intuitive.
 
-In the original code it seemed like the `if` statement would modify the *global 
-variable* `goo` while it really does modify the *local variable* after hoisting 
+In the original code the `if` statement seemed to modify the *global 
+variable* `goo`, while actually it modifies the *local variable* - after hoisting 
 has been applied.
 
-Without the knowledge about *hoisting*, below code might look like it would
-raise a `ReferenceError`.
+Without the knowledge about *hoisting*, below code might seem to raise a 
+`ReferenceError`.
 
     // check whether SomeImportantThing has been initiliazed
     if (!SomeImportantThing) {
         var SomeImportantThing = {};
     }
 
-But of course the above code works due to the `var` statement being moved to the 
-top of the global scope.
+But of course, the above works due to the fact that the `var` statement is being 
+moved to the top of the *global scope*.
 
     var SomeImportantThing;
 
