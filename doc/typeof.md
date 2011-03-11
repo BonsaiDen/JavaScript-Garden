@@ -10,7 +10,7 @@ object.
 
 > **Note:** While `typeof` can also be called with a function like syntax
 > i.e. `typeof(obj)`, this is not a function call. The two parenthesis will
-> behave like normal and there return value will be used as the operand of the
+> behave like normal and the return value will be used as the operand of the
 > `typeof` operator. There is **no** `typeof` function.
 
 ### The JavaScript type table
