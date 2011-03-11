@@ -48,7 +48,7 @@ In order to retrieve the value of `[[Class]]` one has to make use of the
 ### The Class of an object
 
 The specification gives exactly one way of accessing the `[[Class]]` value,
-which the use of `Object.prototype.toString`. 
+with the use of `Object.prototype.toString`. 
 
     function is(type, obj) {
         var clas = Object.prototype.toString.call(obj).slice(8, -1);
