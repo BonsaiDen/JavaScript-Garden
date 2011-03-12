@@ -104,8 +104,8 @@ the features of newer JavaScript engines; for example,
 ### In conclusion
 
 It is a **must** to understand the prototypical inheritance model completely 
-before writing complex code which makes use of it. Also, watching the length of 
-the prototype chains and breaking them up if necessary can avoid possible 
+before writing complex code which makes use of it. Also, watch the length of 
+the prototype chains and break them up if necessary to avoid possible 
 performance issues. Further, the native prototypes should **never** be extended 
 unless it is for the sake of compatibility with newer JavaScript features.
 
