@@ -29,9 +29,9 @@ achieved **without** it.
     
 ### `eval` in disguise
 
-The [timeout functions](#timeouts) `setTimeout` and `setInterval` can both take a string as
-their first argument. This string will **always** get executed in the global 
-scope since `eval` is not being called directly in that case.
+The [timeout functions](#timeouts) `setTimeout` and `setInterval` can both take a
+string as their first argument. This string will **always** get executed in the 
+global scope since `eval` is not being called directly in that case.
 
 ### Security issues
 
