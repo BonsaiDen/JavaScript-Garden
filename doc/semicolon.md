@@ -68,7 +68,7 @@ Below is the result of the parser's "guessing" game.
                 'and another long string to pass'
             ); // <- inserted
 
-            return; <- inserted, breaks the return statement
+            return; // <- inserted, breaks the return statement
             { // treated as a block
 
                 // a label and a single expression statement
@@ -79,7 +79,7 @@ Below is the result of the parser's "guessing" game.
 
     // The lines got merged again
     })(window)(function(window) {
-        window.someLibrary = {}; //<- inserted
+        window.someLibrary = {}; // <- inserted
 
     })(window); //<- inserted
 
