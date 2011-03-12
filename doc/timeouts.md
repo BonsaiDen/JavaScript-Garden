@@ -98,7 +98,7 @@ There might still be timeouts that are unaffected by this arbitrary number;
 therefore, is is instead recommended to keep track of all the timeout IDs, so
 they can be cleared specifically.
 
-### Hidden `eval` magic
+### Hidden use of `eval`
 
 `setTimeout` and `setInterval` can also take a string as their first parameter.
 This feature should **never** be used, since it internally makes use of `eval`.

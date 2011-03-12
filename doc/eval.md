@@ -1,4 +1,4 @@
-## The evil `eval`
+## Reasons against `eval`
 
 The `eval` function will execute a string of JavaScript code in the local scope.
 
@@ -40,9 +40,9 @@ it should **never** be used with strings of unknown or untrusted origins.
 
 ### In conclusion
 
-`eval` is **evil**. Never should it be used, any code that makes use of it is to
-be questioned in both its workings and security. In case something requires `eval`
-in order to work, its design is to be questioned and should **not** be used in 
-the first place, a *better design* should be used, that does not require the use 
-of `eval`.
+`eval` should never be used, any code that makes use of it is to be questioned in
+its workings, performance and security. In case something requires `eval` in 
+order to work, its design is to be questioned and should **not** be used in the 
+first place, a *better design* should be used, that does not require the use of 
+`eval`. 
 

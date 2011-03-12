@@ -56,7 +56,7 @@ wrappers.
     };
 
 
-### Modification "magic"
+### Formal parameters and arguments indexes
 
 The `arguments` object creates *getter* and *setter* functions for both its 
 properties as well as the function's formal parameters.
