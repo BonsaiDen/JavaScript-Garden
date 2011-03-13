@@ -61,7 +61,7 @@ By using the **not** operator twice, a value can be converted a boolean.
 
     !!'foo';   // true
     !!'';      // false
-    !!'0';     // false
+    !!'0';     // true
     !!'1';     // true
     !!'-1'     // true
     !!{};      // true
