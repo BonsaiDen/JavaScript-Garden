@@ -35,7 +35,7 @@ def create_index():
 
 
 def create_navigation(file):
-    content = to_content(file)
+    content = to_content(file, False)
 
     articles = []
     links = content[1].split('\n')
@@ -59,14 +59,14 @@ def create_article(link, title, html, top = None):
     return '<article><section><header>%s</header>\n%s</article>' % (title, html)
 
 
-def to_content(file):
+def to_content(file, section=True):
     md = open('%s.md' % file).read().decode('utf-8')
     title = md.split('\n')[0]
     content = md[len(title):].strip()
     html = to_markdown(content)
 
     html = html.replace('<blockquote>', '<aside>').replace('</blockquote>', '</aside>')
-    html = '</section><section><h3>'.join(html.split('<h3>')) + '</section>'
+    html = '</section><section><h3>'.join(html.split('<h3>')) + ('</section>' if section else '')
     html = html.replace('<h3>', '<header><h3>').replace('</h3>', '</h3></header>')
     title = title.strip('#').strip()
     return (title, content, html)
