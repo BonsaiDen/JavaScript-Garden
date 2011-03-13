@@ -11,8 +11,10 @@ var format = new require('fomatto').Formatter();
 // ------------------------------------------------------------------------------
 var Garden = Class(function(options) {
     var languages = fs.readdirSync(options.dir);
+
     this.languages = {};
     this.options = options;
+    this.options.language = this.json([this.options.dir, 'language.json'].join('/'));
 
     var that = this;
     languages.forEach(function(lang) {
@@ -111,8 +113,11 @@ var Garden = Class(function(options) {
 
     toMarkdown: function(text) {
         text = md.Markdown(text).replace(/'/g,'&#39;');
-        return text.replace(/<blockquote>/g, '<aside>').
+        text = text.replace(/<blockquote>/g, '<aside>').
                     replace(/<\/blockquote>/g, '</aside>');
+
+        return text.replace(/<aside>\s+<p><strong>ES5/g,
+                            '<aside class="es5"><p><strong>ES5');
     },
 
     json: function(file) {
@@ -137,10 +142,20 @@ var Garden = Class(function(options) {
         var lang = this.languages[language];
         if (lang) {
             this.log('Rendering "{}" to "{}"...', language, out);
+
+            var languages = [];
+            for(var i in this.languages) {
+                if (this.languages.hasOwnProperty(i)) {
+                    if (this.options.language.listed.indexOf(i) !== -1) {
+                        languages.push(this.languages[i]);
+                    }
+                }
+            }
+
             var options = {
-                baseLanguage: this.options.base,
+                baseLanguage: this.options.language.default,
                 language: language,
-                languages: this.languages,
+                languages: languages,
                 title: lang.index.title,
                 description: lang.index.description,
                 navigation: lang.navigation,
@@ -168,7 +183,7 @@ var Garden = Class(function(options) {
         var that = this;
 
         var dir = [this.options.out];
-        if (lang !== this.options.base) {
+        if (lang !== this.options.language.default) {
             dir.push(lang);
         }
         dir = dir.join('/');
@@ -182,5 +197,5 @@ var Garden = Class(function(options) {
     }
 });
 
-new Garden({dir: 'doc', base: 'en', template: 'garden.jade', out: 'site'});
+new Garden({dir: 'doc', template: 'garden.jade', out: 'site'});
 

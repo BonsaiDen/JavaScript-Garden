@@ -3,14 +3,13 @@
 Constructors in JavaScript are yet again different from many other languages. Any
 function call that is preceded by the `new` keyword acts as a constructor.
 
-Inside the constructor (the called function) the value of `this` refers to a 
+Inside the constructor - the called function - the value of `this` refers to a 
 newly created `Object`. The [`prototype`](#object.prototype) of this **new** 
-object is set to the `prototype` of the function object that was called.
+object is set to the `prototype` of the function object that was invoked as the
+constructor.
 
 If the function that was called has no explicit `return` statement, then it
-implicitly returns the value of `this` (the new object). Otherwise it returns
-the value of the `return` statement, **but** only if the return value is an
-object.
+implicitly returns the value of `this` - the new object. 
 
     function Foo() {
         this.bla = 1;
@@ -25,10 +24,33 @@ object.
 The above calls `Foo` as constructor and sets the `prototype` of the newly
 created object to `Foo.prototype`.
 
-Keep in mind that if you do not use the `new` keyword the function will **not**
-return a new object. While it might still work due to the workings of
-[`this`](#function.this) in JavaScript, it will use the *global* object as the 
-value of `this`.
+In case of an explicit `return` statement the function returns the value 
+specified that statement, **but only** if the return value is an `Object`.                                     
+
+    function Bar() {
+        return 2;
+    }
+    new Bar(); // a new object
+
+    function Test() {
+        this.value = 2;
+
+        return {
+            foo: 1
+        };
+    }
+    new Test(); // the returned object
+
+When the `new` keyword is omitted, the function will **not** return a new object. 
+
+    function Foo() {
+        this.bla = 1; // gets set on the global object
+    }
+    Foo(); // undefined
+
+While the above example might still appear to work in some cases, due to the 
+workings of [`this`](#function.this) in JavaScript, it will use the 
+*global object* as the value of `this`.
 
 ### Factories
 
@@ -50,24 +72,25 @@ explicitly return a value.
     new Bar();
     Bar();
 
-Both these calls return the exact same thing, a newly create object which
-has a property called `method` which is a [Closure](#function.closures).
+Both calls to `Bar` return the exact same thing, a newly create object which
+has a property called `method` on it, that is a 
+[Closure](#function.closures).
 
-Also note that the call `new Bar()` does **not** affect the prototype of the
-returned object. While the prototype will be set on the newly created object,
-`Bar` never returns that object.
+It is also to note that the call `new Bar()` does **not** affect the prototype 
+of the returned object. While the prototype will be set on the newly created 
+object, `Bar` never returns that new object.
 
-So in the above example there is no functional difference between using and
-omitting the `new` keyword.
+In the above example, there is no functional difference between using and
+not using the `new` keyword.
 
 
 ### Creating new objects via factories
 
-An often made recommendation is to **not** use `new` since forgetting the use of 
-it may lead to a lot of bugs.
+An often made recommendation is to **not** use `new` since forgetting its use
+may lead to bugs.
 
-In order to create new object one now has to use a factory and set up the new
-object inside it.
+In order to create new object, one should rather use a factory and construct a 
+new object inside of that factory.
 
     function Foo() {
         var obj = {};
@@ -84,19 +107,22 @@ object inside it.
         return obj;
     }
 
-While the above is robust against forgetting to use `new` and makes the use of
-[private variables](#function.closures) certainly easier, it comes with some down sides.
+While the above is robust against a missing `new` keyword and certainly makes 
+the use of [private variables](#function.closures) easier, it comes with some 
+downsides.
 
  1. It uses more memory since the created objects do **not** share the methods
+    on a prototype.
  2. In order to inherit the factory needs to copy all the methods from another
-    object
- 3. It somehow goes against the spirit of the language, by dropping prototype
-    chain just because a left out `new` keyword can break code
+    object or put that object on the prototype of the new object.
+ 3. Dropping the prototype chain just because of a left out `new` keyword
+    somehow goes against the spirit of the language.
 
-### In Conclusion
+### In conclusion
 
 While omitting the `new` keyword might lead to bugs, it is certainly **not** a 
 reason to drop the use of prototypes altogether. In the end it comes down to 
-which solution is better suited for the needs of the application, it is especially
-important to choose a specific style of object creation **and** stick with it.
+which solution is better suited for the needs of the application, it is 
+especially important to choose a specific style of object creation **and stick** 
+with it.
 

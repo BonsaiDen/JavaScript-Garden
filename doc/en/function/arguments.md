@@ -11,10 +11,10 @@ The `arguments` object is **not** an `Array`. While it has some of the
 semantics of an array - namely the `length` property - it does not inherit from 
 `Array.prototype` and is in fact an `Object`.
 
-Due to this, it is not possible to use standard array methods like `push`,
+Due to this, it is **not** possible to use standard array methods like `push`,
 `pop` or `slice` on `arguments`. While iteration with a plain `for` loop works 
 just fine, it is necessary to convert it to a real `Array` in order to use the 
-array like methods on it.
+standard `Array` methods on it.
 
 ### Converting to an array
 
@@ -23,7 +23,7 @@ The code below will return a new `Array` containing all the elements of the
 
     Array.prototype.slice.call(arguments);
 
-This conversion is **slow**, it is **not** recommended to use it in performance 
+This conversion is **slow**, it is **not recommended** to use it in performance 
 critical sections of code.
 
 ### Passing arguments
@@ -56,13 +56,13 @@ wrappers.
     };
 
 
-### Modification "magic"
+### Formal parameters and arguments indexes
 
-The `arguments` object creates getter and setter functions for both its properties
-as well as the function's formal parameters.
+The `arguments` object creates *getter* and *setter* functions for both its 
+properties as well as the function's formal parameters.
 
 As a result, changing the value of a formal parameter will also change the value
-of the corresponding property of the arguments object, and the other way around.
+of the corresponding property on the `arguments` object, and the other way around.
 
     function foo(a, b, c) {
         arguments[0] = 2;
@@ -79,15 +79,15 @@ of the corresponding property of the arguments object, and the other way around.
 
 ### Performance myths and truths
 
-The `arguments` object is always created the only two exceptions being the cases 
-where it is declared as a name inside of a function or one of its formal 
+The `arguments` object is always created with the only two exceptions being the 
+cases where it is declared as a name inside of a function or one of its formal 
 parameters. It does not matter whether it is used or not.
 
-Both getters and setters are **always** created; thus, using it has nearly 
+Both *getters* and *setters* are **always** created; thus, using it has nearly 
 no performance impact at all, especially not in real world code where there is 
-more than an access to the arguments object properties.
+more than a simple access to the `arguments` object's properties.
 
-> **ES5 Note:** These getters and setters are not created in strict mode.
+> **ES5 Note:** These *getters* and *setters* are not created in strict mode.
 
 However, there is one case which will drastically reduce the performance in
 modern JavaScript engines. That case is the use of `arguments.callee`.
@@ -105,14 +105,15 @@ modern JavaScript engines. That case is the use of `arguments.callee`.
 
 In the above code, `foo` can no longer be a subject to [inlining][1] since it 
 needs to know about both itself and its caller. This not only defeats possible 
-performance gains due to inlining, it also breaks encapsulation since the 
-function may now be dependent on being called in a specific context.
+performance gains that would arise from inlining, it also breaks encapsulation
+since the function may now be dependent on a specific calling context.
 
-It is highly recommended to **never** make use of `arguments.callee` or any of 
+It is **highly recommended** to **never** make use of `arguments.callee` or any of 
 its properties.
 
 > **ES5 Note:** In strict mode, `arguments.callee` will throw a `TypeError` since 
 > its use has been deprecated.
 
 [1]: http://en.wikipedia.org/wiki/Inlining
+
 

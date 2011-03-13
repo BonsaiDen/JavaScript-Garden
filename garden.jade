@@ -20,16 +20,17 @@ html(lang='en')
   body
 
     // Navigation
-    nav
+    nav(id='nav_main')
       div
         ul 
           - each lang in languages
             li(class=lang.id === language ? 'active' : '')
               - if (lang.id === baseLanguage)
-                a(href= '/', title=lang.title) #{lang.id}
+                a(href= '/JavaScript-Garden/', title=lang.title) #{lang.id}
 
               - else
-                a(href= '/' + lang.id, title=lang.title) #{lang.id}
+                a(href= '/JavaScript-Garden/' + lang.id, title=lang.title) #{lang.id}
+
       ul
         - each section in navigation
           li(class='nav_' + section.link.replace(/\./g, '_'))
@@ -38,13 +39,18 @@ html(lang='en')
 
             - if (section.parsed.index || section.articles.length > 0)
               ul
-                - if (section.parsed.index )
-                  li
-                    a(href='#' + section.link + '.intro') Overview
                   
                 - each article in section.articles
                   li
                     a(href='#' + article.link)!=article.title
+
+    // Mobile navigation
+    nav(id='nav_mobile')
+      a(id='nav_prev_section', href='#') prev section
+        span(class='nav_section_name') section name
+
+      a(id='nav_next_section', href='#') next section
+        span(class='nav_section_name') section name
 
     // Sections
     - each section in sections

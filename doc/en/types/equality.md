@@ -1,14 +1,13 @@
-## Equality and Comparisons
+## Equality and comparisons
 
-JavaScript has two different ways of comparing the values of objects for else
-equality. 
+JavaScript has two different ways of comparing the values of objects for equality. 
 
-### The Equals Operator
+### The equals operator
 
 The equals operator consists of two equal signs: `==`
 
-JavaScript features *weak typing*, that means, the equals operator does
-**coerce** types in order to compare them.
+JavaScript features *weak typing*, that means, that the equals operator 
+**coerces** types in order to compare them.
     
     ""           ==   "0"           // false
     0            ==   ""            // true
@@ -21,19 +20,19 @@ JavaScript features *weak typing*, that means, the equals operator does
     " \t\r\n"    ==   0             // true
 
 The above table shows the results of the type coercion and it is the main reason 
-why the use of `==` is regarded as bad practice, it introduces hard to track down
-bugs due to its complicated conversion rules.
+why the use of `==` is widely regarded as bad practice, it introduces hard to 
+track down bugs due to its complicated conversion rules.
 
 Additionally there is also a performance impact when type coercion is in play;
 for example, a string has to be converted to a number before it can be compared
-with another number.
+to another number.
 
-### The Strict Equals Operator
+### The strict equals operator
 
 The strict equals operator consists of **three** equal signs: `===`
 
 Other than the normal equals operator, the strict equals operator does **not**
-coerce the types of its operands.
+perform type coercion between its operands.
 
     ""           ===   "0"           // false
     0            ===   ""            // false
@@ -45,13 +44,11 @@ coerce the types of its operands.
     null         ===   undefined     // false
     " \t\r\n"    ===   0             // false
 
-The above results not only make a lot more sense, they also get rid of most of
-the weak typing in the language. This makes writing code a lot easier since
-things will break earlier and a lot of subtle bugs can be avoided.
+The above results are a lot clearer and allow for early breakage of code. This
+hardens code to a certain degree and also gives performance improvements in case
+the operands are of different types.
 
-It will also be a lot faster when the operands are of different types.
-
-### Comparing Objects
+### Comparing objects
 
 While both `==` and `===` are stated as **equality** operators, they behave 
 different when at least one of their operands happens to be an `Object`.
@@ -62,13 +59,13 @@ different when at least one of their operands happens to be an `Object`.
     var foo = {};
     foo === foo;                 // true
 
-Here both operators compare for **identity** and not equality - that is, they
+Here both operators compare for **identity** and **not** equality; that is, they
 will compare for the same **instance** of the object, much like `is` in Python 
 and a pointer comparison in C do.
 
-### In cConclusion
+### In conclusion
 
-It is highly recommended to **only** use the strict equals operator. In cases
-where types need to be coerced, it should be done [explicitly](#types.casting)
-and not left to the "magic" of the languages complicated coercing rules.
+It is highly recommended to only use the **strict equals** operator. In cases
+where types need to be coerced, it should be done [explicitly](#types.casting) 
+and not left to the language's complicated coercion rules.
 

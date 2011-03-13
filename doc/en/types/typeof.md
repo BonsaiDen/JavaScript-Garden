@@ -1,7 +1,7 @@
-## The `typeof` Operator
+## The `typeof` operator
 
 The `typeof` operator (together with 
-[`instanceof`](#instanceof)) is probably the biggest 
+[`instanceof`](#types.instanceof)) is probably the biggest 
 design flaw of JavaScript, as it is near of being **completely broken**.
 
 Although `instanceof` still has its limited uses, `typeof` really has only one
@@ -10,7 +10,7 @@ object.
 
 > **Note:** While `typeof` can also be called with a function like syntax
 > i.e. `typeof(obj)`, this is not a function call. The two parenthesis will
-> behave like normal and there return value will be used as the operand of the
+> behave like normal and the return value will be used as the operand of the
 > `typeof` operator. There is **no** `typeof` function.
 
 ### The JavaScript type table
@@ -33,8 +33,8 @@ object.
     {}                  Object     object
     new Object()        Object     object
 
-In the above table *Type* refers to the value the `typeof` operator returns. As
-you can see this is anything but consistent.
+In the above table *Type* refers to the value, that the `typeof` operator returns.
+As can be clearly seen, this value is anything but consistent.
 
 The *Class* refers to the value of the internal `[[Class]]` property of an object.
 
@@ -42,13 +42,13 @@ The *Class* refers to the value of the internal `[[Class]]` property of an objec
 > following strings. `Arguments`, `Array`, `Boolean`, `Date`, `Error`, 
 > `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`.
 
-In order to retrieve the value of `[[Class]]` one can has to make use of the
-`toString` method of `Object`.
+In order to retrieve the value of `[[Class]]` one has to make use of the
+`toString` method of `Object.prototype`.
 
 ### The Class of an object
 
 The specification gives exactly one way of accessing the `[[Class]]` value,
-which the use of `Object.prototype.toString`. 
+with the use of `Object.prototype.toString`. 
 
     function is(type, obj) {
         var clas = Object.prototype.toString.call(obj).slice(8, -1);
@@ -59,10 +59,11 @@ which the use of `Object.prototype.toString`.
     is('String', new String('test')); // true
 
 In the above example, `Object.prototype.toString` gets called with the value of
-[this](#this) being set to the object whose `[[Class]]` value should be retrieved.
+[this](#function.this) being set to the object whose `[[Class]]` value should be 
+retrieved.
 
 > **ES5 Note:** For convenience the return value of `Object.prototype.toString` 
-> for both null` and `undefined` was **changed** from `Object` to `Null` and 
+> for both `null` and `undefined` was **changed** from `Object` to `Null` and 
 > `Undefined` in ECMAScript 5.
 
 ### Testing for undefined variables
@@ -82,4 +83,5 @@ in the specification; thus, they can differ across various implementations.
 
 Unless checking whether a variable is defined, `typeof` should be avoided at
 **all costs**.
+
 

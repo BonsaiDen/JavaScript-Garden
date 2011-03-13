@@ -68,13 +68,15 @@ body {
 	font-family: Georgia, serif;
 }
 
+/* Navigation */
+
 nav {
 	position: fixed;
 	margin-left: 750px;
 	top: 0;
     padding-bottom: 20px;
 	height: 100%;
-	background-color: #556c81;
+	
 	text-shadow: none;
 	width: 240px;
 }
@@ -98,6 +100,83 @@ nav > div ul {
     height: 40px;
 }
 
+nav li {
+	font-size: 16px;
+    margin: 0px;
+    list-style: none;
+}
+
+nav ul li:last-child a {
+	padding-bottom: 9px;
+}
+
+nav > ul > li {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Sprite map for sidebar icons */
+nav li h1 a {
+	font-size: 15px;
+	font-weight: bold;
+	padding: 7px 20px 10px 32px;
+	background-image: url('../image/sidebar-icon.png');
+	background-repeat: no-repeat;
+	background-position: 3px 3px;
+}
+
+nav li.nav_intro h1 a		{ background-image: none; padding-left: 20px; }
+nav li.nav_object h1 a		{ background-position: 5px 3px; }
+nav li.nav_function h1 a	{ background-position: 5px -60px; }
+nav li.nav_array h1 a		{ background-position: 5px -28px; }
+nav li.nav_types h1 a		{ background-position: 5px -90px; }
+nav li.nav_core h1 a		{ background-position: 5px -122px; }
+nav li.nav_other h1 a		{ background-position: 5px -153px; }
+
+nav a {
+	color: white;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	display: block;
+	padding: 4px 20px 6px;
+}
+
+/* Background color for nav elements to animate */
+
+#nav_main,
+nav a,
+nav ul,
+nav li {
+	background-color: #556c81;
+}
+
+nav a:hover,
+nav li.active,
+nav li.active a {
+	background-color: #344f68;
+}
+
+nav li.active a:hover,
+nav li a.active,
+nav li a.active:hover {
+	background-color: #0D2E4C;
+}
+
+nav a:hover, nav ul.active a:hover, nav a, nav li {
+	-moz-transition-property: background-color, color;
+	-moz-transition-duration: 0.3s;
+	
+	-webkit-transition-property: background-color, color;
+	-webkit-transition-duration: 0.3s;
+	
+	-o-transition-property: background-color, color;
+	-o-transition-duration: 0.3s;
+}
+
+#nav_mobile {
+	display: none;
+}
+
+
 section {
 	border-bottom: 4px dotted #8696a5;
 	font-size: 16px;
@@ -119,65 +198,6 @@ section header {
 section article:last-child,
 section header:last-child {
 	border-bottom: 0;
-}
-
-nav li h1 a {
-	font-size: 15px;
-	font-weight: bold;
-	padding: 7px 20px 10px 32px;
-	background: url('../image/sidebar-icon.png') no-repeat 3px 3px;
-}
-
-nav h1 a:hover {
-	background-color: #344f68;
-}
-
-nav li {
-	font-size: 16px;
-    margin: 0px;
-    list-style: none;
-	background-color: #556c81;
-}
-
-nav > ul > li {
-	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-nav li.nav_intro h1 a		{ background-image: none; }
-nav li.nav_object h1 a		{ background-position: 5px 3px; }
-nav li.nav_function h1 a	{ background-position: 5px -60px; }
-nav li.nav_array h1 a		{ background-position: 5px -28px; }
-nav li.nav_types h1 a		{ background-position: 5px -90px; }
-nav li.nav_core h1 a		{ background-position: 5px -122px; }
-nav li.nav_other h1 a		{ background-position: 5px -153px; }
-
-nav li.active {
-	background-color: #344f68;
-}
-
-nav li.active li {
-	background-color: #344f68;
-}
-
-nav a {
-	color: white;
-	font-family: Arial, sans-serif;
-	font-size: 13px;
-	display: block;
-	padding: 4px 20px 6px;
-}
-
-
-nav li ul {
-	padding-bottom: 5px;
-}
-
-nav ul.active a:hover, nav a.active {
-	background: #0D2E4C;
-}
-
-nav a:hover {
-	background-color: #344f68;
 }
 
 article ul, p {
@@ -221,15 +241,16 @@ h2, h3 {
 
 section h1 {
 	font-size: 2.6em;
-	padding: 1.2em 0 1.2em;
+	padding: 1.2em 0 0.6em;
 	font-weight: normal;
+	text-shadow: 0 1px 1px #000;
 }
 
 section header + section h1 {
 	
 }
 
-/* Adding graphics to the side  */
+/* Adding 'icon' to the side of sections */
 
 section:after {
 	position: absolute;
@@ -259,6 +280,8 @@ section:after {
 	font-weight: bold;
 }
 
+/* Headers */
+
 h2 {
 	font-size: 1.5em;
 	margin: 0 0 0.7em;
@@ -274,6 +297,8 @@ article div {
 	position: relative;
 }
 
+/* Asides */
+
 aside {
 	border-bottom: 1px solid #9eabb7;
 	padding-bottom: 0.625em;
@@ -287,12 +312,29 @@ aside:last-child {
 	bottom: 0;
 }
 
+aside:hover {
+	opacity: 1;
+}
+
 aside p {
 	margin: 0;
 	font-size: 0.8125em;
 	font-family: Arial;
 	line-height: 1.3em;
 }
+
+aside.es5:after {
+	content: 'ES5';
+	font-family: Georgia, serif;
+	position: absolute;
+	font-size: 32px;
+	font-style: italic;
+	top: -18px;
+	right: -3px;
+	opacity: 0.25;
+}
+
+/* Article elements */
 
 section ol {
     margin-bottom: 2em;
@@ -345,33 +387,57 @@ a abbr {
 .dec { color: #606; }
 .pln { color: #FFAA3E; }
 
+/* "Tablet" Styles */
+
 @media screen and (max-width: 1000px) {
 	body {
 		width: 100%;
+		overflow-x: hidden;
 	}
 
-	section {
-		padding-left: 30px;
+	section, footer {
+		margin-left: 30px;
 		margin-right: 0;
 	}
-
-	nav {
-		width: 70%;
-		min-width: 600px;
-		height: auto;
-		margin: 0 auto;
-		position: absolute;
-		top: 40px;
+	
+	#nav_main {
+		display: none;
+	}
+	
+	#nav_mobile {
+		position: fixed;
+		width: 24%;
+		right: 0;
+		height: 0;
+		display: block;
 		z-index: 1000;
-		text-align: center;
 	}
 	
-	nav > ul {
-		-moz-column-count: 3;
+	#nav_mobile a {
+		display: block;
+		background-color: #556C81;
+		padding: 8px 15px;
+		margin-bottom: 1px;
+		text-align: right;
 	}
 	
-	nav ul ul {
-		-moz-column-break-inside: avoid;
+	#nav_next_section, #nav_prev_section {
+		font-size: 10px;
+		text-transform: uppercase;
+	}
+	
+	#nav_next_section .nav_section_name,
+	#nav_prev_section .nav_section_name {
+		display: block;
+		font-size: 14px;
+		margin-top: 3px;
+		font-weight: bold;
+		line-height: 1.3em;
+		text-transform: none;
+	}
+	
+	#show_menu {
+		font-weight: bold;
 	}
 	
 	pre {
@@ -385,15 +451,21 @@ a abbr {
 	}
 
 	aside, section:after {
-		right: -32%;
+		right: -33%;
 		width: 30%;
+	}
+	
+	section:after {
+		display: none;
 	}
 }
 
-@media screen and (max-width: 600px) {
+/* "Smartphone" styles */
+
+@media screen and (max-width: 600px),
+screen and (-webkit-min-device-pixel-ratio: 2) {
 	section {
-		padding-right: 30px;
-		font-size: 15px;
+		margin-right: 30px;
 		width: auto;
 	}
 	
@@ -415,8 +487,12 @@ a abbr {
 		font-size: 13px;
 	}
 	
-	nav {
-		width: 100%;
-		min-width: 0;
+	#nav_mobile {
+		width: 160px;
+	}
+	
+	#nav_next_section .nav_section_name,
+	#nav_prev_section .nav_section_name {
+		font-size: 13px;
 	}
 }

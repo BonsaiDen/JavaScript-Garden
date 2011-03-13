@@ -5,7 +5,7 @@ body {
 	color: #000;
 }
 
-body > div {
+section {
 	margin-right: 0;
 }
 
@@ -13,8 +13,13 @@ nav {
     display: none;
 }
 
-header h1 {
+#intro h1 {
     font-size: 35px;
+	padding: 20px 0;
+}
+
+header h1 {
+	font-size: 20px;
 	padding: 20px 0;
 }
 
@@ -35,7 +40,8 @@ h2, h3 {
 	page-break-after: avoid;
 }
 
-header h1, h2, h3 {
+header h1, #intro h1,
+h2, h3 {
 	text-shadow: none;
 }
 
@@ -53,11 +59,10 @@ article {
 	width: 78%;
 	padding-bottom: 0;
 	border-bottom-width: 2px;
-    page-break-before: always;
 }
 
 header article {
-    page-break-before: auto;
+	
 }
 
 aside {
@@ -65,6 +70,10 @@ aside {
 	right: -28%;
 	padding-bottom: 6px;
 	opacity: 1;
+}
+
+aside.es5:after {
+	display: none;
 }
 
 a {

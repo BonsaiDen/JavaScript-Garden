@@ -1,96 +1,197 @@
-$(document).ready(function() {
-    var instant = true,
-        navHeight = $('nav > ul').height();
+// A thingy to handle the sections ----------------------------------------------
+// ------------------------------------------------------------------------------
+function Sections(page) {
+    this.page = page;
+    this.init();
+}
 
-    function checkSize() {
-        var full = $(window).height() >= navHeight;
-        $('li > ul').each(function() {
-            var ul = $(this);
-            if (!ul.hasClass('active')) {
-                $(this).toggle(full);
-            }
-        });
-    }
-    checkSize();
-    $(window).resize(checkSize);
+Sections.prototype = {
+    init: function(attribute) {
+        this.heights = this.page.nav.find('ul').map(function(idx, ele) {
+            return $(this).outerHeight();
 
-    var articles = $.map($('body [id]'), function(el) {
-        return {
-            top: $(el).offset().top,
-            height: $(el).height(),
-            id: el.id
+        }).get();
+
+        this.links = {
+            next: $('#nav_next_section'),
+            prev: $('#nav_prev_section')
         };
-    });
+    },
 
-    var initSelection = setTimeout(highlightSection, 50);
-    $(document).scroll(function() {
-        clearTimeout(initSelection);
-        highlightSection();
-        instant = false;
-    });
+    map: function() {
+        this.names = $('section [id]').map(function(idx, ele) {
+            return {
+                id: this.id.replace('.intro', ''),
+                offset: $(this).offset().top - 20,
+                title: $(this).find(':header:first').text()
+            };
 
-    function highlightSection() {
-        var offset = $(window).scrollTop() + 50;
-        var activeElements = [];
-        for(var i = 0, l = articles.length; i < l; i++) {
-            var a = articles[i];
-            if (offset > a.top && offset <= a.top + a.height + 20) {
-                activeElements.push(a.id);
+        }).get();
+    },
+
+    highlight: function() {
+        var scroll = this.page.window.scrollTop(),
+            articleID = this.names[this.names.length - 1].id;
+
+        for(var i = 0, l = this.names.length; i < l; i++) {
+            if (this.names[i].offset > scroll) {
+                articleID = this.names[i - 1].id;
+                break;
             }
         }
 
-        for(var i = 0, l = articles.length; i < l; i++) {
-            var a = articles[i];
-            var active = $.inArray(a.id, activeElements) !== -1;
-            var el;
-            if (a.id.indexOf('.') !== -1) {
-                el = $('nav li > a[href="#' + a.id + '"]');
+        var sectionID = articleID.split('.')[0],
+            page = this.page,
+            nav = page.nav;
+
+        if (sectionID !== page.section) {
+            nav.filter('.nav_' + page.section).removeClass('active');
+            nav.filter('.nav_' + sectionID).addClass('active');
+
+            this.expand(sectionID);
+            page.section = sectionID;
+        }
+
+        if (articleID !== page.article) {
+            nav.find('a[href=#' + page.article + ']').removeClass('active');
+            nav.find('a[href=#' + articleID + ']').addClass('active');
+
+            page.article = articleID;
+            this.mobile(articleID);
+        }
+    },
+
+    expand: function (sectionName) {
+        var nav = this.page.nav,
+            index = nav.find('a[href=#' + sectionName + ']')
+                       .closest('nav > ul > li').index();
+
+        var height = this.page.window.height()
+                     - $('nav > div').height()
+                     - (33 * this.heights.length),
+
+                     sections = [],
+                     currentHeight = 0,
+                     distance = 0;
+
+        while ((currentHeight + this.heights[index]) < height) {
+            sections.push(index);
+            currentHeight += this.heights[index];
+
+            distance = -distance + (distance >= 0 ? -1 : 1);
+            index += distance;
+
+            if (index < 0 || index >= this.heights.length) {
+                distance = -distance + (distance >= 0 ? -1 : 1);
+                index += distance;
+            }
+        }
+
+        for(var i = 0, len = nav.length; i < len; i++) {
+            if ($.inArray(i, sections) === -1) {
+                nav.eq(i).find('ul').slideUp();
 
             } else {
-                var li = $('nav h1 a[href="#' + a.id + '"]').parent();
-                var ul = li.next('ul');
-                el = li.parent();
-
-                if (active) {
-                    if (!el.hasClass('active')) {
-                        ul.slideDown(instant ? 0 : 500);
-                    }
-                    ul.addClass('active');
-
-                } else {
-                    if (el.hasClass('active')) {
-                        ul.slideUp(instant ? 0 : 500);
-                    }
-                    ul.removeClass('active');
-                }
-            }
-            if (active && !el.hasClass('active')) {
-                el.addClass('active');
-            } else if (!active && el.hasClass('active')) {
-                el.removeClass('active');
+                nav.eq(i).find('ul').slideDown();
             }
         }
-    }
+    },
 
-    $('nav > ul > li h1').each(function(i) {
-        var ul = $(this).parent().find('ul');
-        $(this).click(function() {
-            if (!ul.hasClass('active')) {
-                $('nav > ul > li > ul').each(function() {
-                    if (!$(this).hasClass('active') && this !== ul[0]) {
-                        $(this).hide();
-                    }
-                });
-                ul.slideToggle(100);
+    mobile: function(index){
+        for(var i = 0; i < this.names.length; i++) {
+            if (this.names[i].id === index) {
+                this.updateLinks(i);
+                break;
             }
-        });
-    });
-    if ($.mobile) {
-        $('body').addClass('mobile');
-    }
-    prettyPrint();
-});
+        }
+    },
 
+    updateLinks: function(index) {
+        if (index !== this.names.length - 1) {
+            this.setLink(this.links.next, this.names[index + 1]);
+        } else {
+            this.links.next.slideUp(100);
+        }
+
+        if (index !== 0) {
+            this.setLink(this.links.prev, this.names[index - 1]);
+        } else {
+            this.links.prev.slideUp(100);
+        }
+    },
+
+    setLink: function(ele, data) {
+        ele.slideDown(100).attr('href', '#' + data.id)
+                       .find('.nav_section_name').text(data.title);
+    }
+};
+
+
+// This more or less controls the page ------------------------------------------
+// ------------------------------------------------------------------------------
+function Page() {
+    this.window = $(window);
+    this.nav = $('nav > ul > li');
+    this.sections = new Sections(this);
+    this.section = null;
+    this.article = null;
+    this.init();
+}
+
+Page.prototype = {
+    init: function() {
+        var that = this;
+
+        this.scrollLast = 0;
+        this.window.scroll(function() {
+            that.onScroll();
+        });
+
+        this.resizeTimeout = null;
+        this.window.resize(function() {
+            that.onResize();
+        });
+
+        that.sections.map();
+        setTimeout(function() {
+            that.sections.highlight();
+
+        }, 10);
+
+        // Mobile, for position: fixed
+        if ($.mobile) {
+            $('#nav_mobile').css('position', 'absolute');
+            this.window.scroll(function(){
+                $('#nav_mobile').offset({
+                    top: that.window.scrollTop()
+                });
+            });
+        }
+    },
+
+    onScroll: function() {
+        if ((+new Date()) - this.scrollLast > 50) {
+            this.scrollLast = +new Date();
+            this.sections.highlight();
+        }
+    },
+
+    onResize: function() {
+        clearTimeout(this.resizeTimeout);
+
+        var that = this;
+        this.resizeTimeout = setTimeout(function() {
+            that.sections.map();
+            that.sections.expand(that.section);
+
+        }, 50);
+    }
+};
+
+var Garden = new Page();
+prettyPrint();
+
+// GA tracking code
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-20768522-1']);
 _gaq.push(['_trackPageview']);
