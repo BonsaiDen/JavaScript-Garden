@@ -95,7 +95,7 @@ Due to the first case `test` now acts like like a plain function call; therefore
 `this` inside it will no longer refer to `someObject`.
 
 While the late binding of `this` might seem like a bad idea at first, it is in 
-fact what makes [prototypical inheritance](#object.prototype) work. 
+fact what makes [prototypal inheritance](#object.prototype) work. 
 
     function Foo() {}
     Foo.prototype.method = function() {};

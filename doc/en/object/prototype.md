@@ -1,15 +1,15 @@
 ## The Prototype
 
 JavaScript does not feature a classical inheritance model, instead it uses a 
-*prototypical* one. 
+*prototypal* one. 
 
 While this is often considered to be one of JavaScript's weaknesses, the 
-prototypical inheritance model is in fact more powerful than the classic model. 
+prototypal inheritance model is in fact more powerful than the classic model. 
 It is for example fairly trivial to build a classic model on top of it, while the
 other way around is a far more difficult task.
 
 Due to the fact that JavaScript is basically the only widely used language that
-features prototypical inheritance, it takes some time to adjust to the 
+features prototypal inheritance, it takes some time to adjust to the 
 differences between the two models. 
 
 The first major difference is that inheritance in JavaScript is done by using so
@@ -104,7 +104,7 @@ the features of newer JavaScript engines; for example,
 
 ### In conclusion
 
-It is a **must** to understand the prototypical inheritance model completely 
+It is a **must** to understand the prototypal inheritance model completely 
 before writing complex code which makes use of it. Also, watch the length of 
 the prototype chains and break them up if necessary to avoid possible 
 performance issues. Further, the native prototypes should **never** be extended 
