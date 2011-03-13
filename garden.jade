@@ -1,0 +1,86 @@
+!!! 5
+html(lang='en')
+  head
+    title #{title}
+    meta(charset='utf-8')
+    meta(name='description', content=description)
+
+    - if (language === baseLanguage)
+      link(rel='stylesheet', href='style/garden.css', media='all')
+      link(rel='stylesheet', href='style/print.css', media='print')
+
+    - else
+      link(rel='stylesheet', href='../style/garden.css', media='all')
+      link(rel='stylesheet', href='../style/print.css', media='print')
+
+    <!--[if lt IE 9]>
+    <script src="/javascript/html5.js"></script>
+    <![endif]-->
+
+  body
+
+    // Navigation
+    nav(id='nav_main')
+      div
+        ul 
+          - each lang in languages
+            li(class=lang.id === language ? 'active' : '')
+              - if (lang.id === baseLanguage)
+                a(href= '/JavaScript-Garden/', title=lang.title) #{lang.id}
+
+              - else
+                a(href= '/JavaScript-Garden/' + lang.id, title=lang.title) #{lang.id}
+
+      ul
+        - each section in navigation
+          li(class='nav_' + section.link.replace(/\./g, '_'))
+            h1
+              a(href='#' + section.link) #{section.title}
+
+            - if (section.parsed.index || section.articles.length > 0)
+              ul
+                  
+                - each article in section.articles
+                  li
+                    a(href='#' + article.link)!=article.title
+
+    // Mobile navigation
+    nav(id='nav_mobile')
+      a(id='nav_prev_section', href='#') prev section
+        span(class='nav_section_name') section name
+
+      a(id='nav_next_section', href='#') next section
+        span(class='nav_section_name') section name
+
+    // Sections
+    - each section in sections
+      section(id=section.link)
+
+        // Introduction
+        header(id=section.link + '.intro')
+          h1 #{section.title}
+          - if (section.parsed.index)
+            div!=section.parsed.index.text
+
+        // Articles
+        - each article in section.articles
+          article(id=article.link)
+            h2!=article.title
+
+            - each sub in article.parsed.subs
+              div!=sub
+
+    // Footer
+    footer
+      p Copyright &copy; 2011. Built with
+        | 
+        a(href='http://nodejs.org/') Node.js
+        | using a
+        a(href='https://github.com/visionmedia/jade/') jade
+        | template.
+
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js')
+    script(src='javascript/prettify.js')
+    script(src='javascript/plugin.js')
+    script(src='javascript/garden.js')
+
