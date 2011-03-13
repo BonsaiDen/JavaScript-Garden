@@ -73,17 +73,22 @@ $(document).ready(function() {
       Mobile, and small screen stuff
     */
     
+    var $w = $(window),
+        width = $w.width();
+    
     if($.mobile) {
+        var nav = $('nav')[0];
         $('body').addClass('mobile');
-        
-        var $w = $(window),
-            width = $w.width();
         
         if(width > 1000) {
             $w.scroll(function(){
-                
+                nav.top.style = window.pageYOffset + 'px';
             });
         }
+    }
+    
+    if(width < 1000) {
+        
     }
     
     prettyPrint();
