@@ -96,7 +96,7 @@ other built in prototypes.
 
 This technique is called [monkey patching][1] and breaks *encapsulation*. While 
 used by widely spread frameworks such as [Prototype][2], there is still no good 
-reason for cluttering built in types with additional *non-standard* functionality.
+reason for cluttering built-in types with additional *non-standard* functionality.
 
 The **only** good reason for extending a built-in prototype is to backport 
 the features of newer JavaScript engines; for example, 
