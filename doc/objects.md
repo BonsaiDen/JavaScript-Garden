@@ -59,7 +59,7 @@ the use of property names that would otherwise lead to a syntax error.
 ### Deleting properties
 
 The only way to actually remove a property from an object is to use the `delete`
-operator; setting the property to `undefined` or `null` does **only** remove the
+operator; setting the property to `undefined` or `null` **only** remove the
 value associated with the property, but not the key.
 
     var obj = {
@@ -77,7 +77,7 @@ value associated with the property, but not the key.
         }
     }
 
-The above outputs both `bar undefined` and `foo null` - only `baz` got actually
+The above outputs both `bar undefined` and `foo null` - only `baz` was
 removed and is therefore missing from the output.
 
 ### Notation of keys
@@ -91,9 +91,9 @@ Object properties can be both notated as plain characters and as strings. Due to
 another mis-design in JavaScript's parser, the above will throw 
 a `SyntaxError` prior to ECMAScript 5.
 
-This error arises from the fact that `delete` is a *keyword* of the language;
-therefore, it must be notated as a *string literal* in order to ensure working
-code under older JavaScript engines.
+This error arises from the fact that `delete` is a *keyword*; therefore, it must be 
+notated as a *string literal* to ensure that it will be correctly interpreted by
+older JavaScript engines.
 
 [1]: http://en.wikipedia.org/wiki/Hashmap
 
