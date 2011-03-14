@@ -1,0 +1,498 @@
+/* Eric Meyer's reset.css v1.0 | 20080212 */
+
+html, body, div, span,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, cite, code,
+del, em, img, ins, kbd,
+strong, sub, sup,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+article, aside, figure, footer, header, hgroup,  menu, nav, section {
+	display: block;
+}
+
+body {
+	width: 960px;
+	margin: 0 auto;
+	font-family: Georgia, 'Nimbus Roman No9 L', 'Liberation Serif', serif;
+	font-size: 14px;
+	background: #0D2E4C;
+	color: #E6EAED;
+}
+
+#intro h1 {
+	padding: 40px 0 30px;
+	margin: 0;
+	font-size: 75px;
+	line-height: 1.2em;
+	font-weight: normal;
+	text-shadow: 0 2px 2px #000;
+	font-family: Georgia, serif;
+}
+
+/* Navigation */
+
+nav {
+	position: fixed;
+	margin-left: 750px;
+	top: 0;
+    padding-bottom: 20px;
+	height: 100%;
+	
+	text-shadow: none;
+	width: 240px;
+}
+
+nav > div li {
+    float: left;
+    margin-right: 4px;
+}
+
+nav > div li a {
+	padding: 7px 10px 5px 10px;
+}
+
+nav > div li.active a {
+	border-top: 4px solid #0D2E4C;
+	padding: 3px 10px 5px 10px;
+    color: #FFC76D;
+}
+
+nav > div ul {
+    height: 40px;
+}
+
+nav li {
+	font-size: 16px;
+    margin: 0px;
+    list-style: none;
+}
+
+nav ul li:last-child a {
+	padding-bottom: 9px;
+}
+
+nav > ul > li {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Sprite map for sidebar icons */
+nav li h1 a {
+	font-size: 15px;
+	font-weight: bold;
+	padding: 7px 20px 10px 32px;
+	background-image: url('../image/sidebar-icon.png');
+	background-repeat: no-repeat;
+	background-position: 3px 3px;
+}
+
+nav li.nav_intro h1 a		{ background-image: none; padding-left: 20px; }
+nav li.nav_object h1 a		{ background-position: 5px 3px; }
+nav li.nav_function h1 a	{ background-position: 5px -60px; }
+nav li.nav_array h1 a		{ background-position: 5px -28px; }
+nav li.nav_types h1 a		{ background-position: 5px -90px; }
+nav li.nav_core h1 a		{ background-position: 5px -122px; }
+nav li.nav_other h1 a		{ background-position: 5px -153px; }
+
+nav a {
+	color: white;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	display: block;
+	padding: 4px 20px 6px;
+}
+
+/* Background color for nav elements to animate */
+
+#nav_main,
+nav a,
+nav ul,
+nav li {
+	background-color: #556c81;
+}
+
+nav a:hover,
+nav li.active,
+nav li.active a {
+	background-color: #344f68;
+}
+
+nav li.active a:hover,
+nav li a.active,
+nav li a.active:hover {
+	background-color: #0D2E4C;
+}
+
+nav a:hover, nav ul.active a:hover, nav a, nav li {
+	-moz-transition-property: background-color, color;
+	-moz-transition-duration: 0.3s;
+	
+	-webkit-transition-property: background-color, color;
+	-webkit-transition-duration: 0.3s;
+	
+	-o-transition-property: background-color, color;
+	-o-transition-duration: 0.3s;
+}
+
+#nav_mobile {
+	display: none;
+}
+
+
+section {
+	border-bottom: 4px dotted #8696a5;
+	font-size: 16px;
+	margin-right: 410px;
+	position: relative;
+}
+
+section article,
+section header {
+	padding-bottom: 20px;
+	border-bottom: 1px solid #8696a5;
+}
+
+#intro article, #intro header {
+	padding-bottom: 0px;
+	border-bottom: 0;
+}
+
+section article:last-child,
+section header:last-child {
+	border-bottom: 0;
+}
+
+article ul, p {
+	line-height: 1.6em;
+	margin-bottom: 1.25em;
+}
+
+pre, code {
+	font-family: Consolas, Inconsolata, 'Bitstream Vera Sans Mono', Menlo, Monaco, 'Andale Mono', 'Courier New', monospace;
+}
+
+pre {
+	padding: 8px 0 12px 20px;
+	border-left: 4px solid #566D82;
+	margin-bottom: 1.25em;
+	background: #0F192A;
+}
+
+code {
+	font-size: 0.875em;
+}
+
+section pre code {
+	font-size: 0.8125em;
+	line-height: 1.4em;
+    padding: 0px;
+    margin-top: 3px;
+    margin-bottom: 1px;
+	background: #0F192A;
+}
+
+section code {
+	background: #314D67;
+	padding: 3px 4px 1px;
+}
+
+h2, h3 {
+	font-family: Arial, sans-serif;
+	text-shadow: 0 1px 1px #000;
+}
+
+section h1 {
+	font-size: 2.6em;
+	padding: 1.2em 0 0.6em;
+	font-weight: normal;
+	text-shadow: 0 1px 1px #000;
+}
+
+section header + section h1 {
+	
+}
+
+/* Adding 'icon' to the side of sections */
+
+section:after {
+	position: absolute;
+	top: 30px;
+	right: -190px;
+	font-size: 80px;
+	color: rgba(255, 255, 255, 0.3);
+	width: 180px;
+	text-align: center;
+}
+
+#object:after { content: '{ }'; }
+#array:after { content: '[ ]'; }
+
+#function:after {
+	content: 'f(x)';
+	font-style: italic;
+}
+
+#types:after { content: '='; font-weight: bold; }
+#core:after { content: 'js'; }
+
+#other:after {
+	content: '?';
+	font-size: 100px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+/* Headers */
+
+h2 {
+	font-size: 1.5em;
+	margin: 0 0 0.7em;
+	padding-top: 1.5em;
+}
+
+h3 {
+	font-size: 1.125em;
+	margin: 1.33em 0 0.88em;
+}
+
+article div {
+	position: relative;
+}
+
+/* Asides */
+
+aside {
+	border-bottom: 1px solid #9eabb7;
+	padding-bottom: 0.625em;
+	position: absolute;
+	width: 180px;
+	right: -190px;
+	opacity: 0.7;
+}
+
+aside:last-child {
+	bottom: 0;
+}
+
+aside:hover {
+	opacity: 1;
+}
+
+aside p {
+	margin: 0;
+	font-size: 0.8125em;
+	font-family: Arial;
+	line-height: 1.3em;
+}
+
+aside.es5:after {
+	content: 'ES5';
+	font-family: Georgia, serif;
+	position: absolute;
+	font-size: 32px;
+	font-style: italic;
+	top: -18px;
+	right: -3px;
+	opacity: 0.25;
+}
+
+/* Article elements */
+
+section ol {
+    margin-bottom: 2em;
+	list-style: decimal;
+}
+
+section ul {
+	list-style: square;
+}
+
+section li {
+	font-size: 0.9375em;
+	margin-top: 6px;
+	line-height: 1.3em;
+}
+
+footer {
+   padding-top: 10px;
+}
+
+a {
+	color: #FFA500;
+	text-decoration: none;
+}
+
+a:hover, a.active {
+	color: #FFC76D;
+}
+
+abbr {
+	cursor: help;
+	border-bottom: 1px dotted;
+}
+
+a abbr {
+	cursor: pointer;
+}
+
+/*  Syntax Highlighting */
+
+.str { color: #1DC116; }
+.kwd { color: #E83737; }
+.com { color: #428BDD; }
+.typ { color: #FFAA3E; }
+.lit { color: #D1EDFF; }
+.pun { color: #D1EDFF; }
+.tag { color: #008; }
+.atn { color: #606; }
+.atv { color: #080; }
+.dec { color: #606; }
+.pln { color: #FFAA3E; }
+
+/* "Tablet" Styles */
+
+@media screen and (max-width: 1000px) {
+	body {
+		width: 100%;
+		overflow-x: hidden;
+	}
+
+	section, footer {
+		margin-left: 30px;
+		margin-right: 0;
+	}
+	
+	#nav_main {
+		display: none;
+	}
+	
+	#nav_mobile {
+		position: fixed;
+		width: 24%;
+		right: 0;
+		height: 0;
+		display: block;
+		z-index: 1000;
+	}
+	
+	#nav_mobile a {
+		display: block;
+		background-color: #556C81;
+		padding: 8px 15px;
+		margin-bottom: 1px;
+		text-align: right;
+	}
+	
+	#nav_next_section, #nav_prev_section {
+		font-size: 10px;
+		text-transform: uppercase;
+	}
+	
+	#nav_next_section .nav_section_name,
+	#nav_prev_section .nav_section_name {
+		display: block;
+		font-size: 14px;
+		margin-top: 3px;
+		font-weight: bold;
+		line-height: 1.3em;
+		text-transform: none;
+	}
+	
+	#show_menu {
+		font-weight: bold;
+	}
+	
+	pre {
+		border-left: 0;
+		padding-left: 12px;
+		overflow: auto;
+	}
+
+	section {
+		width: 70%;
+	}
+
+	aside, section:after {
+		right: -33%;
+		width: 30%;
+	}
+	
+	section:after {
+		display: none;
+	}
+}
+
+/* "Smartphone" styles */
+
+@media screen and (max-width: 600px),
+screen and (-webkit-min-device-pixel-ratio: 2) {
+	section {
+		margin-right: 30px;
+		width: auto;
+	}
+	
+	section:after {
+		right: 0;
+		font-size: 60px;
+	}
+
+	aside {
+		position: static;
+		width: auto;
+		margin: 30px;
+		padding: 0.6em 1em 0.625em;
+		border-top: 1px solid #9eabb7;
+		opacity: 0.85;
+	}
+
+	aside p {
+		font-size: 13px;
+	}
+	
+	#nav_mobile {
+		width: 160px;
+	}
+	
+	#nav_next_section .nav_section_name,
+	#nav_prev_section .nav_section_name {
+		font-size: 13px;
+	}
+}
