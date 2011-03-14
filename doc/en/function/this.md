@@ -4,14 +4,14 @@ JavaScript has a different concept of what the special name `this` refers to
 than most other programming languages do. There are exactly **five** different 
 ways in which the value of `this` can be bound in the language.
 
-### The global scope
+### The Global Scope
 
     this;
 
 When using `this` in global scope, it will simply refer to the *global* object.
 
 
-### Calling a function
+### Calling a Function
 
     foo();
 
@@ -20,13 +20,13 @@ Here `this` will again refer to the *global* object.
 > **ES5 Note:** In strict mode, the global case **no longer** exists.
 > `this` will instead have the value of `undefined` in that case.
 
-### Calling a method
+### Calling a Method
 
     test.foo(); 
 
 In this example `this` will refer to `test`.
 
-### Calling a constructor
+### Calling a Constructor
 
     new foo(); 
 
@@ -34,7 +34,7 @@ A function call that is preceded by the `new` keyword acts as
 a [constructor](#function.constructors). Inside the function `this` will refer 
 to a *newly created* `Object`.
 
-### Explicit setting of `this`
+### Explicit Setting of `this`
 
     function foo(a, b, c) {}
                           
@@ -53,7 +53,7 @@ inside of `foo` will be set to `bar`.
 > literal. So `var obj = {me: this}` will **not** result in `me` referring to
 > `obj`, since `this` only gets bound by one of the five listed cases.
 
-### Common pitfalls
+### Common Pitfalls
 
 While most of these cases make sense, the first one is to be considered another
 mis-design of the language, as it **never** has any practical use.
@@ -83,7 +83,7 @@ local variable inside of `method` which refers to `Foo`.
 outer `this`. In combination with [closures](#function.closures), it can also 
 be used to pass `this` values around.
 
-### Assigning methods
+### Assigning Methods
 
 Another thing that does **not** work in JavaScript is function aliasing, that is,
 **assigning** a method to a variable.

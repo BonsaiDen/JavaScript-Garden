@@ -16,7 +16,7 @@ Due to this, it is **not** possible to use standard array methods like `push`,
 just fine, it is necessary to convert it to a real `Array` in order to use the 
 standard `Array` methods on it.
 
-### Converting to an array
+### Converting to an Array
 
 The code below will return a new `Array` containing all the elements of the 
 `arguments` object.
@@ -26,7 +26,7 @@ The code below will return a new `Array` containing all the elements of the
 This conversion is **slow**, it is **not recommended** to use it in performance 
 critical sections of code.
 
-### Passing arguments
+### Passing Arguments
 
 The following is the recommended way of passing arguments from one function to
 another.
@@ -56,7 +56,7 @@ wrappers.
     };
 
 
-### Formal parameters and arguments indexes
+### Formal Parameters and Arguments Indices
 
 The `arguments` object creates *getter* and *setter* functions for both its 
 properties as well as the function's formal parameters.
@@ -77,7 +77,7 @@ of the corresponding property on the `arguments` object, and the other way aroun
     }
     foo(1, 2, 3);
 
-### Performance myths and truths
+### Performance Myths and Truths
 
 The `arguments` object is always created with the only two exceptions being the 
 cases where it is declared as a name inside of a function or one of its formal 

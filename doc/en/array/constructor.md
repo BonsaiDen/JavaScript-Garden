@@ -27,7 +27,7 @@ handy in a few cases, like repeating a string, in which it avoids the use of a
 
     new Array(count + 1).join(stringToRepeat);
 
-### In conclusion
+### In Conclusion
 
 The use of the `Array` constructor should be avoided as much as possible. 
 Literals are definitely preferred. They are shorter and have a clearer syntax; 

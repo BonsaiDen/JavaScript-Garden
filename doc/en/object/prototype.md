@@ -14,7 +14,7 @@ differences between the two models.
 
 The first major difference is that inheritance in JavaScript is done by using so
 called *prototype chains*.
-                
+
 > **Note:** Simply using `Bar.prototype = Foo.prototype` will result in both objects
 > sharing the **same** prototype. Therefore, changes to either object's prototype 
 > will affect the prototype of the other as well, which in most cases is not the 
@@ -59,7 +59,7 @@ its prototype; thus, all `Bar` instances will share the **same** `value` propert
 > prototype chain will go over `Function.prototype` and not `Foo.prototype`;
 > therefore, `method` will not be on the prototype chain.
 
-### Property lookup
+### Property Lookup
 
 When accessing the properties of an object, JavaScript will traverse the
 prototype chain **upwards** until it finds a property with the requested name.
@@ -68,7 +68,7 @@ When it reaches the top of the chain - namely `Object.prototype` - and still
 hasn't found the specified property, it will return the value
 [undefined](#core.undefined) instead.
 
-### The prototype property
+### The Prototype Property
 
 While the prototype property is used by the language to build the prototype
 chains, it is still possible to assign **any** given value to it. Although 
@@ -89,7 +89,7 @@ access non-existent properties will always traverse the full prototype chain.
 Also, when [iterating](#object.forinloop) over the properties of an object 
 **every** property that is on the prototype chain will get enumerated.
 
-### Extension of native prototypes
+### Extension of Native Prototypes
 
 One mis-feature that is often used is to extend `Object.prototype` or one of the
 other built in prototypes.
@@ -102,7 +102,7 @@ The **only** good reason for extending a built-in prototype is to backport
 the features of newer JavaScript engines; for example, 
 [`Array.forEach`][3].
 
-### In conclusion
+### In Conclusion
 
 It is a **must** to understand the prototypal inheritance model completely 
 before writing complex code which makes use of it. Also, watch the length of 

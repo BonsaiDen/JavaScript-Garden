@@ -3,7 +3,7 @@
 JavaScript has two distinct values for `nothing`, the more useful of these two
 being `undefined`.
 
-### The value `undefined`
+### The Value `undefined`
 
 `undefined` is a type with exactly one value: `undefined`.
 
@@ -25,7 +25,7 @@ Some examples for when the value `undefined` is returned:
  - Function parameters which do not had any explicit value passed.
  - Anything that has been set to the value of `undefined`.
 
-### Handling changes to the value of `undefined`
+### Handling Changes to the Value of `undefined`
 
 Since the global variable `undefined` only holds a copy of the actual *value* of 
 `undefined`, assigning a new value to it does **not** change the value of the 

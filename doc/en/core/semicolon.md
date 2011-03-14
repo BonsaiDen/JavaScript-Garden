@@ -1,4 +1,4 @@
-## Automatic semicolon insertion
+## Automatic Semicolon Insertion
 
 Although JavaScript has C style syntax, it does **not** enforce the use of
 semicolons in the source code, it is possible to omit them.
@@ -21,7 +21,7 @@ Insertion happens, and the parser tries again.
 The automatic insertion of semicolon is considered to be one of **biggest**
 design flaws in the language, as it *can* change the behavior of code.
 
-### How it works
+### How it Works
 
 The code below has no semicolons in it, so it is up to the parser to decide where
 to insert them.
@@ -90,7 +90,7 @@ Below is the result of the parser's "guessing" game.
 The parser drastically changed the behavior of the code above, in certain cases
 it does the **wrong thing**.
 
-### Leading parenthesis
+### Leading Parenthesis
 
 In case of a leading parenthesis, the parser will **not** insert a semicolon.
 
@@ -104,7 +104,7 @@ This code gets transformed into one line.
 Chances are **very** high that `log` does **not** return a function; therefore,
 the above will yield a `TypeError` stating that `undefined is not a function`.
 
-### In conclusion
+### In Conclusion
 
 It is highly recommended to **never** omit semicolons, it is also advocated to 
 keep braces on the same line with their corresponding statements and to never omit 

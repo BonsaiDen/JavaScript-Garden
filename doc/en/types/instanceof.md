@@ -1,10 +1,10 @@
-## The `instanceof` operator
+## The `instanceof` Operator
 
 The `instanceof` operator compares the constructors of its two operands. It is 
 only useful when comparing custom made objects. Used on built-in types, it is
 nearly as useless as the [typeof operator](#types.typeof).
 
-### Comparing custom objects
+### Comparing Custom Objects
 
     function Foo() {}
     function Bar() {}
@@ -18,7 +18,7 @@ nearly as useless as the [typeof operator](#types.typeof).
     Bar.prototype = Foo;
     new Bar() instanceof Foo; // false
 
-### Using `instanceof` with native types
+### Using `instanceof` with Native Types
 
     new String('foo') instanceof String; // true
     new String('foo') instanceof Object; // true
@@ -30,7 +30,7 @@ One important thing to note here is, that `instanceof` does not work on objects
 that origin from different JavaScript contexts (e.g. different documents
 in a web browser), since their constructors will not be the exact same object.
 
-### In conclusion
+### In Conclusion
 
 The `instanceof` operator should **only** be used when dealing with custom made 
 objects that origin from the same JavaScript context. Just like the

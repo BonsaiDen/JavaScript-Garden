@@ -3,7 +3,7 @@
 Since JavaScript is asynchronous, it is possible to schedule the execution of a 
 function by using the `setTimeout` and `setInterval` functions.
 
-> **Note:** Timeouts are **not** part of the ECMAScript Standard, they are
+> **Note:** Timeouts are **not** part of the ECMAScript Standard. They are
 > implemented as part of the [DOM][1].
 
     function foo() {}
@@ -39,7 +39,7 @@ refers to that very object.
 > a silent error, since when the function returns `undefined` `setTimeout` will 
 > **not** raise any error.
 
-### Stacking calls with `setInterval`
+### Stacking Calls with `setInterval`
 
 While `setTimeout` only runs the function once, `setInterval` - as the name 
 suggests - will execute the function **every** `X` milliseconds. But its use is 
@@ -60,7 +60,7 @@ While `foo` blocks the code `setInterval` will still schedule further calls to
 it. Now, when `foo` has finished, there will already be **ten** further calls to
 it waiting for execution.
 
-### Dealing with possible blocking code
+### Dealing with Possible Blocking Code
 
 The easiest as well as most controllable solution, is to use `setTimeout` within
 the function itself.
@@ -75,7 +75,7 @@ Not only does this encapsulate the `setTimeout` call, but it also prevents the
 stacking of calls and it gives additional control.`foo` itself can now decide 
 whether it wants to run again or not.
 
-### Manually clearing timeouts
+### Manually Clearing Timeouts
 
 Clearing timeouts and intervals works by passing the respective ID to
 `clearTimeout` or `clearInterval`, depending which `set` function was used in
@@ -105,7 +105,7 @@ This feature should **never** be used, since it internally makes use of `eval`.
 
 > **Note:** Since the timeout functions are **not** specified by the ECMAScript
 > standard, the exact workings when a string is passed to them might differ in
-> various JavaScript implementations. As a fact, Microsoft's JScript makes use of
+> various JavaScript implementations. For example, Microsoft's JScript makes use of
 > the `Function` constructor in place of `eval`.
 
     function foo() {
@@ -139,9 +139,9 @@ function that will get called by either of the timeout functions.
 
 > **Note:** While it is also possible to use the syntax 
 > `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
-> to subtle errors when used with [methods](#function.this).
+> to subtle errors when used with [methods](#function.this). 
 
-### In conclusion
+### In Conclusion
 
 **Never** should a string be used as the parameter of `setTimeout` or 
 `setInterval`. It is a clear sign of **really** bad code, when arguments need 
@@ -151,5 +151,5 @@ be passed that then takes care of the actual call.
 Further, the use of `setInterval` should be avoided since its scheduler is not
 blocked by executing JavaScript.
 
-[1]: http://en.wikipedia.org/wiki/Document_Object_Model 
+[1]: http://en.wikipedia.org/wiki/Document_Object_Model "Document Object Model"
 

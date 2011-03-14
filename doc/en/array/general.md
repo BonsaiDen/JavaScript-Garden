@@ -34,7 +34,7 @@ telling whether the code will run on one of these newer engines or not.
 In fact, leaving out the caching may result in the loop being only **half as
 fast** as with the cached length.
 
-### The `length` property
+### The `length` Property
 
 While the *getter* of the `length` property simply returns the number of
 elements that are contained in the array, the *setter* can be used to 
@@ -50,7 +50,7 @@ elements that are contained in the array, the *setter* can be used to
 Assigning a smaller length does truncate the array, but increasing the length 
 does not have any effect on the array.
 
-### In conclusion
+### In Conclusion
 
 For the best performance it is recommended to always use the plain `for` loop
 and cache the `length` property. The use of `for in` on an array is a sign of

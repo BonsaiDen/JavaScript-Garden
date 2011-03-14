@@ -1,4 +1,4 @@
-## Type casting
+## Type Casting
 
 JavaScript is a *weakly typed* language, so it will apply *type coercion*
 **wherever** possible.
@@ -25,7 +25,7 @@ In order to avoid the above, use of the [strict equal operator](#types.equality)
 is **highly** recommended. Although this avoids a lot of common pitfalls, there 
 are still many further issues that arise from JavaScript's weak typing system.
 
-### Constructors of built-in types
+### Constructors of Built-In Types
 
 The constructors of the built in types like `Number` and `String` behave
 differently when being used with the `new` keyword and without it.
@@ -43,19 +43,19 @@ more type coercion.
 
 The best option is to cast to one of the three possible types **explicitly**.
 
-### Casting to a string
+### Casting to a String
 
     '' + 10 === '10'; // true
 
 By prepending a empty string a value can easily be casted to a string.
 
-### Casting to a number
+### Casting to a Number
 
     +'10' === 10; // true
 
 Using the **unary** plus operator it is possible to cast to a number.
 
-### Casting to a boolean
+### Casting to a Boolean
 
 By using the **not** operator twice, a value can be converted a boolean.
 

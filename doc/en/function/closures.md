@@ -29,7 +29,7 @@ the function `get`. Both of these functions keep a **reference** to the scope of
 `Counter` and, therefore, always keep access to the `count` variable that was 
 defined in that very scope.
 
-### Why private variables work
+### Why Private Variables Work
 
 Since it is not possible to reference or assign scopes in JavaScript, there is 
 **no** way of accessing the variable `count` from the outside. The only way to 
@@ -44,7 +44,7 @@ The above code will **not** change the variable `count` in the scope of `Counter
 since `foo.hack` was not defined in **that** scope. It will instead create - or 
 override - the *global* variable `count`.
 
-### Closures inside loops
+### Closures Inside Loops
 
 One often made mistake is to use closures inside of loops, as if they were
 copying the value of the loops index variable.
@@ -65,7 +65,7 @@ The *anonymous* function keeps a **reference** to `i` and at the time
 In order to get the desired behavior, it is necessary to create a **copy** of 
 the value of `i`.
 
-### Avoiding the reference problem
+### Avoiding the Reference Problem
 
 In order to copy the value of the loop's index variable, it is best to use an 
 [anonymous wrapper](#function.scopes).

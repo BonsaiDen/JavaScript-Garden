@@ -1,4 +1,4 @@
-## The `typeof` operator
+## The `typeof` Operator
 
 The `typeof` operator (together with 
 [`instanceof`](#types.instanceof)) is probably the biggest 
@@ -13,7 +13,7 @@ object.
 > behave like normal and the return value will be used as the operand of the
 > `typeof` operator. There is **no** `typeof` function.
 
-### The JavaScript type table
+### The JavaScript Type Table
 
     Value               Class      Type
     -------------------------------------
@@ -45,7 +45,7 @@ The *Class* refers to the value of the internal `[[Class]]` property of an objec
 In order to retrieve the value of `[[Class]]` one has to make use of the
 `toString` method of `Object.prototype`.
 
-### The Class of an object
+### The Class of an Object
 
 The specification gives exactly one way of accessing the `[[Class]]` value,
 with the use of `Object.prototype.toString`. 
@@ -66,7 +66,7 @@ retrieved.
 > for both `null` and `undefined` was **changed** from `Object` to `Null` and 
 > `Undefined` in ECMAScript 5.
 
-### Testing for undefined variables
+### Testing for Undefined Variables
 
     typeof foo !== 'undefined'
 
@@ -74,7 +74,7 @@ The above will check whether `foo` was actually declared or not; just
 referencing it would result in a `ReferenceError`. This is the only thing
 `typeof` is actually useful for.
 
-### In conclusion
+### In Conclusion
 
 In order to check the type of an object, it is highly recommended to use 
 `Object.prototype.toString`; as this is the only reliable way of doing so. 

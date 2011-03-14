@@ -23,7 +23,7 @@ this is done by using the [`hasOwnProperty`](#object.hasownproperty) method of
 > **Note:** Since the `for in` always traverses the complete prototype chain, it
 > will get slower with each additional layer of inheritance added to an object.
 
-### Using `hasOwnProperty` for filtering
+### Using `hasOwnProperty` for Filtering
 
     // still the foo from above
     for(var i in foo) {
@@ -41,7 +41,7 @@ One widely used framework which does this is [Prototype][1]. When this
 framework is included, `for in` loops that do not use `hasOwnProperty` are 
 guaranteed to break.
 
-### Best practices
+### In Conclusion
 
 It is recommended to **always** use `hasOwnProperty`. Never should any 
 assumptions be made about the environment the code is running in, or whether the 

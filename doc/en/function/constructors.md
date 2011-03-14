@@ -84,7 +84,7 @@ In the above example, there is no functional difference between using and
 not using the `new` keyword.
 
 
-### Creating new objects via factories
+### Creating New Objects via Factories
 
 An often made recommendation is to **not** use `new` since forgetting its use
 may lead to bugs.
@@ -118,7 +118,7 @@ downsides.
  3. Dropping the prototype chain just because of a left out `new` keyword
     somehow goes against the spirit of the language.
 
-### In conclusion
+### In Conclusion
 
 While omitting the `new` keyword might lead to bugs, it is certainly **not** a 
 reason to drop the use of prototypes altogether. In the end it comes down to 
