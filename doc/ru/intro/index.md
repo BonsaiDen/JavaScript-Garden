@@ -1,15 +1,8 @@
-## Intro
+## Вступление
 
-**JavaScript Garden** is a growing collection of documentation about the most 
-quirky parts of the JavaScript programming language. It gives advice to 
-avoid common mistakes, subtle bugs, as well as performance issues and bad 
-practices that non-expert JavaScript programmers may encounter on their 
-endeavours into the depths of the language.
+**JavaScript Гарден** это постоянно обновляющаяся и растущая документация по самым заковыристым темам, касающимся языка JavaScript. В ней вы найдёте советы о том, как перестать употреблять частые ошибки и научиться предсказывать появление тех или иных багов. Также в документации подробно освещены проблемы оптимизации и плохие практики, с которыми JavaScript-программисты, не ставшие ещё экспертами, могут столкнуться продираясь в глубины языка.
 
-JavaScript Garden does **not** aim to teach you JavaScript. Former knowledge
-of the language is strongly recommended in order to understand the topics covered
-in this guide. In order to learn the basics of the language, please head over to 
-the excellent [guide][1] on the Mozilla Developer Network.
+JavaScript Гарден **не** имеет цели научить вас языку JavaScript. Опыт в работе с языком необходим чтобы понимать темы, рассматриваемые в этом руководстве. Если вам нужно изучить основы языка, пожалуйста внимательно ознакомьтесь с великолепным [руководством][1] на сайте Mozilla Developer Network.
 
 [1]: https://developer.mozilla.org/en/JavaScript/Guide
 

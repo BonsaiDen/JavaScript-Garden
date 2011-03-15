@@ -1,7 +1,7 @@
-## The Authors
+## Авторы
 
-This guide is the work of two lovely Stack Overflow users, [Ivo Wetzel][1]
-(Writing) and [Zhang Yi Jiang][2] (Design).
+Это руководство является результатом работы двух очаровательных пользователей Stack Overflow: [Иво Ветцеля /Ivo Wetzel/][1]
+(Автор текста) и [Чжан И Цзян /Zhang Yi Jiang/][2] (Дизайн).
 
 [1]: http://stackoverflow.com/users/170224/ivo-wetzel
 [2]: http://stackoverflow.com/users/313758/yi-jiang
