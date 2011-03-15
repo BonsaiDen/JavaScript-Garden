@@ -1,66 +1,54 @@
-## Object Usage and Properties
+## Свойства и использование объектов
 
-Everything in JavaScript acts like an object, with the only two exceptions being 
-[`null`](#core.undefined) and [`undefined`](#core.undefined).
+В JavaScript всё является объектом, лишь за двумя исключениями — [`null`](#core.undefined) и [`undefined`](#core.undefined).
 
     false.toString() // 'false'
     [1, 2, 3].toString(); // '1,2,3'
-    
+
     function Foo(){}
     Foo.bar = 1;
     Foo.bar; // 1
 
-A common misconception is that number literals cannot be used as
-objects. That is because a flaw in JavaScript's parser tries to parse the *dot 
-notation* on a number as a floating point literal.
+Неверно считать, что числовые литералы нельзя использовать в качестве объектов — это распространённое заблуждение. Его причиной является упущение в парсере JavaScript, благодаря которому он пытается распознать применение *точечной нотации* над числом как литерал с плавающей точкой.
 
-    2.toString(); // raises SyntaxError
+    2.toString(); // вызывает SyntaxError
 
-There are a couple of workarounds which can be used in order make number 
-literals act as objects too.
+Есть пара способов обойти этот недостаток и все их можно использовать для работы с числами как с объектами:
 
-    2..toString(); // the second point is correctly recognized
-    2 .toString(); // note the space left to the dot
-    (2).toString(); // 2 is evaluated first
+    2..toString(); // вторая точка распознаётся корректно
+    2 .toString(); // обратите внимание на пробел перед точкой
+    (2).toString(); // двойка вычисляется заранее
 
-### Objects as a data type
+### Объекты как тип данных
 
-Objects in JavaScript can also be used as a [*Hashmap*][1], they mainly consist 
-of named properties mapping to values.
+Объекты в JavaScript могут использоваться как [*хеш-таблицы*][1]: большей частью они состоят из именованных свойств (ключей) привязанных к значениям.
 
-Using a object literal - `{}` notation - it is possible to create a 
-plain object. This new object [inherits](#object.prototype) from `Object.prototype` and 
-has no [own properties](#object.hasownproperty) defined on it.
+Используя объектный литерал — нотацию `{}` — можно создать простой объект. Новый объект [наследуется](#object.prototype) от `Object.prototype` и не имеет [собственных свойств](#object.hasownproperty).
 
-    var foo = {}; // a new empty object
+    var foo = {}; // новый пустой объект
 
-    // a new object with a property called 'test' with value 12
-    var bar = {test: 12}; 
+    // новый объект со свойством по имени 'test' имеющим значение 12
+    var bar = {test: 12};
 
-### Accessing properties
+### Доступ к свойствам
 
-The properties of an object can be accessed in two ways, via either the dot
-notation, or the square bracket notation.
-    
+Получить доступ к свойствам объекта можно двумя способами: используя либо точечную нотацию, либо запись с квадратными скобками.
+
     var foo = {name: 'Kitten'}
     foo.name; // kitten
     foo['name']; // kitten
-    
+
     var get = 'name';
     foo[get]; // kitten
-    
+
     foo.1234; // SyntaxError
-    foo['1234']; // works
+    foo['1234']; // работает
 
-Both notations are identical in their workings, with the only difference being that
-the square bracket notation allows for dynamic setting of properties, as well as
-the use of property names that would otherwise lead to a syntax error.
+Обе нотации идентичны по принципу работы — одна лишь разница в том, что использование квадратных скобок позволяет устанавливать свойства динамически и использовать такие имена свойств, какие в других случаях могли бы привести к синтаксической ошибке.
 
-### Deleting properties
+### Удаление свойств
 
-The only way to actually remove a property from an object is to use the `delete`
-operator; setting the property to `undefined` or `null` only remove the
-*value* associated with the property, but not the *key*.
+Единственный способ удалить свойство у объекта — использовать оператор `delete`; устанавливая свойство в `undefined` или `null`, вы удаляете только связанное с ним *значение*, но не *ключ*.
 
     var obj = {
         bar: 1,
@@ -77,23 +65,18 @@ operator; setting the property to `undefined` or `null` only remove the
         }
     }
 
-The above outputs both `bar undefined` and `foo null` - only `baz` was
-removed and is therefore missing from the output.
+Приведённый код выведет и `bar undefined` и `foo null` - было удалено только свойство `baz` и поэтому оно будет отсутствовать в выводе.
 
-### Notation of keys
+### Запись ключей
 
     var test = {
-        'case': 'I am a keyword so I must be notated as a string',
-        delete: 'I am a keyword too so me' // raises SyntaxError
+        'case': 'Я — ключевое слово, поэтому меня надо записывать строкой',
+        delete: 'Я тоже ключевое слово, так что я' // бросаю SyntaxError
     };
 
-Object properties can be both notated as plain characters and as strings. Due to
-another mis-design in JavaScript's parser, the above will throw 
-a `SyntaxError` prior to ECMAScript 5.
+Свойства объектов могут записываться и напрямую символами, и как строки. В соответствии с другим упущением в парсере JavaScript, этот код выбросит `SyntaxError` во всех версиях ранее ECMAScript 5.
 
-This error arises from the fact that `delete` is a *keyword*; therefore, it must be 
-notated as a *string literal* to ensure that it will be correctly interpreted by
-older JavaScript engines.
+Источником ошибки является факт, что `delete` — это *ключевое слово* и поэтому его необходимо записывать как *строчный литерал* для уверенности в том, что оно будет корректно опознано более старыми движками JavaScript.
 
-[1]: http://en.wikipedia.org/wiki/Hashmap
+[1]: http://ru.wikipedia.org/wiki/%D0%A5%D0%B5%D1%88-%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0
 
