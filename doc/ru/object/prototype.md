@@ -1,24 +1,14 @@
 ## Великий Прототип
 
-JavaScript does not feature a classical inheritance model, instead it uses a
-*prototypal* one.
+В JavaScript отсутствует классическая модель наследования — вместо неё использользуется [*прототипная модель*][1].
 
-While this is often considered to be one of JavaScript's weaknesses, the
-prototypal inheritance model is in fact more powerful than the classic model.
-It is for example fairly trivial to build a classic model on top of it, while the
-other way around is a far more difficult task.
+Хотя её часто расценивают как один из недостатков JavaScript, на самом деле прототипная модель наследования намного мощнее классической. К примеру, поверх неё предельно легко построить классическую модель, при этом воспроизведение других видов окажется более трудной задачей.
 
-Due to the fact that JavaScript is basically the only widely used language that
-features prototypal inheritance, it takes some time to adjust to the
-differences between the two models.
+Из-за того, что JavaScript — практически единственный широко используемый язык с прототипным наследованием, приходится потратить некоторое время на осознание различий между этими двумя моделями.
 
-The first major difference is that inheritance in JavaScript is done by using so
-called *prototype chains*.
+Первое важное отличие заключается в том, что наследование в JavaScript производится с использованием так называемых  *цепочек прототипов*.
 
-> **Note:** Simply using `Bar.prototype = Foo.prototype` will result in both objects
-> sharing the **same** prototype. Therefore, changes to either object's prototype
-> will affect the prototype of the other as well, which in most cases is not the
-> desired effect.
+> **Замечание:** В результате выполнения конструкции `Bar.prototype = Foo.prototype` оба объекта будут делить друг с другом **один и тот же** прототип. Так что изменение прототипа одного из объектов повлечёт за собой изменение прототипа другого и наоборот — вряд ли это окажется тем, чего вы ожидали.
 
     function Foo() {
         this.value = 42;
@@ -29,35 +19,27 @@ called *prototype chains*.
 
     function Bar() {}
 
-    // Set Bar's prototype to a new instance of Foo
+    // Установим значением прототипа Bar новый экземпляр Foo
     Bar.prototype = new Foo();
     Bar.prototype.foo = 'Hello World';
 
-    // Make sure to list Bar as the actual constructor
+    // Убедимся, что Bar является действующим конструктором
     Bar.prototype.constructor = Bar;
 
-    var test = new Bar() // create a new bar instance
+    var test = new Bar() // создадим новый экземпляр bar
 
-    // The resulting prototype chain
+    // Цепочка прототипов, которая получится в результате
     test [instance of Bar]
         Bar.prototype [instance of Foo]
             { foo: 'Hello World' }
             Foo.prototype
                 { method: ... }
                 Object.prototype
-                    { toString: ... /* etc. */ }
+                    { toString: ... /* и т.д. */ }
 
-In the above, the object `test` will inherit from both `Bar.prototype` and
-`Foo.prototype`; hence, it will have access to the function `method` that was
-defined on `Foo`. It will also have access to the property `value` of the
-**one** `Foo` instance that is its prototype. It is important to note that `new
-Bar()` does **not** create a new `Foo` instance, but reuses the one assigned to
-its prototype; thus, all `Bar` instances will share the **same** `value` property.
+В приведённом коде объект `test` наследует оба прототипа: `Bar.prototype` и `Foo.prototype`; следовательно, он имеет доступ к функции `method` которую мы определили в прототипе `Foo`. Также у него есть доступ к свойству `value` **одного уникального** экземпляра `Foo`, который является его протипом. Важно заметить, что код `new Bar()` **не** создаёт новый экземпляр `Foo`, а переиспользует тот, который был назначен его прототипом: таким образом все новые экземпляры `Bar` будут иметь **одинаковое** свойство `value`.
 
-> **Note:** Do **not** use `Bar.prototype = Foo`, since it will not point to
-> the prototype of `Foo` but rather to the function object `Foo`. So the
-> prototype chain will go over `Function.prototype` and not `Foo.prototype`;
-> therefore, `method` will not be on the prototype chain.
+> **Замечание:** Никогда **не** используйте конструкцию `Bar.prototype = Foo`, поскольку ссылка будет указывать не на прототип `Foo`, а на объект функции `Foo`. Из-за этого цепочка прототипов будет проходить через `Function.prototype`, а не через `Foo.prototype` и в результате функция `method` не будет содержаться в цепочке прототипов.
 
 ### Property lookup
 
@@ -94,13 +76,13 @@ Also, when [iterating](#object.forinloop) over the properties of an object
 One mis-feature that is often used is to extend `Object.prototype` or one of the
 other built in prototypes.
 
-This technique is called [monkey patching][1] and breaks *encapsulation*. While
-used by widely spread frameworks such as [Prototype][2], there is still no good
+This technique is called [monkey patching][2] and breaks *encapsulation*. While
+used by widely spread frameworks such as [Prototype][3], there is still no good
 reason for cluttering built-in types with additional *non-standard* functionality.
 
 The **only** good reason for extending a built-in prototype is to backport
 the features of newer JavaScript engines; for example,
-[`Array.forEach`][3].
+[`Array.forEach`][4].
 
 ### In conclusion
 
@@ -110,7 +92,8 @@ the prototype chains and break them up if necessary to avoid possible
 performance issues. Further, the native prototypes should **never** be extended
 unless it is for the sake of compatibility with newer JavaScript features.
 
-[1]: http://en.wikipedia.org/wiki/Monkey_patch
-[2]: http://prototypejs.org/
-[3]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach
+[1]: http://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%D0%BD%D0%BE%D0%B5_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5
+[2]: http://en.wikipedia.org/wiki/Monkey_patch
+[3]: http://prototypejs.org/
+[4]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach
 
