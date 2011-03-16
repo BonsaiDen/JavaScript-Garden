@@ -1,8 +1,8 @@
 ## Великий Прототип
 
-В JavaScript отсутствует классическая модель наследования — вместо неё использользуется [*прототипная модель*][1].
+В JavaScript отсутствует классическая модель наследования — вместо неё используется [*прототипная модель*][1].
 
-Хотя её часто расценивают как один из недостатков JavaScript, на самом деле прототипная модель наследования намного мощнее классической. К примеру, поверх неё предельно легко реализовать классическое наследование, а наоборот — тут уж придется сильно потрудиться.
+Хотя её часто расценивают как один из недостатков JavaScript, на самом деле прототипная модель наследования намного мощнее классической. К примеру, поверх неё предельно легко реализовать классическое наследование, а наоборот — тут уж придётся сильно потрудиться.
 
 Из-за того, что JavaScript — практически единственный широко используемый язык с прототипным наследованием, придётся потратить некоторое время на осознание различий между этими двумя моделями.
 
@@ -41,50 +41,41 @@
 
 > **Замечание:** Никогда **не** используйте конструкцию `Bar.prototype = Foo`, поскольку ссылка будет указывать не на прототип `Foo`, а на объект функции `Foo`. Из-за этого цепочка прототипов будет проходить через `Function.prototype`, а не через `Foo.prototype` и в результате функция `method` не будет содержаться в цепочке прототипов.
 
-### Property lookup
+### Поиск свойств
 
-When accessing the properties of an object, JavaScript will traverse the
-prototype chain **upwards** until it finds a property with the requested name.
+При обращении к какому-либо свойству объекта, JavaScript проходит **вверх** по цепочке прототипов этого объекта, пока не найдет свойство c запрашиваемым именем.
 
-When it reaches the top of the chain - namely `Object.prototype` - and still
-hasn't found the specified property, it will return the value
-[undefined](#core.undefined) instead.
+Если он достигнет верхушки этой цепочки (`Object.prototype`) и при этом так и не найдёт указанное свойство, вместо него вернётся значение [undefined](#core.undefined).
 
-### The prototype property
+### Свойство `prototype`
 
-While the prototype property is used by the language to build the prototype
-chains, it is still possible to assign **any** given value to it. Although
-primitives will simply get ignored when assigned as a prototype.
+То, что свойство `prototype` используется языком для построения цепочек прототипов, даёт нам возможность присвоить **любое** значение этому свойству. Однако, обычные примитивы будут просто-напросто игнорироваться при назначении в качестве прототипа.
 
     function Foo() {}
-    Foo.prototype = 1; // no effect
+    Foo.prototype = 1; // ничего не произойдёт
+    Foo.prototype = {
+        "foo":"bar"
+    };
 
-Assigning objects, as shown in the example above, will work, and allows for dynamic
-creation of prototype chains.
+При этом присвоение объектов, как в примере выше, позволит динамически создавать цепочки прототипов.
 
-### Performance
+### Производительность
 
-The lookup time for properties that are high up on the prototype chain can have a
-negative impact on performance critical sections of code. Additionally, trying to
-access non-existent properties will always traverse the full prototype chain.
+Поиск свойств, располагающихся относительно высоко по цепочке прототипов, может негативно сказаться на производительности, особенно в критических местах кода. Если же мы попытаемся найти несуществующее свойство, то поиск будет осуществлён вообще по всей цепочке, со всеми вытекающими последствиями.
 
-Also, when [iterating](#object.forinloop) over the properties of an object
-**every** property that is on the prototype chain will get enumerated.
+Кроме этого, при [переборе](#object.forinloop) свойств объекта, будет обработано **каждое** свойство, существующее в цепочке прототипов.
 
-### Extension of native prototypes
+### Расширение встроенных прототипов
 
-One mis-feature that is often used is to extend `Object.prototype` or one of the
-other built in prototypes.
+Часто встречается неверное применение прототипов — расширение прототипа `Object.prototype` или прототипов одного из встроенных объектов JavaScript.
 
-This technique is called [monkey patching][2] and breaks *encapsulation*. While
-used by widely spread frameworks such as [Prototype][3], there is still no good
-reason for cluttering built-in types with additional *non-standard* functionality.
+Подобная практика нарушает принцип *инкапсуляции*, и имеет соответствующее название — [monkey patching][2]. К сожалению, в основу многих широко распространенных фреймворков, например Prototype, положен принцип изменения базовых прототипов. Вам же стоит запомнить — от хорошей жизни прототипы встроенных объектов не меняют.
 
-The **only** good reason for extending a built-in prototype is to backport
-the features of newer JavaScript engines; for example,
-[`Array.forEach`][4].
+**Единственным** оправданием для расширения встроенных прототипов может быть только воссоздание возможностей более новых движков JavaScript, например функция [`Array.forEach`][4], которая появилась в версии 1.6.
 
-### In conclusion
+### Заключение
+
+Перед тем как разрабатывать сложные приложения на JavaScript, вы **должны** полностью понимать как работают прототипы, и как организовывать наследование на их основе. Так же, помните о зависимости между длиной цепочек прототипов и производительностью — разрывайте их при необходимости. Кроме того - **никогда** не расширяйте прототипы встроенных объектов (ну, если только для совместимости с новыми возможностями Javascript)
 
 It is a **must** to understand the prototypal inheritance model completely
 before writing complex code which makes use of it. Also, watch the length of
