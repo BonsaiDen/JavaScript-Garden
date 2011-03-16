@@ -77,12 +77,6 @@
 
 Перед тем как разрабатывать сложные приложения на JavaScript, вы **должны** полностью понимать как работают прототипы, и как организовывать наследование на их основе. Так же, помните о зависимости между длиной цепочек прототипов и производительностью — разрывайте их при необходимости. Кроме того - **никогда** не расширяйте прототипы встроенных объектов (ну, если только для совместимости с новыми возможностями Javascript)
 
-It is a **must** to understand the prototypal inheritance model completely
-before writing complex code which makes use of it. Also, watch the length of
-the prototype chains and break them up if necessary to avoid possible
-performance issues. Further, the native prototypes should **never** be extended
-unless it is for the sake of compatibility with newer JavaScript features.
-
 [1]: http://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D1%82%D0%B8%D0%BF%D0%BD%D0%BE%D0%B5_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5
 [2]: http://en.wikipedia.org/wiki/Monkey_patch
 [3]: http://prototypejs.org/
