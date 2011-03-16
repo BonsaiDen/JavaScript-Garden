@@ -1,42 +1,36 @@
-## Automatic semicolon insertion
+## Автоматическая вставка точек с запятой
 
-Although JavaScript has C style syntax, it does **not** enforce the use of
-semicolons in the source code, it is possible to omit them.
+Хоть JavaScript и имеет синтаксис, подобный языкам семейства C, он при этом **не** принуждает вас ставить точки с запятой в исходных кодах — вы всегда можете их опустить.
 
-But JavaScript is not a semicolon-less language, it in fact needs the 
-semicolons in order to understand the source code. Therefore the JavaScript
-parser **automatically** inserts them whenever it encounters a parse
-error due to a missing semicolon.
+При этом JavaScript — не язык без точек с запятой, они на самом деле нужны ему, чтобы он мог разобраться в исходном коде. Поэтому парсер JavaScript **автоматически** вставляет их в тех местах, где обнаруживает ошибку парсинга из-за отсутствия точки с запятой.
 
     var foo = function() {
-    } // parse error, semicolon expected
+    } // ошибка разбора, ожидается точка с запятой
     test()
 
-Insertion happens, and the parser tries again.
+Происходит вставка и парсер пытается снова.
 
     var foo = function() {
-    }; // no error, parser continues
+    }; // ошибки нет, парсер продолжает
     test()
 
-The automatic insertion of semicolon is considered to be one of **biggest**
-design flaws in the language, as it *can* change the behavior of code.
+Автоматическая вставка точек с запятой считается одним из **наибольших** упущений в проекте языка, поскольку она *может* изменять поведение кода.
 
-### How it works
+### Как это работает
 
-The code below has no semicolons in it, so it is up to the parser to decide where
-to insert them.
+Приведённый код не содержит точек с запятой, так что места для их вставки остаются на совести парсера:
 
     (function(window, undefined) {
         function test(options) {
-            log('testing!')
+            log('тестируем!')
 
             (options.list || []).forEach(function(i) {
 
             })
 
             options.value.test(
-                'long string to pass here',
-                'and another long string to pass'
+                'здесь передадим длинную строчку',
+                'и ещё одну на всякий случай'
             )
 
             return
@@ -53,62 +47,54 @@ to insert them.
 
     })(window)
 
-Below is the result of the parser's "guessing" game.
+Ниже представлен результат игры парсера в "угадалки".
 
     (function(window, undefined) {
         function test(options) {
 
-            // Not inserted, lines got merged
-            log('testing!')(options.list || []).forEach(function(i) {
+            // не вставлена точка с запятой, строки были объединены
+            log('тестируем!')(options.list || []).forEach(function(i) {
 
-            }); // <- inserted
+            }); // <- вставлена
 
             options.value.test(
-                'long string to pass here',
-                'and another long string to pass'
-            ); // <- inserted
+                'здесь передадим длинную строчку',
+                'и ещё одну на всякий случай'
+            ); // <- вставлена
 
-            return; // <- inserted, breaks the return statement
-            { // treated as a block
+            return; // <- вставлена, в результате оператор return разбит на два блока
+            { // теперь парсер считает этот блок отдельным
 
-                // a label and a single expression statement
-                foo: function() {} 
-            }; // <- inserted
+                // метка и одинокое выражение
+                foo: function() {}
+            }; // <- вставлена
         }
-        window.test = test; // <- inserted
+        window.test = test; // <- вставлена
 
-    // The lines got merged again
+    // снова объединились строки
     })(window)(function(window) {
-        window.someLibrary = {}; // <- inserted
+        window.someLibrary = {}; // <- вставлена
 
-    })(window); //<- inserted
+    })(window); //<- вставлена
 
-> **Note:** The JavaScript parser does not "correctly" handle return statements 
-> which are followed by a new line, while this is not neccessarily the fault of 
-> the automatic semicolon insertion, it can still be an unwanted side-effect. 
+> **Замечание:** Парсер JavaScript "некорректно" обрабатывает оператор return, за которым следует новая строка; кстати, причина может быть и не в автоматической вставке точек с запятой, но это нежелательный сайд-эффект в любом случае
 
-The parser drastically changed the behavior of the code above, in certain cases
-it does the **wrong thing**.
+Парсер радикально подменил поведение изначального кода, а в определённых случаях он сделал **абсолютно неправильные выводы**.
 
-### Leading parenthesis
+### "Висящие" скобки
 
-In case of a leading parenthesis, the parser will **not** insert a semicolon.
+Если парсер встречает "висящую" скобку, то он **не** вставляет точку с запятой.
 
-    log('testing!')
+    log('тестируем!')
     (options.list || []).forEach(function(i) {})
 
-This code gets transformed into one line.
+Такой код трасформируется в строку
 
-    log('testing!')(options.list || []).forEach(function(i) {})
+    log('тестируем!')(options.list || []).forEach(function(i) {})
 
-Chances are **very** high that `log` does **not** return a function; therefore,
-the above will yield a `TypeError` stating that `undefined is not a function`.
+**Чрезвычайно** высоки шансы, что `log` возращает **не** функцию; таким образом, эта строка вызовет `TypeError` с сообщением о том, что `undefined не является функцией`.
 
-### In conclusion
+### Заключение
 
-It is highly recommended to **never** omit semicolons, it is also advocated to 
-keep braces on the same line with their corresponding statements and to never omit 
-them for one single-line `if` / `else` statements. Both of these measures will 
-not only improve the consistency of the code, they will also prevent the 
-JavaScript parser from changing its behavior.
+Настоятельно рекомендуем **никогда** не забывать ставить или опускать точку с запятой; так же рекомендуется оставлять скобки на одной строке с соответствующим оператором и никогда не опускать их для выражений с использованием `if` / `else`. Оба этих совета не только повысят читабельность вашего кода, но и предотвратят от изменения его поведения произведённого парсером втихую.
 
