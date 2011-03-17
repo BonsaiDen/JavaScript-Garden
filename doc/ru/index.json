@@ -9,6 +9,7 @@
             "articles": [
                 "authors",
                 "contributors",
+                "translators",
                 "license"
             ]
         },
@@ -70,3 +71,4 @@
         }
     ]
 }
+
