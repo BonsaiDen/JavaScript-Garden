@@ -73,21 +73,17 @@
 
 ### Скрытое использование `eval`
 
-`setTimeout` and `setInterval` can also take a string as their first parameter.
-This feature should **never** be used, since it internally makes use of `eval`.
+`setTimeout` и `setInterval` могут принимать строку в качестве первого параметра. Эту возможность не следует использовать **никогда**, поскольку изнутри при этом производится скрытый вызов `eval`.
 
-> **Note:** Since the timeout functions are **not** specified by the ECMAScript
-> standard, the exact workings when a string is passed to them might differ in
-> various JavaScript implementations. As a fact, Microsoft's JScript makes use of
-> the `Function` constructor in place of `eval`.
+> **Замечание**: Поскольку функции работы с таймаутами **не** определены в стандарте ECMAScript, точная внутренняя механика их работы может различаться от движка к движку. Известен факт, то Microsoft JScript использует конструктор `Function` вместо `eval`.
 
     function foo() {
-        // will get called
+        // будет вызвана
     }
 
     function bar() {
         function foo() {
-            // never gets called
+            // никогда не будет вызывана
         }
         setTimeout('foo()', 1000);
     }
@@ -102,10 +98,10 @@ function that will get called by either of the timeout functions.
 
     function foo(a, b, c) {}
 
-    // NEVER use this
+    // НИКОГДА не делайте такого
     setTimeout('foo(1,2, 3)', 1000)
 
-    // Instead use an anonymous function
+    // Вместо этого используйте анонимную функцию
     setTimeout(function() {
         foo(a, b, c);
     }, 1000)
