@@ -1,32 +1,23 @@
-### `setTimeout` and `setInterval`
+### `setTimeout` и `setInterval`
 
-Since JavaScript is asynchronous, it is possible to schedule the execution of a 
-function by using the `setTimeout` and `setInterval` functions.
+Поскольку JavaScript поддерживает асинхронность, есть возможность запланировать выполнение функции, используя функции `setTimeout` и `setInterval`.
 
-> **Note:** Timeouts are **not** part of the ECMAScript Standard, they are
-> implemented as part of the [DOM][1].
+> **Замечание:** Таймауты **не** являются частью стандарта ECMAScript, они были разработаны как раздел [DOM][1].
 
     function foo() {}
-    var id = setTimeout(foo, 1000); // returns a Number > 0
+    var id = setTimeout(foo, 1000); // возвращает число > 0
 
-When `setTimeout` gets called, it will return the ID of the timeout and schedule
-`foo` to run in **approximately** one thousand milliseconds in the future. 
-`foo` will then get executed exactly **once**.
+Функция `setTimeout` возвращает идентификатор таймаута и планирует вызвать `foo` через, **примерно**, тысячу миллисекунд. Фунция `foo` будет вызвана ровно **один** раз.
 
-Depending on the timer resolution of the JavaScript engine that is running the 
-code, as well as the fact that JavaScript is single threaded and other code that 
-gets executed might block the thread, it is by **no means** a safe bet that one 
-will get the exact delay that was specified in the `setTimeout` call.
+В зависимости от разрешения таймера в используемом для запуска кода движке JavaScript, а также с учётом факта, что JavaScript является однопоточным языком и посторонний код может заблокировать выполнение потока, нет **никакой** гарантии, что код переданный будет выполнен ровно через указанное в вызове `setTimeout` время.
 
-The function that was passed as the first parameter will get called by the
-*global object*, that means, that [`this`](#function.this) inside the called function 
-refers to that very object.
+Переданная через первый параметр функция будет вызвана как *глобальный объект* — это значит что оператор [`this`](#function.this) в вызываемой функции будет ссылаться на этот самый объект.
 
     function Foo() {
         this.value = 42;
         this.method = function() {
-            // this refers to the global object
-            console.log(this.value); // will log undefined
+            // this ссылается на глобальный объект
+            console.log(this.value); // выведет в лог undefined
         };
         setTimeout(this.method, 500);
     }
@@ -34,18 +25,18 @@ refers to that very object.
 
 
 > **Note:** As `setTimeout` takes a **function object** as its first parameter, an
-> often made mistake is to use `setTimeout(foo(), 1000)`, which will use the 
-> **return value** of the call `foo` and **not** `foo`. This is, most of the time, 
-> a silent error, since when the function returns `undefined` `setTimeout` will 
+> often made mistake is to use `setTimeout(foo(), 1000)`, which will use the
+> **return value** of the call `foo` and **not** `foo`. This is, most of the time,
+> a silent error, since when the function returns `undefined` `setTimeout` will
 > **not** raise any error.
 
 ### Stacking calls with `setInterval`
 
-While `setTimeout` only runs the function once, `setInterval` - as the name 
-suggests - will execute the function **every** `X` milliseconds. But its use is 
-discouraged. 
+While `setTimeout` only runs the function once, `setInterval` - as the name
+suggests - will execute the function **every** `X` milliseconds. But its use is
+discouraged.
 
-When code that is being executed blocks the timeout call, `setInterval` will 
+When code that is being executed blocks the timeout call, `setInterval` will
 still issue more calls to the specified function. This can, especially with small
 intervals, result in function calls stacking up.
 
@@ -72,7 +63,7 @@ the function itself.
     foo();
 
 Not only does this encapsulate the `setTimeout` call, but it also prevents the
-stacking of calls and it gives additional control.`foo` itself can now decide 
+stacking of calls and it gives additional control.`foo` itself can now decide
 whether it wants to run again or not.
 
 ### Manually clearing timeouts
@@ -86,7 +77,7 @@ the first place.
 
 ### Clearing all timeouts
 
-As there is no built-in method for clearing all timeouts and/or intervals, 
+As there is no built-in method for clearing all timeouts and/or intervals,
 it is necessary to use brute force in order to achieve this functionality.
 
     // clear "all" timeouts
@@ -120,15 +111,15 @@ This feature should **never** be used, since it internally makes use of `eval`.
     }
     bar();
 
-Since `eval` is not getting called [directly](#core.eval) in this case, the string 
-passed to `setTimeout` will get executed in the *global scope*; thus, it will 
+Since `eval` is not getting called [directly](#core.eval) in this case, the string
+passed to `setTimeout` will get executed in the *global scope*; thus, it will
 not use the local variable `foo` from the scope of `bar`.
 
 It is further recommended to **not** use a string for passing arguments to the
-function that will get called by either of the timeout functions. 
+function that will get called by either of the timeout functions.
 
     function foo(a, b, c) {}
-    
+
     // NEVER use this
     setTimeout('foo(1,2, 3)', 1000)
 
@@ -137,19 +128,19 @@ function that will get called by either of the timeout functions.
         foo(a, b, c);
     }, 1000)
 
-> **Note:** While it is also possible to use the syntax 
+> **Note:** While it is also possible to use the syntax
 > `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
 > to subtle errors when used with [methods](#function.this).
 
 ### In conclusion
 
-**Never** should a string be used as the parameter of `setTimeout` or 
-`setInterval`. It is a clear sign of **really** bad code, when arguments need 
+**Never** should a string be used as the parameter of `setTimeout` or
+`setInterval`. It is a clear sign of **really** bad code, when arguments need
 to be supplied to the function that gets called. An *anonymous function* should
 be passed that then takes care of the actual call.
 
 Further, the use of `setInterval` should be avoided since its scheduler is not
 blocked by executing JavaScript.
 
-[1]: http://en.wikipedia.org/wiki/Document_Object_Model 
+[1]: http://en.wikipedia.org/wiki/Document_Object_Model
 
