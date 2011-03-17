@@ -24,72 +24,54 @@
     new Foo();
 
 
-> **Note:** As `setTimeout` takes a **function object** as its first parameter, an
-> often made mistake is to use `setTimeout(foo(), 1000)`, which will use the
-> **return value** of the call `foo` and **not** `foo`. This is, most of the time,
-> a silent error, since when the function returns `undefined` `setTimeout` will
-> **not** raise any error.
+> **Замечание:** Поскольку `setTimeout` принимает **объект функции** в качестве первого параметра часто совершается ошибка в использовании `setTimeout(foo(), 1000)`, при котором будет использоваться **возвращённое значение** от вызова `foo`, а **не** вызвана функция `foo`. В большинстве случаев ошибка пройдёт незамеченной, а в случае если функция возвращает `undefined`, `setTimeout` вообще **не** породит никакой ошибки.
 
-### Stacking calls with `setInterval`
+### Поочерёдные вызовы с использованием `setInterval`
 
-While `setTimeout` only runs the function once, `setInterval` - as the name
-suggests - will execute the function **every** `X` milliseconds. But its use is
-discouraged.
+`setTimeout` вызывает функцию единожды; `setInterval` — как и предполагает название — вызывает функцию **каждые** `X` миллисекунд. И его использование не рекомендуется.
 
-When code that is being executed blocks the timeout call, `setInterval` will
-still issue more calls to the specified function. This can, especially with small
-intervals, result in function calls stacking up.
+В то время, когда исполняющийся код будет блокироваться во время вызова с таймаутом, `setInterval` будет продолжать планировать последующие вызовы переданной функции. Это может, особенно в случае небольших интервалов, повлечь за собой выстраивание вызовов функций в очередь.
 
     function foo(){
-        // something that blocks for 1 second
+        // что-то, что выполняется одну секунду
     }
     setInterval(foo, 100);
 
-In the above code `foo` will get called once and will then block for one second.
+В приведённом коде `foo` выполнится один раз и заблокирует этим главный поток на одну секунду.
 
-While `foo` blocks the code `setInterval` will still schedule further calls to
-it. Now, when `foo` has finished, there will already be **ten** further calls to
-it waiting for execution.
+Пока `foo` блокирует код, `setInterval` продолжает планировать последующие её вызовы. Теперь, когда первая `foo` закончила выполнение, в очереди будут уже **десять** ожидающих выполнения вызовов `foo`.
 
-### Dealing with possible blocking code
+### Разбираемся с потенциальной блокировкой кода
 
-The easiest as well as most controllable solution, is to use `setTimeout` within
-the function itself.
+Самый простой и контролируемый способ — использовать `setTimeout` внутри самой функции.
 
     function foo(){
-        // something that blocks for 1 second
+        // что-то, выполняющееся одну секунду
         setTimeout(foo, 100);
     }
     foo();
 
-Not only does this encapsulate the `setTimeout` call, but it also prevents the
-stacking of calls and it gives additional control.`foo` itself can now decide
-whether it wants to run again or not.
+Такой способ не только инкапсулирует вызов `setTimeout`, но и предотвращает от очередей блокирующих вызовов и обеспечивает дополнительный контроль. Сама функция `foo` теперь принимает решение, хочет ли она запускаться ещё раз или нет.
 
-### Manually clearing timeouts
+### Очистка таймаутов вручную
 
-Clearing timeouts and intervals works by passing the respective ID to
-`clearTimeout` or `clearInterval`, depending which `set` function was used in
-the first place.
+Удаление таймаутов и интервалов работает через передачу соответствуюего идентификатора либо в функцию `clearTimeout`, либо в функцию `clearInterval` — в зависимости от того, какая функция `set...` использовалась для его получения.
 
     var id = setTimeout(foo, 1000);
     clearTimeout(id);
 
-### Clearing all timeouts
+### Очистка всех таймаутов
 
-As there is no built-in method for clearing all timeouts and/or intervals,
-it is necessary to use brute force in order to achieve this functionality.
+Из-за того, что встроенного метода для удаления всех таймаутов и/или интервалов не существует, для достижения этой цели приходится использовать брутфорс.
 
-    // clear "all" timeouts
+    // удаляем "все" таймауты
     for(var i = 1; i < 1000; i++) {
         clearTimeout(i);
     }
 
-There might still be timeouts that are unaffected by this arbitrary number;
-therefore, is is instead recommended to keep track of all the timeout IDs, so
-they can be cleared specifically.
+Вполне могут остаться таймауты, которые не будут захвачены этим произвольным числом; так что рекомендуется следить за идентификаторами всех создающихся таймаутов, засчёт чего их можно будет удалять индивидуально.
 
-### Hidden use of `eval`
+### Скрытое использование `eval`
 
 `setTimeout` and `setInterval` can also take a string as their first parameter.
 This feature should **never** be used, since it internally makes use of `eval`.
@@ -142,5 +124,5 @@ be passed that then takes care of the actual call.
 Further, the use of `setInterval` should be avoided since its scheduler is not
 blocked by executing JavaScript.
 
-[1]: http://en.wikipedia.org/wiki/Document_Object_Model
+[1]: http://ru.wikipedia.org/wiki/Document_Object_Model
 
