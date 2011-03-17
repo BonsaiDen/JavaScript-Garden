@@ -1,52 +1,40 @@
-## `undefined` and `null`
+## `undefined` и `null`
 
-JavaScript has two distinct values for `nothing`, the more useful of these two
-being `undefined`.
+В JavaScript есть два отдельных типа для представления `ничего`, при этом более полезным из них является `undefined`.
 
-### The value `undefined`
+### Тип `undefined`
 
-`undefined` is a type with exactly one value: `undefined`.
+`undefined` — это тип с единственным возможным значением: `undefined`.
 
-The language also defines a global variable that has the value of `undefined`,
-this variable is also called `undefined`. But this variable is **not** a constant,
-nor is it a keyword of the language. This means that its *value* can be easily 
-overwritten.
+Кроме этого, в языке определена глобальная переменная со значением `undefined`, и эта переменная так и называется — `undefined`. Не являясь константой, она не является и ключевым словом. Из этого следует, что её значение можно с лёгкостью переопределить.
 
-> **ES5 Note:** `undefined` in ECMAScript 5 is **no longer** *writable* in strict
-> mode, but its name can still be shadowed by for example a function with the name 
-> `undefined`.
+> **ES5 Замечание:** в ECMAScript 5 переменная `undefined` **больше не** *доступна на запись* в strict-режиме, однако она всё также может быть перегружена по имени, например - функцией с именем `undefined`.
 
-Some examples for when the value `undefined` is returned:
+Несколько случаев, когда возвращается `undefined`:
 
- - Accessing the (unmodified) global variable `undefined`.
- - Implicit returns of functions due to missing `return` statements.
- - `return` statements which do not explicitly return anything.
- - Lookups of non-existent properties.
- - Function parameters which do not had any explicit value passed.
- - Anything that has been set to the value of `undefined`.
+ - При попытке доступа к глобальной переменной `undefined` (если она не изменена).
+ - Неявный возврат из функции при отсутствия в ней оператора `return`.
+ - Из операторов `return`, которые ничего не возвращают.
+ - В результате поиска несуществующего свойства у объекта (и доступа к нему).
+ - Параметры, которые не были переданы в функцию явно.
+ - При доступе ко всему, чьим значением является `undefined`.
 
-### Handling changes to the value of `undefined`
+### Обработка изменений значения `undefined`
 
-Since the global variable `undefined` only holds a copy of the actual *value* of 
-`undefined`, assigning a new value to it does **not** change the value of the 
-*type* `undefined`.
+Поскольку глобальная переменная `undefined` содержит копию настоящего *значения* `undefined`, присвоение этой переменной нового значения **не** изменяет значения или *типа* `undefined`.
 
-Still, in order to compare something against the value of `undefined` it is
-necessary to retrieve the value of `undefined` first.
+Но при этом, чтобы сравнить что-либо со значением `undefined` прежде важно получить значение самой переменной `undefined`.
 
-In order to protect code against a possible overwritten `undefined` variable, a 
-common technique used is to add an additional parameter to an
-[anonymous wrapper](#function.scopes), that gets no argument passed to it.
+Чтобы защитить код от переопределения переменной `undefined`, часто используется техника [анонимной обёртки](#function.scopes), которая принимает отсутствующий аргумент.
 
     var undefined = 123;
     (function(something, foo, undefined) {
-        // undefined in the local scope does 
-        // now again refer to the value
+        // в локальной области видимости `undefined`
+        // снова ссылается на правильное значене.
 
     })('Hello World', 42);
 
-Another way to achieve the same effect would be to use a declaration inside the 
-wrapper.
+Другой способ достичь того же эффекта — использовать опредение внутри обёртки.
 
     var undefined = 123;
     (function(something, foo) {
@@ -55,18 +43,11 @@ wrapper.
 
     })('Hello World', 42);
 
-The only difference being here, that this version results in 4 more bytes being
-used in case it is minified and there is no other `var` statement inside the
-anonymous wrapper.
+Единственная разница между этими вариантами в том, что последняя версия будет больше на 4 байта при минификации, а в первом случае внутри анонимной обёртки нет дополнительного оператора `var`.
 
-### Uses of `null`
+### Использование `null`
 
-While `undefined` in the context of the JavaScript language is mostly used in
-the sense of a traditional *null*, the actual `null` (both a literal and a type)
-is more or less just another data type.
+Хотя `undefined` в контексте языка JavaScript чаще используется в качестве традиционного *`null`*, настоящий `null` (и тип и литерал) является в большей или меньшей степени просто другим типом данных.
 
-It is used in some JavaScript internals (like declaring the end of the
-prototype chain by setting `Foo.prototype = null`), but in almost all cases it
-can be replaced by `undefined`.
-
+Он используется во внутренних механизмах JavaScript (например для определения конца цепочки прототипов засчёт присваивания `Foo.prototype = null`), но в большинстве случаев тип `null` может быть заменён на `undefined`.
 
