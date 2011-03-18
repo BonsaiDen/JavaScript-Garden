@@ -89,12 +89,9 @@
     }
     bar();
 
-Since `eval` is not getting called [directly](#core.eval) in this case, the string
-passed to `setTimeout` will get executed in the *global scope*; thus, it will
-not use the local variable `foo` from the scope of `bar`.
+Поскольку `eval` в этом случае не вызывается [напрямую](#core.eval), переданная в `setTimeout` строка будет выполнена в *глобальной области видимости*; так что локальная переменная `foo` из области видимости `bar` не будет выполнена.
 
-It is further recommended to **not** use a string for passing arguments to the
-function that will get called by either of the timeout functions.
+По этим же причинам рекомендуется **не** использовать строку для передачи аргументов в функцию, которая должна быть вызвана из одной из двух функций, работающих с таймаутами.
 
     function foo(a, b, c) {}
 
@@ -106,19 +103,13 @@ function that will get called by either of the timeout functions.
         foo(a, b, c);
     }, 1000)
 
-> **Note:** While it is also possible to use the syntax
-> `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
-> to subtle errors when used with [methods](#function.this).
+> **Замечание:** При том, что синтаксис `setTimeout(foo, 1000, a, b, c)` разрешено использовать, это крайне не рекомендуется, поскольку может привести к сложно-разпознаваемым ошибкам при работе с [методами](#function.this).
 
-### In conclusion
+### Заключение
 
-**Never** should a string be used as the parameter of `setTimeout` or
-`setInterval`. It is a clear sign of **really** bad code, when arguments need
-to be supplied to the function that gets called. An *anonymous function* should
-be passed that then takes care of the actual call.
+**Никогда** не используйте строки как параметры `setTimeout` или `setInterval`. Это явный признак **действительно** плохого кода, если вызываемой функции необходимо передавать аргументы. Лучше передавать *анонимную функцию*, которая самостоятельно будет отвечать за сам вызов.
 
-Further, the use of `setInterval` should be avoided since its scheduler is not
-blocked by executing JavaScript.
+Кроме того, избегайте использования `setInterval` в случаях, когда его планировщих может блокировать выполнение JavaScript.
 
 [1]: http://ru.wikipedia.org/wiki/Document_Object_Model
 
