@@ -68,7 +68,15 @@
             "articles": [
                 "timeouts"
             ]
+        },
+        {
+            "title": "Пояснения",
+            "dir": "appendix",
+            "articles": [
+                "fromtranslators"
+            ]
         }
+
     ]
 }
 
