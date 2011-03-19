@@ -1,101 +1,84 @@
-## How `this` Works
+## Как работает `this`
 
-JavaScript has a different concept of what the special name `this` refers to 
-than most other programming languages do. There are exactly **five** different 
-ways in which the value of `this` can be bound in the language.
+В JavaScript область ответственности специальной переменной `this` концептуально отличается от того, за что отвечает `this` в других языках программирования. Различают ровно **пять** вариантов того, к чему привязывается this в языке.
 
-### The global scope
+### 1. Глобальная область видимости
 
     this;
 
-When using `this` in global scope, it will simply refer to the *global* object.
+Когда мы используем `this` в глобальной области, она будет просто ссылаться на *глобальный* объект.
 
-
-### Calling a function
+### 2. Вызов функции
 
     foo();
 
-Here `this` will again refer to the *global* object.
+Тут `this` так же ссылается на *глобальный* объект.
 
-> **ES5 Note:** In strict mode, the global case **no longer** exists.
-> `this` will instead have the value of `undefined` in that case.
+> **ES5 Замечание:** В strict-режиме **теряется** понятие глобальности, поэтому в этом случае `this` будет иметь значение `undefined`.
 
-### Calling a method
+### 3. Вызов метода
 
-    test.foo(); 
+    test.foo();
 
-In this example `this` will refer to `test`.
+В данном примере `this` ссылается на `test`.
 
-### Calling a constructor
+### 4. Вызов конструктора
 
-    new foo(); 
+    new foo();
 
-A function call that is preceded by the `new` keyword acts as
-a [constructor](#function.constructors). Inside the function `this` will refer 
-to a *newly created* `Object`.
+Если перед вызовом функции присутствует ключевое слово `new` то данная функция будет действовать как [конструктор](#function.constructors). Внутри такой функции `this` будет указывать на *новосозданный* `Object`.
 
-### Explicit setting of `this`
+### 5. Переопределение `this`
 
     function foo(a, b, c) {}
-                          
+
     var bar = {};
-    foo.apply(bar, [1, 2, 3]); // array will expand to the below
-    foo.call(bar, 1, 2, 3); // results in a = 1, b = 2, c = 3
+    foo.apply(bar, [1, 2, 3]); // массив развернётся в a = 1, b = 2, c = 3
+    foo.call(bar, 1, 2, 3); // аналогично
 
-When using the `call` or `apply` methods of `Function.prototype`, the value of
-`this` inside the called function gets **explicitly set** to the first argument 
-of the corresponding function call.
+Когда мы используем методы `call` или `apply` из `Function.prototype`, то внутри вызваемой функции `this` **явным образом** будет присвоено значение первого передаваемого параметра.
 
-As a result, the above example the *method case* does **not** apply, and `this` 
-inside of `foo` will be set to `bar`.
+Исходя из этого, в предыдущем примере (строка с `apply`) *вызов метода* (3 вариант) **не** будет применён, и `this` внутри `foo` будет присвоено `bar`.
 
-> **Note:** `this` **cannot** be used to refer to the object inside of an `Object`
-> literal. So `var obj = {me: this}` will **not** result in `me` referring to
-> `obj`, since `this` only gets bound by one of the five listed cases.
+> **Замечание:** `this` **нельзя** использовать внутри литералов `{}` (`Object`) для ссылки на сам объект. Т.е. если мы напишем `var obj = {me: this}`, то `me` не будет ссылаться на `obj`, поскольку `this` присваивается только по одному из пяти описанных правил.
 
-### Common pitfalls
+### Наиболее распространенные ошибки
 
-While most of these cases make sense, the first one is to be considered another
-mis-design of the language, as it **never** has any practical use.
+Хотя большинство из этих примеров наполнены глубоким смыслом, первый из них можно считать ещё одним упущением в самом языке, поскольку он **вообще** не имеет практического применения.
 
     Foo.method = function() {
         function test() {
-            // this is set to the global object
+            // this ссылается на глобальный объект
         }
         test();
     }
 
-A common misconception is that `this` inside of `test` refers to `Foo`, while in
-fact it **does not**.
+Распространенным заблуждением будет то, что `this` внутри `test` ссылается на `Foo`, но это **не так**.
 
-In order to gain access to `Foo` from within `test` it is necessary to create a 
-local variable inside of `method` which refers to `Foo`.
+Для того, чтобы получить доступ к `Foo` внутри test необходимо создать локальную перменную внутри `method`, которая и будет ссылаться на `Foo`.
 
     Foo.method = function() {
         var that = this;
         function test() {
-            // Use that instead of this here
+            // Здесь используем that вместо this
         }
         test();
     }
 
-`that` is just a normal name, but it is commonly used for the reference to an 
-outer `this`. In combination with [closures](#function.closures), it can also 
-be used to pass `this` values around.
+Подходящее имя для переменной - `that`, его часто используют для ссылки на внешний `this`. В комбинации с [замыканиями](#function.closures) `this` можно пробрасывать в глобальную область, или в любой другой объект.
 
-### Assigning methods
+> **Замечание** от перев. Кроме `that` так же часто встречаются другие варианты `this_`, `self_` и другие варианты, но лучше принять для себя `that` как стандарт и тогда, возможно, все вокруг будут им пользоваться.
 
-Another thing that does **not** work in JavaScript is function aliasing, that is,
-**assigning** a method to a variable.
+### Назначение методов
+
+Еще одной фичей, которая **не** работает в `JavaScript`, является создание псевдонимов для методов, т.е. **присвоение** метода объекта переменной.
 
     var test = someObject.methodTest;
     test();
 
-Due to the first case `test` now acts like like a plain function call; therefore,
-`this` inside it will no longer refer to `someObject`.
+Следуя первому правилу `test` вызывается как обычная функция; следовательно `this` внутри него больше не ссылается на `someObject`.
 
-While the late binding of `this` might seem like a bad idea at first, it is in 
-fact what makes [prototypal inheritance](#object.prototype) work. 
+Хотя позднее связывание `this` на первый взгляд может показаться плохой идеей, но на самом деле именно благодаря этому работает [наследование прототипов](#object.prototype).
 
     function Foo() {}
     Foo.prototype.method = function() {};
@@ -105,7 +88,5 @@ fact what makes [prototypal inheritance](#object.prototype) work.
 
     new Bar().method();
 
-When `method` gets called on a instance of `Bar`, `this` will now refer to that
-very instance. 
-
+В момент, когда будет вызван `method` нового экземляра `Bar`, `this` будет ссылаться на этот самый экземпляр.
 
