@@ -1,11 +1,8 @@
-## Closures and References
+## Замыкания и ссылки
 
-One of JavaScript's most powerful features is the availability of *closures*,
-this means that scopes **always** keep access to the outer scope they were
-defined in. Since the only scoping that JavaScript has is 
-[function scope](#function.scopes), all functions, by default, act as closures.
+Одним из самых мощных инструментов JavaScript'а считаются возмжность создавать *замыкания* — это когда наша область видимости **всегда** имеет доступ к внешней области, в которой она была объявлена. Собственно, единственный механизм работы с областями видимости в JavaScript — это [функции](#function.scopes): т.е. объявляя функцию, вы автоматически реализуете замыкания.
 
-### Emulating private variables
+### Эмуляция приватных свойств
 
     function Counter(start) {
         var count = start;
@@ -24,69 +21,52 @@ defined in. Since the only scoping that JavaScript has is
     foo.increment();
     foo.get(); // 5
 
-Here, `Counter` returns **two** closures. The function `increment` as well as 
-the function `get`. Both of these functions keep a **reference** to the scope of 
-`Counter` and, therefore, always keep access to the `count` variable that was 
-defined in that very scope.
+В данном примере `Counter` возвращает **два** замыкания: функции `increment` и `get`. Обе эти функции сохраняют **ссылку** на область видимости `Counter` и, соответственно, имеют доступ к переменной `count` из этой самой области.
 
-### Why private variables work
+### Как это работает
 
-Since it is not possible to reference or assign scopes in JavaScript, there is 
-**no** way of accessing the variable `count` from the outside. The only way to 
-interact with it is via the two closures.
+Поскольку в JavaScript нельзя присваивать или ссылаться на области видимости, заполучить `count` извне **не** представляется возможным. Единственным способом взаимодействовать с ним остается использование двух замыканий.
 
     var foo = new Counter(4);
     foo.hack = function() {
         count = 1337;
     };
 
-The above code will **not** change the variable `count` in the scope of `Counter`, 
-since `foo.hack` was not defined in **that** scope. It will instead create - or 
-override - the *global* variable `count`.
+В приведенном примере мы **не** изменяем переменную `count` в области видимости `Counter`, т.к. `foo.hack` не объявлен в **данной** области. Вместо этого будет создана или перезаписана *глобальная* переменная `count`;
 
-### Closures inside loops
+### Замыкания внутри циклов
 
-One often made mistake is to use closures inside of loops, as if they were
-copying the value of the loops index variable.
+Часто встречается ошибка, когда замыкания используют внутри циклов, передавая переменную индекса внутрь.
 
     for(var i = 0; i < 10; i++) {
         setTimeout(function() {
-            console.log(i);  
+            console.log(i);
         }, 1000);
     }
 
-The above will **not** output the numbers `0` through `9`, but will simply print
-the number `10` ten times.
+Данный код **не** будет выводить числа с `0` до `9`, вместо этого число `10` будет выведено десять раз.
 
-The *anonymous* function keeps a **reference** to `i` and at the time 
-`console.log` gets called, the `for loop` has already finished and the value of 
-`i` as been set to `10`.
+*Анонимная* функция сохраняет **ссылку** на `i` и когда будет вызвана функция `console.log`, цикл `for` уже закончит свою работу, а в `i` будет содержаться `10`.
 
-In order to get the desired behavior, it is necessary to create a **copy** of 
-the value of `i`.
+Для получения желаемого результата необходимо создать **копию** переменной `i`.
 
-### Avoiding the reference problem
+### Во избежание ошибок
 
-In order to copy the value of the loop's index variable, it is best to use an 
-[anonymous wrapper](#function.scopes).
+Для того, чтобы скопировать значение индекса из цикла, лучше всего использовать [анонимную функцию](#function.scopes) как обёртку.
 
     for(var i = 0; i < 10; i++) {
         (function(e) {
             setTimeout(function() {
-                console.log(e);  
+                console.log(e);
             }, 1000);
         })(i);
     }
 
-The anonymous outer function gets called immediately with `i` as its first 
-argument and will receive a copy of the **value** of `i` as its parameter `e`.
+Анонимная функция-обертка будет вызвана сразу же, и в качестве первого аргумента получит `i`, **значение** которой будет скопировано в параметр `e`.
 
-The anonymous function that gets passed to `setTimeout` now has a reference to 
-`e`, whose value does **not** get changed by the loop.
+Анонимная функция, которая передается в `setTimeout`, теперь содержит ссылку на `e`, значение которой **не** изменяется циклом.
 
-There is another possible way of achieving this; that is to return a function 
-from the anonymous wrapper, that will then have the same behavior as the code 
-above.
+Еще одним способом реализации является возврат функции из анонимной функции-обертки, поведение этого кода будет таким же, как и в коде из предыдущего примера.
 
     for(var i = 0; i < 10; i++) {
         setTimeout((function(e) {
@@ -95,4 +75,6 @@ above.
             }
         })(i), 1000)
     }
+
+> **Замечание** от перев. Переменную `e` можно тоже назвать `i`, если вы хотите: это не поменяет поведения кода — внутренняя переменная `i` всё также будет *копией* внешней переменной
 
