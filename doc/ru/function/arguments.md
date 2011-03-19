@@ -1,45 +1,36 @@
-## The `arguments` Object
+## Объект `arguments`
+
+В области видимости любой функции в JavaScript есть доступ к специальной переменной `arguments`. Эта переменная содержит в себе список всех аргументов? переданных данной функции ghb dspjdt.
 
 Every function scope in JavaScript can access the special variable `arguments`.
 This variable holds a list of all the arguments that were passed to the function.
 
-> **Note:** In case `arguments` has already been defined inside the function's
-> scope either via a `var` statement or being the name of a formal parameter,
-> the `arguments` object will not be created.
+> **Замечание:** В случае, если переменная `arguments` уже была объявлена в области видимости функции либо путём присвоения через выражение `var`, либо являясь формальным параметром, объект `arguments` не будет создан.
 
-The `arguments` object is **not** an `Array`. While it has some of the 
-semantics of an array - namely the `length` property - it does not inherit from 
-`Array.prototype` and is in fact an `Object`.
+Объект `arguments` **не** является наследником `Array`. Он, конечно же, очень похож на массив, и даже содержит свойство `length` — но он не наследует `Array.prototype`, а представляет собой `Object`.
 
-Due to this, it is **not** possible to use standard array methods like `push`,
-`pop` or `slice` on `arguments`. While iteration with a plain `for` loop works 
-just fine, it is necessary to convert it to a real `Array` in order to use the 
-standard `Array` methods on it.
+По этой причине, у объекта `arguments` **отсутствуют** стандартные методы массивов, такие как `push`, `pop` или `slice`. Хотя итерация с использованием обычного цикла `for` по агрументам работает вполне корректно, вам придётся конвертировать этот объект в настоящий массив типа `Array`, чтобы применять к нему стандартные методы массивов.
 
-### Converting to an array
+### Конвертация в массив
 
-The code below will return a new `Array` containing all the elements of the 
-`arguments` object.
+Указанный код вернёт новый массив типа `Array`, содержащий все элементы объекта `arguments`.
 
     Array.prototype.slice.call(arguments);
 
-This conversion is **slow**, it is **not recommended** to use it in performance 
-critical sections of code.
+Эта конвертация занимает **много времени** и **не рекомендуется** использовать её в критических частях кода.
 
-### Passing arguments
+### Передача аргументов
 
-The following is the recommended way of passing arguments from one function to
-another.
+Ниже представлен рекомендуемый способ передачи аргументов из одной функции в другую.
 
     function foo() {
         bar.apply(null, arguments);
     }
     function bar(a, b, c) {
-        // do stuff here
+        // делаем здесь что-либо
     }
 
-Another trick is to use both `call` and `apply` together to create fast, unbound
-wrappers.
+Другой трюк — использовать и `call` и `apply` вместе, чтобы быстро создать несвязанную обёртку:
 
     function Foo() {}
 
@@ -47,26 +38,25 @@ wrappers.
         console.log(this, a, b, c);
     };
 
-    // Create an unbound version of "method" 
-    // It takes the parameters: this, arg1, arg2...argN
+    // Создаём несвязанную версию "method"
+    // Она принимает параметры: this, arg1, arg2...argN
     Foo.method = function() {
 
-        // Result: Foo.prototype.method.call(this, arg1, arg2... argN)
+        // Результат: Foo.prototype.method.call(this, arg1, arg2... argN)
         Function.call.apply(Foo.prototype.method, arguments);
+
     };
 
 
-### Formal parameters and arguments indexes
+### Формальные аргументы и индексы аргументов
 
-The `arguments` object creates *getter* and *setter* functions for both its 
-properties as well as the function's formal parameters.
+Объект `arguments` создаёт по *геттеру* и *сеттеру* и для всех своих свойств и для формальных параметров функции.
 
-As a result, changing the value of a formal parameter will also change the value
-of the corresponding property on the `arguments` object, and the other way around.
+В результате, изменение формального параметра также изменит значение соответствующего свойства объекта `arguments` и наоборот.
 
     function foo(a, b, c) {
         arguments[0] = 2;
-        a; // 2                                                           
+        a; // 2
 
         b = 4;
         arguments[1]; // 4
@@ -77,43 +67,32 @@ of the corresponding property on the `arguments` object, and the other way aroun
     }
     foo(1, 2, 3);
 
-### Performance myths and truths
+### Мифы и правда о производительности
 
-The `arguments` object is always created with the only two exceptions being the 
-cases where it is declared as a name inside of a function or one of its formal 
-parameters. It does not matter whether it is used or not.
+Объект `arguments` создаётся во всех случаях, лишь за двумя исключениямии — когда он переопределён по имени внутри функции или когда одним из её параметров является переменная с таким именем. Не важно, используется он при этом или нет.
 
-Both *getters* and *setters* are **always** created; thus, using it has nearly 
-no performance impact at all, especially not in real world code where there is 
-more than a simple access to the `arguments` object's properties.
+*Геттеры* и *сеттеры* создаются **всегда**; так что, их использование почти никак не влияет на производительность.
 
-> **ES5 Note:** These *getters* and *setters* are not created in strict mode.
+> **ES5 Замечание:** Эти *геттеры* и *сеттеры* не создаются в strict-режиме.
 
-However, there is one case which will drastically reduce the performance in
-modern JavaScript engines. That case is the use of `arguments.callee`.
+Однако, есть один момент, который может радикально понизить производительность современных движков JavaScript. Этот момент — использование `arguments.callee`.
 
     function foo() {
-        arguments.callee; // do something with this function object
-        arguments.callee.caller; // and the calling function object
+        arguments.callee; // сделать что-либо с этим объектом функции
+        arguments.callee.caller; // и с вызвавшим его объектом функции
     }
 
     function bigLoop() {
         for(var i = 0; i < 100000; i++) {
-            foo(); // Would normally be inlined...
+            foo(); // При обычных условиях должна бы была быть развёрнута...
         }
     }
 
-In the above code, `foo` can no longer be a subject to [inlining][1] since it 
-needs to know about both itself and its caller. This not only defeats possible 
-performance gains that would arise from inlining, it also breaks encapsulation
-since the function may now be dependent on a specific calling context.
+В коде выше, `foo` больше не может [быть развёрнута][1], потому что ей необходима ссылка и на себя, и на вызвавший объект. Это не только кладёт на лопатки механизм развёртывания, но и нарушает принцип инкапсуляции, поскольку функция становится зависима от конкретного контекста вызова.
 
-It is **highly recommended** to **never** make use of `arguments.callee` or any of 
-its properties.
+**Крайне рекомендуется** **никогда** не использовать `arguments.callee` или его свойства.
 
-> **ES5 Note:** In strict mode, `arguments.callee` will throw a `TypeError` since 
-> its use has been deprecated.
+> **ES5 Замечание:** В strict-режиме `arguments.callee` выбросит `TypeError`, поскольку его использование принято устаревшим.
 
 [1]: http://en.wikipedia.org/wiki/Inlining
-
 
