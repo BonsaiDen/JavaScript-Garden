@@ -1,35 +1,25 @@
-## The `Array` Constructor
+## Конструктор `Array`
 
-Since the `Array` constructor is ambiguous in how it deals with its parameters,
-it is highly recommended to always use the array literals - `[]` notation - 
-when creating new arrays.
+Так как в конструкторе `Array` есть некоторая двусмысленность кастательно его параметров, настоятельно рекомендуется всегда использовать синтаксис литеральной нотации — `[]` — при создании массивов.
 
-    [1, 2, 3]; // Result: [1, 2, 3]
-    new Array(1, 2, 3); // Result: [1, 2, 3]
+    [1, 2, 3]; // Результат: [1, 2, 3]
+    new Array(1, 2, 3); // Результат: [1, 2, 3]
 
-    [3]; // Result: [3]
-    new Array(3); // Result: []
-    new Array('3') // Result: ['3']
+    [3]; // Результат: [3]
+    new Array(3); // Результат: []
+    new Array('3') // Результат: ['3']
 
-In cases when there is only one argument passed to the `Array` constructor,
-and that argument is a `Number`, the constructor will return a new *sparse* 
-array with the `length` property set to the value of the argument. It should be 
-noted that **only** the `length` property of the new array will be set this way, 
-the actual indexes of the array will not be initialized. 
+В случае, когда в конструктор `Array` передается один аргумент и этот аргумент имеет тип `Number`, конструктор возвращает новый, *запоненный случайными значениями*, массив, имеющий длину равную значению переданного аргумента. Стоит заметить, что в этом случае будет установлено только свойство `length` нового массива, фактически индексы массива не будут проинициализированы.
 
     var arr = new Array(3);
-    arr[1]; // undefined
-    1 in arr; // false, the index was not set
+    arr[1]; // не определён, undefined
+    1 in arr; // false, индекс не был установлен
 
-The behavior of being able to set the length of the array upfront only comes in 
-handy in a few cases, like repeating a string, in which it avoids the use of a 
-`for loop` code.
+Поведение, которое позволяет изначально установить только размер массива может пригодиться лишь в нескольких случаях, таких как повторение строк, за счёт чего избегается использование цикла `for loop`.
 
     new Array(count + 1).join(stringToRepeat);
 
-### In conclusion
+### Заключение
 
-The use of the `Array` constructor should be avoided as much as possible. 
-Literals are definitely preferred. They are shorter and have a clearer syntax; 
-therefore, they also increase the readability of the code.
+Использование конструктора `Array` нужно избегать, насколько это возможно. Литералы определённо предпочтительнее — это краткая запись и она имеет более понятный синтаксис, так что при этом даже улучшается читабельность кода.
 
