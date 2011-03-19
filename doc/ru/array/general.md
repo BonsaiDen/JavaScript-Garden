@@ -1,44 +1,29 @@
-## Array Iteration and Properties
+## ﻿﻿ Итерации по массивам и свойства
 
-Although arrays in JavaScript are objects, there are no good reasons to use
-the [`for in loop`](#object.forinloop) in for iteration on them. In fact there 
-are a number of good reasons **against** the use of `for in` on arrays.
+Не смотря на то, что массивы в JavaScript являются объектами, нет достаточных оснований для использования [цикла `for in`](#object.forinloop) для итерации по элементами. Фактически, существует несколько весомых причин **против** использования `for in` в массивах.
 
-> **Note:** JavaScript arrays are **not** *associative arrays*. JavaScript only 
-> has [objects](#object.general) for mapping keys to values. And while associative 
-> arrays **preserve** order, objects **do not**.
+> **Замечание:** Массивы в JavaScript **не** являются *ассоциативными массивами*. Для связывания ключей и значений в JavaScript есть только [объекты](#object.general). И при том, что ассоциативные массивы **сохраняют** заданный порядок, объекты **не** делают этого.
 
-Since the `for in` loop enumerates all the properties that are on the prototype 
-chain and the only way to exclude those properties is to use 
-[`hasOwnProperty`](#object.hasownproperty), it is already up to **twenty times** 
-slower than a normal `for` loop.
+Во время выполнения `for in` циклически перебираются все свойства объекта, находящиеся в цепочке прототипов. Единственный способ исключить ненужные свойства — использовать [`hasOwnProperty`](#object.hasownproperty), а это **в 20 раз** медленнее обычного цикла `for`.
 
-### Iteration
+### Итерирование
 
-In order to achieve the best performance when iterating over arrays, it is best
-to use the classic `for` loop.
+Для достижения лучшей производительности при итерации по массивам, лучше всего использовать обычный цикл `for`.
 
     var list = [1, 2, 3, 4, 5, ...... 100000000];
     for(var i = 0, l = list.length; i < l; i++) {
         console.log(list[i]);
     }
 
-There is one extra catch in the above example, that is the caching of the 
-length of the array via `l = list.length`.
+В примере выше есть один дополнительный приём, с помощью которого кэшируется величина длины массива: `l = list.length`.
 
-Although the `length` property is defined on the array itself, there is still an
-overhead for doing the lookup on each iteration of the loop. And while recent 
-JavaScript engines **may** apply optimization in this case, there is no way of
-telling whether the code will run on one of these newer engines or not. 
+Не смотря на то, что свойство length определено в самом массиве, поиск этого свойства накладывает дополнительные расходы на каждой итерации цикла. Несмотря на то, что в этом случае новые движки JavaScript **могут** применять оптимизацию, нет способа узнать, будет оптимизирован код на новом движке или нет.
 
-In fact, leaving out the caching may result in the loop being only **half as
-fast** as with the cached length.
+Фактически, отсутствие кэширования может привести к выполнению цикла в **два раза медленнее**, чем при кэшировании длины
 
-### The `length` property
+### Свойство `length`
 
-While the *getter* of the `length` property simply returns the number of
-elements that are contained in the array, the *setter* can be used to 
-**truncate** the array.
+Несмотря на то, что *геттер* свойства `length` просто возвращает количество элементов содежащихся в массиве, *сеттер* можно использовать для **обрезания** массива.
 
     var foo = [1, 2, 3, 4, 5, 6];
     foo.length = 3;
@@ -47,12 +32,9 @@ elements that are contained in the array, the *setter* can be used to
     foo.length = 6;
     foo; // [1, 2, 3]
 
-Assigning a smaller length does truncate the array, but increasing the length 
-does not have any effect on the array.
+Присвоение свойству `length` меньшей величины урезает массив, однако присвоение большего значения не влечёт никакого эффекта.
 
-### In conclusion
+### Заключение
 
-For the best performance it is recommended to always use the plain `for` loop
-and cache the `length` property. The use of `for in` on an array is a sign of
-badly written code that is prone to bugs and bad performance. 
+Для оптимального работы кода рекомендуется всегда использовать простой цикл `for` и кэшировать свойство `length`. Использование `for in` с массивами является признаком плохого кода, обладающего предпосылками к ошибкам и может привести к низкой скорости его выполнения.
 
