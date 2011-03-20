@@ -1,63 +1,54 @@
-## Type casting
+## Приведение типов
 
-JavaScript is a *weakly typed* language, so it will apply *type coercion*
-**wherever** possible.
+JavaScript *слабо типизированный* язык, поэтому *преобразование типов* будет применяться **везде**, где возможно.
 
-    // These are true
-    new Number(10) == 10; // Number.toString() is converted
-                          // back to a number
+    // Эти равенства — истинны
+    new Number(10) == 10; // Number.toString() преобразуется
+                          // обратно в число
 
-    10 == '10';           // Strings gets converted to Number
-    10 == '+10 ';         // More string madness
-    10 == '010';          // And more 
-    isNaN(null) == false; // null converts to 0
-                          // which of course is not NaN
-    
-    // These are false
+    10 == '10';           // Strings преобразуется в Number
+    10 == '+10 ';         // Ещё чуток строко-безумия
+    10 == '010';          // и ещё
+    isNaN(null) == false; // null преобразуется в 0
+                          // который конечно NaN
+
+    // Эти равенства — ложь
     10 == 010;
     10 == '-10';
 
-> **ES5 Note:** Number literals that start with a `0` are interpreted as octal 
-> (Base 8). Octal support for these has been **removed** in ECMAScript 5 strict 
-> mode.
+> **ES5 Замечание:** Числовые литералы, которые начинаются с 0 интерпретируются как восьмеричные (Base 8). В ECMAScript 5 strict mode **удалена** поддержка восьмеричной системы.
 
-In order to avoid the above, use of the [strict equal operator](#types.equality) 
-is **highly** recommended. Although this avoids a lot of common pitfalls, there 
-are still many further issues that arise from JavaScript's weak typing system.
+Для того, чтобы избежать этого, **настоятельно** рекомендуется использовать [оператор строгого равенства](#types.equality). Хотя это позволяет избежать многих распространенных ошибок, существует ещё много дополнительных вопросов, которые возникают из-за слабости типизации JavaScript.
 
-### Constructors of built-in types
+### Конструкторы встроенных типов
 
-The constructors of the built in types like `Number` and `String` behave
-differently when being used with the `new` keyword and without it.
+Конструкторы встроенных типов, например, `Number` и `String` ведут себя различным образом, в зависимости от того вызываются они с ключевым словом `new` или без.
 
-    new Number(10) === 10;     // False, Object and Number
-    Number(10) === 10;         // True, Number and Number
-    new Number(10) + 0 === 10; // True, due to implicit conversion
+    new Number(10) === 10;     // False, Object и Number
+    Number(10) === 10;         // True, Number и Number
+    new Number(10) + 0 === 10; // True, из-за неявного преобразования
 
-Using a built-in type like `Number` as a constructor will create a new `Number` 
-object, but leaving out the `new` keyword will make the `Number` function behave
-like a converter.
+Использование встроенных типов, например `Number`, с конструктором создаёт новый экземпляр объекта Number, но использование без ключевого слова `new` создаст функцию `Number`, которая будет вести себя, как конвертер.
 
-In addition, having literals or non-object values in there will result in even
-more type coercion.
+Кроме того, наличие литералов или переменных, которые не являются объектами приведет к еще большему насилию над типами.
 
-The best option is to cast to one of the three possible types **explicitly**.
+Лучший вариант — это **явное** приведение к одному из трех возможных типов.
 
-### Casting to a string
+### Приведение к строке
 
     '' + 10 === '10'; // true
 
-By prepending a empty string a value can easily be casted to a string.
+Путём добавления в начале пустой строки, значение легко приводится к строке.
 
-### Casting to a number
+### Приведение к числовому типу
 
     +'10' === 10; // true
 
-Using the **unary** plus operator it is possible to cast to a number.
+Используя **унарный** оператор плюс можно преобразовать значение в число.
 
-### Casting to a boolean
+### Приведение к булеву типу
 
-By using the **not** operator twice, a value can be converted a boolean.
+Используя оператор **not (!)** дважды, значение может быть приведено к логическому (булеву) типу.
 
     !!'foo';   // true
     !!'';      // false
@@ -66,5 +57,4 @@ By using the **not** operator twice, a value can be converted a boolean.
     !!'-1'     // true
     !!{};      // true
     !!true;    // true
-
 
