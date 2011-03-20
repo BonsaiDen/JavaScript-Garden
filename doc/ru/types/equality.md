@@ -1,14 +1,13 @@
-## Equality and comparisons
+## ﻿ Равенство и сравнение
 
-JavaScript has two different ways of comparing the values of objects for equality. 
+JavaScript имеет 2 различных способа сравнения значений объектов на равенство.
 
-### The equals operator
+### Оператор сравнения
 
-The equals operator consists of two equal signs: `==`
+Оператор сравнения состоит из **двух** символов равенства: `==`
 
-JavaScript features *weak typing*, that means, that the equals operator 
-**coerces** types in order to compare them.
-    
+*Слабая типизированность* языка JavaScript подразумевает **приведение** обеих переменных к **одному типу** для того, чтобы произвести сравнение.
+
     ""           ==   "0"           // false
     0            ==   ""            // true
     0            ==   "0"           // true
@@ -19,20 +18,15 @@ JavaScript features *weak typing*, that means, that the equals operator
     null         ==   undefined     // true
     " \t\r\n"    ==   0             // true
 
-The above table shows the results of the type coercion and it is the main reason 
-why the use of `==` is widely regarded as bad practice, it introduces hard to 
-track down bugs due to its complicated conversion rules.
+В таблице выше показаны результаты приведения типов и это главная причина почему использование `==` повсеместно считается плохой практикой, это приводит к трудностям в отслеживании ошибок из-за сложных правил преобразования типов.
 
-Additionally there is also a performance impact when type coercion is in play;
-for example, a string has to be converted to a number before it can be compared
-to another number.
+Кроме того, приведение типов во время сравнением также влияет на производительность; например, строка должна быть преобразована в число перед сравнением с другим числом.
 
-### The strict equals operator
+### Оператор строгого равенства
 
-The strict equals operator consists of **three** equal signs: `===`
+Оператор строгого равенства состоит из **трёх** символов равенства: `===`
 
-Other than the normal equals operator, the strict equals operator does **not**
-perform type coercion between its operands.
+В отличие от обычного оператора равенства, оператор строгого равенства **не** выполняет приведение типов между операндами.
 
     ""           ===   "0"           // false
     0            ===   ""            // false
@@ -44,14 +38,11 @@ perform type coercion between its operands.
     null         ===   undefined     // false
     " \t\r\n"    ===   0             // false
 
-The above results are a lot clearer and allow for early breakage of code. This
-hardens code to a certain degree and also gives performance improvements in case
-the operands are of different types.
+Результаты выше более понятны и позволяют быстрее выявлять ошибки в коде. Это в определённой степени улучшает код, а также дает прирост производительности в случае, если операнды имеют различные типы.
 
-### Comparing objects
+### Сравнение объектов
 
-While both `==` and `===` are stated as **equality** operators, they behave 
-different when at least one of their operands happens to be an `Object`.
+Хотя оба оператора `==` и `===` заявлены как операторы равенства, они ведут себя по-разному, когда хотя бы один из операндов является `Object`.
 
     {} === {};                   // false
     new String('foo') === 'foo'; // false
@@ -59,13 +50,9 @@ different when at least one of their operands happens to be an `Object`.
     var foo = {};
     foo === foo;                 // true
 
-Here both operators compare for **identity** and **not** equality; that is, they
-will compare for the same **instance** of the object, much like `is` in Python 
-and a pointer comparison in C do.
+Здесь оба операнда сравниваются на **идентичность**, а **не** равенство; то есть, будет проверяться, являются ли операнды одним **экземпляром** объекта, так же как делает `is` в Python и сравниваются указатели в С.
 
-### In conclusion
+### Заключение
 
-It is highly recommended to only use the **strict equals** operator. In cases
-where types need to be coerced, it should be done [explicitly](#types.casting) 
-and not left to the language's complicated coercion rules.
+Крайне рекомендуется использовать только операторы **строгого равенства**. В случае, когда намечается преобразование типов, нужно сделать [явное приведение](#types.casting) и не оставлять их на совести языковых хитростей с преобразованиями.
 
