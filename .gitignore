@@ -1,6 +1,7 @@
 /site/index.html
 /build
 /html
+/node_modules
 /site/de
 /site/ru
 *.md~
