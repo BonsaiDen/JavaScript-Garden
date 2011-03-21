@@ -1,8 +1,6 @@
-## The Authors
+﻿## 关于作者（The Authors）
 
-This guide is the work of two lovely Stack Overflow users, [Ivo Wetzel][1]
-(Writing) and [Zhang Yi Jiang][2] (Design).
+这篇文章的作者是两位 Stack Overflow 的用户, [Ivo Wetzel][1] （写作） 和 [Zhang Yi Jiang][2] （设计）。
 
 [1]: http://stackoverflow.com/users/170224/ivo-wetzel
 [2]: http://stackoverflow.com/users/313758/yi-jiang
-

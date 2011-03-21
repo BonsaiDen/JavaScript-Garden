@@ -1,9 +1,9 @@
-## License
+﻿### 许可（License）
 
-JavaScript Garden is published under the [MIT license][1] and hosted on
-[GitHub][2]. If you find errors or typos please [file an issue][3] or a pull 
-request on the repository. You can also find us in the [JavaScript room][4] on
-Stack Overflow chat. 
+JavaScript 秘密花园在 [MIT license][1] 许可协议下发布，并存放在开源社区 [GitHub][2]。
+如果你发现错误或者打字错误，请 [file an issue][3] 或者 pull request。
+你也可以在 Stack Overflow 的聊天室 [JavaScript room][4] 找到我们。
+
 
 [1]: https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE
 [2]: https://github.com/BonsaiDen/JavaScript-Garden

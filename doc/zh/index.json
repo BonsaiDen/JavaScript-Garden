@@ -1,15 +1,71 @@
 {
     "title": "JavaScript Garden",
-    "langTitle": "JavaScript Garden in Deutsch",
-    "description": "Ein Guide über JavaScript's Ecken und Kanten.",
+    "langTitle": "JavaScript Garden in English",
+    "description": "A Guide to JavaScript's Quirks and Flaws.",
     "sections": [
         {
-            "title": "Einführung",
+            "title": "Intro",
             "dir": "intro",
             "articles": [
                 "authors",
                 "contributors",
                 "license"
+            ]
+        },
+        {
+            "title": "Objects",
+            "dir": "object",
+            "articles": [
+                "general",
+                "prototype",
+                "hasownproperty",
+                "forinloop"
+            ]
+        },
+        {
+            "title": "Functions",
+            "dir": "function",
+            "articles": [
+                "general",
+                "this",
+                "closures",
+                "arguments",
+                "constructors",
+                "scopes"
+            ]
+        },
+        {
+            "title": "Arrays",
+            "dir": "array",
+            "articles": [
+                "general",
+                "constructor"
+            ]
+        },
+        {
+            "title": "Types",
+            "dir": "types",
+            "articles": [
+                "equality",
+                "typeof",
+                "instanceof",
+                "casting"
+            ]
+        },
+        {
+            "title": "Core",
+            "dir": "core",
+            "articles": [
+                "eval",
+                "undefined",
+                "semicolon"
+            ]
+        },
+        {
+            "title": "Other",
+            "dir": "other",
+            "articles": [
+                "timeouts"
             ]
         }
     ]
