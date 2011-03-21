@@ -1,29 +1,33 @@
-## Scopes and Namespaces
+﻿## 作用域与命名空间（Scopes and namespaces）
 
-Although JavaScript deals fine with the syntax of two matching curly
-braces for blocks, it does **not** support block scope; hence, all that is left 
-is in the language is *function scope*.
+尽管 JavaScript 支持一对花括号创建的代码段，但是并不支持块级作用域；
+而仅仅支持 *函数作用域*。
 
-    function test() { // a scope
-        for(var i = 0; i < 10; i++) { // not a scope
+    function test() { // 一个作用域
+        for(var i = 0; i < 10; i++) { // 不是一个作用域
             // count
         }
         console.log(i); // 10
     }
 
-> **Note:** When not used in an assignment, return statement or as a function 
-> argument, the `{...}` notation will get interpreted as a block statement and 
-> **not** as an object literal. This, in conjunction with 
-> [automatic insertion of semicolons](#core.semicolon), can lead to subtle errors.
+> **注意:** 如果不是在赋值语句中，而是在 return 表达式或者函数参数中，`{...}` 将会作为代码段解析，
+> 而不是作为对象的字面语法解析。如果考虑到 [自动分号插入](#semicolon)，这可能会导致一些不易察觉的错误。
 
-There are also no distinct namespaces in JavaScript, that means that everything 
-gets defined in one *globally shared* namespace.
+译者注：如果 return 对象的左括号和 return 不在一行上就会出错。
+	
+	// 译者注：下面输出 undefined
+	function add(a, b) {
+		return 
+			a + b;
+	}
+	console.log(add(1, 2));
 
-Each time a variable is referenced, JavaScript will traverse upwards through all 
-the scopes until it finds it. In the case that it reaches the global scope and 
-still has not found the requested name, it will raise a `ReferenceError`.
+JavaScript 中没有显式的命名空间定义，这就意味着所有对象都定义在一个*全局共享*的命名空间下面。
 
-### The bane of global variables
+每次引用一个变量，JavaScript 会向上遍历整个作用域直到找到这个变量为止。
+如果到达全局作用域但是这个变量仍未找到，则会抛出 `ReferenceError` 异常。
+
+### 隐式的全局变量（The bane of global variables）
 
     // script A
     foo = '42';
@@ -31,58 +35,50 @@ still has not found the requested name, it will raise a `ReferenceError`.
     // script B
     var foo = '42'
 
-The above two scripts do **not** have the same effect. Script A defines a 
-variable called `foo` in the *global* scope and script B defines a `foo` in the
-*current* scope.
+上面两段脚本效果**不同**。脚本 A 在*全局*作用域内定义了变量 `foo`，而脚本 B 在*当前*作用域内定义变量 `foo`。
 
-Again, that is **not** at all the *same effect*, not using `var` can have major 
-implications.
+再次强调，上面的效果**完全不同**，不使用 `var` 声明变量将会导致隐式的全局变量产生。
 
-    // global scope
+    // 全局作用域
     var foo = 42;
     function test() {
-        // local scope
+        // 局部作用域
         foo = 21;
     }
     test();
     foo; // 21
 
-Leaving out the `var` statement inside the function `test` will override the 
-value of `foo`. While this might not seem like a big deal at first, having 
-thousands of lines of JavaScript and not using `var` will introduce horrible and 
-hard to track down bugs.
+在函数 `test` 内不使用 `var` 关键字声明 `foo` 变量将会覆盖外部的同名变量。
+起初这看起来并不是大问题，但是当有成千上万行代码时，不使用 `var` 声明变量将会带来难以跟踪的 BUG。
     
-    // global scope
+    // 全局作用域
     var items = [/* some list */];
     for(var i = 0; i < 10; i++) {
         subLoop();
     }
 
     function subLoop() {
-        // scope of subLoop
-        for(i = 0; i < 10; i++) { // missing var statement
+        // subLoop 函数作用域
+        for(i = 0; i < 10; i++) { // 没有使用 var 声明变量
             // do amazing stuff!
         }
     }
-    
-The outer loop will terminate after the first call to `subLoop`,  since `subLoop`
-overwrites the global value of `i`. Using a `var` for the second `for` loop would
-have easily avoided this error. The `var` statement should **never** be left out 
-unless the *desired effect* is to affect the outer scope.
 
-### Local variables
+外部循环在第一次调用 `subLoop` 之后就会终止，因为 `subLoop` 覆盖了全局变量 `i`。
+在第二个 `for` 循环中使用 `var` 声明变量可以避免这种错误。
+声明变量时**绝对不要**遗漏 `var` 关键字，除非这就是*期望*的影响外部作用域的行为。 
 
-The only source for local variables in JavaScript are
-[function](#function.general) parameters and variables that were declared via the 
-`var` statement.
+### 局部变量（Local variables）
 
-    // global scope
+JavaScript 中局部变量只可能通过两种方式声明，一个是作为[函数](#functions)参数，另一个是通过 `var` 关键字声明。
+
+    // 全局变量
     var foo = 1;
     var bar = 2;
     var i = 2;
 
     function test(i) {
-        // local scope of the function test
+        // 函数 test 内的局部作用域
         i = 5;
 
         var foo = 3;
@@ -90,13 +86,11 @@ The only source for local variables in JavaScript are
     }
     test(10);
 
-While `foo` and `i` are local variables inside the scope of the function `test`,
-the assignment of `bar` will override the global variable with the same name.
+`foo` 和 `i` 是函数 `test` 内的局部变量，而对 `bar` 的赋值将会覆盖全局作用域内的同名变量。
 
-### Hoisting
+### 变量声明提升（Hoisting）
 
-JavaScript **hoists** declarations. This means that both `var` statements and
-`function` declarations will be moved to the top of their enclosing scope.
+JavaScript 会**提升**变量声明。这意味着 `var` 表达式和 `function` 声明都将会被提升到当前作用域的顶部。
 
     bar();
     var bar = function() {};
@@ -115,16 +109,14 @@ JavaScript **hoists** declarations. This means that both `var` statements and
         }
     }
 
-The above code gets transformed before any execution is started. JavaScript moves
-the `var` statements as well as the `function` declarations to the top of the 
-nearest surrounding scope.
+上面代码在运行之前将会被转化。JavaScript 将会把 `var` 表达式和 `function` 声明提升到当前作用域的顶部。
 
-    // var statements got moved here
-    var bar, someValue; // default to 'undefined'
+    // var 表达式被移动到这里
+    var bar, someValue; // 缺省值是 'undefined'
 
-    // the function declartion got moved up too
+    // 函数声明也会提升
     function test(data) {
-        var goo, i, e; // missing block scope moves these here
+        var goo, i, e; // 没有块级作用域，这些变量被移动到函数顶部
         if (false) {
             goo = 1;
 
@@ -136,96 +128,93 @@ nearest surrounding scope.
         }
     }
 
-    bar(); // fails with a TypeError since bar is still 'undefined'
-    someValue = 42; // assignments are not affected by hoisting
+    bar(); // 出错：TypeError，因为 bar 依然是 'undefined'
+    someValue = 42; // 赋值语句不会被提升规则（hoisting）影响
     bar = function() {};
 
     test();
 
-Missing block scoping will not only move `var` statements out of loops and
-their bodies, it will also make the results of certain `if` constructs 
-non-intuitive.
+没有块级作用域不仅导致 `var` 表达式被从循环内移到外部，而且使一些 `if` 表达式更难看懂。
 
-In the original code the `if` statement seemed to modify the *global 
-variable* `goo`, while actually it modifies the *local variable* - after hoisting 
-has been applied.
+在原来代码中，`if` 表达式看起来修改了*全部变量* `goo`，实际上在提升规则（hoisting）被应用后，却是在修改*局部变量*。
 
-Without the knowledge about *hoisting*, below code might seem to raise a 
-`ReferenceError`.
+如果没有提升规则（hoisting）的知识，下面的代码看起来会抛出异常 `ReferenceError`。
 
-    // check whether SomeImportantThing has been initiliazed
+    // 检查 SomeImportantThing 是否已经被初始化
     if (!SomeImportantThing) {
         var SomeImportantThing = {};
     }
 
-But of course, the above works due to the fact that the `var` statement is being 
-moved to the top of the *global scope*.
+实际上，上面的代码正常运行，因为 `var` 表达式会被提升到*全局作用域*的顶部。
 
     var SomeImportantThing;
 
-    // other code might initiliaze SomeImportantThing here, or not
+    // 其它一些代码，可能会初始化 SomeImportantThing，也可能不会
 
-    // make sure it's there
+    // 检查是否已经被初始化
     if (!SomeImportantThing) {
         SomeImportantThing = {};
     }
 
-### Name resolution order
+	
+译者注：在 Nettuts+ 网站有一篇介绍 hoisting 的[文章][1]，其中的代码很有启发性。
 
-All scopes in JavaScript, including the *global scope*, have the special name 
-[`this`](#function.this) defined in them, which refers to the *current object*. 
+	// 译者注：来自 Nettuts+ 的一段代码，生动的阐述了 JavaScript 中变量声明提升规则
+	var myvar = 'my value';  
+	  
+	(function() {  
+		alert(myvar); // undefined  
+		var myvar = 'local value';  
+	})();  
+	
+	
+### 名称解析顺序（Name resolution order）
 
-Function scopes also have the name [`arguments`](#function.arguments) defined in
-them which contains the arguments that were passed to a function.
+JavaScript 中的所有作用域，包括*全局作用域*，都有一个特别的名称 [`this`](#this) 指向当前对象。
 
-For example, when trying to access a variable named `foo` inside the scope of a 
-function, JavaScript will lookup the name in the following order:
+函数作用域内也有默认的变量 [`arguments`](#arguments)，其中包含了传递到函数中的参数。
 
- 1. In case there is a `var foo` statement in the current scope use that.
- 2. If one of the function parameters is named `foo` use that.
- 3. If the function itself is called `foo` use that.
- 4. Go to the next outer scope and start with **#1** again.
+比如，当访问函数内的 `foo` 变量时，JavaScript 会按照下面顺序查找：
 
-> **Note:** Having a parameter called `arguments` will **prevent** the creation 
-> of the default `arguments` object.
+ 1. 当前作用域内是否有 `var foo` 的定义。
+ 2. 函数形式参数是否有使用 `foo` 名称的。
+ 3. 函数自身是否叫做 `foo`。
+ 4. 回溯到上一级作用域，然后从 **#1** 重新开始。
 
-### Namespaces
+> **注意:** 自定义 `arguments` 参数将会阻止原生的 `arguments` 对象的创建。
 
-A common problem of having only one global namespace is the likeliness of running
-into problems where variable names clash. In JavaScript, this problem can
-easily be avoided with the help of *anonymous wrappers*.
+### 命名空间（Namespaces）
+
+只有一个全局作用域导致的常见错误是命名冲突。在 JavaScript中，这可以通过 *匿名包装器* 轻松解决。
 
     (function() {
-        // a self contained "namespace"
+        // 函数创建一个命名空间（译者注：也就是作用域）
         
         window.foo = function() {
-            // an exposed closure
+            // 对外公开的函数，创建了闭包
         };
 
-    })(); // execute the function immediately
+    })(); // 立即执行此匿名函数
 
+匿名函数被认为是 [表达式](#functions)；因此为了可调用性，它们首先会被执行（evaluated）。
 
-Unnamed functions are considered [expressions](#function.general); so in order to
-being callable, they must first be evaluated.
-
-    ( // evaluate the function inside the paranthesis
+    ( // 小括号内的函数首先被执行
     function() {}
-    ) // and return the function object
-    () // call the result of the evaluation
+    ) // 并且返回函数对象
+    () // 调用上面的执行结果，也就是函数对象
 
-There are other ways for evaluating and calling the function expression; which, 
-while different in syntax, do behave the exact same way.
+有一些其他的调用函数表达式的方法，比如下面的两种方式语法不同，但是效果一模一样。
 
-    // Two other ways
+    // 另外两种方式
     +function(){}();
     (function(){}());
 
-### In conclusion
+### 结论（In conclusion）
 
-It is recommended to always use an *anonymous wrapper* for encapsulating code in 
-its own namespace. This does not only protect code against name clashes, it 
-also allows for better modularization of programs.
+推荐使用*匿名包装器*（译者注：也就是自执行的匿名函数）来创建命名空间。这样不仅可以防止命名冲突，
+而且有利于程序的模块化。
 
-Additionally, the use of global variables is considered **bad practice**. **Any**
-use of them indicates badly written code that is prone to errors and hard to maintain.
+另外，使用全局变量被认为是**不好的习惯**。这样的代码倾向于产生错误和带来高的维护成本。
 
+
+[1]: http://net.tutsplus.com/tutorials/javascript-ajax/quick-tip-javascript-hoisting-explained/
