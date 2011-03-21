@@ -196,8 +196,7 @@ Page.prototype = {
         this.resizeTimeout = setTimeout(function() {
             that.sections.map();
             that.sections.expand(that.section);
-
-        }, 50);
+        }, 100);
     }
 };
 
@@ -206,8 +205,7 @@ prettyPrint();
 
 // GA tracking code
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-20768522-1']);
-_gaq.push(['_trackPageview']);
+_gaq.push(['_setAccount', 'UA-20768522-1'], ['_trackPageview']);
 (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
