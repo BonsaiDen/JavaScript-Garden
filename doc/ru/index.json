@@ -1,0 +1,82 @@
+{
+    "title": "JavaScript Гарден",
+    "langTitle": "JavaScript Гарден по-русски",
+    "description": "Руководство по хитростям и трюкам JavaScript.",
+    "sections": [
+        {
+            "title": "Вступление",
+            "dir": "intro",
+            "articles": [
+                "authors",
+                "contributors",
+                "translators",
+                "license"
+            ]
+        },
+        {
+            "title": "Объекты",
+            "dir": "object",
+            "articles": [
+                "general",
+                "prototype",
+                "hasownproperty",
+                "forinloop"
+            ]
+        },
+        {
+            "title": "Функции",
+            "dir": "function",
+            "articles": [
+                "general",
+                "this",
+                "closures",
+                "arguments",
+                "constructors",
+                "scopes"
+            ]
+        },
+        {
+            "title": "Массивы",
+            "dir": "array",
+            "articles": [
+                "general",
+                "constructor"
+            ]
+        },
+        {
+            "title": "Типы",
+            "dir": "types",
+            "articles": [
+                "equality",
+                "typeof",
+                "instanceof",
+                "casting"
+            ]
+        },
+        {
+            "title": "Нативности",
+            "dir": "core",
+            "articles": [
+                "eval",
+                "undefined",
+                "semicolon"
+            ]
+        },
+        {
+            "title": "Другое",
+            "dir": "other",
+            "articles": [
+                "timeouts"
+            ]
+        },
+        {
+            "title": "Пояснения",
+            "dir": "appendix",
+            "articles": [
+                "fromtranslators"
+            ]
+        }
+
+    ]
+}
+
