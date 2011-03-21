@@ -33,7 +33,7 @@ JavaScript **не** резервирует свойство с именем `has
 
     // Используем метод hasOwnProperty пустого объекта
     // и передаём foo в качестве this
-    {}.hasOwnProperty.call(foo, 'bar'); // true
+    ({}).hasOwnProperty.call(foo, 'bar'); // true
 
 ### Заключение
 
