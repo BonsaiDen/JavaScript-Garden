@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head><title>JavaScript Garden</title><meta charset="utf-8"><meta name="description" content="A Guide to JavaScript's Quirks and Flaws."><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
 <script src="javascript/html5.js"></script>
 <![endif]-->
-</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li class="active"><a href="/JavaScript-Garden/zh" title="JavaScript Garden in English">zh</a></li></ul></div><ul><li class="nav_intro"><h1><a href="#intro">Intro</a></h1><ul><li><a href="#intro.authors">﻿ 关于作者（The Authors）</a></li><li><a href="#intro.contributors">﻿ 贡献者（Contributors）</a></li><li><a href="#intro.license">﻿ 许可（License）</a></li></ul></li><li class="nav_object"><h1><a href="#object">Objects</a></h1><ul><li><a href="#object.general">﻿ 对象使用和属性（Object Usage and Properties）</a></li><li><a href="#object.prototype">﻿ 原型（The prototype）</a></li><li><a href="#object.hasownproperty">﻿ <code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">The <code>for in</code> Loop</a></li></ul></li><li class="nav_function"><h1><a href="#function">Functions</a></h1><ul><li><a href="#function.general">﻿ 函数声明与表达式（Function Declarations and Expressions）</a></li><li><a href="#function.this">﻿ this 的工作原理（How <code>this</code> works）</a></li><li><a href="#function.closures">﻿ 闭包和引用（Closures and references）</a></li><li><a href="#function.arguments">﻿ <code>arguments</code> 对象（The <code>arguments</code> object）</a></li><li><a href="#function.constructors">Constructors</a></li><li><a href="#function.scopes">Scopes and Namespaces</a></li></ul></li><li class="nav_array"><h1><a href="#array">Arrays</a></h1><ul><li><a href="#array.general">Array Iteration and Properties</a></li><li><a href="#array.constructor">The <code>Array</code> Constructor</a></li></ul></li><li class="nav_types"><h1><a href="#types">Types</a></h1><ul><li><a href="#types.equality">Equality and comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> operator</a></li><li><a href="#types.casting">Type casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">Core</a></h1><ul><li><a href="#core.eval">Why not to use <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> and <code>null</code></a></li><li><a href="#core.semicolon">Automatic semicolon insertion</a></li></ul></li><li class="nav_other"><h1><a href="#other">Other</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>Intro</h1><div><p><strong>JavaScript 秘密花园</strong>是一个不断更新的文档，主要关心 JavaScript 一些古怪用法。
+</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li class="active"><a href="/JavaScript-Garden/zh" title="JavaScript Garden in English">zh</a></li></ul></div><ul><li class="nav_intro"><h1><a href="#intro">Intro</a></h1><ul><li><a href="#intro.authors">﻿ 关于作者（The Authors）</a></li><li><a href="#intro.contributors">﻿ 贡献者（Contributors）</a></li><li><a href="#intro.license">﻿ 许可（License）</a></li></ul></li><li class="nav_object"><h1><a href="#object">Objects</a></h1><ul><li><a href="#object.general">﻿ 对象使用和属性（Object Usage and Properties）</a></li><li><a href="#object.prototype">﻿ 原型（The prototype）</a></li><li><a href="#object.hasownproperty">﻿ <code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">﻿ <code>for in</code> 循环（The <code>for in</code> Loop）</a></li></ul></li><li class="nav_function"><h1><a href="#function">Functions</a></h1><ul><li><a href="#function.general">﻿ 函数声明与表达式（Function Declarations and Expressions）</a></li><li><a href="#function.this">﻿ this 的工作原理（How <code>this</code> works）</a></li><li><a href="#function.closures">﻿ 闭包和引用（Closures and references）</a></li><li><a href="#function.arguments">﻿ <code>arguments</code> 对象（The <code>arguments</code> object）</a></li><li><a href="#function.constructors">Constructors</a></li><li><a href="#function.scopes">Scopes and Namespaces</a></li></ul></li><li class="nav_array"><h1><a href="#array">Arrays</a></h1><ul><li><a href="#array.general">Array Iteration and Properties</a></li><li><a href="#array.constructor">The <code>Array</code> Constructor</a></li></ul></li><li class="nav_types"><h1><a href="#types">Types</a></h1><ul><li><a href="#types.equality">Equality and comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> operator</a></li><li><a href="#types.casting">Type casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">Core</a></h1><ul><li><a href="#core.eval">Why not to use <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> and <code>null</code></a></li><li><a href="#core.semicolon">Automatic semicolon insertion</a></li></ul></li><li class="nav_other"><h1><a href="#other">Other</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>Intro</h1><div><p><strong>JavaScript 秘密花园</strong>是一个不断更新的文档，主要关心 JavaScript 一些古怪用法。
 对于如何避免常见的错误，难以发现的问题，以及性能问题和不好的实践给出建议，
 初学者可以籍此深入了解 JavaScript 的语言特性。</p>
 
@@ -251,37 +251,31 @@ foo.hasOwnProperty(&#39;bar&#39;); // 总是返回 false
 
 <p>当检查对象上某个属性是否存在时，<code>hasOwnProperty</code> 是<strong>唯一</strong>可用的方法。
 同时在使用 <a href="#forinloop"><code>for in</code> loop</a> 遍历对象时，推荐<strong>总是</strong>使用 <code>hasOwnProperty</code> 方法，
-这将会避免<a href="#prototype">原型</a>对象扩展带来的干扰。</p></div></article><article id="object.forinloop"><h2>The <code>for in</code> Loop</h2><div><p>Just like the <code>in</code> operator, the <code>for in</code> loop also traverses the prototype
-chain when iterating over the properties of an object.</p>
+这将会避免<a href="#prototype">原型</a>对象扩展带来的干扰。</p></div></article><article id="object.forinloop"><h2>﻿ <code>for in</code> 循环（The <code>for in</code> Loop）</h2><div><p>和 <code>in</code> 操作符一样，<code>for in</code> 循环同样在查找对象属性时遍历原型链上的所有属性。</p>
 
 <aside>
-  <p><strong>Note:</strong> The <code>for in</code> loop will <strong>not</strong> iterate over any properties that 
-  have their <code>enumerable</code> attribute set to <code>false</code>; for example, the <code>length</code> 
-  property of an array.</p>
+  <p><strong>注意:</strong> <code>for in</code> 循环<strong>不会</strong>遍历那些 <code>enumerable</code> 设置为 <code>false</code> 的属性；比如数组的 <code>length</code> 属性。</p>
 </aside>
 
-<pre><code>// Poisoning Object.prototype
+<pre><code>// 修改 Object.prototype
 Object.prototype.bar = 1;
 
 var foo = {moo: 2};
 for(var i in foo) {
-    console.log(i); // prints both bar and moo
+    console.log(i); // 输出两个属性：bar 和 moo
 }
 </code></pre>
 
-<p>Since it is not possible to change the behavior of the <code>for in</code> loop itself, it
-is necessary to filter out the unwanted properties inside the loop body , 
-this is done by using the <a href="#object.hasownproperty"><code>hasOwnProperty</code></a> method of 
-<code>Object.prototype</code>.</p>
+<p>由于不可能改变 <code>for in</code> 自身的行为，因此有必要过滤出那些不希望出现在循环体中的属性，
+这可以通过 <code>Object.prototype</code> 原型上的 <a href="#object.hasownproperty"><code>hasOwnProperty</code></a> 函数来完成。</p>
 
 <aside>
-  <p><strong>Note:</strong> Since the <code>for in</code> always traverses the complete prototype chain, it
-  will get slower with each additional layer of inheritance added to an object.</p>
+  <p><strong>注意:</strong> 由于 <code>for in</code> 总是要遍历整个原型链，因此如果一个对象的继承层次太深的话会影响性能。</p>
 </aside>
 
-</div><div><h3>Using <code>hasOwnProperty</code> for filtering</h3>
+</div><div><h3>使用 <code>hasOwnProperty</code> 过滤（Using <code>hasOwnProperty</code> for filtering）</h3>
 
-<pre><code>// still the foo from above
+<pre><code>// foo 变量是上例中的
 for(var i in foo) {
     if (foo.hasOwnProperty(i)) {
         console.log(i);
@@ -289,20 +283,15 @@ for(var i in foo) {
 }
 </code></pre>
 
-<p>This version is the only correct one to use. Due to the use of <code>hasOwnProperty</code> it
-will <strong>only</strong> print out <code>moo</code>. When <code>hasOwnProperty</code> is left out, the code is 
-prone to errors in cases where the native prototypes - e.g. <code>Object.prototype</code> - 
-have been extended.</p>
+<p>这个版本的代码是唯一正确的写法。由于我们使用了 <code>hasOwnProperty</code>，所以这次<strong>只</strong>输出 <code>moo</code>。
+如果不使用 <code>hasOwnProperty</code>，则这段代码在原生对象原型（比如 <code>Object.prototype</code>）被扩展时可能会出错。</p>
 
-<p>One widely used framework which does this is <a href="http://www.prototypejs.org/">Prototype</a>. When this 
-framework is included, <code>for in</code> loops that do not use <code>hasOwnProperty</code> are 
-guaranteed to break.</p>
+<p>一个广泛使用的类库 <a href="http://www.prototypejs.org/">Prototype</a> 就扩展了原生的 JavaScript 对象。
+因此，但这个类库被包含在页面中时，不使用 <code>hasOwnProperty</code> 过滤的 <code>for in</code> 循环难免会出问题。</p>
 
-</div><div><h3>Best practices</h3>
+</div><div><h3>最佳实践（Best practices）</h3>
 
-<p>It is recommended to <strong>always</strong> use <code>hasOwnProperty</code>. Never should any 
-assumptions be made about the environment the code is running in, or whether the 
-native prototypes have been extended or not. </p></div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>Functions</h1></header><!-- Articles--><article id="function.general"><h2>﻿ 函数声明与表达式（Function Declarations and Expressions）</h2><div><p>函数是JavaScript中的一等对象，这意味着可以把函数像其它值一样传递。
+<p>推荐<strong>总是</strong>使用 <code>hasOwnProperty</code>。不要对代码运行的环境做任何假设，不要假设原生对象是否已经被扩展了。</p></div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>Functions</h1></header><!-- Articles--><article id="function.general"><h2>﻿ 函数声明与表达式（Function Declarations and Expressions）</h2><div><p>函数是JavaScript中的一等对象，这意味着可以把函数像其它值一样传递。
 一个常见的用法是把<em>匿名函数</em>作为回调函数传递对异步函数中。</p>
 
 </div><div><h3>函数声明（The <code>function</code> declaration）</h3>
