@@ -32,7 +32,7 @@ this is done by using the [`hasOwnProperty`](#object.hasownproperty) method of
         }
     }
 
-This version is the only correct one to use. Due to the use of `hasOwnPropery` it
+This version is the only correct one to use. Due to the use of `hasOwnProperty` it
 will **only** print out `moo`. When `hasOwnProperty` is left out, the code is 
 prone to errors in cases where the native prototypes - e.g. `Object.prototype` - 
 have been extended.
