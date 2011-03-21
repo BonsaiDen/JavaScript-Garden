@@ -41,8 +41,8 @@ necessary to use an *external* `hasOwnProperty` in order to get correct results.
 
     foo.hasOwnProperty('bar'); // always returns false
 
-    // Use another hasOwnProperty and call it with 'this' set to foo
-    {}.hasOwnProperty.call(foo, 'bar'); // true
+    // Use another Object's hasOwnProperty and call it with 'this' set to foo
+    ({}).hasOwnProperty.call(foo, 'bar'); // true
 
 ### In Conclusion
 
