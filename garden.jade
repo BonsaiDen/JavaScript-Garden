@@ -84,7 +84,14 @@ html(lang='en')
         | template.
 
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js')
-    script(src='javascript/prettify.js')
-    script(src='javascript/plugin.js')
-    script(src='javascript/garden.js')
+    
+    - if (language === baseLanguage)
+      script(src='javascript/prettify.js')
+      script(src='javascript/plugin.js')
+      script(src='javascript/garden.js')
+    
+    - else
+      script(src='../javascript/prettify.js')
+      script(src='../javascript/plugin.js')
+      script(src='../javascript/garden.js')
 
