@@ -1,4 +1,4 @@
-﻿## this 的工作原理（How `this` works）
+﻿## this 的工作原理
 
 JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 在**五**种不同的情况下 ，`this` 指向的各不相同。

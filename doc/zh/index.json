@@ -4,7 +4,7 @@
     "description": "A Guide to JavaScript's Quirks and Flaws.",
     "sections": [
         {
-            "title": "Intro",
+            "title": "简介",
             "dir": "intro",
             "articles": [
                 "authors",
@@ -13,7 +13,7 @@
             ]
         },
         {
-            "title": "Objects",
+            "title": "对象",
             "dir": "object",
             "articles": [
                 "general",
@@ -23,7 +23,7 @@
             ]
         },
         {
-            "title": "Functions",
+            "title": "函数",
             "dir": "function",
             "articles": [
                 "general",
@@ -35,7 +35,7 @@
             ]
         },
         {
-            "title": "Arrays",
+            "title": "数组",
             "dir": "array",
             "articles": [
                 "general",
@@ -43,7 +43,7 @@
             ]
         },
         {
-            "title": "Types",
+            "title": "类型",
             "dir": "types",
             "articles": [
                 "equality",
@@ -53,7 +53,7 @@
             ]
         },
         {
-            "title": "Core",
+            "title": "核心",
             "dir": "core",
             "articles": [
                 "eval",
@@ -62,7 +62,7 @@
             ]
         },
         {
-            "title": "Other",
+            "title": "其它",
             "dir": "other",
             "articles": [
                 "timeouts"

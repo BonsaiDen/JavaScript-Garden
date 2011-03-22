@@ -1,4 +1,4 @@
-﻿## 原型（The prototype）
+﻿## 原型
 
 JavaScript 不包含传统的类继承模型，而是使用 *prototypical* 原型模型。
 

@@ -1,4 +1,4 @@
-﻿## `arguments` 对象（The `arguments` object）
+﻿## `arguments` 对象
 
 JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个变量维护着所有传递到这个函数中的参数列表。
 

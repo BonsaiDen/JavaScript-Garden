@@ -1,15 +1,12 @@
-## Constructors 
+﻿## 构造函数 
 
-Constructors in JavaScript are yet again different from many other languages. Any
-function call that is preceded by the `new` keyword acts as a constructor.
+JavaScript 中的构造函数和其它语言中的构造函数是不同的。
+通过 `new` 关键字方式调用的函数都被认为是构造函数。
 
-Inside the constructor - the called function - the value of `this` refers to a 
-newly created `Object`. The [`prototype`](#object.prototype) of this **new** 
-object is set to the `prototype` of the function object that was invoked as the
-constructor.
+在构造函数内部 - 也就是被调用的函数内 - `this` 指向新创建的对象 `Object`。
+这个**新创建**的对象的 [`prototype`](#object.prototype) 被指向到构造函数的 `prototype`。
 
-If the function that was called has no explicit `return` statement, then it
-implicitly returns the value of `this` - the new object. 
+如果被调用的函数没有显式的 `return` 表达式，则隐式的会返回 `this` 对象 - 也就是新创建的对象。
 
     function Foo() {
         this.bla = 1;
@@ -21,17 +18,24 @@ implicitly returns the value of `this` - the new object.
 
     var test = new Foo();
 
-The above calls `Foo` as constructor and sets the `prototype` of the newly
-created object to `Foo.prototype`.
+上面代码把 `Foo` 作为构造函数调用，并设置新创建对象的 `prototype` 为 `Foo.prototype`。
 
-In case of an explicit `return` statement the function returns the value 
-specified that statement, **but only** if the return value is an `Object`.                                     
+显式的 `return` 表达式将会影响返回结果，但**仅限**于返回的是一个对象。                                 
 
     function Bar() {
         return 2;
     }
-    new Bar(); // a new object
-
+    new Bar(); // 返回新创建的对象
+	
+	// 译者注：new Bar() 返回的是新创建的对象，而不是数字的字面值 2。
+	// 因此 new Bar().constructor === Bar
+	// 但是如果返回的是数字对象，结果就不同了
+	// function Bar() {
+    //    return new Number(2);
+    // }
+    // new Bar().constructor === Number
+	
+	
     function Test() {
         this.value = 2;
 
@@ -39,23 +43,23 @@ specified that statement, **but only** if the return value is an `Object`.
             foo: 1
         };
     }
-    new Test(); // the returned object
+    new Test(); // 返回的对象
+	// 译者注：这里得到的是函数返回的对象，而不是通过 new 关键字新创建的对象
+	// 所有 (new Test()).value 为 undefined，但是 (new Test()).foo === 1。
 
-When the `new` keyword is omitted, the function will **not** return a new object. 
+如果 `new` 被遗漏了，则函数**不会**返回新创建的对象。
 
     function Foo() {
-        this.bla = 1; // gets set on the global object
+        this.bla = 1; // 获取设置全局参数
     }
     Foo(); // undefined
 
-While the above example might still appear to work in some cases, due to the 
-workings of [`this`](#function.this) in JavaScript, it will use the 
-*global object* as the value of `this`.
+虽然上例在有些情况下也能正常运行，但是由于 JavaScript 中 [`this`](#function.this) 的工作原理，
+这里的 `this` 指向*全局对象*。
 
-### Factories
+### 工厂模式（Factories）
 
-In order to be able to omit the `new` keyword, the constructor function has to 
-explicitly return a value.
+为了不使用 `new` 关键字，构造函数必须显式的返回一个值。
 
     function Bar() {
         var value = 1;
@@ -72,25 +76,30 @@ explicitly return a value.
     new Bar();
     Bar();
 
-Both calls to `Bar` return the exact same thing, a newly create object which
-has a property called `method` on it, that is a 
-[Closure](#function.closures).
-
-It is also to note that the call `new Bar()` does **not** affect the prototype 
-of the returned object. While the prototype will be set on the newly created 
-object, `Bar` never returns that new object.
-
-In the above example, there is no functional difference between using and
-not using the `new` keyword.
+上面两种对 `Bar` 函数的调用返回的值完全相同，一个新创建的拥有 `method` 属性的对象被返回，
+其实这里创建了一个[闭包](#function.closures)。
 
 
-### Creating new objects via factories
+还需要注意，`new Bar()` 并**不会**改变返回对象的原型（译者注：也就是返回对象的原型不会指向 Bar.prototype）。
+因为构造函数的原型会被指向到刚刚创建的新对象，而这里的 `Bar` 没有把这个新对象返回（译者注：而是返回了一个包含 `method` 属性的自定义对象）。 
 
-An often made recommendation is to **not** use `new` since forgetting its use
-may lead to bugs.
+在上面的例子中，使用或者不使用 `new` 关键字没有功能性的区别。
 
-In order to create new object, one should rather use a factory and construct a 
-new object inside of that factory.
+	// 译者注：上面两种方式创建的对象不能访问 Bar 原型链上的属性
+	var bar1 = new Bar();
+	typeof(bar1.method); // "function"
+	typeof(bar1.foo); // "undefined"
+	
+	var bar2 = Bar();
+	typeof(bar2.method); // "function"
+	typeof(bar2.foo); // "undefined"
+
+
+### 通过工厂模式创建新对象（Creating new objects via factories）
+
+我们常听到的一条忠告是**不要**使用 `new` 关键字来调用函数，因为如果忘记使用它就会导致错误。
+
+为了创建新对象，我们可以创建一个工厂方法，并且在方法内构造一个新对象。
 
     function Foo() {
         var obj = {};
@@ -107,22 +116,16 @@ new object inside of that factory.
         return obj;
     }
 
-While the above is robust against a missing `new` keyword and certainly makes 
-the use of [private variables](#function.closures) easier, it comes with some 
-downsides.
+虽然上面的方式比起 `new` 的调用方式不容易出错，并且可以充分利用[私有变量](#function.closures)带来的便利，
+但是随之而来的是一些不好的地方。
 
- 1. It uses more memory since the created objects do **not** share the methods
-    on a prototype.
- 2. In order to inherit the factory needs to copy all the methods from another
-    object or put that object on the prototype of the new object.
- 3. Dropping the prototype chain just because of a left out `new` keyword
-    somehow goes against the spirit of the language.
 
-### In conclusion
+ 1. 会占用更多的内存，因为新创建的对象**不能**共享原型上的方法。
+ 2. 为了实现继承，工厂方法需要从另外一个对象拷贝所有属性，或者把一个对象作为新创建对象的原型。
+ 3. 放弃原型链仅仅是因为防止遗漏 `new` 带来的问题，这似乎和语言本身的思想相违背。
 
-While omitting the `new` keyword might lead to bugs, it is certainly **not** a 
-reason to drop the use of prototypes altogether. In the end it comes down to 
-which solution is better suited for the needs of the application, it is 
-especially important to choose a specific style of object creation **and stick** 
-with it.
+### 总结（In conclusion）
+
+虽然遗漏 `new` 关键字可能会导致问题，但这并**不是**放弃使用原型链的借口。
+最终使用哪种方式取决于应用程序的需求，选择一种代码书写风格并**坚持**下去才是最重要的。
 

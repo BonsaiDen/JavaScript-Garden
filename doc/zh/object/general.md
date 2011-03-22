@@ -1,4 +1,4 @@
-﻿## 对象使用和属性（Object Usage and Properties）
+﻿## 对象使用和属性
 
 JavaScript 中所有变量都是对象，除了两个例外 [`null`](#undefined) 和 [`undefined`](#undefined)。
 

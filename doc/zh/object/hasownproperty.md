@@ -1,4 +1,4 @@
-﻿## `hasOwnProperty`
+﻿## `hasOwnProperty` 函数
 
 为了判断一个对象是否包含*自定义*属性而*不是*[原型链](#prototype)上的属性，
 我们需要使用继承自 `Object.prototype` 的 `hasOwnProperty` 方法。

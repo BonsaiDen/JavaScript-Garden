@@ -1,23 +1,23 @@
 <!DOCTYPE html><html lang="en"><head><title>JavaScript Garden</title><meta charset="utf-8"><meta name="description" content="A Guide to JavaScript's Quirks and Flaws."><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
 <script src="javascript/html5.js"></script>
 <![endif]-->
-</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li class="active"><a href="/JavaScript-Garden/zh" title="JavaScript Garden in English">zh</a></li></ul></div><ul><li class="nav_intro"><h1><a href="#intro">Intro</a></h1><ul><li><a href="#intro.authors">﻿ 关于作者（The Authors）</a></li><li><a href="#intro.contributors">﻿ 贡献者（Contributors）</a></li><li><a href="#intro.license">﻿ 许可（License）</a></li></ul></li><li class="nav_object"><h1><a href="#object">Objects</a></h1><ul><li><a href="#object.general">﻿ 对象使用和属性（Object Usage and Properties）</a></li><li><a href="#object.prototype">﻿ 原型（The prototype）</a></li><li><a href="#object.hasownproperty">﻿ <code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">﻿ <code>for in</code> 循环（The <code>for in</code> Loop）</a></li></ul></li><li class="nav_function"><h1><a href="#function">Functions</a></h1><ul><li><a href="#function.general">﻿ 函数声明与表达式（Function Declarations and Expressions）</a></li><li><a href="#function.this">﻿ this 的工作原理（How <code>this</code> works）</a></li><li><a href="#function.closures">﻿ 闭包和引用（Closures and references）</a></li><li><a href="#function.arguments">﻿ <code>arguments</code> 对象（The <code>arguments</code> object）</a></li><li><a href="#function.constructors">Constructors</a></li><li><a href="#function.scopes">﻿ 作用域与命名空间（Scopes and namespaces）</a></li></ul></li><li class="nav_array"><h1><a href="#array">Arrays</a></h1><ul><li><a href="#array.general">Array Iteration and Properties</a></li><li><a href="#array.constructor">The <code>Array</code> Constructor</a></li></ul></li><li class="nav_types"><h1><a href="#types">Types</a></h1><ul><li><a href="#types.equality">Equality and comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> operator</a></li><li><a href="#types.casting">Type casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">Core</a></h1><ul><li><a href="#core.eval">Why not to use <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> and <code>null</code></a></li><li><a href="#core.semicolon">Automatic semicolon insertion</a></li></ul></li><li class="nav_other"><h1><a href="#other">Other</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>Intro</h1><div><p><strong>JavaScript 秘密花园</strong>是一个不断更新的文档，主要关心 JavaScript 一些古怪用法。
+</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li class="active"><a href="/JavaScript-Garden/zh" title="JavaScript Garden in English">zh</a></li></ul></div><ul><li class="nav_intro"><h1><a href="#intro">简介</a></h1><ul><li><a href="#intro.authors">﻿ 关于作者</a></li><li><a href="#intro.contributors">﻿ 贡献者</a></li><li><a href="#intro.license">﻿ 许可</a></li></ul></li><li class="nav_object"><h1><a href="#object">对象</a></h1><ul><li><a href="#object.general">﻿ 对象使用和属性</a></li><li><a href="#object.prototype">﻿ 原型</a></li><li><a href="#object.hasownproperty">﻿ <code>hasOwnProperty</code> 函数</a></li><li><a href="#object.forinloop">﻿ <code>for in</code> 循环</a></li></ul></li><li class="nav_function"><h1><a href="#function">函数</a></h1><ul><li><a href="#function.general">﻿ 函数声明与表达式</a></li><li><a href="#function.this">﻿ this 的工作原理</a></li><li><a href="#function.closures">﻿ 闭包和引用</a></li><li><a href="#function.arguments">﻿ <code>arguments</code> 对象</a></li><li><a href="#function.constructors">﻿ 构造函数</a></li><li><a href="#function.scopes">﻿ 作用域与命名空间</a></li></ul></li><li class="nav_array"><h1><a href="#array">数组</a></h1><ul><li><a href="#array.general">Array Iteration and Properties</a></li><li><a href="#array.constructor">The <code>Array</code> Constructor</a></li></ul></li><li class="nav_types"><h1><a href="#types">类型</a></h1><ul><li><a href="#types.equality">Equality and comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> operator</a></li><li><a href="#types.casting">Type casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">核心</a></h1><ul><li><a href="#core.eval">Why not to use <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> and <code>null</code></a></li><li><a href="#core.semicolon">Automatic semicolon insertion</a></li></ul></li><li class="nav_other"><h1><a href="#other">其它</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>简介</h1><div><p><strong>JavaScript 秘密花园</strong>是一个不断更新的文档，主要关心 JavaScript 一些古怪用法。
 对于如何避免常见的错误，难以发现的问题，以及性能问题和不好的实践给出建议，
 初学者可以籍此深入了解 JavaScript 的语言特性。</p>
 
 <p>JavaScript 秘密花园<strong>不是</strong>用来教你 JavaScript。为了更好的理解这篇文章的内容，
-你需要事先学习 JavaScript 的基础知识。在 Mozilla 开发者网络中有一系列非常棒的 JavaScript 学习<a href="https://developer.mozilla.org/en/JavaScript/Guide">向导</a>。</p></div></header><!-- Articles--><article id="intro.authors"><h2>﻿ 关于作者（The Authors）</h2><div><p>这篇文章的作者是两位 Stack Overflow 的用户, <a href="http://stackoverflow.com/users/170224/ivo-wetzel">Ivo Wetzel</a> （写作） 和 <a href="http://stackoverflow.com/users/313758/yi-jiang">Zhang Yi Jiang</a> （设计）。</p></div></article><article id="intro.contributors"><h2>﻿ 贡献者（Contributors）</h2><div><ul>
+你需要事先学习 JavaScript 的基础知识。在 Mozilla 开发者网络中有一系列非常棒的 JavaScript 学习<a href="https://developer.mozilla.org/en/JavaScript/Guide">向导</a>。</p></div></header><!-- Articles--><article id="intro.authors"><h2>﻿ 关于作者</h2><div><p>这篇文章的作者是两位 Stack Overflow 的用户, <a href="http://stackoverflow.com/users/170224/ivo-wetzel">Ivo Wetzel</a> （写作） 和 <a href="http://stackoverflow.com/users/313758/yi-jiang">Zhang Yi Jiang</a> （设计）。</p></div></article><article id="intro.contributors"><h2>﻿ 贡献者</h2><div><ul>
 <li><a href="https://github.com/caio">Caio Romão</a> （拼写检查）</li>
 <li><a href="https://github.com/blixt">Andreas Blixt</a> （语言修正）</li>
 </ul>
 
-<h2>中文翻译（Chinese Translation）</h2>
+<h2>中文翻译</h2>
 
 <ul>
 <li><a href="http://cnblogs.com/sanshi/">三生石上</a></li>
-</ul></div></article><article id="intro.license"><h2>﻿ 许可（License）</h2><div><p>JavaScript 秘密花园在 <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a> 许可协议下发布，并存放在开源社区 <a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>。
+</ul></div></article><article id="intro.license"><h2>﻿ 许可</h2><div><p>JavaScript 秘密花园在 <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a> 许可协议下发布，并存放在开源社区 <a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>。
 如果你发现错误或者打字错误，请 <a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">file an issue</a> 或者 pull request。
-你也可以在 Stack Overflow 的聊天室 <a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript room</a> 找到我们。</p></div></article></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>Objects</h1></header><!-- Articles--><article id="object.general"><h2>﻿ 对象使用和属性（Object Usage and Properties）</h2><div><p>JavaScript 中所有变量都是对象，除了两个例外 <a href="#undefined"><code>null</code></a> 和 <a href="#undefined"><code>undefined</code></a>。</p>
+你也可以在 Stack Overflow 的聊天室 <a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript room</a> 找到我们。</p></div></article></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>对象</h1></header><!-- Articles--><article id="object.general"><h2>﻿ 对象使用和属性</h2><div><p>JavaScript 中所有变量都是对象，除了两个例外 <a href="#undefined"><code>null</code></a> 和 <a href="#undefined"><code>undefined</code></a>。</p>
 
 <pre><code>false.toString() // &#39;false&#39;
 [1, 2, 3].toString(); // &#39;1,2,3&#39;
@@ -108,7 +108,7 @@ for(var i in obj) {
 上面的第二种声明方式在 ECMAScript 5 之前会抛出 <code>SyntaxError</code> 的错误。</p>
 
 <p>这个错误的原因是 <code>delete</code> 是 JavaScript 语言的一个<em>关键词</em>；因此为了在更低版本的 JavaScript 引擎下也能正常运行，
-必须使用<em>字符串字面值</em>声明方式。</p></div></article><article id="object.prototype"><h2>﻿ 原型（The prototype）</h2><div><p>JavaScript 不包含传统的类继承模型，而是使用 <em>prototypical</em> 原型模型。</p>
+必须使用<em>字符串字面值</em>声明方式。</p></div></article><article id="object.prototype"><h2>﻿ 原型</h2><div><p>JavaScript 不包含传统的类继承模型，而是使用 <em>prototypical</em> 原型模型。</p>
 
 <p>虽然这经常被当作是 JavaScript 的缺点被提及，其实基于原型的继承模型比传统的类继承还要强大。
 实现传统的类继承模型是很简单，但是实现 JavaScript 中的原型继承则要困难的多。
@@ -205,7 +205,7 @@ Foo.prototype = 1; // no effect
 
 <p>在写复杂的 JavaScript 应用之前，充分理解原型链继承的工作方式是每个 JavaScript 程序员<strong>必修</strong>的功课。
 要提防原型链过长带来的性能问题，并知道如何通过缩短原型链来提高性能。
-更进一步，绝对<strong>不要</strong>扩展内置类型的原型，除非是为了和新的 JavaScript 引擎兼容。</p></div></article><article id="object.hasownproperty"><h2>﻿ <code>hasOwnProperty</code></h2><div><p>为了判断一个对象是否包含<em>自定义</em>属性而<em>不是</em><a href="#prototype">原型链</a>上的属性，
+更进一步，绝对<strong>不要</strong>扩展内置类型的原型，除非是为了和新的 JavaScript 引擎兼容。</p></div></article><article id="object.hasownproperty"><h2>﻿ <code>hasOwnProperty</code> 函数</h2><div><p>为了判断一个对象是否包含<em>自定义</em>属性而<em>不是</em><a href="#prototype">原型链</a>上的属性，
 我们需要使用继承自 <code>Object.prototype</code> 的 <code>hasOwnProperty</code> 方法。</p>
 
 <aside>
@@ -251,7 +251,7 @@ foo.hasOwnProperty(&#39;bar&#39;); // 总是返回 false
 
 <p>当检查对象上某个属性是否存在时，<code>hasOwnProperty</code> 是<strong>唯一</strong>可用的方法。
 同时在使用 <a href="#forinloop"><code>for in</code> loop</a> 遍历对象时，推荐<strong>总是</strong>使用 <code>hasOwnProperty</code> 方法，
-这将会避免<a href="#prototype">原型</a>对象扩展带来的干扰。</p></div></article><article id="object.forinloop"><h2>﻿ <code>for in</code> 循环（The <code>for in</code> Loop）</h2><div><p>和 <code>in</code> 操作符一样，<code>for in</code> 循环同样在查找对象属性时遍历原型链上的所有属性。</p>
+这将会避免<a href="#prototype">原型</a>对象扩展带来的干扰。</p></div></article><article id="object.forinloop"><h2>﻿ <code>for in</code> 循环</h2><div><p>和 <code>in</code> 操作符一样，<code>for in</code> 循环同样在查找对象属性时遍历原型链上的所有属性。</p>
 
 <aside>
   <p><strong>注意:</strong> <code>for in</code> 循环<strong>不会</strong>遍历那些 <code>enumerable</code> 设置为 <code>false</code> 的属性；比如数组的 <code>length</code> 属性。</p>
@@ -291,7 +291,7 @@ for(var i in foo) {
 
 </div><div><h3>最佳实践（Best practices）</h3>
 
-<p>推荐<strong>总是</strong>使用 <code>hasOwnProperty</code>。不要对代码运行的环境做任何假设，不要假设原生对象是否已经被扩展了。</p></div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>Functions</h1></header><!-- Articles--><article id="function.general"><h2>﻿ 函数声明与表达式（Function Declarations and Expressions）</h2><div><p>函数是JavaScript中的一等对象，这意味着可以把函数像其它值一样传递。
+<p>推荐<strong>总是</strong>使用 <code>hasOwnProperty</code>。不要对代码运行的环境做任何假设，不要假设原生对象是否已经被扩展了。</p></div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>函数</h1></header><!-- Articles--><article id="function.general"><h2>﻿ 函数声明与表达式</h2><div><p>函数是JavaScript中的一等对象，这意味着可以把函数像其它值一样传递。
 一个常见的用法是把<em>匿名函数</em>作为回调函数传递对异步函数中。</p>
 
 </div><div><h3>函数声明（The <code>function</code> declaration）</h3>
@@ -334,7 +334,7 @@ bar(); // 出错：ReferenceError
 
 <p><code>bar</code> 函数声明外是不可见的，这是因为我们已经把函数赋值给了 <code>foo</code>；
 然而在 <code>bar</code> 内部依然可见。这是由于 JavaScript 的 <a href="#scopes">命名处理</a> 所致，
-函数名在函数内<em>总是</em>可见的。</p></div></article><article id="function.this"><h2>﻿ this 的工作原理（How <code>this</code> works）</h2><div><p>JavaScript 有一套完全不同于其它语言的对 <code>this</code> 的处理机制。
+函数名在函数内<em>总是</em>可见的。</p></div></article><article id="function.this"><h2>﻿ this 的工作原理</h2><div><p>JavaScript 有一套完全不同于其它语言的对 <code>this</code> 的处理机制。
 在<strong>五</strong>种不同的情况下 ，<code>this</code> 指向的各不相同。</p>
 
 </div><div><h3>全局范围内（The global scope）</h3>
@@ -442,7 +442,7 @@ Bar.prototype = Foo.prototype;
 new Bar().method();
 </code></pre>
 
-<p>当 <code>method</code> 被调用时，<code>this</code> 将会指向 <code>Bar</code> 的实例对象。</p></div></article><article id="function.closures"><h2>﻿ 闭包和引用（Closures and references）</h2><div><p>闭包是 JavaScript 一个非常重要的特性，这意味着当前作用域<strong>总是</strong>能够访问外部作用域中的变量。
+<p>当 <code>method</code> 被调用时，<code>this</code> 将会指向 <code>Bar</code> 的实例对象。</p></div></article><article id="function.closures"><h2>﻿ 闭包和引用</h2><div><p>闭包是 JavaScript 一个非常重要的特性，这意味着当前作用域<strong>总是</strong>能够访问外部作用域中的变量。
 因为 <a href="#scopes">函数</a> 是 JavaScript 中唯一拥有自身作用域的结构，因此闭包的创建依赖于函数。</p>
 
 </div><div><h3>模拟私有变量（Emulating private variables）</h3>
@@ -526,7 +526,7 @@ copying the value of the loops index variable.）。</p>
         }
     })(i), 1000)
 }
-</code></pre></div></article><article id="function.arguments"><h2>﻿ <code>arguments</code> 对象（The <code>arguments</code> object）</h2><div><p>JavaScript 中每个函数内都能访问一个特别变量 <code>arguments</code>。这个变量维护着所有传递到这个函数中的参数列表。</p>
+</code></pre></div></article><article id="function.arguments"><h2>﻿ <code>arguments</code> 对象</h2><div><p>JavaScript 中每个函数内都能访问一个特别变量 <code>arguments</code>。这个变量维护着所有传递到这个函数中的参数列表。</p>
 
 <aside>
   <p><strong>注意:</strong> 由于 <code>arguments</code> 已经被定义为函数内的一个变量。
@@ -652,16 +652,13 @@ function bigLoop() {
 <p>因此<strong>强烈</strong>建议大家<strong>不要</strong>使用 <code>arguments.callee</code> 和它的属性。</p>
 
 <aside class="es5"><p><strong>ES5 提示:</strong> 在严格模式下，<code>arguments.callee</code> 会报错 <code>TypeError</code>，因为它已经被废除了。</p>
-</aside></div></article><article id="function.constructors"><h2>Constructors</h2><div><p>Constructors in JavaScript are yet again different from many other languages. Any
-function call that is preceded by the <code>new</code> keyword acts as a constructor.</p>
+</aside></div></article><article id="function.constructors"><h2>﻿ 构造函数</h2><div><p>JavaScript 中的构造函数和其它语言中的构造函数是不同的。
+通过 <code>new</code> 关键字方式调用的函数都被认为是构造函数。</p>
 
-<p>Inside the constructor - the called function - the value of <code>this</code> refers to a 
-newly created <code>Object</code>. The <a href="#object.prototype"><code>prototype</code></a> of this <strong>new</strong> 
-object is set to the <code>prototype</code> of the function object that was invoked as the
-constructor.</p>
+<p>在构造函数内部 - 也就是被调用的函数内 - <code>this</code> 指向新创建的对象 <code>Object</code>。
+这个<strong>新创建</strong>的对象的 <a href="#object.prototype"><code>prototype</code></a> 被设置为作为构造函数的 <code>prototype</code>。</p>
 
-<p>If the function that was called has no explicit <code>return</code> statement, then it
-implicitly returns the value of <code>this</code> - the new object. </p>
+<p>如果被调用的函数没有显式的 <code>return</code> 表达式，则隐式的会返回 <code>this</code> 对象 - 也就是新创建的对象。</p>
 
 <pre><code>function Foo() {
     this.bla = 1;
@@ -674,16 +671,23 @@ Foo.prototype.test = function() {
 var test = new Foo();
 </code></pre>
 
-<p>The above calls <code>Foo</code> as constructor and sets the <code>prototype</code> of the newly
-created object to <code>Foo.prototype</code>.</p>
+<p>上面代码把 <code>Foo</code> 作为构造函数调用，并设置新创建对象的 <code>prototype</code> 为 <code>Foo.prototype</code>。</p>
 
-<p>In case of an explicit <code>return</code> statement the function returns the value 
-specified that statement, <strong>but only</strong> if the return value is an <code>Object</code>.                                     </p>
+<p>显式的 <code>return</code> 表达式将会影响返回结果，但<strong>仅限</strong>于返回的是一个对象。                                 </p>
 
 <pre><code>function Bar() {
     return 2;
 }
-new Bar(); // a new object
+new Bar(); // 返回新创建的对象
+
+// 译者注：new Bar() 返回的是新创建的对象，而不是数字 2。
+// 有 new Bar().constructor === Bar
+// 但是如果返回的是数字对象，结果就不同了
+// function Bar() {
+//    return new Number(2);
+// }
+// new Bar().constructor === Number
+
 
 function Test() {
     this.value = 2;
@@ -692,25 +696,26 @@ function Test() {
         foo: 1
     };
 }
-new Test(); // the returned object
+new Test(); // 返回的对象
+// 译者注：这里得到的是函数返回的对象，而不是通过 new 关键字新创建的对象
+// 所有 (new Test()).value 为 undefined，但是 (new Test()).foo === 1。
 </code></pre>
 
-<p>When the <code>new</code> keyword is omitted, the function will <strong>not</strong> return a new object. </p>
+<p>如果 <code>new</code> 被遗漏了，则函数<strong>不会</strong>返回新创建的对象。
+When the <code>new</code> keyword is omitted, the function will <strong>not</strong> return a new object. </p>
 
 <pre><code>function Foo() {
-    this.bla = 1; // gets set on the global object
+    this.bla = 1; // 获取设置全局参数
 }
 Foo(); // undefined
 </code></pre>
 
-<p>While the above example might still appear to work in some cases, due to the 
-workings of <a href="#function.this"><code>this</code></a> in JavaScript, it will use the 
-<em>global object</em> as the value of <code>this</code>.</p>
+<p>虽然上例在有些情况下也能正常运行，但是由于 JavaScript 中 <a href="#function.this"><code>this</code></a> 的工作原理，
+这里的 <code>this</code> 指向<em>全局对象</em>。</p>
 
-</div><div><h3>Factories</h3>
+</div><div><h3>工厂模式（Factories）</h3>
 
-<p>In order to be able to omit the <code>new</code> keyword, the constructor function has to 
-explicitly return a value.</p>
+<p>为了不使用 <code>new</code> 关键字，构造函数必须显式的返回一个值。</p>
 
 <pre><code>function Bar() {
     var value = 1;
@@ -728,24 +733,29 @@ new Bar();
 Bar();
 </code></pre>
 
-<p>Both calls to <code>Bar</code> return the exact same thing, a newly create object which
-has a property called <code>method</code> on it, that is a 
-<a href="#function.closures">Closure</a>.</p>
+<p>上面两个对 <code>Bar</code> 函数的调用返回的值完全相同，一个新创建的拥有一个叫 <code>method</code> 属性的对象被返回，
+其实这里创建了一个<a href="#function.closures">闭包</a>。</p>
 
-<p>It is also to note that the call <code>new Bar()</code> does <strong>not</strong> affect the prototype 
-of the returned object. While the prototype will be set on the newly created 
-object, <code>Bar</code> never returns that new object.</p>
+<p>还需要注意，<code>new Bar()</code> 并<strong>不会</strong>改变返回对象的原型（译者注：也就是返回对象的原型不会指向 Bar.prototype）。
+因为构造函数的原型会被指向到刚刚创建的新对象，而这里的 <code>Bar</code> 没有把这个新对象返回（译者注：而是返回了一个包含 <code>method</code> 属性的自定义对象）。 </p>
 
-<p>In the above example, there is no functional difference between using and
-not using the <code>new</code> keyword.</p>
+<p>在上面的例子中，使用或者不使用 <code>new</code> 关键字没有功能性的区别。</p>
 
-</div><div><h3>Creating new objects via factories</h3>
+<pre><code>// 译者注：上面两种方式创建的对象不能访问 Bar 原型链上的属性
+var bar1 = new Bar();
+typeof(bar1.method); // "function"
+typeof(bar1.foo); // "undefined"
 
-<p>An often made recommendation is to <strong>not</strong> use <code>new</code> since forgetting its use
-may lead to bugs.</p>
+var bar2 = Bar();
+typeof(bar2.method); // "function"
+typeof(bar2.foo); // "undefined"
+</code></pre>
 
-<p>In order to create new object, one should rather use a factory and construct a 
-new object inside of that factory.</p>
+</div><div><h3>通过工厂模式创建新对象（Creating new objects via factories）</h3>
+
+<p>我们常听到的一条忠告是<strong>不要</strong>使用 <code>new</code> 关键字来调用函数，因为如果忘记使用它就会导致错误。</p>
+
+<p>为了创建新对象，我们可以创建一个工厂方法，并且在方法内构造一个新对象。</p>
 
 <pre><code>function Foo() {
     var obj = {};
@@ -763,26 +773,19 @@ new object inside of that factory.</p>
 }
 </code></pre>
 
-<p>While the above is robust against a missing <code>new</code> keyword and certainly makes 
-the use of <a href="#function.closures">private variables</a> easier, it comes with some 
-downsides.</p>
+<p>虽然上面的方式比起 <code>new</code> 的调用方式不容易出错，并且可以充分利用<a href="#function.closures">私有变量</a>带来的便利，
+但是随之而来的是一些不好的地方。</p>
 
 <ol>
-<li>It uses more memory since the created objects do <strong>not</strong> share the methods
-on a prototype.</li>
-<li>In order to inherit the factory needs to copy all the methods from another
-object or put that object on the prototype of the new object.</li>
-<li>Dropping the prototype chain just because of a left out <code>new</code> keyword
-somehow goes against the spirit of the language.</li>
+<li>会占用更多的内存，因为新创建的对象<strong>不能</strong>共享原型上的方法。</li>
+<li>为了实现继承，工厂方法需要从另外一个对象拷贝所有属性，或者把一个对象作为新创建对象的原型。</li>
+<li>放弃原型链仅仅是因为防止遗漏 <code>new</code> 带来的问题，这似乎和语言本身的思想相违背。</li>
 </ol>
 
-</div><div><h3>In conclusion</h3>
+</div><div><h3>总结（In conclusion）</h3>
 
-<p>While omitting the <code>new</code> keyword might lead to bugs, it is certainly <strong>not</strong> a 
-reason to drop the use of prototypes altogether. In the end it comes down to 
-which solution is better suited for the needs of the application, it is 
-especially important to choose a specific style of object creation <strong>and stick</strong> 
-with it.</p></div></article><article id="function.scopes"><h2>﻿ 作用域与命名空间（Scopes and namespaces）</h2><div><p>尽管 JavaScript 支持一对花括号创建的代码段，但是并不支持块级作用域；
+<p>虽然遗漏 <code>new</code> 关键字可能会导致问题，但这并<strong>不是</strong>放弃使用原型链的借口。
+最终使用哪种方式取决于应用程序的需求，选择一种代码书写风格并<strong>坚持</strong>下去才是最重要的。</p></div></article><article id="function.scopes"><h2>﻿ 作用域与命名空间</h2><div><p>尽管 JavaScript 支持一对花括号创建的代码段，但是并不支持块级作用域；
 而仅仅支持 <em>函数作用域</em>。</p>
 
 <pre><code>function test() { // 一个作用域
@@ -1014,7 +1017,7 @@ function() {}
 <p>推荐使用<em>匿名包装器</em>（译者注：也就是自执行的匿名函数）来创建命名空间。这样不仅可以防止命名冲突，
 而且有利于程序的模块化。</p>
 
-<p>另外，使用全局变量被认为是<strong>不好的习惯</strong>。这样的代码倾向于产生错误和带来高的维护成本。</p></div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>Arrays</h1></header><!-- Articles--><article id="array.general"><h2>Array Iteration and Properties</h2><div><p>Although arrays in JavaScript are objects, there are no good reasons to use
+<p>另外，使用全局变量被认为是<strong>不好的习惯</strong>。这样的代码倾向于产生错误和带来高的维护成本。</p></div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>数组</h1></header><!-- Articles--><article id="array.general"><h2>Array Iteration and Properties</h2><div><p>Although arrays in JavaScript are objects, there are no good reasons to use
 the <a href="#object.forinloop"><code>for in loop</code></a> in for iteration on them. In fact there 
 are a number of good reasons <strong>against</strong> the use of <code>for in</code> on arrays.</p>
 
@@ -1106,7 +1109,7 @@ handy in a few cases, like repeating a string, in which it avoids the use of a
 
 <p>The use of the <code>Array</code> constructor should be avoided as much as possible. 
 Literals are definitely preferred. They are shorter and have a clearer syntax; 
-therefore, they also increase the readability of the code.</p></div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>Types</h1></header><!-- Articles--><article id="types.equality"><h2>Equality and comparisons</h2><div><p>JavaScript has two different ways of comparing the values of objects for equality. </p>
+therefore, they also increase the readability of the code.</p></div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>类型</h1></header><!-- Articles--><article id="types.equality"><h2>Equality and comparisons</h2><div><p>JavaScript has two different ways of comparing the values of objects for equality. </p>
 
 </div><div><h3>The equals operator</h3>
 
@@ -1373,7 +1376,7 @@ more type coercion.</p>
 !!&#39;-1&#39;     // true
 !!{};      // true
 !!true;    // true
-</code></pre></div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>Core</h1></header><!-- Articles--><article id="core.eval"><h2>Why not to use <code>eval</code></h2><div><p>The <code>eval</code> function will execute a string of JavaScript code in the local scope.</p>
+</code></pre></div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>核心</h1></header><!-- Articles--><article id="core.eval"><h2>Why not to use <code>eval</code></h2><div><p>The <code>eval</code> function will execute a string of JavaScript code in the local scope.</p>
 
 <pre><code>var foo = 1;
 function test() {
@@ -1609,7 +1612,7 @@ the above will yield a <code>TypeError</code> stating that <code>undefined is no
 keep braces on the same line with their corresponding statements and to never omit 
 them for one single-line <code>if</code> / <code>else</code> statements. Both of these measures will 
 not only improve the consistency of the code, they will also prevent the 
-JavaScript parser from changing its behavior.</p></div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>Other</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> and <code>setInterval</code></h2><div><p>Since JavaScript is asynchronous, it is possible to schedule the execution of a 
+JavaScript parser from changing its behavior.</p></div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>其它</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> and <code>setInterval</code></h2><div><p>Since JavaScript is asynchronous, it is possible to schedule the execution of a 
 function by using the <code>setTimeout</code> and <code>setInterval</code> functions.</p>
 
 <aside>

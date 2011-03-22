@@ -1,4 +1,4 @@
-﻿## 关于作者（The Authors）
+﻿## 关于作者
 
 这篇文章的作者是两位 Stack Overflow 的用户, [Ivo Wetzel][1] （写作） 和 [Zhang Yi Jiang][2] （设计）。
 

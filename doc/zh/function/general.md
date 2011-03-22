@@ -1,4 +1,4 @@
-﻿## 函数声明与表达式（Function Declarations and Expressions）
+﻿## 函数声明与表达式
 
 函数是JavaScript中的一等对象，这意味着可以把函数像其它值一样传递。
 一个常见的用法是把*匿名函数*作为回调函数传递对异步函数中。
