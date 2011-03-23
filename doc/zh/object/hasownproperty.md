@@ -45,3 +45,4 @@ JavaScript **不会**保护 `hasOwnProperty` 被非法占用，因此如果一�
 同时在使用 [`for in` loop](#forinloop) 遍历对象时，推荐**总是**使用 `hasOwnProperty` 方法，
 这将会避免[原型](#prototype)对象扩展带来的干扰。
 
+[30]: http://cnblogs.com/sanshi/

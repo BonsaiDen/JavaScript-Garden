@@ -36,3 +36,5 @@ The `instanceof` operator should **only** be used when dealing with custom made
 objects that origin from the same JavaScript context. Just like the
 [`typeof`](#types.typeof) operator, every other use of it should be **avoided**.
 
+
+[30]: http://cnblogs.com/sanshi/

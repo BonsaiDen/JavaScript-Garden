@@ -47,7 +47,8 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
         Function.call.apply(Foo.prototype.method, arguments);
     };
 
-译者注：上面的 `Foo.method` 函数和下面代码的效果是一样的。
+	
+[译者注][30]：上面的 `Foo.method` 函数和下面代码的效果是一样的:
 	
 	Foo.method = function() {
 		var args = Array.prototype.slice.call(arguments);
@@ -84,9 +85,10 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 
 > **ES5 提示:** 这些 *getters* 和 *setters* 在严格模式下（strict mode）不会被创建。
 
-译者注：在 [MDC][2] 中对 `strict mode` 模式下 `arguments` 的描述有助于我们的理解。
 
-	// 译者注：来自 [MDC][2] 的代码，说明在 ES5 的严格模式下 `arguments` 的特性。
+[译者注][30]：在 [MDC][2] 中对 `strict mode` 模式下 `arguments` 的描述有助于我们的理解，请看下面代码：
+
+	// 阐述在 ES5 的严格模式下 `arguments` 的特性
 	function f(a)
 	{
 	  "use strict";
@@ -110,7 +112,7 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
         }
     }
 
-上面代码中，`foo` 不再是一个单纯的内联函数 [inlining][1]（译者注：这里指的是解析器可以做内联处理），
+上面代码中，`foo` 不再是一个单纯的内联函数 [inlining][1]（[译者注][30]：这里指的是解析器可以做内联处理），
 因为它需要知道它自己和它的调用者。
 这不仅抵消了内联函数带来的性能提升，而且破坏了封装，因此现在函数可能要依赖于特定的上下文。
 
@@ -121,4 +123,4 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 
 [1]: http://en.wikipedia.org/wiki/Inlining
 [2]: https://developer.mozilla.org/en/JavaScript/Strict_mode
-
+[30]: http://cnblogs.com/sanshi/

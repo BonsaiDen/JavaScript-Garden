@@ -39,4 +39,5 @@
 
 
 [1]: http://www.prototypejs.org/
+[30]: http://cnblogs.com/sanshi/
 

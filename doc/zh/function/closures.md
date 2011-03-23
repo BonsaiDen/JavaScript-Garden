@@ -57,7 +57,7 @@ copying the value of the loops index variable.）。
 
 ### 避免引用错误（Avoiding the reference problem）
 
-为了正确的获得循环序号，最好使用 [匿名包裹器](#scopes)（译者注：其实就是我们通常说的自执行匿名函数）。
+为了正确的获得循环序号，最好使用 [匿名包裹器](#scopes)（[译者注][30]：其实就是我们通常说的自执行匿名函数）。
 
     for(var i = 0; i < 10; i++) {
         (function(e) {
@@ -81,3 +81,5 @@ copying the value of the loops index variable.）。
         })(i), 1000)
     }
 
+	
+[30]: http://cnblogs.com/sanshi/

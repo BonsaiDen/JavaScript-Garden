@@ -68,3 +68,5 @@ By using the **not** operator twice, a value can be converted a boolean.
     !!true;    // true
 
 
+
+[30]: http://cnblogs.com/sanshi/

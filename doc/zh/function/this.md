@@ -8,7 +8,9 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
     this;
 
 当在全部范围内使用 `this`，它将会指向*全局*对象。
-（译者注：浏览器中运行的JavaScript脚本，这个全局对象是 window）
+
+[译者注][30]：浏览器中运行的JavaScript脚本，这个全局对象是 window。
+
 
 ### 函数调用（Calling a function）
 
@@ -18,7 +20,7 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 
 > **ES5 注意:** 在严格模式下（strict mode），不存在全局变量。
 > 这种情况下 `this` 将会是 `undefined`。
->（译者注：ES5指的是ECMAScript 5，是2009-12发布的最新的 JavaScript 版本。）
+> [译者注][30]：ES5指的是ECMAScript 5，是 2009-12 发布的最新的 JavaScript 版本。
 
 ### 方法调用（Calling a method）
 
@@ -48,16 +50,16 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 
 > **注意:** 在对象的字面声明语法中，`this` **不能**用来指向对象本身。
 > 因此 `var obj = {me: this}` 中的 `me` 不会指向 `obj`，因为 `this` 只可能出现在上述的五种情况中。
-> （译者注：这个例子中，如果是在浏览器中运行，obj.me等于window对象。）
+> [译者注][30]：这个例子中，如果是在浏览器中运行，obj.me等于window对象。
 
 ### 常见误解（Common pitfalls）
 
-尽管大部分的情况都说的过去，不过第一个规则（译者注：这里指的应该是第二个规则，也就是直接调用函数时，`this` 指向全局对象）
+尽管大部分的情况都说的过去，不过第一个规则（[译者注][30]：这里指的应该是第二个规则，也就是直接调用函数时，`this` 指向全局对象）
 被认为是JavaScript语言另一个错误设计的地方，因为它**从来**就没有实际的用途。
 
     Foo.method = function() {
         function test() {
-            // this 将会被设置为全局对象（译者注：浏览器环境中也就是 window 对象）
+            // this 将会被设置为全局对象（[译者注][30]：浏览器环境中也就是 window 对象）
         }
         test();
     }
@@ -97,3 +99,6 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
     new Bar().method();
 
 当 `method` 被调用时，`this` 将会指向 `Bar` 的实例对象。
+
+
+[30]: http://cnblogs.com/sanshi/

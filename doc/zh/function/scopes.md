@@ -13,7 +13,7 @@
 > **注意:** 如果不是在赋值语句中，而是在 return 表达式或者函数参数中，`{...}` 将会作为代码段解析，
 > 而不是作为对象的字面语法解析。如果考虑到 [自动分号插入](#semicolon)，这可能会导致一些不易察觉的错误。
 
-译者注：如果 return 对象的左括号和 return 不在一行上就会出错。
+[译者注][30]：如果 return 对象的左括号和 return 不在一行上就会出错。
 	
 	// 译者注：下面输出 undefined
 	function add(a, b) {
@@ -157,7 +157,7 @@ JavaScript 会**提升**变量声明。这意味着 `var` 表达式和 `function
     }
 
 	
-译者注：在 Nettuts+ 网站有一篇介绍 hoisting 的[文章][1]，其中的代码很有启发性。
+[译者注][30]：在 Nettuts+ 网站有一篇介绍 hoisting 的[文章][1]，其中的代码很有启发性。
 
 	// 译者注：来自 Nettuts+ 的一段代码，生动的阐述了 JavaScript 中变量声明提升规则
 	var myvar = 'my value';  
@@ -188,7 +188,7 @@ JavaScript 中的所有作用域，包括*全局作用域*，都有一个特别�
 只有一个全局作用域导致的常见错误是命名冲突。在 JavaScript中，这可以通过 *匿名包装器* 轻松解决。
 
     (function() {
-        // 函数创建一个命名空间（译者注：也就是作用域）
+        // 函数创建一个命名空间
         
         window.foo = function() {
             // 对外公开的函数，创建了闭包
@@ -211,10 +211,11 @@ JavaScript 中的所有作用域，包括*全局作用域*，都有一个特别�
 
 ### 结论（In conclusion）
 
-推荐使用*匿名包装器*（译者注：也就是自执行的匿名函数）来创建命名空间。这样不仅可以防止命名冲突，
+推荐使用*匿名包装器*（[译者注][30]：也就是自执行的匿名函数）来创建命名空间。这样不仅可以防止命名冲突，
 而且有利于程序的模块化。
 
 另外，使用全局变量被认为是**不好的习惯**。这样的代码倾向于产生错误和带来高的维护成本。
 
 
 [1]: http://net.tutsplus.com/tutorials/javascript-ajax/quick-tip-javascript-hoisting-explained/
+[30]: http://cnblogs.com/sanshi/

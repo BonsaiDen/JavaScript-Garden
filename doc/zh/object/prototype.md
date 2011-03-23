@@ -48,9 +48,9 @@ other way around is a far more difficult task.）
 `Foo` instance, since that property gets defined in the [constructor](#constructor)
 of `Foo`. But this constructor has to be called explicitly.）
 
-（译者注：我认为这个描述是错误的，test.value 是可以访问的。
+[译者注][30]：我认为这个描述是错误的，test.value 是可以访问的。
 因为在设置 Bar.prototype = new Foo(); 时，`value` 也就成为 Bar.prototype 上的一个属性。
-如果你有不同观点，可以到[我的博客][4]评论。）
+如果你有不同观点，可以到[我的博客][30]评论。
 
 > **注意:** **不要**使用 `Bar.prototype = Foo`，因为这不会执行 `Foo` 的原型，而是指向函数 `Foo`。
 > 因此原型链将会回溯到 `Function.prototype` 而不是 `Foo.prototype`，因此 `method` 将不会在 Bar 的原型链上。
@@ -85,7 +85,9 @@ of `Foo`. But this constructor has to be called explicitly.）
 但是我仍然不认为为内置类型添加一些*非标准*的函数是个好主意。
 
 扩展内置类型的**唯一**理由是为了和新的 JavaScript 保持一致，比如 [`Array.forEach`][3]。
-（译者注：这是编程领域常用的一种方式，称之为 [Backport][5]，也就是将新的补丁添加到老版本中。）
+
+[译者注][30]：这是编程领域常用的一种方式，称之为 [Backport][5]，也就是将新的补丁添加到老版本中。
+
 
 ### 总结（In conclusion）
 
@@ -97,6 +99,6 @@ of `Foo`. But this constructor has to be called explicitly.）
 [1]: http://en.wikipedia.org/wiki/Monkey_patch
 [2]: http://prototypejs.org/
 [3]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach
-[4]: http://cnblogs.com/sanshi/
 [5]: http://en.wikipedia.org/wiki/Backport 
+[30]: http://cnblogs.com/sanshi/
 

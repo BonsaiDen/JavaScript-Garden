@@ -27,16 +27,7 @@ JavaScript 中的构造函数和其它语言中的构造函数是不同的。
     }
     new Bar(); // 返回新创建的对象
 	
-	// 译者注：new Bar() 返回的是新创建的对象，而不是数字的字面值 2。
-	// 因此 new Bar().constructor === Bar
-	// 但是如果返回的是数字对象，结果就不同了
-	// function Bar() {
-    //    return new Number(2);
-    // }
-    // new Bar().constructor === Number
-	
-	
-    function Test() {
+	function Test() {
         this.value = 2;
 
         return {
@@ -44,8 +35,21 @@ JavaScript 中的构造函数和其它语言中的构造函数是不同的。
         };
     }
     new Test(); // 返回的对象
-	// 译者注：这里得到的是函数返回的对象，而不是通过 new 关键字新创建的对象
-	// 所有 (new Test()).value 为 undefined，但是 (new Test()).foo === 1。
+
+	
+[译者注][30]：new Bar() 返回的是新创建的对象，而不是数字的字面值 2。
+因此 new Bar().constructor === Bar，但是如果返回的是数字对象，结果就不同了，如下所示
+	
+	function Bar() {
+		return new Number(2);
+    }
+    new Bar().constructor === Number
+	
+	
+[译者注][30]：这里得到的（new Test()）是函数返回的对象，而不是通过 new 关键字新创建的对象，因此：
+	(new Test()).value === undefined
+	(new Test()).foo === 1
+
 
 如果 `new` 被遗漏了，则函数**不会**返回新创建的对象。
 
@@ -80,12 +84,13 @@ JavaScript 中的构造函数和其它语言中的构造函数是不同的。
 其实这里创建了一个[闭包](#function.closures)。
 
 
-还需要注意，`new Bar()` 并**不会**改变返回对象的原型（译者注：也就是返回对象的原型不会指向 Bar.prototype）。
-因为构造函数的原型会被指向到刚刚创建的新对象，而这里的 `Bar` 没有把这个新对象返回（译者注：而是返回了一个包含 `method` 属性的自定义对象）。 
+还需要注意，`new Bar()` 并**不会**改变返回对象的原型（[译者注][30]：也就是返回对象的原型不会指向 Bar.prototype）。
+因为构造函数的原型会被指向到刚刚创建的新对象，而这里的 `Bar` 没有把这个新对象返回（[译者注][30]：而是返回了一个包含 `method` 属性的自定义对象）。 
 
 在上面的例子中，使用或者不使用 `new` 关键字没有功能性的区别。
 
-	// 译者注：上面两种方式创建的对象不能访问 Bar 原型链上的属性
+[译者注][30]：上面两种方式创建的对象不能访问 Bar 原型链上的属性，如下所示：
+	
 	var bar1 = new Bar();
 	typeof(bar1.method); // "function"
 	typeof(bar1.foo); // "undefined"
@@ -129,3 +134,5 @@ JavaScript 中的构造函数和其它语言中的构造函数是不同的。
 虽然遗漏 `new` 关键字可能会导致问题，但这并**不是**放弃使用原型链的借口。
 最终使用哪种方式取决于应用程序的需求，选择一种代码书写风格并**坚持**下去才是最重要的。
 
+
+[30]: http://cnblogs.com/sanshi/

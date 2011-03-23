@@ -39,3 +39,6 @@
 `bar` 函数声明外是不可见的，这是因为我们已经把函数赋值给了 `foo`；
 然而在 `bar` 内部依然可见。这是由于 JavaScript 的 [命名处理](#scopes) 所致，
 函数名在函数内*总是*可见的。
+
+
+[30]: http://cnblogs.com/sanshi/
