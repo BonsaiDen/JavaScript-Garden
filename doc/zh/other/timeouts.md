@@ -1,155 +1,137 @@
-### `setTimeout` and `setInterval`
+﻿### `setTimeout` 和 `setInterval`
 
-Since JavaScript is asynchronous, it is possible to schedule the execution of a 
-function by using the `setTimeout` and `setInterval` functions.
+由于 JavaScript 是异步的，可以使用 `setTimeout` 和 `setInterval` 来计划执行函数。
 
-> **Note:** Timeouts are **not** part of the ECMAScript Standard, they are
-> implemented as part of the [DOM][1].
+> **注意:** 定时处理**不是** ECMAScript 的标准，它们在 [DOM][1] 被实现。
 
     function foo() {}
-    var id = setTimeout(foo, 1000); // returns a Number > 0
+    var id = setTimeout(foo, 1000); // 返回一个大于零的数字
 
-When `setTimeout` gets called, it will return the ID of the timeout and schedule
-`foo` to run in **approximately** one thousand milliseconds in the future. 
-`foo` will then get executed exactly **once**.
+当 `setTimeout` 被调用时，它会返回一个 ID 标识并且计划在将来**大约** 1000 毫秒后调用 `foo` 函数。
+`foo` 函数只会被执行**一次**。
 
-Depending on the timer resolution of the JavaScript engine that is running the 
-code, as well as the fact that JavaScript is single threaded and other code that 
-gets executed might block the thread, it is by **no means** a safe bet that one 
-will get the exact delay that was specified in the `setTimeout` call.
+基于 JavaScript 引擎的计时策略，以及本质上的单线程运行方式，所以其它代码的运行可能会阻塞此线程。
+因此**没法确保**函数会在 `setTimeout` 指定的时刻被调用。
 
-The function that was passed as the first parameter will get called by the
-*global object*, that means, that [`this`](#function.this) inside the called function 
-refers to that very object.
+作为第一个参数的函数将会在*全局作用域*中执行，因此函数内的 [`this`](#function.this) 将会指向这个全局对象。
 
     function Foo() {
         this.value = 42;
         this.method = function() {
-            // this refers to the global object
-            console.log(this.value); // will log undefined
+            // this 指向全局对象
+            console.log(this.value); // 输出：undefined
         };
         setTimeout(this.method, 500);
     }
     new Foo();
 
 
-> **Note:** As `setTimeout` takes a **function object** as its first parameter, an
-> often made mistake is to use `setTimeout(foo(), 1000)`, which will use the 
-> **return value** of the call `foo` and **not** `foo`. This is, most of the time, 
-> a silent error, since when the function returns `undefined` `setTimeout` will 
-> **not** raise any error.
+> **注意:** `setTimeout` 的第一个参数是**函数对象**，一个常犯的错误是这样的 `setTimeout(foo(), 1000)`，
+> 这里回调函数是 `foo` 的**返回值**，而**不是**`foo`本身。
+> 大部分情况下，这是一个潜在的错误，因为如果函数返回 `undefined`，`setTimeout` 也**不会**报错。
 
-### Stacking calls with `setInterval`
 
-While `setTimeout` only runs the function once, `setInterval` - as the name 
-suggests - will execute the function **every** `X` milliseconds. But its use is 
-discouraged. 
+### `setInterval` 的堆调用（Stacking calls with `setInterval`）
 
-When code that is being executed blocks the timeout call, `setInterval` will 
-still issue more calls to the specified function. This can, especially with small
-intervals, result in function calls stacking up.
+`setTimeout` 只会执行回调函数一次，不过 `setInterval` - 正如名字建议的 - 会每隔 `X` 毫秒执行函数一次。
+但是却不鼓励使用这个函数。
+
+当回调函数的执行被阻塞时，`setInterval` 仍然会发布更多的毁掉指令。在很小的定时间隔情况下，这会导致回调函数被堆积起来。
 
     function foo(){
-        // something that blocks for 1 second
+        // 阻塞执行 1 秒
     }
     setInterval(foo, 100);
 
-In the above code `foo` will get called once and will then block for one second.
+上面代码中，`foo` 会执行一次随后被阻塞了一分钟。
 
-While `foo` blocks the code `setInterval` will still schedule further calls to
-it. Now, when `foo` has finished, there will already be **ten** further calls to
-it waiting for execution.
+在 `foo` 被阻塞的时候，`setInterval` 仍然在组织将来对回调函数的调用。
+因此，当第一次 `foo` 函数调用结束时，已经有 **10** 次函数调用在等待执行。
 
-### Dealing with possible blocking code
+### 处理可能的阻塞调用（Dealing with possible blocking code）
 
-The easiest as well as most controllable solution, is to use `setTimeout` within
-the function itself.
+最简单也是最容易控制的方案，是在回调函数内部使用 `setTimeout` 函数。
 
     function foo(){
-        // something that blocks for 1 second
+        // 阻塞执行 1 秒
         setTimeout(foo, 100);
     }
     foo();
 
-Not only does this encapsulate the `setTimeout` call, but it also prevents the
-stacking of calls and it gives additional control.`foo` itself can now decide 
-whether it wants to run again or not.
+这样不仅封装了 `setTimeout` 回调函数，而且阻止了调用指令的堆积，可以有更多的控制。
+`foo` 函数现在可以控制是否继续执行还是终止执行。
 
-### Manually clearing timeouts
 
-Clearing timeouts and intervals works by passing the respective ID to
-`clearTimeout` or `clearInterval`, depending which `set` function was used in
-the first place.
+### 手工清空定时器（Manually clearing timeouts）
+
+可以通过将定时时产生的 ID 标识传递给 `clearTimeout` 或者 `clearInterval` 函数来清除定时，
+至于使用哪个函数取决于调用的时候使用的是 `setTimeout` 还是 `setInterval`。
 
     var id = setTimeout(foo, 1000);
     clearTimeout(id);
 
-### Clearing all timeouts
+### 清除所有定时器（Clearing all timeouts）
 
-As there is no built-in method for clearing all timeouts and/or intervals, 
-it is necessary to use brute force in order to achieve this functionality.
+由于没有内置的清除所有定时器的方法，可以采用一种暴力的方式来达到这一目的。
 
-    // clear "all" timeouts
+    // 清空"所有"的定时器
     for(var i = 1; i < 1000; i++) {
         clearTimeout(i);
     }
 
-There might still be timeouts that are unaffected by this arbitrary number;
-therefore, is is instead recommended to keep track of all the timeout IDs, so
-they can be cleared specifically.
+可能还有些定时器不会在上面代码中被清除（[译者注][30]：如果定时器调用时返回的 ID 值大于 1000），
+因此我们可以事先保存所有的定时器 ID，然后一把清除。
 
-### Hidden use of `eval`
+### 隐藏使用 `eval`（Hidden use of `eval`）
 
-`setTimeout` and `setInterval` can also take a string as their first parameter.
-This feature should **never** be used, since it internally makes use of `eval`.
+`setTimeout` 和 `setInterval` 也接受第一个参数为字符串的情况。
+这个特性**绝对**不要使用，因为它在内部使用了 `eval`。
 
-> **Note:** Since the timeout functions are **not** specified by the ECMAScript
-> standard, the exact workings when a string is passed to them might differ in
-> various JavaScript implementations. As a fact, Microsoft's JScript makes use of
-> the `Function` constructor in place of `eval`.
+
+> **注意:** 由于定时器函数不是 ECMAScript 的标准，如何解析字符串参数在不同的 JavaScript 引擎实现中可能不同。
+> 事实上，微软的 JScript 会使用 `Function` 构造函数来代替 `eval` 的使用。
 
     function foo() {
-        // will get called
+        // 将会被调用
     }
 
     function bar() {
         function foo() {
-            // never gets called
+            // 不会被调用
         }
         setTimeout('foo()', 1000);
     }
     bar();
 
-Since `eval` is not getting called [directly](#core.eval) in this case, the string 
-passed to `setTimeout` will get executed in the *global scope*; thus, it will 
-not use the local variable `foo` from the scope of `bar`.
+由于 `eval` 在这种情况下不是被[直接](#core.eval)调用，因此传递到 `setTimeout` 的字符串会自*全局作用域*中执行；
+因此，上面的回调函数使用的不是定义在 `bar` 作用域中的局部变量 `foo`。
 
-It is further recommended to **not** use a string for passing arguments to the
-function that will get called by either of the timeout functions. 
+建议**不要**在调用定时器函数时，为了向回调函数传递参数而使用字符串的形式。
 
     function foo(a, b, c) {}
     
-    // NEVER use this
+    // 不要这样做
     setTimeout('foo(1,2, 3)', 1000)
 
-    // Instead use an anonymous function
+    // 可以使用匿名函数完成相同功能
     setTimeout(function() {
         foo(a, b, c);
     }, 1000)
 
-> **Note:** While it is also possible to use the syntax 
-> `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
-> to subtle errors when used with [methods](#function.this).
+> **注意:** 虽然也可以使用这样的语法 `setTimeout(foo, 1000, a, b, c)`，
+> 但是不推荐这么做，因为在使用对象的[属性方法](#function.this)时可能会出错。
+>（译者注：这里说的是属性方法内，this 的指向错误）
 
-### In conclusion
 
-**Never** should a string be used as the parameter of `setTimeout` or 
-`setInterval`. It is a clear sign of **really** bad code, when arguments need 
-to be supplied to the function that gets called. An *anonymous function* should
-be passed that then takes care of the actual call.
+### 结论（In conclusion）
 
-Further, the use of `setInterval` should be avoided since its scheduler is not
-blocked by executing JavaScript.
+**绝对不要**使用字符串作为 `setTimeout` 或者 `setInterval` 的第一个参数，
+这么写的代码明显质量很差。当需要向回调函数传递参数时，可以创建一个*匿名函数*，在函数内执行真实的回调函数。
+
+另外，应该避免使用 `setInterval`，因为它的定时执行不会被 JavaScript 阻塞。
+
 
 [1]: http://en.wikipedia.org/wiki/Document_Object_Model 
+
+[30]: http://cnblogs.com/sanshi/
 

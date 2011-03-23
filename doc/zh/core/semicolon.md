@@ -1,30 +1,27 @@
-## Automatic semicolon insertion
+﻿## 自动分号插入
 
-Although JavaScript has C style syntax, it does **not** enforce the use of
-semicolons in the source code, it is possible to omit them.
+尽管 JavaScript 有 C 的代码风格，但是它**不**强制要求在代码中使用分号，实际上可以省略它们。
 
-But JavaScript is not a semicolon-less language, it in fact needs the 
-semicolons in order to understand the source code. Therefore the JavaScript
-parser **automatically** inserts them whenever it encounters a parse
-error due to a missing semicolon.
+JavaScript 不是一个没有分号的语言，恰恰相反上它需要分号来就解析源代码。
+因此 JavaScript 解析器在遇到由于缺少分号导致的解析错误时，会**自动**在源代码中插入分号。
 
     var foo = function() {
-    } // parse error, semicolon expected
+    } // 解析错误，分号丢失
     test()
 
-Insertion happens, and the parser tries again.
+自动插入分号，解析器重新解析。
 
     var foo = function() {
-    }; // no error, parser continues
+    }; // 没有错误，解析继续
     test()
 
-The automatic insertion of semicolon is considered to be one of **biggest**
-design flaws in the language, as it *can* change the behavior of code.
+自动的分号插入被认为是 JavaScript 语言**最大**的设计缺陷之一，因为它*能*改变代码的行为。
 
-### How it works
 
-The code below has no semicolons in it, so it is up to the parser to decide where
-to insert them.
+### 工作原理（How it works）
+
+下面的代码没有分号，因此解析器需要自己判断需要在哪些地方插入分号。
+
 
     (function(window, undefined) {
         function test(options) {
@@ -53,7 +50,7 @@ to insert them.
 
     })(window)
 
-Below is the result of the parser's "guessing" game.
+下面是解析器"猜测"的结果。
 
     (function(window, undefined) {
         function test(options) {
@@ -61,54 +58,52 @@ Below is the result of the parser's "guessing" game.
             // Not inserted, lines got merged
             log('testing!')(options.list || []).forEach(function(i) {
 
-            }); // <- inserted
+            }); // <- 插入分号
 
             options.value.test(
                 'long string to pass here',
                 'and another long string to pass'
-            ); // <- inserted
+            ); // <- 插入分号
 
-            return; // <- inserted, breaks the return statement
-            { // treated as a block
+            return; // <- 插入分号, 改变了 return 表达式的行为
+            { // 作为一个代码段处理
 
                 // a label and a single expression statement
                 foo: function() {} 
-            }; // <- inserted
+            }; // <- 插入分号
         }
-        window.test = test; // <- inserted
+        window.test = test; // <- 插入分号
 
     // The lines got merged again
     })(window)(function(window) {
-        window.someLibrary = {}; // <- inserted
+        window.someLibrary = {}; // <- 插入分号
 
-    })(window); //<- inserted
+    })(window); //<- 插入分号
 
-> **Note:** The JavaScript parser does not "correctly" handle return statements 
-> which are followed by a new line, while this is not neccessarily the fault of 
-> the automatic semicolon insertion, it can still be an unwanted side-effect. 
+> **注意:** JavaScript 不能正确的处理 return 表达式紧跟换行符的情况，
+> 虽然这不能算是自动分号插入的错误，但这确实是一种不希望的副作用。
 
-The parser drastically changed the behavior of the code above, in certain cases
-it does the **wrong thing**.
 
-### Leading parenthesis
+解析器显著改变了上面代码的行为，在另外一些情况下也会做出**错误的处理**。
 
-In case of a leading parenthesis, the parser will **not** insert a semicolon.
+
+### 前置括号（Leading parenthesis）
+
+在前置括号的情况下，解析器**不会**自动插入分号。
 
     log('testing!')
     (options.list || []).forEach(function(i) {})
 
-This code gets transformed into one line.
+上面代码被解析器转换为一行。
 
     log('testing!')(options.list || []).forEach(function(i) {})
 
-Chances are **very** high that `log` does **not** return a function; therefore,
-the above will yield a `TypeError` stating that `undefined is not a function`.
+`log` 函数的执行结果**极大**可能**不是**函数；这种情况下就会出现 `TypeError` 的错误，详细错误信息可能是 `undefined is not a function`。
 
-### In conclusion
 
-It is highly recommended to **never** omit semicolons, it is also advocated to 
-keep braces on the same line with their corresponding statements and to never omit 
-them for one single-line `if` / `else` statements. Both of these measures will 
-not only improve the consistency of the code, they will also prevent the 
-JavaScript parser from changing its behavior.
+### 结论（In conclusion）
+
+建议**绝对**不要省略分号，同时也提倡将花括号和相应的表达式放在一行，
+对于只有一行代码的 `if` 或者 `else` 表达式，也不应该省略花括号。
+这些良好的编程习惯不仅可以提到代码的一致性，而且可以防止解析器改变代码行为的错误处理。
 
