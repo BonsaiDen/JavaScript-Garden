@@ -1,4 +1,4 @@
-﻿### 许可
+﻿## 许可
 
 JavaScript 秘密花园在 [MIT license][1] 许可协议下发布，并存放在开源社区 [GitHub][2]。
 如果你发现错误或者打字错误，请 [file an issue][3] 或者 pull request。
