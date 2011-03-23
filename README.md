@@ -1,33 +1,35 @@
-JavaScript Garden
+JavaScript 秘密花园
 =================
 
-**JavaScript Garden** is a growing collection of documentation about the most 
-quirky parts of the JavaScript programming language. It gives advice to 
-avoid common mistakes, subtle bugs, as well as performance issues and bad 
-practices that non-expert JavaScript programmers may encounter on their 
-endeavours into the depths of the language.
+**JavaScript 秘密花园**是一个不断更新的文档，主要关心 JavaScript 一些古怪用法。
+对于如何避免常见的错误，难以发现的问题，以及性能问题和不好的实践给出建议，
+初学者可以籍此深入了解 JavaScript 的语言特性。
 
-JavaScript Garden does **not** aim to teach you JavaScript. Former knowledge
-of the language is strongly recommended in order to understand the topics covered
-in this guide. In order to learn the basics of the language, please head over to 
-the excellent [guide][1] on the Mozilla Developer Network.
+JavaScript 秘密花园**不是**用来教你 JavaScript。为了更好的理解这篇文章的内容，
+你需要事先学习 JavaScript 的基础知识。在 Mozilla 开发者网络中有一系列非常棒的 JavaScript 学习[向导][1]。
 
-### The authors
+### 关于作者
 
-This guide is the work of two lovely Stack Overflow users, [Ivo Wetzel][6]
-(Writing) and [Zhang Yi Jiang][5] (Design).
+这篇文章的作者是两位 Stack Overflow 的用户, [Ivo Wetzel][6] （写作） 和 [Zhang Yi Jiang][5] （设计）。
 
-### Contributors
 
- - [Caio Romão][8] (Spelling corrections)
- - [Andreas Blixt][9] (Language corrections)
+### 贡献者
 
-### License
+ - [Caio Romão][8] （拼写检查）
+ - [Andreas Blixt][9] （语言修正）
 
-JavaScript Garden is published under the [MIT license][2] and hosted on
-[GitHub][4]. If you find errors or typos please [file an issue][3] or a pull 
-request on the repository. You can also find us in the [JavaScript room][10] on
-Stack Overflow chat. 
+## 中文翻译
+ - [三生石上][29]
+
+此中文翻译由[三生石上][29]独立完成，[博客园][30]首发，转载请注明出处。
+ 
+
+### 许可
+
+JavaScript 秘密花园在 [MIT license][2] 许可协议下发布，并存放在开源社区 [GitHub][4]。
+如果你发现错误或者打字错误，请 [file an issue][3] 或者 pull request。
+你也可以在 Stack Overflow 的聊天室 [JavaScript room][10] 找到我们。
+
 
 [1]: https://developer.mozilla.org/en/JavaScript/Guide
 [2]: https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE
@@ -38,4 +40,7 @@ Stack Overflow chat.
 [8]: https://github.com/caio
 [9]: https://github.com/blixt
 [10]: http://chat.stackoverflow.com/rooms/17/javascript
+
+[29]: http://sanshi.me/
+[30]: http://cnblogs.com/sanshi/
 
