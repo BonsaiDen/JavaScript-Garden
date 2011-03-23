@@ -9,6 +9,7 @@
             "articles": [
                 "authors",
                 "contributors",
+                "hosting",
                 "license"
             ]
         },
