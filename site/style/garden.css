@@ -286,7 +286,10 @@ nav li.nav_intro h1 a:after						{ content: 'i'; font-style: italic; }
 #array:after, nav li.nav_array h1 a:after		{ content: '[ ]'; }
 #types:after, nav li.nav_types h1 a:after		{ content: '='; font-weight: bold; }
 #core:after, nav li.nav_core h1 a:after			{ content: 'js'; }
-#appendix:after, nav li.nav_appendix h1 a:after	{ content: '*'; }
+#appendix:after, nav li.nav_appendix h1 a:after	{
+	content: '*';
+	font-size: 100px;
+}
 
 #function:after, nav li.nav_function h1 a:after {
 	content: 'f(x)';
