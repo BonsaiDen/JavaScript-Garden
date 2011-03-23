@@ -1,10 +1,9 @@
-## The `instanceof` operator
+﻿## `instanceof` 操作符
 
-The `instanceof` operator compares the constructors of its two operands. It is 
-only useful when comparing custom made objects. Used on built-in types, it is
-nearly as useless as the [typeof operator](#types.typeof).
+`instanceof` 操作符用来比较两个操作数的构造函数。只有在比较自定义的对象时才有意义。
+如果用来比较内置类型，将会和 [typeof 操作符](#types.typeof) 一样用处不大。
 
-### Comparing custom objects
+### 比较自定义对象（Comparing custom objects）
 
     function Foo() {}
     function Bar() {}
@@ -13,12 +12,11 @@ nearly as useless as the [typeof operator](#types.typeof).
     new Bar() instanceof Bar; // true
     new Bar() instanceof Foo; // true
 
-    // This just sets Bar.prototype to the function object Foo
-    // But not to an actual instance of Foo
+    // 如果仅仅设置 Bar.prototype 为函数 Foo 本省，而不是 Foo 构造函数的一个实例
     Bar.prototype = Foo;
     new Bar() instanceof Foo; // false
 
-### Using `instanceof` with native types
+### `instanceof` 比较内置类型（Using `instanceof` with native types）
 
     new String('foo') instanceof String; // true
     new String('foo') instanceof Object; // true
@@ -26,15 +24,14 @@ nearly as useless as the [typeof operator](#types.typeof).
     'foo' instanceof String; // false
     'foo' instanceof Object; // false
 
-One important thing to note here is, that `instanceof` does not work on objects 
-that origin from different JavaScript contexts (e.g. different documents
-in a web browser), since their constructors will not be the exact same object.
+有一点需要注意，`instanceof` 用来比较属于不同 JavaScript 上下文的对象（比如，浏览器中不同的文档结构）时将会出错，
+因为它们的构造函数不会是同一个对象。
 
-### In conclusion
 
-The `instanceof` operator should **only** be used when dealing with custom made 
-objects that origin from the same JavaScript context. Just like the
-[`typeof`](#types.typeof) operator, every other use of it should be **avoided**.
+### 结论（In conclusion）
+
+`instanceof` 操作符应该**仅仅**用来比较来自同一个 JavaScript 上下文的自定义对象。
+正如 [`typeof`](#types.typeof) 操作符一样，任何其它的用法都应该是避免的。
 
 
 [30]: http://cnblogs.com/sanshi/

@@ -1,63 +1,70 @@
-## Type casting
+﻿## 类型转换
 
-JavaScript is a *weakly typed* language, so it will apply *type coercion*
-**wherever** possible.
+JavaScript 是*弱类型*语言，所以会在**任何**可能的情况下应用*强制类型转换*。
 
-    // These are true
-    new Number(10) == 10; // Number.toString() is converted
-                          // back to a number
+    // 下面的比较结果是：true
+    new Number(10) == 10; // Number.toString() 返回的字符串被再次转换为数字
 
-    10 == '10';           // Strings gets converted to Number
-    10 == '+10 ';         // More string madness
-    10 == '010';          // And more 
-    isNaN(null) == false; // null converts to 0
-                          // which of course is not NaN
+    10 == '10';           // 字符串被转换为数字
+    10 == '+10 ';         // 同上
+    10 == '010';          // 同上 
+    isNaN(null) == false; // null 被转换为数字 0
+                          // 0 当然不是一个 NaN（译者注：否定之否定）
     
-    // These are false
+    // 下面的比较结果是：false
     10 == 010;
     10 == '-10';
 
-> **ES5 Note:** Number literals that start with a `0` are interpreted as octal 
-> (Base 8). Octal support for these has been **removed** in ECMAScript 5 strict 
-> mode.
+> **ES5 提示:** 以 `0` 开头的数字字面值会被作为八进制数字解析。
+> 而在 ECMAScript 5 严格模式下，这个特性被**移除**了。
 
-In order to avoid the above, use of the [strict equal operator](#types.equality) 
-is **highly** recommended. Although this avoids a lot of common pitfalls, there 
-are still many further issues that arise from JavaScript's weak typing system.
+为了避免上面复杂的强制类型转换，**强烈**推荐使用[严格的等于操作符](#types.equality)。
+虽然这可以避免大部分的问题，但 JavaScript 的弱类型系统仍然会导致一些其它问题。
 
-### Constructors of built-in types
 
-The constructors of the built in types like `Number` and `String` behave
-differently when being used with the `new` keyword and without it.
+### 内置类型的构造函数（Constructors of built-in types）
 
-    new Number(10) === 10;     // False, Object and Number
-    Number(10) === 10;         // True, Number and Number
-    new Number(10) + 0 === 10; // True, due to implicit conversion
+内置类型（比如 `Number` 和 `String`）的构造函数在被调用时，使用或者不使用 `new` 的结果完全不同。
 
-Using a built-in type like `Number` as a constructor will create a new `Number` 
-object, but leaving out the `new` keyword will make the `Number` function behave
-like a converter.
+    new Number(10) === 10;     // False, 对象与数字的比较
+    Number(10) === 10;         // True, 数字与数字的比较
+    new Number(10) + 0 === 10; // True, 由于隐式的类型转换
 
-In addition, having literals or non-object values in there will result in even
-more type coercion.
+使用内置类型 `Number` 作为构造函数将会创建一个新的 `Number` 对象，
+而在不使用 `new` 关键字的 `Number` 函数更像是一个数字转换器。
 
-The best option is to cast to one of the three possible types **explicitly**.
+另外，在比较中引入对象的字面值将会导致更加复杂的强制类型转换。
 
-### Casting to a string
+最好的选择是把要比较的值**显式**的转换为三种可能的类型之一。
+
+
+### 转换为字符串（Casting to a string）
 
     '' + 10 === '10'; // true
 
-By prepending a empty string a value can easily be casted to a string.
+将一个值加上空字符串可以轻松转换为字符串类型。
 
-### Casting to a number
+
+### 转换为数字（Casting to a number）
 
     +'10' === 10; // true
 
-Using the **unary** plus operator it is possible to cast to a number.
+使用**一元**的加号操作符，可以把字符串转换为数字。
 
-### Casting to a boolean
+[译者注][30]：字符串转换为数字的常用方法：
 
-By using the **not** operator twice, a value can be converted a boolean.
+	+'010' === 10
+	Number('010') === 10
+	parseInt('010', 10) === 10  // 用来转换为整数
+
+	+'010.2' === 10.2
+	Number('010.2') === 10.2
+	parseInt('010.2', 10) === 10
+
+	
+### 转换为布尔型（Casting to a boolean）
+
+通过使用 **否** 操作符两次，可以把一个值转换为布尔型。
 
     !!'foo';   // true
     !!'';      // false
