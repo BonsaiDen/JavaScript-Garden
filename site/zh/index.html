@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><title>JavaScript Garden</title><meta charset="utf-8"><meta name="description" content="A Guide to JavaScript's Quirks and Flaws."><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
+<!DOCTYPE html><html lang="zh"><head><title>JavaScript Garden</title><meta charset="utf-8"><meta name="description" content="A Guide to JavaScript's Quirks and Flaws."><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
 <script src="javascript/html5.js"></script>
 <![endif]-->
-</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li class="active"><a href="/JavaScript-Garden/zh" title="JavaScript Garden in English">zh</a></li></ul></div><ul><li class="nav_intro"><h1><a href="#intro">简介</a></h1><ul><li><a href="#intro.authors">﻿ 关于作者</a></li><li><a href="#intro.contributors">﻿ 贡献者</a></li><li><a href="#intro.license">﻿ 许可</a></li></ul></li><li class="nav_object"><h1><a href="#object">对象</a></h1><ul><li><a href="#object.general">﻿ 对象使用和属性</a></li><li><a href="#object.prototype">﻿ 原型</a></li><li><a href="#object.hasownproperty">﻿ <code>hasOwnProperty</code> 函数</a></li><li><a href="#object.forinloop">﻿ <code>for in</code> 循环</a></li></ul></li><li class="nav_function"><h1><a href="#function">函数</a></h1><ul><li><a href="#function.general">﻿ 函数声明与表达式</a></li><li><a href="#function.this">﻿ this 的工作原理</a></li><li><a href="#function.closures">﻿ 闭包和引用</a></li><li><a href="#function.arguments">﻿ <code>arguments</code> 对象</a></li><li><a href="#function.constructors">﻿ 构造函数</a></li><li><a href="#function.scopes">﻿ 作用域与命名空间</a></li></ul></li><li class="nav_array"><h1><a href="#array">数组</a></h1><ul><li><a href="#array.general">Array Iteration and Properties</a></li><li><a href="#array.constructor">The <code>Array</code> Constructor</a></li></ul></li><li class="nav_types"><h1><a href="#types">类型</a></h1><ul><li><a href="#types.equality">Equality and comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> operator</a></li><li><a href="#types.casting">Type casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">核心</a></h1><ul><li><a href="#core.eval">Why not to use <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> and <code>null</code></a></li><li><a href="#core.semicolon">Automatic semicolon insertion</a></li></ul></li><li class="nav_other"><h1><a href="#other">其它</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>简介</h1><div><p><strong>JavaScript 秘密花园</strong>是一个不断更新的文档，主要关心 JavaScript 一些古怪用法。
+</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li class="active"><a href="/JavaScript-Garden/zh" title="JavaScript Garden in English">zh</a></li><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">简介</a></h1><ul><li><a href="#intro.authors">﻿ 关于作者</a></li><li><a href="#intro.contributors">﻿ 贡献者</a></li><li><a href="#intro.license">﻿ 许可</a></li></ul></li><li class="nav_object"><h1><a href="#object">对象</a></h1><ul><li><a href="#object.general">﻿ 对象使用和属性</a></li><li><a href="#object.prototype">﻿ 原型</a></li><li><a href="#object.hasownproperty">﻿ <code>hasOwnProperty</code> 函数</a></li><li><a href="#object.forinloop">﻿ <code>for in</code> 循环</a></li></ul></li><li class="nav_function"><h1><a href="#function">函数</a></h1><ul><li><a href="#function.general">﻿ 函数声明与表达式</a></li><li><a href="#function.this">﻿ this 的工作原理</a></li><li><a href="#function.closures">﻿ 闭包和引用</a></li><li><a href="#function.arguments">﻿ <code>arguments</code> 对象</a></li><li><a href="#function.constructors">﻿ 构造函数</a></li><li><a href="#function.scopes">﻿ 作用域与命名空间</a></li></ul></li><li class="nav_array"><h1><a href="#array">数组</a></h1><ul><li><a href="#array.general">﻿ 数组遍历与属性</a></li><li><a href="#array.constructor">﻿ <code>Array</code> 构造函数</a></li></ul></li><li class="nav_types"><h1><a href="#types">类型</a></h1><ul><li><a href="#types.equality">﻿ 相等与比较</a></li><li><a href="#types.typeof">﻿ <code>typeof</code> 操作符</a></li><li><a href="#types.instanceof">﻿ <code>instanceof</code> 操作符</a></li><li><a href="#types.casting">﻿ 类型转换</a></li></ul></li><li class="nav_core"><h1><a href="#core">核心</a></h1><ul><li><a href="#core.eval">﻿ 为什么不要使用 <code>eval</code></a></li><li><a href="#core.undefined">﻿ <code>undefined</code> 和 <code>null</code></a></li><li><a href="#core.semicolon">﻿ 自动分号插入</a></li></ul></li><li class="nav_other"><h1><a href="#other">其它</a></h1><ul><li><a href="#other.timeouts">﻿ <code>setTimeout</code> 和 <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>简介</h1><div><p><strong>JavaScript 秘密花园</strong>是一个不断更新的文档，主要关心 JavaScript 一些古怪用法。
 对于如何避免常见的错误，难以发现的问题，以及性能问题和不好的实践给出建议，
 初学者可以籍此深入了解 JavaScript 的语言特性。</p>
 
@@ -14,8 +14,10 @@
 <h2>中文翻译</h2>
 
 <ul>
-<li><a href="http://cnblogs.com/sanshi/">三生石上</a></li>
-</ul></div></article><article id="intro.license"><h2>﻿ 许可</h2><div><p>JavaScript 秘密花园在 <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a> 许可协议下发布，并存放在开源社区 <a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>。
+<li><a href="http://sanshi.me/">三生石上</a></li>
+</ul>
+
+<p>此中文翻译由<a href="http://sanshi.me/">三生石上</a>独立完成，<a href="http://cnblogs.com/sanshi/">博客园</a>首发，转载请注明出处。</p></div></article><article id="intro.license"><h2>﻿ 许可</h2><div><p>JavaScript 秘密花园在 <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a> 许可协议下发布，并存放在开源社区 <a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>。
 如果你发现错误或者打字错误，请 <a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">file an issue</a> 或者 pull request。
 你也可以在 Stack Overflow 的聊天室 <a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript room</a> 找到我们。</p></div></article></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>对象</h1></header><!-- Articles--><article id="object.general"><h2>﻿ 对象使用和属性</h2><div><p>JavaScript 中所有变量都是对象，除了两个例外 <a href="#undefined"><code>null</code></a> 和 <a href="#undefined"><code>undefined</code></a>。</p>
 
@@ -70,8 +72,9 @@ foo[&#39;1234&#39;]; // works
 
 <p>两种语法是等价的，但是中括号操作符在下面两种情况下依然有效
  - 动态设置属性
- - 属性名不是一个有效的变量名（译者注：比如属性名中包含空格，或者属性名是JS的关键词）
-（译者注：在 <a href="http://www.jslint.com/">JSLint</a> 语法检测工具中，点操作符是推荐做法）</p>
+ - 属性名不是一个有效的变量名（<a href="http://cnblogs.com/sanshi/">译者注</a>：比如属性名中包含空格，或者属性名是JS的关键词）</p>
+
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：在 <a href="http://www.jslint.com/">JSLint</a> 语法检测工具中，点操作符是推荐做法。</p>
 
 </div><div><h3>删除属性（Deleting properties）</h3>
 
@@ -159,9 +162,9 @@ test [Bar的实例]
 <code>Foo</code> instance, since that property gets defined in the <a href="#constructor">constructor</a>
 of <code>Foo</code>. But this constructor has to be called explicitly.）</p>
 
-<p>（译者注：我认为这个描述是错误的，test.value 是可以访问的。
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：我认为这个描述是错误的，test.value 是可以访问的。
 因为在设置 Bar.prototype = new Foo(); 时，<code>value</code> 也就成为 Bar.prototype 上的一个属性。
-如果你有不同观点，可以到<a href="http://cnblogs.com/sanshi/">我的博客</a>评论。）</p>
+如果你有不同观点，可以到<a href="http://cnblogs.com/sanshi/">我的博客</a>评论。</p>
 
 <aside>
   <p><strong>注意:</strong> <strong>不要</strong>使用 <code>Bar.prototype = Foo</code>，因为这不会执行 <code>Foo</code> 的原型，而是指向函数 <code>Foo</code>。
@@ -198,8 +201,9 @@ Foo.prototype = 1; // no effect
 <p>这种技术被称之为 <a href="http://en.wikipedia.org/wiki/Monkey_patch">monkey patching</a> 并且会破坏<em>封装</em>。虽然它被广泛的应用到一些 JavaScript 类库中比如 <a href="http://prototypejs.org/">Prototype</a>,
 但是我仍然不认为为内置类型添加一些<em>非标准</em>的函数是个好主意。</p>
 
-<p>扩展内置类型的<strong>唯一</strong>理由是为了和新的 JavaScript 保持一致，比如 <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach</code></a>。
-（译者注：这是编程领域常用的一种方式，称之为 <a href="http://en.wikipedia.org/wiki/Backport">Backport</a>，也就是将新的补丁添加到老版本中。）</p>
+<p>扩展内置类型的<strong>唯一</strong>理由是为了和新的 JavaScript 保持一致，比如 <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach</code></a>。</p>
+
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：这是编程领域常用的一种方式，称之为 <a href="http://en.wikipedia.org/wiki/Backport">Backport</a>，也就是将新的补丁添加到老版本中。</p>
 
 </div><div><h3>总结（In conclusion）</h3>
 
@@ -342,8 +346,9 @@ bar(); // 出错：ReferenceError
 <pre><code>this;
 </code></pre>
 
-<p>当在全部范围内使用 <code>this</code>，它将会指向<em>全局</em>对象。
-（译者注：浏览器中运行的JavaScript脚本，这个全局对象是 window）</p>
+<p>当在全部范围内使用 <code>this</code>，它将会指向<em>全局</em>对象。</p>
+
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：浏览器中运行的JavaScript脚本，这个全局对象是 window。</p>
 
 </div><div><h3>函数调用（Calling a function）</h3>
 
@@ -354,7 +359,7 @@ bar(); // 出错：ReferenceError
 
 <aside class="es5"><p><strong>ES5 注意:</strong> 在严格模式下（strict mode），不存在全局变量。
   这种情况下 <code>this</code> 将会是 <code>undefined</code>。
-  （译者注：ES5指的是ECMAScript 5，是2009-12发布的最新的 JavaScript 版本。）</p>
+  <a href="http://cnblogs.com/sanshi/">译者注</a>：ES5指的是ECMAScript 5，是 2009-12 发布的最新的 JavaScript 版本。</p>
 </aside>
 
 </div><div><h3>方法调用（Calling a method）</h3>
@@ -389,17 +394,17 @@ foo.call(bar, 1, 2, 3); // 传递到foo的参数是：a = 1, b = 2, c = 3
 <aside>
   <p><strong>注意:</strong> 在对象的字面声明语法中，<code>this</code> <strong>不能</strong>用来指向对象本身。
   因此 <code>var obj = {me: this}</code> 中的 <code>me</code> 不会指向 <code>obj</code>，因为 <code>this</code> 只可能出现在上述的五种情况中。
-  （译者注：这个例子中，如果是在浏览器中运行，obj.me等于window对象。）</p>
+  <a href="http://cnblogs.com/sanshi/">译者注</a>：这个例子中，如果是在浏览器中运行，obj.me等于window对象。</p>
 </aside>
 
 </div><div><h3>常见误解（Common pitfalls）</h3>
 
-<p>尽管大部分的情况都说的过去，不过第一个规则（译者注：这里指的应该是第二个规则，也就是直接调用函数时，<code>this</code> 指向全局对象）
+<p>尽管大部分的情况都说的过去，不过第一个规则（<a href="http://cnblogs.com/sanshi/">译者注</a>：这里指的应该是第二个规则，也就是直接调用函数时，<code>this</code> 指向全局对象）
 被认为是JavaScript语言另一个错误设计的地方，因为它<strong>从来</strong>就没有实际的用途。</p>
 
 <pre><code>Foo.method = function() {
     function test() {
-        // this 将会被设置为全局对象（译者注：浏览器环境中也就是 window 对象）
+        // this 将会被设置为全局对象（[译者注][30]：浏览器环境中也就是 window 对象）
     }
     test();
 }
@@ -502,7 +507,7 @@ copying the value of the loops index variable.）。</p>
 
 </div><div><h3>避免引用错误（Avoiding the reference problem）</h3>
 
-<p>为了正确的获得循环序号，最好使用 <a href="#scopes">匿名包裹器</a>（译者注：其实就是我们通常说的自执行匿名函数）。</p>
+<p>为了正确的获得循环序号，最好使用 <a href="#scopes">匿名包裹器</a>（<a href="http://cnblogs.com/sanshi/">译者注</a>：其实就是我们通常说的自执行匿名函数）。</p>
 
 <pre><code>for(var i = 0; i &lt; 10; i++) {
     (function(e) {
@@ -578,7 +583,7 @@ Foo.method = function() {
 };
 </code></pre>
 
-<p>译者注：上面的 <code>Foo.method</code> 函数和下面代码的效果是一样的。</p>
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：上面的 <code>Foo.method</code> 函数和下面代码的效果是一样的:</p>
 
 <pre><code>Foo.method = function() {
     var args = Array.prototype.slice.call(arguments);
@@ -617,9 +622,9 @@ foo(1, 2, 3);
 <aside class="es5"><p><strong>ES5 提示:</strong> 这些 <em>getters</em> 和 <em>setters</em> 在严格模式下（strict mode）不会被创建。</p>
 </aside>
 
-<p>译者注：在 <a href="https://developer.mozilla.org/en/JavaScript/Strict_mode">MDC</a> 中对 <code>strict mode</code> 模式下 <code>arguments</code> 的描述有助于我们的理解。</p>
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：在 <a href="https://developer.mozilla.org/en/JavaScript/Strict_mode">MDC</a> 中对 <code>strict mode</code> 模式下 <code>arguments</code> 的描述有助于我们的理解，请看下面代码：</p>
 
-<pre><code>// 译者注：来自 [MDC][2] 的代码，说明在 ES5 的严格模式下 `arguments` 的特性。
+<pre><code>// 阐述在 ES5 的严格模式下 `arguments` 的特性
 function f(a)
 {
   "use strict";
@@ -645,7 +650,7 @@ function bigLoop() {
 }
 </code></pre>
 
-<p>上面代码中，<code>foo</code> 不再是一个单纯的内联函数 <a href="http://en.wikipedia.org/wiki/Inlining">inlining</a>（译者注：这里指的是解析器可以做内联处理），
+<p>上面代码中，<code>foo</code> 不再是一个单纯的内联函数 <a href="http://en.wikipedia.org/wiki/Inlining">inlining</a>（<a href="http://cnblogs.com/sanshi/">译者注</a>：这里指的是解析器可以做内联处理），
 因为它需要知道它自己和它的调用者。
 这不仅抵消了内联函数带来的性能提升，而且破坏了封装，因此现在函数可能要依赖于特定的上下文。</p>
 
@@ -656,7 +661,7 @@ function bigLoop() {
 通过 <code>new</code> 关键字方式调用的函数都被认为是构造函数。</p>
 
 <p>在构造函数内部 - 也就是被调用的函数内 - <code>this</code> 指向新创建的对象 <code>Object</code>。
-这个<strong>新创建</strong>的对象的 <a href="#object.prototype"><code>prototype</code></a> 被设置为作为构造函数的 <code>prototype</code>。</p>
+这个<strong>新创建</strong>的对象的 <a href="#object.prototype"><code>prototype</code></a> 被指向到构造函数的 <code>prototype</code>。</p>
 
 <p>如果被调用的函数没有显式的 <code>return</code> 表达式，则隐式的会返回 <code>this</code> 对象 - 也就是新创建的对象。</p>
 
@@ -680,15 +685,6 @@ var test = new Foo();
 }
 new Bar(); // 返回新创建的对象
 
-// 译者注：new Bar() 返回的是新创建的对象，而不是数字 2。
-// 有 new Bar().constructor === Bar
-// 但是如果返回的是数字对象，结果就不同了
-// function Bar() {
-//    return new Number(2);
-// }
-// new Bar().constructor === Number
-
-
 function Test() {
     this.value = 2;
 
@@ -697,12 +693,22 @@ function Test() {
     };
 }
 new Test(); // 返回的对象
-// 译者注：这里得到的是函数返回的对象，而不是通过 new 关键字新创建的对象
-// 所有 (new Test()).value 为 undefined，但是 (new Test()).foo === 1。
 </code></pre>
 
-<p>如果 <code>new</code> 被遗漏了，则函数<strong>不会</strong>返回新创建的对象。
-When the <code>new</code> keyword is omitted, the function will <strong>not</strong> return a new object. </p>
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：new Bar() 返回的是新创建的对象，而不是数字的字面值 2。
+因此 new Bar().constructor === Bar，但是如果返回的是数字对象，结果就不同了，如下所示</p>
+
+<pre><code>function Bar() {
+    return new Number(2);
+}
+new Bar().constructor === Number
+</code></pre>
+
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：这里得到的（new Test()）是函数返回的对象，而不是通过 new 关键字新创建的对象，因此：
+    (new Test()).value === undefined
+    (new Test()).foo === 1</p>
+
+<p>如果 <code>new</code> 被遗漏了，则函数<strong>不会</strong>返回新创建的对象。</p>
 
 <pre><code>function Foo() {
     this.bla = 1; // 获取设置全局参数
@@ -733,16 +739,17 @@ new Bar();
 Bar();
 </code></pre>
 
-<p>上面两个对 <code>Bar</code> 函数的调用返回的值完全相同，一个新创建的拥有一个叫 <code>method</code> 属性的对象被返回，
+<p>上面两种对 <code>Bar</code> 函数的调用返回的值完全相同，一个新创建的拥有 <code>method</code> 属性的对象被返回，
 其实这里创建了一个<a href="#function.closures">闭包</a>。</p>
 
-<p>还需要注意，<code>new Bar()</code> 并<strong>不会</strong>改变返回对象的原型（译者注：也就是返回对象的原型不会指向 Bar.prototype）。
-因为构造函数的原型会被指向到刚刚创建的新对象，而这里的 <code>Bar</code> 没有把这个新对象返回（译者注：而是返回了一个包含 <code>method</code> 属性的自定义对象）。 </p>
+<p>还需要注意，<code>new Bar()</code> 并<strong>不会</strong>改变返回对象的原型（<a href="http://cnblogs.com/sanshi/">译者注</a>：也就是返回对象的原型不会指向 Bar.prototype）。
+因为构造函数的原型会被指向到刚刚创建的新对象，而这里的 <code>Bar</code> 没有把这个新对象返回（<a href="http://cnblogs.com/sanshi/">译者注</a>：而是返回了一个包含 <code>method</code> 属性的自定义对象）。 </p>
 
 <p>在上面的例子中，使用或者不使用 <code>new</code> 关键字没有功能性的区别。</p>
 
-<pre><code>// 译者注：上面两种方式创建的对象不能访问 Bar 原型链上的属性
-var bar1 = new Bar();
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：上面两种方式创建的对象不能访问 Bar 原型链上的属性，如下所示：</p>
+
+<pre><code>var bar1 = new Bar();
 typeof(bar1.method); // "function"
 typeof(bar1.foo); // "undefined"
 
@@ -801,7 +808,7 @@ typeof(bar2.foo); // "undefined"
   而不是作为对象的字面语法解析。如果考虑到 <a href="#semicolon">自动分号插入</a>，这可能会导致一些不易察觉的错误。</p>
 </aside>
 
-<p>译者注：如果 return 对象的左括号和 return 不在一行上就会出错。</p>
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：如果 return 对象的左括号和 return 不在一行上就会出错。</p>
 
 <pre><code>// 译者注：下面输出 undefined
 function add(a, b) {
@@ -953,7 +960,7 @@ if (!SomeImportantThing) {
 }
 </code></pre>
 
-<p>译者注：在 Nettuts+ 网站有一篇介绍 hoisting 的<a href="http://net.tutsplus.com/tutorials/javascript-ajax/quick-tip-javascript-hoisting-explained/">文章</a>，其中的代码很有启发性。</p>
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：在 Nettuts+ 网站有一篇介绍 hoisting 的<a href="http://net.tutsplus.com/tutorials/javascript-ajax/quick-tip-javascript-hoisting-explained/">文章</a>，其中的代码很有启发性。</p>
 
 <pre><code>// 译者注：来自 Nettuts+ 的一段代码，生动的阐述了 JavaScript 中变量声明提升规则
 var myvar = &#39;my value&#39;;  
@@ -988,7 +995,7 @@ var myvar = &#39;my value&#39;;
 <p>只有一个全局作用域导致的常见错误是命名冲突。在 JavaScript中，这可以通过 <em>匿名包装器</em> 轻松解决。</p>
 
 <pre><code>(function() {
-    // 函数创建一个命名空间（译者注：也就是作用域）
+    // 函数创建一个命名空间
 
     window.foo = function() {
         // 对外公开的函数，创建了闭包
@@ -1014,28 +1021,23 @@ function() {}
 
 </div><div><h3>结论（In conclusion）</h3>
 
-<p>推荐使用<em>匿名包装器</em>（译者注：也就是自执行的匿名函数）来创建命名空间。这样不仅可以防止命名冲突，
+<p>推荐使用<em>匿名包装器</em>（<a href="http://cnblogs.com/sanshi/">译者注</a>：也就是自执行的匿名函数）来创建命名空间。这样不仅可以防止命名冲突，
 而且有利于程序的模块化。</p>
 
-<p>另外，使用全局变量被认为是<strong>不好的习惯</strong>。这样的代码倾向于产生错误和带来高的维护成本。</p></div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>数组</h1></header><!-- Articles--><article id="array.general"><h2>Array Iteration and Properties</h2><div><p>Although arrays in JavaScript are objects, there are no good reasons to use
-the <a href="#object.forinloop"><code>for in loop</code></a> in for iteration on them. In fact there 
-are a number of good reasons <strong>against</strong> the use of <code>for in</code> on arrays.</p>
+<p>另外，使用全局变量被认为是<strong>不好的习惯</strong>。这样的代码倾向于产生错误和带来高的维护成本。</p></div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>数组</h1></header><!-- Articles--><article id="array.general"><h2>﻿ 数组遍历与属性</h2><div><p>虽然在 JavaScript 中数组是是对象，但是没有好的理由去使用 <a href="#object.forinloop"><code>for in</code> 循环</a> 遍历数组。
+相反，有一些好的理由<strong>不去</strong>使用 <code>for in</code> 遍历数组。</p>
 
 <aside>
-  <p><strong>Note:</strong> JavaScript arrays are <strong>not</strong> <em>associative arrays</em>. JavaScript only 
-  has <a href="#object.general">objects</a> for mapping keys to values. And while associative 
-  arrays <strong>preserve</strong> order, objects <strong>do not</strong>.</p>
+  <p><strong>注意:</strong> JavaScript 中数组<strong>不是</strong> <em>关联数组</em>。
+  JavaScript 中只有<a href="#object.general">对象</a> 来管理键值的对应关系。但是关联数组是<strong>保持</strong>顺序的，而对象<strong>不是</strong>。</p>
 </aside>
 
-<p>Since the <code>for in</code> loop enumerates all the properties that are on the prototype 
-chain and the only way to exclude those properties is to use 
-<a href="#object.hasownproperty"><code>hasOwnProperty</code></a>, it is already up to <strong>twenty times</strong> 
-slower than a normal <code>for</code> loop.</p>
+<p>由于 <code>for in</code> 循环会枚举原型链上的所有属性，唯一过滤这些属性的方式是使用 <a href="#object.hasownproperty"><code>hasOwnProperty</code></a> 函数，
+因此会比普通的 <code>for</code> 循环慢上好多倍。</p>
 
-</div><div><h3>Iteration</h3>
+</div><div><h3>遍历（Iteration）</h3>
 
-<p>In order to achieve the best performance when iterating over arrays, it is best
-to use the classic <code>for</code> loop.</p>
+<p>为了达到遍历数组的最佳性能，推荐使用经典的 <code>for</code> 循环。</p>
 
 <pre><code>var list = [1, 2, 3, 4, 5, ...... 100000000];
 for(var i = 0, l = list.length; i &lt; l; i++) {
@@ -1043,22 +1045,16 @@ for(var i = 0, l = list.length; i &lt; l; i++) {
 }
 </code></pre>
 
-<p>There is one extra catch in the above example, that is the caching of the 
-length of the array via <code>l = list.length</code>.</p>
+<p>上面代码有一个处理，就是通过 <code>l = list.length</code> 来缓存数组的长度。</p>
 
-<p>Although the <code>length</code> property is defined on the array itself, there is still an
-overhead for doing the lookup on each iteration of the loop. And while recent 
-JavaScript engines <strong>may</strong> apply optimization in this case, there is no way of
-telling whether the code will run on one of these newer engines or not. </p>
+<p>虽然 <code>length</code> 是数组的一个属性，但是在每次循环中访问它还是有性能开销。
+<strong>可能</strong>最新的 JavaScript 引擎在这点上做了优化，但是我们没法保证自己的代码是否运行在这些最近的引擎之上。</p>
 
-<p>In fact, leaving out the caching may result in the loop being only <strong>half as
-fast</strong> as with the cached length.</p>
+<p>实际上，不使用缓存数组长度的方式比缓存版本要慢很多。</p>
 
-</div><div><h3>The <code>length</code> property</h3>
+</div><div><h3><code>length</code> 属性（The <code>length</code> property）</h3>
 
-<p>While the <em>getter</em> of the <code>length</code> property simply returns the number of
-elements that are contained in the array, the <em>setter</em> can be used to 
-<strong>truncate</strong> the array.</p>
+<p><code>length</code> 属性的 <em>getter</em> 方式会简单的返回数组的长度，而 <em>setter</em> 方式会<strong>截断</strong>数组。</p>
 
 <pre><code>var foo = [1, 2, 3, 4, 5, 6];
 foo.length = 3;
@@ -1068,55 +1064,65 @@ foo.length = 6;
 foo; // [1, 2, 3]
 </code></pre>
 
-<p>Assigning a smaller length does truncate the array, but increasing the length 
-does not have any effect on the array.</p>
+<p>译者注：
+在 Firebug 中查看此时 foo 的值是： [1, 2, 3, undefined, undefined, undefined]
+但是这个结果并不准确，如果你在 Chrome 的控制台查看 foo 的结果，你会发现是这样的： [1, 2, 3]
+因为在 JavaScript 中 undefined 是一个变量，注意是变量不是关键字，因此上面两个结果的意义是完全不相同的。</p>
 
-</div><div><h3>In conclusion</h3>
-
-<p>For the best performance it is recommended to always use the plain <code>for</code> loop
-and cache the <code>length</code> property. The use of <code>for in</code> on an array is a sign of
-badly written code that is prone to bugs and bad performance. </p></div></article><article id="array.constructor"><h2>The <code>Array</code> Constructor</h2><div><p>Since the <code>Array</code> constructor is ambiguous in how it deals with its parameters,
-it is highly recommended to always use the array literals - <code>[]</code> notation - 
-when creating new arrays.</p>
-
-<pre><code>[1, 2, 3]; // Result: [1, 2, 3]
-new Array(1, 2, 3); // Result: [1, 2, 3]
-
-[3]; // Result: [3]
-new Array(3); // Result: []
-new Array(&#39;3&#39;) // Result: [&#39;3&#39;]
+<pre><code>// 译者注：为了验证，我们来执行下面代码，看序号 5 是否存在于 foo 中。
+5 in foo; // 不管在 Firebug 或者 Chrome 都返回 false
+foo[5] = undefined;
+5 in foo; // 不管在 Firebug 或者 Chrome 都返回 true
 </code></pre>
 
-<p>In cases when there is only one argument passed to the <code>Array</code> constructor,
-and that argument is a <code>Number</code>, the constructor will return a new <em>sparse</em> 
-array with the <code>length</code> property set to the value of the argument. It should be 
-noted that <strong>only</strong> the <code>length</code> property of the new array will be set this way, 
-the actual indexes of the array will not be initialized. </p>
+<p>为 <code>length</code> 设置一个更小的值会截断数组，但是增大 <code>length</code> 属性值不会对数组产生影响。</p>
+
+</div><div><h3>结论（In conclusion）</h3>
+
+<p>为了更好的性能，推荐使用普通的 <code>for</code> 循环并缓存数组的 <code>length</code> 属性。
+使用 <code>for in</code> 遍历数组被认为是不好的代码习惯并倾向于产生错误和导致性能问题。</p></div></article><article id="array.constructor"><h2>﻿ <code>Array</code> 构造函数</h2><div><p>由于 <code>Array</code> 的构造函数在如何处理参数时有点模棱两可，因此总是推荐使用数组的字面语法 - <code>[]</code> - 来创建数组。</p>
+
+<pre><code>[1, 2, 3]; // 结果: [1, 2, 3]
+new Array(1, 2, 3); // 结果: [1, 2, 3]
+
+[3]; // 结果: [3]
+new Array(3); // 结果: [] 
+new Array(&#39;3&#39;) // 结果: [&#39;3&#39;]
+</code></pre>
+
+<p>译者注：这里的模棱两可指的是数组的<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array">两种构造函数语法</a>
+var arr1 = new Array(arrayLength);
+var arr2 = new Array(element0, element1, ..., elementN);</p>
+
+<pre><code>// 译者注：因此下面的代码将会使人很迷惑
+new Array(3, 4, 5); // 结果: [3, 4, 5] 
+new Array(3) // 结果: []，此数组长度为 3
+</code></pre>
+
+<p>由于只有一个参数传递到构造函数中（译者注：指的是 <code>new Array(3);</code> 这种调用方式），并且这个参数是数字，构造函数会返回一个 <code>length</code> 属性被设置为此参数的空数组。
+需要特别注意的是，此时只有 <code>length</code> 属性被设置，真正的数组并没有生成。
+译者注：在 Firebug 中，你会看到 [undefined, undefined, undefined]，这其实是不对的。在上一节有详细的分析。</p>
 
 <pre><code>var arr = new Array(3);
 arr[1]; // undefined
-1 in arr; // false, the index was not set
+1 in arr; // false, 数组还没有生成
 </code></pre>
 
-<p>The behavior of being able to set the length of the array upfront only comes in 
-handy in a few cases, like repeating a string, in which it avoids the use of a 
-<code>for loop</code> code.</p>
+<p>这种优先于设置数组长度属性的做法只在少数几种情况下有用，比如需要循环字符串，可以避免 <code>for</code> 循环的麻烦。</p>
 
 <pre><code>new Array(count + 1).join(stringToRepeat);
+// 译者注：new Array(3).join(&#39;#&#39;) 将会返回 "##"
 </code></pre>
 
-</div><div><h3>In conclusion</h3>
+</div><div><h3>结论（In conclusion）</h3>
 
-<p>The use of the <code>Array</code> constructor should be avoided as much as possible. 
-Literals are definitely preferred. They are shorter and have a clearer syntax; 
-therefore, they also increase the readability of the code.</p></div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>类型</h1></header><!-- Articles--><article id="types.equality"><h2>Equality and comparisons</h2><div><p>JavaScript has two different ways of comparing the values of objects for equality. </p>
+<p>应该尽量避免使用数组构造函数创建新数组。推荐使用数组的字面语法。它们更加短小和简洁，因此增加了代码的可读性。</p></div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>类型</h1></header><!-- Articles--><article id="types.equality"><h2>﻿ 相等与比较</h2><div><p>JavaScript 有两种方式判断两个值是否相等。</p>
 
-</div><div><h3>The equals operator</h3>
+</div><div><h3>等于操作符（The equals operator）</h3>
 
-<p>The equals operator consists of two equal signs: <code>==</code></p>
+<p>等于操作符由两个等号组成：<code>==</code></p>
 
-<p>JavaScript features <em>weak typing</em>, that means, that the equals operator 
-<strong>coerces</strong> types in order to compare them.</p>
+<p>JavaScript 是<em>弱类型</em>语言，这就意味着，等于操作符会为了比较两个值而进行<strong>强制类型转换</strong>。</p>
 
 <pre><code>""           ==   "0"           // false
 0            ==   ""            // true
@@ -1129,20 +1135,16 @@ null         ==   undefined     // true
 " \t\r\n"    ==   0             // true
 </code></pre>
 
-<p>The above table shows the results of the type coercion and it is the main reason 
-why the use of <code>==</code> is widely regarded as bad practice, it introduces hard to 
-track down bugs due to its complicated conversion rules.</p>
+<p>上面的表格展示了强类型转换，这也是使用 <code>==</code> 被广泛认为是不好编程习惯的主要原因，
+由于它的复杂转换规则，会导致难以跟踪的问题。</p>
 
-<p>Additionally there is also a performance impact when type coercion is in play;
-for example, a string has to be converted to a number before it can be compared
-to another number.</p>
+<p>此外，强制类型转换也会带来性能消耗，比如一个字符串为了和一个数组进行比较，必须事先被强制转换为数字。</p>
 
-</div><div><h3>The strict equals operator</h3>
+</div><div><h3>严格的等于操作符（The strict equals operator）</h3>
 
-<p>The strict equals operator consists of <strong>three</strong> equal signs: <code>===</code></p>
+<p>严格的等于操作符由<strong>三</strong>个等号组成：<code>===</code></p>
 
-<p>Other than the normal equals operator, the strict equals operator does <strong>not</strong>
-perform type coercion between its operands.</p>
+<p>不想普通的等于操作符，严格的等于操作符<strong>不会</strong>进行强制类型转换。</p>
 
 <pre><code>""           ===   "0"           // false
 0            ===   ""            // false
@@ -1155,14 +1157,11 @@ null         ===   undefined     // false
 " \t\r\n"    ===   0             // false
 </code></pre>
 
-<p>The above results are a lot clearer and allow for early breakage of code. This
-hardens code to a certain degree and also gives performance improvements in case
-the operands are of different types.</p>
+<p>上面的结果更加清晰并有利于代码的分析。如果两个操作数类型不同就肯定不相等也有助于性能的提升。</p>
 
-</div><div><h3>Comparing objects</h3>
+</div><div><h3>比较对象（Comparing objects）</h3>
 
-<p>While both <code>==</code> and <code>===</code> are stated as <strong>equality</strong> operators, they behave 
-different when at least one of their operands happens to be an <code>Object</code>.</p>
+<p>虽然 <code>==</code> 和 <code>===</code> 操作符都是等于操作符，但是当其中有一个操作数为对象时，行为就不同了。</p>
 
 <pre><code>{} === {};                   // false
 new String(&#39;foo&#39;) === &#39;foo&#39;; // false
@@ -1171,30 +1170,25 @@ var foo = {};
 foo === foo;                 // true
 </code></pre>
 
-<p>Here both operators compare for <strong>identity</strong> and <strong>not</strong> equality; that is, they
-will compare for the same <strong>instance</strong> of the object, much like <code>is</code> in Python 
-and a pointer comparison in C do.</p>
+<p>这里等于操作符比较的<strong>不是</strong>值是否相等，而是是否属于同一个<strong>身份</strong>；也就是说，只有对象的同一个实例才被认为是相等的。
+这有点像 Python 中的 <code>is</code> 和 C 中的指针比较。</p>
 
-</div><div><h3>In conclusion</h3>
+</div><div><h3>结论（In conclusion）</h3>
 
-<p>It is highly recommended to only use the <strong>strict equals</strong> operator. In cases
-where types need to be coerced, it should be done <a href="#types.casting">explicitly</a> 
-and not left to the language&#39;s complicated coercion rules.</p></div></article><article id="types.typeof"><h2>The <code>typeof</code> operator</h2><div><p>The <code>typeof</code> operator (together with 
-<a href="#types.instanceof"><code>instanceof</code></a>) is probably the biggest 
-design flaw of JavaScript, as it is near of being <strong>completely broken</strong>.</p>
+<p>强烈推荐使用<strong>严格的等于操作符</strong>。如果类型需要转换，应该在比较之前<a href="#types.casting">显式</a>的转换，
+而不是使用语言本身复杂的强制转换规则。</p></div></article><article id="types.typeof"><h2>﻿ <code>typeof</code> 操作符</h2><div><p><code>typeof</code> 操作符（和 <a href="#types.instanceof"><code>instanceof</code></a> 一起）或许是 JavaScript 中最大的设计缺陷，
+因为几乎不可能从它们那里得到想要的结果。</p>
 
-<p>Although <code>instanceof</code> still has its limited uses, <code>typeof</code> really has only one
-practical use case, which does <strong>not</strong> happen to be checking the type of an 
-object. </p>
+<p>尽管 <code>instanceof</code> 还有一些极少数的应用场景，<code>typeof</code> 只有一个实际的应用（<a href="http://cnblogs.com/sanshi/">译者注</a>：这个实际应用是用来检测一个对象是否已经定义或者是否已经赋值），
+而这个应用却<strong>不是</strong>用来检查对象的类型。</p>
 
 <aside>
-  <p><strong>Note:</strong> While <code>typeof</code> can also be called with a function like syntax
-  i.e. <code>typeof(obj)</code>, this is not a function call. The two parenthesis will
-  behave like normal and the return value will be used as the operand of the
-  <code>typeof</code> operator. There is <strong>no</strong> <code>typeof</code> function.</p>
+  <p><strong>注意:</strong> 由于 <code>typeof</code> 也可以像函数的语法被调用，比如 <code>typeof(obj)</code>，但这并是一个函数调用。
+  那两个小括号只是用来计算一个表达式的值，这个返回值会作为 <code>typeof</code> 操作符的一个操作数。
+  实际上<strong>不存在</strong>名为 <code>typeof</code> 的函数。</p>
 </aside>
 
-</div><div><h3>The JavaScript type table</h3>
+</div><div><h3>JavaScript 类型表格（The JavaScript type table）</h3>
 
 <pre><code>Value               Class      Type
 -------------------------------------
@@ -1215,24 +1209,21 @@ new RegExp("meow")  RegExp     object (function in Nitro/V8)
 new Object()        Object     object
 </code></pre>
 
-<p>In the above table <em>Type</em> refers to the value, that the <code>typeof</code> operator returns.
-As can be clearly seen, this value is anything but consistent.</p>
+<p>上面表格中，<em>Type</em> 一列表示 <code>typeof</code> 操作符的运算结果。可以看到，这个值在大多数情况下都返回 "object"。</p>
 
-<p>The <em>Class</em> refers to the value of the internal <code>[[Class]]</code> property of an object.</p>
+<p><em>Class</em> 一列表示对象的内部属性 <code>[[Class]]</code> 的值。</p>
 
 <aside>
-  <p><strong>From the Specification:</strong> The value of <code>[[Class]]</code> can be one of the
-  following strings. <code>Arguments</code>, <code>Array</code>, <code>Boolean</code>, <code>Date</code>, <code>Error</code>, 
+  <p><strong>JavaScript 标准文档中定义:</strong> <code>[[Class]]</code> 的值只可能是下面字符串中的一个：
+  <code>Arguments</code>, <code>Array</code>, <code>Boolean</code>, <code>Date</code>, <code>Error</code>, 
   <code>Function</code>, <code>JSON</code>, <code>Math</code>, <code>Number</code>, <code>Object</code>, <code>RegExp</code>, <code>String</code>.</p>
 </aside>
 
-<p>In order to retrieve the value of <code>[[Class]]</code> one has to make use of the
-<code>toString</code> method of <code>Object.prototype</code>.</p>
+<p>为了获取对象的 <code>[[Class]]</code>，我们需要使用定义在 <code>Object.prototype</code> 上的方法 <code>toString</code>。</p>
 
-</div><div><h3>The Class of an object</h3>
+</div><div><h3>对象的类定义（The Class of an object）</h3>
 
-<p>The specification gives exactly one way of accessing the <code>[[Class]]</code> value,
-with the use of <code>Object.prototype.toString</code>. </p>
+<p>JavaScript 标准文档只给出了一种获取 <code>[[Class]]</code> 值的方法，那就是使用 <code>Object.prototype.toString</code>。</p>
 
 <pre><code>function is(type, obj) {
     var clas = Object.prototype.toString.call(obj).slice(8, -1);
@@ -1243,37 +1234,48 @@ is(&#39;String&#39;, &#39;test&#39;); // true
 is(&#39;String&#39;, new String(&#39;test&#39;)); // true
 </code></pre>
 
-<p>In the above example, <code>Object.prototype.toString</code> gets called with the value of
-<a href="#function.this">this</a> being set to the object whose <code>[[Class]]</code> value should be 
-retrieved.</p>
+<p>上面例子中，<code>Object.prototype.toString</code> 方法被调用，<a href="#function.this">this</a> 被设置为了需要获取 <code>[[Class]]</code> 值的对象。</p>
 
-<aside class="es5"><p><strong>ES5 Note:</strong> For convenience the return value of <code>Object.prototype.toString</code> 
-  for both <code>null</code> and <code>undefined</code> was <strong>changed</strong> from <code>Object</code> to <code>Null</code> and 
-  <code>Undefined</code> in ECMAScript 5.</p>
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：<code>Object.prototype.toString</code> 返回一种标准格式字符串，所以上例可以通过 slice 截取指定位置的字符串，如下所示：</p>
+
+<pre><code>Object.prototype.toString.call([])  // "[object Array]"
+Object.prototype.toString.call({})  // "[object Object]"
+Object.prototype.toString.call(2)   // "[object Number]"
+</code></pre>
+
+<aside class="es5"><p><strong>ES5 提示:</strong> 在 ECMAScript 5 中，为了方便，对 <code>null</code> 和 <code>undefined</code> 调用 <code>Object.prototype.toString</code> 方法，
+  其返回值由 <code>Object</code> 变成了 <code>Null</code> 和 <code>Undefined</code>。</p>
 </aside>
 
-</div><div><h3>Testing for undefined variables</h3>
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：这种变化可以从 IE8 和 Firefox 4 中看出区别，如下所示：</p>
+
+<pre><code>// IE8
+Object.prototype.toString.call(null)    // "[object Object]"
+Object.prototype.toString.call(undefined)   // "[object Object]"
+
+// Firefox 4
+Object.prototype.toString.call(null)    // "[object Null]"
+Object.prototype.toString.call(undefined)   // "[object Undefined]"
+</code></pre>
+
+</div><div><h3>测试为定义变量（Testing for undefined variables）</h3>
 
 <pre><code>typeof foo !== &#39;undefined&#39;
 </code></pre>
 
-<p>The above will check whether <code>foo</code> was actually declared or not; just 
-referencing it would result in a <code>ReferenceError</code>. This is the only thing
-<code>typeof</code> is actually useful for.</p>
+<p>上面代码会检测 <code>foo</code> 是否已经定义；如果没有定义而直接使用会导致 <code>ReferenceError</code> 的异常。
+这是 <code>typeof</code> 唯一有用的地方。</p>
 
-</div><div><h3>In conclusion</h3>
+</div><div><h3>结论（In conclusion）</h3>
 
-<p>In order to check the type of an object, it is highly recommended to use 
-<code>Object.prototype.toString</code>; as this is the only reliable way of doing so. 
-As shown in the above type table, some return values of <code>typeof</code> are not defined 
-in the specification; thus, they can differ across various implementations.</p>
+<p>为了检测一个对象的类型，强烈推荐使用 <code>Object.prototype.toString</code> 方法；
+因为这是唯一一个可依赖的方式。正如上面表格所示，<code>typeof</code> 的一些返回值在标准文档中并未定义，
+因此不同的引擎实现可能不同。</p>
 
-<p>Unless checking whether a variable is defined, <code>typeof</code> should be avoided at
-<strong>all costs</strong>.</p></div></article><article id="types.instanceof"><h2>The <code>instanceof</code> operator</h2><div><p>The <code>instanceof</code> operator compares the constructors of its two operands. It is 
-only useful when comparing custom made objects. Used on built-in types, it is
-nearly as useless as the <a href="#types.typeof">typeof operator</a>.</p>
+<p>除非为了检测一个变量是否已经定义，我们应尽量避免使用 <code>typeof</code> 操作符。</p></div></article><article id="types.instanceof"><h2>﻿ <code>instanceof</code> 操作符</h2><div><p><code>instanceof</code> 操作符用来比较两个操作数的构造函数。只有在比较自定义的对象时才有意义。
+如果用来比较内置类型，将会和 <a href="#types.typeof">typeof 操作符</a> 一样用处不大。</p>
 
-</div><div><h3>Comparing custom objects</h3>
+</div><div><h3>比较自定义对象（Comparing custom objects）</h3>
 
 <pre><code>function Foo() {}
 function Bar() {}
@@ -1282,13 +1284,12 @@ Bar.prototype = new Foo();
 new Bar() instanceof Bar; // true
 new Bar() instanceof Foo; // true
 
-// This just sets Bar.prototype to the function object Foo
-// But not to an actual instance of Foo
+// 如果仅仅设置 Bar.prototype 为函数 Foo 本省，而不是 Foo 构造函数的一个实例
 Bar.prototype = Foo;
 new Bar() instanceof Foo; // false
 </code></pre>
 
-</div><div><h3>Using <code>instanceof</code> with native types</h3>
+</div><div><h3><code>instanceof</code> 比较内置类型（Using <code>instanceof</code> with native types）</h3>
 
 <pre><code>new String(&#39;foo&#39;) instanceof String; // true
 new String(&#39;foo&#39;) instanceof Object; // true
@@ -1297,77 +1298,79 @@ new String(&#39;foo&#39;) instanceof Object; // true
 &#39;foo&#39; instanceof Object; // false
 </code></pre>
 
-<p>One important thing to note here is, that <code>instanceof</code> does not work on objects 
-that origin from different JavaScript contexts (e.g. different documents
-in a web browser), since their constructors will not be the exact same object.</p>
+<p>有一点需要注意，<code>instanceof</code> 用来比较属于不同 JavaScript 上下文的对象（比如，浏览器中不同的文档结构）时将会出错，
+因为它们的构造函数不会是同一个对象。</p>
 
-</div><div><h3>In conclusion</h3>
+</div><div><h3>结论（In conclusion）</h3>
 
-<p>The <code>instanceof</code> operator should <strong>only</strong> be used when dealing with custom made 
-objects that origin from the same JavaScript context. Just like the
-<a href="#types.typeof"><code>typeof</code></a> operator, every other use of it should be <strong>avoided</strong>.</p></div></article><article id="types.casting"><h2>Type casting</h2><div><p>JavaScript is a <em>weakly typed</em> language, so it will apply <em>type coercion</em>
-<strong>wherever</strong> possible.</p>
+<p><code>instanceof</code> 操作符应该<strong>仅仅</strong>用来比较来自同一个 JavaScript 上下文的自定义对象。
+正如 <a href="#types.typeof"><code>typeof</code></a> 操作符一样，任何其它的用法都应该是避免的。</p></div></article><article id="types.casting"><h2>﻿ 类型转换</h2><div><p>JavaScript 是<em>弱类型</em>语言，所以会在<strong>任何</strong>可能的情况下应用<em>强制类型转换</em>。</p>
 
-<pre><code>// These are true
-new Number(10) == 10; // Number.toString() is converted
-                      // back to a number
+<pre><code>// 下面的比较结果是：true
+new Number(10) == 10; // Number.toString() 返回的字符串被再次转换为数字
 
-10 == &#39;10&#39;;           // Strings gets converted to Number
-10 == &#39;+10 &#39;;         // More string madness
-10 == &#39;010&#39;;          // And more 
-isNaN(null) == false; // null converts to 0
-                      // which of course is not NaN
+10 == &#39;10&#39;;           // 字符串被转换为数字
+10 == &#39;+10 &#39;;         // 同上
+10 == &#39;010&#39;;          // 同上 
+isNaN(null) == false; // null 被转换为数字 0
+                      // 0 当然不是一个 NaN（译者注：否定之否定）
 
-// These are false
+// 下面的比较结果是：false
 10 == 010;
 10 == &#39;-10&#39;;
 </code></pre>
 
-<aside class="es5"><p><strong>ES5 Note:</strong> Number literals that start with a <code>0</code> are interpreted as octal 
-  (Base 8). Octal support for these has been <strong>removed</strong> in ECMAScript 5 strict 
-  mode.</p>
+<aside class="es5"><p><strong>ES5 提示:</strong> 以 <code>0</code> 开头的数字字面值会被作为八进制数字解析。
+  而在 ECMAScript 5 严格模式下，这个特性被<strong>移除</strong>了。</p>
 </aside>
 
-<p>In order to avoid the above, use of the <a href="#types.equality">strict equal operator</a> 
-is <strong>highly</strong> recommended. Although this avoids a lot of common pitfalls, there 
-are still many further issues that arise from JavaScript&#39;s weak typing system.</p>
+<p>为了避免上面复杂的强制类型转换，<strong>强烈</strong>推荐使用<a href="#types.equality">严格的等于操作符</a>。
+虽然这可以避免大部分的问题，但 JavaScript 的弱类型系统仍然会导致一些其它问题。</p>
 
-</div><div><h3>Constructors of built-in types</h3>
+</div><div><h3>内置类型的构造函数（Constructors of built-in types）</h3>
 
-<p>The constructors of the built in types like <code>Number</code> and <code>String</code> behave
-differently when being used with the <code>new</code> keyword and without it.</p>
+<p>内置类型（比如 <code>Number</code> 和 <code>String</code>）的构造函数在被调用时，使用或者不使用 <code>new</code> 的结果完全不同。</p>
 
-<pre><code>new Number(10) === 10;     // False, Object and Number
-Number(10) === 10;         // True, Number and Number
-new Number(10) + 0 === 10; // True, due to implicit conversion
+<pre><code>new Number(10) === 10;     // False, 对象与数字的比较
+Number(10) === 10;         // True, 数字与数字的比较
+new Number(10) + 0 === 10; // True, 由于隐式的类型转换
 </code></pre>
 
-<p>Using a built-in type like <code>Number</code> as a constructor will create a new <code>Number</code> 
-object, but leaving out the <code>new</code> keyword will make the <code>Number</code> function behave
-like a converter.</p>
+<p>使用内置类型 <code>Number</code> 作为构造函数将会创建一个新的 <code>Number</code> 对象，
+而在不使用 <code>new</code> 关键字的 <code>Number</code> 函数更像是一个数字转换器。</p>
 
-<p>In addition, having literals or non-object values in there will result in even
-more type coercion.</p>
+<p>另外，在比较中引入对象的字面值将会导致更加复杂的强制类型转换。</p>
 
-<p>The best option is to cast to one of the three possible types <strong>explicitly</strong>.</p>
+<p>最好的选择是把要比较的值<strong>显式</strong>的转换为三种可能的类型之一。</p>
 
-</div><div><h3>Casting to a string</h3>
+</div><div><h3>转换为字符串（Casting to a string）</h3>
 
 <pre><code>&#39;&#39; + 10 === &#39;10&#39;; // true
 </code></pre>
 
-<p>By prepending a empty string a value can easily be casted to a string.</p>
+<p>将一个值加上空字符串可以轻松转换为字符串类型。</p>
 
-</div><div><h3>Casting to a number</h3>
+</div><div><h3>转换为数字（Casting to a number）</h3>
 
 <pre><code>+&#39;10&#39; === 10; // true
 </code></pre>
 
-<p>Using the <strong>unary</strong> plus operator it is possible to cast to a number.</p>
+<p>使用<strong>一元</strong>的加号操作符，可以把字符串转换为数字。</p>
 
-</div><div><h3>Casting to a boolean</h3>
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：字符串转换为数字的常用方法：</p>
 
-<p>By using the <strong>not</strong> operator twice, a value can be converted a boolean.</p>
+<pre><code>+&#39;010&#39; === 10
+Number(&#39;010&#39;) === 10
+parseInt(&#39;010&#39;, 10) === 10  // 用来转换为整数
+
++&#39;010.2&#39; === 10.2
+Number(&#39;010.2&#39;) === 10.2
+parseInt(&#39;010.2&#39;, 10) === 10
+</code></pre>
+
+</div><div><h3>转换为布尔型（Casting to a boolean）</h3>
+
+<p>通过使用 <strong>否</strong> 操作符两次，可以把一个值转换为布尔型。</p>
 
 <pre><code>!!&#39;foo&#39;;   // true
 !!&#39;&#39;;      // false
@@ -1376,7 +1379,7 @@ more type coercion.</p>
 !!&#39;-1&#39;     // true
 !!{};      // true
 !!true;    // true
-</code></pre></div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>核心</h1></header><!-- Articles--><article id="core.eval"><h2>Why not to use <code>eval</code></h2><div><p>The <code>eval</code> function will execute a string of JavaScript code in the local scope.</p>
+</code></pre></div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>核心</h1></header><!-- Articles--><article id="core.eval"><h2>﻿ 为什么不要使用 <code>eval</code></h2><div><p><code>eval</code> 函数会在当前作用域中执行一段 JavaScript 代码字符串。</p>
 
 <pre><code>var foo = 1;
 function test() {
@@ -1388,8 +1391,7 @@ test(); // 3
 foo; // 1
 </code></pre>
 
-<p>But <code>eval</code> only executes in local scope when it is being called <strong>directly</strong> <em>and</em> 
-the name of the called function is actually <code>eval</code>.</p>
+<p>但是 <code>eval</code> 只在被<strong>直接</strong>调用并且调用函数就是 <code>eval</code> 本身时，才在当前作用域中执行。</p>
 
 <pre><code>var foo = 1;
 function test() {
@@ -1402,77 +1404,87 @@ test(); // 2
 foo; // 3
 </code></pre>
 
-<p>The use of <code>eval</code> should be avoided at <strong>all costs</strong>. 99.9% of its "uses" can be
-achieved <strong>without</strong> it.</p>
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：上面的代码等价于在全局作用域中调用 <code>eval</code>，和下面两种写法效果一样：</p>
 
-</div><div><h3><code>eval</code> in disguise</h3>
+<pre><code>// 写法一：直接调用全局作用域下的 foo 变量
+var foo = 1;
+function test() {
+    var foo = 2;
+    window.foo = 3;
+    return foo;
+}
+test(); // 2
+foo; // 3
 
-<p>The <a href="#other.timeouts">timeout functions</a> <code>setTimeout</code> and <code>setInterval</code> can both 
-take a string as their first argument. This string will <strong>always</strong> get executed 
-in the global scope since <code>eval</code> is not being called directly in that case.</p>
+// 写法二：使用 call 函数修改 `eval` 执行的上下文为全局作用域
+var foo = 1;
+function test() {
+    var foo = 2;
+    eval.call(window, &#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 2
+foo; // 3
+</code></pre>
 
-</div><div><h3>Security issues</h3>
+<p>在<strong>任何情况下</strong>我们都应该避免使用 <code>eval</code> 函数。99.9% 使用 <code>eval</code> 的场景都有<strong>不使用</strong> <code>eval</code> 的解决方案。</p>
 
-<p><code>eval</code> also is a security problem as it executes <strong>any</strong> code given to it,
-it should <strong>never</strong> be used with strings of unknown or untrusted origins.</p>
+</div><div><h3>伪装的 <code>eval</code>（<code>eval</code> in disguise）</h3>
 
-</div><div><h3>In conclusion</h3>
+<p><a href="#other.timeouts">定时函数</a> <code>setTimeout</code> 和 <code>setInterval</code> 都可以接受字符串作为它们的第一个参数。
+这个字符串<strong>总是</strong>在全局作用域中执行，因此 <code>eval</code> 在这种情况下没有被直接调用。</p>
 
-<p><code>eval</code> should never be used, any code that makes use of it is to be questioned in
-its workings, performance and security. In case something requires <code>eval</code> in 
-order to work, its design is to be questioned and should <strong>not</strong> be used in the 
-first place, a <em>better design</em> should be used, that does not require the use of 
-<code>eval</code>. </p></div></article><article id="core.undefined"><h2><code>undefined</code> and <code>null</code></h2><div><p>JavaScript has two distinct values for <code>nothing</code>, the more useful of these two
-being <code>undefined</code>.</p>
+</div><div><h3>安全问题（Security issues）</h3>
 
-</div><div><h3>The value <code>undefined</code></h3>
+<p><code>eval</code> 也存在安全问题，因为它会执行<strong>任意</strong>传给它的代码，
+在代码字符串未知或者是来自一个不信任的源时，绝对不要使用 <code>eval</code> 函数。</p>
 
-<p><code>undefined</code> is a type with exactly one value: <code>undefined</code>.</p>
+</div><div><h3>结论（In conclusion）</h3>
 
-<p>The language also defines a global variable that has the value of <code>undefined</code>,
-this variable is also called <code>undefined</code>. But this variable is <strong>not</strong> a constant,
-nor is it a keyword of the language. This means that its <em>value</em> can be easily 
-overwritten.</p>
+<p>绝对不要使用 <code>eval</code>，任何使用它的代码都会在它的工作方式，性能和安全性方面受到质疑。
+如果一些情况必须使用到 <code>eval</code> 才能正常工作，首先它的设计会受到质疑，这<strong>不应该</strong>是首选的解决方案，
+一个更好的不使用 <code>eval</code> 的解决方案应该得到充分考虑并优先采用。</p></div></article><article id="core.undefined"><h2>﻿ <code>undefined</code> 和 <code>null</code></h2><div><p>JavaScript 有两个表示 <code>空</code> 的值，其中比较有用的是 <code>undefined</code>。</p>
 
-<aside class="es5"><p><strong>ES5 Note:</strong> <code>undefined</code> in ECMAScript 5 is <strong>no longer</strong> <em>writable</em> in strict
-  mode, but its name can still be shadowed by for example a function with the name 
-  <code>undefined</code>.</p>
+</div><div><h3><code>undefined</code>的值（The value <code>undefined</code>）</h3>
+
+<p><code>undefined</code> 是一个值为 <code>undefined</code> 的类型。</p>
+
+<p>这个语言也定义了一个全局变量，它的值是 <code>undefined</code>，这个变量也被称为 <code>undefined</code>。
+但是这个变量<strong>不是</strong>一个常量，也不是一个关键字。这意味着它的<em>值</em>可以轻易被覆盖。</p>
+
+<aside class="es5"><p><strong>ES5 提示:</strong> 在 ECMAScript 5 的严格模式下，<code>undefined</code> <strong>不再是</strong> <em>可写</em>的了。
+  但是它的名称仍然可以被隐藏，比如定义一个函数名为 <code>undefined</code>。</p>
 </aside>
 
-<p>Some examples for when the value <code>undefined</code> is returned:</p>
+<p>下面的情况会返回 <code>undefined</code> 值：</p>
 
 <ul>
-<li>Accessing the (unmodified) global variable <code>undefined</code>.</li>
-<li>Implicit returns of functions due to missing <code>return</code> statements.</li>
-<li><code>return</code> statements which do not explicitly return anything.</li>
-<li>Lookups of non-existent properties.</li>
-<li>Function parameters which do not had any explicit value passed.</li>
-<li>Anything that has been set to the value of <code>undefined</code>.</li>
+<li>访问未修改的全局变量 <code>undefined</code>。</li>
+<li>由于没有定义 <code>return</code> 表达式的函数隐式返回。</li>
+<li><code>return</code> 表达式没有显式的返回任何内容。</li>
+<li>访问不存在的属性。</li>
+<li>函数参数没有被显式的传递值。</li>
+<li>任何被设置为 <code>undefined</code> 值的变量。</li>
 </ul>
 
-</div><div><h3>Handling changes to the value of <code>undefined</code></h3>
+</div><div><h3>处理 <code>undefined</code> 值的改变（Handling changes to the value of <code>undefined</code>）</h3>
 
-<p>Since the global variable <code>undefined</code> only holds a copy of the actual <em>value</em> of 
-<code>undefined</code>, assigning a new value to it does <strong>not</strong> change the value of the 
-<em>type</em> <code>undefined</code>.</p>
+<p>由于全局变量 <code>undefined</code> 只是保存了 <code>undefined</code> 类型实际<em>值</em>的副本，
+因此对它赋新值<strong>不会</strong>改变类型 <code>undefined</code> 的值。</p>
 
-<p>Still, in order to compare something against the value of <code>undefined</code> it is
-necessary to retrieve the value of <code>undefined</code> first.</p>
+<p>然而，为了方便其它变量和 <code>undefined</code> 做比较，我们需要事先获取类型 <code>undefined</code> 的值。</p>
 
-<p>In order to protect code against a possible overwritten <code>undefined</code> variable, a 
-common technique used is to add an additional parameter to an
-<a href="#function.scopes">anonymous wrapper</a>, that gets no argument passed to it.</p>
+<p>为了避免可能对 <code>undefined</code> 值的改变，一个常用的技巧是使用一个传递到<a href="#function.scopes">匿名包装器</a>的额外参数。
+在调用时，这个参数不会获取任何值。</p>
 
 <pre><code>var undefined = 123;
 (function(something, foo, undefined) {
-    // undefined in the local scope does 
-    // now again refer to the value
+    // 局部作用域里的 undefined 变量重新获得了 `undefined` 值
 
 })(&#39;Hello World&#39;, 42);
 </code></pre>
 
-<p>Another way to achieve the same effect would be to use a declaration inside the 
-wrapper.</p>
+<p>另外一种达到相同目的方法是在函数内使用变量声明。</p>
 
 <pre><code>var undefined = 123;
 (function(something, foo) {
@@ -1482,45 +1494,37 @@ wrapper.</p>
 })(&#39;Hello World&#39;, 42);
 </code></pre>
 
-<p>The only difference being here, that this version results in 4 more bytes being
-used in case it is minified and there is no other <code>var</code> statement inside the
-anonymous wrapper.</p>
+<p>这里唯一的区别是，在压缩后并且函数内没有其它需要使用 <code>var</code> 声明变量的情况下，这个版本的代码会多出 4 个字节的代码。</p>
 
-</div><div><h3>Uses of <code>null</code></h3>
+<p><a href="http://cnblogs.com/sanshi/">译者注</a>：这里有点绕口，其实很简单。
+如果此函数内没有其它需要声明的变量，那么 <code>var</code> 总共 4 个字符（包含一个空白字符）就是专门为 undefined 变量准备的，相比上个例子多出了 4 个字节。</p>
 
-<p>While <code>undefined</code> in the context of the JavaScript language is mostly used in
-the sense of a traditional <em>null</em>, the actual <code>null</code> (both a literal and a type)
-is more or less just another data type.</p>
+</div><div><h3>使用 <code>null</code>（Uses of <code>null</code>）</h3>
 
-<p>It is used in some JavaScript internals (like declaring the end of the
-prototype chain by setting <code>Foo.prototype = null</code>), but in almost all cases it
-can be replaced by <code>undefined</code>.</p></div></article><article id="core.semicolon"><h2>Automatic semicolon insertion</h2><div><p>Although JavaScript has C style syntax, it does <strong>not</strong> enforce the use of
-semicolons in the source code, it is possible to omit them.</p>
+<p>JavaScript 中的 <code>undefined</code> 的使用场景类似于其它语言中的 <em>null</em>，实际上 JavaScript 中的 <code>null</code> 是另外一种数据类型。</p>
 
-<p>But JavaScript is not a semicolon-less language, it in fact needs the 
-semicolons in order to understand the source code. Therefore the JavaScript
-parser <strong>automatically</strong> inserts them whenever it encounters a parse
-error due to a missing semicolon.</p>
+<p>它在 JavaScript 内部有一些使用场景（比如声明原型链的终结 <code>Foo.prototype = null</code>），但是大多数情况下都可以使用 <code>undefined</code> 来代替。</p></div></article><article id="core.semicolon"><h2>﻿ 自动分号插入</h2><div><p>尽管 JavaScript 有 C 的代码风格，但是它<strong>不</strong>强制要求在代码中使用分号，实际上可以省略它们。</p>
+
+<p>JavaScript 不是一个没有分号的语言，恰恰相反上它需要分号来就解析源代码。
+因此 JavaScript 解析器在遇到由于缺少分号导致的解析错误时，会<strong>自动</strong>在源代码中插入分号。</p>
 
 <pre><code>var foo = function() {
-} // parse error, semicolon expected
+} // 解析错误，分号丢失
 test()
 </code></pre>
 
-<p>Insertion happens, and the parser tries again.</p>
+<p>自动插入分号，解析器重新解析。</p>
 
 <pre><code>var foo = function() {
-}; // no error, parser continues
+}; // 没有错误，解析继续
 test()
 </code></pre>
 
-<p>The automatic insertion of semicolon is considered to be one of <strong>biggest</strong>
-design flaws in the language, as it <em>can</em> change the behavior of code.</p>
+<p>自动的分号插入被认为是 JavaScript 语言<strong>最大</strong>的设计缺陷之一，因为它<em>能</em>改变代码的行为。</p>
 
-</div><div><h3>How it works</h3>
+</div><div><h3>工作原理（How it works）</h3>
 
-<p>The code below has no semicolons in it, so it is up to the parser to decide where
-to insert them.</p>
+<p>下面的代码没有分号，因此解析器需要自己判断需要在哪些地方插入分号。</p>
 
 <pre><code>(function(window, undefined) {
     function test(options) {
@@ -1550,7 +1554,7 @@ to insert them.</p>
 })(window)
 </code></pre>
 
-<p>Below is the result of the parser&#39;s "guessing" game.</p>
+<p>下面是解析器"猜测"的结果。</p>
 
 <pre><code>(function(window, undefined) {
     function test(options) {
@@ -1558,90 +1562,78 @@ to insert them.</p>
         // Not inserted, lines got merged
         log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {
 
-        }); // &lt;- inserted
+        }); // &lt;- 插入分号
 
         options.value.test(
             &#39;long string to pass here&#39;,
             &#39;and another long string to pass&#39;
-        ); // &lt;- inserted
+        ); // &lt;- 插入分号
 
-        return; // &lt;- inserted, breaks the return statement
-        { // treated as a block
+        return; // &lt;- 插入分号, 改变了 return 表达式的行为
+        { // 作为一个代码段处理
 
             // a label and a single expression statement
             foo: function() {} 
-        }; // &lt;- inserted
+        }; // &lt;- 插入分号
     }
-    window.test = test; // &lt;- inserted
+    window.test = test; // &lt;- 插入分号
 
 // The lines got merged again
 })(window)(function(window) {
-    window.someLibrary = {}; // &lt;- inserted
+    window.someLibrary = {}; // &lt;- 插入分号
 
-})(window); //&lt;- inserted
+})(window); //&lt;- 插入分号
 </code></pre>
 
 <aside>
-  <p><strong>Note:</strong> The JavaScript parser does not "correctly" handle return statements 
-  which are followed by a new line, while this is not neccessarily the fault of 
-  the automatic semicolon insertion, it can still be an unwanted side-effect. </p>
+  <p><strong>注意:</strong> JavaScript 不能正确的处理 return 表达式紧跟换行符的情况，
+  虽然这不能算是自动分号插入的错误，但这确实是一种不希望的副作用。</p>
 </aside>
 
-<p>The parser drastically changed the behavior of the code above, in certain cases
-it does the <strong>wrong thing</strong>.</p>
+<p>解析器显著改变了上面代码的行为，在另外一些情况下也会做出<strong>错误的处理</strong>。</p>
 
-</div><div><h3>Leading parenthesis</h3>
+</div><div><h3>前置括号（Leading parenthesis）</h3>
 
-<p>In case of a leading parenthesis, the parser will <strong>not</strong> insert a semicolon.</p>
+<p>在前置括号的情况下，解析器<strong>不会</strong>自动插入分号。</p>
 
 <pre><code>log(&#39;testing!&#39;)
 (options.list || []).forEach(function(i) {})
 </code></pre>
 
-<p>This code gets transformed into one line.</p>
+<p>上面代码被解析器转换为一行。</p>
 
 <pre><code>log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {})
 </code></pre>
 
-<p>Chances are <strong>very</strong> high that <code>log</code> does <strong>not</strong> return a function; therefore,
-the above will yield a <code>TypeError</code> stating that <code>undefined is not a function</code>.</p>
+<p><code>log</code> 函数的执行结果<strong>极大</strong>可能<strong>不是</strong>函数；这种情况下就会出现 <code>TypeError</code> 的错误，详细错误信息可能是 <code>undefined is not a function</code>。</p>
 
-</div><div><h3>In conclusion</h3>
+</div><div><h3>结论（In conclusion）</h3>
 
-<p>It is highly recommended to <strong>never</strong> omit semicolons, it is also advocated to 
-keep braces on the same line with their corresponding statements and to never omit 
-them for one single-line <code>if</code> / <code>else</code> statements. Both of these measures will 
-not only improve the consistency of the code, they will also prevent the 
-JavaScript parser from changing its behavior.</p></div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>其它</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> and <code>setInterval</code></h2><div><p>Since JavaScript is asynchronous, it is possible to schedule the execution of a 
-function by using the <code>setTimeout</code> and <code>setInterval</code> functions.</p>
+<p>建议<strong>绝对</strong>不要省略分号，同时也提倡将花括号和相应的表达式放在一行，
+对于只有一行代码的 <code>if</code> 或者 <code>else</code> 表达式，也不应该省略花括号。
+这些良好的编程习惯不仅可以提到代码的一致性，而且可以防止解析器改变代码行为的错误处理。</p></div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>其它</h1></header><!-- Articles--><article id="other.timeouts"><h2>﻿ <code>setTimeout</code> 和 <code>setInterval</code></h2><div><p>由于 JavaScript 是异步的，可以使用 <code>setTimeout</code> 和 <code>setInterval</code> 来计划执行函数。</p>
 
 <aside>
-  <p><strong>Note:</strong> Timeouts are <strong>not</strong> part of the ECMAScript Standard, they are
-  implemented as part of the <a href="http://en.wikipedia.org/wiki/Document_Object_Model">DOM</a>.</p>
+  <p><strong>注意:</strong> 定时处理<strong>不是</strong> ECMAScript 的标准，它们在 <a href="http://en.wikipedia.org/wiki/Document_Object_Model">DOM</a> 被实现。</p>
 </aside>
 
 <pre><code>function foo() {}
-var id = setTimeout(foo, 1000); // returns a Number &gt; 0
+var id = setTimeout(foo, 1000); // 返回一个大于零的数字
 </code></pre>
 
-<p>When <code>setTimeout</code> gets called, it will return the ID of the timeout and schedule
-<code>foo</code> to run in <strong>approximately</strong> one thousand milliseconds in the future. 
-<code>foo</code> will then get executed exactly <strong>once</strong>.</p>
+<p>当 <code>setTimeout</code> 被调用时，它会返回一个 ID 标识并且计划在将来<strong>大约</strong> 1000 毫秒后调用 <code>foo</code> 函数。
+<code>foo</code> 函数只会被执行<strong>一次</strong>。</p>
 
-<p>Depending on the timer resolution of the JavaScript engine that is running the 
-code, as well as the fact that JavaScript is single threaded and other code that 
-gets executed might block the thread, it is by <strong>no means</strong> a safe bet that one 
-will get the exact delay that was specified in the <code>setTimeout</code> call.</p>
+<p>基于 JavaScript 引擎的计时策略，以及本质上的单线程运行方式，所以其它代码的运行可能会阻塞此线程。
+因此<strong>没法确保</strong>函数会在 <code>setTimeout</code> 指定的时刻被调用。</p>
 
-<p>The function that was passed as the first parameter will get called by the
-<em>global object</em>, that means, that <a href="#function.this"><code>this</code></a> inside the called function 
-refers to that very object.</p>
+<p>作为第一个参数的函数将会在<em>全局作用域</em>中执行，因此函数内的 <a href="#function.this"><code>this</code></a> 将会指向这个全局对象。</p>
 
 <pre><code>function Foo() {
     this.value = 42;
     this.method = function() {
-        // this refers to the global object
-        console.log(this.value); // will log undefined
+        // this 指向全局对象
+        console.log(this.value); // 输出：undefined
     };
     setTimeout(this.method, 500);
 }
@@ -1649,134 +1641,120 @@ new Foo();
 </code></pre>
 
 <aside>
-  <p><strong>Note:</strong> As <code>setTimeout</code> takes a <strong>function object</strong> as its first parameter, an
-  often made mistake is to use <code>setTimeout(foo(), 1000)</code>, which will use the 
-  <strong>return value</strong> of the call <code>foo</code> and <strong>not</strong> <code>foo</code>. This is, most of the time, 
-  a silent error, since when the function returns <code>undefined</code> <code>setTimeout</code> will 
-  <strong>not</strong> raise any error.</p>
+  <p><strong>注意:</strong> <code>setTimeout</code> 的第一个参数是<strong>函数对象</strong>，一个常犯的错误是这样的 <code>setTimeout(foo(), 1000)</code>，
+  这里回调函数是 <code>foo</code> 的<strong>返回值</strong>，而<strong>不是</strong><code>foo</code>本身。
+  大部分情况下，这是一个潜在的错误，因为如果函数返回 <code>undefined</code>，<code>setTimeout</code> 也<strong>不会</strong>报错。</p>
 </aside>
 
-</div><div><h3>Stacking calls with <code>setInterval</code></h3>
+</div><div><h3><code>setInterval</code> 的堆调用（Stacking calls with <code>setInterval</code>）</h3>
 
-<p>While <code>setTimeout</code> only runs the function once, <code>setInterval</code> - as the name 
-suggests - will execute the function <strong>every</strong> <code>X</code> milliseconds. But its use is 
-discouraged. </p>
+<p><code>setTimeout</code> 只会执行回调函数一次，不过 <code>setInterval</code> - 正如名字建议的 - 会每隔 <code>X</code> 毫秒执行函数一次。
+但是却不鼓励使用这个函数。</p>
 
-<p>When code that is being executed blocks the timeout call, <code>setInterval</code> will 
-still issue more calls to the specified function. This can, especially with small
-intervals, result in function calls stacking up.</p>
+<p>当回调函数的执行被阻塞时，<code>setInterval</code> 仍然会发布更多的毁掉指令。在很小的定时间隔情况下，这会导致回调函数被堆积起来。</p>
 
 <pre><code>function foo(){
-    // something that blocks for 1 second
+    // 阻塞执行 1 秒
 }
 setInterval(foo, 100);
 </code></pre>
 
-<p>In the above code <code>foo</code> will get called once and will then block for one second.</p>
+<p>上面代码中，<code>foo</code> 会执行一次随后被阻塞了一分钟。</p>
 
-<p>While <code>foo</code> blocks the code <code>setInterval</code> will still schedule further calls to
-it. Now, when <code>foo</code> has finished, there will already be <strong>ten</strong> further calls to
-it waiting for execution.</p>
+<p>在 <code>foo</code> 被阻塞的时候，<code>setInterval</code> 仍然在组织将来对回调函数的调用。
+因此，当第一次 <code>foo</code> 函数调用结束时，已经有 <strong>10</strong> 次函数调用在等待执行。</p>
 
-</div><div><h3>Dealing with possible blocking code</h3>
+</div><div><h3>处理可能的阻塞调用（Dealing with possible blocking code）</h3>
 
-<p>The easiest as well as most controllable solution, is to use <code>setTimeout</code> within
-the function itself.</p>
+<p>最简单也是最容易控制的方案，是在回调函数内部使用 <code>setTimeout</code> 函数。</p>
 
 <pre><code>function foo(){
-    // something that blocks for 1 second
+    // 阻塞执行 1 秒
     setTimeout(foo, 100);
 }
 foo();
 </code></pre>
 
-<p>Not only does this encapsulate the <code>setTimeout</code> call, but it also prevents the
-stacking of calls and it gives additional control.<code>foo</code> itself can now decide 
-whether it wants to run again or not.</p>
+<p>这样不仅封装了 <code>setTimeout</code> 回调函数，而且阻止了调用指令的堆积，可以有更多的控制。
+<code>foo</code> 函数现在可以控制是否继续执行还是终止执行。</p>
 
-</div><div><h3>Manually clearing timeouts</h3>
+</div><div><h3>手工清空定时器（Manually clearing timeouts）</h3>
 
-<p>Clearing timeouts and intervals works by passing the respective ID to
-<code>clearTimeout</code> or <code>clearInterval</code>, depending which <code>set</code> function was used in
-the first place.</p>
+<p>可以通过将定时时产生的 ID 标识传递给 <code>clearTimeout</code> 或者 <code>clearInterval</code> 函数来清除定时，
+至于使用哪个函数取决于调用的时候使用的是 <code>setTimeout</code> 还是 <code>setInterval</code>。</p>
 
 <pre><code>var id = setTimeout(foo, 1000);
 clearTimeout(id);
 </code></pre>
 
-</div><div><h3>Clearing all timeouts</h3>
+</div><div><h3>清除所有定时器（Clearing all timeouts）</h3>
 
-<p>As there is no built-in method for clearing all timeouts and/or intervals, 
-it is necessary to use brute force in order to achieve this functionality.</p>
+<p>由于没有内置的清除所有定时器的方法，可以采用一种暴力的方式来达到这一目的。</p>
 
-<pre><code>// clear "all" timeouts
+<pre><code>// 清空"所有"的定时器
 for(var i = 1; i &lt; 1000; i++) {
     clearTimeout(i);
 }
 </code></pre>
 
-<p>There might still be timeouts that are unaffected by this arbitrary number;
-therefore, is is instead recommended to keep track of all the timeout IDs, so
-they can be cleared specifically.</p>
+<p>可能还有些定时器不会在上面代码中被清除（<a href="http://cnblogs.com/sanshi/">译者注</a>：如果定时器调用时返回的 ID 值大于 1000），
+因此我们可以事先保存所有的定时器 ID，然后一把清除。</p>
 
-</div><div><h3>Hidden use of <code>eval</code></h3>
+</div><div><h3>隐藏使用 <code>eval</code>（Hidden use of <code>eval</code>）</h3>
 
-<p><code>setTimeout</code> and <code>setInterval</code> can also take a string as their first parameter.
-This feature should <strong>never</strong> be used, since it internally makes use of <code>eval</code>.</p>
+<p><code>setTimeout</code> 和 <code>setInterval</code> 也接受第一个参数为字符串的情况。
+这个特性<strong>绝对</strong>不要使用，因为它在内部使用了 <code>eval</code>。</p>
 
 <aside>
-  <p><strong>Note:</strong> Since the timeout functions are <strong>not</strong> specified by the ECMAScript
-  standard, the exact workings when a string is passed to them might differ in
-  various JavaScript implementations. As a fact, Microsoft&#39;s JScript makes use of
-  the <code>Function</code> constructor in place of <code>eval</code>.</p>
+  <p><strong>注意:</strong> 由于定时器函数不是 ECMAScript 的标准，如何解析字符串参数在不同的 JavaScript 引擎实现中可能不同。
+  事实上，微软的 JScript 会使用 <code>Function</code> 构造函数来代替 <code>eval</code> 的使用。</p>
 </aside>
 
 <pre><code>function foo() {
-    // will get called
+    // 将会被调用
 }
 
 function bar() {
     function foo() {
-        // never gets called
+        // 不会被调用
     }
     setTimeout(&#39;foo()&#39;, 1000);
 }
 bar();
 </code></pre>
 
-<p>Since <code>eval</code> is not getting called <a href="#core.eval">directly</a> in this case, the string 
-passed to <code>setTimeout</code> will get executed in the <em>global scope</em>; thus, it will 
-not use the local variable <code>foo</code> from the scope of <code>bar</code>.</p>
+<p>由于 <code>eval</code> 在这种情况下不是被<a href="#core.eval">直接</a>调用，因此传递到 <code>setTimeout</code> 的字符串会自<em>全局作用域</em>中执行；
+因此，上面的回调函数使用的不是定义在 <code>bar</code> 作用域中的局部变量 <code>foo</code>。</p>
 
-<p>It is further recommended to <strong>not</strong> use a string for passing arguments to the
-function that will get called by either of the timeout functions. </p>
+<p>建议<strong>不要</strong>在调用定时器函数时，为了向回调函数传递参数而使用字符串的形式。</p>
 
 <pre><code>function foo(a, b, c) {}
 
-// NEVER use this
+// 不要这样做
 setTimeout(&#39;foo(1,2, 3)&#39;, 1000)
 
-// Instead use an anonymous function
+// 可以使用匿名函数完成相同功能
 setTimeout(function() {
     foo(a, b, c);
 }, 1000)
 </code></pre>
 
 <aside>
-  <p><strong>Note:</strong> While it is also possible to use the syntax 
-  <code>setTimeout(foo, 1000, a, b, c)</code>, it is not recommended, as its use may lead
-  to subtle errors when used with <a href="#function.this">methods</a>.</p>
+  <p><strong>注意:</strong> 虽然也可以使用这样的语法 <code>setTimeout(foo, 1000, a, b, c)</code>，
+  但是不推荐这么做，因为在使用对象的<a href="#function.this">属性方法</a>时可能会出错。
+  （译者注：这里说的是属性方法内，this 的指向错误）</p>
 </aside>
 
-</div><div><h3>In conclusion</h3>
+</div><div><h3>结论（In conclusion）</h3>
 
-<p><strong>Never</strong> should a string be used as the parameter of <code>setTimeout</code> or 
-<code>setInterval</code>. It is a clear sign of <strong>really</strong> bad code, when arguments need 
-to be supplied to the function that gets called. An <em>anonymous function</em> should
-be passed that then takes care of the actual call.</p>
+<p><strong>绝对不要</strong>使用字符串作为 <code>setTimeout</code> 或者 <code>setInterval</code> 的第一个参数，
+这么写的代码明显质量很差。当需要向回调函数传递参数时，可以创建一个<em>匿名函数</em>，在函数内执行真实的回调函数。</p>
 
-<p>Further, the use of <code>setInterval</code> should be avoided since its scheduler is not
-blocked by executing JavaScript.</p></div></article></section><!-- Footer--><footer><p>Copyright &copy; 2011. Built with 
-<a href="http://nodejs.org/">Node.js</a>using a
-<a href="https://github.com/visionmedia/jade/">jade</a>template.
-</p></footer><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script><script src="javascript/prettify.js"></script><script src="javascript/plugin.js"></script><script src="javascript/garden.js"></script></body></html>
+<p>另外，应该避免使用 <code>setInterval</code>，因为它的定时执行不会被 JavaScript 阻塞。</p></div></article></section><!-- Footer--><footer><p>Copyright &copy; 2011. Built with 
+<a href="http://nodejs.org/">Node.js
+
+</a>using a
+<a href="https://github.com/visionmedia/jade/">jade
+
+</a>template.
+</p></footer><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script><script src="../javascript/prettify.js"></script><script src="../javascript/plugin.js"></script><script src="../javascript/garden.js"></script></body></html>
