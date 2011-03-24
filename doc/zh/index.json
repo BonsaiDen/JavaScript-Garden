@@ -1,0 +1,72 @@
+{
+    "title": "JavaScript Garden",
+    "langTitle": "JavaScript Garden in English",
+    "description": "A Guide to JavaScript's Quirks and Flaws.",
+    "sections": [
+        {
+            "title": "简介",
+            "dir": "intro",
+            "articles": [
+                "authors",
+                "contributors",
+                "license"
+            ]
+        },
+        {
+            "title": "对象",
+            "dir": "object",
+            "articles": [
+                "general",
+                "prototype",
+                "hasownproperty",
+                "forinloop"
+            ]
+        },
+        {
+            "title": "函数",
+            "dir": "function",
+            "articles": [
+                "general",
+                "this",
+                "closures",
+                "arguments",
+                "constructors",
+                "scopes"
+            ]
+        },
+        {
+            "title": "数组",
+            "dir": "array",
+            "articles": [
+                "general",
+                "constructor"
+            ]
+        },
+        {
+            "title": "类型",
+            "dir": "types",
+            "articles": [
+                "equality",
+                "typeof",
+                "instanceof",
+                "casting"
+            ]
+        },
+        {
+            "title": "核心",
+            "dir": "core",
+            "articles": [
+                "eval",
+                "undefined",
+                "semicolon"
+            ]
+        },
+        {
+            "title": "其它",
+            "dir": "other",
+            "articles": [
+                "timeouts"
+            ]
+        }
+    ]
+}
