@@ -1,4 +1,4 @@
-﻿## `arguments` 对象
+﻿##`arguments` 对象
 
 JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个变量维护着所有传递到这个函数中的参数列表。
 
@@ -12,7 +12,7 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 因此，无法对 `arguments` 变量使用标准的数组方法，比如 `push`, `pop` 或者 `slice`。
 虽然使用 `for` 循环遍历也是可以的，但是为了更好的使用数组方法，最好把它转化为一个真正的数组。
 
-### 转化为数组（Converting to an array）
+###转化为数组
 
 下面的代码将会创建一个新的数组，包含所有 `arguments` 对象中的元素。
 
@@ -20,7 +20,7 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 
 这个转化比较**慢**，在性能不好的代码中**不推荐**这种做法。
 
-### 传递参数（Passing arguments）
+###传递参数
 
 下面将参数从一个函数传递到另一个函数，是推荐的做法。
 
@@ -48,7 +48,7 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
     };
 
 	
-[译者注][30]：上面的 `Foo.method` 函数和下面代码的效果是一样的:
+**[译者注][30]**：上面的 `Foo.method` 函数和下面代码的效果是一样的:
 	
 	Foo.method = function() {
 		var args = Array.prototype.slice.call(arguments);
@@ -56,7 +56,7 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
     };
 
 	
-### 自动更新（Modification "magic"）
+###自动更新
 
 `arguments` 对象为其内部属性以及函数形式参数创建 *getter* 和 *setter* 方法。
 
@@ -75,7 +75,7 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
     }
     foo(1, 2, 3);
 
-### 性能真相（Performance myths and truths）
+### 性能真相
 
 `arguments` 对象总会被创建，除了两个特殊情况 - 作为局部变量声明和作为形式参数。
 而不管它是否有被使用。
@@ -85,12 +85,10 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 
 > **ES5 提示:** 这些 *getters* 和 *setters* 在严格模式下（strict mode）不会被创建。
 
-
-[译者注][30]：在 [MDC][2] 中对 `strict mode` 模式下 `arguments` 的描述有助于我们的理解，请看下面代码：
+**[译者注][30]：**在 [MDC][2] 中对 `strict mode` 模式下 `arguments` 的描述有助于我们的理解，请看下面代码：
 
 	// 阐述在 ES5 的严格模式下 `arguments` 的特性
-	function f(a)
-	{
+	function f(a) {
 	  "use strict";
 	  a = 42;
 	  return [a, arguments[0]];
@@ -112,12 +110,11 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
         }
     }
 
-上面代码中，`foo` 不再是一个单纯的内联函数 [inlining][1]（[译者注][30]：这里指的是解析器可以做内联处理），
+上面代码中，`foo` 不再是一个单纯的内联函数 [inlining][1]（**[译者注][30]**：这里指的是解析器可以做内联处理），
 因为它需要知道它自己和它的调用者。
 这不仅抵消了内联函数带来的性能提升，而且破坏了封装，因此现在函数可能要依赖于特定的上下文。
 
 因此**强烈**建议大家**不要**使用 `arguments.callee` 和它的属性。
-
 
 > **ES5 提示:** 在严格模式下，`arguments.callee` 会报错 `TypeError`，因为它已经被废除了。
 

@@ -1,18 +1,17 @@
-﻿## this 的工作原理
+﻿##`this` 的工作原理
 
 JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 在**五**种不同的情况下 ，`this` 指向的各不相同。
 
-### 全局范围内（The global scope）
+###全局范围内
 
     this;
 
 当在全部范围内使用 `this`，它将会指向*全局*对象。
 
-[译者注][30]：浏览器中运行的JavaScript脚本，这个全局对象是 window。
+> **[译者注][30]：**浏览器中运行的 JavaScript 脚本，这个全局对象是 `window`。
 
-
-### 函数调用（Calling a function）
+###函数调用
 
     foo();
 
@@ -22,20 +21,20 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 > 这种情况下 `this` 将会是 `undefined`。
 > [译者注][30]：ES5指的是ECMAScript 5，是 2009-12 发布的最新的 JavaScript 版本。
 
-### 方法调用（Calling a method）
+###方法调用
 
     test.foo(); 
 
 这个例子中，`this` 指向 `test` 对象。
 
-### 调用构造函数（Calling a constructor）
+###调用构造函数
 
     new foo(); 
 
 如果函数倾向于和 `new` 关键词一块使用，则我们称这个函数是 [构造函数](#constructors)。
 在函数内部，`this` 指向*新创建*的对象。
 
-### 显式的设置 `this`（Explicit setting of `this`）
+###显式的设置 `this`
 
     function foo(a, b, c) {}
                           
@@ -50,16 +49,16 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 
 > **注意:** 在对象的字面声明语法中，`this` **不能**用来指向对象本身。
 > 因此 `var obj = {me: this}` 中的 `me` 不会指向 `obj`，因为 `this` 只可能出现在上述的五种情况中。
-> [译者注][30]：这个例子中，如果是在浏览器中运行，obj.me等于window对象。
+> **[译者注][30]：**这个例子中，如果是在浏览器中运行，`obj.me` 等于 `window` 对象。
 
-### 常见误解（Common pitfalls）
+###常见误解
 
-尽管大部分的情况都说的过去，不过第一个规则（[译者注][30]：这里指的应该是第二个规则，也就是直接调用函数时，`this` 指向全局对象）
+尽管大部分的情况都说的过去，不过第一个规则（**[译者注][30]：**这里指的应该是第二个规则，也就是直接调用函数时，`this` 指向全局对象）
 被认为是JavaScript语言另一个错误设计的地方，因为它**从来**就没有实际的用途。
 
     Foo.method = function() {
         function test() {
-            // this 将会被设置为全局对象（[译者注][30]：浏览器环境中也就是 window 对象）
+            // this 将会被设置为全局对象（译者注：浏览器环境中也就是 window 对象）
         }
         test();
     }
@@ -77,9 +76,9 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
     }
 
 `that` 只是我们随意起的名字，不过这个名字被广泛的用来指向外部的 `this` 对象。
-在 [closures](#closures) 一节，我们可以看到 `that` 可以作为参数传递。
+在 [闭包](#closures) 一节，我们可以看到 `that` 可以作为参数传递。
 
-### 方法的赋值表达式（Assigning methods）
+###方法的赋值表达式
 
 另一个看起来奇怪的地方是函数别名，也就是将一个方法**赋值**给一个变量。
 
@@ -99,6 +98,5 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
     new Bar().method();
 
 当 `method` 被调用时，`this` 将会指向 `Bar` 的实例对象。
-
 
 [30]: http://cnblogs.com/sanshi/

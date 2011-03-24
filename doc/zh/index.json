@@ -1,7 +1,7 @@
 {
-    "title": "JavaScript Garden",
-    "langTitle": "JavaScript Garden in English",
-    "description": "A Guide to JavaScript's Quirks and Flaws.",
+    "title": "JavaScript 秘密花园",
+    "langTitle": "JavaScript Garden 中文翻译",
+    "description": "JavaScript 语言最古怪用法的文档集合",
     "sections": [
         {
             "title": "简介",

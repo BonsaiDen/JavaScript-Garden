@@ -346,6 +346,10 @@ aside p {
 	line-height: 1.3em;
 }
 
+aside p + p {
+	margin-top: 1.5em;
+}
+
 aside.es5:after {
 	content: 'ES5';
 	font-family: Georgia, serif;

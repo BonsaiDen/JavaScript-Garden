@@ -1,9 +1,8 @@
-﻿## `undefined` 和 `null`
+﻿##`undefined` 和 `null`
 
-JavaScript 有两个表示 `空` 的值，其中比较有用的是 `undefined`。
+JavaScript 有两个表示‘空’的值，其中比较有用的是 `undefined`。
 
-
-### `undefined`的值（The value `undefined`）
+###`undefined` 的值
 
 `undefined` 是一个值为 `undefined` 的类型。
 
@@ -22,8 +21,7 @@ JavaScript 有两个表示 `空` 的值，其中比较有用的是 `undefined`�
  - 函数参数没有被显式的传递值。
  - 任何被设置为 `undefined` 值的变量。
  
-
-### 处理 `undefined` 值的改变（Handling changes to the value of `undefined`）
+###处理 `undefined` 值的改变
 
 由于全局变量 `undefined` 只是保存了 `undefined` 类型实际*值*的副本，
 因此对它赋新值**不会**改变类型 `undefined` 的值。
@@ -50,11 +48,10 @@ JavaScript 有两个表示 `空` 的值，其中比较有用的是 `undefined`�
 
 这里唯一的区别是，在压缩后并且函数内没有其它需要使用 `var` 声明变量的情况下，这个版本的代码会多出 4 个字节的代码。
 
-[译者注][30]：这里有点绕口，其实很简单。
-如果此函数内没有其它需要声明的变量，那么 `var ` 总共 4 个字符（包含一个空白字符）就是专门为 undefined 变量准备的，相比上个例子多出了 4 个字节。
+> **[译者注][30]：**这里有点绕口，其实很简单。如果此函数内没有其它需要声明的变量，那么 `var` 总共 4 个字符（包含一个空白字符）
+就是专门为 `undefined` 变量准备的，相比上个例子多出了 4 个字节。
 
-
-### 使用 `null`（Uses of `null`）
+###`null` 的用处
 
 JavaScript 中的 `undefined` 的使用场景类似于其它语言中的 *null*，实际上 JavaScript 中的 `null` 是另外一种数据类型。
 

@@ -1,9 +1,9 @@
-﻿## `for in` 循环
+﻿##`for in` 循环
 
 和 `in` 操作符一样，`for in` 循环同样在查找对象属性时遍历原型链上的所有属性。
 
 > **注意:** `for in` 循环**不会**遍历那些 `enumerable` 设置为 `false` 的属性；比如数组的 `length` 属性。
-    
+
     // 修改 Object.prototype
     Object.prototype.bar = 1;
 
@@ -17,7 +17,7 @@
 
 > **注意:** 由于 `for in` 总是要遍历整个原型链，因此如果一个对象的继承层次太深的话会影响性能。
 
-### 使用 `hasOwnProperty` 过滤（Using `hasOwnProperty` for filtering）
+###使用 `hasOwnProperty` 过滤
 
     // foo 变量是上例中的
     for(var i in foo) {
@@ -32,11 +32,9 @@
 一个广泛使用的类库 [Prototype][1] 就扩展了原生的 JavaScript 对象。
 因此，但这个类库被包含在页面中时，不使用 `hasOwnProperty` 过滤的 `for in` 循环难免会出问题。
 
-
-### 最佳实践（Best practices）
+###总结
 
 推荐**总是**使用 `hasOwnProperty`。不要对代码运行的环境做任何假设，不要假设原生对象是否已经被扩展了。
-
 
 [1]: http://www.prototypejs.org/
 [30]: http://cnblogs.com/sanshi/

@@ -1,8 +1,8 @@
-﻿### `setTimeout` 和 `setInterval`
+﻿###`setTimeout` 和 `setInterval`
 
 由于 JavaScript 是异步的，可以使用 `setTimeout` 和 `setInterval` 来计划执行函数。
 
-> **注意:** 定时处理**不是** ECMAScript 的标准，它们在 [DOM][1] 被实现。
+> **注意:** 定时处理**不是** ECMAScript 的标准，它们在 [DOM (文档对象模型)][1] 被实现。
 
     function foo() {}
     var id = setTimeout(foo, 1000); // 返回一个大于零的数字
@@ -30,8 +30,7 @@
 > 这里回调函数是 `foo` 的**返回值**，而**不是**`foo`本身。
 > 大部分情况下，这是一个潜在的错误，因为如果函数返回 `undefined`，`setTimeout` 也**不会**报错。
 
-
-### `setInterval` 的堆调用（Stacking calls with `setInterval`）
+###`setInterval` 的堆调用
 
 `setTimeout` 只会执行回调函数一次，不过 `setInterval` - 正如名字建议的 - 会每隔 `X` 毫秒执行函数一次。
 但是却不鼓励使用这个函数。
@@ -48,7 +47,7 @@
 在 `foo` 被阻塞的时候，`setInterval` 仍然在组织将来对回调函数的调用。
 因此，当第一次 `foo` 函数调用结束时，已经有 **10** 次函数调用在等待执行。
 
-### 处理可能的阻塞调用（Dealing with possible blocking code）
+###处理可能的阻塞调用
 
 最简单也是最容易控制的方案，是在回调函数内部使用 `setTimeout` 函数。
 
@@ -62,7 +61,7 @@
 `foo` 函数现在可以控制是否继续执行还是终止执行。
 
 
-### 手工清空定时器（Manually clearing timeouts）
+###手工清空定时器
 
 可以通过将定时时产生的 ID 标识传递给 `clearTimeout` 或者 `clearInterval` 函数来清除定时，
 至于使用哪个函数取决于调用的时候使用的是 `setTimeout` 还是 `setInterval`。
@@ -70,7 +69,7 @@
     var id = setTimeout(foo, 1000);
     clearTimeout(id);
 
-### 清除所有定时器（Clearing all timeouts）
+###清除所有定时器
 
 由于没有内置的清除所有定时器的方法，可以采用一种暴力的方式来达到这一目的。
 
@@ -79,14 +78,13 @@
         clearTimeout(i);
     }
 
-可能还有些定时器不会在上面代码中被清除（[译者注][30]：如果定时器调用时返回的 ID 值大于 1000），
+可能还有些定时器不会在上面代码中被清除（**[译者注][30]：**如果定时器调用时返回的 ID 值大于 1000），
 因此我们可以事先保存所有的定时器 ID，然后一把清除。
 
-### 隐藏使用 `eval`（Hidden use of `eval`）
+###隐藏使用 `eval`
 
 `setTimeout` 和 `setInterval` 也接受第一个参数为字符串的情况。
 这个特性**绝对**不要使用，因为它在内部使用了 `eval`。
-
 
 > **注意:** 由于定时器函数不是 ECMAScript 的标准，如何解析字符串参数在不同的 JavaScript 引擎实现中可能不同。
 > 事实上，微软的 JScript 会使用 `Function` 构造函数来代替 `eval` 的使用。
@@ -120,18 +118,15 @@
 
 > **注意:** 虽然也可以使用这样的语法 `setTimeout(foo, 1000, a, b, c)`，
 > 但是不推荐这么做，因为在使用对象的[属性方法](#function.this)时可能会出错。
->（译者注：这里说的是属性方法内，this 的指向错误）
+>（**译者注：**这里说的是属性方法内，`this` 的指向错误）
 
-
-### 结论（In conclusion）
+###结论
 
 **绝对不要**使用字符串作为 `setTimeout` 或者 `setInterval` 的第一个参数，
 这么写的代码明显质量很差。当需要向回调函数传递参数时，可以创建一个*匿名函数*，在函数内执行真实的回调函数。
 
 另外，应该避免使用 `setInterval`，因为它的定时执行不会被 JavaScript 阻塞。
 
-
 [1]: http://en.wikipedia.org/wiki/Document_Object_Model 
-
 [30]: http://cnblogs.com/sanshi/
 
