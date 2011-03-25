@@ -1,6 +1,6 @@
 ﻿##对象使用和属性
 
-JavaScript 中所有变量都是对象，除了两个例外 [`null`](#undefined) 和 [`undefined`](#undefined)。
+JavaScript 中所有变量都是对象，除了两个例外 [`null`](#core.undefined) 和 [`undefined`](#core.undefined)。
 
     false.toString() // 'false'
     [1, 2, 3].toString(); // '1,2,3'
@@ -25,7 +25,7 @@ JavaScript 中所有变量都是对象，除了两个例外 [`null`](#undefined)
 JavaScript 的对象可以作为[*哈希表*][1]使用，主要用来保存命名的键与值的对应关系。
 
 使用对象的字面语法 - `{}` - 可以创建一个简单对象。这个新创建的对象从 `Object.prototype`
-[继承](#prototype)下面，没有任何[自定义属性](#hasownproperty)。
+[继承](#object.prototype)下面，没有任何[自定义属性](#object.hasownproperty)。
 
     var foo = {}; // 一个空对象
 

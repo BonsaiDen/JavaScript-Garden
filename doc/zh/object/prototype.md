@@ -40,17 +40,11 @@ other way around is a far more difficult task.)
                 {method: ...};
                 Object.prototype
                     {toString: ... /* etc. */};
-
+*
 上面的例子中，`test` 对象从 `Bar.prototype` 和 `Foo.prototype` 继承下来；因此，
-它能否访问 `Foo` 的原型方法 `method`。但是它不能访问 `Foo` 的实例属性 `value`，
-因为这个属性在`Foo`的[构造函数](#constructor)中定义。
-(But it will not have access to the property `value` of a 
-`Foo` instance, since that property gets defined in the [constructor](#constructor)
-of `Foo`. But this constructor has to be called explicitly.)
-
-> **[译者注][30]：**我认为这个描述是错误的，`test.value` 是可以访问的。
-因为在设置 `Bar.prototype = new Foo();` 时，`value` 也就成为 `Bar.prototype` 上的一个属性。
-如果你有不同观点，可以到[我的博客][30]评论。
+它能访问 `Foo` 的原型方法 `method`。它也同时能够访问那**一个**作为它原型的 `Foo` 实例
+的属性 `value`。需要注意的是 `new Bar()` **不会**创造出一个新的 `Foo` 实例，而是
+重新使用设定为它的原型的实例；也就是说，所有的 `Bar` 实例都将会有**同样**的 `value` 属性。
 
 > **注意:** **不要**使用 `Bar.prototype = Foo`，因为这不会执行 `Foo` 的原型，而是指向函数 `Foo`。
 > 因此原型链将会回溯到 `Function.prototype` 而不是 `Foo.prototype`，因此 `method` 将不会在 Bar 的原型链上。
@@ -59,7 +53,7 @@ of `Foo`. But this constructor has to be called explicitly.)
 
 当查找一个对象的属性时，JavaScript 会**向上**遍历原型链，直到找到给定名称的属性为止。
 
-到查找到达原型链的顶部 - 也就是 `Object.prototype` - 但是仍然没有找到指定的属性，就会返回 [undefined](#undefined)。
+到查找到达原型链的顶部 - 也就是 `Object.prototype` - 但是仍然没有找到指定的属性，就会返回 [undefined](#core.undefined)。
 
 ###原型属性
 
@@ -75,7 +69,7 @@ of `Foo`. But this constructor has to be called explicitly.)
 
 如果一个属性在原型链的上端，则对于查找时间将带来不利影响。特别的，试图获取一个不存在的属性将会遍历整个原型链。
 
-并且，当使用 [`for in`](#the-for-in-loop) 循环遍历对象的属性时，原型链上的**所有**属性都将被访问。
+并且，当使用 [`for in`](#object.forinloop) 循环遍历对象的属性时，原型链上的**所有**属性都将被访问。
 
 ###扩展内置类型的原型
 
@@ -100,4 +94,3 @@ of `Foo`. But this constructor has to be called explicitly.)
 [3]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach
 [5]: http://en.wikipedia.org/wiki/Backport 
 [30]: http://cnblogs.com/sanshi/
-

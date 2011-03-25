@@ -19,7 +19,6 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 
 > **ES5 注意:** 在严格模式下（strict mode），不存在全局变量。
 > 这种情况下 `this` 将会是 `undefined`。
-> [译者注][30]：ES5指的是ECMAScript 5，是 2009-12 发布的最新的 JavaScript 版本。
 
 ###方法调用
 
@@ -31,7 +30,7 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 
     new foo(); 
 
-如果函数倾向于和 `new` 关键词一块使用，则我们称这个函数是 [构造函数](#constructors)。
+如果函数倾向于和 `new` 关键词一块使用，则我们称这个函数是 [构造函数](#function.constructors)。
 在函数内部，`this` 指向*新创建*的对象。
 
 ###显式的设置 `this`
@@ -76,7 +75,7 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
     }
 
 `that` 只是我们随意起的名字，不过这个名字被广泛的用来指向外部的 `this` 对象。
-在 [闭包](#closures) 一节，我们可以看到 `that` 可以作为参数传递。
+在 [闭包](#function.closures) 一节，我们可以看到 `that` 可以作为参数传递。
 
 ###方法的赋值表达式
 
@@ -87,7 +86,7 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 
 上例中，`test` 就像一个普通的函数被调用；因此，函数内的 `this` 将不再被指向到 `someObject` 对象。
 
-虽然 `this` 的晚绑定特性似乎并不友好，但是这确实[基于原型继承](#prototype)赖以生存的土壤。
+虽然 `this` 的晚绑定特性似乎并不友好，但是这确实[基于原型继承](#object.prototype)赖以生存的土壤。
 
     function Foo() {}
     Foo.prototype.method = function() {};

@@ -1,6 +1,6 @@
 ﻿##`hasOwnProperty` 函数
 
-为了判断一个对象是否包含*自定义*属性而*不是*[原型链](#prototype)上的属性，
+为了判断一个对象是否包含*自定义*属性而*不是*[原型链](#object.prototype)上的属性，
 我们需要使用继承自 `Object.prototype` 的 `hasOwnProperty` 方法。
 
 > **注意:** 通过判断一个属性是否 `undefined` 是**不够**的。
@@ -41,7 +41,7 @@ JavaScript **不会**保护 `hasOwnProperty` 被非法占用，因此如果一�
 ###结论
 
 当检查对象上某个属性是否存在时，`hasOwnProperty` 是**唯一**可用的方法。
-同时在使用 [`for in` loop](#forinloop) 遍历对象时，推荐**总是**使用 `hasOwnProperty` 方法，
-这将会避免[原型](#prototype)对象扩展带来的干扰。
+同时在使用 [`for in` loop](#object.forinloop) 遍历对象时，推荐**总是**使用 `hasOwnProperty` 方法，
+这将会避免[原型](#object.prototype)对象扩展带来的干扰。
 
 [30]: http://cnblogs.com/sanshi/
