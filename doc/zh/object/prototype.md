@@ -67,7 +67,7 @@ of `Foo`. But this constructor has to be called explicitly.)
 然而将原子类型赋给 prototype 的操作将会被忽略。
 
     function Foo() {}
-    Foo.prototype = 1; // no effect
+    Foo.prototype = 1; // 无效
 
 而将对象赋值给 prototype，正如上面的例子所示，将会动态的创建原型链。
 
@@ -75,7 +75,7 @@ of `Foo`. But this constructor has to be called explicitly.)
 
 如果一个属性在原型链的上端，则对于查找时间将带来不利影响。特别的，试图获取一个不存在的属性将会遍历整个原型链。
 
-并且，当使用 [for-in](#the-for-in-loop) 循环遍历对象的属性时，原型链上的**所有**属性都将被访问。
+并且，当使用 [`for in`](#the-for-in-loop) 循环遍历对象的属性时，原型链上的**所有**属性都将被访问。
 
 ###扩展内置类型的原型
 
