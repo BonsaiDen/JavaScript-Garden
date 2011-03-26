@@ -197,5 +197,9 @@ var Garden = Class(function(options) {
     }
 });
 
-new Garden({dir: 'doc', template: 'garden.jade', out: 'site'});
+exports.build = function (options) {
+    options = options || {dir: 'doc', template: 'garden.jade', out: 'site'};
+    new Garden(options);
+}
 
+exports.build();
