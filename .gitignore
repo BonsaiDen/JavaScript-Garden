@@ -5,5 +5,6 @@
 /node_modules
 /site/de
 /site/ru
+/site/zh
 *.md~
 *.src.md
