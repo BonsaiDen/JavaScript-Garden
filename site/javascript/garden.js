@@ -52,8 +52,8 @@ Sections.prototype = {
         }
 
         if (articleID !== page.article) {
-            nav.find('a[href=#' + page.article + ']').removeClass('active');
-            nav.find('a[href=#' + articleID + ']').addClass('active');
+            nav.find('a[href="#' + page.article + '"]').removeClass('active');
+            nav.find('a[href="#' + articleID + '"]').addClass('active');
 
             page.article = articleID;
             this.mobile(articleID);
