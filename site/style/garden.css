@@ -430,6 +430,7 @@ a abbr {
 @media screen and (max-width: 1000px) {
 	body {
 		width: 100%;
+		max-width: 1000px;
 		overflow-x: hidden;
 	}
 
@@ -557,6 +558,10 @@ a abbr {
 
 @media screen and (max-width: 600px),
 screen and (-webkit-min-device-pixel-ratio: 2) {
+	body {
+		max-width: 600px;
+	}
+	
 	section {
 		margin-right: 30px;
 		width: auto;
