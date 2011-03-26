@@ -26,10 +26,10 @@ html(lang=language)
           - each lang in languages
             li(class=lang.id === language ? 'active' : '')
               - if (lang.id === baseLanguage)
-                a(href= '/', title=lang.title) #{lang.id}
+                a(href= '/' + pathPrefix, title=lang.title) #{lang.id}
 
               - else
-                a(href= '/JavaScript-Garden/' + lang.id, title=lang.title) #{lang.id}
+                a(href= '/' + pathPrefix + lang.id, title=lang.title) #{lang.id}
         a(id='top', href='#intro', title='Back to top') #top
         a(id='hide_menu', class='tablet') Hide Menu
 

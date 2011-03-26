@@ -153,6 +153,7 @@ var Garden = Class(function(options) {
             }
 
             var options = {
+                pathPrefix: this.options.pathPrefix,
                 baseLanguage: this.options.language.default,
                 language: language,
                 languages: languages,
@@ -198,7 +199,7 @@ var Garden = Class(function(options) {
 });
 
 exports.build = function (options) {
-    options = options || {dir: 'doc', template: 'garden.jade', out: 'site'};
+    options = options || {dir: 'doc', pathPrefix: 'JavaScript-Garden/', template: 'garden.jade', out: 'site'};
     new Garden(options);
 }
 
