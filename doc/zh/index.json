@@ -1,0 +1,72 @@
+{
+    "title": "JavaScript 秘密花园",
+    "langTitle": "JavaScript Garden 中文翻译",
+    "description": "JavaScript 语言最古怪用法的文档集合",
+    "sections": [
+        {
+            "title": "简介",
+            "dir": "intro",
+            "articles": [
+                "authors",
+                "contributors",
+                "license"
+            ]
+        },
+        {
+            "title": "对象",
+            "dir": "object",
+            "articles": [
+                "general",
+                "prototype",
+                "hasownproperty",
+                "forinloop"
+            ]
+        },
+        {
+            "title": "函数",
+            "dir": "function",
+            "articles": [
+                "general",
+                "this",
+                "closures",
+                "arguments",
+                "constructors",
+                "scopes"
+            ]
+        },
+        {
+            "title": "数组",
+            "dir": "array",
+            "articles": [
+                "general",
+                "constructor"
+            ]
+        },
+        {
+            "title": "类型",
+            "dir": "types",
+            "articles": [
+                "equality",
+                "typeof",
+                "instanceof",
+                "casting"
+            ]
+        },
+        {
+            "title": "核心",
+            "dir": "core",
+            "articles": [
+                "eval",
+                "undefined",
+                "semicolon"
+            ]
+        },
+        {
+            "title": "其它",
+            "dir": "other",
+            "articles": [
+                "timeouts"
+            ]
+        }
+    ]
+}
