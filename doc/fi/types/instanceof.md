@@ -1,38 +1,33 @@
-## The `instanceof` Operator
+## `instanceof`-operaattori
 
-The `instanceof` operator compares the constructors of its two operands. It is 
-only useful when comparing custom made objects. Used on built-in types, it is
-nearly as useless as the [typeof operator](#types.typeof).
+`instanceof`-operaattori vertaa kahden operandinsa konstruktoreita keskenään. Se on hyödyllinen ainoastaan, kun vertaillaan itsetehtyjä olioita. Natiivien tyyppien tapauksessa se on lähes yhtä hyödytön kuin [typeof-operaattori](#types.typeof).
 
-### Comparing Custom Objects
+### Itsetehtyjen olioiden vertailu
 
     function Foo() {}
     function Bar() {}
     Bar.prototype = new Foo();
 
-    new Bar() instanceof Bar; // true
-    new Bar() instanceof Foo; // true
+    new Bar() instanceof Bar; // tosi
+    new Bar() instanceof Foo; // tosi
 
-    // This just sets Bar.prototype to the function object Foo
-    // But not to an actual instance of Foo
+    // Tämä asettaa vain Bar.prototype-ominaisuudeksi
+    // funktio-olion Foo
+    // Se ei kuitenkaan ole Foon todellinen instanssi
     Bar.prototype = Foo;
-    new Bar() instanceof Foo; // false
+    new Bar() instanceof Foo; // epätosi
 
-### Using `instanceof` with Native Types
+### `instanceof` ja natiivit tyypit
 
-    new String('foo') instanceof String; // true
-    new String('foo') instanceof Object; // true
+    new String('foo') instanceof String; // tosi
+    new String('foo') instanceof Object; // tosi
 
-    'foo' instanceof String; // false
-    'foo' instanceof Object; // false
+    'foo' instanceof String; // epätosi
+    'foo' instanceof Object; // epätosi
 
-One important thing to note here is, that `instanceof` does not work on objects 
-that origin from different JavaScript contexts (e.g. different documents
-in a web browser), since their constructors will not be the exact same object.
+On tärkeää huomata, että `instanceof` ei toimi olioilla, jotka tulevat muista JavaScript-konteksteista (esim. selaimen eri dokumenteista). Tässä tapauksessa niiden konstruktorit viittaavat eri olioon.
 
-### In Conclusion
+### Yhteenveto
 
-The `instanceof` operator should **only** be used when dealing with custom made 
-objects that origin from the same JavaScript context. Just like the
-[`typeof`](#types.typeof) operator, every other use of it should be **avoided**.
+`instanceof`-operaattoria tulee käyttää **ainoastaan**, mikäli käsitellään itsetehtyjä olioita saman JavaScript-kontekstin sisällä. Kuten [`typeof`](#types.typeof)-operaattorikin, myös muita sen käyttöjä tulee **välttää**.
 

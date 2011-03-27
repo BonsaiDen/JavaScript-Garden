@@ -1,7 +1,6 @@
-## Object Usage and Properties
+## Olioiden käyttö ja ominaisuudet
 
-Everything in JavaScript acts like an object, with the only two exceptions being 
-[`null`](#core.undefined) and [`undefined`](#core.undefined).
+Kaikki muuttujat, kahta poikkeusta lukuunottamatta, käyttäytyvät JavaScriptissä kuten olio. Nämä poikkeukset ovat [`null`](#core.undefined) sekä [`undefined`](#core.undefined).
 
     false.toString() // 'false'
     [1, 2, 3].toString(); // '1,2,3'
@@ -10,38 +9,31 @@ Everything in JavaScript acts like an object, with the only two exceptions being
     Foo.bar = 1;
     Foo.bar; // 1
 
-A common misconception is that number literals cannot be used as
-objects. That is because a flaw in JavaScript's parser tries to parse the *dot 
-notation* on a number as a floating point literal.
+Yleisesti luullaan ettei numeroliteraaleja voida käyttää olioina. Tämä johtuu viasta JavaScriptin parserissa. Se yrittää parsia numeron *pistenotaatiota* liukulukuliteraalina.
 
-    2.toString(); // raises SyntaxError
+    2.toString(); // palauttaa SyntaxError-virheen
 
-There are a couple of workarounds which can be used in order make number 
-literals act as objects too.
+Tämä voidaan välttää esimerkiksi seuraavasti.
 
-    2..toString(); // the second point is correctly recognized
-    2 .toString(); // note the space left to the dot
-    (2).toString(); // 2 is evaluated first
+    2..toString(); // toinen piste tunnistuu oikein
+    2 .toString(); // huomaa pisteen vasemmalla puolen oleva väli
+    (2).toString(); // 2 arvioidaan ensi
 
-### Objects as a Data Type
+### Oliot tietotyyppinä
 
-Objects in JavaScript can also be used as a [*Hashmap*][1], they mainly consist 
-of named properties mapping to values.
+JavaScriptin olioita voidaan käyttää myös [*hajautustauluna*][1], koska ne muodostavat pääasiassa avaimien ja niihin liittyvien arvojen välisen mappauksen.
 
-Using a object literal - `{}` notation - it is possible to create a 
-plain object. This new object [inherits](#object.prototype) from `Object.prototype` and 
-has no [own properties](#object.hasownproperty) defined on it.
+Olioliteraalinotaatiota - `{}` - käyttäen voidaan luoda tyhjä olio. Tämä olio [perii](#object.prototype) `Object.prototype`-olion eikä sille ole määritelty [omia ominaisuuksia](#object.hasownproperty).
 
-    var foo = {}; // a new empty object
+    var foo = {}; // uusi, tyhjä olio
 
-    // a new object with a property called 'test' with value 12
+    // uusi, tyhjä olio, joka sisältää ominaisuuden 'test' arvolla 12
     var bar = {test: 12}; 
 
-### Accessing Properties
+### Pääsy ominaisuuksiin
 
-The properties of an object can be accessed in two ways, via either the dot
-notation, or the square bracket notation.
-    
+Olion ominaisuuksiin voidaan päästä käsiksi kahta eri tapaa käyttäen. Siihen voidaan käyttää joko piste- tai hakasulkunotaatiota.
+
     var foo = {name: 'Kitten'}
     foo.name; // kitten
     foo['name']; // kitten
@@ -50,17 +42,13 @@ notation, or the square bracket notation.
     foo[get]; // kitten
     
     foo.1234; // SyntaxError
-    foo['1234']; // works
+    foo['1234']; // toimii
 
-Both notations are identical in their workings, with the only difference being that
-the square bracket notation allows for dynamic setting of properties, as well as
-the use of property names that would otherwise lead to a syntax error.
+Kumpikin notaatio toimii samalla tavoin. Ainut ero liittyy siihen, että hakasulkunotaation avulla ominaisuuksien arvoja voidaan asettaa dynaamisesti. Se sallii myös muuten hankalien, virheeseen johtavien nimien käyttämisen.
 
-### Deleting Properties
+### Ominaisuuksien poistaminen
 
-The only way to actually remove a property from an object is to use the `delete`
-operator; setting the property to `undefined` or `null` only remove the
-*value* associated with the property, but not the *key*.
+Ainut tapa poistaa olion ominaisuus on käyttää `delete`-operaattoria. Ominaisuuden asettaminen joko arvoon `undefined` tai `null` poistaa vain siihen liittyneen arvon muttei itse *avainta*.
 
     var obj = {
         bar: 1,
@@ -77,23 +65,18 @@ operator; setting the property to `undefined` or `null` only remove the
         }
     }
 
-The above outputs both `bar undefined` and `foo null` - only `baz` was
-removed and is therefore missing from the output.
+Yllä oleva koodi tulostaa sekä `both undefined` että `foo null`. Ainoastaan `baz` on poistettu. Täten sitä ei myöskään näy tulosteessa.
 
-### Notation of Keys
+### Avainnotaatio
 
     var test = {
-        'case': 'I am a keyword so I must be notated as a string',
-        delete: 'I am a keyword too so me' // raises SyntaxError
+        'case': 'Olen avainsana, joten minun tulee olla merkkijono',
+        delete: 'Myös minä olen avainsana' // palauttaa SyntaxError-virheen
     };
 
-Object properties can be both notated as plain characters and as strings. Due to
-another mis-design in JavaScript's parser, the above will throw 
-a `SyntaxError` prior to ECMAScript 5.
+Olioiden ominaisuuksia voidaan notatoida käyttäen joko pelkkiä merkkejä tai merkkijonoja. Toisesta JavaScriptin suunnitteluvirheestä johtuen yllä oleva koodi palauttaa `SyntaxError`-virheen ECMAScript 5:ttä edeltävissä versioissa.
 
-This error arises from the fact that `delete` is a *keyword*; therefore, it must be 
-notated as a *string literal* to ensure that it will be correctly interpreted by
-older JavaScript engines.
+Tämä virhe johtuu siitä, että `delete` on *avainsana*. Täten se tulee notatoida *merkkijonona*. Tällöin myös vanhemmat JavaScript-tulkit ymmärtävät sen oikein.
 
 [1]: http://en.wikipedia.org/wiki/Hashmap
 

@@ -1,155 +1,114 @@
-### `setTimeout` and `setInterval`
+### `setTimeout` ja `setInterval`
 
-Since JavaScript is asynchronous, it is possible to schedule the execution of a 
-function by using the `setTimeout` and `setInterval` functions.
+Koska JavaScript on luonteeltaan asynkroninen, voidaan funktioiden suoritusta ajastaa käyttäen `setTimeout` sekä `setInterval`-funktioita.
 
-> **Note:** Timeouts are **not** part of the ECMAScript Standard. They are
-> implemented as part of the [DOM][1].
+> **Huomio:** Aikakatkaisufunktiot **eivät** ole osa ECMAScript-standardia. Ne on toteutettu osana [DOM][1]ia.
 
     function foo() {}
-    var id = setTimeout(foo, 1000); // returns a Number > 0
+    var id = setTimeout(foo, 1000); // palauttaa Numeron > 0
 
-When `setTimeout` gets called, it will return the ID of the timeout and schedule
-`foo` to run in **approximately** one thousand milliseconds in the future. 
-`foo` will then get executed exactly **once**.
+Kun `setTimeout`-funktiota kutsutaan, se palauttaa aikakatkaisun tunnisteen ja ajastaa `foo`-funktion suoritettavaksi **suunnilleen** tuhannen millisekunnin päästä. `foo` suoritetaan tarkalleen **kerran**.
 
-Depending on the timer resolution of the JavaScript engine that is running the 
-code, as well as the fact that JavaScript is single threaded and other code that 
-gets executed might block the thread, it is by **no means** a safe bet that one 
-will get the exact delay that was specified in the `setTimeout` call.
+Käytössä olevan JavaScript-tulkin ajastimen tarkkuudesta, JavaScriptin yksisäikeisyydestä sekä muusta koodista riippuen ei ole **lainkaan** taattua, että viive on tarkalleen sama kuin määritelty.
 
-The function that was passed as the first parameter will get called by the
-*global object*, that means, that [`this`](#function.this) inside the called function 
-refers to that very object.
+Ensimmäisenä annettu funktio suoritetaan *globaalisti*. Tämä tarkoittaa sitä, että sen [`this`](#function.this) on asetettu osoittamaan globaaliin olioon.
 
     function Foo() {
         this.value = 42;
         this.method = function() {
-            // this refers to the global object
-            console.log(this.value); // will log undefined
+            // this viittaa globaaliin olioon
+            console.log(this.value); // tulostaa undefined
         };
         setTimeout(this.method, 500);
     }
     new Foo();
 
+> **Huomio:** Koska `setTimeout` ottaa **funktio-olion** ensimmäisenä parametrinaan, usein sitä kutsutaan seuraavasti: `setTimeout(foo(), 1000)`. Tässä tapauksessa se käyttää `foo`:n **palauttamaa arvoa** `foo`:n sijaan. Tämä on hiljainen virhe, koska jos funktio palauttaa arvon `undefined`, `setTimeout` *ei* palauta virhettä. 
 
-> **Note:** As `setTimeout` takes a **function object** as its first parameter, an
-> often made mistake is to use `setTimeout(foo(), 1000)`, which will use the 
-> **return value** of the call `foo` and **not** `foo`. This is, most of the time, 
-> a silent error, since when the function returns `undefined` `setTimeout` will 
-> **not** raise any error.
+### Kutsujen pinoaminen `setInterval`-funktion avulla
 
-### Stacking Calls with `setInterval`
+`setTimeout` suoritetaan vain kerran. `setInterval` sen sijaan, kuten nimestä voi päätellä, suoritetaan **aina** `X` millisekunnin välein. Sen käyttöä ei kuitenkaan suositella.
 
-While `setTimeout` only runs the function once, `setInterval` - as the name 
-suggests - will execute the function **every** `X` milliseconds. But its use is 
-discouraged. 
-
-When code that is being executed blocks the timeout call, `setInterval` will 
-still issue more calls to the specified function. This can, especially with small
-intervals, result in function calls stacking up.
+Mikäli suoritettava koodi blokkaa katkaisufunktion kutsun, `setInterval` lisää kutsuja pinoon. Tämä voi olla ongelmallista erityisesti, mikäli käytetään pieniä intervalliarvoja.
 
     function foo(){
-        // something that blocks for 1 second
+        // jotain joka blokkaa sekunnin ajaksi
     }
     setInterval(foo, 100);
 
-In the above code `foo` will get called once and will then block for one second.
+Yllä olevassa koodissa `foo`-funktiota kutsutaan, jonka jälleen se blokkaa sekunnin ajan.
 
-While `foo` blocks the code `setInterval` will still schedule further calls to
-it. Now, when `foo` has finished, there will already be **ten** further calls to
-it waiting for execution.
+Tämän ajan aikana `setInterval` kasvattaa kutsupinon sisältöä. Kun `foo` on valmis, kutsupinoon on ilmestynyt jo **kymmenen** uutta kutsua suoritettavaksi.
 
-### Dealing with Possible Blocking Code
+### Mahdollisesti blokkaavan koodin kanssa pärjääminen
 
-The easiest as well as most controllable solution, is to use `setTimeout` within
-the function itself.
+Helpoin ja joustavin tapa on käyttää `setTimeout`-funktiota funktiossa itsessään.
 
     function foo(){
-        // something that blocks for 1 second
+        // jotain joka blokkaa sekunnin ajaksi
         setTimeout(foo, 100);
     }
     foo();
 
-Not only does this encapsulate the `setTimeout` call, but it also prevents the
-stacking of calls and it gives additional control.`foo` itself can now decide 
-whether it wants to run again or not.
+Sen lisäksi että tämä ratkaisu kapseloi `setTimeout`-kutsun, se myös estää kutsujen pinoutumisen ja tarjoaa joustavuutta. `foo` voi päättää halutaanko se suorittaa uudelleen vai ei.
 
-### Manually Clearing Timeouts
+### Katkaisujen poistaminen käsin
 
-Clearing timeouts and intervals works by passing the respective ID to
-`clearTimeout` or `clearInterval`, depending which `set` function was used in
-the first place.
+Katkaisuja ja intervalleja voidaan poistaa antamalla sopiva tunniste joko `clearTimeout`- tai `clearInterval`-funktiolle. Se kumpaa käytetään riippuu käytetystä `set`-funktiosta.
 
     var id = setTimeout(foo, 1000);
     clearTimeout(id);
 
-### Clearing all timeouts
+### Kaikkien katkaisujen poistaminen
 
-As there is no built-in method for clearing all timeouts and/or intervals, 
-it is necessary to use brute force in order to achieve this functionality.
+JavaScript ei sisällä erityistä funktiota kaikkien katkaisujen ja/tai intervallien poistamiseen. Sen sijaan tämä voidaan toteuttaa raakaa voimaa käyttäen.
 
-    // clear "all" timeouts
+    // poista "kaikki" katkaisut
     for(var i = 1; i < 1000; i++) {
         clearTimeout(i);
     }
 
-There might still be timeouts that are unaffected by this arbitrary number;
-therefore, is is instead recommended to keep track of all the timeout IDs, so
-they can be cleared specifically.
+On mahdollista, että jopa tämän jälkeen on olemassa katkaisuja, jotka ovat käynnissä. Onkin siis suositeltavaa tallentaa katkaisujen tunnisteet jotenkin. Tällä tavoin ne voidaan poistaa käsin.
 
-### Hidden use of `eval`
+### Piilotettu `eval`
 
-`setTimeout` and `setInterval` can also take a string as their first parameter.
-This feature should **never** be used, since it internally makes use of `eval`.
+`setTimeout` ja `setInterval` voivat ottaa myös merkkijonon ensimmäisenä parametrinaan. Tätä ominaisuutta ei tule käyttää **ikinä**, koska se käyttää sisäisesti `eval`-funktiota.
 
-> **Note:** Since the timeout functions are **not** specified by the ECMAScript
-> standard, the exact workings when a string is passed to them might differ in
-> various JavaScript implementations. For example, Microsoft's JScript makes use of
-> the `Function` constructor in place of `eval`.
+> **Huomio:** Koska ECMAScript-standardi **ei** määrittele, kuinka katkaisujen tulee toimia, tapa jolla ne toimivat tässä tapauksessa voi vaihdella JavaScript-toteutuksesta riippuen. Esimerkiksi Microsoftin JScript käyttää `Function`-konstruktoria `eval`-funktion sijaan.
 
     function foo() {
-        // will get called
+        // kutsutaan
     }
 
     function bar() {
         function foo() {
-            // never gets called
+            // ei kutsuta ikinä
         }
         setTimeout('foo()', 1000);
     }
     bar();
 
-Since `eval` is not getting called [directly](#core.eval) in this case, the string 
-passed to `setTimeout` will get executed in the *global scope*; thus, it will 
-not use the local variable `foo` from the scope of `bar`.
+Koska `eval`-funktiota ei kutsuta [suoraan](#core.eval), `setTimeout`-funktiolle annettu merkkijono suoritetaan *globaalissa näkyvyysalueessa*. Tässä tapauksessa se ei siis käytä paikallista `bar`-funktion näkyvyysalueessa olevaa `foo`-funktiota.
 
-It is further recommended to **not** use a string for passing arguments to the
-function that will get called by either of the timeout functions. 
+Tämän lisäksi on suositeltavaa olla **käyttämättä** merkkijonoja parametrien antamiseen.
 
     function foo(a, b, c) {}
     
-    // NEVER use this
+    // Älä käytä tätä IKINÄ
     setTimeout('foo(1,2, 3)', 1000)
 
-    // Instead use an anonymous function
+    // Käytä nimetöntä funktiota sen sijaan
     setTimeout(function() {
         foo(a, b, c);
     }, 1000)
 
-> **Note:** While it is also possible to use the syntax 
-> `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
-> to subtle errors when used with [methods](#function.this). 
+> **Huomio:** Vaikka syntaksi `setTimeout(foo, 1000, a, b, c)` onkin mahdollinen, ei sen käyttöä suositella. Tämä johtuu siitä, että sen käyttö voi johtaa virheisiin erityisesti [metodien](#function.this) kanssa.
 
-### In Conclusion
+### Yhteenveto
 
-**Never** should a string be used as the parameter of `setTimeout` or 
-`setInterval`. It is a clear sign of **really** bad code, when arguments need 
-to be supplied to the function that gets called. An *anonymous function* should
-be passed that then takes care of the actual call.
+Merkkijonoa ei tule antaa `setTimeout`- tai `setInterval`-funktiolle **koskaan**. Tämä on selvä merkki **erittäin** huonosta koodista erityisesti mikäli sitä käytetään parametrien välittämiseen. Sen sijaan kannattaa käyttää *nimetöntä funktiota*, joka huolehtii varsinaisesta kutsusta.
 
-Further, the use of `setInterval` should be avoided since its scheduler is not
-blocked by executing JavaScript.
+Tämän lisäksi `setInterval`-funktion käyttöä tulee välttää. Tämä johtuu siitä, että sen JavaScript ei blokkaa sen vuorottajaa.
 
 [1]: http://en.wikipedia.org/wiki/Document_Object_Model "Document Object Model"
 

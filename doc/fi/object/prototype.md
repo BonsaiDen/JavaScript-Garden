@@ -1,24 +1,14 @@
-## The Prototype
+## Prototyyppi
 
-JavaScript does not feature a classical inheritance model, instead it uses a 
-*prototypal* one. 
+JavaScript ei sisällä klassista perintämallia. Sen sijaan se käyttää *prototyyppeihin* pohjautuvaa ratkaisua.
 
-While this is often considered to be one of JavaScript's weaknesses, the 
-prototypal inheritance model is in fact more powerful than the classic model. 
-It is for example fairly trivial to build a classic model on top of it, while the
-other way around is a far more difficult task.
+Usein tätä pidetään JavaScriptin eräänä suurimmista heikkouksista. Itse asiassa prototyyppipohjainen perintämalli on voimakkaampi kuin klassinen malli. Sen avulla voidaan mallintaa klassinen malli melko helposti. Toisin päin mallintaminen on huomattavasti vaikeampaa.
 
-Due to the fact that JavaScript is basically the only widely used language that
-features prototypal inheritance, it takes some time to adjust to the 
-differences between the two models. 
+JavaScript on käytännössä ainut laajasti käytetty kieli, joka tarjoaa tuen prototyyppipohjaiselle perinnälle. Tästä johtuen mallien väliseen eroon tottuminen voi viedä jonkin akaa.
 
-The first major difference is that inheritance in JavaScript is done by using so
-called *prototype chains*.
+Ensimmäinen suuri ero liittyy siihen, kuinka perintä toimii. JavaScriptissä se pohjautuu erityisiin *prototyyppiketjuihin*.
 
-> **Note:** Simply using `Bar.prototype = Foo.prototype` will result in both objects
-> sharing the **same** prototype. Therefore, changes to either object's prototype 
-> will affect the prototype of the other as well, which in most cases is not the 
-> desired effect.
+> **Huomio:** Ainoastaan `Bar.prototype = Foo.prototype` johtaa siihen, että molemmat oliot jakavat **saman** prototyypin. Tällöin olioiden prototyyppeihin tehdyt muutokset heijastuvat siis molempiin. Usein tämä ei ole itse tarkoitus.
 
     function Foo() {
         this.value = 42;
@@ -29,86 +19,60 @@ called *prototype chains*.
 
     function Bar() {}
 
-    // Set Bar's prototype to a new instance of Foo
+    // Aseta Barin prototyypin uuteen Foo-olioon
     Bar.prototype = new Foo();
-    Bar.prototype.foo = 'Hello World';
+    Bar.prototype.foo = 'Terve maailma';
 
-    // Make sure to list Bar as the actual constructor
+    // Huolehdi siitä, että Bar on todellinen konstruktori
     Bar.prototype.constructor = Bar;
 
-    var test = new Bar() // create a new bar instance
+    var test = new Bar() // luo uusi bar
 
-    // The resulting prototype chain
-    test [instance of Bar]
-        Bar.prototype [instance of Foo] 
-            { foo: 'Hello World' }
+    // Prototyyppiketju
+    test [Bar-olio]
+        Bar.prototype [Foo-olio] 
+            { foo: 'Terve maailma' }
             Foo.prototype
                 { method: ... }
                 Object.prototype
                     { toString: ... /* etc. */ }
 
-In the above, the object `test` will inherit from both `Bar.prototype` and
-`Foo.prototype`; hence, it will have access to the function `method` that was 
-defined on `Foo`. It will also have access to the property `value` of the
-**one** `Foo` instance that is its prototype. It is important to note that `new
-Bar()` does **not** create a new `Foo` instance, but reuses the one assigned to 
-its prototype; thus, all `Bar` instances will share the **same** `value` property.
+Yllä olio `test` perii sekä `Bar.prototype`- että `Foo.prototype`-olion. Tällöin se pääsee käsiksi `Foo`:ssa määriteltyy funktioon `method`. Se pääsee käsiksi myös ominaisuuteen `value`, jonka luotu `Foo`-olio sisältää prototyypissään. On tärkeää huomata, että `new Bar()` **ei** luo uutta `Foo`-oliota vaan käyttää uudelleen sen prototyyppiin asetettua. Tässä tapauksessa kaikki `Bar`-oliot jakavat siis **saman** `value`-ominaisuuden.
 
-> **Note:** Do **not** use `Bar.prototype = Foo`, since it will not point to 
-> the prototype of `Foo` but rather to the function object `Foo`. So the 
-> prototype chain will go over `Function.prototype` and not `Foo.prototype`;
-> therefore, `method` will not be on the prototype chain.
+> **Huomio:** **Älä** käytä `Bar.prototype = Foo`-notaatiota. Tässä tapauksessa se ei osoita `Foo`n prototyyppiin vaan funktio-olioon `Foo`. Tällöin prototyyppiketju osoittaa itse asiassa `Function.prototype`-olioon eikä `Foo.prototype`-olioon, kuten oli tarkoitus. `method` ei siis tällöin olisi mukana prototyyppiketjussa.
 
-### Property Lookup
+### Ominaisuushaut
 
-When accessing the properties of an object, JavaScript will traverse the
-prototype chain **upwards** until it finds a property with the requested name.
+Kun olion ominaisuuksien arvoa haetaan, JavaScript käy prototyyppiketjua läpi **ylöspäin**, kunnes se löytää ominaisuuden nimeä vastaavan arvon.
 
-When it reaches the top of the chain - namely `Object.prototype` - and still
-hasn't found the specified property, it will return the value
-[undefined](#core.undefined) instead.
+Jos se saavuttaa ketjun huipun - `Object.prototype`-olion - eikä ole vieläkään löytänyt haettua ominaisuutta, se palauttaa [undefined](#core.undefined) arvon sen sijaan.
 
-### The Prototype Property
+### Prototyyppi-ominaisuus
 
-While the prototype property is used by the language to build the prototype
-chains, it is still possible to assign **any** given value to it. Although 
-primitives will simply get ignored when assigned as a prototype.
+Vaikka Prototyyppi-ominaisuutta käytetään prototyyppiketjujen rakentamiseen, voidaan siihen asettaa **mikä tahansa** arvo. Mikäli arvo on primitiivi, se yksinkertaisesti jätetään huomiotta.
 
     function Foo() {}
-    Foo.prototype = 1; // no effect
+    Foo.prototype = 1; // ei vaikutusta
 
-Assigning objects, as shown in the example above, will work, and allows for dynamic
-creation of prototype chains.
+Kuten esimerkissä yllä, prototyyppiin on mahdollista asettaa olioita. Tällä tavoin prototyyppiketjuja voidaan koostaa dynaamisesti.
 
-### Performance
+### Suorituskyky
 
-The lookup time for properties that are high up on the prototype chain can have a
-negative impact on performance critical sections of code. Additionally, trying to 
-access non-existent properties will always traverse the full prototype chain. 
+Prototyyppiketjussa korkealla olevien ominaisuuksien hakeminen voi hidastaa koodin kriittisiä osia. Tämän lisäksi olemattomien ominaisuuksien hakeminen käy koko ketjun läpi.
 
-Also, when [iterating](#object.forinloop) over the properties of an object 
-**every** property that is on the prototype chain will get enumerated.
+Ominaisuuksia [iteroidessa](#object.forinloop) prototyyppiketjun **jokainen** ominaisuus käydään läpi.
 
-### Extension of Native Prototypes
+### Natiivien prototyyppien laajentaminen
 
-One mis-feature that is often used is to extend `Object.prototype` or one of the
-other built in prototypes.
+JavaScript mahdollistaa `Object.prototype`-olion sekä muiden natiivityyppien laajentamisen.
 
-This technique is called [monkey patching][1] and breaks *encapsulation*. While 
-used by widely spread frameworks such as [Prototype][2], there is still no good 
-reason for cluttering built-in types with additional *non-standard* functionality.
+Tätä tekniikkaa kutsutaan nimellä [apinapätsäämiseksi][1]. Se rikkoo *kapseloinnin. Vaikka yleisesti käytetyt alustat, kuten [Prototype][2], käyttävätkin sitä, ei ole olemassa yhtään hyvää syytä, minkä takia natiivityyppejä tulisi laajentaa *epästandardilla* toiminnallisuudella.
 
-The **only** good reason for extending a built-in prototype is to backport 
-the features of newer JavaScript engines; for example, 
-[`Array.forEach`][3].
+**Ainut** hyvä syy on uudempien JavaScript-tulkkien sisältämien ominaisuuksien siirtäminen vanhemmille alustoille. Eräs esimerkki tästä on [`Array.forEach`][3].
 
-### In Conclusion
+### Yhteenveto
 
-It is a **must** to understand the prototypal inheritance model completely 
-before writing complex code which makes use of it. Also, watch the length of 
-the prototype chains and break them up if necessary to avoid possible 
-performance issues. Further, the native prototypes should **never** be extended 
-unless it is for the sake of compatibility with newer JavaScript features.
+Ennen kuin kirjoitat monimutkaista prototyyppiperintää hyödyntävää koodia, on **olennaista**, että ymmärrät täysin kuinka se toimii. Ota huomioon myös prototyyppiketjujen pituus ja riko niitä tarpeen mukaan välttääksesi suorituskykyongelmia. Huomioi myös, että natiiveja prototyyppejä ei tule laajentaa **milloinkaan** ellei kyse ole vain yhteensopivuudesta uudempien JavaScript-ominaisuuksien kanssa.
 
 [1]: http://en.wikipedia.org/wiki/Monkey_patch
 [2]: http://prototypejs.org/

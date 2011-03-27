@@ -1,70 +1,61 @@
-## Type Casting
+## Tyyppimuunnokset
 
-JavaScript is a *weakly typed* language, so it will apply *type coercion*
-**wherever** possible.
+JavaScript on tyypitetty *heikosti*. Tämä tarkoittaa sitä, että se pyrkii *pakottamaan tyyppejä* *aina* kun se on mahdollista.
 
-    // These are true
-    new Number(10) == 10; // Number.toString() is converted
-                          // back to a number
+    // Nämä ovat totta
+    new Number(10) == 10; // Number.toString() muutetaan
+                          // takaisin numeroksi
 
-    10 == '10';           // Strings gets converted to Number
-    10 == '+10 ';         // More string madness
-    10 == '010';          // And more 
-    isNaN(null) == false; // null converts to 0
-                          // which of course is not NaN
+    10 == '10';           // Merkkijonot muutetaan Number-tyyppiin
+    10 == '+10 ';         // Lisää merkkijonohauskuutta
+    10 == '010';          // Ja lisää
+    isNaN(null) == false; // null muuttuu nollaksi,
+                          // joka ei ole NaN
     
-    // These are false
+    // Nämä ovat epätosia
     10 == 010;
     10 == '-10';
 
-> **ES5 Note:** Number literals that start with a `0` are interpreted as octal 
-> (Base 8). Octal support for these has been **removed** in ECMAScript 5 strict 
-> mode.
+> **ES5 Huomio:** Nollalla alkavat numeroliteraalit tulkitaan oktaaleina (kantaluku 8). Tuki oktaaleille on **poistettu** ECMAScript 5:den tiukassa moodissa.
 
-In order to avoid the above, use of the [strict equal operator](#types.equality) 
-is **highly** recommended. Although this avoids a lot of common pitfalls, there 
-are still many further issues that arise from JavaScript's weak typing system.
+Yllä havaittu käytös voidaan välttää käyttämällä [tiukkaa vertailuoperaattoria](#types.equality). Sen käyttöä suositellaan **lämpimästi**. Vaikka se välttääkin useita yleisiä ongelma, sisältää se omat ongelmansa, jotka johtavat juurensa JavaScriptin heikkoon tyypitykseen.
 
-### Constructors of Built-In Types
+### Natiivien tyyppien konstruktorit
 
-The constructors of the built in types like `Number` and `String` behave
-differently when being used with the `new` keyword and without it.
+Natiivien tyyppien, kuten `Number` tai `String`, konstruktorit käyttäytyvät eri tavoin `new`-avainsanan kanssa ja ilman.
 
-    new Number(10) === 10;     // False, Object and Number
-    Number(10) === 10;         // True, Number and Number
-    new Number(10) + 0 === 10; // True, due to implicit conversion
+    new Number(10) === 10;     // Epätosi, Object ja Number
+    Number(10) === 10;         // Tosi, Number ja Number
+    new Number(10) + 0 === 10; // Tosi, johtuu tyyppimuunnoksesta
 
-Using a built-in type like `Number` as a constructor will create a new `Number` 
-object, but leaving out the `new` keyword will make the `Number` function behave
-like a converter.
+`Number`-tyypin kaltaisen natiivityypin käyttäminen luo uuden `Number`-olion. `new`-avainsanan pois jättäminen tekee `Number`-funktiosta pikemminkin muuntimen.
 
-In addition, having literals or non-object values in there will result in even
-more type coercion.
+Tämän lisäksi literaalit tai ei-oliomaiset arvot johtavat edelleen uusiin tyyppimuunnoksiin.
 
-The best option is to cast to one of the three possible types **explicitly**.
+Paras tapa suorittaa tyyppimuunnoksia on tehdä niitä **selvästi**.
 
-### Casting to a String
+### Muunnos merkkijonoksi
 
-    '' + 10 === '10'; // true
+    '' + 10 === '10'; // tosi
 
-By prepending a empty string a value can easily be casted to a string.
+Arvo voidaan muuttaa merkkijonoksi helposti lisäämällä sen eteen tyhjä merkkijono.
 
-### Casting to a Number
+### Muunnos numeroksi
 
-    +'10' === 10; // true
+    +'10' === 10; // tosi
 
-Using the **unary** plus operator it is possible to cast to a number.
+**Unaarinen** plus-operaattori mahdollistaa numeroksi muuttamisen.
 
-### Casting to a Boolean
+### Muunnos totuusarvoksi
 
-By using the **not** operator twice, a value can be converted a boolean.
+Arvo voidaan muuttaa totuusarvoksi käyttämällä **not**-operaattoria kahdesti.
 
-    !!'foo';   // true
-    !!'';      // false
-    !!'0';     // true
-    !!'1';     // true
-    !!'-1'     // true
-    !!{};      // true
-    !!true;    // true
+    !!'foo';   // tosi
+    !!'';      // epätosi
+    !!'0';     // tosi
+    !!'1';     // tosi
+    !!'-1'     // tosi
+    !!{};      // tosi
+    !!true;    // tosi
 
 

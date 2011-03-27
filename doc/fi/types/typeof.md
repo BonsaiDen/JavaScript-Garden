@@ -1,21 +1,14 @@
-## The `typeof` Operator
+## `typeof`-operaattori
 
-The `typeof` operator (together with 
-[`instanceof`](#types.instanceof)) is probably the biggest 
-design flaw of JavaScript, as it is near of being **completely broken**.
+`typeof`-operaattori, kuten myös [`instanceof`](#types.instanceof), on kenties JavaScriptin suurin suunnitteluvirhe. Tämä johtuu siitä, että nämä ominaisuudet ovat liki kokonaan käyttökelvottomia.
 
-Although `instanceof` still has its limited uses, `typeof` really has only one
-practical use case, which does **not** happen to be checking the type of an 
-object. 
+Vaikka `instanceof`-operaattorilla onkin tiettyjä rajattuja käyttötarkoituksia, `typeof`-operaattorille on olemassa vain yksi käytännöllinen käyttötapaus, joka **ei** tapahdu olion tyyppiä tarkasteltaessa.
 
-> **Note:** While `typeof` can also be called with a function like syntax
-> i.e. `typeof(obj)`, this is not a function call. The two parenthesis will
-> behave like normal and the return value will be used as the operand of the
-> `typeof` operator. There is **no** `typeof` function.
+> **Huomio:** Vaikka `typeof`-operaattoria voidaankin kutsua funktiomaisesti (`typeof(obj)`), ei tämä ole todellinen funktiokutsu. Sulut käyttäytyvät normaalisti ja niiden palauttamaa arvoa käytetään `typeof`-operaattorin operandina. `typeof`-funktiota **ei** ole olemassa.
 
-### The JavaScript Type Table
+### JavaScriptin tyyppitaulukko
 
-    Value               Class      Type
+    Arvo                Luokka     Tyyppi
     -------------------------------------
     "foo"               String     string
     new String("foo")   String     object
@@ -28,60 +21,44 @@ object.
     [1,2,3]             Array      object
     new Array(1, 2, 3)  Array      object
     new Function("")    Function   function
-    /abc/g              RegExp     object (function in Nitro/V8)
-    new RegExp("meow")  RegExp     object (function in Nitro/V8)
+    /abc/g              RegExp     object (Nitro/V8-funktio)
+    new RegExp("meow")  RegExp     object (Nitro/V8-funktio)
     {}                  Object     object
     new Object()        Object     object
 
-In the above table *Type* refers to the value, that the `typeof` operator returns.
-As can be clearly seen, this value is anything but consistent.
+Yllä olevassa taulukossa *Tyyppi* viittaa arvoon, jonka `typeof`-operaattori palauttaa. Kuten voidaan havaita, tämä arvo voi olla varsin ristiriitainen.
 
-The *Class* refers to the value of the internal `[[Class]]` property of an object.
+*Luokka* viittaa olion sisäisen `[[Luokka]]`-ominaisuuden arvoon.
 
-> **From the Specification:** The value of `[[Class]]` can be one of the
-> following strings. `Arguments`, `Array`, `Boolean`, `Date`, `Error`, 
-> `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`.
+> **Määritelmää lainaten:** `[[Luokka]]`-arvon tulee olla jokin seuraavista merkkijonoista. `Arguments`, `Array`, `Boolean`, `Date`, `Error`, `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`.
 
-In order to retrieve the value of `[[Class]]` one has to make use of the
-`toString` method of `Object.prototype`.
+Jotta kyseiseen arvoon päästään käsiksi, tulee soveltaa `Object.prototype`-ominaisuuden `toString`-metodia.
 
-### The Class of an Object
+### Olion luokka
 
-The specification gives exactly one way of accessing the `[[Class]]` value,
-with the use of `Object.prototype.toString`. 
+Määritelmä antaa tarkalleen yhden keinon, jonka avulla `[[Luokka]]` arvoon voidaan päästä käsiksi. Tämä on mahdollista `Object.prototype.toString`-metodia käyttäen. 
 
     function is(type, obj) {
         var clas = Object.prototype.toString.call(obj).slice(8, -1);
         return obj !== undefined && obj !== null && clas === type;
     }
     
-    is('String', 'test'); // true
-    is('String', new String('test')); // true
+    is('String', 'test'); // tosi
+    is('String', new String('test')); // tosi
 
-In the above example, `Object.prototype.toString` gets called with the value of
-[this](#function.this) being set to the object whose `[[Class]]` value should be 
-retrieved.
+Yllä olevassa esimerkissä `Object.prototype.toString`-metodia kutsutaan arvolla [this](#function.this), jonka arvo on asetettu olion `[[Luokka]]` arvoon.
 
-> **ES5 Note:** For convenience the return value of `Object.prototype.toString` 
-> for both `null` and `undefined` was **changed** from `Object` to `Null` and 
-> `Undefined` in ECMAScript 5.
+> **ES5 Huomio:** Käytännöllisyyden vuoksi `Object.prototype.toString` palautusarvo **muutettiin** `Object`-arvosta `Null`- ja `Undefined`-arvoiksi ECMAScript 5:ssä.
 
-### Testing for Undefined Variables
+### Määrittelemättömien muuttujien testaaminen
 
     typeof foo !== 'undefined'
 
-The above will check whether `foo` was actually declared or not; just 
-referencing it would result in a `ReferenceError`. This is the only thing
-`typeof` is actually useful for.
+Yllä oleva testi kertoo onko `foo` määritelty. Pelkästään siihen viittaaminen palauttaisi `ReferenceError`-virheen. Tämä on ainut asia, johon `typeof`-operaattoria kannattaa käyttää.
 
-### In Conclusion
+### Yhteenveto
 
-In order to check the type of an object, it is highly recommended to use 
-`Object.prototype.toString`; as this is the only reliable way of doing so. 
-As shown in the above type table, some return values of `typeof` are not defined 
-in the specification; thus, they can differ across various implementations.
+Ainut tapa, jonka avulla olion tyyppi voidaan tarkistaa luotettavasti, on `Object.prototype.toString`-metodin käyttö, kuten yllä. Kuten yllä oleva tyyppitaulu näyttää, osa `typeof`-operaattorin palautusarvoista on huonosti määritelty. Tästä johtuen ne voivat erota toteutuksesta riippuen.
 
-Unless checking whether a variable is defined, `typeof` should be avoided at
-**all costs**.
-
+Muuttujan määrittelemättömyyden testaaminen on ainut tapaus, jossa `typeof`-operaattoria kannattaa käyttää. Muutoin sen käyttöä kannattaa välttää **hinnalla milla hyvänsä**.
 

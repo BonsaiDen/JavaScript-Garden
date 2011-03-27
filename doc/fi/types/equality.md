@@ -1,71 +1,58 @@
-## Equality and Comparisons
+## Yhtäsuuruus ja vertailut
 
-JavaScript has two different ways of comparing the values of objects for equality. 
+JavaScript sisältää kaksi erilaista tapaa, joiden avulla olioiden arvoa voidaan verrata toisiinsa.
 
-### The Equality Operator
+### Yhtäsuuruusoperaattori
 
-The equality operator consists of two equal signs: `==`
+Yhtäsuuruusoperaattori koostuu kahdesta yhtäsuuruusmerkistä: `==`
 
-JavaScript features *weak typing*. This means that the equality operator 
-**coerces** types in order to compare them.
-    
-    ""           ==   "0"           // false
-    0            ==   ""            // true
-    0            ==   "0"           // true
-    false        ==   "false"       // false
-    false        ==   "0"           // true
-    false        ==   undefined     // false
-    false        ==   null          // false
-    null         ==   undefined     // true
-    " \t\r\n"    ==   0             // true
+JavaScript tyypittyy *heikosti*. Tämä tarkoittaa sitä, että yhtäsuuruusoperaattori **muuttaa** tyyppejä verratakseen niitä keskenään.
 
-The above table shows the results of the type coercion and it is the main reason 
-why the use of `==` is widely regarded as bad practice, it introduces hard to 
-track down bugs due to its complicated conversion rules.
+    ""           ==   "0"           // epätosi
+    0            ==   ""            // tosi
+    0            ==   "0"           // tosi
+    false        ==   "false"       // epätosi
+    false        ==   "0"           // tosi
+    false        ==   undefined     // epätosi
+    false        ==   null          // epätosi
+    null         ==   undefined     // tosi
+    " \t\r\n"    ==   0             // tosi
 
-Additionally there is also a performance impact when type coercion is in play;
-for example, a string has to be converted to a number before it can be compared
-to another number.
+Yllä oleva taulukko näyttää tyyppimuunnoksen tulokset. Tämä onkin eräs pääsyistä, minkä vuoksi `==`-operaattorin käyttöä pidetään huonona asiana. Sen käyttö johtaa hankalasti löydettäviin bugeihin monimutkaisista muunnossäännöistä johtuen.
 
-### The Strict Equality Operator
+Tämän lisäksi tyyppimuunnos vaikuttaa suorituskykyyn. Esimerkiksi merkkijono tulee muuttaa numeroksi ennen kuin sitä voidaan verrata toiseen numeroon.
 
-The strict equality operator consists of **three** equal signs: `===`
+### Tiukka yhtäsuuruusoperaattori
 
-It works exactly like the normal equality operator, except that strict equality 
-operator does **not** perform type coercion between its operands.
+Tiukka yhtäsuuruusoperaattori koostuu **kolmesta** yhtäsuuruusmerkistä: `===`
 
-    ""           ===   "0"           // false
-    0            ===   ""            // false
-    0            ===   "0"           // false
-    false        ===   "false"       // false
-    false        ===   "0"           // false
-    false        ===   undefined     // false
-    false        ===   null          // false
-    null         ===   undefined     // false
-    " \t\r\n"    ===   0             // false
+Se toimii aivan kuten normaali yhtäsuuruusoperaattori. Se **ei** tosin tee minkäänlaista tyyppimuunnosta ennen vertailua.
 
-The above results are a lot clearer and allow for early breakage of code. This
-hardens code to a certain degree and also gives performance improvements in case
-the operands are of different types.
+    ""           ===   "0"           // epätosi
+    0            ===   ""            // epätosi
+    0            ===   "0"           // epätosi
+    false        ===   "false"       // epätosi
+    false        ===   "0"           // epätosi
+    false        ===   undefined     // epätosi
+    false        ===   null          // epätosi
+    null         ===   undefined     // epätosi
+    " \t\r\n"    ===   0             // epätosi
 
-### Comparing Objects
+Yllä olevat tulokset ovat huomattavasti selkeämpiä ja mahdollistavat koodin menemisen rikki ajoissa. Tämä kovettaa koodia ja tarjoaa myös parempaa suorituskykyä siinä tapauksessa, että operandit ovat erityyppisiä.
 
-While both `==` and `===` are stated as **equality** operators, they behave 
-different when at least one of their operands happens to be an `Object`.
+### Olioiden vertailu
 
-    {} === {};                   // false
-    new String('foo') === 'foo'; // false
-    new Number(10) === 10;       // false
+Vaikka sekä `==` ja `===` ovat **yhtäsuuruusoperaattoreita**, ne toimivat eri tavoin, kun ainakin yksi operandeista sattuu olemaan `Object`.
+
+    {} === {};                   // epätosi
+    new String('foo') === 'foo'; // epätosi
+    new Number(10) === 10;       // epätosi
     var foo = {};
-    foo === foo;                 // true
+    foo === foo;                 // tosi
 
-Here both operators compare for **identity** and **not** equality; that is, they
-will compare for the same **instance** of the object, much like `is` in Python 
-and pointer comparison in C.
+Tässä tapauksessa molemmat operaattorit vertaavat olion **identiteettiä** **eikä** sen arvoa. Tämä tarkoittaa sitä, että vertailu tehdään olion **instanssin** tasolla aivan, kuten Pythonin `is`-operaattorin tai C:n osoitinvertailun tapauksessa.
 
-### In Conclusion
+### Yhteenveto
 
-It is highly recommended to only use the **strict equality** operator. In cases
-where types need to be coerced, it should be done [explicitly](#types.casting) 
-and not left to the language's complicated coercion rules.
+On erittäin suositeltavaa, että ainoastaan **tiukkaa yhtäsuuruusoperaattoria** käytetään. Mikäli tyyppejä tulee muuttaa, tämä kannattaa tehdä [selvästi](#types.casting) sen sijaan että luottaisi kielen monimutkaisiin muunnossääntöihin.
 

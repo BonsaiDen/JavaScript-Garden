@@ -1,17 +1,12 @@
 ## `hasOwnProperty`
 
-In order to check whether a object has a property defined on *itself* and **not** 
-somewhere on its [prototype chain](#object.prototype), it is necessary to use the 
-`hasOwnProperty` method which all objects inherit from `Object.prototype`.
+Jotta voimme tarkistaa onko olion ominaisuus määritelty siinä *itsessään*, tulee käyttää erityistä `Object.prototype`-oliosta periytyvää `hasOwnProperty`-metodia. Tällä tavoin vältämme [prototyyppiketjun](#object.prototype) sisältämät ominaisuudet.
 
-> **Note:** It is **not** enough to check whether a property is `undefined`. The
-> property might very well exist, but its value just happens to be set to 
-> `undefined`.
+> **Huomio:** **Ei** riitä tarkistaa vain että ominaisuuden arvo on `undefined`. Ominaisuus voi hyvinkin olla olemassa. Sen arvoksi on vain satuttu asettamaan `undefined`.
 
-`hasOwnProperty` is the only thing in JavaScript which deals with properties and 
-does **not** traverse the prototype chain.
+`hasOwnProperty` on ainut JavaScriptin sisältämä metodi, joka käsittelee ominaisuuksia **eikä** käy prototyyppiketjun sisältöä läpi.
 
-    // Poisoning Object.prototype
+    // Object.prototypen myrkyttäminen
     Object.prototype.bar = 1; 
     var foo = {goo: undefined};
     
@@ -21,33 +16,26 @@ does **not** traverse the prototype chain.
     foo.hasOwnProperty('bar'); // false
     foo.hasOwnProperty('goo'); // true
 
-Only `hasOwnProperty` will give the correct and expected result, this is 
-essential when iterating over the properties of any object. There is **no** other 
-way to exclude properties that are not defined on the object *itself*, but 
-somewhere on its prototype chain.  
+Ainoastaan `hasOwnProperty` palauttaa oikean ja odotetun tuloksen. Sen tietäminen on olennaista minkä tahansa olion ominaisuuksia iteroidessa. Tämä on **ainut** tapa löytää olion itsensä ominaisuudet prototyyppiketjusta riippumatta.
 
-### `hasOwnProperty` as a Property
+### `hasOwnProperty` ominaisuutena
 
-JavaScript does **not** protect the property name `hasOwnProperty`; thus, if the
-possibility exists that an object might have a property with this name, it is
-necessary to use an *external* `hasOwnProperty` in order to get correct results.
+JavaScript **ei** suojele `hasOwnProperty`-metodin nimeä. Täten on mahdollista, että olio voi sisältää samannimisen ominaisuuden. Jotta voimme saada oikeita tuloksia, tulee sen sijaan käyttää *ulkoista* `hasOwnProperty`-metodia.
 
     var foo = {
         hasOwnProperty: function() {
             return false;
         },
-        bar: 'Here be dragons'
+        bar: 'Olkoon vaikka lohikäärmeitä'
     };
 
-    foo.hasOwnProperty('bar'); // always returns false
+    foo.hasOwnProperty('bar'); // palauttaa aina false
 
-    // Use another Object's hasOwnProperty and call it with 'this' set to foo
+    // Käytä toisen olion hasOwnProperty-metodia ja kutsu sitä asettamalla
+    // 'this' foohon
     ({}).hasOwnProperty.call(foo, 'bar'); // true
 
-### In Conclusion
+### Yhteenveto
 
-When checking for the existence of a property on a object, `hasOwnProperty` is 
-the **only** method of doing so. It is also recommended to make `hasOwnProperty`
-part of **every** [`for in` loop](#object.forinloop), this will avoid errors from 
-extended native [prototypes](#object.prototype).
+Mikäli pitää selvittää kuuluuko ominaisuus olioon vai ei, **ainoastaan** `hasOwnProperty` voi kertoa sen. Tämän lisäksi on suositeltavaa käyttää `hasOwnProperty`-metodia osana **jokaista** [`for in`-luuppia](#object.forinloop). Tällä tavoin voidaan välttää natiivien [prototyyppien](#object.prototype) laajentamiseen liittyviä ongelmia.
 
