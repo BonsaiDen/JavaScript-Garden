@@ -1,11 +1,8 @@
-## Closures and References
+## Sulkeumat ja viitteet
 
-One of JavaScript's most powerful features is the availability of *closures*,
-this means that scopes **always** keep access to the outer scope they were
-defined in. Since the only scoping that JavaScript has is 
-[function scope](#function.scopes), all functions, by default, act as closures.
+*Sulkeumat* ovat eräs JavaScriptin voimakkaimmista ominaisuuksista. Näkyvyysalueilla on siis **aina** pääsy ulompaan näkyvyysalueeseensa. Koska JavaScriptissä ainut tapa määritellä näkyvyyttä pohjautuu [funktionäkyvyyteen](#function.scopes), kaikki funktiot käyttäytyvät oletuksena sulkeumina.
 
-### Emulating private variables
+### Paikallisten muuttujien emulointi
 
     function Counter(start) {
         var count = start;
@@ -24,30 +21,22 @@ defined in. Since the only scoping that JavaScript has is
     foo.increment();
     foo.get(); // 5
 
-Here, `Counter` returns **two** closures. The function `increment` as well as 
-the function `get`. Both of these functions keep a **reference** to the scope of 
-`Counter` and, therefore, always keep access to the `count` variable that was 
-defined in that very scope.
+Tässä tapauksessa `Counter` palauttaa **kaksi** sulkeumaa. Funktion `increment` lisäksi palautetaan myös funktio `get`. Kumpikin funktio **viittaa** `Counter`-näkyvyysalueeseen ja pääsee siten käsiksi `count`-muuttujan arvoon.
 
-### Why Private Variables Work
+### Miksi paikalliset muuttujat toimivat
 
-Since it is not possible to reference or assign scopes in JavaScript, there is 
-**no** way of accessing the variable `count` from the outside. The only way to 
-interact with it is via the two closures.
+JavaScriptissä ei voida viitata näkyvyysalueisiin. Tästä seuraa **ettei** `count`-muuttujan arvoon voida päästä käsiksi funktion ulkopuolelta. Ainoastaan nämä kaksi sulkeumaa mahdollistavat sen.
 
     var foo = new Counter(4);
     foo.hack = function() {
         count = 1337;
     };
 
-The above code will **not** change the variable `count` in the scope of `Counter`, 
-since `foo.hack` was not defined in **that** scope. It will instead create - or 
-override - the *global* variable `count`.
+Yllä oleva koodi **ei** muuta muuttujan `count` arvoa `Counter`-näkyvyysalueessa. Tämä johtuu siitä, että `foo.hack`-ominaisuutta ei ole määritelty **kyseisessä** näkyvyysalueessa. Sen sijaan se luo - tai ylikirjoittaa - *globaalin* muuttujan `count`.
 
-### Closures Inside Loops
+### Sulkeumat luupeissa
 
-One often made mistake is to use closures inside of loops, as if they were
-copying the value of the loops index variable.
+Usein sulkeumia käytetään väärin luuppien sisällä indeksimuuttujien arvon kopiointiin.
 
     for(var i = 0; i < 10; i++) {
         setTimeout(function() {
@@ -55,20 +44,15 @@ copying the value of the loops index variable.
         }, 1000);
     }
 
-The above will **not** output the numbers `0` through `9`, but will simply print
-the number `10` ten times.
+Yllä oleva koodi **ei** tulosta numeroita `nollasta` `yhdeksään`. Sen sijaan se tulostaa numeron `10` kymmenen kertaa.
 
-The *anonymous* function keeps a **reference** to `i` and at the time 
-`console.log` gets called, the `for loop` has already finished and the value of 
-`i` as been set to `10`.
+*Nimetön* funktio saa **viitteen** `i`-muuttujaan `console.log`-kutsuhetkellä. Tällöin luuppi on jo suoritettu ja `i`:n arvoksi on asetettu `10`.
 
-In order to get the desired behavior, it is necessary to create a **copy** of 
-the value of `i`.
+Päästäksemme haluttuun lopputulokseen on tarpeen luoda **kopio** `i`:n arvosta.
 
-### Avoiding the Reference Problem
+### Viiteongelman välttäminen
 
-In order to copy the value of the loop's index variable, it is best to use an 
-[anonymous wrapper](#function.scopes).
+Voimme välttää ongelman käyttämällä [nimetöntä käärettä](#function.scopes).
 
     for(var i = 0; i < 10; i++) {
         (function(e) {
@@ -78,15 +62,11 @@ In order to copy the value of the loop's index variable, it is best to use an
         })(i);
     }
 
-The anonymous outer function gets called immediately with `i` as its first 
-argument and will receive a copy of the **value** of `i` as its parameter `e`.
+Nimetöntä ulkofunktiota kutsutaan heti käyttäen `i`:tä se ensimmäisenä argumenttina. Tällöin se saa kopion `i`:n **arvosta** parametrina `e`.
 
-The anonymous function that gets passed to `setTimeout` now has a reference to 
-`e`, whose value does **not** get changed by the loop.
+Nimetön funktio, jolle annetaan `setTimeout` sisältää nyt viitteen `e`:hen, jonka arvoa luuppi **ei** muuta.
 
-There is another possible way of achieving this; that is to return a function 
-from the anonymous wrapper, that will then have the same behavior as the code 
-above.
+Samaan lopputulokseen voidaan päästä myös palauttamalla funktio nimettömästä kääreestä. Tällöin se käyttäytyy samoin kuten yllä.
 
     for(var i = 0; i < 10; i++) {
         setTimeout((function(e) {

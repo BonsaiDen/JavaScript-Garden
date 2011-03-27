@@ -1,48 +1,38 @@
-## Function Declarations and Expressions
+## Funktiomääreet ja lausekkeet
 
-Functions in JavaScript are first class objects. That means they can be 
-passed around like any other value. One common use of this feature is to pass
-an *anonymous function* as a callback to another, possibly asynchronous function.
+JavaScriptissä funktiot ovat ensimmäisen luokan olioita. Tämä tarkoittaa sitä, että niitä voidaan välittää kuten muitakin arvoja. Usein tätä käytetään takaisinkutsuissa käyttämällä *nimettömiä, mahdollisesti asynkronisia funktioita*. 
 
-### The `function` Declaration
+### `function`-määre
 
     function foo() {}
 
-The above function gets [hoisted](#function.scopes) before the execution of the 
-program starts; thus, it is available *everywhere* in the scope it was *defined* 
-in, even if called before the actual definition in the source.
+Yllä oleva funktio [hilataan](#function.scopes) ennen ohjelman suorituksen alkua. Se näkyy *kaikkialle* näkyvyysalueessaan, jossa se on *määritelty*. Tämä on totta jopa silloin, jos sitä kutsutaan ennen määrittelyään.
 
-    foo(); // Works because foo was created before this code runs
+    foo(); // Toimii, koska foo on luotu ennen kuin koodi suoritetaan
     function foo() {}
 
-### The `function` Expression
+### `function`-lauseke
 
     var foo = function() {};
 
-This example assigns the unnamed and *anonymous* function to the variable `foo`. 
+Tämä esimerkki asettaa nimeämättömän ja *nimettömän* funktion muuttujan `foo` arvoksi.
 
     foo; // 'undefined'
-    foo(); // this raises a TypeError
+    foo(); // tämä palauttaa TypeError-virheen
     var foo = function() {};
 
-Due to the fact that `var` is a declaration, that hoists the variable name `foo` 
-before the actual execution of the code starts, `foo` is already defined when 
-the script gets executed.
+`var` on määre. Tästä johtuen se hilaa muuttujanimen `foo` ennen kuin itse koodia ryhdytään suorittamaan.
 
-But since assignments only happen at runtime, the value of `foo` will default
-to [undefined](#core.undefined) before the corresponding code is executed.
+Sijoituslauseet suoritetaan *vasta* kun niihin saavutaan. Tästä johtuen `foo` saa arvokseen [undefined](#core.undefined) ennen kuin varsinaista sijoitusta päästään suorittamaan.
 
-### Named Function Expression
+### Nimetty funktiolauseke
 
-Another special case is the assignment of named functions.
+Nimettyjen funktioiden sijoitus tarjoaa toisen erikoistapauksen.
 
     var foo = function bar() {
-        bar(); // Works
+        bar(); // Toimii
     }
     bar(); // ReferenceError
 
-Here `bar` is not available in the outer scope, since the function only gets
-assigned to `foo`; however, inside of `bar` it is available. This is due to 
-how [name resolution](#function.scopes) in JavaScript works, the name of the 
-function is *always* made available in the local scope of the function itself.
+Tässä tapauksessa `bar` ei ole saatavilla ulommalla näkyvyysalueessa. Tämä johtuu siitä, että se on sidottu `foo`:n sisälle. Tämä johtuu siitä, kuinka näkyvyysalueet ja niihin kuuluvat jäsenet [tulkitaan](#function.scopes). Funktion nimi on *aina* saatavilla sen paikallisessa näkyvyysalueessa itsessään.
 

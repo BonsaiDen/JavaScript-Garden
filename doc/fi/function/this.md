@@ -1,101 +1,82 @@
-## How `this` Works
+## Kuinka `this` toimii
 
-JavaScript has a different concept of what the special name `this` refers to 
-than most other programming languages do. There are exactly **five** different 
-ways in which the value of `this` can be bound in the language.
+JavaScripting `this` toimii eri tavoin kuin useimmissa kielissä. Tarkalleen ottaen on olemassa **viisi** eri tapaa, joiden mukaan sen arvo voi määrittyä.
 
-### The Global Scope
+### Globaali näkyvyysalue
 
     this;
 
-When using `this` in global scope, it will simply refer to the *global* object.
+Kun `this`-muuttujaa käytetään globaalissa näkyvyysalueessa, viittaa se *globaaliin* olioon.
 
-
-### Calling a Function
+### Funktiokutsu
 
     foo();
 
-Here `this` will again refer to the *global* object.
+Tässä tapauksessa `this` viittaa jälleen *globaaliin* olioon.
 
-> **ES5 Note:** In strict mode, the global case **no longer** exists.
-> `this` will instead have the value of `undefined` in that case.
+> **ES5 Huomio:** Globaalia tapausta ei ole **enää** olemassa, kun käytetään tiukkaa moodia. Sen sijaan `this` saa arvon `undefined`.
 
-### Calling a Method
+### Metodikutsu
 
     test.foo(); 
 
-In this example `this` will refer to `test`.
+Tässä esimerkissä `this` viittaa `test`-olioon.
 
-### Calling a Constructor
+### Konstruktorikutsu
 
     new foo(); 
 
-A function call that is preceded by the `new` keyword acts as
-a [constructor](#function.constructors). Inside the function `this` will refer 
-to a *newly created* `Object`.
+Funktiokutsu, jota edeltää `new`-avainsana toimii [konstruktorina](#function.constructors). Funktion sisällä `this` viittaa *juuri luotuun* `Object`-olioon.
 
-### Explicit Setting of `this`
+### `this`-arvon asettaminen
 
     function foo(a, b, c) {}
                           
     var bar = {};
-    foo.apply(bar, [1, 2, 3]); // array will expand to the below
-    foo.call(bar, 1, 2, 3); // results in a = 1, b = 2, c = 3
+    foo.apply(bar, [1, 2, 3]); // taulukko laajenee alla olevaksi
+    foo.call(bar, 1, 2, 3); // tuloksena a = 1, b = 2, c = 3
 
-When using the `call` or `apply` methods of `Function.prototype`, the value of
-`this` inside the called function gets **explicitly set** to the first argument 
-of the corresponding function call.
+`Function.prototype`-olion `call`- ja `apply`-metodeita käytettäessä `this`-ominaisuuden arvo määrittyy ensimmäisen annetun argumentin perusteella.
 
-As a result, the above example the *method case* does **not** apply, and `this` 
-inside of `foo` will be set to `bar`.
+Seurauksena `foo`-funktion sisältämä `this` asettuu `bar`-olioon toisin kuin perustapauksessa.
 
-> **Note:** `this` **cannot** be used to refer to the object inside of an `Object`
-> literal. So `var obj = {me: this}` will **not** result in `me` referring to
-> `obj`, since `this` only gets bound by one of the five listed cases.
+> **Huomio:** `this` **ei voi** viitata `Object`-literaalin sisältämään olioon. Tästä seuraa, että `var obj = {me: this}` tapauksessa `me` **ei** viittaa `obj`-olioon. `this`-arvo määrittyy ainoastaan listatuissa viidessä tapauksessa.
 
-### Common Pitfalls
+### Yleisiä ongelmakohtia
 
-While most of these cases make sense, the first one is to be considered another
-mis-design of the language, as it **never** has any practical use.
+Useimmat näistä tapauksista ovat järkeviä. Ensimmäistä niistä tosin voidaan pitää suunnitteluvirheenä, jolle ei ole mitään järkevää käyttöä **ikinä**.
 
     Foo.method = function() {
         function test() {
-            // this is set to the global object
+            // this asettuu globaaliin olioon
         }
         test();
     }
 
-A common misconception is that `this` inside of `test` refers to `Foo`, while in
-fact it **does not**.
+Yleisesti luullaan, että test-funktion sisältämä `this` viittaa tässä tapauksessa `Foo`-olioon. Todellisuudessa se **ei** kuitenkaan tee näin.
 
-In order to gain access to `Foo` from within `test` it is necessary to create a 
-local variable inside of `method` which refers to `Foo`.
+Jotta `Foo`-olioon voidaan päästä käsiksi `test`-funktion sisällä, tulee metodin sisälle luoda paikallinen muuttuja, joka viittaa `Foo`-olioon.
 
     Foo.method = function() {
         var that = this;
         function test() {
-            // Use that instead of this here
+            // Käytä thatia thissin sijasta
         }
         test();
     }
 
-`that` is just a normal name, but it is commonly used for the reference to an 
-outer `this`. In combination with [closures](#function.closures), it can also 
-be used to pass `this` values around.
+`that` on normaali nimi, jota käytetään yleisesti viittaamaan ulompaan `this`-muuttujaan. [Sulkeumia](#function.closures) käytettäessä `this`-arvoa voidaan myös välittää edelleen.
 
-### Assigning Methods
+### Metodien sijoittaminen
 
-Another thing that does **not** work in JavaScript is function aliasing, that is,
-**assigning** a method to a variable.
+JavaScriptissä funktioita **ei** voida nimetä uudelleen eli siis sijoittaa **edelleen**.
 
     var test = someObject.methodTest;
     test();
 
-Due to the first case `test` now acts like like a plain function call; therefore,
-`this` inside it will no longer refer to `someObject`.
+Ensimmäisestä tapauksesta johtuen `test` toimii kuten normaali funktiokutsu; tällöin sen sisältämä `this` ei enää osoita `someObject`-olioon.
 
-While the late binding of `this` might seem like a bad idea at first, it is in 
-fact what makes [prototypal inheritance](#object.prototype) work. 
+Vaikka `this`-arvon myöhäinen sidonta saattaa vaikuttaa huonolta idealta, se mahdollistaa [prototyyppeihin pohjautuvan perinnän](#object.prototype).
 
     function Foo() {}
     Foo.prototype.method = function() {};
@@ -105,7 +86,6 @@ fact what makes [prototypal inheritance](#object.prototype) work.
 
     new Bar().method();
 
-When `method` gets called on a instance of `Bar`, `this` will now refer to that
-very instance. 
+Kun `method`-metodia kutsutaan `Bar`-oliossa, sen `this` viittaa juurikin tuohon olioon.
 
 

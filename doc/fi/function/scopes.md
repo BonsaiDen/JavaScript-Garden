@@ -1,88 +1,69 @@
-## Scopes and Namespaces
+## Näkyvyysalueet ja nimiavaruudet
 
-Although JavaScript deals fine with the syntax of two matching curly
-braces for blocks, it does **not** support block scope; hence, all that is left 
-is in the language is *function scope*.
+Vaikka JavaScript-käyttääkin aaltosulkeita blokkien ilmaisuun, se **ei** tue blokkinäkyvyyttä. Tämä tarkoittaa sitä, että kieli tukee ainoastaan *funktionäkyvyyttä.
 
-    function test() { // a scope
-        for(var i = 0; i < 10; i++) { // not a scope
+    function test() { // näkyvyysalue
+        for(var i = 0; i < 10; i++) { // tämä ei ole näkyvyysalue
             // count
         }
         console.log(i); // 10
     }
 
-> **Note:** When not used in an assignment, return statement or as a function 
-> argument, the `{...}` notation will get interpreted as a block statement and 
-> **not** as an object literal. This, in conjunction with 
-> [automatic insertion of semicolons](#core.semicolon), can lead to subtle errors.
+> **Huomio:** Mikäli `return`-lausetta ei käytetä sijoitukseen, `{...}`-notaatio tulkitaan blokkina **eikä** olioliteraalina. Tästä ja [puolipisteiden automaattisesta lisäämisestä](#core.semicolon] seuraa yllättäviä virheitä.
 
-There are also no distinct namespaces in JavaScript, that means that everything 
-gets defined in one *globally shared* namespace.
+JavaScript ei myöskään sisällä erityistä tukea nimiavaruuksille. Tämä tarkoittaa sitä, että kaikki määritellään oletuksena *globaalissa* nimiavaruudessa.
 
-Each time a variable is referenced, JavaScript will traverse upwards through all 
-the scopes until it finds it. In the case that it reaches the global scope and 
-still has not found the requested name, it will raise a `ReferenceError`.
+Joka kerta kun muuttujaan viitataan, JavaScript käy kaikki näkyvyysalueet läpi alhaalta lähtien. Mikäli se saavuttaa globaalin näkyvyystalueen, eikä löydä haettua nimeä, se palauttaa `ReferenceError`-virheen.
 
-### The Bane of Global Variables
+### Riesa nimeltä globaalit muuttujat
 
-    // script A
+    // skripti A
     foo = '42';
 
-    // script B
+    // skripti B
     var foo = '42'
 
-The above two scripts do **not** have the same effect. Script A defines a 
-variable called `foo` in the *global* scope and script B defines a `foo` in the
-*current* scope.
+Yllä olevat skriptit käyttäytyvät **eri** tavoin. Skripti A määrittelee muuttujan nimeltä `foo` *globaalissa* näkyvyysalueessa. Skripti B määrittelee `foo`-muuttujan *vallitsevassa* näkyvyysalueessa.
 
-Again, that is **not** at all the *same effect*, not using `var` can have major 
-implications.
+Tämä **ei** ole **sama asia**. `var`-avainsanan käyttämättä jättäminen voi johtaa vakaviin seurauksiin.
 
-    // global scope
+    // globaali näkyvyysalue
     var foo = 42;
     function test() {
-        // local scope
+        // paikallinen näkyvyysalue
         foo = 21;
     }
     test();
     foo; // 21
 
-Leaving out the `var` statement inside the function `test` will override the 
-value of `foo`. While this might not seem like a big deal at first, having 
-thousands of lines of JavaScript and not using `var` will introduce horrible and 
-hard to track down bugs.
-    
-    // global scope
-    var items = [/* some list */];
+`var`-avainsanan pois jättäminen johtaa siihen, että funktio `test` ylikirjoittaa `foo`:n arvon. Vaikka tämä ei välttämättä vaikutakaan suurelta asialta, tuhansien rivien tapauksessa `var`-avainsanan käyttämättömyys voi johtaa vaikeasti löydettäviin bugeihin.
+
+    // globaali näkyvyysalue
+    var items = [/* joku lista */];
     for(var i = 0; i < 10; i++) {
         subLoop();
     }
 
     function subLoop() {
-        // scope of subLoop
-        for(i = 0; i < 10; i++) { // missing var statement
-            // do amazing stuff!
+        // aliluupin näkyvyysalue
+        for(i = 0; i < 10; i++) { // hups, var jäi pois
+            // jotain makeaa ja hienoa
         }
     }
-    
-The outer loop will terminate after the first call to `subLoop`,  since `subLoop`
-overwrites the global value of `i`. Using a `var` for the second `for` loop would
-have easily avoided this error. The `var` statement should **never** be left out 
-unless the *desired effect* is to affect the outer scope.
 
-### Local Variables
+Tässä tapauksessa ulomman luupin suoritus lopetetaan ensimmäisen `subLoop`-kutsun jälkeen. Tämä johtuu siitä, että se ylikirjoittaa `i`:n globaalin arvon. Mikäli jälkimmäisessä luupissa olisi käytetty `var`-avainsanaa, olisi ikävyyksiltä vältytty. `var`-avainsanaa ei siis tule **ikinä** jättää pois ellei siihen ole *hyvää syytä*.
 
-The only source for local variables in JavaScript are
-[function](#function.general) parameters and variables that were declared via the 
-`var` statement.
+### Paikalliset muuttujat
 
-    // global scope
+Ainoastaan [funktion](#function.general) parametrit ja muuttujat, jotka sisältävät `var`-määreen ovat paikallisia.
+
+    // globaali näkyvyysalue
     var foo = 1;
     var bar = 2;
     var i = 2;
 
     function test(i) {
-        // local scope of the function test
+        // paikallinen näkyvyysalue
         i = 5;
 
         var foo = 3;
@@ -90,13 +71,11 @@ The only source for local variables in JavaScript are
     }
     test(10);
 
-While `foo` and `i` are local variables inside the scope of the function `test`,
-the assignment of `bar` will override the global variable with the same name.
+`foo` ja `i` ovatkin `test`-funktiolle paikallisia. `bar` sijoitus muuttaa globaalin muuttujan arvoa.
 
-### Hoisting
+### Hilaaminen
 
-JavaScript **hoists** declarations. This means that both `var` statements and
-`function` declarations will be moved to the top of their enclosing scope.
+JavaScript **hilaa** määreitä. Tämä tarkoittaa sitä, että sekä `var`-lausekkeet että `function`-määreet siirretään ne sisältävän näkyvyysalueen huipulle.
 
     bar();
     var bar = function() {};
@@ -115,16 +94,14 @@ JavaScript **hoists** declarations. This means that both `var` statements and
         }
     }
 
-The above code gets transformed before any execution is started. JavaScript moves
-the `var` statements as well as the `function` declarations to the top of the 
-nearest surrounding scope.
+Yllä olevaa koodia muutetaan ennen suoritusta. JavaScript siirtää `var`-lausekkeet ja `function`-määreet lähimmän näkyvyysalueen huipulle.
 
-    // var statements got moved here
-    var bar, someValue; // default to 'undefined'
+    // var-lausekkeet siirrettiin tänne
+    var bar, someValue; // oletuksena 'undefined'
 
-    // the function declartion got moved up too
+    // myös funktio-määre siirtyi tänne
     function test(data) {
-        var goo, i, e; // missing block scope moves these here
+        var goo, i, e; // ei blokkinäkyvyyttä, siirretään siis tänne
         if (false) {
             goo = 1;
 
@@ -136,96 +113,78 @@ nearest surrounding scope.
         }
     }
 
-    bar(); // fails with a TypeError since bar is still 'undefined'
-    someValue = 42; // assignments are not affected by hoisting
+    bar(); // TypeError-virhe, baria ei ole vielä määritelty
+    someValue = 42; // hilaus ei koske sijoituksia
     bar = function() {};
 
     test();
 
-Missing block scoping will not only move `var` statements out of loops and
-their bodies, it will also make the results of certain `if` constructs 
-non-intuitive.
+Sen lisäksi, että puuttuva blokkinäkyvyys siirtää `var`-lausekkeet luuppien ulkopuolelle, tekee se myös eräistä `if`-rakenteista vaikeita käsittää.
 
-In the original code the `if` statement seemed to modify the *global 
-variable* `goo`, while actually it modifies the *local variable* - after hoisting 
-has been applied.
+Alkuperäisessä koodissa `if`-lause näytti muokkaavan *globaalia muuttujaa* `goo`. Todellisuudessa se muokkaa *paikallista muuttujaa* varsinaisen hilauksen jälkeen.
 
-Without the knowledge about *hoisting*, below code might seem to raise a 
-`ReferenceError`.
+Seuraava koodi saattaisi ensi näkemältä aiheuttaa `ReferenceError`-virheen. Näin ei kuitenkaan tapahdu *hilauksen* ansiosta.
 
-    // check whether SomeImportantThing has been initiliazed
+    // onko SomeImportantThing alustettu
     if (!SomeImportantThing) {
         var SomeImportantThing = {};
     }
 
-But of course, the above works due to the fact that the `var` statement is being 
-moved to the top of the *global scope*.
+Tämä toimii, koska `var`-lauseke on hilattu *globaalin näkyvyysalueen* huipulle.
 
     var SomeImportantThing;
 
-    // other code might initiliaze SomeImportantThing here, or not
+    // mahdollista alustuskoodia
 
-    // make sure it's there
+    // onhan se alustettu
     if (!SomeImportantThing) {
         SomeImportantThing = {};
     }
 
-### Name Resolution Order
+### Nimienerottelujärjestys
 
-All scopes in JavaScript, including the *global scope*, have the special name 
-[`this`](#function.this) defined in them, which refers to the *current object*. 
+Kaikki JavaScriptin näkyvyysalueet, *globaalin näkyvyysalue* mukaanlukien, sisältävät erikoismuuttujan [`this`](#function.this). `this` viittaa *tämänhetkiseen olioon*.
 
-Function scopes also have the name [`arguments`](#function.arguments) defined in
-them which contains the arguments that were passed to a function.
+Funktioiden näkyvyysalueet sisältävät myös [`arguments`](#function.arguments)-olion. Se sisältää funktiolle annetut argumentit.
 
-For example, when trying to access a variable named `foo` inside the scope of a 
-function, JavaScript will lookup the name in the following order:
+Mikäli näkyvyysalueen sisällä pyritään pääsemään käsiksi esimerkiksi `foo`:n arvoon JavaScript käyttäytyy seuraavasti:
 
- 1. In case there is a `var foo` statement in the current scope use that.
- 2. If one of the function parameters is named `foo` use that.
- 3. If the function itself is called `foo` use that.
- 4. Go to the next outer scope and start with **#1** again.
+ 1. Mikäli `var foo`-lauseke löytyy tämänhetkisestä näkyvyysalueesta, käytä sen arvoa.
+ 2. Mikäli eräs funktion parametreista on `foo`, käytä sitä.
+ 3. Mikäli funktion nimi itsessään on `foo`, käytä sitä.
+ 4. Siirry ulompaan näkyvyysalueeseen ja suorita **#1** uudelleen.
 
-> **Note:** Having a parameter called `arguments` will **prevent** the creation 
-> of the default `arguments` object.
+> **Huomio:** Mikäli funktio sisältää `arguments`-nimisen parametrin, estää se `arguments`-olion luonnin kokonaan.
 
-### Namespaces
+### Nimiavaruudet
 
-A common problem of having only one global namespace is the likeliness of running
-into problems where variable names clash. In JavaScript, this problem can
-easily be avoided with the help of *anonymous wrappers*.
+Globaalin nimiavaruuden ongelmana voidaan pitää nimitörmäyksiä. JavaScriptissä tätä ongelmaa voidaan kiertää käyttämällä *nimettömiä kääreitä*.
 
     (function() {
-        // a self contained "namespace"
+        // "nimiavaruus" itsessään
         
         window.foo = function() {
-            // an exposed closure
+            // paljastettu sulkeuma
         };
 
-    })(); // execute the function immediately
+    })(); // suorita funktio heti
 
+Nimettömiä funktioita pidetään [lauseina](#function.general). Jotta niitä voidaan kutsua, tulee ne suorittaa ensin.
 
-Unnamed functions are considered [expressions](#function.general); so in order to
-being callable, they must first be evaluated.
-
-    ( // evaluate the function inside the paranthesis
+    ( // suorita sulkeiden sisältämä funktio
     function() {}
-    ) // and return the function object
-    () // call the result of the evaluation
+    ) // ja palauta funktio-olio
+    () // kutsu suorituksen tulosta
 
-There are other ways for evaluating and calling the function expression; which, 
-while different in syntax, do behave the exact same way.
+Samaan lopputulokseen voidaan päästä myös hieman eri syntaksia käyttäen.
 
-    // Two other ways
+    // Kaksi muuta tapaa
     +function(){}();
     (function(){}());
 
-### In Conclusion
+### Yhteenveto
 
-It is recommended to always use an *anonymous wrapper* for encapsulating code in 
-its own namespace. This does not only protect code against name clashes, it 
-also allows for better modularization of programs.
+On suositeltavaa käyttää *nimettömiä kääreitä* nimiavaruuksina. Sen lisäksi, että se suojelee koodia nimitörmäyksiltä, se tarjoaa keinon jaotella ohjelma paremmin.
 
-Additionally, the use of global variables is considered **bad practice**. **Any**
-use of them indicates badly written code that is prone to errors and hard to maintain.
+Globaalien muuttujien käyttöä pidetään yleisesti **huonona tapana**. **Mikä tahansa** niiden käyttö viittaa huonosti kirjoitettuun, virheille alttiiseen ja hankalasti ylläpidettävään koodiin.
 

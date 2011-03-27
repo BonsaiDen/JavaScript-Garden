@@ -1,6 +1,6 @@
 {
-    "title": "JavaScript Puutarha",
-    "langTitle": "JavaScript Puutarha suomeksi",
+    "title": "JavaScript-puutarha",
+    "langTitle": "JavaScript-puutarha suomeksi",
     "description": "Opas JavaScriptin outouksiin ja vikoihin ",
     "sections": [
         {
@@ -9,6 +9,7 @@
             "articles": [
                 "authors",
                 "contributors",
+                "translators",
                 "license"
             ]
         },
