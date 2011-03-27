@@ -1,5 +1,5 @@
 !!! 5
-html(lang='en')
+html(lang=language)
   head
     title #{title}
     meta(charset='utf-8')
@@ -26,10 +26,10 @@ html(lang='en')
           - each lang in languages
             li(class=lang.id === language ? 'active' : '')
               - if (lang.id === baseLanguage)
-                a(href= '/JavaScript-Garden/', title=lang.title) #{lang.id}
+                a(href= '/' + pathPrefix, title=lang.title) #{lang.id}
 
               - else
-                a(href= '/JavaScript-Garden/' + lang.id, title=lang.title) #{lang.id}
+                a(href= '/' + pathPrefix + lang.id, title=lang.title) #{lang.id}
         a(id='top', href='#intro', title='Back to top') #top
         a(id='hide_menu', class='tablet') Hide Menu
 
@@ -78,12 +78,15 @@ html(lang='en')
     footer
       p Copyright &copy; 2011. Built with
         | 
-        a(href='http://nodejs.org/') Node.js
+        a(href='http://nodejs.org/') Node.js 
         | using a
-        a(href='https://github.com/visionmedia/jade/') jade
-        | template.
+        a(href='https://github.com/visionmedia/jade/') jade 
+        | template. 
+        | Hosted by 
+        a(href='http://cramerdev.com') Cramer Development
+        .
 
-    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js')
     
     - if (language === baseLanguage)
       script(src='javascript/prettify.js')

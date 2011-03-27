@@ -1,8 +1,11 @@
 /site/index.html
 /build
 /html
+/log
+/node_modules
 /site/de
 /site/ru
 /site/en
+/site/zh
 *.md~
 *.src.md

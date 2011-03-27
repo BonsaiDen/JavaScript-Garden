@@ -23,7 +23,7 @@ Each time a variable is referenced, JavaScript will traverse upwards through all
 the scopes until it finds it. In the case that it reaches the global scope and 
 still has not found the requested name, it will raise a `ReferenceError`.
 
-### The bane of global variables
+### The Bane of Global Variables
 
     // script A
     foo = '42';
@@ -70,7 +70,7 @@ overwrites the global value of `i`. Using a `var` for the second `for` loop woul
 have easily avoided this error. The `var` statement should **never** be left out 
 unless the *desired effect* is to affect the outer scope.
 
-### Local variables
+### Local Variables
 
 The only source for local variables in JavaScript are
 [function](#function.general) parameters and variables that were declared via the 
@@ -170,7 +170,7 @@ moved to the top of the *global scope*.
         SomeImportantThing = {};
     }
 
-### Name resolution order
+### Name Resolution Order
 
 All scopes in JavaScript, including the *global scope*, have the special name 
 [`this`](#function.this) defined in them, which refers to the *current object*. 
@@ -220,7 +220,7 @@ while different in syntax, do behave the exact same way.
     +function(){}();
     (function(){}());
 
-### In conclusion
+### In Conclusion
 
 It is recommended to always use an *anonymous wrapper* for encapsulating code in 
 its own namespace. This does not only protect code against name clashes, it 
