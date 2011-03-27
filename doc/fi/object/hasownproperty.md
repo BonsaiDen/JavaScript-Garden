@@ -11,10 +11,10 @@ Jotta voimme tarkistaa onko olion ominaisuus määritelty siinä *itsessään*, 
     var foo = {goo: undefined};
     
     foo.bar; // 1
-    'bar' in foo; // true
+    'bar' in foo; // tosi
 
-    foo.hasOwnProperty('bar'); // false
-    foo.hasOwnProperty('goo'); // true
+    foo.hasOwnProperty('bar'); // epätosi
+    foo.hasOwnProperty('goo'); // tosi
 
 Ainoastaan `hasOwnProperty` palauttaa oikean ja odotetun tuloksen. Sen tietäminen on olennaista minkä tahansa olion ominaisuuksia iteroidessa. Tämä on **ainut** tapa löytää olion itsensä ominaisuudet prototyyppiketjusta riippumatta.
 
@@ -29,11 +29,11 @@ JavaScript **ei** suojele `hasOwnProperty`-metodin nimeä. Täten on mahdollista
         bar: 'Olkoon vaikka lohikäärmeitä'
     };
 
-    foo.hasOwnProperty('bar'); // palauttaa aina false
+    foo.hasOwnProperty('bar'); // palauttaa aina epätoden
 
     // Käytä toisen olion hasOwnProperty-metodia ja kutsu sitä asettamalla
     // 'this' foohon
-    ({}).hasOwnProperty.call(foo, 'bar'); // true
+    ({}).hasOwnProperty.call(foo, 'bar'); // tosi
 
 ### Yhteenveto
 

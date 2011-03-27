@@ -35,7 +35,7 @@ Ensimmäinen suuri ero liittyy siihen, kuinka perintä toimii. JavaScriptissä s
             Foo.prototype
                 { method: ... }
                 Object.prototype
-                    { toString: ... /* etc. */ }
+                    { toString: ... /* jne. */ }
 
 Yllä olio `test` perii sekä `Bar.prototype`- että `Foo.prototype`-olion. Tällöin se pääsee käsiksi `Foo`:ssa määriteltyy funktioon `method`. Se pääsee käsiksi myös ominaisuuteen `value`, jonka luotu `Foo`-olio sisältää prototyypissään. On tärkeää huomata, että `new Bar()` **ei** luo uutta `Foo`-oliota vaan käyttää uudelleen sen prototyyppiin asetettua. Tässä tapauksessa kaikki `Bar`-oliot jakavat siis **saman** `value`-ominaisuuden.
 
