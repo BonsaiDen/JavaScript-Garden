@@ -2,7 +2,12 @@
 var build = require('./build').build,
     qs = require('querystring'),
     port = 9900,
-    repoURL = "https://github.com/cramerdev/JavaScript-Garden";
+    repoURL = "https://github.com/cramerdev/JavaScript-Garden",
+    options = { dir: 'doc', pathPrefix: '', template: 'garden.jade', out: 'site'};
+
+// FIXME: this is done twice, once when the module loads, and once here
+//        (with the correct options)
+build(options);
 
 require('http').createServer(function (request, response) {
     var payload = '';
@@ -16,7 +21,7 @@ require('http').createServer(function (request, response) {
                 console.log(payload);
                 payload = JSON.parse(qs.parse(payload).payload);
                 if (payload.repository.url === repoURL) {
-                    build();
+                    build(options);
                 } else {
                     response.writeHead(400); // Bad Request
                 }
