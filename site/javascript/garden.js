@@ -22,7 +22,7 @@ Sections.prototype = {
             return {
                 id: this.id.replace('.intro', ''),
                 offset: $(this).offset().top - 20,
-                title: $(this).find(':header:first').text()
+                title: $(this).find(':header:first').html()
             };
 
         }).get();
@@ -121,7 +121,7 @@ Sections.prototype = {
 
     setLink: function(ele, data) {
         ele.slideDown(100).attr('href', '#' + data.id)
-                       .find('.nav_section_name').text(data.title);
+           .find('.nav_section_name').html(data.title);
     }
 };
 
@@ -129,11 +129,14 @@ Sections.prototype = {
 // This more or less controls the page ------------------------------------------
 // ------------------------------------------------------------------------------
 function Page() {
-    this.window = $(window);
-    this.nav = $('nav > ul > li');
+    $.extend(true, this, {
+        window: $(window),
+        nav: $('nav > ul > li'),
+        section: null,
+        articule: null
+    });
+    
     this.sections = new Sections(this);
-    this.section = null;
-    this.article = null;
     this.init();
 }
 
@@ -142,12 +145,15 @@ Page.prototype = {
         var that = this,
             mainNav = $('#nav_main');
 
-        this.scrollLast = 0;
+        $.extend(this, {
+            scrollLast: 0,
+            resizeTimeout: null
+        });
+        
         this.window.scroll(function() {
             that.onScroll();
         });
-
-        this.resizeTimeout = null;
+        
         this.window.resize(function() {
             that.onResize();
         });
