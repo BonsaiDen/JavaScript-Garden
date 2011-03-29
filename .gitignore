@@ -6,5 +6,7 @@
 /site/de
 /site/ru
 /site/zh
+/site/en
+/site/fi
 *.md~
 *.src.md
