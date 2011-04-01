@@ -1,0 +1,28 @@
+{
+    "title": "JavaScript Garden",
+    "langTitle": "JavaScript Garden - ogród JavaScript po polsku",
+    "description": "Przewodnik po dziwactwach i wadach języka JavaScript.",
+    "sections": [
+        {
+            "title": "Wstęp",
+            "dir": "intro",
+            "articles": [
+            	"authors",
+                "contributors",
+                "translators",
+                "hosting",
+                "license"
+            ]
+        },
+        {
+            "title": "Obiekty",
+            "dir": "object",
+            "articles": [
+                "general",
+                "prototype",
+                "hasownproperty",
+                "forinloop"
+            ]
+        }
+    ]
+}
