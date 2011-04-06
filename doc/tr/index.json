@@ -1,0 +1,72 @@
+{
+    "title": "JavaScript Garden",
+    "langTitle": "JavaScript Garden Türkçe",
+    "description": "JavaScript'in Acayiplikleri ve Kusurları için bir Rehber.",
+    "sections": [
+        {
+            "title": "Giriş",
+            "dir": "intro",
+            "articles": [
+                "authors",
+                "contributors",
+                "license"
+            ]
+        },
+        {
+            "title": "Nesneler",
+            "dir": "object",
+            "articles": [
+                "general",
+                "prototype",
+                "hasownproperty",
+                "forinloop"
+            ]
+        },
+        {
+            "title": "Fonksiyonlar",
+            "dir": "function",
+            "articles": [
+                "general",
+                "this",
+                "closures",
+                "arguments",
+                "constructors",
+                "scopes"
+            ]
+        },
+        {
+            "title": "Diziler",
+            "dir": "array",
+            "articles": [
+                "general",
+                "constructor"
+            ]
+        },
+        {
+            "title": "Nesne Tipleri",
+            "dir": "types",
+            "articles": [
+                "equality",
+                "typeof",
+                "instanceof",
+                "casting"
+            ]
+        },
+        {
+            "title": "Temel",
+            "dir": "core",
+            "articles": [
+                "eval",
+                "undefined",
+                "semicolon"
+            ]
+        },
+        {
+            "title": "Diğer",
+            "dir": "other",
+            "articles": [
+                "timeouts"
+            ]
+        }
+    ]
+}
