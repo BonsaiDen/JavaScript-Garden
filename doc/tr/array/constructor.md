@@ -14,8 +14,7 @@ notasyonu - kullanılması tavsiye olunur.
 `Dizi` oluşturucusuna tek bir argüman verildiğinde, ve bu argümanın türü
 `Number` ise, oluşacak *boş* dizinin `length` özelliği argümanın
 değerine eşit olacaktır. Bu şekilde oluşturulan bir dizinin **sadece**
-`length` özelliği belirlenmiş olacaktır, dizi indisleri ilklenmemiş
-olacaktır.
+`length` özelliği belirlenmiş olup dizi indisleri tanımsız olacaktır.
 
     var arr = new Array(3);
     arr[1]; // undefined
