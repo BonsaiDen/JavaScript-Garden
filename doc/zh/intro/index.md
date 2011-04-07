@@ -7,7 +7,7 @@
 JavaScript 秘密花园**不是**用来教你 JavaScript。为了更好的理解这篇文章的内容，
 你需要事先学习 JavaScript 的基础知识。在 Mozilla 开发者网络中有一系列非常棒的 JavaScript 学习[向导][1]。
 
-> **ES5 注意:** **译者注：** ES5 指的是ECMAScript 5，是 ECMAScript 标准语言的下一版本，正在开发中。
+> **译者注：** 文中提到的 ES5 是 ECMAScript 5 的简写，是 ECMAScript 标准语言的下一版本，正在开发中。
 JavaScript 是此标准语言的一个方言。
 
 [1]: https://developer.mozilla.org/en/JavaScript/Guide
