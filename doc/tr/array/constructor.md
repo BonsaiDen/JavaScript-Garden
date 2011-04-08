@@ -1,8 +1,8 @@
 ## `Dizi` Oluşturucusu
 
 `Dizi` oluşturucusunun parametrelerini nasıl değerlendirdiği belirsiz olduğu
-için, yeni diziler oluşturulurken her zaman dizi değişmezlerinin - `[]` 
-notasyonu - kullanılması tavsiye olunur.
+için, yeni diziler oluşturulurken her zaman dizi değişmezlerinin (`[]` 
+notasyonu) kullanılması tavsiye olunur.
 
     [1, 2, 3]; // Sonuç: [1, 2, 3]
     new Array(1, 2, 3); // Sonuç: [1, 2, 3]
@@ -30,6 +30,6 @@ katarını tekrarlamaktır.
 
 `Dizi` oluşturucusunun kullanılmasından mümkün olduğu kadar kaçınılmalıdır.
 Bunun yerine her zaman dizi değişmezleri tercih edilmelidir. Hem daha kısadırlar
-hem de daha net bir sentaksa sahiptirler; bu nedenle programın okunabilirliğini
+hem de daha anlaşılır bir sentaksa sahiptirler; bu nedenle programın okunabilirliğini
 de artırırlar.
 
