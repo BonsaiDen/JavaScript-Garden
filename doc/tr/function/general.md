@@ -10,7 +10,7 @@ geçirmekte kullanılır.
     function foo() {}
 
 Yukarıdaki fonksiyon tanımlaması program çalışmadan önce 
-[yukarı alınır](#function.scopes) ve böylece *tanımlandığı* kapsam içinde 
+[yukarı taşınır](#function.scopes) ve böylece *tanımlandığı* kapsam içinde 
 *her yerde* - hatta tanımlanmadan önce bile - kullanılabilir.
 
     foo(); // foo bu satır çalışmadan önce oluşturuldu
