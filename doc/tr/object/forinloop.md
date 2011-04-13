@@ -21,7 +21,7 @@ nesnesinin [`hasOwnProperty`](#object.hasownproperty) metodu ile yapılır.
 > **Not:** `for in` döngüsü tüm prototip zincirini dolaştığı için bir nesneye
 > eklenen her yeni kalıtım katmanı döngüyü biraz daha yavaşlatacaktır.
 
-### `hasOwnProperty` kullarak filtrelemek
+### `hasOwnProperty` kullanarak filtrelemek
 
     // yukarıdaki örnekteki foo nesnesi
     for(var i in foo) {
