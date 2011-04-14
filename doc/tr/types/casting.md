@@ -17,7 +17,7 @@ JavaScript *weakly typed* bir dildir, bu yüzden **mümkün olan yerlerde**
     10 == 010;
     10 == '-10';
 
-> **ES5 Notu:** 0 ile başlayan sayı sabitleri oktal (sekizlik) sayı sisteminde
+> **ES5 Notu:** `0` ile başlayan sayı sabitleri oktal (sekizlik) sayı sisteminde
 > değerlendirilir. Oktal sayı desteği ECMAScript 5 mutlak modda
 > **kaldırılmıştır**.
 
@@ -58,7 +58,7 @@ Bir değerin başına boş bir katar eklenerek kolayca katara dönüştürülebi
 
 ### Mantıksal değişken tipine dönüştürmek
 
-**not** operatörü iki kez üst üste kullanılarak bir değer mantıksal değişken
+**Değil** operatörü iki kez üst üste kullanılarak bir değer mantıksal değişken
 tipine dönüştürülebilir.
 
     !!'foo';   // true

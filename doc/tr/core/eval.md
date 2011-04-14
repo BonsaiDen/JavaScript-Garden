@@ -1,4 +1,4 @@
-## Neden `eval` kullanılmamalı
+## Neden `eval` Kullanılmamalı
 
 `eval` fonksiyonu bir JavaScript kodunu lokal kapsamda yürütür.
 

@@ -1,7 +1,7 @@
-## Otomatik noktalı virgül ilavesi
+## Otomatik Noktalı Virgül İlavesi
 
 JavaScript sentaksı C'ye benzese de, noktalı virgül kullanılması
-zurunlu **değildir**.
+zorunlu **değildir**.
 
 Fakat JavaScript noktalı virgül kullanmayan bir dil değildir, hatta
 programı anlayabilmek için noktalı virgüllere ihtiyaç duyar. Bu yüzden
@@ -85,7 +85,7 @@ eklenmesi gerektiğini gramer çözümleyicinin karar vermesi gerekiyor.
 
     })(window); //<- eklendi
 
-> **Not:** JavaScript çözümleyicisi `return` ifadesinden heme sonra satır sonu
+> **Not:** JavaScript çözümleyicisi `return` ifadesinden hemen sonra satır sonu
 > gelmesi durumunu "doğru" değerlendirmez. Bu durum otomatik noktalı virgül
 > eklenmesinin istenmeyen bir yan etkisidir.
 
@@ -110,7 +110,7 @@ bu nedenle, yukarıdaki satır `undefined is not a function` hata mesajı ile bi
 
 ### Sonuç
 
-Noktalı virgüllerin **hiç bir zaman** ihmal edilmemesi tavsiye olunur, ayrıca
+Noktalı virgüllerin **hiç bir zaman** ihmal edilmemesi tavsiye edilir, ayrıca
 ayraçların kendilerinden önceki ifade ile aynı satırda tutulması ve tek satırlık
 `if` ve `else` ifadelerinde bile ayraçların ihmal edilmemesi önerilir. Her iki
 önlem de hem programın tutarlılığını artıracak, hem de JavaScript

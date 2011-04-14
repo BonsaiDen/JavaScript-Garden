@@ -1,6 +1,6 @@
 ### `setTimeout` ve `setInterval`
 
-JavaScript asenkron olduğu için bir `setTimeout` ve `setInterval` kullanarak bir
+JavaScript asenkron olduğu için `setTimeout` ve `setInterval` kullanarak bir
 fonksiyonun ileri bir zamanda çalışmasını sağlamak mümkündür.
 
 > **Not:** Zamanlama fonksiyonları ECMAScript Standartına dahil **değildir**,
@@ -61,7 +61,7 @@ Yukarıdaki örnekte `foo` fonksiyonu bir kez çağrılıp bir saniye boyunca bl
 edecektir.
 
 `foo` programı bloke etmişken, `setInterval` fonksiyon çağrılarını zamanlamaya
-devam edecektir. `foo` tamamlandığında, çalıştırılmatı bekleyen **on** çağrı
+devam edecektir. `foo` tamamlandığında, çalıştırılmayı bekleyen **on** çağrı
 daha olacaktır.
 
 ### Bloke eden programlarla başa çıkmak
@@ -82,7 +82,7 @@ istemediğine karar verebilir.
 
 ### Zamanlayıcıları iptal etmek
 
-Zamanlayıcıları iptal etmek için ilgili ID sayıları ile kullanılan zamanlatıcı
+Zamanlayıcıları iptal etmek için ilgili ID sayıları ile kullanılan zamanlayıcı
 fonksiyonuna karşılık gelen `clearTimeout` ve `clearInterval` fonksiyonlarından
 biri kullanılır.
 
@@ -91,7 +91,7 @@ biri kullanılır.
 
 ### Tüm zamanlayıcıları iptal etmek
 
-Tüm zamanlayıcıları iptal etmenin dahili bir metod olmadığı için, bu amaca
+Tüm zamanlayıcıları iptal etmenin dahili bir yolu olmadığı için, bu amaca
 ancak kaba kuvvetle ulaşılabilir.
 
     // "tüm" zamanlayıcıları iptal et
@@ -101,7 +101,7 @@ ancak kaba kuvvetle ulaşılabilir.
 
 Bu rastgele seçilmiş sayıdan etkilenmeyen zamanlayıcılar kalabilir; bu yüzden
 tüm zamanlayıcı ID'lerinin saklanarak, teker teker iptal edilmeleri tavsiye
-olunur.
+edilir.
 
 ### `eval` fonksiyonun gizli kullanımı
 

@@ -42,7 +42,7 @@ doğru sonuç alabilmek için `hasOwnProperty `*haricen* kullanılmalıdır.
 
     foo.hasOwnProperty('bar'); // her zaman false verir
 
-    // hasOwnProperty haricen kullanıldığında 'this' foo olarak atanır
+    // hasOwnProperty haricen kullanıldığında 'this' foo olur
     {}.hasOwnProperty.call(foo, 'bar'); // true
 
 ### Sonuç

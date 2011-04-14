@@ -1,4 +1,4 @@
-## `arguments` nesnesi
+## `arguments` Nesnesi
 
 JavaScript'te her fonksiyon kapsamında `arguments` adlı özel bir nesne
 tanımlıdır. Bu nesne fonksiyon çağrılırken verilen argümanların listesini

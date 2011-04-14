@@ -35,6 +35,6 @@ oluşturucuları aynı olmayacaktır.
 ### Sonuç
 
 `instanceof` operatörü **sadece** aynı JavaScript kaynağından gelen özel 
-nesneler ile kullanılmalıdır. Tıpkp [`typeof`](#types.typeof) operatörü gibi,
-bunun dışındaki tüm kullanımlarından **kaçınılmalıdır**.
+nesneler ile kullanılmalıdır. Tıpkı [`typeof`](#types.typeof) operatöründe
+olduğu gibi, bunun dışındaki tüm kullanımlarından **kaçınılmalıdır**.
 

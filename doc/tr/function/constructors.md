@@ -3,7 +3,7 @@
 JavaScript'te oluşturucular diğer dillerden farklıdır. Başında `new` bulunan
 her fonksiyon çağrısı bir oluşturucudur.
 
-Oluşturucunun (çağırılan fonksiyonun) içinde `this` 'in değeri yeni yaratılan
+Oluşturucunun (çağrılan fonksiyonun) içinde `this` 'in değeri yeni yaratılan
 `Object` 'dir. Bu **yeni** nesnenin [`prototipi`](#object.prototype) oluşturucu
 olarak çağrılan fonksiyon nesnesinin prototipidir.
 
@@ -48,7 +48,7 @@ bu değer bir `Object` ise oluşturucu fonksiyon verilen değeri döndürür.
     Foo(); // undefined
 
 Yukarıdaki örnek bazı durumlarda doğru çalışıyor gibi görünebilir, ama
-JavaeScript'te  [`this`](#function.this) 'in çalışma şeklinden dolayı `this`
+JavaScript'te  [`this`](#function.this) 'in çalışma şeklinden dolayı `this`
 'in değeri *global nesne* olacaktır.
 
 ### Nesne fabrikaları
@@ -72,19 +72,19 @@ döndürmesi gerekir.
     Bar();
 
 Yukarıda `Bar` fonksiyonunu çağıran her iki ifade de aynı şeyi döndürecektir:
-`method` adında bir [Closure](#function.closures) özelliği olan yeni yaratılmış
+`method` adında bir [`closure`](#function.closures) özelliği olan yeni yaratılmış
 bir nesne.
 
 Başka bir nokta da `new Bar()` fonksiyonunun döndürülen nesnenin prototipini
 **etkilememesidir**. Yeni nesnenin prototipi oluşturulacaktır ancak `Bar` bu
 nesneyi döndürmez.
 
-Yukarıdaki örnekte `new` anahtar kelimesini kullanmakla kullanamamak arasında
+Yukarıdaki örnekte `new` anahtar kelimesini kullanmakla kullanmamak arasında
 hiçbir bir fark yoktur.
 
 ### Fabrikalar ile yeni nesneler oluşturmak
 
-`new` anahtar kelimesinin **kullanılmaması** tavsiye olunur, çünkü unutulması
+`new` anahtar kelimesinin **kullanılmaması** tavsiye edilir, çünkü unutulması
 durumu hatalara sebep olabilir.
 
 Bunun yerine yeni bir nesne oluşturmak için bir fabrika kullanılmalıdır.

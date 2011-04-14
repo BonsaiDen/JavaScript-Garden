@@ -1,6 +1,6 @@
-## `typeof` operatörü
+## `typeof` Operatörü
 
-The `typeof` operatörü ([`instanceof`](#types.instanceof) ile birlikte)
+`typeof` operatörü ([`instanceof`](#types.instanceof) ile birlikte)
 herhalde JavaScript'in en büyük tasarım hatalarından biridir, çünkü neredeyse
 **tamamen arızalıdır**.
 
@@ -8,9 +8,9 @@ herhalde JavaScript'in en büyük tasarım hatalarından biridir, çünkü nered
 gerçekte tek bir pratik kullanımı vardır, ve bunun da bir nesnenin tipini
 kontrol etmekle ilgili **yoktur**.
 
-> **Not:** `typeof` fonksiyon sentaksı (mesela ``typeof(obj)`), ile de 
+> **Not:** `typeof` fonksiyon sentaksı (mesela ``typeof(obj)` gibi), ile de 
 > çağrılabilse de bu gerçek bir fonksiyon çağrısı değildir. İki parantezin
-> içindeki ifadenin döndürdüğü değer typeof operatöre verilir. `typeof` diye
+> içindeki ifadenin döndürdüğü değer typeof operatörüne verilir. `typeof` diye
 > bir fonksiyon yoktur.
 
 ### JavaScript tip tablosu
@@ -79,7 +79,7 @@ tanımlanmamış bir değişkene erişmek bir `ReferenceError` hatası oluştur.
 Bir nesnenin tipini kontrol etmek için `Object.prototype.toString` 'in
 kullanılması şiddetle tavsiye edilir; çünkü bunu yapmanın tek güvenilir yoludur.
 Yukarıdaki tip tablosunda gösterildiği gibi, `typeof` operatörünün bazı
-sonuçları spesifikasdyonda tanımlanmamıştır; bu nedenle, çeşitli platformlarda
+sonuçları spesifikasyonda tanımlanmamıştır; bu nedenle, çeşitli platformlarda
 farklılık gösterebilirler.
 
 Bir değişkenin tanımlandığını kontrol etmek dışında, `typeof` operatörün 

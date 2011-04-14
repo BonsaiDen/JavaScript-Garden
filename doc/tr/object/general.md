@@ -30,7 +30,7 @@ JavaScript nesneleri aynı zamanda bir [*Hashmap*][1] olarak da kullanılabilir,
 nesneler temelde isimli özellikler ve bunlara karşılık gelen değerlerden
 ibarettir.
 
-Nesne değişmezi (`{}` notasyonu) ile düz bir nesne yaratmak mümkündür. Bu yeni
+Nesne sabiti (`{}` notasyonu) ile düz bir nesne yaratmak mümkündür. Bu yeni
 nesne [kalıtım](#object.prototype) ile `Object.prototype` 'dan türüyecektir ve
 hiçbir [baz özelliğe](#object.hasownproperty) sahip olmayacaktır.
 
@@ -80,18 +80,18 @@ kullanmaktır; özelliğe `undefined` veya `null` değerlerini atamak **sadece**
     }
 
 Yukarıdaki örnek sonuç olarak hem `bar undefined` hem de `foo null` yazacaktır.
-Sadece `baz` özelliği kaldırılmışi olacak ve çıktıda görünmeyecektir.
+Sadece `baz` özelliği kaldırılmış olacak ve çıktıda görünmeyecektir.
 
 ### Anahtar notasyonu
 
     var test = {
-        'case': 'bir anahtar kelime olduğu için katar notasyonu ile girildi',
-        delete: 'aynı şekilde katar notasyonu gerekiyordu' // SyntaxError hatası verir
+        'case': 'anahtar kelime olduğu için katar olarak girildi',
+        delete: 'yine bir anahtar kelime' // SyntaxError hatası
     };
 
 Nesne özellikleri düz karakterler olarak da katar notasyonu ile de
-tanımlanabilir. Fakat JavaScript çzöümleyicisinin bir başka tasarım hatası
-yüzünden, yukarıdaki örnek ECMAScript 5 öncesinde bir `SyntaxError` hatasına
+tanımlanabilir. Fakat JavaScript çözümleyicisinin bir başka tasarım hatası
+yüzünden, yukarıdaki örnek ECMAScript 5 öncesinde bir `SyntaxError` hatası
 verecektir.
 
 Bu hata `delete` 'in bir *anahtar kelime* olmasından kaynaklanır, bu nedenle

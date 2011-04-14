@@ -19,7 +19,6 @@ Burada `this` yine *global* nesneye işaret eder.
 
 > **ES5 Notu:** Mutlak modda bu davranış **kaldırılmıştır**. Bu durumda `this`
 > kelimesinin değeri `undefined` olacaktır.
-Here `this` will again refer to the *global* object.
 
 ### Bir metod çağırma
 
@@ -49,7 +48,7 @@ fonksiyonun içinde `this` 'in değeri ilk argümanın değeri olarak **atanır*
 Sonuç olarak, yukarıdaki örnekte *metod çağırma* durumu geçerli **olmayacak**, 
 bunun yerine `foo` fonksiyonu içinde `this` 'in değeri `bar` olacaktır.
 
-> **Not:** `this` kelimesi bir `Object` değişmezi içinde nesnenin kendisine
+> **Not:** `this` kelimesi bir `Object` sabiti içinde nesnenin kendisine
 > işaret etmek için **kullanılamaz**. Yani `var obj = {me: this}` gibi bir
 > ifadede `me`, `obj` nesnesine işaret **etmeyecektir**, `this` sadece yukarıda
 > açıklanan beş durumdan biri ile kullanılabilir.
@@ -83,7 +82,7 @@ değişken oluşturmaktır.
     }
 
 `that` kelimesinin dilde özel bir anlamı yoktur, ama sıklıkla dış kapsamdaki
-`this` 'e işaret etmek için kullanılır. Bu yöntem [closure](#function.closures)
+`this` 'e işaret etmek için kullanılır. Bu yöntem [`closure`](#function.closures)
 kavramı ile birlikte kullanıldığında `this` değerini program içinde taşımaya da
 yarar.
 

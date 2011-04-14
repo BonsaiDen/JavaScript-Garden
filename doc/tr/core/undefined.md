@@ -65,7 +65,7 @@ JavaScript dilinde `undefined` geleneksel *null* yerine kullanılmaktadır, ası
 `null` (hem `null` değişmezi hem de değişken türü) ise kabaca başka bir
 veri türüdür.
 
-`null` JavaScript içindeki kapalı olarak kullanılır (mesela prototip zincirinin
+`null` JavaScript içinde kapalı olarak kullanılır (mesela prototip zincirinin
 sonuna gelindiği `Foo.prototype = null` ile belirtilir), fakat hemen her durumda
 bunun yerine `undefined` kullanılabilir.
 

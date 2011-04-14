@@ -10,15 +10,15 @@ vardır.
 > Ve *associative* diziler eleman sıralamasını **korurlar** ama, nesneler
 > **korumazlar**.
 
-`for in` döngüsü prototip zincirindeki tüm özellikleri saydığı için ve bunu
+`for in` döngüsü prototip zincirindeki tüm özellikleri dolaştığı için ve bunu
 engellemenin tek yolu [`hasOwnProperty`](#object.hasownproperty) kullanmak
 olduğu için `for in` döngüsü sıradan bir `for` döngüsünden **yirmi kata kadar**
 daha yavaştır.
 
 ### İterasyon
 
-Dizilerde iterasyon yaparken en iyi performans için en iyi yol klasik `for` 
-döngüsünü kullanmaktır.
+Dizilerde iterasyon yaparken en iyi performansı elde etmenin en iyi yolu klasik
+`for` döngüsünü kullanmaktır.
 
     var list = [1, 2, 3, 4, 5, ...... 100000000];
     for(var i = 0, l = list.length; i < l; i++) {

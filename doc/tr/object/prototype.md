@@ -56,7 +56,7 @@ nesneyi kullanmasıdır; bu nedenle, tüm `Bar` nesneleri **aynı** `value`
 > **Not:** `Bar.prototype = Foo` gibi bir ifade **kullanmayın**, çünkü `Foo`
 > 'nun prototipine değil fonksiyon nesnesine işaret edecektir. Yani
 > prototip zinciri `Foo.prototype` değil `Function.prototype` üzerinden
-> gidecektir; ve bu yüzden, `method` prototip zincirinden bulunmayacaktır.
+> gidecektir; ve bu yüzden, `method` prototip zincirinde bulunmayacaktır.
 
 ### Özelliklere bulmak
 
@@ -64,7 +64,7 @@ Bir nesnenin özelliklerine erişildiğinde, JavaScript, istenen isimdeki özell
 bulana kadar prototip zincirinde **yukarı** doğru dolaşır.
 
 Zincirin en üstüne ulaştığında (yani `Object.protype`) ve hala istenen özelliği
-bulamamışsa sonuç olarak [undefined](#core.undefined) verecektir.
+bulamamışsa sonuç olarak [`undefined`](#core.undefined) verecektir.
 
 ### prototype özelliği
 
@@ -93,7 +93,7 @@ yapıldığında da prototip zinciri üzerindeki **tüm** özelliklere bakılaca
 Sıklıkla yapılan bir hata `Object.protype` 'ı veya diğer baz prototipleri 
 genişletmektir.
 
-Bu tekniğe [monkey patching][1] denir ve *kapsüllemeyi* bozar. Bu teknik
+Bu tekniğe [*monkey patching*][1] denir ve *kapsüllemeyi* bozar. Bu teknik
 [Prototype][2] gibi bazı popüler sistemlerde kullanılsa bile, temel nesne
 türlerine *standart olmayan* özellikler eklenmesinin geçerli iyi bir nedeni
 yoktur.

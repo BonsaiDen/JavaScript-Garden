@@ -1,4 +1,4 @@
-## Katkıda bulunanlar
+## Katkıda Bulunanlar
 
  - [Caio Romão][1] (Yazım düzeltmeleri)
  - [Andreas Blixt][2] (Dil düzeltmeleri)

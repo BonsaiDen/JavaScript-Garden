@@ -16,8 +16,8 @@ kapsamı **bulunmaz**; bu nedenle, dilde sadece *fonksiyon kapsamı* mevcuttur.
 > [otomatik noktalı virgül ilavesi](#core.semicolon) ile birleştiğinde fark
 > edilmesizor hatalara neden olabilir.
 
-JavaScript'te isim uzayları kavramı da bulunmaz, tanımlanan herşey tek bir
-*genel olarak paylaşılmış* bir isim uzayının içindedir.
+JavaScript'te isim uzayları kavramı da bulunmaz, tanımlanan herşey
+*genel olarak paylaşılmış* tek bir isim uzayının içindedir.
 
 Bir değişkene erişildiğinde, JavaScript değişkenin tanımını bulana dek yukarıya
 doğru tüm kapsamlara bakar. Genel kapsama ulaşıldığı halde hala değişkenin
@@ -50,7 +50,7 @@ kelimesini kullanmamanın önemli sonuçları olabilir.
 `test` fonksiyonun içinde `var` anahtar kelimesinin atlanması genel kapsamdaki
 `foo` değişkeninin değerini değiştirecektir. İlk bakışta bu önemsiz gibi görünse
 de, binlerce satırlık bir programda `var` kullanılmaması korkunç ve takibi güç
-hatalara neden olacaktor.
+hatalara neden olacaktır.
     
     // genel kapsam
     var items = [/* bir dizi */];
@@ -121,7 +121,7 @@ ifadelerini ve `function` bildirimlerini içinde bulundukları kapsamın en üst
 taşır.
 
     // var ifadeleri buraya taşınır
-    var bar, someValue; // varsayılan olarak 'undefined' değerini alırlar
+    var bar, someValue; // varsayılan değerleri 'undefined' olur
 
     // function bildirimi de yukarı taşınır
     function test(data) {
@@ -204,7 +204,7 @@ Tek bir genel isim uzayının bulunmasının yol açtığı yaygın sonuç isim
 
     })(); // fonksiyonu hemen çalıştır
 
-İsim siz fonksiyonlar [ifade](#function.general) olarak değerlendirilir; 
+İsimsiz fonksiyonlar [ifade](#function.general) olarak değerlendirilir; 
 bu nedenle çağrılabilmeleri için önce değerlendirilmeleri gerekir.
 
     ( // parantezin içindeki fonksiyonu değerlendir
@@ -212,7 +212,7 @@ bu nedenle çağrılabilmeleri için önce değerlendirilmeleri gerekir.
     ) // ve fonksiyon nesnesini döndür
     () // değerlendirmenin sonucu fonksiyon nesnesini çağır
 
-Bir fonksiyon ifadesini değerlendirip çağırmanın başka yolları da vadır ve
+Bir fonksiyon ifadesini değerlendirip çağırmanın başka yolları da vardır ve
 yukarıdaki ile aynı sonucu verirler.
    
     // İki farklı yöntem
@@ -222,7 +222,7 @@ yukarıdaki ile aynı sonucu verirler.
 ### Sonuç
 
 Programı kendi isim uzayı ile kapsamak için her zaman *isimsiz fonksiyonların*
-kullanılması tavsiye olunur. Böylece hem isim çakışmalarından korunulmuş olunur,
+kullanılması tavsiye edilir. Böylece hem isim çakışmalarından korunulmuş olunur,
 hem de programlar daha modüler halde yazılmış olur.
 
 Ayrıca, genel değişkenlerin kullanılması **kötü bir uygulamadır**. Genel

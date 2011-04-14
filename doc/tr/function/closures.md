@@ -1,6 +1,6 @@
 ## Closure ve Referanslar
 
-JavaScript'in en güçlü özelliklerinden biri de *closure* 'lara sahip olmasıdır.
+JavaScript'in en güçlü özelliklerinden biri de `closure` 'lara sahip olmasıdır.
 Bunun anlamı her hangi bir kapsamın **her zaman** kendisini içeren kapsama
 erişebilmesidir. JavaScript'te tek kapsam [fonksiyon kapsamı](#function.scopes)
 olduğu için temelde tüm fonksiyonlar `closure` 'durlar.

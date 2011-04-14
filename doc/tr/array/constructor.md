@@ -1,7 +1,7 @@
-## `Dizi` Oluşturucusu
+## `Array` Oluşturucusu
 
-`Dizi` oluşturucusunun parametrelerini nasıl değerlendirdiği belirsiz olduğu
-için, yeni diziler oluşturulurken her zaman dizi değişmezlerinin (`[]` 
+`Array` oluşturucusunun parametrelerini nasıl değerlendirdiği belirsiz olduğu
+için, yeni diziler oluşturulurken her zaman dizi sabitlerinin (`[]` 
 notasyonu) kullanılması tavsiye olunur.
 
     [1, 2, 3]; // Sonuç: [1, 2, 3]
@@ -11,14 +11,14 @@ notasyonu) kullanılması tavsiye olunur.
     new Array(3); // Sonuç: []
     new Array('3') // Sonuç: ['3']
 
-`Dizi` oluşturucusuna tek bir argüman verildiğinde, ve bu argümanın türü
+`Array` oluşturucusuna tek bir argüman verildiğinde, ve bu argümanın türü
 `Number` ise, oluşacak *boş* dizinin `length` özelliği argümanın
 değerine eşit olacaktır. Bu şekilde oluşturulan bir dizinin **sadece**
 `length` özelliği belirlenmiş olup dizi indisleri tanımsız olacaktır.
 
     var arr = new Array(3);
     arr[1]; // undefined
-    1 in arr; // false, indisler ilklenmedi
+    1 in arr; // false, indisler atanmadı
 
 Dizinin uzunluğunu bu şekilde önceden belirlemek sadece bir iki durumda 
 kullanışlıdır. Bunlardan birisi bir döngüye gerek olmadan bir karakter
@@ -28,8 +28,8 @@ katarını tekrarlamaktır.
 
 ### Sonuç
 
-`Dizi` oluşturucusunun kullanılmasından mümkün olduğu kadar kaçınılmalıdır.
-Bunun yerine her zaman dizi değişmezleri tercih edilmelidir. Hem daha kısadırlar
-hem de daha anlaşılır bir sentaksa sahiptirler; bu nedenle programın okunabilirliğini
-de artırırlar.
+`Array` oluşturucusunun kullanılmasından mümkün olduğu kadar kaçınılmalıdır.
+Bunun yerine her zaman dizi sabitleri tercih edilmelidir. Hem daha kısadırlar
+hem de daha anlaşılır bir sentaksa sahiptirler; bu nedenle programın
+okunabilirliğini de artırırlar.
 

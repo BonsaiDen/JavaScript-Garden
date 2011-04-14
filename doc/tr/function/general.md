@@ -1,4 +1,4 @@
-## Fonksiyon Tanımlası ve Fonksiyon İfadesi
+## Fonksiyon Tanımlaması ve Fonksiyon İfadesi
 
 Fonksiyonlar JavaScript'te birinci sınıf nesnelerdir, yani sıradan bir değer
 gibi kullanılabilirler. Bu özellik sıklıkla bir *isimsiz fonksiyonu* başka bir
@@ -11,7 +11,7 @@ geçirmekte kullanılır.
 
 Yukarıdaki fonksiyon tanımlaması program çalışmadan önce 
 [yukarı taşınır](#function.scopes) ve böylece *tanımlandığı* kapsam içinde 
-*her yerde* - hatta tanımlanmadan önce bile - kullanılabilir.
+*her yerde* (hatta tanımlanmadan önce bile) kullanılabilir.
 
     foo(); // foo bu satır çalışmadan önce oluşturuldu
     function foo() {}
