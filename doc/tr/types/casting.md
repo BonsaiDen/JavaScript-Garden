@@ -1,7 +1,7 @@
-## Tür Dönüşümleri
+## Tip Dönüşümleri
 
 JavaScript *weakly typed* bir dildir, bu yüzden **mümkün olan yerlerde**
-*tür dönüşümü* uygular.
+*tip dönüşümü* uygular.
 
     // Bunlar true verir
     new Number(10) == 10; // Number.toString() tekrar sayıya
@@ -26,23 +26,23 @@ kullanılması **şiddetle** tavsiye edilir. Böylece yaygın hataların çoğun
 kaçınılabilir, yine de JavaScript'in *weak typing* sisteminden kaynaklanan başka
 sorunlar da vadır.
 
-### Temel türlerin nesne oluşturucuları
+### Temel tiplerin nesne oluşturucuları
 
-`Number` ve `String` gibi temel türlerin nesne oluşturucuları `new` anahtar
+`Number` ve `String` gibi temel tiplerin nesne oluşturucuları `new` anahtar
 kelimesi ile kullanılıp kullanılmamalarına göre farklı davranış gösterir.
 
     new Number(10) === 10;     // False, Object ve Number
     Number(10) === 10;         // True, Number ve Number
-    new Number(10) + 0 === 10; // True, tür dönüşümü nedeniyle
+    new Number(10) + 0 === 10; // True, tip dönüşümü nedeniyle
 
-`Number` gibi bir temel türün nesne oluşturucusunu kullanmak yeni bir `Number`
+`Number` gibi bir temel tipin nesne oluşturucusunu kullanmak yeni bir `Number`
 nesnesi yaratacaktır, fakat `new` kelimesi kullanılmazsa `Number` fonksiyonu
 bir dönüştürücü olarak davranacaktır.
 
 Ayrıca, sabitler ve nesne olmayan değerler kullanılması durumunda başka tür
-dönüşümleri de söz konusu olacaktır.
+dönüşümler de söz konusu olacaktır.
 
-En iyi seçenek üç olası türden birine **açıkça** dönüşüm yapılmasıdır.
+En iyi seçenek üç olası tipten birine **açıkça** dönüşüm yapılmasıdır.
 
 ### Karakter katarına dönüştürmek
 
@@ -56,10 +56,10 @@ Bir değerin başına boş bir katar eklenerek kolayca katara dönüştürülebi
 
 **Tek terimli** toplama operatörü kullanılarak bir değer sayıya dönüştürülebilir.
 
-### Mantıksal değişken türüne dönüştürmek
+### Mantıksal değişken tipine dönüştürmek
 
 **not** operatörü iki kez üst üste kullanılarak bir değer mantıksal değişken
-türüne dönüştürülebilir.
+tipine dönüştürülebilir.
 
     !!'foo';   // true
     !!'';      // false
