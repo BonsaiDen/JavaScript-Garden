@@ -21,7 +21,7 @@ JavaScript *weakly typed* bir dildir, bu yüzden **mümkün olan yerlerde**
 > değerlendirilir. Oktal sayı desteği ECMAScript 5 mutlak modda
 > **kaldırılmıştır**.
 
-Yukarıdakilerden kaçınmak için, [mutlak eşitlik operatörünün](#types.equality)
+Yukarıdakilerden kaçınmak için, [kesin eşitlik operatörünün](#types.equality)
 kullanılması **şiddetle** tavsiye edilir. Böylece yaygın hataların çoğundan
 kaçınılabilir, yine de JavaScript'in *weak typing* sisteminden kaynaklanan başka
 sorunlar da vadır.
