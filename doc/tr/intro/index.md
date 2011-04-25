@@ -21,9 +21,10 @@ ve [Zhang Yi Jiang][4] (Tasarım) tarafından hazırlanmıştır.
  - [Caio Romão][5] (Yazım düzeltmeleri)
  - [Andreas Blixt][6] (Dil düzeltmeleri)
 
-## Hosting
-JavaScript Garden'a GitHub üzerinden, ve ayrıca [Cramer Development][7] 
-tarafından desteklenen [JavaScriptGarden.info][8] adresinden ulaşılabilir.
+## Sunum
+
+JavaScript Garden GitHub üzerinden, ve ayrıca [Cramer Development][7] 
+tarafından desteklenen [JavaScriptGarden.info][8] adresinden sunulmaktadır.
 
 ## Lisans
 
