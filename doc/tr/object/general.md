@@ -61,8 +61,8 @@ açabilecek özellik isimlerinin kullanılmasına izin vermesidir.
 ### Özellikleri silmek
 
 Bir nesnenin özelliklerinden birini silmenin tek yolu `delete` operatörünü 
-kullanmaktır; özelliğe `undefined` veya `null` değerlerini atamak **sadece**
-özelliğin değerini kaldırır, anahtarı değil.
+kullanmaktır; özelliğe `undefined` veya `null` değerlerini atamak sadece
+özelliğin *değerini* kaldırır, *anahtarı* değil.
 
     var obj = {
         bar: 1,
