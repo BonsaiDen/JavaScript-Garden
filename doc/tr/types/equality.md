@@ -3,11 +3,11 @@
 JavaScript'de nesnelerin değerlerinin eşitliğini kontrol etmenin iki farklı yolu
 vardır. 
 
-### Eşittir operatörü
+### Eşitlik operatörü
 
-Eşittir operatörü iki adet eşittir işaretinden oluşur: `==`
+Eşitlik operatörü iki adet eşittir işaretinden oluşur: `==`
 
-JavaScript *weakly typed* bir dildir, bu nedenle, eşittir operatörü ile
+JavaScript *weakly typed* bir dildir. Bu nedenle, eşitlik operatörü ile
 değişkenleri karşılaştırırken **tip dönüşümü** yapar.
 
     ""           ==   "0"           // false
