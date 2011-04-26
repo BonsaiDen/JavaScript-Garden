@@ -97,7 +97,9 @@ it is necessary to use brute force in order to achieve this functionality.
 But there might still be timeouts that are unaffected by this arbitrary number. Another way of doing this is to consider that the ID given to a timeout is incremented by one everytime you call `setTimeout`.
 
     // clear "all" timeouts
-    for(var i = 1; i <= window.setTimeout(function(){}, 1); i++) {
+    var biggestTimeoutId = window.setTimeout(function(){}, 1),
+    i;
+    for(i = 1; i <= biggestTimeoutId; i++) {
         clearTimeout(i);
     }
 
