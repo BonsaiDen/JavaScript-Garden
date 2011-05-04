@@ -47,7 +47,7 @@ tak zwanych *łańcuchów prototypów*.
                 Object.prototype
                     { toString: ... /* etc. */ }
 
-W powyższym przykładzie obiekt `test będzie dziedziczył z obydwu tj. 
+W powyższym przykładzie obiekt `test` będzie dziedziczył z obydwu tj. 
 `Bar.prototyp` i `Foo.prototyp`, stąd będzie miał dostęp do funkcji `method`,
 która była zdefiniowana w `Foo`. Ponadto obiekt będzie miał dostęp do 
 właściwości `value`, która jest jednyną instancją `Foo` i stała się jego prototypem.

@@ -23,6 +23,26 @@
                 "hasownproperty",
                 "forinloop"
             ]
+        },
+        {
+            "title": "Funkcje",
+            "dir": "function",
+            "articles": [
+                "general",
+                "this",
+                "closures",
+                "arguments",
+                "constructors",
+                "scopes"
+            ]
+        },
+        {
+            "title": "Tablice",
+            "dir": "array",
+            "articles": [
+                "general",
+                "constructor"
+            ]
         }
     ]
 }

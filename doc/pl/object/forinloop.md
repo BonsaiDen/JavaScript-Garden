@@ -37,7 +37,7 @@ To jest jedyna poprawna wersja, którą należy używać. Ze względu na użycie
 kod będzie podatny na błędy, gdy natywne prototypy np. `Object.prototype` 
 zostanie rozszerzony.
 
-[Prototype][1] jest jednym z szeroko rozpowszechniony framework, który dokonuje 
+[Prototype][1] jest jednym z szeroko rozpowszechniony frameworków, który dokonuje 
 takiego rozszerzenia. Używanie tego frameworku oraz nie używanie w pętle `for in` 
 metody `hasOwnProperty` gwarantuje błędy w wykonaniu.
 
