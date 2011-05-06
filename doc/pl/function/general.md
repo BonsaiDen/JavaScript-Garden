@@ -13,7 +13,8 @@ Powyższa funkcja zostaje [wyniesiona](#function.scopes) zanim program wystartuj
 jest dostępna *wszędzie* w ramach zasięgu, w którym została *zadeklarowana*,
 nawet jeżeli ta funkcja została wywołana przed faktyczną definicją w kodzie źródłowym.
 
-    foo(); // Działa ponieważ definicja funkcji została wyniesiona na początek zasięgu przed uruchomieniem kodu
+    foo(); // Działa ponieważ definicja funkcji została wyniesiona 
+           // na początek zasięgu przed uruchomieniem kodu
     function foo() {}
 
 ### Wyrażenie funkcyjne

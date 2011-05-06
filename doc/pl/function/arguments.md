@@ -1,4 +1,4 @@
-## obiekt `arguments`
+## Obiekt `arguments`
 
 Każda zasięg funkcyjny w języku JavaScript ma dostęp do specjalnej zmiennej `arguments`. 
 Ta zmienna trzyma listę wszystkich argumentów przekazanych do funkcji.

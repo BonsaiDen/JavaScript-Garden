@@ -86,7 +86,7 @@ słowie kluczowym `return`.
 W powyższym przykładzie nie ma żadnej różnicy w działaniu pomiędzy użyciem 
 i nieużyciem słowa kluczowego `new`.
 
-### Tworzenie nowych obiektów używając fabryk
+### Tworzenie nowych obiektów korzystając z fabryk
 
 Często zaleca się **nie** korzystać z operatora `new` ponieważ zapominając 
 go zastosować może prowadzić do błędów.

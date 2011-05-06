@@ -33,7 +33,7 @@ inaczej jeżeli są poprzedzone słowem kluczowym `new` a inaczej jeżeli nie s�
 
     new Number(10) === 10;     // False, Object i Number
     Number(10) === 10;         // True, Number i Number
-    new Number(10) + 0 === 10; // True, ponieważ dokonana została jawna konwersja
+    new Number(10) + 0 === 10; // True, ponieważ dokonano jawnej konwersji
 
 Korzystanie z wbudowanych typów jak `Number` jako konstruktor utworzy nowy obiekt 
 typu `Number`, natomiast opuszczenie słowa kluczowego `new` spowoduje, że funkcja 

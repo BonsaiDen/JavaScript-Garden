@@ -40,7 +40,8 @@ możliwość, że obiekt może posiadać tak nazwaną właściwość. Konieczne 
 
     foo.hasOwnProperty('bar'); // zawsze zwraca false
 
-    // Została użyta metoda innego obiektu i wywołana z konkekstem `this` ustawionym na foo
+    // Została użyta metoda innego obiektu i wywołana z konkekstem 
+    // `this` ustawionym na foo
     ({}).hasOwnProperty.call(foo, 'bar'); // true
 
 ### Wnioski
