@@ -86,7 +86,7 @@ not using the `new` keyword.
 
 ### Creating New Objects via Factories
 
-An often made recommendation is to **not** use `new` since forgetting its use
+A recommendation frequently made is to **not** use `new` since forgetting its use
 may lead to bugs.
 
 In order to create new object, one should rather use a factory and construct a 

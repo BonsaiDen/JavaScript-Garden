@@ -22,7 +22,7 @@ Some examples for when the value `undefined` is returned:
  - Implicit returns of functions due to missing `return` statements.
  - `return` statements which do not explicitly return anything.
  - Lookups of non-existent properties.
- - Function parameters which do not had any explicit value passed.
+ - Function parameters that do not have any explicit value passed.
  - Anything that has been set to the value of `undefined`.
 
 ### Handling Changes to the Value of `undefined`

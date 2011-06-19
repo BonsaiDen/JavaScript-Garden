@@ -72,7 +72,7 @@ unless the *desired effect* is to affect the outer scope.
 
 ### Local Variables
 
-The only source for local variables in JavaScript are
+The only sources of local variables in JavaScript are
 [function](#function.general) parameters and variables that were declared via the 
 `var` statement.
 
@@ -175,8 +175,8 @@ moved to the top of the *global scope*.
 All scopes in JavaScript, including the *global scope*, have the special name 
 [`this`](#function.this) defined in them, which refers to the *current object*. 
 
-Function scopes also have the name [`arguments`](#function.arguments) defined in
-them which contains the arguments that were passed to a function.
+Function scopes also have the variable [`arguments`](#function.arguments) defined in
+them. [`arguments`](#function.arguments) contains the arguments that were passed to a function.
 
 For example, when trying to access a variable named `foo` inside the scope of a 
 function, JavaScript will lookup the name in the following order:

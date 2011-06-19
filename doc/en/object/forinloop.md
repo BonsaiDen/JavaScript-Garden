@@ -16,7 +16,7 @@ chain when iterating over the properties of an object.
     }
 
 Since it is not possible to change the behavior of the `for in` loop itself, it
-is necessary to filter out the unwanted properties inside the loop body , 
+is necessary to filter out the unwanted properties inside the loop body, 
 this is done by using the [`hasOwnProperty`](#object.hasownproperty) method of 
 `Object.prototype`.
 
@@ -37,7 +37,7 @@ will **only** print out `moo`. When `hasOwnProperty` is left out, the code is
 prone to errors in cases where the native prototypes - e.g. `Object.prototype` - 
 have been extended.
 
-One widely used framework which does this is [Prototype][1]. When this 
+One widely used framework that does this is [Prototype][1]. When this 
 framework is included, `for in` loops that do not use `hasOwnProperty` are 
 guaranteed to break.
 

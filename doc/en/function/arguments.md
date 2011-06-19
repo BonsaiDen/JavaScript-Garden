@@ -89,7 +89,7 @@ more than a simple access to the `arguments` object's properties.
 
 > **ES5 Note:** These *getters* and *setters* are not created in strict mode.
 
-However, there is one case which will drastically reduce the performance in
+However, there is one case that will drastically reduce the performance in
 modern JavaScript engines. That case is the use of `arguments.callee`.
 
     function foo() {

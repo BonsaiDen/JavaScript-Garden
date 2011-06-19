@@ -19,7 +19,7 @@ gets executed might block the thread, it is by **no means** a safe bet that one
 will get the exact delay that was specified in the `setTimeout` call.
 
 The function that was passed as the first parameter will get called by the
-*global object*, that means, that [`this`](#function.this) inside the called function 
+*global object*, which means that [`this`](#function.this) inside the called function 
 refers to that very object.
 
     function Foo() {
@@ -62,7 +62,7 @@ it waiting for execution.
 
 ### Dealing with Possible Blocking Code
 
-The easiest as well as most controllable solution, is to use `setTimeout` within
+The easiest as well as most controllable solution is to use `setTimeout` within
 the function itself.
 
     function foo(){

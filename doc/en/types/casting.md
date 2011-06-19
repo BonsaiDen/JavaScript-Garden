@@ -47,7 +47,7 @@ The best option is to cast to one of the three possible types **explicitly**.
 
     '' + 10 === '10'; // true
 
-By prepending a empty string a value can easily be casted to a string.
+By prepending an empty string a value can easily be casted to a string.
 
 ### Casting to a Number
 

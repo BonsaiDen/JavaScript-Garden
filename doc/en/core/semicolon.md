@@ -84,7 +84,7 @@ Below is the result of the parser's "guessing" game.
     })(window); //<- inserted
 
 > **Note:** The JavaScript parser does not "correctly" handle return statements 
-> which are followed by a new line, while this is not neccessarily the fault of 
+> which are followed by a new line, while this is not necessarily the fault of 
 > the automatic semicolon insertion, it can still be an unwanted side-effect. 
 
 The parser drastically changed the behavior of the code above, in certain cases

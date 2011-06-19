@@ -9,7 +9,7 @@ practical use case, which does **not** happen to be checking the type of an
 object. 
 
 > **Note:** While `typeof` can also be called with a function like syntax
-> i.e. `typeof(obj)`, this is not a function call. The two parenthesis will
+> i.e. `typeof(obj)`, this is not a function call. The two parentheses will
 > behave like normal and the return value will be used as the operand of the
 > `typeof` operator. There is **no** `typeof` function.
 
@@ -33,7 +33,7 @@ object.
     {}                  Object     object
     new Object()        Object     object
 
-In the above table *Type* refers to the value, that the `typeof` operator returns.
+In the above table *Type* refers to the value that the `typeof` operator returns.
 As can be clearly seen, this value is anything but consistent.
 
 The *Class* refers to the value of the internal `[[Class]]` property of an object.

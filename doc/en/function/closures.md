@@ -46,7 +46,7 @@ override - the *global* variable `count`.
 
 ### Closures Inside Loops
 
-One often made mistake is to use closures inside of loops, as if they were
+One mistake made frequently is to use closures inside of loops, as if they were
 copying the value of the loops index variable.
 
     for(var i = 0; i < 10; i++) {
@@ -85,7 +85,7 @@ The anonymous function that gets passed to `setTimeout` now has a reference to
 `e`, whose value does **not** get changed by the loop.
 
 There is another possible way of achieving this; that is to return a function 
-from the anonymous wrapper, that will then have the same behavior as the code 
+from the anonymous wrapper, which will then have the same behavior as the code 
 above.
 
     for(var i = 0; i < 10; i++) {
