@@ -3,112 +3,65 @@
 Although JavaScript has C style syntax, it does **not** enforce the use of
 semicolons in the source code, it is possible to omit them.
 
-But JavaScript is not a semicolon-less language, it in fact needs the 
-semicolons in order to understand the source code. Therefore the JavaScript
-parser **automatically** inserts them whenever it encounters a parse
-error due to a missing semicolon.
+Every statement in JavaScript may end with either a semicolon or a new
+line.
 
     var foo = function() {
-    } // parse error, semicolon expected
+    
+    }
     test()
 
-Insertion happens, and the parser tries again.
+The parser sees that as if you had put your semicolons just fine.
 
     var foo = function() {
-    }; // no error, parser continues
-    test()
+    
+    };
+    test();
 
-The automatic insertion of semicolon is considered to be one of **biggest**
-design flaws in the language, as it *can* change the behavior of code.
 
-### How it Works
+However, you have some tokens that cause an implicit line
+continuation: `[`, `(`, `+`. `-` and `/`; that is, the previous
+statement will span through the following line if any of those tokens
+appear at the start of the next line.
 
-The code below has no semicolons in it, so it is up to the parser to decide where
-to insert them.
+    a = b + c
+    (d + e).print()
 
-    (function(window, undefined) {
-        function test(options) {
-            log('testing!')
+Since the line following the assignment expression starts with one of
+the line continuation tokens, JavaScript will accept it as part of the
+preceding statement.
 
-            (options.list || []).forEach(function(i) {
+    a = b + c(d + e).print()
 
-            })
 
-            options.value.test(
-                'long string to pass here',
-                'and another long string to pass'
-            )
+### Restricted production
 
-            return
-            {
-                foo: function() {}
-            }
-        }
-        window.test = test
+Some statements require a slight special attention, since they might
+end sooner than you'd expect due to semicolon insertion rules. These
+are called **restricted production** statements, being: post-fix
+increment/decrement (`++` and `--`), return, break, continue and throw.
 
-    })(window)
+In a nutshell, restricted productions can't have a line break between
+the keyword and the rest of the statement. Thus, inserting a line break
+right after the return keyword, will make the return statement end there.
 
-    (function(window) {
-        window.someLibrary = {}
+    return
+    { foo: 'foo'
+    , bar: 'bar'
+    }
+    
+The previous example will be parsed as a return statement, and a statement
+block, and result in a syntax error:
 
-    })(window)
-
-Below is the result of the parser's "guessing" game.
-
-    (function(window, undefined) {
-        function test(options) {
-
-            // Not inserted, lines got merged
-            log('testing!')(options.list || []).forEach(function(i) {
-
-            }); // <- inserted
-
-            options.value.test(
-                'long string to pass here',
-                'and another long string to pass'
-            ); // <- inserted
-
-            return; // <- inserted, breaks the return statement
-            { // treated as a block
-
-                // a label and a single expression statement
-                foo: function() {} 
-            }; // <- inserted
-        }
-        window.test = test; // <- inserted
-
-    // The lines got merged again
-    })(window)(function(window) {
-        window.someLibrary = {}; // <- inserted
-
-    })(window); //<- inserted
-
-> **Note:** The JavaScript parser does not "correctly" handle return statements 
-> which are followed by a new line, while this is not neccessarily the fault of 
-> the automatic semicolon insertion, it can still be an unwanted side-effect. 
-
-The parser drastically changed the behavior of the code above, in certain cases
-it does the **wrong thing**.
-
-### Leading Parenthesis
-
-In case of a leading parenthesis, the parser will **not** insert a semicolon.
-
-    log('testing!')
-    (options.list || []).forEach(function(i) {})
-
-This code gets transformed into one line.
-
-    log('testing!')(options.list || []).forEach(function(i) {})
-
-Chances are **very** high that `log` does **not** return a function; therefore,
-the above will yield a `TypeError` stating that `undefined is not a function`.
+    return;
+    { foo: 'foo'
+    , bar: 'bar' // error, not valid in a statement block
+    }
+    
 
 ### In Conclusion
 
-It is highly recommended to **never** omit semicolons, it is also advocated to 
+It is recommended to **never** omit semicolons, it is also advocated to 
 keep braces on the same line with their corresponding statements and to never omit 
-them for one single-line `if` / `else` statements. Both of these measures will 
-not only improve the consistency of the code, they will also prevent the 
-JavaScript parser from changing its behavior.
+them for one single-line `if` / `else` statements.
 
