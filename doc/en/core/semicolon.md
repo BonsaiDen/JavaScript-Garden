@@ -18,11 +18,9 @@ The parser sees that as if you had put your semicolons just fine.
     };
     test();
 
-
-However, you have some tokens that cause an implicit line
-continuation: `[`, `(`, `+`. `-` and `/`; that is, the previous
-statement will span through the following line if any of those tokens
-appear at the start of the next line.
+Some tokens cause an implicit line continuation: `[`, `(`, `+`. `-` and `/`;
+that is, the previous statement will span through the following line if any
+of those tokens appear at the start of the next line.
 
     a = b + c
     (d + e).print()
@@ -31,7 +29,7 @@ Since the line following the assignment expression starts with one of
 the line continuation tokens, JavaScript will accept it as part of the
 preceding statement.
 
-    a = b + c(d + e).print()
+    a = b + c(d + e).print();
 
 
 ### Restricted production
@@ -56,7 +54,7 @@ block, and result in a syntax error:
     return;
     { foo: 'foo'
     , bar: 'bar' // error, not valid in a statement block
-    }
+    };
     
 
 ### In Conclusion
