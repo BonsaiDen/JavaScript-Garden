@@ -1,64 +1,64 @@
 {
     "title": "JavaScript Garden",
-    "langTitle": "JavaScript Garden in English",
-    "description": "A Guide to JavaScript's Quirks and Flaws.",
+    "langTitle": "JavaScript Garden in Japanese",
+    "description": "JavaScriptの奇抜さと欠陥についてのガイドライン",
     "sections": [
         {
-            "title": "Intro",
+            "title": "イントロ",
             "dir": "intro",
             "articles": []
         },
         {
-            "title": "Objects",
+            "title": "オブジェクト",
             "dir": "object",
             "articles": [
-                "general",
+                "概論",
                 "prototype",
                 "hasownproperty",
-                "forinloop"
+                "forinループ"
             ]
         },
         {
-            "title": "Functions",
+            "title": "関数",
             "dir": "function",
             "articles": [
-                "general",
+                "概論",
                 "this",
-                "closures",
-                "arguments",
-                "constructors",
-                "scopes"
+                "クロージャ",
+                "引数",
+                "コンストラクタ",
+                "スコープ"
             ]
         },
         {
-            "title": "Arrays",
+            "title": "配列",
             "dir": "array",
             "articles": [
-                "general",
-                "constructor"
+                "概論",
+                "コンストラクタ"
             ]
         },
         {
-            "title": "Types",
+            "title": "型",
             "dir": "types",
             "articles": [
-                "equality",
+                "同値・同価",
                 "typeof",
                 "instanceof",
-                "casting"
+                "型変換"
             ]
         },
         {
-            "title": "Core",
+            "title": "コア",
             "dir": "core",
             "articles": [
                 "eval",
                 "undefined",
-                "semicolon"
+                "セミコロン"
             ]
         },
         {
-            "title": "Other",
+            "title": "その他",
             "dir": "other",
             "articles": [
                 "timeouts"
