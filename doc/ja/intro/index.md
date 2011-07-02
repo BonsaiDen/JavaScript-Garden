@@ -21,7 +21,7 @@ JavaScript GardenはGitHubでホスティングされていますが、[Cramer D
 
 ## ライセンス
 
-JavaScript Gardenは[MIT license][9]の下で公開されており、[GitHub][10]でホスティングされています。もしもエラーやtypoを見つけたら[file an issue][11]に登録するかレポジトリにプルリクエストを送ってください。
+JavaScript Gardenは[MIT license][9]の下で公開されており、[GitHub][10]でホスティングされています。もしもエラーやtypoを見つけたら[file an issue][11]に登録するかリポジトリにプルリクエストを送ってください。
 またStack Overflowチャットの[JavaScript room][12]に私達はいます。
 
 
