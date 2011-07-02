@@ -1,37 +1,29 @@
-## Intro
+## 前書き
 
-**JavaScript Garden** is a growing collection of documentation about the most 
-quirky parts of the JavaScript programming language. It gives advice to 
-avoid common mistakes, subtle bugs, as well as performance issues and bad 
-practices that non-expert JavaScript programmers may encounter on their 
-endeavours into the depths of the language.
+**JavaScript Garden** はJavaScriptというプログラム言語の一番奇抜な部分についてのドキュメント集です。
+このドキュメントはJavaScriptという言語に対して不慣れなプログラマーがこの言語について深く知ろうとする際に遭遇する、良くある間違い・小さなバグ・パフォーマンスの問題・悪い習慣などを避ける為のアドバイスを与えます。
 
-JavaScript Garden does **not** aim to teach you JavaScript. Former knowledge
-of the language is strongly recommended in order to understand the topics covered
-in this guide. In order to learn the basics of the language, please head over to 
-the excellent [guide][1] on the Mozilla Developer Network.
+JavaScript GardenはJavaScriptを教える事を**目的にしていません**。このガイドの項目を理解する為には、この言語に対する前提知識がある事を推奨します。この言語の基礎部分についてはMozilla Developer Networkの[ガイド][1] がオススメです。 
 
-## The Authors
+## 著者
 
-This guide is the work of two lovely [Stack Overflow][2] users, [Ivo Wetzel][3]
-(Writing) and [Zhang Yi Jiang][4] (Design).
+このガイドは2人の愛すべき[Stack Overflow][2]ユーザーである[Ivo Wetzel][3]
+(執筆)と[Zhang Yi Jiang][4] (デザイン)によって作られました。
 
-## Contributors
+## 貢献者
 
- - [Caio Romão][5] (Spelling corrections)
- - [Andreas Blixt][6] (Language corrections)
+ - [Caio Romão][5] (スペル校正)
+ - [Andreas Blixt][6] (言語校正)
 
-## Hosting
+## ホスティング
 
-JavaScript Garden is hosted on GitHub, but [Cramer Development][7] supports us
-with a mirror at [JavaScriptGarden.info][8].
+JavaScript GardenはGitHubでホスティングされていますが、[Cramer Development][7]が[JavaScriptGarden.info][8]というミラーサイトを作ってくれています。
 
-## License
+## ライセンス
 
-JavaScript Garden is published under the [MIT license][9] and hosted on
-[GitHub][10]. If you find errors or typos please [file an issue][11] or a pull 
-request on the repository. You can also find us in the [JavaScript room][12] on
-Stack Overflow chat. 
+JavaScript Gardenは[MIT license][9]の下で公開されており、[GitHub][10]でホスティングされています。もしもエラーやtypoを見つけたら[file an issue][11]に登録するかレポジトリにプルリクエストを送ってください。
+またStack Overflowチャットの[JavaScript room][12]に私達はいます。
+
 
 [1]: https://developer.mozilla.org/en/JavaScript/Guide
 [2]: http://stackoverflow.com/

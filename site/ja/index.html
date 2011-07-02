@@ -1,40 +1,31 @@
 <!DOCTYPE html><html lang="ja"><head><title>JavaScript Garden</title><meta charset="utf-8"><meta name="description" content="JavaScriptの奇抜さと欠陥についてのガイドライン"><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
 <script src="javascript/html5.js"></script>
 <![endif]-->
-</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha suomeksi">fi</a></li><li class="active"><a href="/JavaScript-Garden/ja" title="JavaScript Garden in Japanese">ja</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden - ogród JavaScript po polsku">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden Türkçe">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript Garden 中文翻译">zh</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">イントロ</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">オブジェクト</a></h1><ul><li><a href="#object.general">Object Usage and Properties</a></li><li><a href="#object.prototype">The Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">The <code>for in</code> Loop</a></li></ul></li><li class="nav_function"><h1><a href="#function">関数</a></h1><ul><li><a href="#function.general">Function Declarations and Expressions</a></li><li><a href="#function.this">How <code>this</code> Works</a></li><li><a href="#function.closures">Closures and References</a></li><li><a href="#function.arguments">The <code>arguments</code> Object</a></li><li><a href="#function.constructors">Constructors</a></li><li><a href="#function.scopes">Scopes and Namespaces</a></li></ul></li><li class="nav_array"><h1><a href="#array">配列</a></h1><ul><li><a href="#array.general">Array Iteration and Properties</a></li><li><a href="#array.constructor">The <code>Array</code> Constructor</a></li></ul></li><li class="nav_types"><h1><a href="#types">型</a></h1><ul><li><a href="#types.equality">Equality and Comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> Operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> Operator</a></li><li><a href="#types.casting">Type Casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">コア</a></h1><ul><li><a href="#core.eval">Why Not to Use <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> and <code>null</code></a></li><li><a href="#core.semicolon">Automatic Semicolon Insertion</a></li></ul></li><li class="nav_other"><h1><a href="#other">その他</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>イントロ</h1><div><p><strong>JavaScript Garden</strong> is a growing collection of documentation about the most 
-quirky parts of the JavaScript programming language. It gives advice to 
-avoid common mistakes, subtle bugs, as well as performance issues and bad 
-practices that non-expert JavaScript programmers may encounter on their 
-endeavours into the depths of the language.</p>
+</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha suomeksi">fi</a></li><li class="active"><a href="/JavaScript-Garden/ja" title="JavaScript Garden in Japanese">ja</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden - ogród JavaScript po polsku">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden Türkçe">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript Garden 中文翻译">zh</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">前書き</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">オブジェクト</a></h1><ul><li><a href="#object.general">Object Usage and Properties</a></li><li><a href="#object.prototype">The Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">The <code>for in</code> Loop</a></li></ul></li><li class="nav_function"><h1><a href="#function">関数</a></h1><ul><li><a href="#function.general">Function Declarations and Expressions</a></li><li><a href="#function.this">How <code>this</code> Works</a></li><li><a href="#function.closures">Closures and References</a></li><li><a href="#function.arguments">The <code>arguments</code> Object</a></li><li><a href="#function.constructors">Constructors</a></li><li><a href="#function.scopes">Scopes and Namespaces</a></li></ul></li><li class="nav_array"><h1><a href="#array">配列</a></h1><ul><li><a href="#array.general">Array Iteration and Properties</a></li><li><a href="#array.constructor">The <code>Array</code> Constructor</a></li></ul></li><li class="nav_types"><h1><a href="#types">型</a></h1><ul><li><a href="#types.equality">Equality and Comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> Operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> Operator</a></li><li><a href="#types.casting">Type Casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">コア</a></h1><ul><li><a href="#core.eval">Why Not to Use <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> and <code>null</code></a></li><li><a href="#core.semicolon">Automatic Semicolon Insertion</a></li></ul></li><li class="nav_other"><h1><a href="#other">その他</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>前書き</h1><div><p><strong>JavaScript Garden</strong> はJavaScriptというプログラム言語の一番奇抜な部分についてのドキュメント集です。
+このドキュメントはJavaScriptという言語に対して不慣れなプログラマーがこの言語について深く知ろうとする際に遭遇する、良くある間違い・小さなバグ・パフォーマンスの問題・悪い習慣などを避ける為のアドバイスを与えます。</p>
 
-<p>JavaScript Garden does <strong>not</strong> aim to teach you JavaScript. Former knowledge
-of the language is strongly recommended in order to understand the topics covered
-in this guide. In order to learn the basics of the language, please head over to 
-the excellent <a href="https://developer.mozilla.org/en/JavaScript/Guide">guide</a> on the Mozilla Developer Network.</p>
+<p>JavaScript GardenはJavaScriptを教える事を<strong>目的にしていません</strong>。このガイドの項目を理解する為には、この言語に対する前提知識がある事を推奨します。この言語の基礎部分についてはMozilla Developer Networkの<a href="https://developer.mozilla.org/en/JavaScript/Guide">ガイド</a> がオススメです。 </p>
 
-<h2>The Authors</h2>
+<h2>著者</h2>
 
-<p>This guide is the work of two lovely <a href="http://stackoverflow.com/">Stack Overflow</a> users, <a href="http://stackoverflow.com/users/170224/ivo-wetzel">Ivo Wetzel</a>
-(Writing) and <a href="http://stackoverflow.com/users/313758/yi-jiang">Zhang Yi Jiang</a> (Design).</p>
+<p>このガイドは2人の愛すべき<a href="http://stackoverflow.com/">Stack Overflow</a>ユーザーである<a href="http://stackoverflow.com/users/170224/ivo-wetzel">Ivo Wetzel</a>
+(執筆)と<a href="http://stackoverflow.com/users/313758/yi-jiang">Zhang Yi Jiang</a> (デザイン)によって作られました。</p>
 
-<h2>Contributors</h2>
+<h2>貢献者</h2>
 
 <ul>
-<li><a href="https://github.com/caio">Caio Romão</a> (Spelling corrections)</li>
-<li><a href="https://github.com/blixt">Andreas Blixt</a> (Language corrections)</li>
+<li><a href="https://github.com/caio">Caio Romão</a> (スペル校正)</li>
+<li><a href="https://github.com/blixt">Andreas Blixt</a> (言語校正)</li>
 </ul>
 
-<h2>Hosting</h2>
+<h2>ホスティング</h2>
 
-<p>JavaScript Garden is hosted on GitHub, but <a href="http://cramerdev.com/">Cramer Development</a> supports us
-with a mirror at <a href="http://javascriptgarden.info/">JavaScriptGarden.info</a>.</p>
+<p>JavaScript GardenはGitHubでホスティングされていますが、<a href="http://cramerdev.com/">Cramer Development</a>が<a href="http://javascriptgarden.info/">JavaScriptGarden.info</a>というミラーサイトを作ってくれています。</p>
 
-<h2>License</h2>
+<h2>ライセンス</h2>
 
-<p>JavaScript Garden is published under the <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a> and hosted on
-<a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>. If you find errors or typos please <a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">file an issue</a> or a pull 
-request on the repository. You can also find us in the <a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript room</a> on
-Stack Overflow chat. </p></div></header><!-- Articles--></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>オブジェクト</h1></header><!-- Articles--><article id="object.general"><h2>Object Usage and Properties</h2><div><p>Everything in JavaScript acts like an object, with the only two exceptions being 
+<p>JavaScript Gardenは<a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a>の下で公開されており、<a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>でホスティングされています。もしもエラーやtypoを見つけたら<a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">file an issue</a>に登録するかレポジトリにプルリクエストを送ってください。
+またStack Overflowチャットの<a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript room</a>に私達はいます。</p></div></header><!-- Articles--></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>オブジェクト</h1></header><!-- Articles--><article id="object.general"><h2>Object Usage and Properties</h2><div><p>Everything in JavaScript acts like an object, with the only two exceptions being 
 <a href="#core.undefined"><code>null</code></a> and <a href="#core.undefined"><code>undefined</code></a>.</p>
 
 <pre><code>false.toString() // &#39;false&#39;
