@@ -4,7 +4,7 @@
     "description": "JavaScriptの奇抜さと欠陥についてのガイドライン",
     "sections": [
         {
-            "title": "イントロ",
+            "title": "前書き",
             "dir": "intro",
             "articles": []
         },
