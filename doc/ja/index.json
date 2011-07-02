@@ -12,40 +12,40 @@
             "title": "オブジェクト",
             "dir": "object",
             "articles": [
-                "概論",
+                "general",
                 "prototype",
                 "hasownproperty",
-                "forinループ"
+                "forinloop"
             ]
         },
         {
             "title": "関数",
             "dir": "function",
             "articles": [
-                "概論",
+                "general",
                 "this",
-                "クロージャ",
-                "引数",
-                "コンストラクタ",
-                "スコープ"
+                "closures",
+                "arguments",
+                "constructors",
+                "scopes"
             ]
         },
         {
             "title": "配列",
             "dir": "array",
             "articles": [
-                "概論",
-                "コンストラクタ"
+                "general",
+                "constructor"
             ]
         },
         {
             "title": "型",
             "dir": "types",
             "articles": [
-                "同値・同価",
+                "equality",
                 "typeof",
                 "instanceof",
-                "型変換"
+                "casting"
             ]
         },
         {
@@ -54,7 +54,7 @@
             "articles": [
                 "eval",
                 "undefined",
-                "セミコロン"
+                "semicolon"
             ]
         },
         {
