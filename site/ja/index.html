@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="ja"><head><title>JavaScript Garden</title><meta charset="utf-8"><meta name="description" content="JavaScriptの奇抜さと欠陥についてのガイドライン"><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
 <script src="javascript/html5.js"></script>
 <![endif]-->
-</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha suomeksi">fi</a></li><li class="active"><a href="/JavaScript-Garden/ja" title="JavaScript Garden in Japanese">ja</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden - ogród JavaScript po polsku">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden Türkçe">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript Garden 中文翻译">zh</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">前書き</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">オブジェクト</a></h1><ul><li><a href="#object.general">Object Usage and Properties</a></li><li><a href="#object.prototype">The Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">The <code>for in</code> Loop</a></li></ul></li><li class="nav_function"><h1><a href="#function">関数</a></h1><ul><li><a href="#function.general">Function Declarations and Expressions</a></li><li><a href="#function.this">How <code>this</code> Works</a></li><li><a href="#function.closures">Closures and References</a></li><li><a href="#function.arguments">The <code>arguments</code> Object</a></li><li><a href="#function.constructors">Constructors</a></li><li><a href="#function.scopes">Scopes and Namespaces</a></li></ul></li><li class="nav_array"><h1><a href="#array">配列</a></h1><ul><li><a href="#array.general">Array Iteration and Properties</a></li><li><a href="#array.constructor">The <code>Array</code> Constructor</a></li></ul></li><li class="nav_types"><h1><a href="#types">型</a></h1><ul><li><a href="#types.equality">Equality and Comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> Operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> Operator</a></li><li><a href="#types.casting">Type Casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">コア</a></h1><ul><li><a href="#core.eval">Why Not to Use <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> and <code>null</code></a></li><li><a href="#core.semicolon">Automatic Semicolon Insertion</a></li></ul></li><li class="nav_other"><h1><a href="#other">その他</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>前書き</h1><div><p><strong>JavaScript Garden</strong> はJavaScriptというプログラム言語の一番奇抜な部分についてのドキュメント集です。
+</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha suomeksi">fi</a></li><li class="active"><a href="/JavaScript-Garden/ja" title="JavaScript Garden in Japanese">ja</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden - ogród JavaScript po polsku">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden Türkçe">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript Garden 中文翻译">zh</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">前書き</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">オブジェクト</a></h1><ul><li><a href="#object.general">オブジェクトの使用法とプロパティ</a></li><li><a href="#object.prototype">The Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">The <code>for in</code> Loop</a></li></ul></li><li class="nav_function"><h1><a href="#function">関数</a></h1><ul><li><a href="#function.general">Function Declarations and Expressions</a></li><li><a href="#function.this">How <code>this</code> Works</a></li><li><a href="#function.closures">Closures and References</a></li><li><a href="#function.arguments">The <code>arguments</code> Object</a></li><li><a href="#function.constructors">Constructors</a></li><li><a href="#function.scopes">Scopes and Namespaces</a></li></ul></li><li class="nav_array"><h1><a href="#array">配列</a></h1><ul><li><a href="#array.general">Array Iteration and Properties</a></li><li><a href="#array.constructor">The <code>Array</code> Constructor</a></li></ul></li><li class="nav_types"><h1><a href="#types">型</a></h1><ul><li><a href="#types.equality">Equality and Comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> Operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> Operator</a></li><li><a href="#types.casting">Type Casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">コア</a></h1><ul><li><a href="#core.eval">Why Not to Use <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> and <code>null</code></a></li><li><a href="#core.semicolon">Automatic Semicolon Insertion</a></li></ul></li><li class="nav_other"><h1><a href="#other">その他</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>前書き</h1><div><p><strong>JavaScript Garden</strong> はJavaScriptというプログラム言語の一番奇抜な部分についてのドキュメント集です。
 このドキュメントはJavaScriptという言語に対して不慣れなプログラマーがこの言語について深く知ろうとする際に遭遇する、良くある間違い・小さなバグ・パフォーマンスの問題・悪い習慣などを避ける為のアドバイスを与えます。</p>
 
 <p>JavaScript GardenはJavaScriptを教える事を<strong>目的にしていません</strong>。このガイドの項目を理解する為には、この言語に対する前提知識がある事を推奨します。この言語の基礎部分についてはMozilla Developer Networkの<a href="https://developer.mozilla.org/en/JavaScript/Guide">ガイド</a> がオススメです。 </p>
@@ -24,9 +24,9 @@
 
 <h2>ライセンス</h2>
 
-<p>JavaScript Gardenは<a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a>の下で公開されており、<a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>でホスティングされています。もしもエラーやtypoを見つけたら<a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">file an issue</a>に登録するかレポジトリにプルリクエストを送ってください。
-またStack Overflowチャットの<a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript room</a>に私達はいます。</p></div></header><!-- Articles--></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>オブジェクト</h1></header><!-- Articles--><article id="object.general"><h2>Object Usage and Properties</h2><div><p>Everything in JavaScript acts like an object, with the only two exceptions being 
-<a href="#core.undefined"><code>null</code></a> and <a href="#core.undefined"><code>undefined</code></a>.</p>
+<p>JavaScript Gardenは<a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a>の下で公開されており、<a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>でホスティングされています。もしもエラーやtypoを見つけたら<a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">file an issue</a>に登録するかリポジトリにプルリクエストを送ってください。
+またStack Overflowチャットの<a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript room</a>に私達はいます。</p></div></header><!-- Articles--></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>オブジェクト</h1></header><!-- Articles--><article id="object.general"><h2>オブジェクトの使用法とプロパティ</h2><div><p>JavaScriptの全ての要素は2つの例外を除いて、オブジェクトのように振る舞います。
+その2つとは<a href="#core.undefined"><code>null</code></a>と<a href="#core.undefined"><code>undefined</code></a>です。</p>
 
 <pre><code>false.toString() // &#39;false&#39;
 [1, 2, 3].toString(); // &#39;1,2,3&#39;
@@ -36,40 +36,33 @@ Foo.bar = 1;
 Foo.bar; // 1
 </code></pre>
 
-<p>A common misconception is that number literals cannot be used as
-objects. That is because a flaw in JavaScript&#39;s parser tries to parse the <em>dot 
-notation</em> on a number as a floating point literal.</p>
+<p>良くありがちな誤解として、数値リテラルがオブジェクトとして使用できないというものがあります。この理由としては、JavaScriptパーサーが浮動小数点のドットを<em>ドット記法</em>として解釈しようとしてしまうからです。</p>
 
-<pre><code>2.toString(); // raises SyntaxError
+<pre><code>2.toString(); // シンタックスエラーが発生する
 </code></pre>
 
-<p>There are a couple of workarounds which can be used in order make number 
-literals act as objects too.</p>
+<p>数値リテラルをオブジェクトとして使用する為の回避策がいくつかあります。</p>
 
-<pre><code>2..toString(); // the second point is correctly recognized
-2 .toString(); // note the space left to the dot
-(2).toString(); // 2 is evaluated first
+<pre><code>2..toString(); // 2つ目のドットが正しく解釈される
+2 .toString(); // ドットの左隣のスペースがポイント
+(2).toString(); // 2が一番最初に評価される
 </code></pre>
 
-</div><div><h3>Objects as a Data Type</h3>
+</div><div><h3>オブジェクトはデータタイプ</h3>
 
-<p>Objects in JavaScript can also be used as a <a href="http://en.wikipedia.org/wiki/Hashmap"><em>Hashmap</em></a>, they mainly consist 
-of named properties mapping to values.</p>
+<p>JavaScriptのオブジェクトは<a href="http://en.wikipedia.org/wiki/Hashmap"><em>ハッシュマップ</em></a>としても使用されます。これは名前付きのプロパティと値として構成されています。</p>
 
-<p>Using a object literal - <code>{}</code> notation - it is possible to create a 
-plain object. This new object <a href="#object.prototype">inherits</a> from <code>Object.prototype</code> and 
-has no <a href="#object.hasownproperty">own properties</a> defined on it.</p>
+<p>オブジェクトリテラル(<code>{}</code>記法)を使用すると、オブジェクトそのものを作る事ができます。この方法で作られたオブジェクトは<code>Object.prototype</code>から<a href="#object.prototype">継承</a>され、<a href="#object.hasownproperty">own properties</a>が何も設定されてない状態になります。</p>
 
-<pre><code>var foo = {}; // a new empty object
+<pre><code>var foo = {}; // 新しい空のオブジェクト
 
-// a new object with a property called &#39;test&#39; with value 12
+// 12という値の&#39;test&#39;というプロパティを持った新しいオブジェクト
 var bar = {test: 12}; 
 </code></pre>
 
-</div><div><h3>Accessing Properties</h3>
+</div><div><h3>プロパティへのアクセス</h3>
 
-<p>The properties of an object can be accessed in two ways, via either the dot
-notation, or the square bracket notation.</p>
+<p>オブジェクトのプロパティには2通りのアクセス方法があります。1つはドット記法によるアクセス、もう1つはブラケット記法です。</p>
 
 <pre><code>var foo = {name: &#39;Kitten&#39;}
 foo.name; // kitten
@@ -78,19 +71,15 @@ foo[&#39;name&#39;]; // kitten
 var get = &#39;name&#39;;
 foo[get]; // kitten
 
-foo.1234; // SyntaxError
-foo[&#39;1234&#39;]; // works
+foo.1234; // シンタックスエラー
+foo[&#39;1234&#39;]; // 動作する
 </code></pre>
 
-<p>Both notations are identical in their workings, with the only difference being that
-the square bracket notation allows for dynamic setting of properties, as well as
-the use of property names that would otherwise lead to a syntax error.</p>
+<p>どちらの記法も働きとしての違いは無いですが、唯一の違いとしてブラケット記法は通常のプロパティ名と同様に動的にプロパティを設定する事ができます。これ以外で動的にプロパティを設定しようとするとシンタックスエラーになります。</p>
 
-</div><div><h3>Deleting Properties</h3>
+</div><div><h3>プロパティの削除</h3>
 
-<p>The only way to actually remove a property from an object is to use the <code>delete</code>
-operator; setting the property to <code>undefined</code> or <code>null</code> only remove the
-<em>value</em> associated with the property, but not the <em>key</em>.</p>
+<p>実際にオブジェクトからプロパティを削除する唯一の方法は<code>delete</code>演算子を使う事です。プロパティに<code>undefined</code>や<code>null</code>をセットしても、プロパティ自身ではなく、<em>キー</em>に設定された<em>値</em>を削除するだけです。</p>
 
 <pre><code>var obj = {
     bar: 1,
@@ -108,24 +97,19 @@ for(var i in obj) {
 }
 </code></pre>
 
-<p>The above outputs both <code>bar undefined</code> and <code>foo null</code> - only <code>baz</code> was
-removed and is therefore missing from the output.</p>
+<p>上記の例では、<code>baz</code>は完全に削除されて出力がされていませんが、それ以外の2つ<code>bar undefined</code>と<code>foo null</code>はどちらも出力されてしまっています。</p>
 
-</div><div><h3>Notation of Keys</h3>
+</div><div><h3>キーの記法</h3>
 
 <pre><code>var test = {
     &#39;case&#39;: &#39;I am a keyword so I must be notated as a string&#39;,
-    delete: &#39;I am a keyword too so me&#39; // raises SyntaxError
+    delete: &#39;I am a keyword too so me&#39; // シンタックスエラーが起こる
 };
 </code></pre>
 
-<p>Object properties can be both notated as plain characters and as strings. Due to
-another mis-design in JavaScript&#39;s parser, the above will throw 
-a <code>SyntaxError</code> prior to ECMAScript 5.</p>
+<p>オブジェクトのプロパティは普通の文字か文字列として記述する事が出来ます。JavaScriptパーサーの設計ミスが原因ですが、ECMAScript5以前では上記のコードは<code>シンタックスエラー</code>を表示するでしょう。</p>
 
-<p>This error arises from the fact that <code>delete</code> is a <em>keyword</em>; therefore, it must be 
-notated as a <em>string literal</em> to ensure that it will be correctly interpreted by
-older JavaScript engines.</p></div></article><article id="object.prototype"><h2>The Prototype</h2><div><p>JavaScript does not feature a classical inheritance model, instead it uses a 
+<p>このエラーは<code>delete</code>が<em>予約語</em>になっているのが原因なので、古いJavaScriptエンジンに正しく解釈させる為には<em>文字リテラル</em>を使って記述する事を推奨します。</p></div></article><article id="object.prototype"><h2>The Prototype</h2><div><p>JavaScript does not feature a classical inheritance model, instead it uses a 
 <em>prototypal</em> one. </p>
 
 <p>While this is often considered to be one of JavaScript&#39;s weaknesses, the 
