@@ -8,44 +8,43 @@ z tych dwóch jest `undefined`.
 `undefined` jest typem z dokładnie jedną wartością: `undefined`.
 
 Język również definiuje globalną zmienną, która ma wartość `undefined`, zmienna 
-ta jest nazwana `undefined`. Jednakże jest to zmienna a **nie** stała czy słowo 
-kluczowe w języku. Oznacza to że możliwe jest nadpisanie *wartości* tej zmiennej.
+ta jest nazwana `undefined`. Jednakże jest to zmienna a **nie** stała, czy słowo 
+kluczowe. Oznacza to, że możliwe jest nadpisanie *wartości* tej zmiennej.
 
 > Uwaga ES55: `undefined` w ECMAScript 5 **nie będzie już** *nadpisywalna* w trybie
-> strict mode, ale jej nazwa może zostać przysłonona przez na przykład funkcję o 
+> strict mode, ale jej nazwa może zostać przesłoniona przez na przykład funkcję o 
 > nazwie `undefined`.
 
 Kilka przykładów kiedy wartość `undefined` jest zwracana:
 
- - Dostęp do (niemodyfikowalnej) zmiennej globalnej `undefined`.
- - Wyjście z funkcji, która nie ma deklaracji `return`.
- - Deklaracja `return`, która nic jawnie nie zwraca.
- - Poszukiwanie nieistniejącej właściwości.
- - Parametr funkcji, który nie został jawnie przekazany podczas wywołania funkcji
- - Wszystko co zostało ustawione na wartość `undefined`
+ - dostęp do (niemodyfikowalnej) zmiennej globalnej `undefined`,
+ - wyjście z funkcji, która nie ma deklaracji `return`,
+ - deklaracja `return`, która nic jawnie nie zwraca,
+ - poszukiwanie nieistniejącej właściwości,
+ - parametr funkcji, który nie został jawnie przekazany podczas wywołania funkcji,
+ - wszystko czemu została przypisana wartość `undefined`.
 
 ### Obsługa przypadku zmiany wartości `undefined`
 
-Ponieważ globalna zmienna `undeined` tylko zawiera kopię prawdziwej *wartości* typu 
+Ponieważ globalna zmienna `undefined` zawiera tylko kopię prawdziwej *wartości* typu 
 `undefined`, przypisanie nowej wartości do tej zmiennej **nie** zmienia wartości 
 *typu* `undefined`.
 
-Jednak, aby porównać coś do wartości `undefined` potrzebne jest odczytanie wartości 
-`undefined`.
+Jednak aby porównać coś z wartością `undefined`, trzeba odczytać wartość `undefined`.
 
-Aby uchronić swój kod przeciwko możliwemu nadpisaniu zmiennej `undefined`, korzysta 
+Aby uchronić swój kod przed możliwym nadpisaniem zmiennej `undefined`, korzysta 
 się z powszechnej techniki dodania dodatkowego parametru do 
 [anonimowego wrappera](#function.scopes), do którego nie zostanie przekazany 
 argument.
 
     var undefined = 123;
     (function(something, foo, undefined) {
-        // undefined lokalnym zasięgu znowu 
+        // undefined o lokalnym zasięgu znowu 
         // odnosi się do poprawnej wartości
 
     })('Hello World', 42);
 
-Kolejnym sposobem aby osiągnąć ten sam efekt jest użycie deklaracji zmiennej 
+Kolejnym sposobem na osiągnięcie tego samego efektu jest użycie deklaracji zmiennej 
 wewnątrz wrappera.
 
     var undefined = 123;
@@ -55,7 +54,7 @@ wewnątrz wrappera.
 
     })('Hello World', 42);
 
-Jedyną różnicą pomięcy tymi sposobami są dodatkowe 4 bajty przeznaczone na słowo 
+Jedyną różnicą pomiędzy tymi sposobami są dodatkowe 4 bajty przeznaczone na słowo 
 kluczowe `var` i spację po nim.
 
 ### Zastosowanie `null`
