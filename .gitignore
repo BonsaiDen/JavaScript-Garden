@@ -9,5 +9,7 @@
 /site/en
 /site/fi
 /site/tr
+/site/pl
+/site/ja
 *.md~
 *.src.md
