@@ -1,9 +1,9 @@
 ## Domknięcia i referencje
 
-Jedną z najpotężniejszych funkcjonalności języka JavaScript są *domknięcia*, 
+Jedną z najpotężniejszych funkcjonalności języka JavaScript są *domknięcia*(closures), 
 oznacza to że zasięg **zawsze** posiada dostęp do zewnętrznego zasięgu w którym 
 został zdefiniowany. Ponieważ zasięg w JavaScript można definiować tylko poprzez 
-[funckję](#function.scopes), wszystkie funkcje domyślnie zachowują się jak domknięcia.
+[funkcję](#function.scopes), wszystkie funkcje domyślnie zachowują się jak domknięcia.
 
 ### Emulowanie prywatnych zmiennych
 
@@ -24,12 +24,12 @@ został zdefiniowany. Ponieważ zasięg w JavaScript można definiować tylko po
     foo.increment();
     foo.get(); // 5
 
-Tutaj `Counter` zwraca **dwa** domknięcia: funkcję `increment` oraz funckję `get`. 
+Tutaj `Counter` zwraca **dwa** domknięcia: funkcję `increment` oraz funkcję `get`. 
 Obie te funkcję trzymają **referencję** do zasięgu `Counter` a co za tym idzie 
 zawsze posiadają dostęp do zmiennej `count` tak, jakby ta zmienna była zdefiniowana 
 w zasięgu tych funkcji.
 
-### Dlaczego zmienne przywatne działają
+### Dlaczego zmienne prywatne działają
 
 Ponieważ nie ma możliwości wskazania lub przypisania zasięgu w JavaScript, to 
 **nie** istnieje sposób aby uzyskać dostęp do zmiennej `count` z zewnątrz. 

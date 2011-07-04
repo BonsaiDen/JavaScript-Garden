@@ -4,10 +4,6 @@ JavaScript posiada inną koncepcję odnośnie tego na co wskazuje specjalna
 nazwa `this`, niż większość innych języków programowania. Istnieją dokładnie 
 **pięć** różnych sytuacji w których wartość `this` zostaje przypisana w języku JavaScript.
 
-JavaScript has a different concept of what the special name `this` refers to 
-than most other programming languages do. There are exactly **five** different 
-ways in which the value of `this` can be bound in the language.
-
 ### Zasięg globalny
 
     this;
@@ -60,7 +56,7 @@ miejsca i `this` wewnątrz `foo` będzie wskazywać na `bar`.
 ### Częste pułapki
 
 Mimo iż Większość z tych przypadków ma sens, to pierwszy przypadek powinien być 
-traktorany jako błąd podczas projektowania języka i **nigdy** nie wykorzystywany 
+traktowany jako błąd podczas projektowania języka i **nigdy** nie wykorzystywany 
 w praktyce.
 
     Foo.method = function() {

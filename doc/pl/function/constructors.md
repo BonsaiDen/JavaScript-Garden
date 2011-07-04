@@ -112,17 +112,12 @@ nowy obiekt wewnątrz tej fabryki.
 
 Mimo, że powyższy kod jest odporny na brak słowa kluczowego `new` i ułatwia 
 korzystanie ze [zmiennych prywatnych](#function.closures), to posiada 
-pewne wady.
-While the above is robust against a missing `new` keyword and certainly makes 
-the use of [private variables](#function.closures) easier, it comes with some 
-downsides.
- 1. Zużywa więcej pamięci, ponieważ tworzony obiekt **nie** współdzieli metod 
-    poprzez prototyp
- 2. Aby móc dziedziczyć fabryka musi skopiować wszystkie metody z dziedziczonego 
-    obiektu lub przypisać ten obiekt, z którego się dziedziczy, jako prototyp 
-    do nowo utworzonego obiektu.
- 3. Porzucenie łańcucha prototypów tylko ze względu na opuszczone słowo kluczowe
-    `new` jest sprzeczne z duchem języka.
+pewne wady:
+
+-1. Zużywa więcej pamięci, ponieważ tworzony obiekt **nie** współdzieli metod poprzez prototyp
+-2. Aby móc dziedziczyć fabryka musi skopiować wszystkie metody z dziedziczonego obiektu lub 
+  przypisać ten obiekt, z którego się dziedziczy, jako prototyp do nowo utworzonego obiektu.
+-3. Porzucenie łańcucha prototypów tylko ze względu na opuszczone słowo kluczowe `new` jest sprzeczne z duchem języka.
 
 ### Wnioski
 
