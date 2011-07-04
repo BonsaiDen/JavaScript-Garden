@@ -85,7 +85,7 @@ została usunięta i dlatego nie została wypisana.
 ### Notacja właściwości
 
     var test = {
-        'case': 'jestem zastrzeżonym słowem kluczowym, więc muszę być w cudzysłowie',
+        'case': 'jestem słowem kluczowym, więc muszę być w cudzysłowie',
         delete: 'tak samo jak ja' // wyrzuca błąd SyntaxError
     };
 
