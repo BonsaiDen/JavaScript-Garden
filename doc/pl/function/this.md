@@ -1,8 +1,8 @@
 ## Jak działa `this`
 
-JavaScript posiada inną koncepcję odnośnie tego na co wskazuje specjalna 
-nazwa `this`, niż większość innych języków programowania. Istnieją dokładnie 
-**pięć** różnych sytuacji w których wartość `this` zostaje przypisana w języku JavaScript.
+JavaScript posiada inną koncepcję odnośnie tego na co wskazuje słowo kluczowe 
+`this`, niż większość innych języków programowania. Istnieje dokładnie 
+**pięć** różnych sytuacji, w których wartość `this` jest przypisana w języku JavaScript.
 
 JavaScript has a different concept of what the special name `this` refers to 
 than most other programming languages do. There are exactly **five** different 
@@ -12,7 +12,7 @@ ways in which the value of `this` can be bound in the language.
 
     this;
 
-Używanie `this` w globalnym zasięgu, zwróci po prostu referencje do obiektu *global*.
+Używanie `this` w globalnym zasięgu, zwróci po prostu referencję do obiektu *global*.
 
 
 ### Wywołanie funkcji
@@ -34,7 +34,7 @@ W tym przypadku `this` będzie wskazywało na `test`.
 
     new foo(); 
 
-Wywołanie funkcji, które jest poprzedzone słowem kluczowym `new` zachowuje się 
+Wywołanie funkcji, które jest poprzedzone słowem kluczowym `new`, zachowuje się 
 jak [konstruktor](#function.constructors). Wewnątrz funkcji `this` będzie 
 wskazywało na *nowo utworzony* obiekt.
 
@@ -70,10 +70,10 @@ w praktyce.
         test();
     }
 
-Powszechnym nieporozumieniem jest, że `this` wewnątrz `test` wskazuje na `Foo`, 
+Powszechnym błędem jest myślenie, że `this` wewnątrz `test` wskazuje na `Foo`, 
 podczas gdy w rzeczywistości tak **nie jest**.
 
-Aby uzyskać dostęp do `Foo` wewnątrz `test` niezbędne jest stworzenie wewnątrz 
+Aby uzyskać dostęp do `Foo` wewnątrz `test`, niezbędne jest stworzenie wewnątrz 
 metody lokalnej zmiennej, która będzie wskazywała na `Foo`.
 
     Foo.method = function() {
@@ -84,13 +84,13 @@ metody lokalnej zmiennej, która będzie wskazywała na `Foo`.
         test();
     }
 
-`that` jest zwykłą zmienną, ale jest to powszechnie stosowana konwencja, aby otrzymać 
-wartość zewnętrznego `this`. W połączeniu z [domknięciami(closures)](#function.closures) 
-jest to sposób na przekazywanie wartości `this` wokoło.
+`that` jest zwykłą zmienną, ale jest to powszechnie stosowana konwencja otrzymywania  
+wartości zewnętrznego `this`. W połączeniu z [domknięciami(closures)](#function.closures), 
+jest to sposób na przekazywanie wartości `this` wokół.
 
 ### Metody przypisywania
 
-Kolejną rzeczą, która **nie** działa w języku JavaScript jest nadawanie aliasów 
+Kolejną rzeczą, która **nie** działa w języku JavaScript, jest nadawanie aliasów 
 funkcjom, co oznacza **przypisanie** metody do zmiennej.
 
     var test = someObject.methodTest;
@@ -100,7 +100,7 @@ Podobnie jak w pierwszym przypadku `test` zachowuje się jak wywołanie zwykłej
 funkcji, a zatem wewnątrz funkcji `this` już nie będzie wskazywało `someObject`.
 
 Podczas gdy późne wiązanie `this` może się na początku wydawać złym pomysłem, 
-to w rzeczywistości jest to rzecz, która powoduje że 
+to w rzeczywistości jest to rzecz, która sprawia, że 
 [dziedziczenie prototypowe](#object.prototype) działa.
 
     function Foo() {}
@@ -112,5 +112,5 @@ to w rzeczywistości jest to rzecz, która powoduje że
     new Bar().method();
 
 Kiedy metoda `method` zostanie wywołana na instancji `Bar`, `this` będzie 
-wskazywało właśnie tą instancję.
+wskazywało właśnie tę instancję.
 

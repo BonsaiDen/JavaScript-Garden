@@ -7,7 +7,7 @@ z tych dwóch jest `undefined`.
 
 `undefined` jest typem z dokładnie jedną wartością: `undefined`.
 
-Język również definiuje globalną zmienną, która ma wartość `undefined`, zmienna 
+Język również definiuje globalną zmienną, która ma wartość `undefined` - zmienna 
 ta jest nazwana `undefined`. Jednakże jest to zmienna a **nie** stała, czy słowo 
 kluczowe. Oznacza to, że możliwe jest nadpisanie *wartości* tej zmiennej.
 
@@ -60,7 +60,7 @@ kluczowe `var` i spację po nim.
 ### Zastosowanie `null`
 
 Podczas gdy `undefined` w kontekście języka jest używany jak *null* w sensie 
-tradycyjnych języków, to `null` w JavaScript (jako literał i jako typ) jest po 
+tradycyjnych języków, `null` w JavaScript (jako literał i jako typ) jest po 
 prostu kolejnym typem danych.
 
 Jest wykorzystywany we wnętrzu JavaScript (np. deklaracji końca łańcucha prototypów 
