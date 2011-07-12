@@ -1,24 +1,16 @@
-## The Prototype
+## プロトタイプ
 
-JavaScript does not feature a classical inheritance model, instead it uses a 
-*prototypal* one. 
+JavaScriptはクラスベース継承モデルは実装されておらず、この代わりに*プロトタイプ*を用いています。
 
-While this is often considered to be one of JavaScript's weaknesses, the 
-prototypal inheritance model is in fact more powerful than the classic model. 
-It is for example fairly trivial to build a classic model on top of it, while the
-other way around is a far more difficult task.
+プロトタイプモデルを使っている事が、JavaScriptの弱点の一つになっていると良く考えられがちですが、プロトタイプ継承モデルはクラスベース継承モデルよりパワフルだというのは事実です。この事はちょっとしたものでもクラスベースの継承で実装しようとすると、プロトタイプベースの継承よりも作業が難しくなるという事でも分かります。
 
-Due to the fact that JavaScript is basically the only widely used language that
-features prototypal inheritance, it takes some time to adjust to the 
-differences between the two models. 
+JavaScriptはプロトタイプベースが採用されている唯一の広範に使用されている基本的なプログラミング言語という現実があるので、プロトタイプベースとクラスベースの違いを時々調整しないとなりません。
 
-The first major difference is that inheritance in JavaScript is done by using so
-called *prototype chains*.
+最初の大きな違いはJavaScriptの継承は*プロトタイプチェーン*と呼ばれるもので実行されているという事です。
 
-> **Note:** Simply using `Bar.prototype = Foo.prototype` will result in both objects
-> sharing the **same** prototype. Therefore, changes to either object's prototype 
-> will affect the prototype of the other as well, which in most cases is not the 
-> desired effect.
+> **注意:** 単に`Bar.prototype = Foo.prototype`を使った場合、両方のオブジェクトは、
+> **同じ**プロトタイプを共有する事になります。その為、片方のオブジェクトのプロトタイプの変更は
+> もう一方のオブジェクトに影響します。大部分の場合、このような影響を及ぼしたく無いと思います。
 
     function Foo() {
         this.value = 42;
@@ -29,35 +21,30 @@ called *prototype chains*.
 
     function Bar() {}
 
-    // Set Bar's prototype to a new instance of Foo
+    // BarのプロトタイプをFooの新しいインスタンスとしてセットする
     Bar.prototype = new Foo();
     Bar.prototype.foo = 'Hello World';
 
-    // Make sure to list Bar as the actual constructor
+    // Barを実際のコンストラクタとして確実にする為に代入する
     Bar.prototype.constructor = Bar;
 
-    var test = new Bar() // create a new bar instance
+    var test = new Bar() // 新しくbarインスタンスを作成
 
-    // The resulting prototype chain
+    // プロトタイプチェーンの結果
     test [instance of Bar]
         Bar.prototype [instance of Foo] 
             { foo: 'Hello World' }
             Foo.prototype
                 { method: ... }
                 Object.prototype
-                    { toString: ... /* etc. */ }
+                    { toString: ... /* その他 */ }
 
-In the above, the object `test` will inherit from both `Bar.prototype` and
-`Foo.prototype`; hence, it will have access to the function `method` that was 
-defined on `Foo`. It will also have access to the property `value` of the
-**one** `Foo` instance that is its prototype. It is important to note that `new
-Bar()` does **not** create a new `Foo` instance, but reuses the one assigned to 
-its prototype; thus, all `Bar` instances will share the **same** `value` property.
+上記では`test`は`Bar.prototype`と`Foo.prototype`の2つのオブジェクトより継承されます。その為`Foo`の中で設定された`method`関数にアクセスできるようになります。また、`Foo`のプロトタイプとしてのインスタンス**それ自体**の`value`プロパティにもアクセスが可能です。`new Bar()`は`Foo`のインスタンスを新しく作ら**ない**という事は非常に注目されるべき点ですが、それ自身のプロトタイプを再利用しています。従って全ての`Bar`インスタンスは**同じ**`value`プロパティを共有します。
 
-> **Note:** Do **not** use `Bar.prototype = Foo`, since it will not point to 
-> the prototype of `Foo` but rather to the function object `Foo`. So the 
-> prototype chain will go over `Function.prototype` and not `Foo.prototype`;
-> therefore, `method` will not be on the prototype chain.
+> **注意:** `Bar.prototype = Foo`のような使い方は**しない**で下さい。`Foo`はそのプロトタイプではなく、
+> 関数オブジェクト`Foo`自体を指しているからです。
+> プロトタイプチェーンは`Foo.prototype`ではなく`Function.prototype`まで遡るので、
+> `method`はプロトタイプチェーン上に出現しなくなります。
 
 ### Property Lookup
 
