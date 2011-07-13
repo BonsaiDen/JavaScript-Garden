@@ -46,14 +46,11 @@ JavaScriptはプロトタイプベースが採用されている唯一の広範�
 > プロトタイプチェーンは`Foo.prototype`ではなく`Function.prototype`まで遡るので、
 > `method`はプロトタイプチェーン上に出現しなくなります。
 
-### Property Lookup
+### プロパティ探索
 
-When accessing the properties of an object, JavaScript will traverse the
-prototype chain **upwards** until it finds a property with the requested name.
+オブジェクトのプロパティにアクセスする時には、JavaScriptはプロトタイプチェーンを要求された名前を見つけるまで**遡って**探索します。
 
-When it reaches the top of the chain - namely `Object.prototype` - and still
-hasn't found the specified property, it will return the value
-[undefined](#core.undefined) instead.
+チェーンの先頭(すなわち`Object.prototype`)に到達した際に、まだ指定されたプロパティが見つからなければ、代わりに[undefined](#core.undefined)という値を返します。
 
 ### The Prototype Property
 
