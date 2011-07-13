@@ -61,14 +61,12 @@ JavaScriptはプロトタイプベースが採用されている唯一の広範�
 
 割り当てられているオブジェクトは上記の例で示されている通りに動作し、動的にプロトタイプチェーンを作ります。
 
-### Performance
+### パフォーマンス
 
-The lookup time for properties that are high up on the prototype chain can have a
-negative impact on performance critical sections of code. Additionally, trying to 
-access non-existent properties will always traverse the full prototype chain. 
+プロトタイプチェーンの上位にあるプロパティを探索する時間はコードの実行パフォーマンスに重大な悪影響を与えます。特に存在しないプロパティにアクセスしようとすると、プロトタイプチェーンの全てのプロパティを探索してしまいます。
 
-Also, when [iterating](#object.forinloop) over the properties of an object 
-**every** property that is on the prototype chain will get enumerated.
+また、オブジェクトのプロパティに対して[反復](#object.forinloop)処理をすると、プロトタイプチェーン上の**全て**のプロパティを列挙してしまいます。
+
 
 ### Extension of Native Prototypes
 
