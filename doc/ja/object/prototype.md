@@ -52,17 +52,14 @@ JavaScriptはプロトタイプベースが採用されている唯一の広範�
 
 チェーンの先頭(すなわち`Object.prototype`)に到達した際に、まだ指定されたプロパティが見つからなければ、代わりに[undefined](#core.undefined)という値を返します。
 
-### The Prototype Property
+### プロトタイププロパティ
 
-While the prototype property is used by the language to build the prototype
-chains, it is still possible to assign **any** given value to it. Although 
-primitives will simply get ignored when assigned as a prototype.
+プロトタイププロパティはJavaScriptの中でプロトタイプチェーンを構築する為に使われていますが、**任意**の値を代入する事も可能になっています。この時プロトタイプに代入されている値は単に無視されるだけです。
 
     function Foo() {}
-    Foo.prototype = 1; // no effect
+    Foo.prototype = 1; // 効果無し
 
-Assigning objects, as shown in the example above, will work, and allows for dynamic
-creation of prototype chains.
+割り当てられているオブジェクトは上記の例で示されている通りに動作し、動的にプロトタイプチェーンを作ります。
 
 ### Performance
 
