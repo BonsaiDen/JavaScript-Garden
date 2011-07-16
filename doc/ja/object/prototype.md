@@ -77,14 +77,9 @@ JavaScriptはプロトタイプベースが採用されている唯一の広範�
 **唯一**組み込みのプロトタイプを拡張しても良い理由としては、JavaScriptエンジンに将来実装されるであろう機能の移植だけです。
 例えば[`Array.forEach`][3]などが、それに当たります。
 
-### In Conclusion
+### 終わりに
 
-It is a **must** to understand the prototypal inheritance model completely 
-before writing complex code which makes use of it. Also, watch the length of 
-the prototype chains and break them up if necessary to avoid possible 
-performance issues. Further, the native prototypes should **never** be extended 
-unless it is for the sake of compatibility with newer JavaScript features.
-
+ここまでがプロトタイプベース継承モデルを使って複雑なコードを書く前に**必ず**理解すべき事です。また、プロパティチェーンの長さを観察して、もしパフォーマンスに悪影響を及ぼすのを防ぐ為ならば、これを分割をしなければなりません。さらに組み込みのプロトタイプは新しいJavaScriptの機能と互換性が無い限りは**絶対**に拡張してはいけません。
 [1]: http://en.wikipedia.org/wiki/Monkey_patch
 [2]: http://prototypejs.org/
 [3]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach
