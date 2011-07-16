@@ -68,18 +68,14 @@ JavaScriptはプロトタイプベースが採用されている唯一の広範�
 また、オブジェクトのプロパティに対して[反復](#object.forinloop)処理をすると、プロトタイプチェーン上の**全て**のプロパティを列挙してしまいます。
 
 
-### Extension of Native Prototypes
+### 既存のプロトタイプの拡張
 
-One mis-feature that is often used is to extend `Object.prototype` or one of the
-other built in prototypes.
+元々組み込まれてるプロトタイプや`Object.prototype`を拡張するのは、良くありがちなイケていない実装方法になります。
 
-This technique is called [monkey patching][1] and breaks *encapsulation*. While 
-used by widely spread frameworks such as [Prototype][2], there is still no good 
-reason for cluttering built-in types with additional *non-standard* functionality.
+このテクニックは[monkey patching][1]と呼ばれるもので*カプセル化*を壊してしまいます。このテクニックは[Prototype][2]のようなフレームワークにより広まりましたが、*非標準*の機能を持っている組み込み型のオブジェクトの乱立という点でも推奨されません。
 
-The **only** good reason for extending a built-in prototype is to backport 
-the features of newer JavaScript engines; for example, 
-[`Array.forEach`][3].
+**唯一**組み込みのプロトタイプを拡張しても良い理由としては、JavaScriptエンジンに将来実装されるであろう機能の移植だけです。
+例えば[`Array.forEach`][3]などが、それに当たります。
 
 ### In Conclusion
 
