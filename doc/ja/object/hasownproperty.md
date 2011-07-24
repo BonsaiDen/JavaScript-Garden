@@ -36,10 +36,9 @@ JavaScriptはプロパティ名として`hasOwnProperty`を保護して**いま�
     // 他のオブジェクトのhasOwnPropertyを使い、fooの'this'にセットして呼び出す
     ({}).hasOwnProperty.call(foo, 'bar'); // true
 
-### In Conclusion
+### 終わりに
 
-When checking for the existence of a property on a object, `hasOwnProperty` is 
-the **only** method of doing so. It is also recommended to make `hasOwnProperty`
-part of **every** [`for in` loop](#object.forinloop), this will avoid errors from 
-extended native [prototypes](#object.prototype).
+オブジェクトのプロパティの存在判定をする時は、`hasOwnProperty`が**唯一**のメソッドになります。
+また、**全て**の[`for in` loop](#object.forinloop)内で`hasOwnProperty`を使う事を推奨します。
+そうする事により組み込みの[prototypes](#object.prototype)の拡張が原因のエラーを避ける事が出来ます。
 
