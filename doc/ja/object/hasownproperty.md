@@ -20,11 +20,9 @@
 
 `hasOwnProperty`だけが、正しく期待した結果を出すでしょう。これはあらゆるオブジェクトのプロパティの繰り返し処理をする時必須の事です。オブジェクト*自身*に定義されておらず、プロトタイプチェーンのどこかには定義されているというプロパティを除外する手段が他に**ありません**。
 
-### `hasOwnProperty` as a Property
+### プロパティとしての`hasOwnProperty`
 
-JavaScript does **not** protect the property name `hasOwnProperty`; thus, if the
-possibility exists that an object might have a property with this name, it is
-necessary to use an *external* `hasOwnProperty` in order to get correct results.
+JavaScriptはプロパティ名として`hasOwnProperty`を保護して**いません**。;従って、この名前のプロパティを持ったオブジェクトが存在する事がありえます。正しい結果を得る為には*外部*の`hasOwnProperty`を使う必要があります。
 
     var foo = {
         hasOwnProperty: function() {
@@ -33,9 +31,9 @@ necessary to use an *external* `hasOwnProperty` in order to get correct results.
         bar: 'Here be dragons'
     };
 
-    foo.hasOwnProperty('bar'); // always returns false
+    foo.hasOwnProperty('bar'); // 常にfalseを返す
 
-    // Use another Object's hasOwnProperty and call it with 'this' set to foo
+    // 他のオブジェクトのhasOwnPropertyを使い、fooの'this'にセットして呼び出す
     ({}).hasOwnProperty.call(foo, 'bar'); // true
 
 ### In Conclusion
