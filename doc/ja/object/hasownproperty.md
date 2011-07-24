@@ -39,6 +39,6 @@ JavaScriptはプロパティ名として`hasOwnProperty`を保護して**いま�
 ### 終わりに
 
 オブジェクトのプロパティの存在判定をする時は、`hasOwnProperty`が**唯一**のメソッドになります。
-また、**全て**の[`for in` loop](#object.forinloop)内で`hasOwnProperty`を使う事を推奨します。
+また、**全て**の[`for in` ループ](#object.forinloop)内で`hasOwnProperty`を使う事を推奨します。
 そうする事により組み込みの[prototypes](#object.prototype)の拡張が原因のエラーを避ける事が出来ます。
 
