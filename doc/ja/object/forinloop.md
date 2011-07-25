@@ -18,23 +18,21 @@
 > **注意:** `for in`は常にプロトタイプチェーンを完全に遡ります。これにより
 > オブジェクトに追加されている継承が多ければ多い程、速度は遅くなります。
 
-### `hasOwnProperty` for Filtering
+### `hasOwnProperty`をフィルタリングに使用する
 
-    // still the foo from above
+    // 継承されているfoo
     for(var i in foo) {
         if (foo.hasOwnProperty(i)) {
             console.log(i);
         }
     }
 
-This version is the only correct one to use. Due to the use of `hasOwnProperty` it
-will **only** print out `moo`. When `hasOwnProperty` is left out, the code is 
-prone to errors in cases where the native prototypes - e.g. `Object.prototype` - 
-have been extended.
+このループの唯一正しい使い方がこの方法です。`hasOwnProperty`を使用しているので、
+`moo`**のみ**が表示されるようになります。`hasOwnProperty`が省略されている場合は、このコードは
+組み込みのプロトタイプが存在する場合に(特に`Object.prototype`が拡張されている場合)エラーを発生しやすくなります。
 
-One widely used framework which does this is [Prototype][1]. When this 
-framework is included, `for in` loops that do not use `hasOwnProperty` are 
-guaranteed to break.
+一般に広く使用されているJavaScriptフレームワークとして[Prototype][1]が挙げられます。このフレームワークには、
+`for in` 内で`hasOwnProperty`が使用されプロトタプチェーン内を頭まで遡るのを中断する事が保証されています。
 
 ### In Conclusion
 
