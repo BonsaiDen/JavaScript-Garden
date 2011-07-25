@@ -1,29 +1,24 @@
-## The `for in` Loop
+## `for in`ループ
 
-Just like the `in` operator, the `for in` loop also traverses the prototype
-chain when iterating over the properties of an object.
+`in`オペレーターは単に、`for in`ループの中でオブジェクトのプロパティをプロトタイプチェーンの中で繰り返し遡る為にあるものです。
 
-> **Note:** The `for in` loop will **not** iterate over any properties that 
-> have their `enumerable` attribute set to `false`; for example, the `length` 
-> property of an array.
-    
-    // Poisoning Object.prototype
+> **注意:** `for in`ループは`列挙`される属性が`false`にセットされているプロパティを反復処理**しません**。;
+> 例えば、配列の`length`プロパティなどがそれに当たります。
+
+    // Object.prototype汚染
     Object.prototype.bar = 1;
 
     var foo = {moo: 2};
     for(var i in foo) {
-        console.log(i); // prints both bar and moo
+        console.log(i); // barとmooが両方とも表示される
     }
 
-Since it is not possible to change the behavior of the `for in` loop itself, it
-is necessary to filter out the unwanted properties inside the loop body , 
-this is done by using the [`hasOwnProperty`](#object.hasownproperty) method of 
-`Object.prototype`.
+`for in`ループそれ自体の動作を変更する事は不可能ですが、ループ内にある要らないプロパティをフィルタリングする必要があります。そんな時は`Object.prototype`の[`hasOwnProperty`](#object.hasownproperty)メソッドを使うと解決します。
 
-> **Note:** Since the `for in` always traverses the complete prototype chain, it
-> will get slower with each additional layer of inheritance added to an object.
+> **注意:** `for in`は常にプロトタイプチェーンを完全に遡ります。これにより
+> オブジェクトに追加されている継承が多ければ多い程、速度は遅くなります。
 
-### Using `hasOwnProperty` for Filtering
+### `hasOwnProperty` for Filtering
 
     // still the foo from above
     for(var i in foo) {
