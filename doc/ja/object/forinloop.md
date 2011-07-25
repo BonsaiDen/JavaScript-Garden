@@ -34,11 +34,9 @@
 一般に広く使用されているJavaScriptフレームワークとして[Prototype][1]が挙げられます。このフレームワークには、
 `for in` 内で`hasOwnProperty`が使用されプロトタプチェーン内を頭まで遡るのを中断する事が保証されています。
 
-### In Conclusion
+### 終わりに
 
-It is recommended to **always** use `hasOwnProperty`. Never should any 
-assumptions be made about the environment the code is running in, or whether the 
-native prototypes have been extended or not. 
+**常に**`hasOwnProperty`を使用する事を推奨します。コードの実行環境や、組み込みのプロトタイプが拡張されているかどうかを仮定して書くようなコードを絶対書いてはいけません。
 
 [1]: http://www.prototypejs.org/
 
