@@ -83,8 +83,8 @@ removed and is therefore missing from the output.
 ### Notation of Keys
 
     var test = {
-        'case': 'I am a keyword so I must be notated as a string',
-        delete: 'I am a keyword too so me' // raises SyntaxError
+        'case': 'I am a keyword, so I must be notated as a string',
+        delete: 'I am a keyword, so me too' // raises SyntaxError
     };
 
 Object properties can be both notated as plain characters and as strings. Due to
