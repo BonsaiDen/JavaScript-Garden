@@ -30,24 +30,21 @@ JavaScriptの`this`と名付けられた特殊なキーワードは他のプロ�
 
 `new`キーワードが付いた関数呼び出しは[コンストラクター](#function.constructors)として機能します。関数内部では`this`は*新規に作成された*`Object`を参照します。
 
-### Explicit Setting of `this`
+### `this`の明示的な設定
 
     function foo(a, b, c) {}
-                          
+
     var bar = {};
-    foo.apply(bar, [1, 2, 3]); // array will expand to the below
-    foo.call(bar, 1, 2, 3); // results in a = 1, b = 2, c = 3
+    foo.apply(bar, [1, 2, 3]); // 配列は下記で展開される
+    foo.call(bar, 1, 2, 3); // 結果はa = 1, b = 2, c = 3
 
-When using the `call` or `apply` methods of `Function.prototype`, the value of
-`this` inside the called function gets **explicitly set** to the first argument 
-of the corresponding function call.
+ `Function.prototype`の`call`や`apply`メソッドを使用した時には、呼び出された関数の内部での`this`の値は、対応する関数呼び出しの最初の引数に**明示的に設定**されます。
 
-As a result, the above example the *method case* does **not** apply, and `this` 
-inside of `foo` will be set to `bar`.
+結果として、上記の例では*メソッドケース*が適用**されず**、`foo`の内部の`this`は`bar`に設定されます。
 
-> **Note:** `this` **cannot** be used to refer to the object inside of an `Object`
-> literal. So `var obj = {me: this}` will **not** result in `me` referring to
-> `obj`, since `this` only gets bound by one of the five listed cases.
+> **注意:** `this`は`Object`リテラル内部のオブジェクトを参照**しません**。
+> ですので、`var obj = {me: this}`での`me`は`obj`を参照**しません**。
+> `this`はここで紹介ている5個のケースの内どれか一つに束縛されます。
 
 ### Common Pitfalls
 
