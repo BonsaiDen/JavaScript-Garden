@@ -24,13 +24,11 @@ JavaScriptの`this`と名付けられた特殊なキーワードは他のプロ�
 
 この例では`this`は`test`を参照します。
 
-### Calling a Constructor
+### コンストラクター呼び出し
 
     new foo(); 
 
-A function call that is preceded by the `new` keyword acts as
-a [constructor](#function.constructors). Inside the function `this` will refer 
-to a *newly created* `Object`.
+`new`キーワードが付いた関数呼び出しは[コンストラクター](#function.constructors)として機能します。関数内部では`this`は*新規に作成された*`Oject`を参照します。
 
 ### Explicit Setting of `this`
 
