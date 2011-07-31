@@ -1,8 +1,6 @@
-## Function Declarations and Expressions
+## 関数の宣言と式
 
-Functions in JavaScript are first class objects. That means they can be 
-passed around like any other value. One common use of this feature is to pass
-an *anonymous function* as a callback to another, possibly asynchronous function.
+関数はJavaScriptの第一級オブジェクトです。この事は、その他の値と同じように渡す事が出来るという事です。この機能で良く使われる一つとして**匿名関数**を他のオジェクトにコールバックとして渡すというものがあり、これで非同期での実装が可能になります。
 
 ### The `function` Declaration
 
