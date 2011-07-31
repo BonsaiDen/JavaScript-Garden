@@ -2,15 +2,13 @@
 
 関数はJavaScriptの第一級オブジェクトです。この事は、その他の値と同じように渡す事が出来るという事です。この機能で良く使われる一つとして**匿名関数**を他のオジェクトにコールバックとして渡すというものがあり、これで非同期での実装が可能になります。
 
-### The `function` Declaration
+### `関数`宣言
 
     function foo() {}
 
-The above function gets [hoisted](#function.scopes) before the execution of the 
-program starts; thus, it is available *everywhere* in the scope it was *defined* 
-in, even if called before the actual definition in the source.
+上記の関数はプログラムの開始時の前に評価されるように[巻き上げ](#function.scopes)られます。従って*定義*されたスコープ内の*どこでも*使用する事が可能になります。ソース内での実際の定義が呼ばれる前でもです。
 
-    foo(); // Works because foo was created before this code runs
+    foo(); // このコードが動作する前にfooが作られているので、ちゃんと動作する
     function foo() {}
 
 ### The `function` Expression
