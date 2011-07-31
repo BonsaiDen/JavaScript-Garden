@@ -1,8 +1,6 @@
-## How `this` Works
+## `this`はどのように動作するのか
 
-JavaScript has a different concept of what the special name `this` refers to 
-than most other programming languages do. There are exactly **five** different 
-ways in which the value of `this` can be bound in the language.
+JavaScriptの`this`と名付けられた特殊なキーワードは他のプログラム言語と違うコンセプトを持っています。JavaScriptの`this`は正確に**5個**の別々の使い道が存在しています。
 
 ### The Global Scope
 
