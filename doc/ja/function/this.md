@@ -2,11 +2,11 @@
 
 JavaScriptの`this`と名付けられた特殊なキーワードは他のプログラム言語と違うコンセプトを持っています。JavaScriptの`this`は正確に**5個**の別々の使い道が存在しています。
 
-### The Global Scope
+### グローバルスコープとして
 
     this;
 
-When using `this` in global scope, it will simply refer to the *global* object.
+`this`をグローバルスコープ内で使用すると、単純に*グローバル*オブジェクトを参照するようになります。
 
 
 ### Calling a Function
