@@ -9,14 +9,14 @@ JavaScriptの`this`と名付けられた特殊なキーワードは他のプロ�
 `this`をグローバルスコープ内で使用すると、単純に*グローバル*オブジェクトを参照するようになります。
 
 
-### Calling a Function
+### 関数呼び出しとして
 
     foo();
 
-Here `this` will again refer to the *global* object.
+この`this`は、再度*グローバル*オブジェクトを参照しています。
 
-> **ES5 Note:** In strict mode, the global case **no longer** exists.
-> `this` will instead have the value of `undefined` in that case.
+> **ES5での注意点:** strictモードでは、このグローバルのケースは**もはや**存在していません。
+> この場合`this`の代わりに`undefined`値を持つことになります。
 
 ### Calling a Method
 
