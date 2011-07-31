@@ -25,17 +25,14 @@
 
 しかし、コードの実行時にのみこの割り当てがされるため、`foo`という変数は対応するコードが実行される前にデフォルト値である[undefined](#core.undefined)が代入されるのです。
 
-### Named Function Expression
+### 名前付き関数宣言
 
-Another special case is the assignment of named functions.
+他に特殊なケースとして、命名関数があります。
 
     var foo = function bar() {
-        bar(); // Works
+        bar(); // 動作する
     }
     bar(); // ReferenceError
 
-Here `bar` is not available in the outer scope, since the function only gets
-assigned to `foo`; however, inside of `bar` it is available. This is due to 
-how [name resolution](#function.scopes) in JavaScript works, the name of the 
-function is *always* made available in the local scope of the function itself.
+この場合の`bar`は`foo`に対して関数を割り当てるだけなので、外部スコープでは使用できません。しかし、`bar`は内部では使用できます。これはJavaScriptでは[名前解決](#function.scopes)による動作です。関数名は*いつも*関数自体のローカルスコープ内で有効になっています。
 
