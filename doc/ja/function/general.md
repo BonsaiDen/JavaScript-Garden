@@ -11,22 +11,19 @@
     foo(); // このコードが動作する前にfooが作られているので、ちゃんと動作する
     function foo() {}
 
-### The `function` Expression
+### `関数`式
 
     var foo = function() {};
 
-This example assigns the unnamed and *anonymous* function to the variable `foo`. 
+この例では、`foo`という変数に無名で*匿名*の関数が割り当てられています。
 
     foo; // 'undefined'
-    foo(); // this raises a TypeError
+    foo(); // これはTypeErrorが起こる
     var foo = function() {};
 
-Due to the fact that `var` is a declaration, that hoists the variable name `foo` 
-before the actual execution of the code starts, `foo` is already defined when 
-the script gets executed.
+`var`は宣言である為に、変数名`foo`がコードが開始される実際の評価時より前のタイミングにまで巻き上げられています。`foo`は既にスクリプトが評価される時には定義されているのです。
 
-But since assignments only happen at runtime, the value of `foo` will default
-to [undefined](#core.undefined) before the corresponding code is executed.
+しかし、コードの実行時にのみこの割り当てがされるため、`foo`という変数は対応するコードが実行される前にデフォルト値である[undefined](#core.undefined)が代入されるのです。
 
 ### Named Function Expression
 
