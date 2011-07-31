@@ -28,7 +28,7 @@ JavaScriptの`this`と名付けられた特殊なキーワードは他のプロ�
 
     new foo(); 
 
-`new`キーワードが付いた関数呼び出しは[コンストラクター](#function.constructors)として機能します。関数内部では`this`は*新規に作成された*`Oject`を参照します。
+`new`キーワードが付いた関数呼び出しは[コンストラクター](#function.constructors)として機能します。関数内部では`this`は*新規に作成された*`Object`を参照します。
 
 ### Explicit Setting of `this`
 
