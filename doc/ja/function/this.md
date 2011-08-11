@@ -46,35 +46,30 @@ JavaScriptの`this`と名付けられた特殊なキーワードは他のプロ�
 > ですので、`var obj = {me: this}`での`me`は`obj`を参照**しません**。
 > `this`はここで紹介ている5個のケースの内どれか一つに束縛されます。
 
-### Common Pitfalls
+### 良くある落し穴
 
-While most of these cases make sense, the first one is to be considered another
-mis-design of the language, as it **never** has any practical use.
+これらほとんどのケースで見てきたように、最初のケースでは**絶対に**実用化できないという言語設計のミスを考慮しないとなりません。
 
     Foo.method = function() {
         function test() {
-            // this is set to the global object
+            // このファンクションはグローバルオブジェクトに設定される
         }
         test();
     }
 
-A common misconception is that `this` inside of `test` refers to `Foo`, while in
-fact it **does not**.
+良くある誤解として`test`の中の`this`が`Foo`を参照しているというものがありますが、そのような事実は**一切**ありません。
 
-In order to gain access to `Foo` from within `test` it is necessary to create a 
-local variable inside of `method` which refers to `Foo`.
+`test`の中の`Foo`にアクセスする為には、`Foo`を参照する`method`のローカル変数を作る必要があります。
 
     Foo.method = function() {
         var that = this;
         function test() {
-            // Use that instead of this here
+            // ここでthisの代わりに使用する
         }
         test();
     }
 
-`that` is just a normal variable name, but it is commonly used for the reference to an 
-outer `this`. In combination with [closures](#function.closures), it can also 
-be used to pass `this` values around.
+`that`は通常の変数名ですが、外部の`this`の参照の為に良く使われます。[closures](#function.closures)と組み合わせる事で`this`の値を渡す事ができるようになります。
 
 ### Assigning Methods
 
