@@ -34,26 +34,21 @@ JavaScriptでは、スコープ自体を参照・代入する事が出来無い�
 
 上記のコードは`Counter`のスコープ中にある変数`count`の値を変更する事は**ありません**。`foo.hack`は**その**スコープで定義されていないからです。これは*グローバル*変数`count`の作成 -またはオーバーライド- の代わりになるでしょう。
 
-### Closures Inside Loops
+### ループ中のクロージャ
 
-One often made mistake is to use closures inside of loops, as if they were
-copying the value of the loops index variable.
+一つ良くある間違いとして、ループのインデックス変数をコピーしようとしてか、ループの中でクロージャを使用してしまうというものがあります。
 
     for(var i = 0; i < 10; i++) {
         setTimeout(function() {
-            console.log(i);  
+            console.log(i);
         }, 1000);
     }
 
-The above will **not** output the numbers `0` through `9`, but will simply print
-the number `10` ten times.
+上記の例では`0`から`9`の数値が出力される事は**ありません**。もっと簡単に`10`という数字が10回出力されるだけです。
 
-The *anonymous* function keeps a **reference** to `i` and at the time 
-`console.log` gets called, the `for loop` has already finished and the value of 
-`i` as been set to `10`.
+**匿名**関数は`i`への**参照**を維持しており、同時に`forループ`は既に`i`の値に`10`をセットし終った`console.log`が呼ばれてしまいます。
 
-In order to get the desired behavior, it is necessary to create a **copy** of 
-the value of `i`.
+期待した動作をする為には、`i`の値の**コピー**を作る必要があります。
 
 ### Avoiding the Reference Problem
 
