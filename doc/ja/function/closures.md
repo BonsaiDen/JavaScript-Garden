@@ -2,7 +2,7 @@
 
 JavaScriptの一番パワフルな特徴の一つとして*クロージャ*が使える事が挙げられます。これはスコープが**いつも**外部に定義されたスコープにアクセスできるという事です。JavaScriptの唯一のスコープは[関数スコープ](#function.scopes)ですが、全ての関数は標準でクロージャとして振る舞います。
 
-### Emulating private variables
+### プライベート変数をエミュレートする
 
     function Counter(start) {
         var count = start;
@@ -21,10 +21,7 @@ JavaScriptの一番パワフルな特徴の一つとして*クロージャ*が�
     foo.increment();
     foo.get(); // 5
 
-Here, `Counter` returns **two** closures. The function `increment` as well as 
-the function `get`. Both of these functions keep a **reference** to the scope of 
-`Counter` and, therefore, always keep access to the `count` variable that was 
-defined in that very scope.
+ここで`Counter`は**2つ**のクロージャを返します。関数`increment`と同じく関数`get`です。これら両方の関数は`Counter`のスコープを**参照**し続けます。その為、そのスコープ内に定義されている`count`変数に対していつもアクセスできるようになっています。
 
 ### Why Private Variables Work
 
