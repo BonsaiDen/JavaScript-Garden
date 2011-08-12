@@ -10,15 +10,13 @@ JavaScriptの全ての関数スコープは`arguments`と呼ばれる特別な�
 
 この為、`arguments`で`push`や`pop`、`slice`といった通常の配列メソッドは使用する事が**出来ません**。プレーンな`for`ループのような繰り返しでは上手く動作しますが、通常の`配列`メソッドを使いたい場合は本当の`配列`に変換しなければなりません。
 
-### Converting to an Array
+### 配列への変換
 
-The code below will return a new `Array` containing all the elements of the 
-`arguments` object.
+下のコードは`arguments`オブジェクトの全ての要素を含んだ新しい`配列`を返します。
 
     Array.prototype.slice.call(arguments);
 
-This conversion is **slow**, it is **not recommended** to use it in performance 
-critical sections of code.
+この変換は**遅い**です。コードのパフォーマンスに関わる重要な部分での使用は**推奨しません**。
 
 ### Passing Arguments
 
