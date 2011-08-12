@@ -69,7 +69,7 @@ JavaScriptの`this`と名付けられた特殊なキーワードは他のプロ�
         test();
     }
 
-`that`は通常の変数名ですが、外部の`this`の参照の為に良く使われます。[closures](#function.closures)と組み合わせる事で`this`の値を渡す事ができるようになります。
+`that`は通常の変数名ですが、外部の`this`の参照の為に良く使われます。[クロージャ](#function.closures)と組み合わせる事で`this`の値を渡す事ができるようになります。
 
 ### Assigning Methods
 
