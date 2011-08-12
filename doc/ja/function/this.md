@@ -71,19 +71,16 @@ JavaScriptの`this`と名付けられた特殊なキーワードは他のプロ�
 
 `that`は通常の変数名ですが、外部の`this`の参照の為に良く使われます。[クロージャ](#function.closures)と組み合わせる事で`this`の値を渡す事ができるようになります。
 
-### Assigning Methods
+### メソッドの割り当て
 
-Another thing that does **not** work in JavaScript is function aliasing, that is,
-**assigning** a method to a variable.
+JavaScriptを使用する上で、もう一つ動か**ない**ものが関数のエイリアスです。これは変数へメソッドを**割り当て**する事です。
 
     var test = someObject.methodTest;
     test();
 
-Due to the first case `test` now acts like a plain function call; therefore,
-`this` inside it will no longer refer to `someObject`.
+最初のケースの`test`は通常の関数呼び出しになる為に、この中の`this`は、最早`someobject`を参照できなくなってしまいます。
 
-While the late binding of `this` might seem like a bad idea at first, it is in 
-fact what makes [prototypal inheritance](#object.prototype) work. 
+`this`の遅延バインディングは最初見た時にはダメなアイデアに見えますが、[プロトタイプ継承](#object.prototype)により、きちんと動作します。
 
     function Foo() {}
     Foo.prototype.method = function() {};
@@ -93,7 +90,4 @@ fact what makes [prototypal inheritance](#object.prototype) work.
 
     new Bar().method();
 
-When `method` gets called on a instance of `Bar`, `this` will now refer to that
-very instance. 
-
-
+`method`が`Bar`のインスタンスにより呼び出された時に、`this`はまさにそのインスタンスを参照するようになります。
