@@ -1,20 +1,14 @@
-## The `arguments` Object
+## オブジェクトの`arguments`
 
-Every function scope in JavaScript can access the special variable `arguments`.
-This variable holds a list of all the arguments that were passed to the function.
+JavaScriptの全ての関数スコープは`arguments`と呼ばれる特別な変数にアクセスできます。この変数は関数が受け取った全ての引数を保持する変数です。
 
-> **Note:** In case `arguments` has already been defined inside the function's
-> scope either via a `var` statement or being the name of a formal parameter,
-> the `arguments` object will not be created.
+> **注意:** `arguments`が既に`var`や正式なパラメーターにより
+> 関数のスコープが定義されている場合は
+> `arguments`オブジェクトは作られません。
 
-The `arguments` object is **not** an `Array`. While it has some of the 
-semantics of an array - namely the `length` property - it does not inherit from 
-`Array.prototype` and is in fact an `Object`.
+`arguments`オブジェクトは`配列`では**ありません**。これは配列と同じような -`length`プロパティと名付けられています- 文法を持っていますが、`Array.prototype`を継承している訳では無いので、実際`Object`になります。
 
-Due to this, it is **not** possible to use standard array methods like `push`,
-`pop` or `slice` on `arguments`. While iteration with a plain `for` loop works 
-just fine, it is necessary to convert it to a real `Array` in order to use the 
-standard `Array` methods on it.
+この為、`arguments`で`push`や`pop`、`slice`といった通常の配列メソッドは使用する事が**出来ません**。プレーンな`for`ループのような繰り返しでは上手く動作しますが、通常の`Array`メソッドを使いたい場合は本当の`配列`に変換しなければなりません。
 
 ### Converting to an Array
 
