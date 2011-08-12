@@ -1,9 +1,6 @@
-## Closures and References
+## クロージャと参照
 
-One of JavaScript's most powerful features is the availability of *closures*,
-this means that scopes **always** keep access to the outer scope they were
-defined in. Since the only scoping that JavaScript has is 
-[function scope](#function.scopes), all functions, by default, act as closures.
+JavaScriptの一番パワフルな特徴の一つとして*クロージャ*が使える事が挙げられます。これはスコープが**いつも**外部に定義されたスコープにアクセスできるという事です。JavaScriptの唯一のスコープは[関数スコープ](#function.scopes)ですが、全ての関数は標準でクロージャとして振る舞います。
 
 ### Emulating private variables
 
