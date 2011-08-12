@@ -23,20 +23,16 @@ JavaScriptの一番パワフルな特徴の一つとして*クロージャ*が�
 
 ここで`Counter`は**2つ**のクロージャを返します。関数`increment`と同じく関数`get`です。これら両方の関数は`Counter`のスコープを**参照**し続けます。その為、そのスコープ内に定義されている`count`変数に対していつもアクセスできるようになっています。
 
-### Why Private Variables Work
+### なぜプライベート変数が動作するのか？
 
-Since it is not possible to reference or assign scopes in JavaScript, there is 
-**no** way of accessing the variable `count` from the outside. The only way to 
-interact with it is via the two closures.
+JavaScriptでは、スコープ自体を参照・代入する事が出来無い為に、外部から変数`count`にアクセスする手段が**ありません**。唯一の手段は、2つのクロージャを介してアクセスする方法だけです。
 
     var foo = new Counter(4);
     foo.hack = function() {
         count = 1337;
     };
 
-The above code will **not** change the variable `count` in the scope of `Counter`, 
-since `foo.hack` was not defined in **that** scope. It will instead create - or 
-override - the *global* variable `count`.
+上記のコードは`Counter`のスコープ中にある変数`count`の値を変更する事は**ありません**。`foo.hack`は**その**スコープで定義されていないからです。これは*グローバル*変数`count`の作成 -またはオーバーライド- の代わりになるでしょう。
 
 ### Closures Inside Loops
 
