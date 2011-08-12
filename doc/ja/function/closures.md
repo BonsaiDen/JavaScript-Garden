@@ -50,10 +50,9 @@ JavaScriptでは、スコープ自体を参照・代入する事が出来無い�
 
 期待した動作をする為には、`i`の値の**コピー**を作る必要があります。
 
-### Avoiding the Reference Problem
+### 参照問題を回避するには
 
-In order to copy the value of the loop's index variable, it is best to use an 
-[anonymous wrapper](#function.scopes).
+ループのインデックス変数をコピーする為には、[匿名ラッパー](#function.scopes)を使うのがベストです。
 
     for(var i = 0; i < 10; i++) {
         (function(e) {
@@ -63,15 +62,11 @@ In order to copy the value of the loop's index variable, it is best to use an
         })(i);
     }
 
-The anonymous outer function gets called immediately with `i` as its first 
-argument and will receive a copy of the **value** of `i` as its parameter `e`.
+外部の匿名関数は`i`を即座に第一引数として呼び出し、引数`e`を`i`の**値**のコピーとして受け取ります。
 
-The anonymous function that gets passed to `setTimeout` now has a reference to 
-`e`, whose value does **not** get changed by the loop.
+`e`を参照している`setTimeout`を受け取った匿名関数はループによって値が変わる事が**ありません**。
 
-There is another possible way of achieving this; that is to return a function 
-from the anonymous wrapper, that will then have the same behavior as the code 
-above.
+他にこのような事を実現する方法があります。それは匿名ラッパーから関数を返してあげる事です。これは上記のコードと同じような効果があります。
 
     for(var i = 0; i < 10; i++) {
         setTimeout((function(e) {
