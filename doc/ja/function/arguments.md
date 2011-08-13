@@ -18,10 +18,9 @@ JavaScriptの全ての関数スコープは`arguments`と呼ばれる特別な�
 
 この変換は**遅い**です。コードのパフォーマンスに関わる重要な部分での使用は**推奨しません**。
 
-### Passing Arguments
+### 引き数の受け渡し
 
-The following is the recommended way of passing arguments from one function to
-another.
+下記の例はある関数から別の関数に引数を引き渡す際に推奨される方法です。
 
     function foo() {
         bar.apply(null, arguments);
@@ -30,8 +29,7 @@ another.
         // do stuff here
     }
 
-Another trick is to use both `call` and `apply` together to create fast, unbound
-wrappers.
+他の技法として、高速で非結合のラッパーとし`call`と`apply`両方を一緒に使用するという物があります。
 
     function Foo() {}
 
@@ -39,11 +37,11 @@ wrappers.
         console.log(this, a, b, c);
     };
 
-    // Create an unbound version of "method" 
-    // It takes the parameters: this, arg1, arg2...argN
+    // "メソッド"の非結合バージョンを作成する
+    // このメソッドはthis, arg1, arg2...argNのパラメーターを持っている
     Foo.method = function() {
 
-        // Result: Foo.prototype.method.call(this, arg1, arg2... argN)
+        // 結果: Foo.prototype.method.call(this, arg1, arg2... argN)
         Function.call.apply(Foo.prototype.method, arguments);
     };
 
