@@ -65,42 +65,33 @@ JavaScriptの全ての関数スコープは`arguments`と呼ばれる特別な�
     }
     foo(1, 2, 3);
 
-### Performance Myths and Truths
+### パフォーマンスの神話と真実
 
-The `arguments` object is always created with the only two exceptions being the 
-cases where it is declared as a name inside of a function or one of its formal 
-parameters. It does not matter whether it is used or not.
+`arguments`オブジェクトは、関数の内部の名前宣言と仮パラメーターという2つの例外を常に持ちながら生成されます。これは、使用されているかどうかは関係がありません。
 
-Both *getters* and *setters* are **always** created; thus, using it has nearly 
-no performance impact at all, especially not in real world code where there is 
-more than a simple access to the `arguments` object's properties.
+*ゲッター*と*セッター*は両方とも**常に**生成されます。その為これを使用してもパフォーマンスに影響は全くといって言い程ありません。`arguments`オブジェクトのパラメーターに単純にアクセスしているような、実際のコードであれば尚更です。
 
-> **ES5 Note:** These *getters* and *setters* are not created in strict mode.
+> **ES5での注意:** strictモードでは、これら*ゲッター*と*セッター*は生成されません。
 
-However, there is one case which will drastically reduce the performance in
-modern JavaScript engines. That case is the use of `arguments.callee`.
+しかし、一つだけモダンJavaScriptエンジンにおいて劇的にパフォーマンスが低下するケースがあります。そのケースとは`arguments.callee`を使用した場合です。
 
     function foo() {
-        arguments.callee; // do something with this function object
-        arguments.callee.caller; // and the calling function object
+        arguments.callee; // この関数オブジェクトで何かする
+        arguments.callee.caller; // そして関数オブジェクトを呼び出す
     }
 
     function bigLoop() {
         for(var i = 0; i < 100000; i++) {
-            foo(); // Would normally be inlined...
+            foo(); // 通常はインライン展開する
         }
     }
 
-In the above code, `foo` can no longer be a subject to [inlining][1] since it 
-needs to know about both itself and its caller. This not only defeats possible 
-performance gains that would arise from inlining, it also breaks encapsulation
-since the function may now be dependent on a specific calling context.
+上記のコードでは、`foo`は自身と自身の呼び出し元の両方を知らないと[インライン展開][1]の対象になる事が出来ません。この事は、インライン展開によるパフォーマンスの向上の機会を失くす事になり、また、特定のコンテクストの呼び出しに依存する関数のせいで、カプセル化が解除されてしまいます。
 
-It is **highly recommended** to **never** make use of `arguments.callee` or any of 
-its properties.
+この為に`arguments.callee`を使用または、そのプロパティを**決して**使用しない事を**強く推奨**します。
 
-> **ES5 Note:** In strict mode, `arguments.callee` will throw a `TypeError` since 
-> its use has been deprecated.
+> **ES5での注意:** strictモードでは、`arguments.callee`は推奨されていない為に
+> `Typeerror`が返るようになっています。
 
 [1]: http://en.wikipedia.org/wiki/Inlining
 
