@@ -46,17 +46,15 @@ JavaScriptの全ての関数スコープは`arguments`と呼ばれる特別な�
     };
 
 
-### Formal Parameters and Arguments Indices
+### 仮パラメーターと引数のインデックス
 
-The `arguments` object creates *getter* and *setter* functions for both its 
-properties as well as the function's formal parameters.
+`arguments`オブジェクトは*ゲッター*と*セッター*機能を自身のプロパティと同様に関数の仮パラメーターとして作成します。
 
-As a result, changing the value of a formal parameter will also change the value
-of the corresponding property on the `arguments` object, and the other way around.
+結果として、仮パラメーターを変更すると`arguments`の対応する値も変更されますし、逆もしかりです。
 
     function foo(a, b, c) {
         arguments[0] = 2;
-        a; // 2                                                           
+        a; // 2
 
         b = 4;
         arguments[1]; // 4
