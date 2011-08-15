@@ -6,12 +6,7 @@
         {
             "title": "Intro",
             "dir": "intro",
-            "articles": [
-                "authors",
-                "contributors",
-                "hosting",
-                "license"
-            ]
+            "articles": []
         },
         {
             "title": "Objects",

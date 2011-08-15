@@ -79,7 +79,7 @@ local variable inside of `method` which refers to `Foo`.
         test();
     }
 
-`that` is just a normal name, but it is commonly used for the reference to an 
+`that` is just a normal variable name, but it is commonly used for the reference to an 
 outer `this`. In combination with [closures](#function.closures), it can also 
 be used to pass `this` values around.
 
@@ -91,7 +91,7 @@ Another thing that does **not** work in JavaScript is function aliasing, that is
     var test = someObject.methodTest;
     test();
 
-Due to the first case `test` now acts like like a plain function call; therefore,
+Due to the first case `test` now acts like a plain function call; therefore,
 `this` inside it will no longer refer to `someObject`.
 
 While the late binding of `this` might seem like a bad idea at first, it is in 

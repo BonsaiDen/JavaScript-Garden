@@ -40,11 +40,11 @@ other way around is a far more difficult task.)
                 {method: ...};
                 Object.prototype
                     {toString: ... /* etc. */};
-*
+
 上面的例子中，`test` 对象从 `Bar.prototype` 和 `Foo.prototype` 继承下来；因此，
-它能访问 `Foo` 的原型方法 `method`。它也同时能够访问那**一个**作为它原型的 `Foo` 实例
-的属性 `value`。需要注意的是 `new Bar()` **不会**创造出一个新的 `Foo` 实例，而是
-重新使用设定为它的原型的实例；也就是说，所有的 `Bar` 实例都将会有**同样**的 `value` 属性。
+它能访问 `Foo` 的原型方法 `method`。同时，它也能够访问**那个**定义在原型上的 `Foo` 实例属性 `value`。
+需要注意的是 `new Bar()` **不会**创造出一个新的 `Foo` 实例，而是
+重复使用它原型上的那个实例；因此，所有的 `Bar` 实例都会共享**相同**的 `value` 属性。
 
 > **注意:** **不要**使用 `Bar.prototype = Foo`，因为这不会执行 `Foo` 的原型，而是指向函数 `Foo`。
 > 因此原型链将会回溯到 `Function.prototype` 而不是 `Foo.prototype`，因此 `method` 将不会在 Bar 的原型链上。

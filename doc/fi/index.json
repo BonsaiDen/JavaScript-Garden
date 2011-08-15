@@ -1,0 +1,73 @@
+{
+    "title": "JavaScript-puutarha",
+    "langTitle": "JavaScript-puutarha suomeksi",
+    "description": "Opas JavaScriptin outouksiin ja vikoihin ",
+    "sections": [
+        {
+            "title": "Johdanto",
+            "dir": "intro",
+            "articles": [
+                "authors",
+                "contributors",
+                "translators",
+                "license"
+            ]
+        },
+        {
+            "title": "Oliot",
+            "dir": "object",
+            "articles": [
+                "general",
+                "prototype",
+                "hasownproperty",
+                "forinloop"
+            ]
+        },
+        {
+            "title": "Funktiot",
+            "dir": "function",
+            "articles": [
+                "general",
+                "this",
+                "closures",
+                "arguments",
+                "constructors",
+                "scopes"
+            ]
+        },
+        {
+            "title": "Taulukot",
+            "dir": "array",
+            "articles": [
+                "general",
+                "constructor"
+            ]
+        },
+        {
+            "title": "Tyypit",
+            "dir": "types",
+            "articles": [
+                "equality",
+                "typeof",
+                "instanceof",
+                "casting"
+            ]
+        },
+        {
+            "title": "Ydin",
+            "dir": "core",
+            "articles": [
+                "eval",
+                "undefined",
+                "semicolon"
+            ]
+        },
+        {
+            "title": "Muuta",
+            "dir": "other",
+            "articles": [
+                "timeouts"
+            ]
+        }
+    ]
+}
