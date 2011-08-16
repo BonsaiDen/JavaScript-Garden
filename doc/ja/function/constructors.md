@@ -1,15 +1,10 @@
-## Constructors 
+## コンストラクタ
 
-Constructors in JavaScript are yet again different from many other languages. Any
-function call that is preceded by the `new` keyword acts as a constructor.
+JavaScriptのコンストラクタは色々ある他のプログラム言語とは一味違います。`new`キーワードが付いているどんな関数呼び出しも、コンストラクタとして機能します。
 
-Inside the constructor - the called function - the value of `this` refers to a 
-newly created `Object`. The [`prototype`](#object.prototype) of this **new** 
-object is set to the `prototype` of the function object that was invoked as the
-constructor.
+コンストラクタ内部では -呼び出された関数の事です- `this`の値は新規に生成された`Object`を参照しています。この**新規**のオブジェクトの[`prototype`](#object.prototype)は、コンストラクタとして起動した関数オブジェクトの`prototype`として設定されています。
 
-If the function that was called has no explicit `return` statement, then it
-implicitly returns the value of `this` - the new object. 
+もし呼び出された関数が、`return`ステートメントを明示していない場合は、暗黙の了解で`this`の値を -新規のオブジェクトとして- 返します。
 
     function Foo() {
         this.bla = 1;
@@ -21,16 +16,14 @@ implicitly returns the value of `this` - the new object.
 
     var test = new Foo();
 
-The above calls `Foo` as constructor and sets the `prototype` of the newly
-created object to `Foo.prototype`.
+上記で`Foo`はコンストラクタとして呼び出され、`Foo.prototype`として新規に生成された`prototype`を設定されています。
 
-In case of an explicit `return` statement the function returns the value 
-specified that statement, **but only** if the return value is an `Object`.                                     
+明示的に`return`ステートメントがある場合、`Object`の値を返す**だけでなく**関数はこのステートメントを返します。
 
     function Bar() {
         return 2;
     }
-    new Bar(); // a new object
+    new Bar(); // 新しいオブジェクト
 
     function Test() {
         this.value = 2;
@@ -39,18 +32,16 @@ specified that statement, **but only** if the return value is an `Object`.
             foo: 1
         };
     }
-    new Test(); // the returned object
+    new Test(); // 返ってきたオブジェクト
 
-When the `new` keyword is omitted, the function will **not** return a new object. 
+`new`キーワードが省略されている場合は、関数は新しいオブジェクトを返す事は**ありません**。
 
     function Foo() {
-        this.bla = 1; // gets set on the global object
+        this.bla = 1; // グローバルオブジェクトに設定される
     }
-    Foo(); // undefined
+    Foo(); // undefinedが返る
 
-While the above example might still appear to work in some cases, due to the 
-workings of [`this`](#function.this) in JavaScript, it will use the 
-*global object* as the value of `this`.
+上記の例では、いくつかのケースでは動作するように見える場合があります。JavaScriptの[`this`](#function.this)の働きのせいで、*グローバルオブジェクト*が`this`の値として使用されるからです。
 
 ### Factories
 
