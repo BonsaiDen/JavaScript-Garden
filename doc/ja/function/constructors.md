@@ -43,10 +43,9 @@ JavaScriptのコンストラクタは色々ある他のプログラム言語と�
 
 上記の例では、いくつかのケースでは動作するように見える場合があります。JavaScriptの[`this`](#function.this)の働きのせいで、*グローバルオブジェクト*が`this`の値として使用されるからです。
 
-### Factories
+### ファクトリー
 
-In order to be able to omit the `new` keyword, the constructor function has to 
-explicitly return a value.
+`new`キーワードを省略するためには、コンストラクタ関数が明示的に値を返す必要があります。
 
     function Bar() {
         var value = 1;
@@ -63,16 +62,11 @@ explicitly return a value.
     new Bar();
     Bar();
 
-Both calls to `Bar` return the exact same thing, a newly create object which
-has a property called `method` on it, that is a 
-[Closure](#function.closures).
+`Bar`で呼び出されたものは両方とも全く同じものものになります。これには、`method`と呼ばれるプロパティを持ったオブジェクトが新しく生成されますが、これは[クロージャ](#function.closures)です。
 
-It is also to note that the call `new Bar()` does **not** affect the prototype 
-of the returned object. While the prototype will be set on the newly created 
-object, `Bar` never returns that new object.
+また、注意する点として呼び出された`new Bar()`は返ってきたオブジェクトのプロトタイプに影響**しません**。プロトタイプが新しく生成されたオブジェクトにセットされるまで、`Bar`は絶対に新しいオブジェクトを返さないのです。
 
-In the above example, there is no functional difference between using and
-not using the `new` keyword.
+上記の例では、`new`キーワードの使用の有無は機能的に違いがありません。
 
 
 ### Creating New Objects via Factories
