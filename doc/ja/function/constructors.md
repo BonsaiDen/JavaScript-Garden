@@ -96,11 +96,8 @@ JavaScriptのコンストラクタは色々ある他のプログラム言語と�
  2. ファクトリーを継承するために、他のオブジェクトの全てのメソッドをコピーする必要があるか、新しいオブジェクトのプロトタイプ上にそのオブジェクトを設置する必要があります。
  3. `new`キーワードが無いという理由だけで、プロトタイプチェーンから外れてしまうのは、どことなく言語の精神に反します。
 
-### In Conclusion
+### 終わりに
 
-While omitting the `new` keyword might lead to bugs, it is certainly **not** a 
-reason to drop the use of prototypes altogether. In the end it comes down to 
-which solution is better suited for the needs of the application, it is 
-especially important to choose a specific style of object creation **and stick** 
-with it.
+`new`キーワードが省略される事により、バグの可能性がもたらされます。それは確かにプロトタイプを使わない理由には**なりません**。最終的には、アプリケーションの必要性により、どちらの解決法がより良いかが決まってきます。特に大切なのは、オブジェクトの作成に特定のスタイルを選ぶ事、また**そのスタイルに固執する事**です。
+
 
