@@ -69,13 +69,11 @@ JavaScriptのコンストラクタは色々ある他のプログラム言語と�
 上記の例では、`new`キーワードの使用の有無は機能的に違いがありません。
 
 
-### Creating New Objects via Factories
+### ファクトリーとして新しくオブジェクトを作成する
 
-An often made recommendation is to **not** use `new` since forgetting its use
-may lead to bugs.
+大半の場合に推奨されるのは、`new`はバグを引き起こしやすいので使用**しない**事です。
 
-In order to create new object, one should rather use a factory and construct a 
-new object inside of that factory.
+新しいオブジェクトを作成するためにファクトリーを使用するか、そのファクトリー内部に新しいオブジェクトを構築する必要があります。
 
     function Foo() {
         var obj = {};
@@ -92,16 +90,11 @@ new object inside of that factory.
         return obj;
     }
 
-While the above is robust against a missing `new` keyword and certainly makes 
-the use of [private variables](#function.closures) easier, it comes with some 
-downsides.
+上記の例では`new`キーワードが無いため堅牢になりますし、確実に[プライベート変数](#function.closures)を使用するのが簡単になりますが、いくつかの欠点があります。
 
- 1. It uses more memory since the created objects do **not** share the methods
-    on a prototype.
- 2. In order to inherit the factory needs to copy all the methods from another
-    object or put that object on the prototype of the new object.
- 3. Dropping the prototype chain just because of a left out `new` keyword
-    somehow goes against the spirit of the language.
+ 1. 作られたオブジェクトがプロトタイプ上のメソッドを共有しないために、よりメモリーを消費してしまいます。
+ 2. ファクトリーを継承するために、他のオブジェクトの全てのメソッドをコピーする必要があるか、新しいオブジェクトのプロトタイプ上にそのオブジェクトを設置する必要があります。
+ 3. `new`キーワードが無いという理由だけで、プロトタイプチェーンから外れてしまうのは、どことなく言語の精神に反します。
 
 ### In Conclusion
 
