@@ -1,27 +1,21 @@
-## Scopes and Namespaces
+## スコープと名前空間
 
-Although JavaScript deals fine with the syntax of two matching curly
-braces for blocks, it does **not** support block scope; hence, all that is left 
-is in the language is *function scope*.
+JavaScriptはブロックに2つのペアの中括弧を使うのが素晴しいですが、これはブロックスコープをサポートして**いません**。その為、この言語に残されているのは*関数スコープ*だけです。
 
-    function test() { // a scope
-        for(var i = 0; i < 10; i++) { // not a scope
-            // count
+    function test() { // スコープ
+        for(var i = 0; i < 10; i++) { // スコープではない
+            // 数える
         }
         console.log(i); // 10
     }
 
-> **Note:** When not used in an assignment, return statement or as a function 
-> argument, the `{...}` notation will get interpreted as a block statement and 
-> **not** as an object literal. This, in conjunction with 
-> [automatic insertion of semicolons](#core.semicolon), can lead to subtle errors.
+> **注意:** 代入が使用されてない時、return文や関数の引数、`{...}`表記はブロック文として
+> 解釈されて、オブジェクトリテラルトは**なりません**。これは[セミコロン自動挿入](#core.semicolon)
+> と連動して奇妙なエラーを引き起こすことになります。
 
-There are also no distinct namespaces in JavaScript, that means that everything 
-gets defined in one *globally shared* namespace.
+JavaScriptはまた明確な名前空間を持ちません。この事は全て一つの*グローバルで共有された*名前空間で定義されるという事です。
 
-Each time a variable is referenced, JavaScript will traverse upwards through all 
-the scopes until it finds it. In the case that it reaches the global scope and 
-still has not found the requested name, it will raise a `ReferenceError`.
+変数が参照されるまでの間、JavaScriptはスコープ全てを遡って参照を探索します。グローバルスコープまで遡っても要求した名前が無いと`ReferenceError`が発生します。
 
 ### The Bane of Global Variables
 
