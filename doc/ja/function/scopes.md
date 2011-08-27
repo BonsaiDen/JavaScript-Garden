@@ -143,24 +143,22 @@ JavaScriptの**巻き上げ**宣言。この言葉の意味は`var`ステート�
         SomeImportantThing = {};
     }
 
-### Name Resolution Order
+### 名前解決の順序
 
-All scopes in JavaScript, including the *global scope*, have the special name 
-[`this`](#function.this) defined in them, which refers to the *current object*. 
+JavaScriptの*グローバルスコープ*を含む、全てのスコープは、*現在のオブジェクト*を参照している特殊な名前[`this`](#function.this)を持っています。
 
-Function scopes also have the name [`arguments`](#function.arguments) defined in
-them which contains the arguments that were passed to a function.
+関数スコープはまた、関数を通過してきた引数を含んでいる[`arguments`](#function.arguments)という名前も持っています。
 
-For example, when trying to access a variable named `foo` inside the scope of a 
-function, JavaScript will lookup the name in the following order:
+例として、関数の中で`foo`と命名された変数にアクセスしようとする場合を考えましょう。JavaScriptは以下の順番で、その名前を探索しようとします。
 
- 1. In case there is a `var foo` statement in the current scope use that.
- 2. If one of the function parameters is named `foo` use that.
- 3. If the function itself is called `foo` use that.
- 4. Go to the next outer scope and start with **#1** again.
+ 1. `var foo`ステートメントが現在のスコープで使われている場合
+ 2. `foo`という名前の関数パラメーターが存在するかどうか
+ 3. 関数それ自体が`foo`として呼ばれているかどうか
+ 4. 一つ外のスコープに行き、再度**#1**から始める
 
-> **Note:** Having a parameter called `arguments` will **prevent** the creation 
-> of the default `arguments` object.
+> **注意:** `arguments`と呼ばれるパラメーターを持つという事は、デフォルトの`arguments`
+> オブジェクトを生成するのを**阻害**します。
+
 
 ### Namespaces
 
