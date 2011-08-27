@@ -55,19 +55,17 @@ JavaScriptはまた明確な名前空間を持ちません。この事は全て�
 
 外側のループは`subloop`が最初に呼ばれた後に終了します。なぜなら、`subloop`がグローバル変数`i`の値で上書きされているからです。2番目の`for`ループに`var`を使用する事によって簡単にこのエラーを回避する事ができます。`var`ステートメントは*希望する影響*を外側のスコープに与える場合を除いては、**絶対**に残してはいけません。
 
-### Local Variables
+### ローカル変数
 
-The only source for local variables in JavaScript are
-[function](#function.general) parameters and variables that were declared via the 
-`var` statement.
+JavaScriptのローカル変数の為の唯一のソースは[function](#function.general)パラメーターと`var`ステートメントを宣言された変数になります。
 
-    // global scope
+    // グローバルスコープ
     var foo = 1;
     var bar = 2;
     var i = 2;
 
     function test(i) {
-        // local scope of the function test
+        // 関数testのローカル変数
         i = 5;
 
         var foo = 3;
@@ -75,8 +73,7 @@ The only source for local variables in JavaScript are
     }
     test(10);
 
-While `foo` and `i` are local variables inside the scope of the function `test`,
-the assignment of `bar` will override the global variable with the same name.
+`foo`と`i`は、関数`test`のスコープ内のローカル変数ですが、`bar`の割り当ては同じ名前のグローバル変数で上書きされてしまいます。
 
 ### Hoisting
 
