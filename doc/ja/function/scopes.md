@@ -187,12 +187,9 @@ JavaScriptの*グローバルスコープ*を含む、全てのスコープは�
     +function(){}();
     (function(){}());
 
-### In Conclusion
+### 終わりに
 
-It is recommended to always use an *anonymous wrapper* for encapsulating code in 
-its own namespace. This does not only protect code against name clashes, it 
-also allows for better modularization of programs.
+自身の名前空間にカプセル化する為に常に*匿名関数ラッパー*を使用する事を推奨します。これは、コードを名前衝突から守る為だけでなく、プログラムのより良いモジュール化の為でもあります。
 
-Additionally, the use of global variables is considered **bad practice**. **Any**
-use of them indicates badly written code that is prone to errors and hard to maintain.
+さらに、グローバル変数の使用は**悪い習慣**と考えられています。**一回**でもグローバル変数を使用するとエラーが発生しやすく、メンテナンスがしにくいコードになってしまいます。
 
