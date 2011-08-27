@@ -160,34 +160,30 @@ JavaScriptの*グローバルスコープ*を含む、全てのスコープは�
 > オブジェクトを生成するのを**阻害**します。
 
 
-### Namespaces
+### 名前空間
 
-A common problem of having only one global namespace is the likeliness of running
-into problems where variable names clash. In JavaScript, this problem can
-easily be avoided with the help of *anonymous wrappers*.
+一つしかグローバルの名前空間を持たない事による良くある問題は変数名の衝突による問題の起きる可能性です。JavaScriptでは、この問題を*匿名関数ラッパー*の助けで簡単に回避できます。
 
     (function() {
-        // a self contained "namespace"
-        
+        // "名前空間"に自分を含む
+
         window.foo = function() {
-            // an exposed closure
+            // 露出したクロージャ
         };
 
-    })(); // execute the function immediately
+    })(); // 即座に関数を実行する
 
 
-Unnamed functions are considered [expressions](#function.general); so in order to
-being callable, they must first be evaluated.
+無名関数は[expressions](#function.general)とみなされ、呼び出し可能になり最初に評価されます。
 
-    ( // evaluate the function inside the paranthesis
+    ( // カッコ内の関数が評価される
     function() {}
-    ) // and return the function object
-    () // call the result of the evaluation
+    ) // 関数オブジェクトが返される
+    () // 評価の結果が呼び出される
 
-There are other ways for evaluating and calling the function expression; which, 
-while different in syntax, do behave the exact same way.
+関数式を評価し、呼び出す別の方法として構文は違いますが、同様の動作をするのが下記です。
 
-    // Two other ways
+    // 2つの別の方法
     +function(){}();
     (function(){}());
 
