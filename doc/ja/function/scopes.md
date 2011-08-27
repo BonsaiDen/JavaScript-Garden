@@ -17,52 +17,43 @@ JavaScriptはまた明確な名前空間を持ちません。この事は全て�
 
 変数が参照されるまでの間、JavaScriptはスコープ全てを遡って参照を探索します。グローバルスコープまで遡っても要求した名前が無いと`ReferenceError`が発生します。
 
-### The Bane of Global Variables
+### グローバル変数の致命傷
 
-    // script A
+    // スクリプト A
     foo = '42';
 
-    // script B
+    // スクリプト B
     var foo = '42'
 
-The above two scripts do **not** have the same effect. Script A defines a 
-variable called `foo` in the *global* scope and script B defines a `foo` in the
-*current* scope.
+上記の2つのスクリプトは同じ効果を持って**いません**。スクリプト Aは`foo`と呼ばれる変数を、*グローバル*スコープに定義しており、スクリプト Bは`foo`を*現在*のスコープで定義ています。
 
-Again, that is **not** at all the *same effect*, not using `var` can have major 
-implications.
+再び、`var`が重大な影響を持っていない、*同じ効果*では**無い**スクリプトになります。
 
-    // global scope
+    // グローバルスコープ
     var foo = 42;
     function test() {
-        // local scope
+        // ローカルスコープ
         foo = 21;
     }
     test();
     foo; // 21
 
-Leaving out the `var` statement inside the function `test` will override the 
-value of `foo`. While this might not seem like a big deal at first, having 
-thousands of lines of JavaScript and not using `var` will introduce horrible and 
-hard to track down bugs.
-    
-    // global scope
-    var items = [/* some list */];
+`test`関数の中の`var`ステートメントを省略すると`foo`の値をオーバーライドします。最初の内は大した事ではないように思いますが、JavaScriptが何千行規模になると、`var`を使っていない事で恐怖とバグの追跡の困難さを招くことになります。
+
+    // グローバルスコープ
+    var items = [/* 同じリスト */];
     for(var i = 0; i < 10; i++) {
         subLoop();
     }
 
     function subLoop() {
-        // scope of subLoop
-        for(i = 0; i < 10; i++) { // missing var statement
-            // do amazing stuff!
+        // サブループのスコープ
+        for(i = 0; i < 10; i++) { // varステートメントが無くなった
+            // 素敵な実装を！
         }
     }
-    
-The outer loop will terminate after the first call to `subLoop`,  since `subLoop`
-overwrites the global value of `i`. Using a `var` for the second `for` loop would
-have easily avoided this error. The `var` statement should **never** be left out 
-unless the *desired effect* is to affect the outer scope.
+
+外側のループは`subloop`が最初に呼ばれた後に終了します。なぜなら、`subloop`がグローバル変数`i`の値で上書きされているからです。2番目の`for`ループに`var`を使用する事によって簡単にこのエラーを回避する事ができます。`var`ステートメントは*希望する影響*を外側のスコープに与える場合を除いては、**絶対**に残してはいけません。
 
 ### Local Variables
 
