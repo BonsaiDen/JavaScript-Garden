@@ -75,10 +75,9 @@ JavaScriptのローカル変数の為の唯一のソースは[function](#functio
 
 `foo`と`i`は、関数`test`のスコープ内のローカル変数ですが、`bar`の割り当ては同じ名前のグローバル変数で上書きされてしまいます。
 
-### Hoisting
+### 巻き上げ
 
-JavaScript **hoists** declarations. This means that both `var` statements and
-`function` declarations will be moved to the top of their enclosing scope.
+JavaScriptの**巻き上げ**宣言。この言葉の意味は`var`ステートメントと`function`宣言が、それらの外側のスコープに移動するというものです。
 
     bar();
     var bar = function() {};
@@ -97,16 +96,14 @@ JavaScript **hoists** declarations. This means that both `var` statements and
         }
     }
 
-The above code gets transformed before any execution is started. JavaScript moves
-the `var` statements as well as the `function` declarations to the top of the 
-nearest surrounding scope.
+上記のコードは何も実行されないうちに変換されてしまいます。JavaScriptは`var`ステートメントと同じように、直近で囲んでいる`function`宣言を先頭に移動させます。
 
-    // var statements got moved here
-    var bar, someValue; // default to 'undefined'
+    // varステートメントはここに移動する
+    var bar, someValue; // 'undefined'がデフォルト
 
-    // the function declartion got moved up too
+    // function宣言もここに移動する
     function test(data) {
-        var goo, i, e; // missing block scope moves these here
+        var goo, i, e; // 無くなったブロックスコープはこちらに移動する
         if (false) {
             goo = 1;
 
@@ -118,36 +115,30 @@ nearest surrounding scope.
         }
     }
 
-    bar(); // fails with a TypeError since bar is still 'undefined'
-    someValue = 42; // assignments are not affected by hoisting
+    bar(); // barが'undefined'のままなので、Typeerrorで呼び出し失敗
+    someValue = 42; // 割り当てすると巻き上げの影響を受けない
     bar = function() {};
 
     test();
 
-Missing block scoping will not only move `var` statements out of loops and
-their bodies, it will also make the results of certain `if` constructs 
-non-intuitive.
+ブロックスコープの欠落はループ外の`var`ステートメントの移動だけでなく、その本体も移動させます。これはまた`if`が直感的じゃない結果になってしまいます。
 
-In the original code the `if` statement seemed to modify the *global 
-variable* `goo`, while actually it modifies the *local variable* - after hoisting 
-has been applied.
+元のコードの中の`if`ステートメントは*グローバル変数*である`goo`も変更しているように見えますが、実際には -巻き上げが適用された後に- *ローカル変数*を変更しています。
 
-Without the knowledge about *hoisting*, below code might seem to raise a 
-`ReferenceError`.
+*巻き上げ*についての知識がないと、下に挙げたコードは`ReferenceError`になるように見えます。
 
-    // check whether SomeImportantThing has been initiliazed
+    // SomeImportantThingが初期化されているかチェックする
     if (!SomeImportantThing) {
         var SomeImportantThing = {};
     }
 
-But of course, the above works due to the fact that the `var` statement is being 
-moved to the top of the *global scope*.
+しかし、勿論上記の動きは`val`ステートメントが*グローバルスコープ*の上に移動しているという事実に基づいています。
 
     var SomeImportantThing;
 
-    // other code might initiliaze SomeImportantThing here, or not
+    // 他のコードがSomeImportantThingをここで初期化するかもしれないし、しないかもしれない
 
-    // make sure it's there
+    // SomeImportantThingがある事を確認してください
     if (!SomeImportantThing) {
         SomeImportantThing = {};
     }
