@@ -1,17 +1,11 @@
-## Array Iteration and Properties
+## 配列の繰り返しとプロパティ
 
-Although arrays in JavaScript are objects, there are no good reasons to use
-the [`for in loop`](#object.forinloop) in for iteration on them. In fact there 
-are a number of good reasons **against** the use of `for in` on arrays.
+JavaScriptの配列もまたオブジェクトですので[`for in ループ`](#object.forinloop)を配列の繰り返しで使用するような理由はありません。実際、配列に`for in`を使用**しない**為の正当な理由はたくさんあります。
 
-> **Note:** JavaScript arrays are **not** *associative arrays*. JavaScript only 
-> has [objects](#object.general) for mapping keys to values. And while associative 
-> arrays **preserve** order, objects **do not**.
+> **注意:** JavaScriptの配列は*連想配列*では**ありません**。JavaScriptは[objects](#object.general)だけがキーバリューをマッピングするものです。
+> また、連想配列は順序を**保持**しますが、オブジェクトは**保持しません**。
 
-Since the `for in` loop enumerates all the properties that are on the prototype 
-chain and the only way to exclude those properties is to use 
-[`hasOwnProperty`](#object.hasownproperty), it is already up to **twenty times** 
-slower than a normal `for` loop.
+`for in`ループはプロトタイプチェーン上の全てのプロパティを列挙するため、[`hasOwnProperty`](#object.hasownproperty)をそれらのプロパティの存在判定に使います。この為、通常の`for`ループよりも**20倍**遅くなります。
 
 ### Iteration
 
