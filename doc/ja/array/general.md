@@ -7,26 +7,20 @@ JavaScriptの配列もまたオブジェクトですので[`for in ループ`](#
 
 `for in`ループはプロトタイプチェーン上の全てのプロパティを列挙するため、[`hasOwnProperty`](#object.hasownproperty)をそれらのプロパティの存在判定に使います。この為、通常の`for`ループよりも**20倍**遅くなります。
 
-### Iteration
+### 繰り返し
 
-In order to achieve the best performance when iterating over arrays, it is best
-to use the classic `for` loop.
+配列の要素を繰り返すとのに、最高のパフォーマンスを出したければ昔ながらの`for`ループを使うのが一番です。
 
     var list = [1, 2, 3, 4, 5, ...... 100000000];
     for(var i = 0, l = list.length; i < l; i++) {
         console.log(list[i]);
     }
 
-There is one extra catch in the above example, that is the caching of the 
-length of the array via `l = list.length`.
+上記の例では一つ余分に変数がありますが、それは配列の長さを取るための`l = list.length`の部分です。
 
-Although the `length` property is defined on the array itself, there is still an
-overhead for doing the lookup on each iteration of the loop. And while recent 
-JavaScript engines **may** apply optimization in this case, there is no way of
-telling whether the code will run on one of these newer engines or not. 
+また、`length`プロパティは配列自身に定義されていますが、ループのそれぞれの繰り返しで探索する為のオーバーヘッドがまだあります。最近のJavaScriptエンジンはこのような場合に最適化する**はず**です。新しいエンジンか古いエンジンで実行されるかどうかをコードが知る方法はありません。
 
-In fact, leaving out the caching may result in the loop being only **half as
-fast** as with the cached length.
+実際には、キャッシュを抜きにするとループの結果はキャッシュされたものに比べて、**半分だけ高速**になっている。
 
 ### The `length` Property
 
