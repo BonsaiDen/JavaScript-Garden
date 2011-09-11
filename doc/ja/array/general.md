@@ -35,9 +35,7 @@ JavaScriptの配列もまたオブジェクトですので[`for in ループ`](#
 
 より小さいlengthを割り当てると配列をトランケートしますが、lengthが大きくなっても配列には何も影響しません。
 
-### In Conclusion
+### 終わりに
 
-For the best performance it is recommended to always use the plain `for` loop
-and cache the `length` property. The use of `for in` on an array is a sign of
-badly written code that is prone to bugs and bad performance. 
+最高のパフォーマンスの為には、常に`for`ループを使用し、`length`プロパティをキャッシュする事をお勧めします。`for in`ループを配列で使用するのは、バグや最低のパフォーマンスの傾向があるコードを書く前兆になります。
 
