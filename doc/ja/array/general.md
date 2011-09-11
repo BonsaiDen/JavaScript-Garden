@@ -24,9 +24,7 @@ JavaScriptの配列もまたオブジェクトですので[`for in ループ`](#
 
 ### `length`プロパティ
 
-While the *getter* of the `length` property simply returns the number of
-elements that are contained in the array, the *setter* can be used to 
-**truncate** the array.
+`length`プロパティの*ゲッター*は単に配列に含まれる要素の数を返すだけにも関わらず、*セッター*は配列を**トランケート**する為にも使用できます。
 
     var foo = [1, 2, 3, 4, 5, 6];
     foo.length = 3;
@@ -35,8 +33,7 @@ elements that are contained in the array, the *setter* can be used to
     foo.length = 6;
     foo; // [1, 2, 3]
 
-Assigning a smaller length does truncate the array, but increasing the length 
-does not have any effect on the array.
+より小さいlengthを割り当てると配列をトランケートしますが、lengthが大きくなっても配列には何も影響しません。
 
 ### In Conclusion
 
