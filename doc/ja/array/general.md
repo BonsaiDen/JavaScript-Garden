@@ -20,9 +20,9 @@ JavaScriptの配列もまたオブジェクトですので[`for in ループ`](#
 
 また、`length`プロパティは配列自身に定義されていますが、ループのそれぞれの繰り返しで探索する為のオーバーヘッドがまだあります。最近のJavaScriptエンジンはこのような場合に最適化する**はず**です。新しいエンジンか古いエンジンで実行されるかどうかをコードが知る方法はありません。
 
-実際には、キャッシュを抜きにするとループの結果はキャッシュされたものに比べて、**半分だけ高速**になっている。
+実際には、キャッシュを抜きにするとループの結果はキャッシュされたものに比べて、**半分だけ高速**になっています。
 
-### The `length` Property
+### `length`プロパティ
 
 While the *getter* of the `length` property simply returns the number of
 elements that are contained in the array, the *setter* can be used to 
