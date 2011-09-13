@@ -2,13 +2,12 @@
 
 JavaScriptはオブジェクトの値の等価の比較方法が2種類持っています。
 
-### The Equality Operator
+### 等価演算子
 
-The equality operator consists of two equal signs: `==`
+等価演算子は2つのイコール記号: `==`から成っています。
 
-JavaScript features *weak typing*. This means that the equality operator 
-**coerces** types in order to compare them.
-    
+JavaScriptは*弱い型付け*を特徴としています。これは等価演算子が比較をする際に型付けを**強制**するという意味です。
+
     ""           ==   "0"           // false
     0            ==   ""            // true
     0            ==   "0"           // true
@@ -19,13 +18,9 @@ JavaScript features *weak typing*. This means that the equality operator
     null         ==   undefined     // true
     " \t\r\n"    ==   0             // true
 
-The above table shows the results of the type coercion and it is the main reason 
-why the use of `==` is widely regarded as bad practice, it introduces hard to 
-track down bugs due to its complicated conversion rules.
+上記の表では型強制の結果が表示されています。`==`の使用が一般に悪い習慣とみなされる大きな理由として、変換ルールが複雑な為、バグの追跡が困難になる事が挙げられます。
 
-Additionally there is also a performance impact when type coercion is in play;
-for example, a string has to be converted to a number before it can be compared
-to another number.
+加えて、型強制が行なわれるとパフォーマンスにも影響してしまいます。例えば、文字列は他の数字と比較する前に数値に変換されなければなりません。
 
 ### The Strict Equality Operator
 
