@@ -1,6 +1,6 @@
-## Equality and Comparisons
+## 等価と比較
 
-JavaScript has two different ways of comparing the values of objects for equality. 
+JavaScriptはオブジェクトの値の等価の比較方法が2種類持っています。
 
 ### The Equality Operator
 
