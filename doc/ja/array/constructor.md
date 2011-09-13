@@ -1,29 +1,21 @@
-## The `Array` Constructor
+## `Array`コンストラクター
 
-Since the `Array` constructor is ambiguous in how it deals with its parameters,
-it is highly recommended to always use the array literals - `[]` notation - 
-when creating new arrays.
+`Array`コンストラクターはそのパラメーターの扱い方が曖昧なので、新しい配列を作る時には、常に配列リテラル - `[]`記法 - を使用する事を強くお勧めします。
 
-    [1, 2, 3]; // Result: [1, 2, 3]
-    new Array(1, 2, 3); // Result: [1, 2, 3]
+    [1, 2, 3]; // 結果: [1, 2, 3]
+    new Array(1, 2, 3); // 結果: [1, 2, 3]
 
     [3]; // Result: [3]
-    new Array(3); // Result: []
-    new Array('3') // Result: ['3']
+    new Array(3); // 結果: []
+    new Array('3') // 結果: ['3']
 
-In cases when there is only one argument passed to the `Array` constructor,
-and that argument is a `Number`, the constructor will return a new *sparse* 
-array with the `length` property set to the value of the argument. It should be 
-noted that **only** the `length` property of the new array will be set this way, 
-the actual indexes of the array will not be initialized. 
+このケースの場合、`Array`コンストラクターに渡される引数は一つだけですが、その引数は`Number`になります。コンストラクターは、引数に値がセットされた`length`プロパティを伴った新しい*疎*配列を返します。特筆すべきなのは、新しい配列の`length`プロパティ**のみ**が、このようにセットされるという事です。実際の配列のインデックスは初期化されません。
 
     var arr = new Array(3);
     arr[1]; // undefined
-    1 in arr; // false, the index was not set
+    1 in arr; // false, インデックスがセットされていない
 
-The behavior of being able to set the length of the array upfront only comes in 
-handy in a few cases, like repeating a string, in which it avoids the use of a 
-`for loop` code.
+配列の長さが先行してセットされるという振舞いは、いくつかの場合に便利です。例えば、文字の繰り返しや、`for loop`を使用したコードの回避などの場合です。
 
     new Array(count + 1).join(stringToRepeat);
 
