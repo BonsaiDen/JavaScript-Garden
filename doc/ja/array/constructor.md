@@ -19,9 +19,7 @@
 
     new Array(count + 1).join(stringToRepeat);
 
-### In Conclusion
+### 終わりに
 
-The use of the `Array` constructor should be avoided as much as possible. 
-Literals are definitely preferred. They are shorter and have a clearer syntax; 
-therefore, they also increase the readability of the code.
+`Array`コンストラクターの使用は出来る限り避けてください。リテラルが当然望ましい形です。それらは、短かく明快な文法にもってるいる為に、コードの可読性を高めてくれます。
 
