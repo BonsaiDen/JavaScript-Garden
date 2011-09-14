@@ -22,12 +22,11 @@ JavaScriptは*弱い型付け*を特徴としています。これは等価演�
 
 加えて、型強制が行なわれるとパフォーマンスにも影響してしまいます。例えば、文字列は他の数字と比較する前に数値に変換されなければなりません。
 
-### The Strict Equality Operator
+### 厳密等価演算子
 
-The strict equality operator consists of **three** equal signs: `===`
+厳密等価演算子は**3つ**のイコール記号:`===`で成っています。
 
-It works exactly like the normal equality operator, except that strict equality 
-operator does **not** perform type coercion between its operands.
+これはオペランドの間で強制的な型変換が**実行されない**事を除けば、通常の等価演算子と同じように正確に動作します。
 
     ""           ===   "0"           // false
     0            ===   ""            // false
@@ -39,9 +38,7 @@ operator does **not** perform type coercion between its operands.
     null         ===   undefined     // false
     " \t\r\n"    ===   0             // false
 
-The above results are a lot clearer and allow for early breakage of code. This
-hardens code to a certain degree and also gives performance improvements in case
-the operands are of different types.
+上記の結果は、より明確でコードの早期破損を可能にします。これはある程度までコードを硬化させて、オペランドが別の型の場合にパフォーマンスが向上します。
 
 ### Comparing Objects
 
