@@ -40,10 +40,9 @@ JavaScriptは*弱い型付け*を特徴としています。これは等価演�
 
 上記の結果は、より明確でコードの早期破損を可能にします。これはある程度までコードを硬化させて、オペランドが別の型の場合にパフォーマンスが向上します。
 
-### Comparing Objects
+### オブジェクトの比較
 
-While both `==` and `===` are stated as **equality** operators, they behave 
-different when at least one of their operands happens to be an `Object`.
+`==`と`===`は両方とも**等価**演算子とされていますが、そのオペランドの少なくとも一つが`Object`の場合は、両者は異なる動きをします。
 
     {} === {};                   // false
     new String('foo') === 'foo'; // false
@@ -51,9 +50,7 @@ different when at least one of their operands happens to be an `Object`.
     var foo = {};
     foo === foo;                 // true
 
-Here both operators compare for **identity** and **not** equality; that is, they
-will compare for the same **instance** of the object, much like `is` in Python 
-and pointer comparison in C.
+これら2つの演算子は**同一性**と等価**ではない**事を比較しています。これは、これらの演算子はPythonの`is`演算子やCのポインター比較と同じように、同じオブジェクトの**インスタンス**を比較するという事になります。
 
 ### In Conclusion
 
