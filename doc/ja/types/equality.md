@@ -52,9 +52,7 @@ JavaScriptは*弱い型付け*を特徴としています。これは等価演�
 
 これら2つの演算子は**同一性**と等価**ではない**事を比較しています。これは、これらの演算子はPythonの`is`演算子やCのポインター比較と同じように、同じオブジェクトの**インスタンス**を比較するという事になります。
 
-### In Conclusion
+### 終わりに
 
-It is highly recommended to only use the **strict equality** operator. In cases
-where types need to be coerced, it should be done [explicitly](#types.casting) 
-and not left to the language's complicated coercion rules.
+**厳格等価**演算子だけを使用することを特に推奨します。型を強制的に型変換する場合は[explicitly](#types.casting)であるべきで、言語自体の複雑な変換ルールが残っているべきではありません。
 
