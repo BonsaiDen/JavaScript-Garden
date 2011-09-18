@@ -1,17 +1,13 @@
-## The `typeof` Operator
+## `typeof`演算子
 
-The `typeof` operator (together with 
-[`instanceof`](#types.instanceof)) is probably the biggest 
-design flaw of JavaScript, as it is near of being **completely broken**.
+`typeof`演算子([`instanceof`](#types.instanceof)も同様です)は恐らくJavaScriptの最大の設計ミスです。**完全に壊れている**存在に近いものです。
 
-Although `instanceof` still has its limited uses, `typeof` really has only one
-practical use case, which does **not** happen to be checking the type of an 
-object. 
+`instanceof`はまだ限られた用途で使用できますが、`typeof`は本当に使用できる実用的なケースはオブジェクトの型を調べるという起こら**ない**ケース一つしかありません。
 
-> **Note:** While `typeof` can also be called with a function like syntax
-> i.e. `typeof(obj)`, this is not a function call. The two parenthesis will
-> behave like normal and the return value will be used as the operand of the
-> `typeof` operator. There is **no** `typeof` function.
+> **注意点:** `typeof`も関数のような構文で呼ぶ事もできます。(例：`typeof(obj)`)
+> これは関数呼び出しではありません。2つのカッコは通常と同じように
+> `typeof`演算子のオペランドの値を返す振る舞いをします。
+> `typeof`関数は存在**しません**。
 
 ### The JavaScript Type Table
 
