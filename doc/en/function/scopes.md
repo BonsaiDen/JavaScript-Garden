@@ -122,7 +122,7 @@ nearest surrounding scope.
     // var statements got moved here
     var bar, someValue; // default to 'undefined'
 
-    // the function declartion got moved up too
+    // the function declaration got moved up too
     function test(data) {
         var goo, i, e; // missing block scope moves these here
         if (false) {
