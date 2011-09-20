@@ -1,11 +1,11 @@
 ## The Prototype
 
-JavaScript does not feature a classical inheritance model, instead it uses a 
+JavaScript does not feature a classical inheritance model; instead, it uses a 
 *prototypal* one. 
 
 While this is often considered to be one of JavaScript's weaknesses, the 
 prototypal inheritance model is in fact more powerful than the classic model. 
-It is for example fairly trivial to build a classic model on top of it, while the
+It is, for example, fairly trivial to build a classic model on top of it, while the
 other way around is a far more difficult task.
 
 Due to the fact that JavaScript is basically the only widely used language that
@@ -71,7 +71,7 @@ hasn't found the specified property, it will return the value
 ### The Prototype Property
 
 While the prototype property is used by the language to build the prototype
-chains, it is still possible to assign **any** given value to it. Although 
+chains, it is still possible to assign **any** given value to it. However, 
 primitives will simply get ignored when assigned as a prototype.
 
     function Foo() {}
