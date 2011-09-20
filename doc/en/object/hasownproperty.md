@@ -21,7 +21,7 @@ does **not** traverse the prototype chain.
     foo.hasOwnProperty('bar'); // false
     foo.hasOwnProperty('goo'); // true
 
-Only `hasOwnProperty` will give the correct and expected result, this is 
+Only `hasOwnProperty` will give the correct and expected result; this is 
 essential when iterating over the properties of any object. There is **no** other 
 way to exclude properties that are not defined on the object *itself*, but 
 somewhere on its prototype chain.  
@@ -48,6 +48,6 @@ necessary to use an *external* `hasOwnProperty` in order to get correct results.
 
 When checking for the existence of a property on a object, `hasOwnProperty` is 
 the **only** method of doing so. It is also recommended to make `hasOwnProperty`
-part of **every** [`for in` loop](#object.forinloop), this will avoid errors from 
+part of **every** [`for in` loop](#object.forinloop); this will avoid errors from 
 extended native [prototypes](#object.prototype).
 
