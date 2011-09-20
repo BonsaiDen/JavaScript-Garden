@@ -8,8 +8,8 @@ being `undefined`.
 `undefined` is a type with exactly one value: `undefined`.
 
 The language also defines a global variable that has the value of `undefined`,
-this variable is also called `undefined`. But this variable is **not** a constant,
-nor is it a keyword of the language. This means that its *value* can be easily 
+this variable is also called `undefined`. However, this variable is **neither** a constant
+nor a keyword of the language. This means that its *value* can be easily 
 overwritten.
 
 > **ES5 Note:** `undefined` in ECMAScript 5 is **no longer** *writable* in strict
@@ -31,7 +31,7 @@ Since the global variable `undefined` only holds a copy of the actual *value* of
 `undefined`, assigning a new value to it does **not** change the value of the 
 *type* `undefined`.
 
-Still, in order to compare something against the value of `undefined` it is
+Still, in order to compare something against the value of `undefined`, it is
 necessary to retrieve the value of `undefined` first.
 
 In order to protect code against a possible overwritten `undefined` variable, a 
