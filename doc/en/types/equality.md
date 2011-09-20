@@ -51,7 +51,7 @@ the operands are of different types.
 ### Comparing Objects
 
 While both `==` and `===` are stated as **equality** operators, they behave 
-different when at least one of their operands happens to be an `Object`.
+differently when at least one of their operands happens to be an `Object`.
 
     {} === {};                   // false
     new String('foo') === 'foo'; // false
@@ -59,7 +59,7 @@ different when at least one of their operands happens to be an `Object`.
     var foo = {};
     foo === foo;                 // true
 
-Here both operators compare for **identity** and **not** equality; that is, they
+Here, both operators compare for **identity** and **not** equality; that is, they
 will compare for the same **instance** of the object, much like `is` in Python 
 and pointer comparison in C.
 
