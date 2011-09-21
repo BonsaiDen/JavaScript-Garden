@@ -47,13 +47,13 @@ The best option is to cast to one of the three possible types **explicitly**.
 
     '' + 10 === '10'; // true
 
-By prepending a empty string a value can easily be casted to a string.
+By prepending an empty string, a value can easily be casted to a string.
 
 ### Casting to a Number
 
     +'10' === 10; // true
 
-Using the **unary** plus operator it is possible to cast to a number.
+Using the **unary** plus operator, it is possible to cast to a number.
 
 ### Casting to a Boolean
 
