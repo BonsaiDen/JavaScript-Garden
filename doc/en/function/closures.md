@@ -1,8 +1,8 @@
 ## Closures and References
 
-One of JavaScript's most powerful features is the availability of *closures*,
-this means that scopes **always** keep access to the outer scope they were
-defined in. Since the only scoping that JavaScript has is 
+One of JavaScript's most powerful features is the availability of *closures*.
+With closures, scopes **always** keep access to the outer scope, in which they
+were defined. Since the only scoping that JavaScript has is 
 [function scope](#function.scopes), all functions, by default, act as closures.
 
 ### Emulating private variables
@@ -24,7 +24,7 @@ defined in. Since the only scoping that JavaScript has is
     foo.increment();
     foo.get(); // 5
 
-Here, `Counter` returns **two** closures. The function `increment` as well as 
+Here, `Counter` returns **two** closures: the function `increment` as well as 
 the function `get`. Both of these functions keep a **reference** to the scope of 
 `Counter` and, therefore, always keep access to the `count` variable that was 
 defined in that very scope.
@@ -58,8 +58,8 @@ copying the value of the loops index variable.
 The above will **not** output the numbers `0` through `9`, but will simply print
 the number `10` ten times.
 
-The *anonymous* function keeps a **reference** to `i` and at the time 
-`console.log` gets called, the `for loop` has already finished and the value of 
+The *anonymous* function keeps a **reference** to `i`. At the time 
+`console.log` gets called, the `for loop` has already finished, and the value of 
 `i` as been set to `10`.
 
 In order to get the desired behavior, it is necessary to create a **copy** of 
@@ -84,8 +84,8 @@ argument and will receive a copy of the **value** of `i` as its parameter `e`.
 The anonymous function that gets passed to `setTimeout` now has a reference to 
 `e`, whose value does **not** get changed by the loop.
 
-There is another possible way of achieving this; that is to return a function 
-from the anonymous wrapper, that will then have the same behavior as the code 
+There is another possible way of achieving this, which is to return a function 
+from the anonymous wrapper that will then have the same behavior as the code 
 above.
 
     for(var i = 0; i < 10; i++) {
