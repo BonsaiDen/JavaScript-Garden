@@ -16,7 +16,7 @@ is in the language is *function scope*.
 > **not** as an object literal. This, in conjunction with 
 > [automatic insertion of semicolons](#core.semicolon), can lead to subtle errors.
 
-There are also no distinct namespaces in JavaScript, that means that everything 
+There are also no distinct namespaces in JavaScript, which means that everything 
 gets defined in one *globally shared* namespace.
 
 Each time a variable is referenced, JavaScript will traverse upwards through all 
@@ -32,10 +32,10 @@ still has not found the requested name, it will raise a `ReferenceError`.
     var foo = '42'
 
 The above two scripts do **not** have the same effect. Script A defines a 
-variable called `foo` in the *global* scope and script B defines a `foo` in the
+variable called `foo` in the *global* scope, and script B defines a `foo` in the
 *current* scope.
 
-Again, that is **not** at all the *same effect*, not using `var` can have major 
+Again, that is **not** at all the *same effect*: not using `var` can have major 
 implications.
 
     // global scope
@@ -49,8 +49,8 @@ implications.
 
 Leaving out the `var` statement inside the function `test` will override the 
 value of `foo`. While this might not seem like a big deal at first, having 
-thousands of lines of JavaScript and not using `var` will introduce horrible and 
-hard to track down bugs.
+thousands of lines of JavaScript and not using `var` will introduce horrible,
+hard-to-track-down bugs.
     
     // global scope
     var items = [/* some list */];
@@ -116,7 +116,7 @@ JavaScript **hoists** declarations. This means that both `var` statements and
     }
 
 The above code gets transformed before any execution is started. JavaScript moves
-the `var` statements as well as the `function` declarations to the top of the 
+the `var` statements, as well as the `function` declarations to the top of the 
 nearest surrounding scope.
 
     // var statements got moved here
@@ -146,11 +146,11 @@ Missing block scoping will not only move `var` statements out of loops and
 their bodies, it will also make the results of certain `if` constructs 
 non-intuitive.
 
-In the original code the `if` statement seemed to modify the *global 
-variable* `goo`, while actually it modifies the *local variable* - after hoisting 
+In the original code, although the `if` statement seemed to modify the *global 
+variable* `goo`, it actually modifies the *local variable* - after hoisting 
 has been applied.
 
-Without the knowledge about *hoisting*, below code might seem to raise a 
+Without the knowledge about *hoisting*, the below code might seem to raise a 
 `ReferenceError`.
 
     // check whether SomeImportantThing has been initiliazed
@@ -173,18 +173,18 @@ moved to the top of the *global scope*.
 ### Name Resolution Order
 
 All scopes in JavaScript, including the *global scope*, have the special name 
-[`this`](#function.this) defined in them, which refers to the *current object*. 
+[`this`](#function.this), defined in them, which refers to the *current object*. 
 
-Function scopes also have the name [`arguments`](#function.arguments) defined in
-them which contains the arguments that were passed to a function.
+Function scopes also have the name [`arguments`](#function.arguments), defined in
+them, which contains the arguments that were passed to a function.
 
 For example, when trying to access a variable named `foo` inside the scope of a 
 function, JavaScript will lookup the name in the following order:
 
- 1. In case there is a `var foo` statement in the current scope use that.
- 2. If one of the function parameters is named `foo` use that.
- 3. If the function itself is called `foo` use that.
- 4. Go to the next outer scope and start with **#1** again.
+ 1. In case there is a `var foo` statement in the current scope, use that.
+ 2. If one of the function parameters is named `foo`, use that.
+ 3. If the function itself is called `foo`, use that.
+ 4. Go to the next outer scope, and start with **#1** again.
 
 > **Note:** Having a parameter called `arguments` will **prevent** the creation 
 > of the default `arguments` object.
@@ -223,7 +223,7 @@ while different in syntax, do behave the exact same way.
 ### In Conclusion
 
 It is recommended to always use an *anonymous wrapper* for encapsulating code in 
-its own namespace. This does not only protect code against name clashes, it 
+its own namespace. This does not only protect code against name clashes, but it 
 also allows for better modularization of programs.
 
 Additionally, the use of global variables is considered **bad practice**. **Any**
