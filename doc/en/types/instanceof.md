@@ -26,13 +26,13 @@ nearly as useless as the [typeof operator](#types.typeof).
     'foo' instanceof String; // false
     'foo' instanceof Object; // false
 
-One important thing to note here is, that `instanceof` does not work on objects 
-that origin from different JavaScript contexts (e.g. different documents
+One important thing to note here is that `instanceof` does not work on objects 
+that originate from different JavaScript contexts (e.g. different documents
 in a web browser), since their constructors will not be the exact same object.
 
 ### In Conclusion
 
 The `instanceof` operator should **only** be used when dealing with custom made 
-objects that origin from the same JavaScript context. Just like the
+objects that originate from the same JavaScript context. Just like the
 [`typeof`](#types.typeof) operator, every other use of it should be **avoided**.
 
