@@ -2,8 +2,8 @@
 
 **JavaScript Garden** is a growing collection of documentation about the most 
 quirky parts of the JavaScript programming language. It gives advice to 
-avoid common mistakes, subtle bugs, as well as performance issues and bad 
-practices that non-expert JavaScript programmers may encounter on their 
+avoid common mistakes and subtle bugs, as well as performance issues and bad 
+practices, that non-expert JavaScript programmers may encounter on their 
 endeavours into the depths of the language.
 
 JavaScript Garden does **not** aim to teach you JavaScript. Former knowledge
@@ -31,7 +31,7 @@ with a mirror at [JavaScriptGarden.info][8].
 JavaScript Garden is published under the [MIT license][9] and hosted on
 [GitHub][10]. If you find errors or typos please [file an issue][11] or a pull 
 request on the repository. You can also find us in the [JavaScript room][12] on
-Stack Overflow chat. 
+Stack Overflow chat.
 
 [1]: https://developer.mozilla.org/en/JavaScript/Guide
 [2]: http://stackoverflow.com/
