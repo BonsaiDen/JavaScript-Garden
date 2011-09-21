@@ -19,17 +19,17 @@ JavaScript features *weak typing*. This means that the equality operator
     null         ==   undefined     // true
     " \t\r\n"    ==   0             // true
 
-The above table shows the results of the type coercion and it is the main reason 
-why the use of `==` is widely regarded as bad practice, it introduces hard to 
-track down bugs due to its complicated conversion rules.
+The above table shows the results of the type coercion, and it is the main reason 
+why the use of `==` is widely regarded as bad practice. It introduces
+hard-to-track-down bugs due to its complicated conversion rules.
 
-Additionally there is also a performance impact when type coercion is in play;
+Additionally, there is also a performance impact when type coercion is in play;
 for example, a string has to be converted to a number before it can be compared
 to another number.
 
 ### The Strict Equality Operator
 
-The strict equality operator consists of **three** equal signs: `===`
+The strict equality operator consists of **three** equal signs: `===`.
 
 It works exactly like the normal equality operator, except that strict equality 
 operator does **not** perform type coercion between its operands.
