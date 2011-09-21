@@ -25,7 +25,7 @@ This example assigns the unnamed and *anonymous* function to the variable `foo`.
     foo(); // this raises a TypeError
     var foo = function() {};
 
-Due to the fact that `var` is a declaration, that hoists the variable name `foo` 
+Due to the fact that `var` is a declaration that hoists the variable name `foo` 
 before the actual execution of the code starts, `foo` is already defined when 
 the script gets executed.
 
@@ -41,8 +41,8 @@ Another special case is the assignment of named functions.
     }
     bar(); // ReferenceError
 
-Here `bar` is not available in the outer scope, since the function only gets
-assigned to `foo`; however, inside of `bar` it is available. This is due to 
+Here, `bar` is not available in the outer scope, since the function only gets
+assigned to `foo`; however, inside of `bar`, it is available. This is due to 
 how [name resolution](#function.scopes) in JavaScript works, the name of the 
 function is *always* made available in the local scope of the function itself.
 
