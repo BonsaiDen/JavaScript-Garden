@@ -16,7 +16,7 @@ chain when iterating over the properties of an object.
     }
 
 Since it is not possible to change the behavior of the `for in` loop itself, it
-is necessary to filter out the unwanted properties inside the loop body , 
+is necessary to filter out the unwanted properties inside the loop body; 
 this is done by using the [`hasOwnProperty`](#object.hasownproperty) method of 
 `Object.prototype`.
 
@@ -32,7 +32,7 @@ this is done by using the [`hasOwnProperty`](#object.hasownproperty) method of
         }
     }
 
-This version is the only correct one to use. Due to the use of `hasOwnProperty` it
+This version is the only correct one to use. Due to the use of `hasOwnProperty`, it
 will **only** print out `moo`. When `hasOwnProperty` is left out, the code is 
 prone to errors in cases where the native prototypes - e.g. `Object.prototype` - 
 have been extended.
@@ -45,7 +45,7 @@ guaranteed to break.
 
 It is recommended to **always** use `hasOwnProperty`. Never should any 
 assumptions be made about the environment the code is running in, or whether the 
-native prototypes have been extended or not. 
+native prototypes have been extended or not.
 
 [1]: http://www.prototypejs.org/
 
