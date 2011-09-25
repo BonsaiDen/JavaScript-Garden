@@ -39,26 +39,22 @@
 
 `[[Class]]`の値を取得する為に、`Object.prototype`メソッドの`toString`を使う事があります。
 
-### The Class of an Object
+### オブジェクトのクラス
 
-The specification gives exactly one way of accessing the `[[Class]]` value,
-with the use of `Object.prototype.toString`. 
+仕様では`[[Class]]`の値にアクセスするためには`Object.prototype.toString`を使用した厳密な一つの方法が与えられています。
 
     function is(type, obj) {
         var clas = Object.prototype.toString.call(obj).slice(8, -1);
         return obj !== undefined && obj !== null && clas === type;
     }
-    
+
     is('String', 'test'); // true
     is('String', new String('test')); // true
 
-In the above example, `Object.prototype.toString` gets called with the value of
-[this](#function.this) being set to the object whose `[[Class]]` value should be 
-retrieved.
+上記の例では[this](#function.this)の値と共に`Object.prototype.toString`が呼び出され`[[Class]]`の取得されている値がオブジェクトとして設定されます。
 
-> **ES5 Note:** For convenience the return value of `Object.prototype.toString` 
-> for both `null` and `undefined` was **changed** from `Object` to `Null` and 
-> `Undefined` in ECMAScript 5.
+> **ES5での注意点:** 便宜上、ECMAScript 5では`Object.prototype.toString`の`null`と`undefined`は
+> `Object`から`Null`と`Undefined`に**変更され**ました。
 
 ### Testing for Undefined Variables
 
