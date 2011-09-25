@@ -2,7 +2,7 @@
 
 `instanceof`オペレーターは2つのオペランドのコンストラクタを比較します。これはカスタムで作ったオブジェクトを比較する時にのみ有用です。組み込みの型に使用するのは[typeof operator](#types.typeof)を使用するのと同じくらい意味がありません。
 
-### Comparing Custom Objects
+### カスタムオブジェクトの比較
 
     function Foo() {}
     function Bar() {}
@@ -11,8 +11,8 @@
     new Bar() instanceof Bar; // true
     new Bar() instanceof Foo; // true
 
-    // This just sets Bar.prototype to the function object Foo
-    // But not to an actual instance of Foo
+    // これは単に関数オブジェクトFooにBar.prototypeをセットしただけです。
+    // しかし、実際のFooのインスタンスではありません。
     Bar.prototype = Foo;
     new Bar() instanceof Foo; // false
 
