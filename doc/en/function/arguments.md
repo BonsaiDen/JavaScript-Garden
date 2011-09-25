@@ -66,7 +66,7 @@ of the corresponding property on the `arguments` object, and the other way aroun
 
     function foo(a, b, c) {
         arguments[0] = 2;
-        a; // 2                                                           
+        a; // 2
 
         b = 4;
         arguments[1]; // 4
