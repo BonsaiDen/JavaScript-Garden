@@ -9,7 +9,7 @@
 > `typeof`演算子のオペランドの値を返す振る舞いをします。
 > `typeof`関数は存在**しません**。
 
-### The JavaScript Type Table
+### JavaScript の型テーブル
 
     Value               Class      Type
     -------------------------------------
@@ -24,22 +24,20 @@
     [1,2,3]             Array      object
     new Array(1, 2, 3)  Array      object
     new Function("")    Function   function
-    /abc/g              RegExp     object (function in Nitro/V8)
-    new RegExp("meow")  RegExp     object (function in Nitro/V8)
+    /abc/g              RegExp     object (Nitro/V8ではfunction)
+    new RegExp("meow")  RegExp     object (Nitro/V8ではfunction)
     {}                  Object     object
     new Object()        Object     object
 
-In the above table *Type* refers to the value, that the `typeof` operator returns.
-As can be clearly seen, this value is anything but consistent.
+上記のテーブルの*Type*は値を参照しており、`typeof`演算子が返ってきます。はっきりと分かるように、この値はどれでも一貫しています。
 
-The *Class* refers to the value of the internal `[[Class]]` property of an object.
+*Class*はオブジェクト内部の`[[Class]]`プロパティの値を参照しています。
 
-> **From the Specification:** The value of `[[Class]]` can be one of the
-> following strings. `Arguments`, `Array`, `Boolean`, `Date`, `Error`, 
+> **仕様より:** `[[Class]]`の値は以下の文字列のいずれかになります。
+> `Arguments`, `Array`, `Boolean`, `Date`, `Error`,
 > `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`.
 
-In order to retrieve the value of `[[Class]]` one has to make use of the
-`toString` method of `Object.prototype`.
+`[[Class]]`の値を取得する為に、`Object.prototype`メソッドの`toString`を使う事があります。
 
 ### The Class of an Object
 
