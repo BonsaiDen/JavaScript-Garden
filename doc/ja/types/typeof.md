@@ -56,13 +56,11 @@
 > **ES5での注意点:** 便宜上、ECMAScript 5では`Object.prototype.toString`の`null`と`undefined`は
 > `Object`から`Null`と`Undefined`に**変更され**ました。
 
-### Testing for Undefined Variables
+### 未定義変数のテスト
 
     typeof foo !== 'undefined'
 
-The above will check whether `foo` was actually declared or not; just 
-referencing it would result in a `ReferenceError`. This is the only thing
-`typeof` is actually useful for.
+上記では`foo`が実際に宣言されたかどうかを`ReferenceError`の結果を参照してチェックします。これは`typeof`が唯一実際に役に立つ場合です。
 
 ### In Conclusion
 
