@@ -64,14 +64,8 @@
 
 上記では`foo`が実際に宣言されたかどうかを`ReferenceError`の結果を参照してチェックします。これは`typeof`が唯一実際に役に立つ場合です。
 
-### In Conclusion
+### 終わりに
 
-In order to check the type of an object, it is highly recommended to use 
-`Object.prototype.toString`; as this is the only reliable way of doing so. 
-As shown in the above type table, some return values of `typeof` are not defined 
-in the specification; thus, they can differ across various implementations.
+オブジェクトの型をチェックする為には、`Object.prototype.toString`を使用する事を強くお勧めします。これが唯一信頼できる方法だからです。上述の型テーブルでも分かるように、`typeof`の戻り値は仕様で定義されていないものを返します。よって、実装によって別の結果になる事があります。
 
-Unless checking whether a variable is defined, `typeof` should be avoided at
-**all costs**.
-
-
+変数が定義されているかチェックしない限りは、`typeof`は**どんな事をしても**避けるべきです。
