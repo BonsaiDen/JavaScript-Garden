@@ -53,8 +53,10 @@
 
 上記の例では[this](#function.this)の値と共に`Object.prototype.toString`が呼び出され`[[Class]]`の取得されている値がオブジェクトとして設定されます。
 
-> **ES5での注意点:** 便宜上、ECMAScript 5では`Object.prototype.toString`の`null`と`undefined`は
-> `Object`から`Null`と`Undefined`に**変更され**ました。
+> **ES5での注意点:** 便宜上、ECMAScript 5では
+> `Object.prototype.toString`の
+> `null`と`undefined`は`Object`から
+> `Null`と`Undefined`に**変更され**ました。
 
 ### 未定義変数のテスト
 
