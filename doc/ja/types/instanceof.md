@@ -16,7 +16,7 @@
     Bar.prototype = Foo;
     new Bar() instanceof Foo; // false
 
-### Using `instanceof` with Native Types
+### ネイティブ型で`instanceof`を使用する
 
     new String('foo') instanceof String; // true
     new String('foo') instanceof Object; // true
@@ -24,9 +24,7 @@
     'foo' instanceof String; // false
     'foo' instanceof Object; // false
 
-One important thing to note here is, that `instanceof` does not work on objects 
-that origin from different JavaScript contexts (e.g. different documents
-in a web browser), since their constructors will not be the exact same object.
+ここで一つ重要な事は、この`instanceof`は異なるJavaScriptの文脈(例：ブラウザの異なるウィンドウ)では、そのコンストラクタが正確に同じオブジェクトになる訳では無いので、オリジナルのオブジェクトで動作しないという事です。
 
 ### In Conclusion
 
