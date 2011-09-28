@@ -26,9 +26,6 @@
 
 ここで一つ重要な事は、この`instanceof`は異なるJavaScriptの文脈(例：ブラウザの異なるウィンドウ)では、そのコンストラクタが正確に同じオブジェクトになる訳では無いので、オリジナルのオブジェクトで動作しないという事です。
 
-### In Conclusion
+### 終わりに
 
-The `instanceof` operator should **only** be used when dealing with custom made 
-objects that origin from the same JavaScript context. Just like the
-[`typeof`](#types.typeof) operator, every other use of it should be **avoided**.
-
+`instanceof`オペレーターは同じJavaScriptのコンテキストが起源になっているカスタムメイドのオブジェクトを扱う場合**のみ**使うべきです。ちょうど[`typeof`](#types.typeof)オペレーターのように、その他での使用は**避けるべき**です。
