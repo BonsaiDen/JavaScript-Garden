@@ -1,29 +1,25 @@
-## Type Casting
+## 型変換
 
-JavaScript is a *weakly typed* language, so it will apply *type coercion*
-**wherever** possible.
+JavaScriptは*弱い型付け*の言語なので、可能な**限り**に*型強制*が適用されます。
 
-    // These are true
-    new Number(10) == 10; // Number.toString() is converted
-                          // back to a number
+    // これらはtrueです。
+    new Number(10) == 10; // Number.toString()が変換される
+                          // numberに戻る
 
-    10 == '10';           // Strings gets converted to Number
-    10 == '+10 ';         // More string madness
-    10 == '010';          // And more 
-    isNaN(null) == false; // null converts to 0
-                          // which of course is not NaN
-    
-    // These are false
+    10 == '10';           // StringsがNumberに変換される
+    10 == '+10 ';         // バカみたいに文字列を追加
+    10 == '010';          // もっともっと
+    isNaN(null) == false; // nullが0に変換される
+                          // もちろんNaNではないです
+
+    // これらはfalseです
     10 == 010;
     10 == '-10';
 
-> **ES5 Note:** Number literals that start with a `0` are interpreted as octal 
-> (Base 8). Octal support for these has been **removed** in ECMAScript 5 strict 
-> mode.
+> **ES5での注意点:** `0`から始まるNumberリテラルは8進数(基数が8)として解釈されます。
+> このような8進数のサポートはECMAScript5のstrict modeでは**削除されました**。
 
-In order to avoid the above, use of the [strict equal operator](#types.equality) 
-is **highly** recommended. Although this avoids a lot of common pitfalls, there 
-are still many further issues that arise from JavaScript's weak typing system.
+上記の自体を避ける為に、[strict equal operator](#types.equality)を使用する事を**強く**推奨します。また、これはたくさんある落し穴を避けますが、それでもまだJavaScriptの弱い型付けシステムから発生する色々な課題が残っています。
 
 ### Constructors of Built-In Types
 
