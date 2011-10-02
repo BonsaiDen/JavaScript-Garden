@@ -6,11 +6,7 @@
         {
             "title": "Giriş",
             "dir": "intro",
-            "articles": [
-                "authors",
-                "contributors",
-                "license"
-            ]
+            "articles": []
         },
         {
             "title": "Nesneler",
