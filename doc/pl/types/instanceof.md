@@ -1,8 +1,8 @@
 ## Operator `instanceof`
 
 Operator `instanceof` porównuje konstruktory obiektów przekazanych jako operendy. 
-Jest on jedynie użyteczny do porównywania obiektów utworzonych klas. Stosowanie 
-go na wbudowanych typach jest praktycznie tak samo bezużyteczne jak operatora
+Jest on użyteczny jedynie do porównywania obiektów utworzonych klas. Stosowanie 
+go na wbudowanych typach jest praktycznie tak samo bezużyteczne, jak operatora
 [typeof](#types.typeof).
 
 ### Porównywanie obiektów utworzonych klas
@@ -14,7 +14,7 @@ go na wbudowanych typach jest praktycznie tak samo bezużyteczne jak operatora
     new Bar() instanceof Bar; // true
     new Bar() instanceof Foo; // true
 
-    // Poniżej kod który przypisuje do Bar.prototype obiekt funkcji Foo
+    // poniżej kod który przypisuje do Bar.prototype obiekt funkcji Foo
     // a nie faktyczną instancję Foo
     Bar.prototype = Foo;
     new Bar() instanceof Foo; // false
@@ -34,7 +34,7 @@ samymi obiektami.
 
 ### Wnioski
 
-Operator `instanceof` powinien być **tylko** używany podczas korzystania z obiektów 
+Operator `instanceof` powinien być używany **wyłącznie** podczas korzystania z obiektów 
 klas utworzonych, które były zdefiniowane w tym samym kontekscie JavaScriptowym. 
 Podobnie jak operator [`typeof`](#types.typeof), należy **unikać** korzystania 
 z tego operatora w innych sytuacjach.
