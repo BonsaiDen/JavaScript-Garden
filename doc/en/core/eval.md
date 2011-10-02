@@ -11,8 +11,8 @@ The `eval` function will execute a string of JavaScript code in the local scope.
     test(); // 3
     foo; // 1
 
-But `eval` only executes in local scope when it is being called **directly** *and* 
-the name of the called function is actually `eval`.
+However, `eval` only executes in the local scope when it is being called
+**directly** *and* when the name of the called function is actually `eval`.
 
     var foo = 1;
     function test() {
@@ -35,14 +35,13 @@ in the global scope since `eval` is not being called directly in that case.
 
 ### Security Issues
 
-`eval` also is a security problem as it executes **any** code given to it,
+`eval` also is a security problem. Because it executes **any** code given to it,
 it should **never** be used with strings of unknown or untrusted origins.
 
 ### In Conclusion
 
-`eval` should never be used, any code that makes use of it is to be questioned in
+`eval` should never be used. Any code that makes use of it is to be questioned in
 its workings, performance and security. In case something requires `eval` in 
-order to work, its design is to be questioned and should **not** be used in the 
-first place, a *better design* should be used, that does not require the use of 
-`eval`. 
+order to work, it should **not** be used in the first place.
+A *better design* should be used, that does not require the use of `eval`.
 

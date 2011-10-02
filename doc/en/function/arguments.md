@@ -23,8 +23,8 @@ The code below will return a new `Array` containing all the elements of the
 
     Array.prototype.slice.call(arguments);
 
-This conversion is **slow**, it is **not recommended** to use it in performance 
-critical sections of code.
+Because this conversion is **slow**, it is **not recommended** to use it in
+performance-critical sections of code.
 
 ### Passing Arguments
 
@@ -59,7 +59,7 @@ wrappers.
 ### Formal Parameters and Arguments Indices
 
 The `arguments` object creates *getter* and *setter* functions for both its 
-properties as well as the function's formal parameters.
+properties, as well as the function's formal parameters.
 
 As a result, changing the value of a formal parameter will also change the value
 of the corresponding property on the `arguments` object, and the other way around.
@@ -105,8 +105,8 @@ modern JavaScript engines. That case is the use of `arguments.callee`.
 
 In the above code, `foo` can no longer be a subject to [inlining][1] since it 
 needs to know about both itself and its caller. This not only defeats possible 
-performance gains that would arise from inlining, it also breaks encapsulation
-since the function may now be dependent on a specific calling context.
+performance gains that would arise from inlining, but it also breaks encapsulation
+because the function may now be dependent on a specific calling context.
 
 It is **highly recommended** to **never** make use of `arguments.callee` or any of 
 its properties.

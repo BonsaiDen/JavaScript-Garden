@@ -24,7 +24,7 @@ implicitly returns the value of `this` - the new object.
 The above calls `Foo` as constructor and sets the `prototype` of the newly
 created object to `Foo.prototype`.
 
-In case of an explicit `return` statement the function returns the value 
+In case of an explicit `return` statement, the function returns the value 
 specified that statement, **but only** if the return value is an `Object`.                                     
 
     function Bar() {
@@ -73,7 +73,7 @@ explicitly return a value.
     Bar();
 
 Both calls to `Bar` return the exact same thing, a newly create object which
-has a property called `method` on it, that is a 
+has a property called `method` on it, which is a 
 [Closure](#function.closures).
 
 It is also to note that the call `new Bar()` does **not** affect the prototype 
@@ -86,7 +86,7 @@ not using the `new` keyword.
 
 ### Creating New Objects via Factories
 
-An often made recommendation is to **not** use `new` since forgetting its use
+An often made recommendation is to **not** use `new` because forgetting its use
 may lead to bugs.
 
 In order to create new object, one should rather use a factory and construct a 

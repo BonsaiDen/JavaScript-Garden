@@ -19,7 +19,7 @@ gets executed might block the thread, it is by **no means** a safe bet that one
 will get the exact delay that was specified in the `setTimeout` call.
 
 The function that was passed as the first parameter will get called by the
-*global object*, that means, that [`this`](#function.this) inside the called function 
+*global object*, which means that [`this`](#function.this) inside the called function 
 refers to that very object.
 
     function Foo() {
@@ -42,7 +42,7 @@ refers to that very object.
 ### Stacking Calls with `setInterval`
 
 While `setTimeout` only runs the function once, `setInterval` - as the name 
-suggests - will execute the function **every** `X` milliseconds. But its use is 
+suggests - will execute the function **every** `X` milliseconds, but its use is 
 discouraged. 
 
 When code that is being executed blocks the timeout call, `setInterval` will 
@@ -54,15 +54,15 @@ intervals, result in function calls stacking up.
     }
     setInterval(foo, 100);
 
-In the above code `foo` will get called once and will then block for one second.
+In the above code, `foo` will get called once and will then block for one second.
 
-While `foo` blocks the code `setInterval` will still schedule further calls to
+While `foo` blocks the code, `setInterval` will still schedule further calls to
 it. Now, when `foo` has finished, there will already be **ten** further calls to
 it waiting for execution.
 
 ### Dealing with Possible Blocking Code
 
-The easiest as well as most controllable solution, is to use `setTimeout` within
+The easiest solution, as well as most controllable solution, is to use `setTimeout` within
 the function itself.
 
     function foo(){
@@ -72,7 +72,7 @@ the function itself.
     foo();
 
 Not only does this encapsulate the `setTimeout` call, but it also prevents the
-stacking of calls and it gives additional control.`foo` itself can now decide 
+stacking of calls and it gives additional control. `foo` itself can now decide 
 whether it wants to run again or not.
 
 ### Manually Clearing Timeouts
@@ -86,7 +86,7 @@ the first place.
 
 ### Clearing all timeouts
 
-As there is no built-in method for clearing all timeouts and/or intervals, 
+Because there is no built-in method for clearing all timeouts and/or intervals, 
 it is necessary to use brute force in order to achieve this functionality.
 
     // clear "all" timeouts
@@ -101,7 +101,7 @@ they can be cleared specifically.
 ### Hidden use of `eval`
 
 `setTimeout` and `setInterval` can also take a string as their first parameter.
-This feature should **never** be used, since it internally makes use of `eval`.
+This feature should **never** be used because it internally makes use of `eval`.
 
 > **Note:** Since the timeout functions are **not** specified by the ECMAScript
 > standard, the exact workings when a string is passed to them might differ in
@@ -148,7 +148,7 @@ function that will get called by either of the timeout functions.
 to be supplied to the function that gets called. An *anonymous function* should
 be passed that then takes care of the actual call.
 
-Further, the use of `setInterval` should be avoided since its scheduler is not
+Furthermore, the use of `setInterval` should be avoided because its scheduler is not
 blocked by executing JavaScript.
 
 [1]: http://en.wikipedia.org/wiki/Document_Object_Model "Document Object Model"
