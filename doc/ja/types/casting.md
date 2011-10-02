@@ -47,9 +47,9 @@ JavaScriptは*弱い型付け*の言語なので、可能な**限り**に*型強
 
 **単項**プラスオペレーターを使うと数字にキャストする事が可能です。
 
-### Casting to a Boolean
+### Booleanでキャストする
 
-By using the **not** operator twice, a value can be converted a boolean.
+**not**オペレーターを2回使うと、値はブーリアンに変換できます。
 
     !!'foo';   // true
     !!'';      // false
@@ -58,5 +58,3 @@ By using the **not** operator twice, a value can be converted a boolean.
     !!'-1'     // true
     !!{};      // true
     !!true;    // true
-
-
