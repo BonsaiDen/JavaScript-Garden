@@ -41,11 +41,11 @@ JavaScriptは*弱い型付け*の言語なので、可能な**限り**に*型強
 
 空の文字列の付加により値を簡単に文字列にキャストできます。
 
-### Casting to a Number
+### Numberでキャストする
 
     +'10' === 10; // true
 
-Using the **unary** plus operator it is possible to cast to a number.
+**単項**プラスオペレーターを使うと数字にキャストする事が可能です。
 
 ### Casting to a Boolean
 
