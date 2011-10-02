@@ -1,18 +1,18 @@
 ## Obiekt `arguments`
 
-Każda zasięg funkcyjny w języku JavaScript ma dostęp do specjalnej zmiennej `arguments`. 
+Każdy zasięg funkcyjny w języku JavaScript ma dostęp do specjalnej zmiennej `arguments`. 
 Ta zmienna trzyma listę wszystkich argumentów przekazanych do funkcji.
 
-> **Uwaga:** W przypadku gdy `arguments` zostanie zadeklarowana wewnatrz funkcji
+> **Uwaga:** W przypadku gdy `arguments` zostanie zadeklarowana wewnątrz funkcji
 > poprzez `var` lub jako nazwa jednego z formalnych parametrów, obiekt `arguments` 
 > nie zostanie utworzony.
 
-Obiekt `arguments` **nie** jest typu `Array`. Mimo, że posiada pewne cechy 
-semantyki tablic - właściwość `length` - to nie dziedziczy on z `Array.prototype`,
-ale w rzeczywistości z `Object`.
+Obiekt `arguments` **nie** jest typu `Array`. Mimo że posiada pewne cechy 
+semantyki tablic - właściwość `length` - to w rzeczywistości nie dziedziczy 
+on z `Array.prototype`, tylko z `Object`.
 
-Ze względu na to **nie** można używać standardowych dla tablic metod takich jak
-`push`, `pop` czy `slice` na obiekcie `arguments`. Mimo, że iteracja przy pomocy 
+Ze względu na to, na obiekcie `arguments` **nie** można używać standardowych dla tablic metod, 
+takich jak `push`, `pop` czy `slice`. Mimo że iteracja przy pomocy 
 pętli `for` działa dobrze, to aby skorzystać ze standardowych metod tablicowych 
 należy skonwertować `arguments` do prawdziwego obiekt `Array`.
 
@@ -29,7 +29,7 @@ które mają duży wpływ na wydajność.
 ### Przekazywanie argumentów
 
 Zalecany sposób przekazywania argumentów z jednej funkcji do następnej 
-wyglada następująco.
+wyglada następująco:
 
     function foo() {
         bar.apply(null, arguments);
@@ -58,11 +58,11 @@ szybkich i nieograniczonych wrapperów.
 
 ### Parametry formalne i indeksy argumentów
 
-Obiekt `arguments` tworzy funckje *getter* i *setter* nie tylko dla swoich 
+Obiekt `arguments` tworzy funkcje *getter* i *setter* nie tylko dla swoich 
 właściwości, ale również dla parametrów formalnych funkcji.
 
 W rezultacie zmiana wartości parametru formalnego zmieni również wartość 
-odpowiadającemu mu wpisowi w obiekcie `arguments`, zachodzi to również w drugą stronę.
+odpowiadającemu mu wpisowi w obiekcie `arguments`. Zachodzi to również w drugą stronę.
 
     function foo(a, b, c) {
         arguments[0] = 2;
@@ -79,7 +79,7 @@ odpowiadającemu mu wpisowi w obiekcie `arguments`, zachodzi to również w drug
 
 ### Mity i prawdy o wydajności
 
-Obiekt `arguments` jest zawsze tworzony z wyjątkiem dwóch przypadków, gdy
+Obiekt `arguments` jest tworzony zawsze, z wyjątkiem dwóch przypadków, gdy
 zmienna o takiej nazwie jest zdefiniowana wewnątrz funkcji lub jeden z parametrów 
 formalnych funkcji ma taką nazwę. Nie ma znaczenia czy obiekt `arguments` jest 
 używany czy nie.
@@ -108,9 +108,8 @@ nowoczesnych silnikach JavaScript. Ten przypadek to wykorzystanie
 W powyższym przykładzie `foo` nie może zostać wykorzystana metoda [inline][1] 
 ponieważ potrzebne są nie tylko informacje na własny temat ale również 
 na temat funkcji wywołującej. Takie użycie nie tylko uniemożliwia 
-inlining i korzyści z niej wynikające, ale również stanowi złamanie 
-zasad enkapsulacji ponieważ ta funkcja jest zależna od kontekstu 
-w jakim została wywołana.
+inlining i korzyści z niego wynikające, ale też łamie zasady enkapsulacji, 
+ponieważ ta funkcja jest zależna od kontekstu w jakim została wywołana.
 
 **Mocno zalecane** jest aby **nigdy** nie korzystać z `arguments.callee` 
 i żadnej jej własności.
