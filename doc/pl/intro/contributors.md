@@ -1,4 +1,4 @@
-## Kontrybutorzy
+## Współtwórcy
 
  - [Caio Romão][1] (Poprawki pisowni)
  - [Andreas Blixt][2] (Poprawki językowe)
