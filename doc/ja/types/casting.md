@@ -35,11 +35,11 @@ JavaScriptは*弱い型付け*の言語なので、可能な**限り**に*型強
 
 最良のオプションは以下の3つの方法の内、1つで型を**明示**してキャストする事になります。
 
-### Casting to a String
+### Stringでキャストする
 
     '' + 10 === '10'; // true
 
-By prepending a empty string a value can easily be casted to a string.
+空の文字列の付加により値を簡単に文字列にキャストできます。
 
 ### Casting to a Number
 
