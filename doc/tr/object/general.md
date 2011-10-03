@@ -21,7 +21,7 @@ Bu hatayı aşıp sayı sabitlerinin de nesne olarak davranmasını sağlamak i�
 uygulanabilecek bazı çözümler vardır. 
 
     2..toString(); // ikinci nokta doğru şekilde algılanır
-    2 .toString(); // noktanın solundki boşluğa dikkat edin
+    2 .toString(); // noktanın solundaki boşluğa dikkat edin
     (2).toString(); // ilk önce 2 değerlendirilir
 
 ### Bir veri türü olarak nesneler
@@ -61,8 +61,8 @@ açabilecek özellik isimlerinin kullanılmasına izin vermesidir.
 ### Özellikleri silmek
 
 Bir nesnenin özelliklerinden birini silmenin tek yolu `delete` operatörünü 
-kullanmaktır; özelliğe `undefined` veya `null` değerlerini atamak **sadece**
-özelliğin değerini kaldırır, anahtarı değil.
+kullanmaktır; özelliğe `undefined` veya `null` değerlerini atamak sadece
+özelliğin *değerini* kaldırır, *anahtarı* değil.
 
     var obj = {
         bar: 1,

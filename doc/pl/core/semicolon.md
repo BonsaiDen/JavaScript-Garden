@@ -1,9 +1,9 @@
 ## Automatyczne wstawianie średnika
 
-Mimo, że JavaScript ma składnię podobną do języka C, to **nie** wymusza stosowania 
+Mimo że JavaScript ma składnię podobną do języka C, to **nie** wymusza stosowania 
 średników w kodzie źródłowym. Istnieje możliwość ich pominięcia.  
 
-Lecz JavaScript nie jest językiem bez średników, tak na prawdę potrzebuje 
+JavaScript nie jest językiem bez średników, tak na prawdę potrzebuje 
 średników aby zinterpretować kod źródłowy. Jednakże parser JavaScript 
 **automatycznie** wstawia średniki o ile napotka błąd parsowania związany z 
 brakiem średnika.
@@ -19,7 +19,7 @@ Parser dodaje średnik, i próbuje jeszcze raz sparsować skrypt.
     test()
 
 Automatyczne wstawianie średników jest uważane za jeden z **największych** błędów 
-konstrukcji języka, ponieważ *może* ono zachowanie kodu.
+konstrukcji języka, ponieważ *może* ono zmienić zachowanie kodu.
 
 ### Jak działa wstawianie
 
@@ -84,11 +84,11 @@ Poniżej znajduje się rezultat "zgadywania" parsera.
     })(window); //<- wstawiony
 
 > **Uwaga:** Parser JavaScript nie potrafił "odpowiednio" zinterpretować 
-> deklaracji return, po którje został dodany znak nowej linii. Mimo, że 
+> deklaracji return, po której został dodany znak nowej linii. Mimo że 
 > niekoniecznie jest to błąd automatycznego wstawiania średników, to może to 
 > jednak powodować niechciane efekty uboczne 
 
-Parser drastycznie zmienił działanie powyższego kodu, w niektórych przypadkach 
+Parser drastycznie zmienił działanie powyższego kodu. W niektórych przypadkach 
 **zmienił go źle**.
 
 ### Nawiasy
@@ -99,19 +99,19 @@ W przypadku, gdy w następnej linii znajduje się nawias, parser **nie** wstawi
     log('testing!')
     (options.list || []).forEach(function(i) {})
 
-Ten kod zostanie zmieniony w poniższą jedną linię.
+Kod ten zostanie zmieniony w poniższą linię.
 
     log('testing!')(options.list || []).forEach(function(i) {})
 
-Jest **bardzo** prawdopodobne, że `log` **nie** zwróci fukcji, co za tym idzie 
+Jest **bardzo** prawdopodobne, że `log` **nie** zwróci fukcji. Co za tym idzie 
 powyższy kod wyrzuci błąd `TypeError` oznajmując, że `undefined is not a 
 function` - `undefined` nie jest funkcją.
 
 ### Wnioski
 
-Zaleca się aby **nigdy** nie pomijać średników, pozostawiać nawias otwierający 
+Zaleca się, aby **nigdy** nie pomijać średników, pozostawiać nawias otwierający 
 w tej samej linii co odpowiadająca mu definicja i nigdy nie pozostawiać deklaracji 
-`if` / `else` bez nawiasów nawet jeżeli są jednolinijkowe. Wszystkie te uwagi nie 
-tylko pomagają poprawić spójność kodu, ale również zapobiegają parser JavaScript 
-przed zmianą działania kod.
+`if` / `else` bez nawiasów - nawet, jeżeli są jednolinijkowe. Wszystkie te uwagi nie 
+tylko pomagają poprawić spójność kodu, ale też zapobiegają zmianie działania 
+kodu przez parser JavaScript.
 

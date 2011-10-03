@@ -1,10 +1,10 @@
 ## Operator `typeof` 
 
 Operator `typeof` (razem z operatorem [`instanceof`](#types.instanceof)) jest 
-prawdopodobnie najwiekszą wadą konstrukcji języka JavaScript, jest on praktycznie 
-**całkowicie wadliwy**.
+prawdopodobnie najwiekszą wadą konstrukcji języka JavaScript. Posiada on praktycznie  
+**same wady**.
 
-Mimo, że `instanceof` ma swoje wady to nadal ma ograniczone zastosowanie w praktyce, 
+Mimo że `instanceof` ma swoje wady to nadal ma ograniczone zastosowanie w praktyce, 
 natomiast `typeof` ma tylko jeden praktyczny przypadek użycia, który na dodatek 
 **nie** jest związany z sprawdzaniem typu obiektu.
 
@@ -83,5 +83,5 @@ są zdefiniowane w specyfikacji, co za tym idzie mogą się różnić w różnyc
 implementacjach.
 
 O ile nie operator `typeof` nie jest użyty do sprawdzania czy zmienna została 
-zdefiniowana, powinien być unikany **o ile to tylko możliwe**.
+zdefiniowana, powinien być unikany **jeśli to tylko możliwe**.
 

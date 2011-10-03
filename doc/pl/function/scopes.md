@@ -1,6 +1,6 @@
 ## Zasięg zmiennych i przestrzenie nazw
 
-Mimo, że JavaScript radzi sobie dobrze ze składnią, opisującą dwa pasujące 
+Mimo że JavaScript radzi sobie dobrze ze składnią opisującą dwa pasujące 
 nawiasy klamrowe jako blok, to jednak **nie** wspiera zasięgu blokowego. 
 Jedynym zasięgiem jaki istnieje w JavaScript jest *zasięg funkcyjny*.
 
@@ -12,17 +12,16 @@ Jedynym zasięgiem jaki istnieje w JavaScript jest *zasięg funkcyjny*.
     }
 
 > **Uwaga:** Jeżeli notacja `{...}` nie jest użyta w przypisaniu, deklaracji return
-> lub jako argument funkcji to zostanie zinterpretowana jako deklaracja bloku, a 
-> **nie** jako literał obiektu. W połączeniu z [automatycznym wstawianiem średnika](#core.semicolon), 
+> lub jako argument funkcji, to zostanie zinterpretowana jako deklaracja bloku, 
+> a **nie** jako literał obiektu. W połączeniu z [automatycznym wstawianiem średnika](#core.semicolon), 
 > może prowadzić do subtelnych błędów.
 
 W JavaScripcie nie ma również przestrzeni nazw, co oznacza, że wszystko jest 
 definiowane w jednej *globalnie współdzielonej* przestrzeni nazw. 
 
-Za każdym razem gdy zmienna jest 
-Z każdym odwołaniem do zmiennej JavaScript przeszukuje w górę wszystkie zasięgi 
-dopóki nie znajdzie tej zmiennej. W przypadku gdy przeszukiwanie dotrze do globalnego 
-zasięgu i nadal nie znajdzie żądanej nazwy to wyrzuca błąd `ReferenceError`.
+Z każdym odwołaniem do zmiennej, JavaScript przeszukuje w górę wszystkie zasięgi 
+dopóki nie znajdzie tej zmiennej. W przypadku, gdy przeszukiwanie dotrze do globalnego 
+zasięgu i nadal nie znajdzie żądanej nazwy, to wyrzuca błąd `ReferenceError`.
 
 ### Zmora globalnych zmiennych
 
@@ -32,11 +31,11 @@ zasięgu i nadal nie znajdzie żądanej nazwy to wyrzuca błąd `ReferenceError`
     // script B
     var foo = '42'
 
-Powyższe dwa skrypty **nie** dają tego samego efektu. Skrypt A definiuje zmienna 
-nazwaną `foo` w *globalnym* zasięgu natomiast skrypt B definiuje `foo` 
+Powyższe dwa skrypty **nie** dają tego samego efektu. Skrypt A definiuje zmienną 
+nazwaną `foo` w *globalnym* zasięgu, natomiast skrypt B definiuje `foo` 
 w *aktualnym* zasięgu.
 
-Jeszcze raz, to wcale nie daje *tego samego efektu*, nie użycie `var` może mieć 
+Jeszcze raz, to wcale nie daje *tego samego efektu*. Nie użycie `var` może mieć 
 poważne konsekwencje.
 
     // globalny zasięg
@@ -49,8 +48,8 @@ poważne konsekwencje.
     foo; // 21
 
 Pominięcie słowa `var` w deklaracji wewnątrz funkcji `test` nadpisze wartość 
-zmiennej globalnej `foo`. Mimo, że nie wygląda to na początku jak duży problem, 
-to posiadając wiele tysięcy linii kodu w JavaScript i nie korzystanie z `var` 
+zmiennej globalnej `foo`. Mimo że nie wygląda to na początku na duży problem, 
+posiadanie wielu tysięcy linii kodu w JavaScript i nie korzystanie z `var` 
 wprowadzi straszne i trudne do wyśledzenia błędy.
     
     // globalny zasięg 
@@ -68,7 +67,7 @@ wprowadzi straszne i trudne do wyśledzenia błędy.
 
 Zewnętrzna pętla zakończy działanie po pierwszym wywołaniu `subLoop`, ponieważ 
 `subLoop` nadpisuje wartość globalnej zmiennej `i`. Użycie `var` w drugiej pętli 
-`for` pozwoliło by łatwo uniknąć problemu. Słowo kluczowe `var` nie powinno być 
+`for` pozwoliłoby łatwo uniknąć problemu. Słowo kluczowe `var` nie powinno być 
 **nigdy** pominięte w deklaracji, chyba że *pożądanym skutkiem* jest wpłynięcie na 
 zewnętrzny zasięg.
 
@@ -144,15 +143,15 @@ najbliższego zasięgu.
 
     test();
 
-Brak blokowego zasięgu nie tylko przeniesie deklaracje `var` poza ciało pętle,
+Brak blokowego zasięgu nie tylko przeniesie deklaracje `var` poza ciało pętli,
 ale również spowoduje, że niektóre porównania `if` staną się nieintuicyjne.
 
-W oryginalnym kodzie wewnątrz deklaracja `if` zdaje się modyfikować *zmienną 
+W oryginalnym kodzie instrukcja warunkowa `if` zdaje się modyfikować *zmienną 
 globalną* `goo`, podczas gdy faktycznie modyfikuje ona *zmienną lokalną* - po tym 
 jak zostało zastosowane windowanie (hoisting).
 
-Bez wiedzy na temat podnoszenia (hoistingu), poniższy kod może wydawać się 
-wyrzucać błąd `ReferenceError`.
+Bez wiedzy na temat podnoszenia (hoistingu), poniższy kod może sprawiać wrażenie,
+że zobaczymy błąd `ReferenceError`.
 
     // sprawdz czy SomeImportantThing zostało zainicjalizowane
     if (!SomeImportantThing) {
@@ -166,7 +165,7 @@ przeniesiona na początek *globalnego zasięgu*.
 
     // inny kod który może ale nie musi zainicjalizować SomeImportantThing
 
-    // upewnienie sie że SomeImportantThing zostało zainicjalizowane
+    // upewnienie sie, że SomeImportantThing zostało zainicjalizowane
     if (!SomeImportantThing) {
         SomeImportantThing = {};
     }
@@ -174,7 +173,7 @@ przeniesiona na początek *globalnego zasięgu*.
 ### Kolejność rozwiązywania nazw
 
 Wszystkie zasięgi w JavaScripcie, włączając *globalny zasięg*, posiadają 
-zdefiniowana wewnątrz specjalną nazwę [`this`](#function.this), która wskazuje 
+zdefiniowaną wewnątrz specjalną nazwę [`this`](#function.this), która wskazuje 
 na *aktualny obiekt*. 
 
 Zasięg funkcyjny posiada również zdefiniowaną wewnętrznie nazwę 
@@ -188,8 +187,8 @@ JavaScript będzie szukać nazwy w określonej kolejności:
  3. Jeżeli fukcja została nazwana `foo` skorzystaj z tego.
  4. Przejdz do zewnętrznego zasięgu i przejdz do kroku **#1**.
 
-> **Uwaga:** Jeżeli jeden z parametrów fukcji został nazwany `arguments` zapobiegnie 
-> to utworzenia domyślnego obiektu `arguments`.
+> **Uwaga:** Jeżeli jeden z parametrów fukcji został nazwany `arguments`, zapobiegnie 
+> to utworzeniu domyślnego obiektu `arguments`.
 
 ### Przestrzenie nazw
 
@@ -206,16 +205,16 @@ tego problemu korzystając z *anonimowych wrapperów*.
 
     })(); // natychmiastowe wykonanie funkcji
 
-Nienazwane funkcje są rozpoznane jako [wyrażenia](#function.general), więc 
+Anonimowe funkcje są rozpoznane jako [wyrażenia](#function.general), więc 
 aby mogły zostać wywołane muszą zostać zewaluowane.
 
-    ( // zewaluowanie fukcji znajdującej się wewnątrz nawiasów
+    ( // zewaluowanie funkcji znajdującej się wewnątrz nawiasów
     function() {}
     ) // zwrócenie obiektu funkcji
     () // wywołanie rezultatu ewaluacji
 
-Istnieją inne sposoby aby zewaluować i wykonać wyrażenie funkcyjne. Mimo, że 
-mają inną składnie, zachowują się dokładnie tak samo.
+Istnieją inne sposoby aby zewaluować i wykonać wyrażenie funkcyjne. Mimo że 
+mają inną składnię, zachowują się dokładnie tak samo.
 
     // Trzy inne sposoby
     !function(){}();
@@ -224,11 +223,11 @@ mają inną składnie, zachowują się dokładnie tak samo.
 
 ### Wnioski
 
-Zaleca się aby zawsze używać *anonimowych wrapperów* do hermetyzacji kodu wewnątrz 
+Zaleca się, aby zawsze używać *anonimowych wrapperów* do hermetyzacji kodu wewnątrz 
 jego własnej przestrzeni nazw. To nie tylko chroni kod przed kolizją nazw, ale 
 również wprowadza lepszą modularyzację programów.
 
 Ponadto, stosowanie zmiennych globalnych jest uznawane za złą praktykę. 
-Jakiekolwiek wykorzystanie zmiennych globalnych wskazuje na źle napisany kod, 
-który jest podatny na błędy i trudny do utrzymania.
+Wykorzystanie zmiennych globalnych wskazuje na źle napisany kod, który 
+jest podatny na błędy i trudny do utrzymania.
 
