@@ -111,8 +111,8 @@ olarak `eval` kullanılır.
 
 > **Not:** Zamanlama fonksiyonları ECMAScript Standartında bulunmadığı için,
 > bir katar argümanı almaları durumundaki çalışma şekilleri JavaScript motorları
-> arasında farklılık gösterebilir. Gerçekten de, Microsoft'un JScript motoru
-> `eval` yerine `Function` oluşturucusunu kullanır.
+> arasında farklılık gösterebilir. Mesela, Microsoft'un JScript motoru `eval`
+> yerine `Function` oluşturucusunu kullanır.
 
     function foo() {
         // setTimeOut ile bu fonksiyon çağrılacaktır
@@ -157,5 +157,4 @@ bulunduran bir *isimsiz fonksiyon* kullanılmalıdır.
 Ayrıca, `setInterval` fonksiyonu çalışan JavaScript programı tarafından bloke
 olmadığı için tercih edilmemelidir.
 
-[1]: http://en.wikipedia.org/wiki/Document_Object_Model 
-
+[1]: http://en.wikipedia.org/wiki/Document_Object_Model "Document Object Model"

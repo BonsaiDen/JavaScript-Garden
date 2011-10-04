@@ -1,10 +1,10 @@
 ## Automatic Semicolon Insertion
 
 Although JavaScript has C style syntax, it does **not** enforce the use of
-semicolons in the source code, it is possible to omit them.
+semicolons in the source code, so it is possible to omit them.
 
-But JavaScript is not a semicolon-less language, it in fact needs the 
-semicolons in order to understand the source code. Therefore the JavaScript
+JavaScript is not a semicolon-less language. In fact, it needs the 
+semicolons in order to understand the source code. Therefore, the JavaScript
 parser **automatically** inserts them whenever it encounters a parse
 error due to a missing semicolon.
 
@@ -19,7 +19,7 @@ Insertion happens, and the parser tries again.
     test()
 
 The automatic insertion of semicolon is considered to be one of **biggest**
-design flaws in the language, as it *can* change the behavior of code.
+design flaws in the language because it *can* change the behavior of code.
 
 ### How it Works
 
@@ -87,7 +87,7 @@ Below is the result of the parser's "guessing" game.
 > which are followed by a new line, while this is not neccessarily the fault of 
 > the automatic semicolon insertion, it can still be an unwanted side-effect. 
 
-The parser drastically changed the behavior of the code above, in certain cases
+The parser drastically changed the behavior of the code above. In certain cases,
 it does the **wrong thing**.
 
 ### Leading Parenthesis
@@ -106,9 +106,9 @@ the above will yield a `TypeError` stating that `undefined is not a function`.
 
 ### In Conclusion
 
-It is highly recommended to **never** omit semicolons, it is also advocated to 
+It is highly recommended to **never** omit semicolons; it is also advocated to 
 keep braces on the same line with their corresponding statements and to never omit 
 them for one single-line `if` / `else` statements. Both of these measures will 
-not only improve the consistency of the code, they will also prevent the 
+not only improve the consistency of the code, but they will also prevent the 
 JavaScript parser from changing its behavior.
 

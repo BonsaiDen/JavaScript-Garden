@@ -25,7 +25,7 @@ literals act as objects too.
 
 ### Objects as a Data Type
 
-Objects in JavaScript can also be used as a [*Hashmap*][1], they mainly consist 
+Objects in JavaScript can also be used as a [*Hashmap*][1]; they mainly consist 
 of named properties mapping to values.
 
 Using a object literal - `{}` notation - it is possible to create a 
@@ -40,7 +40,7 @@ has no [own properties](#object.hasownproperty) defined on it.
 ### Accessing Properties
 
 The properties of an object can be accessed in two ways, via either the dot
-notation, or the square bracket notation.
+notation or the square bracket notation.
     
     var foo = {name: 'Kitten'}
     foo.name; // kitten
@@ -59,7 +59,7 @@ the use of property names that would otherwise lead to a syntax error.
 ### Deleting Properties
 
 The only way to actually remove a property from an object is to use the `delete`
-operator; setting the property to `undefined` or `null` only remove the
+operator; setting the property to `undefined` or `null` only removes the
 *value* associated with the property, but not the *key*.
 
     var obj = {
@@ -83,8 +83,8 @@ removed and is therefore missing from the output.
 ### Notation of Keys
 
     var test = {
-        'case': 'I am a keyword so I must be notated as a string',
-        delete: 'I am a keyword too so me' // raises SyntaxError
+        'case': 'I am a keyword, so I must be notated as a string',
+        delete: 'I am a keyword, so me too' // raises SyntaxError
     };
 
 Object properties can be both notated as plain characters and as strings. Due to

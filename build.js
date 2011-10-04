@@ -164,10 +164,10 @@ var Garden = Class(function(options) {
                 top: lang.navigation[0]
             };
 
-            jade.renderFile(template, {locals: options}, function(err, html){
-                if (err) throw err;
-                fs.writeFileSync(out, html);
-            });
+            var jadefile = fs.readFileSync(template);
+            var jadetemplate = jade.compile (jadefile);
+            var html = jadetemplate(options);
+            fs.writeFileSync(out, html);
             this.log('    Done.');
         }
     },
