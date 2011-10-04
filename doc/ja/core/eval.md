@@ -1,6 +1,6 @@
-## Why Not to Use `eval`
+## なぜ、`eval`を使ってはいけないのか
 
-The `eval` function will execute a string of JavaScript code in the local scope.
+`eval`関数はローカルスコープ中のJavaScriptコードの文字列を実行します。
 
     var foo = 1;
     function test() {
@@ -11,8 +11,7 @@ The `eval` function will execute a string of JavaScript code in the local scope.
     test(); // 3
     foo; // 1
 
-But `eval` only executes in local scope when it is being called **directly** *and* 
-the name of the called function is actually `eval`.
+しかし、`eval`は**直接**ローカルスコープから呼ばれて、*かつ*呼んだ関数の名前が実際の`eval`でないと実行しません。
 
     var foo = 1;
     function test() {
@@ -24,9 +23,8 @@ the name of the called function is actually `eval`.
     test(); // 2
     foo; // 3
 
-The use of `eval` should be avoided at **all costs**. 99.9% of its "uses" can be
-achieved **without** it.
-    
+`eval`の使用は**全てのコスト**を払ってでも回避するべきです。その「使用法」の99.9%で、これ**無し**でも実装できます。
+
 ### `eval` in Disguise
 
 The [timeout functions](#other.timeouts) `setTimeout` and `setInterval` can both 
