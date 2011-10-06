@@ -25,11 +25,9 @@
 
 `eval`の使用は**全てのコスト**を払ってでも回避するべきです。その「使用法」の99.9%で、これ**無し**でも実装できます。
 
-### `eval` in Disguise
+### 偽装された`eval`
 
-The [timeout functions](#other.timeouts) `setTimeout` and `setInterval` can both 
-take a string as their first argument. This string will **always** get executed 
-in the global scope since `eval` is not being called directly in that case.
+[timeout functions](#other.timeouts)である`setTimeout`と`setInterval`はどちらも最初の引数として文字列を取る事ができます。この文字列は`eval`がこの場合直接呼ばれていないので、**常に**グローバルスコープで実行されてしまいます。
 
 ### Security Issues
 
