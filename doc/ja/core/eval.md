@@ -33,11 +33,7 @@
 
 `eval`はまたセキュリティの問題もあります。なぜなら、**どんな**コードを与えられても実行してしまうからで、**絶対**に不明または信頼できない発行元の文字列は使ってはいけません。
 
-### In Conclusion
+### 終わりに
 
-`eval` should never be used, any code that makes use of it is to be questioned in
-its workings, performance and security. In case something requires `eval` in 
-order to work, its design is to be questioned and should **not** be used in the 
-first place, a *better design* should be used, that does not require the use of 
-`eval`. 
+`eval`は絶対に使用しないでください。これを使用しているどんなコードも、その働き、パフォーマンスやセキュリティについて問われてしまいます。`eval`が必要な場合でも、最初の段階で使用**しない**でください。*より良いデザイン*を使用するべきで、それには`eval`を使う必要性はありません。
 
