@@ -29,10 +29,9 @@
 
 [timeout functions](#other.timeouts)である`setTimeout`と`setInterval`はどちらも最初の引数として文字列を取る事ができます。この文字列は`eval`がこの場合直接呼ばれていないので、**常に**グローバルスコープで実行されてしまいます。
 
-### Security Issues
+### セキュリティの問題
 
-`eval` also is a security problem as it executes **any** code given to it,
-it should **never** be used with strings of unknown or untrusted origins.
+`eval`はまたセキュリティの問題もあります。なぜなら、**どんな**コードを与えられても実行してしまうからで、**絶対**に不明または信頼できない発行元の文字列は使ってはいけません。
 
 ### In Conclusion
 
