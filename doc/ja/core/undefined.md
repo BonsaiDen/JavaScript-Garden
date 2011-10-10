@@ -1,7 +1,6 @@
-## `undefined` and `null`
+## `undefined`と`null`
 
-JavaScript has two distinct values for `nothing`, the more useful of these two
-being `undefined`.
+JavaScriptは`nothing`を表す2つの別個の値を持っています。`undefined`はこれら2つの内より便利な存在です。
 
 ### The Value `undefined`
 
