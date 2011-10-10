@@ -46,14 +46,8 @@ JavaScriptは`nothing`を表す2つの別個の値を持っています。`undef
 
 これらの唯一の違いは、こちらのバージョンの方が4バイト余計に短縮できるという物です。また、他に`var`ステートメントは匿名ラッパーの中にはありません。
 
-### Uses of `null`
+### `null`の使用
 
-While `undefined` in the context of the JavaScript language is mostly used in
-the sense of a traditional *null*, the actual `null` (both a literal and a type)
-is more or less just another data type.
+JavaScriptというプログラム言語のコンテキストの中では、`undefined`は主に伝統的な意味での*null*の意味で使用される事が多いです。実際の`null`(リテラルも型も両方)は多かれ少なかれ、単なるデータ型です。
 
-It is used in some JavaScript internals (like declaring the end of the
-prototype chain by setting `Foo.prototype = null`), but in almost all cases it
-can be replaced by `undefined`.
-
-
+それはJavaScriptの内部でいくつか使われています(プロトタイプチェーンの終わりに`Foo.prototype = null`という宣言をするようなもの)が、ほとんど全てのケースで、`undefined`に置き替える事が可能です。
