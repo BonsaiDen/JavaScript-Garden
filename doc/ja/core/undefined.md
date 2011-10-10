@@ -2,27 +2,23 @@
 
 JavaScriptは`nothing`を表す2つの別個の値を持っています。`undefined`はこれら2つの内より便利な存在です。
 
-### The Value `undefined`
+### `undefined`の値
 
-`undefined` is a type with exactly one value: `undefined`.
+`undefined`はただ1つの値`undefined`を持つ型です。
 
-The language also defines a global variable that has the value of `undefined`,
-this variable is also called `undefined`. But this variable is **not** a constant,
-nor is it a keyword of the language. This means that its *value* can be easily 
-overwritten.
+この言語はまた、`undefined`の値を持つグローバル変数を定義しています。この値もまた`undefined`と呼ばれています。しかし、この変数は **どちらも** 言語のキーワードではなく、定数です。この事はこの*値*は簡単に上書きされてしまうという事になります。
 
-> **ES5 Note:** `undefined` in ECMAScript 5 is **no longer** *writable* in strict
-> mode, but its name can still be shadowed by for example a function with the name 
-> `undefined`.
+> **ES5での注意点:** ECMAScript 5での`undefined`は **もはや** strict modeでは *書き変えられない*
+> ようになっています。しかし、この名前は`undefined`という名前の関数の例に痕跡が見られるだけです。
 
-Some examples for when the value `undefined` is returned:
+`undefined`が帰される時の例をいくつか挙げます。
 
- - Accessing the (unmodified) global variable `undefined`.
- - Implicit returns of functions due to missing `return` statements.
- - `return` statements which do not explicitly return anything.
- - Lookups of non-existent properties.
- - Function parameters which do not had any explicit value passed.
- - Anything that has been set to the value of `undefined`.
+ - (未定義の)グローバル変数`undefined`にアクセスした時
+ - `return`文が無い為に、暗黙のうちに関数が返された時
+ - 何も返されない`return`がある時
+ - 存在しないプロパティを探索する時
+ - 関数のパラメーターで明示的な値が何も無い時
+ - 全ての`undefined`が設定された値
 
 ### Handling Changes to the Value of `undefined`
 
