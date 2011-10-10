@@ -20,28 +20,22 @@ JavaScriptは`nothing`を表す2つの別個の値を持っています。`undef
  - 関数のパラメーターで明示的な値が何も無い時
  - 全ての`undefined`が設定された値
 
-### Handling Changes to the Value of `undefined`
+### `undefined`の値に変更する処理
 
-Since the global variable `undefined` only holds a copy of the actual *value* of 
-`undefined`, assigning a new value to it does **not** change the value of the 
-*type* `undefined`.
+グローバル変数`undefined`のみが実際の`undefined`の*値*のコピーを保持するので、これに新しい値を代入しても`undefined`の*型* の値が変更される事は**ありません**。
 
-Still, in order to compare something against the value of `undefined` it is
-necessary to retrieve the value of `undefined` first.
+まだ、`undefined`の値に対して何かしらの比較をしないといけない場合は、最初に`undefined`の値を取得する必要があります。
 
-In order to protect code against a possible overwritten `undefined` variable, a 
-common technique used is to add an additional parameter to an
-[anonymous wrapper](#function.scopes), that gets no argument passed to it.
+コードの`undefined`の変数の上書きを可能な限りしないよう保護する為には、一般的なテクニックとして[anonymous wrapper](#function.scopes)の引数にパラメーターを追加するというものがあります。
 
     var undefined = 123;
     (function(something, foo, undefined) {
-        // undefined in the local scope does 
-        // now again refer to the value
+        // ローカルスコープではundefined。
+        // ここで値に対して参照がされる
 
     })('Hello World', 42);
 
-Another way to achieve the same effect would be to use a declaration inside the 
-wrapper.
+同じ効果を得る事ができる別の方法として、ラッパーの内部での宣言を使うものがあります。
 
     var undefined = 123;
     (function(something, foo) {
@@ -50,9 +44,7 @@ wrapper.
 
     })('Hello World', 42);
 
-The only difference being here, that this version results in 4 more bytes being
-used in case it is minified and there is no other `var` statement inside the
-anonymous wrapper.
+これらの唯一の違いは、こちらのバージョンの方が4バイト余計に短縮できるという物です。また、他に`var`ステートメントは匿名ラッパーの中にはありません。
 
 ### Uses of `null`
 
