@@ -1,25 +1,20 @@
-## Automatic Semicolon Insertion
+## セミコロン自動挿入
 
-Although JavaScript has C style syntax, it does **not** enforce the use of
-semicolons in the source code, it is possible to omit them.
+JavaScriptはC言語スタイルのシンタックスを持っていますが、これはソースコードの中でセミコロンの使用を強制している事には**ならない**ので、これらを省略する事も可能です。
 
-But JavaScript is not a semicolon-less language, it in fact needs the 
-semicolons in order to understand the source code. Therefore the JavaScript
-parser **automatically** inserts them whenever it encounters a parse
-error due to a missing semicolon.
+JavaScriptはセミコロン無しの言語ではありません。実際に、ソースコードを理解する為にもセミコロンは必要になります。ですので、JavaScriptのパーサーはセミコロンが無い事によるパースエラーを検出する度に、**自動的**にセミコロンを挿入します。
 
     var foo = function() {
-    } // parse error, semicolon expected
+    } // セミコロンが入っている事が期待されるので、パースエラーになる
     test()
 
-Insertion happens, and the parser tries again.
+挿入が起こると、パーサーはもう一度パースします。
 
     var foo = function() {
-    }; // no error, parser continues
+    }; // エラーが無いので、パーサーは次の解析をする
     test()
 
-The automatic insertion of semicolon is considered to be one of **biggest**
-design flaws in the language, as it *can* change the behavior of code.
+セミコロンの自動挿入は、コードの振る舞いを変えられる為に、言語の**最大**の欠陥の内の一つと考えられています。
 
 ### How it Works
 
