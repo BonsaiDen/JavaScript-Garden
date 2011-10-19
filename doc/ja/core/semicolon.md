@@ -96,11 +96,6 @@ JavaScriptはセミコロン無しの言語ではありません。実際に、�
 
 `log`が関数を返さ**ない**確率は**とても**高いです。しかし、上記では`undefined is not a function`という`TypeError`が繰り返されます。
 
-### In Conclusion
+### 終わりに
 
-It is highly recommended to **never** omit semicolons, it is also advocated to 
-keep braces on the same line with their corresponding statements and to never omit 
-them for one single-line `if` / `else` statements. Both of these measures will 
-not only improve the consistency of the code, they will also prevent the 
-JavaScript parser from changing its behavior.
-
+セミコロンを省略するのは**絶対**にお勧めしません。この事はまた括弧をその終端と一緒の行に書く事が推奨されてますし、1つの`if`や`else`文を絶対に省略してはなりません。これら両方の処理がコードの整合性を高めてくれる上、JavaScriptパーサーの振舞いを変えてしまうのを防いでくれるでしょう。
