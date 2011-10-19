@@ -83,19 +83,18 @@ JavaScriptはセミコロン無しの言語ではありません。実際に、�
 
 パーサーは上記のコードの振舞いを劇的に変化させます。あるケースにおいては、**間違っている事**にもなってしまいます。
 
-### Leading Parenthesis
+### 先頭の括弧
 
-In case of a leading parenthesis, the parser will **not** insert a semicolon.
+先頭に括弧がある場合、パーサーはセミコロンを挿入**しません**。
 
     log('testing!')
     (options.list || []).forEach(function(i) {})
 
-This code gets transformed into one line.
+このコードは1つの行に変形します。
 
     log('testing!')(options.list || []).forEach(function(i) {})
 
-Chances are **very** high that `log` does **not** return a function; therefore,
-the above will yield a `TypeError` stating that `undefined is not a function`.
+`log`が関数を返さ**ない**確率は**とても**高いです。しかし、上記では`undefined is not a function`という`TypeError`が繰り返されます。
 
 ### In Conclusion
 
