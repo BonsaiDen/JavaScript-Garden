@@ -16,10 +16,9 @@ JavaScriptはセミコロン無しの言語ではありません。実際に、�
 
 セミコロンの自動挿入は、コードの振る舞いを変えられる為に、言語の**最大**の欠陥の内の一つと考えられています。
 
-### How it Works
+### どのように動くか
 
-The code below has no semicolons in it, so it is up to the parser to decide where
-to insert them.
+以下のコードはセミコロン無いので、パーサーはどこに挿入するか決めなくてはなりません。
 
     (function(window, undefined) {
         function test(options) {
@@ -48,42 +47,41 @@ to insert them.
 
     })(window)
 
-Below is the result of the parser's "guessing" game.
+下記がパーサーの「推測」ゲームの結果になります。
 
     (function(window, undefined) {
         function test(options) {
 
-            // Not inserted, lines got merged
+            // 行がマージされて、挿入されない
             log('testing!')(options.list || []).forEach(function(i) {
 
-            }); // <- inserted
+            }); // <- 挿入
 
             options.value.test(
                 'long string to pass here',
                 'and another long string to pass'
-            ); // <- inserted
+            ); // <- 挿入
 
             return; // <- inserted, breaks the return statement
-            { // treated as a block
+            { // ブロックとして扱われる
 
                 // a label and a single expression statement
                 foo: function() {} 
-            }; // <- inserted
+            }; // <- 挿入
         }
-        window.test = test; // <- inserted
+        window.test = test; // <- 挿入
 
-    // The lines got merged again
+    // 再度行がマージされる
     })(window)(function(window) {
-        window.someLibrary = {}; // <- inserted
+        window.someLibrary = {}; // <- 挿入
 
-    })(window); //<- inserted
+    })(window); //<- 挿入
 
-> **Note:** The JavaScript parser does not "correctly" handle return statements 
-> which are followed by a new line, while this is not neccessarily the fault of 
-> the automatic semicolon insertion, it can still be an unwanted side-effect. 
+> **注意点:** JavaScriptパーサーは新しい行のreturn文を「正しく」返してはいないですが、
+> これは必要という訳では無いので自動セミコロン挿入の障害になります。
+> このお陰で不必要な副作用を無くす事にもなります。
 
-The parser drastically changed the behavior of the code above, in certain cases
-it does the **wrong thing**.
+パーサーは上記のコードの振舞いを劇的に変化させます。あるケースにおいては、**間違っている事**にもなってしまいます。
 
 ### Leading Parenthesis
 
