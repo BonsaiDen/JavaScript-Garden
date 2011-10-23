@@ -1,43 +1,35 @@
-### `setTimeout` and `setInterval`
+### `setTimeout`と`setInterval`
 
-Since JavaScript is asynchronous, it is possible to schedule the execution of a 
-function by using the `setTimeout` and `setInterval` functions.
+JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使ってある関数の実行のスケジュールを決める事が可能です。
 
-> **Note:** Timeouts are **not** part of the ECMAScript Standard. They are
-> implemented as part of the [DOM][1].
+> **注意点:** タイムアウトはECMAScript標準の一部では**ありません**。
+> これらは[DOM][1]の一部として実装されています。
 
     function foo() {}
-    var id = setTimeout(foo, 1000); // returns a Number > 0
+    var id = setTimeout(foo, 1000); // Number > 0を返す
 
-When `setTimeout` gets called, it will return the ID of the timeout and schedule
-`foo` to run in **approximately** one thousand milliseconds in the future. 
-`foo` will then get executed exactly **once**.
+`setTimeout`が呼ばれた時に、タイムアウトのIDと`foo`この先の**おおよそ**1000msに実行するスケジュールを返します。`foo`は正確に**1度**だけ実行されます。
 
-Depending on the timer resolution of the JavaScript engine that is running the 
-code, as well as the fact that JavaScript is single threaded and other code that 
-gets executed might block the thread, it is by **no means** a safe bet that one 
-will get the exact delay that was specified in the `setTimeout` call.
+コードが実行されているJavaScriptエンジンのタイマー分解能によって決まります。この事実はJavaScriptがシングルスレッドのなので、他のスレッドでの実行を妨害してしまう事があるかもしれません。これは、`setTimeout`の呼び出しにより指定された正確なディレイで実行するという確実な賭けという**意味ではありません**。
 
-The function that was passed as the first parameter will get called by the
-*global object*, that means, that [`this`](#function.this) inside the called function 
-refers to that very object.
+第一パラメーターを渡された関数は*グローバルオブジェクト*によって呼び出されます。これは呼び出された関数の内部で[`this`](#functionis)がまさにこのオブジェクトを参照しているという事になります。
 
     function Foo() {
         this.value = 42;
         this.method = function() {
-            // this refers to the global object
-            console.log(this.value); // will log undefined
+            // これはグローバルオブジェクトを参照しています
+            console.log(this.value); // undefinedを記録するはずです
         };
         setTimeout(this.method, 500);
     }
     new Foo();
 
 
-> **Note:** As `setTimeout` takes a **function object** as its first parameter, an
-> often made mistake is to use `setTimeout(foo(), 1000)`, which will use the 
-> **return value** of the call `foo` and **not** `foo`. This is, most of the time, 
-> a silent error, since when the function returns `undefined` `setTimeout` will 
-> **not** raise any error.
+> **注意点:** `setTimeout`は**関数オブジェクト**を第一引数に取ります。
+> 良く間違えてしまう使い方として`setTimeout(foo(), 1000)`というものがあります。
+> `foo`と`foo`**以外**の呼び出しに対する**戻り値**としてしまいます。これは、大体において、
+> 関数が`undefined`になる為に表に出ないエラーになるでしょう。`setTimeout`はどんな
+> エラーも発生`させません`。
 
 ### Stacking Calls with `setInterval`
 
