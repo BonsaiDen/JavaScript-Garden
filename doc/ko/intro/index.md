@@ -13,6 +13,11 @@ JavaScript Garden은 단순히 JavaScript를 설명하려 만들지 않았다. �
  - [Caio Romão][5] (철자 교정)
  - [Andreas Blixt][6] (언어 교정)
 
+## 번역
+ - [박창우][]
+
+[박창우]: https://github.com/pismute
+
 ## 호스팅
 
 JavaScript Garden은 Github에서 호스팅하고 있고 [Cramer Development][7]가 [JavaScriptGarden.info][8]에서 미러링해주고 있다.
