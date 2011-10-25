@@ -53,9 +53,9 @@ JavaScript는 '{}' Block이 배배 꼬여 있어도 문법적으로는 잘 처�
 
 subLoop이 Global 변수 `i`의 값을 변경해버리기 때문에 외부 Loop은 `subLoop`을 한번 호출하고 나면 종료된다. 두 번째 `for` Loop에 `var`를 사용하여 `i`를 정의하면 이 문제는 생기지 않는다. 외부 Scope의 변수를 사용하는 것이 아니라면 `var`를 꼭 넣어야 한다.
 
-### 로컬 변수
+### Local 변수
 
-JavaScript에서 로컬 변수를 정의하는 방법은 [함수 파라미터](#function.general)와 `var`로 정의한 변수뿐이다.
+JavaScript에서 Local 변수를 정의하는 방법은 [함수 파라미터](#function.general)와 `var`로 정의한 변수뿐이다.
 
     // Global Scope
     var foo = 1;
@@ -71,7 +71,7 @@ JavaScript에서 로컬 변수를 정의하는 방법은 [함수 파라미터](#
     }
     test(10);
 
-`foo`, `i`는 `test` Function Scope에 있는 로컬 변수라서 Global의 `foo`, `i` 값은 바뀌지 않는다. 하지만 `bar`는 Global 변수이기 때문에 Global의 `bar` 값이 변경된다.
+`foo`, `i`는 `test` Function Scope에 있는 Local 변수라서 Global의 `foo`, `i` 값은 바뀌지 않는다. 하지만 `bar`는 Global 변수이기 때문에 Global의 `bar` 값이 변경된다.
 
 ### Hoisting
 

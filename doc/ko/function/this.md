@@ -6,7 +6,7 @@
 
     this;
 
-Global scope에서도 this가 사용될 수 있고 이때에는 *Global* 객체를 가리킨다.
+Global Scope에서도 this가 사용될 수 있고 이때에는 *Global* 객체를 가리킨다.
 
 ### 함수를 호출할 때
 
@@ -55,7 +55,7 @@ Global scope에서도 this가 사용될 수 있고 이때에는 *Global* 객체�
 
 `test` 에서 `this`가 `Foo`를 가리킬 것으로 생각할 테지만 틀렸다. 실제로는 그렇지 않다.
 
-`test`에서 `Foo`에 접근하려면 method에 로컬 변수를 하나 만들고 `Foo`를 가리키게 하여야 한다.
+`test`에서 `Foo`에 접근하려면 method에 Local 변수를 하나 만들고 `Foo`를 가리키게 하여야 한다.
 
     Foo.method = function() {
         var that = this;

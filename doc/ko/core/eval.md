@@ -1,6 +1,6 @@
 ## 왜 `eval`을 사용하면 안 될까?
 
-`eval` 함수는 스트링으로 된 JavaScript 코드를 로컬 스콥에서 실행한다.
+`eval` 함수는 스트링으로 된 JavaScript 코드를 Local Scope에서 실행한다.
 
     var foo = 1;
     function test() {
@@ -11,7 +11,7 @@
     test(); // 3
     foo; // 1
 
-`eval`을 `eval`이라는 이름으로 **직접** 직행할 때에만 로컬 스콥에서 실행된다.
+`eval`을 `eval`이라는 이름으로 **직접** 직행할 때에만 Local Scope에서 실행된다.
 
     var foo = 1;
     function test() {

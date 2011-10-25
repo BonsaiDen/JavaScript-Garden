@@ -11,12 +11,12 @@ JavaScript는 비동기이기 때문에 `setTimeout`과 `setInterval` 로 함수
 
 JavaScript 엔진의 단위 시간(timer resolution)에 따라서 코드를 실행시키고 단일 쓰레드인 JavaScript를 특정 코드가 블록 시켜 버릴 수도 있기 때문에 `setTimeout`으로 코드가 실행돼야 할 시간을 정해줘도 **정확하게 그 시간에 실행되지 않는다.**.
 
-첫 번째 인자로 넘긴 함수가 실행될 때 컨텍스트인 [`this`](#function.this)는 *글로벌* 객체를 가리킨다.
+첫 번째 인자로 넘긴 함수가 실행될 때 컨텍스트인 [`this`](#function.this)는 *Global* 객체를 가리킨다.
 
     function Foo() {
         this.value = 42;
         this.method = function() {
-            // this는 global 객체를 가리키기 때문에 
+            // this는 Global 객체를 가리키기 때문에 
             console.log(this.value); // undefined를 출력한다.
         };
         setTimeout(this.method, 500);
@@ -88,7 +88,7 @@ Id가 1부터 1000 사이에 있는 timeout들을 삭제했지만, 그 외의 �
     }
     bar();
 
-이 경우 `eval`이 [그냥(directly)](#core.eval) 호출되는 것이 아니다. `setTimeout`에 넘겨진 스트링은 *global* scope에서 실행되기 때문에 `bar`의 로컬 함수 `foo`가 실행되는 것이 아니라 *global* scope의 `foo`가 실행된다.
+이 경우 `eval`이 [그냥(directly)](#core.eval) 호출되는 것이 아니다. `setTimeout`에 넘겨진 스트링은 *Global* Scope에서 실행되기 때문에 `bar`의 Local 함수 `foo`가 실행되는 것이 아니라 *Global* Scope의 `foo`가 실행된다.
 
 함수에 파라미터를 넘겨야 하면 스트링을 사용하지 말아야 한다.
 

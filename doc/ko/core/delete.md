@@ -2,11 +2,11 @@
 
 간단히 말해서 global 변수, 함수, 등은 `DontDelete` 속성이기 때문에 삭제 못 한다.
 
-### 글로벌 코드와 함수 코드
+### Global 코드와 함수 코드
 
 Global이나 Function scope에 정의된 함수나 변수는 모두 Activation 객체나 Global 객체의 프로퍼티다. 이 프로퍼티는 모두 `DontDelete`속성을 가진다. Global이나 Function 코드에서 변수나 함수의 정의하면 항상 `DontDelete` 프로퍼티로 만들어진다. 그러니까 삭제할 수 없다:
 
-    // 글로벌 변수:
+    // Global 변수:
     var a = 1; // DontDelete가 설정된다.
     delete a; // false
     a; // 1
@@ -38,11 +38,11 @@ Global이나 Function scope에 정의된 함수나 변수는 모두 Activation �
     // IE를 빼고 잘 동작한다.:
     var GLOBAL_OBJECT = this;
     GLOBAL_OBJECT.a = 1;
-    a === GLOBAL_OBJECT.a; // true - 진짜 글로벌 변순지 확인하는 것
+    a === GLOBAL_OBJECT.a; // true - 진짜 Global 변순지 확인하는 것
     delete GLOBAL_OBJECT.a; // true
     GLOBAL_OBJECT.a; // undefined
 
-[`this`](#function.this)가 글로벌 객체를 가리키는 것을 이용해서 명시적으로 프로퍼티 `a`를 선언하면 삭제할 수 있다. 이런 꼼수가 가능하다. 
+[`this`](#function.this)가 Global 객체를 가리키는 것을 이용해서 명시적으로 프로퍼티 `a`를 선언하면 삭제할 수 있다. 이런 꼼수가 가능하다. 
 
 IE (적어도 6-8)는 버그가 있어서 안 된다.
 

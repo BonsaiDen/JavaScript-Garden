@@ -1,6 +1,6 @@
 ## Closure와 Reference
 
-JavaScript가 두드러지는 점 중의 하나가 *Closure*를 사용할 수 있다는 것이다. Closure는 항상 그 Closure를 만든 외부 Scope에 접근할 수 있다. JavaScript에서 Scope을 만들려면 [function Scope](#function.Scopes)을 사용하는 방법뿐이기 때문에 기본적으로 모든 함수는 Closure다.
+JavaScript가 두드러지는 점 중의 하나가 *Closure*를 사용할 수 있다는 것이다. Closure는 항상 그 Closure를 만든 외부 Scope에 접근할 수 있다. JavaScript에서 Scope을 만들려면 [function Scope](#function.scopes)을 사용하는 방법뿐이기 때문에 기본적으로 모든 함수는 Closure다.
 
 ### private 변수
 
@@ -52,7 +52,7 @@ JavaScript에서 Scope을 어딘가에 할당하거나 저장해두는 것이 �
 
 ### 이 Reference 문제 해결하기
 
-[anonymous wrapper](#function.Scopes)로 index 값을 복사하는 것이 좋다.
+[anonymous wrapper](#function.scopes)로 index 값을 복사하는 것이 좋다.
 
     for(var i = 0; i < 10; i++) {
         (function(e) {
