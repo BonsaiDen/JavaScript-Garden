@@ -1,14 +1,13 @@
-## Equality and Comparisons
+## 객체 비교하기
 
-JavaScript has two different ways of comparing the values of objects for equality. 
+JavaScript에서 객체를 비교하는 방법은 두 가지다.
 
-### The Equality Operator
+### Equality Operator
 
-The equality operator consists of two equal signs: `==`
+`==`가 equality operator이다.
 
-JavaScript features *weak typing*. This means that the equality operator 
-**coerces** types in order to compare them.
-    
+JavaScript는 weak typing을 따르기 때문에 equality operator가 비교할 때 두 객체의 자료형을 **강제로** 변환한다.
+
     ""           ==   "0"           // false
     0            ==   ""            // true
     0            ==   "0"           // true
@@ -19,20 +18,15 @@ JavaScript features *weak typing*. This means that the equality operator
     null         ==   undefined     // true
     " \t\r\n"    ==   0             // true
 
-The above table shows the results of the type coercion, and it is the main reason 
-why the use of `==` is widely regarded as bad practice. It introduces
-hard-to-track-down bugs due to its complicated conversion rules.
+이 표는 왜 Equality Operator를 사용하면 안 되는지를 보여준다. 이 복잡한 변환 규칙은 실제로 골치 아픈 버그를 만들어 낸다.
 
-Additionally, there is also a performance impact when type coercion is in play;
-for example, a string has to be converted to a number before it can be compared
-to another number.
+게다가 강제로 타입을 변환하는 것은 성능 문제도 일으킨다. 예를 들어 스트링과 숫자를 비교하려면 반드시 숫자로 변환해야 한다.
 
-### The Strict Equality Operator
+### Strict Equality Operator
 
-The strict equality operator consists of **three** equal signs: `===`.
+Strict Equality Operator는 `===`이다.
 
-It works exactly like the normal equality operator, except that strict equality 
-operator does **not** perform type coercion between its operands.
+강제로 타입을 변환하지 않는 것을 제외하고는 Equality Operator와 똑같다.
 
     ""           ===   "0"           // false
     0            ===   ""            // false
@@ -44,14 +38,11 @@ operator does **not** perform type coercion between its operands.
     null         ===   undefined     // false
     " \t\r\n"    ===   0             // false
 
-The above results are a lot clearer and allow for early breakage of code. This
-hardens code to a certain degree and also gives performance improvements in case
-the operands are of different types.
+이 결과가 훨씬 명확하고 문제를 빨리 발견할 수 있게 해준다. 이 Operator를 사용하면 코드가 좀 더 튼튼하고 비교하는 두 객체의 타입이 다르면 성능도 빠르다.
 
-### Comparing Objects
+### 객체 비교하기
 
-While both `==` and `===` are stated as **equality** operators, they behave 
-differently when at least one of their operands happens to be an `Object`.
+`==`와 `===`는 둘 다 **Equality** Operator지만 비교하는 객체 중 적어도 한 개가 Object 타입일 때에는 다르게 동작한다.
 
     {} === {};                   // false
     new String('foo') === 'foo'; // false
@@ -59,13 +50,8 @@ differently when at least one of their operands happens to be an `Object`.
     var foo = {};
     foo === foo;                 // true
 
-Here, both operators compare for **identity** and **not** equality; that is, they
-will compare for the same **instance** of the object, much like `is` in Python 
-and pointer comparison in C.
+두 Operator 모두 **같은 객체(identity)**인지 비교하는 것이지 객체의 값이 같은지 비교하는 것이 아니다. C에서 포인터를 비교하거나 Python의 is처럼 같은 인스턴스인지 비교하는 것이다.
 
-### In Conclusion
+### 결론
 
-It is highly recommended to only use the **strict equality** operator. In cases
-where types need to be coerced, it should be done [explicitly](#types.casting) 
-and not left to the language's complicated coercion rules.
-
+반드시 **Strict Equality Operator**를 사용해야 한다. 비교하기 위해서 꼭 타입 변환이 필요하면 언어의 복잡한 변환 규칙에 맡기지 말고 꼭 명시적으로 변환하고 나서 비교해야 한다.

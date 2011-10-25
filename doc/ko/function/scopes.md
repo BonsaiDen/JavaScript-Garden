@@ -1,29 +1,21 @@
-## Scopes and Namespaces
+## Scope과 Namespace
 
-Although JavaScript deals fine with the syntax of two matching curly
-braces for blocks, it does **not** support block scope; hence, all that is left 
-is in the language is *function scope*.
+JavaScript는 '{}' Block이 배배 꼬여 있어도 문법적으로는 잘 처리하지만, Block Scope은 지원하지 않는다. 그래서 JavaScript에서는 항상 *Function Scope*을 사용한다.
 
-    function test() { // a scope
-        for(var i = 0; i < 10; i++) { // not a scope
+    function test() { // Scope
+        for(var i = 0; i < 10; i++) { // Scope이 아님
             // count
         }
         console.log(i); // 10
     }
 
-> **Note:** When not used in an assignment, return statement or as a function 
-> argument, the `{...}` notation will get interpreted as a block statement and 
-> **not** as an object literal. This, in conjunction with 
-> [automatic insertion of semicolons](#core.semicolon), can lead to subtle errors.
+> **Note:** 할당할 때, 반환할 때, 함수 인자에서 사용되는 것을 제외하면 `{...}`는 모두 객체 리터럴이 아니라 Block 구문으로 해석된다. 그래서 [세미콜론을 자동으로 넣어주면](#core.semicolon) 에러가 생길 수 있다.
 
-There are also no distinct namespaces in JavaScript, which means that everything 
-gets defined in one *globally shared* namespace.
+그리고 JavaScript에는 namespace 개념이 없어서 *항상 공유하는* namepace가 하나 있는 거다.
 
-Each time a variable is referenced, JavaScript will traverse upwards through all 
-the scopes until it finds it. In the case that it reaches the global scope and 
-still has not found the requested name, it will raise a `ReferenceError`.
+변수를 사용할 때마다 JavaScript는 아는 Scope을 상위방향으로 찾는다. Global Scope에까지 해당 변수를 찾지 못하면 `ReferenceError`가 난다.
 
-### The Bane of Global Variables
+### Global 변수의 지옥.
 
     // script A
     foo = '42';
@@ -31,58 +23,47 @@ still has not found the requested name, it will raise a `ReferenceError`.
     // script B
     var foo = '42'
 
-The above two scripts do **not** have the same effect. Script A defines a 
-variable called `foo` in the *global* scope, and script B defines a `foo` in the
-*current* scope.
+이 두 스크립트는 다르다. Script A는 *Global* Scope에 `foo`라는 변수를 정의하는 것이고 Script B는 *현* Scope에 변수 `foo`를 정의하는 것이다.
 
-Again, that is **not** at all the *same effect*: not using `var` can have major 
-implications.
+다시 말하지만, 이 둘은 전혀 다르고 `var`가 없는 것이 중요한 의미가 있다.
 
-    // global scope
+    // Global Scope
     var foo = 42;
     function test() {
-        // local scope
+        // local Scope
         foo = 21;
     }
     test();
     foo; // 21
 
-Leaving out the `var` statement inside the function `test` will override the 
-value of `foo`. While this might not seem like a big deal at first, having 
-thousands of lines of JavaScript and not using `var` will introduce horrible,
-hard-to-track-down bugs.
-    
-    // global scope
+함수에서 `var` 구문을 빼버리면 Global Scope의 `foo`의 값을 바꿔버린다. '뭐 이게 뭐가 문제야'라고 생각될 수 있지만 수천 줄인 JavaScript 코드에서 `var`를 빼먹어서 생긴 버그를 해결하는 것은 정말 어렵다.
+
+    // Global Scope
     var items = [/* some list */];
     for(var i = 0; i < 10; i++) {
         subLoop();
     }
 
     function subLoop() {
-        // scope of subLoop
-        for(i = 0; i < 10; i++) { // missing var statement
-            // do amazing stuff!
+        // Scope of subLoop
+        for(i = 0; i < 10; i++) { // var가 없다.
+            // 내가 for문도 하는데...
         }
     }
-    
-The outer loop will terminate after the first call to `subLoop`,  since `subLoop`
-overwrites the global value of `i`. Using a `var` for the second `for` loop would
-have easily avoided this error. The `var` statement should **never** be left out 
-unless the *desired effect* is to affect the outer scope.
 
-### Local Variables
+subLoop이 Global 변수 `i`의 값을 변경해버리기 때문에 외부 Loop은 `subLoop`을 한번 호출하고 나면 종료된다. 두 번째 `for` Loop에 `var`를 사용하여 `i`를 정의하면 이 문제는 생기지 않는다. 외부 Scope의 변수를 사용하는 것이 아니라면 `var`를 꼭 넣어야 한다.
 
-The only source for local variables in JavaScript are
-[function](#function.general) parameters and variables that were declared via the 
-`var` statement.
+### 로컬 변수
 
-    // global scope
+JavaScript에서 로컬 변수를 정의하는 방법은 [함수 파라미터](#function.general)와 `var`로 정의한 변수뿐이다.
+
+    // Global Scope
     var foo = 1;
     var bar = 2;
     var i = 2;
 
     function test(i) {
-        // local scope of the function test
+        // test 함수의 local Scope
         i = 5;
 
         var foo = 3;
@@ -90,13 +71,11 @@ The only source for local variables in JavaScript are
     }
     test(10);
 
-While `foo` and `i` are local variables inside the scope of the function `test`,
-the assignment of `bar` will override the global variable with the same name.
+`foo`, `i`는 `test` Function Scope에 있는 로컬 변수라서 Global의 `foo`, `i` 값은 바뀌지 않는다. 하지만 `bar`는 Global 변수이기 때문에 Global의 `bar` 값이 변경된다.
 
 ### Hoisting
 
-JavaScript **hoists** declarations. This means that both `var` statements and
-`function` declarations will be moved to the top of their enclosing scope.
+JavaScript는 선언문을 모두 **Hoist**한다. Hoist는 `var` 구문이나 `function`을 선언문을 해당 Scope의 가장 처음으로 옮기는 것을 말한다.
 
     bar();
     var bar = function() {};
@@ -115,16 +94,14 @@ JavaScript **hoists** declarations. This means that both `var` statements and
         }
     }
 
-The above code gets transformed before any execution is started. JavaScript moves
-the `var` statements, as well as the `function` declarations to the top of the 
-nearest surrounding scope.
+코드를 본격적으로 실행하기 전에 JavaScript는 `var` 구문과 `function` 선언문을 해당 Scope의 상위로 옮긴다.
 
-    // var statements got moved here
+    // var 구문이 여기로 옮겨짐.
     var bar, someValue; // default to 'undefined'
 
-    // the function declaration got moved up too
+    // function 선언문도 여기로 옮겨짐
     function test(data) {
-        var goo, i, e; // missing block scope moves these here
+        var goo, i, e; // Block Scope은 없으므로 local 변수들은 여기로 옮겨짐
         if (false) {
             goo = 1;
 
@@ -136,96 +113,77 @@ nearest surrounding scope.
         }
     }
 
-    bar(); // fails with a TypeError since bar is still 'undefined'
-    someValue = 42; // assignments are not affected by hoisting
+    bar(); // bar()가 아직 'undefined'이기 때문에 TypeError가 남
+    someValue = 42; // Hoisting은 할당문까지 옮기지 않는다.
     bar = function() {};
 
     test();
 
-Missing block scoping will not only move `var` statements out of loops and
-their bodies, it will also make the results of certain `if` constructs 
-non-intuitive.
+Block Scope이 없으므로 Loop이나 if의 Block 안에 있는 `var` 구문들까지도 모두 Function Scope의 앞쪽으로 옮겨진다. 그래서 `if` Block의 결과는 좀 이상해진다.
 
-In the original code, although the `if` statement seemed to modify the *global 
-variable* `goo`, it actually modifies the *local variable* - after hoisting 
-has been applied.
+원래 코드에서 `if` Block은 *Global 변수* `goo`를 바꾸는 것처럼 보였지만 Hoisting 후에는 *local 변수*를 바꾼다.
 
-Without the knowledge about *hoisting*, the below code might seem to raise a 
-`ReferenceError`.
+*Hoisting*을 모르면 다음과 같은 코드는 `ReferenceError`가 날 것으로 생각할 것이다.
 
-    // check whether SomeImportantThing has been initiliazed
+    // SomeImportantThing이 초기화됐는지 검사한다.
     if (!SomeImportantThing) {
         var SomeImportantThing = {};
     }
 
-But of course, the above works due to the fact that the `var` statement is being 
-moved to the top of the *global scope*.
+`var` 구문은 *Global Scope* 상단으로 옮겨지기 때문에 이 코드는 잘 동작한다.
 
     var SomeImportantThing;
 
-    // other code might initiliaze SomeImportantThing here, or not
+    // SomeImportantThing을 여기서 초기화하거나 말거나...
 
-    // make sure it's there
+    // SomeImportantThing는 선언돼 있다.
     if (!SomeImportantThing) {
         SomeImportantThing = {};
     }
 
-### Name Resolution Order
+### 이름 찾는 순서
 
-All scopes in JavaScript, including the *global scope*, have the special name 
-[`this`](#function.this), defined in them, which refers to the *current object*. 
+JavaScript의 모든 Scope은 *현 객체*를 가리키는 [`this`](#function.this)를 가지고 있다. *Global Scope*에도 this가 있다.
 
-Function scopes also have the name [`arguments`](#function.arguments), defined in
-them, which contains the arguments that were passed to a function.
+Function Scope에는 [`arguments`](#function.arguments)라는 변수가 하나 더 있다. 이 변수는 함수에 넘겨진 인자들이 담겨 있다.
 
-For example, when trying to access a variable named `foo` inside the scope of a 
-function, JavaScript will lookup the name in the following order:
+예를 들어 Function Scope에서 `foo`라는 변수에 접근할 때 JavaScript는 다음과 같은 순서로 찾는다.
 
- 1. In case there is a `var foo` statement in the current scope, use that.
- 2. If one of the function parameters is named `foo`, use that.
- 3. If the function itself is called `foo`, use that.
- 4. Go to the next outer scope, and start with **#1** again.
+ 1. 해당 Scope에서 `var foo` 구문으로 선언된 것을 찾는다.
+ 2. 함수 파라미터에서 `foo`라는 것을 찾는다.
+ 3. 해당 함수 이름이 `foo`인지 찾는다.
+ 4. 상위 Scope으로 있는지 확인하고 있으면 **#1**부터 다시 한다.
+ 
+> **Note:** `arguments`라는 파라미터가 있으면 Function의 기본 객체인 `arguments`가 생성되지 않는다.
 
-> **Note:** Having a parameter called `arguments` will **prevent** the creation 
-> of the default `arguments` object.
+### Namespace
 
-### Namespaces
-
-A common problem of having only one global namespace is the likeliness of running
-into problems where variable names clash. In JavaScript, this problem can
-easily be avoided with the help of *anonymous wrappers*.
+JavaScript에서는 Global namespace 하나밖에 없어서 변수 이름이 중복되는 문제가 발생하기 쉽다. *Anonymous Wrappers*가 있어서 쉽게 피해갈 수 있다.
 
     (function() {
-        // a self contained "namespace"
+        // 일종의 namespace라고 할 수 있다.
         
         window.foo = function() {
-            // an exposed closure
+            // 이 Closure는 Global Scope에 노출된다.
         };
 
-    })(); // execute the function immediately
+    })(); // 함수를 정의하자마자 실행한다.
 
+Unnamed Function은 [expressions](#function.general)이기 때문에 호출되려면 먼저 Evaluate돼야 한다.
 
-Unnamed functions are considered [expressions](#function.general); so in order to
-being callable, they must first be evaluated.
-
-    ( // evaluate the function inside the paranthesis
+    ( // 소괄호 안에 있는 것을 먼저 Evaluate한다.
     function() {}
-    ) // and return the function object
-    () // call the result of the evaluation
+    ) // 그리고 Function 객체를 반환한다.
+    () // Evaluation된 결과를 호출한다.
 
-There are other ways for evaluating and calling the function expression; which, 
-while different in syntax, do behave the exact same way.
+같은 표기법이 두 가지 더 있다. 문법은 다르지만 똑같다.
 
-    // Two other ways
+    // 두 가지 다른 방법
     +function(){}();
     (function(){}());
 
-### In Conclusion
+### 결론
 
-It is recommended to always use an *anonymous wrapper* for encapsulating code in 
-its own namespace. This does not only protect code against name clashes, but it 
-also allows for better modularization of programs.
+코드를 캡슐화할 때는 늘 *Anonymous Wrapper*로 namespace를 만들어 사용해야 한다. 이 Wrapper는 이름이 중복되는 것을 막아 주고 더 쉽게 모듈화할 수 있도록 해준다.
 
-Additionally, the use of global variables is considered **bad practice**. **Any**
-use of them indicates badly written code that is prone to errors and hard to maintain.
-
+그리고 Global 변수를 사용하는 것은 악질 습관이다. 이유야 어쨌든 에러 나기 쉽고 관리하기 어렵다.

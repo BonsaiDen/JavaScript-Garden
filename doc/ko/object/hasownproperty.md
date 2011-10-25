@@ -1,17 +1,13 @@
 ## `hasOwnProperty`
 
-In order to check whether a object has a property defined on *itself* and **not** 
-somewhere on its [prototype chain](#object.prototype), it is necessary to use the 
-`hasOwnProperty` method which all objects inherit from `Object.prototype`.
+어떤 프로퍼티가 해당 객체 자신의 것인지 아니면 [프로토타입 체인](#object.prototype)에 있는 것인지 확인하려면 `Object.prototype`을 상속받은 `hasOwnProperty` 메소드를 사용해야 한다. 
 
-> **Note:** It is **not** enough to check whether a property is `undefined`. The
-> property might very well exist, but its value just happens to be set to 
-> `undefined`.
+> **Note:** 이 메소드로는 프로퍼티의 값이 `undefined`인지 확인할 수 없다. 프로퍼티가 존재해도 그 값은 `undefined`일 수 있다. 
 
-`hasOwnProperty` is the only thing in JavaScript which deals with properties and 
-does **not** traverse the prototype chain.
+프로토타입 체인을 traverse 하지 않으려면 `hasOwnProperty`를 사용하는 방법밖에 없다.
 
-    // Poisoning Object.prototype
+
+    // Object.prototype을 더럽힌다.
     Object.prototype.bar = 1; 
     var foo = {goo: undefined};
     
@@ -21,16 +17,11 @@ does **not** traverse the prototype chain.
     foo.hasOwnProperty('bar'); // false
     foo.hasOwnProperty('goo'); // true
 
-Only `hasOwnProperty` will give the correct and expected result; this is 
-essential when iterating over the properties of any object. There is **no** other 
-way to exclude properties that are not defined on the object *itself*, but 
-somewhere on its prototype chain.  
+프로퍼티의 존재 여부를 확인하는 방법은 `hasOwnProperty` 메소드 뿐이다. 이 메소드는 프로토타입 체인의 프로퍼티말고 해당 객체의 프로퍼티만 iterate 할 때 유용하다. 객체 자체의 프로퍼티와 프로토타입 체인 어딘가에 있는 프로퍼티를 골라 주는 다른 방법은 없다.
 
-### `hasOwnProperty` as a Property
+### `hasOwnProperty`도 프로퍼티
 
-JavaScript does **not** protect the property name `hasOwnProperty`; thus, if the
-possibility exists that an object might have a property with this name, it is
-necessary to use an *external* `hasOwnProperty` in order to get correct results.
+JavaScript는 `hasOwnProperty` 프로퍼티 역시 보호하지 않는다. 그래서 객체에 `hasOwnProperty` 프로퍼티가 있으면 다른 객체의 `hasOwnProperty` 메소드를 빌려 사용해야 한다.
 
     var foo = {
         hasOwnProperty: function() {
@@ -39,15 +30,11 @@ necessary to use an *external* `hasOwnProperty` in order to get correct results.
         bar: 'Here be dragons'
     };
 
-    foo.hasOwnProperty('bar'); // always returns false
+    foo.hasOwnProperty('bar'); // 항상 false를 반환한다.
 
-    // Use another Object's hasOwnProperty and call it with 'this' set to foo
+    // 다른 객체의 hasOwnProperty를 사용하여 foo 객체의 프로퍼티 유무를 확인한다.
     ({}).hasOwnProperty.call(foo, 'bar'); // true
 
-### In Conclusion
+### 결론
 
-When checking for the existence of a property on a object, `hasOwnProperty` is 
-the **only** method of doing so. It is also recommended to make `hasOwnProperty`
-part of **every** [`for in` loop](#object.forinloop); this will avoid errors from 
-extended native [prototypes](#object.prototype).
-
+객체에 프로퍼티가 있는지 `hasOwnProperty`로만 확인할 수 있다. [`for in` loop](#object.forinloop)은 항상 `hasOwnProperty`와 함께 사용하길 권장한다. 네이티브 객체의 [프로토타입](#object.prototype)이 확장하는 사태가 일어나도 안전하게 지켜준다.

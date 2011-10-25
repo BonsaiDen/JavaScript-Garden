@@ -1,38 +1,31 @@
-## The `delete` Operator
+## `delete`
 
-In short, it's *impossible* to delete global variables, functions and some other
-stuff in JavaScript which have a `DontDelete` attribute set.
+간단히 말해서 global 변수, 함수, 등은 `DontDelete` 속성이기 때문에 삭제 못 한다.
 
-### Global code and Function code
+### 글로벌 코드와 함수 코드
 
-When a variable or a function is defined in a global 
-or a [function scope](#function.scopes) it is a property of either 
-Activation object or Global object. Such properties have a set of attributes, 
-one of these is `DontDelete`. Variable and function declarations in global 
-and function code always create properties with `DontDelete`, therefore 
-cannot be deleted.
+Global이나 Function scope에 정의된 함수나 변수는 모두 Activation 객체나 Global 객체의 프로퍼티다. 이 프로퍼티는 모두 `DontDelete`속성을 가진다. Global이나 Function 코드에서 변수나 함수의 정의하면 항상 `DontDelete` 프로퍼티로 만들어진다. 그러니까 삭제할 수 없다:
 
-    // global variable:
-    var a = 1; // DontDelete is set
+    // 글로벌 변수:
+    var a = 1; // DontDelete가 설정된다.
     delete a; // false
     a; // 1
 
-    // normal function:
-    function f() {} // DontDelete is set
+    // 함수:
+    function f() {} // DontDelete가 설정된다.
     delete f; // false
     typeof f; // "function"
 
-    // reassigning doesn't help:
+    // 다시 할당해도 삭제할 수 없다:
     f = 1;
     delete f; // false
     f; // 1
 
-### Explicit properties
+### Explicit 프로퍼티
 
-There are things which can be deleted normally: these are explicitly set 
-properties.
+다음 예제에서 만드는 property는 정상적으로 지워진다. 이런 걸 Explicit 프로퍼티라고 부른다:
 
-    // explicitly set property:
+    // Explicit 프로퍼티를 만든다:
     var obj = {x: 1};
     obj.y = 2;
     delete obj.x; // true
@@ -40,28 +33,24 @@ properties.
     obj.x; // undefined
     obj.y; // undefined
 
-In the example above `obj.x` and `obj.y` can be deleted because they have no 
-`DontDelete` atribute. That's why an example below works too.
+`obj.x`와 `obj.y`는 `DontDelete` 속성이 아녀서 삭제된다. 그러나 다음과 같은 코드도 잘 동작하기 때문에 헷갈린다.:
 
-    // this works fine, except for IE:
+    // IE를 빼고 잘 동작한다.:
     var GLOBAL_OBJECT = this;
     GLOBAL_OBJECT.a = 1;
-    a === GLOBAL_OBJECT.a; // true - just a global var
+    a === GLOBAL_OBJECT.a; // true - 진짜 글로벌 변순지 확인하는 것
     delete GLOBAL_OBJECT.a; // true
     GLOBAL_OBJECT.a; // undefined
 
-Here we use a trick to delete `a`. [`this`](#function.this) here refers 
-to the Global object and we explicitly declare variable `a` as it's property 
-which allows us to delete it.
+[`this`](#function.this)가 글로벌 객체를 가리키는 것을 이용해서 명시적으로 프로퍼티 `a`를 선언하면 삭제할 수 있다. 이런 꼼수가 가능하다. 
 
-IE (at least 6-8) has some bugs, so code above doesn't work.
+IE (적어도 6-8)는 버그가 있어서 안 된다.
 
-### Function arguments and built-ins
+### arguments와 함수의 기본 프로퍼티
 
-Functions' normal arguments, [`arguments` object](#function.arguments) 
-and built-in properties also have `DontDelete` set.
+함수의 [`arguments` 객체](#function.arguments)와 built-in 프로퍼티도 `DontDelete` 속성이다.
 
-    // function arguments and properties:
+    // 함수의 arguments와 프로퍼티:
     (function (x) {
     
       delete arguments; // false
@@ -76,12 +65,12 @@ and built-in properties also have `DontDelete` set.
       
     })(1);
 
-### Host objects
-    
-Behaviour of `delete` operator can be unpredictable for hosted objects. Due to 
-specification, host objects are allowed to implement any kind of behavior. 
+### Host 객체
 
-### In conclusion
+(역주, Host 객체들은 document같은 DOM 객체를 말한다.)
 
-`delete` operator often has an unexpected behaviour and can be safely used 
-only for dealing with explicitly set properties on normal objects.
+Host 객체를 delete하면 어떻게 될지 알 수 없다. 어떻게 Host 객체를 delete해야 하는지 표준에 정의되지 않았다.
+
+### 결론
+
+`delete` 연산자는 엉뚱하게 동작할 때가 잦다. 명시적으로 정의한 일반 객체의 프로퍼티만 delete하는 것이 안전하다.

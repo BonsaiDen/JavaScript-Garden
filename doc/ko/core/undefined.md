@@ -1,52 +1,40 @@
-## `undefined` and `null`
+## `undefined`와 `null`
 
-JavaScript has two distinct values for `nothing`, the more useful of these two
-being `undefined`.
+JavaScript는 `nothing`을 두 가지로 표현할 수 있고 그중 `undefined`가 더 유용하다.
 
-### The Value `undefined`
+### `undefined`도 변수
 
-`undefined` is a type with exactly one value: `undefined`.
+`undefined`는 `undefined`라는 값을 가지는 데이터 형식이다.
 
-The language also defines a global variable that has the value of `undefined`;
-this variable is also called `undefined`. However, this variable is **neither** a constant
-nor a keyword of the language. This means that its *value* can be easily 
-overwritten.
+`undefined`는 상수도 아니고 JavaScript의 키워드도 아니다. 그냥 `undefined`라는 이름의 글로벌 변수이고 이 변수에는 `undefined`라고 할당돼 있다. 그래서 이 글로벌 변수의 값을 쉽게 바꿀 수 있다.
 
-> **ES5 Note:** `undefined` in ECMAScript 5 is **no longer** *writable* in strict
-> mode, but its name can still be shadowed by for example a function with the name 
-> `undefined`.
+> **ES5 Note:** ECMAScript 5의 strict 모드에서는 `undefined`를 더는 바꿀 수 없도록 했다. 하지만 `undefined`라는 함수를 만들면 여전히 할당할 수 있다.
 
-Some examples for when the value `undefined` is returned:
+`undefined` 값이 반환될 때:
 
- - Accessing the (unmodified) global variable `undefined`.
- - Implicit returns of functions due to missing `return` statements.
- - `return` statements which do not explicitly return anything.
- - Lookups of non-existent properties.
- - Function parameters which do not had any explicit value passed.
- - Anything that has been set to the value of `undefined`.
+ - global 변수 `undefined`에 접근할 때.
+ - `return` 구문이 없는 함수는 `undefined`를 반환함.
+ - `return` 구문으로 아무것도 반환하지 않을 때.
+ - 없는 프로퍼티를 찾을 때.
+ - 함수 인자가 생략될 때.
+ - `undefined`가 할당된 모든 것.
 
-### Handling Changes to the Value of `undefined`
+### `undefined`가 바뀔 때를 대비하기
 
-Since the global variable `undefined` only holds a copy of the actual *value* of 
-`undefined`, assigning a new value to it does **not** change the value of the 
-*type* `undefined`.
+global 변수 `undefined`는 `undefined`라는 객체를 가리키는 것뿐이기 때문에 새로운 값을 할당한다고 해도 `undefined`의 값 자체가 바뀌는 것이 아니다.
 
-Still, in order to compare something against the value of `undefined`, it is
-necessary to retrieve the value of `undefined` first.
+그래서 `undefined`와 비교하려면 먼저 `undefined`의 값을 찾아와야 한다.
 
-In order to protect code against a possible overwritten `undefined` variable, a 
-common technique used is to add an additional parameter to an
-[anonymous wrapper](#function.scopes) that gets no argument passed to it.
+보통 `undefined` 변수가 바뀌어 있을 때를 대비해서 undefined라는 변수를 인자로 받는 [anonymous wrapper](#function.scopes)로 감싸고 아무런 인자를 넘기지 않는 꼼수를 사용한다. 
 
     var undefined = 123;
     (function(something, foo, undefined) {
-        // undefined in the local scope does 
-        // now again refer to the value
+        // 로컬 스콥에 undefined를 만들어서
+        // 원래 값을 가리키도록 했다.
 
     })('Hello World', 42);
 
-Another way to achieve the same effect would be to use a declaration inside the 
-wrapper.
+wrapper 안에서 변수를 새로 정의하는 방법으로도 같은 효과를 볼 수 있다.
 
     var undefined = 123;
     (function(something, foo) {
@@ -55,18 +43,10 @@ wrapper.
 
     })('Hello World', 42);
 
-The only difference here is that this version results in 4 more bytes being
-used in case it is minified, and there is no other `var` statement inside the
-anonymous wrapper.
+이 두 방법의 차이는 minified했을 때 4바이트만큼 차이 난다는 것과 한쪽은 wrapper 안에 var 구문이 없다는 것밖에 없다. 
 
-### Uses of `null`
+### `Null` 객체의 용도
 
-While `undefined` in the context of the JavaScript language is mostly used in
-the sense of a traditional *null*, the actual `null` (both a literal and a type)
-is more or less just another data type.
+JavaScript 언어에서는 `undefined`를 다른 언어에서 *null*을 사용하듯이 쓰고 진짜 `null`은 그냥 다른 데이터 타입 중 하나일 뿐이다.
 
-It is used in some JavaScript internals (like declaring the end of the
-prototype chain by setting `Foo.prototype = null`), but in almost all cases, it
-can be replaced by `undefined`.
-
-
+JavaScript 내부적인 곳에 사용하는 경우가 아니면 null 대신 `undefined`를 사용해도 된다(`Foo.prototype = null`같이 프로토타입 체인을 끊을 때는 null을 사용한다).

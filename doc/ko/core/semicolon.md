@@ -1,30 +1,24 @@
-## Automatic Semicolon Insertion
+## 세미콜론을 자동으로 삽입해준다.
 
-Although JavaScript has C style syntax, it does **not** enforce the use of
-semicolons in the source code, so it is possible to omit them.
+JavaScript는 C와 문법이 비슷하지만, 꼭 코드에 semicolon을 사용하도록 강제하지 않는다. 그래서 생략할 수 있다.
 
-JavaScript is not a semicolon-less language. In fact, it needs the 
-semicolons in order to understand the source code. Therefore, the JavaScript
-parser **automatically** inserts them whenever it encounters a parse
-error due to a missing semicolon.
+사실 JavaScript는 semicolon이 꼭 있어야 하고 없으면 이해하지 못한다. 그래서 JavaScript 파서는 semicolon이 없으면 **자동으로** semicolon을 추가한다. 
 
     var foo = function() {
-    } // parse error, semicolon expected
+    } // 세미콜론이 없으니 에러 난다.
     test()
 
-Insertion happens, and the parser tries again.
+파서는 세미콜론을 삽입하고 다시 시도한다.
 
     var foo = function() {
-    }; // no error, parser continues
+    }; // 에러가 없어짐.
     test()
 
-The automatic insertion of semicolon is considered to be one of **biggest**
-design flaws in the language because it *can* change the behavior of code.
+JavaScript에서 세미콜론을 자동으로 삽입한 것은 **대표적인** 설계 오류 중 하나다. 세미콜론 유무에 따라 *전혀* 다른 코드가 될 수 있다.
 
-### How it Works
+### 어떻게 다를까?
 
-The code below has no semicolons in it, so it is up to the parser to decide where
-to insert them.
+코드에 세미콜론이 없으면 파서가 어디에 넣을지 결정한다.
 
     (function(window, undefined) {
         function test(options) {
@@ -53,62 +47,53 @@ to insert them.
 
     })(window)
 
-Below is the result of the parser's "guessing" game.
+파서는 다음과 같이 삽입한다.
 
     (function(window, undefined) {
         function test(options) {
 
-            // Not inserted, lines got merged
+            // 세미콜론을 넣는 것이 아니라 줄을 합친다.
             log('testing!')(options.list || []).forEach(function(i) {
 
-            }); // <- inserted
+            }); // <- 여기
 
             options.value.test(
                 'long string to pass here',
                 'and another long string to pass'
-            ); // <- inserted
+            ); // <- 여기
 
-            return; // <- inserted, breaks the return statement
-            { // treated as a block
+            return; // <- 여기에 넣어서 그냥 반환시킨다.
+            { // 파서는 단순 블럭이라고 생각하고
 
-                // a label and a single expression statement
+                // 단순한 레이블과 함수
                 foo: function() {} 
-            }; // <- inserted
+            }; // <- 여기
         }
-        window.test = test; // <- inserted
+        window.test = test; // <- 여기
 
-    // The lines got merged again
+    // 이 줄도 합쳐진다.
     })(window)(function(window) {
-        window.someLibrary = {}; // <- inserted
+        window.someLibrary = {}; // <- 여기
 
-    })(window); //<- inserted
+    })(window); //<- 여기에 파서는 세미콜론을 넣는다.
 
-> **Note:** The JavaScript parser does not "correctly" handle return statements 
-> which are followed by a new line, while this is not neccessarily the fault of 
-> the automatic semicolon insertion, it can still be an unwanted side-effect. 
+> **주의:** JavaScript 파서는 new line 문자가 뒤따라 오는 return 구문을 제대로 처리하지 못한다. 자동으로 세미콜론을 넣는 것 자체의 문제는 아니지만 어쨌든 여전히 문제로 남아있다.
 
-The parser drastically changed the behavior of the code above. In certain cases,
-it does the **wrong thing**.
+파서는 완전히 다른 코드로 만들어 버린다. 이것은 **오류**다.
 
-### Leading Parenthesis
+### Parenthesis
 
-In case of a leading parenthesis, the parser will **not** insert a semicolon.
+세미콜론 없이 괄호가 붙어 있으면 파서는 세미콜론을 넣지 않는다.
 
     log('testing!')
     (options.list || []).forEach(function(i) {})
 
-This code gets transformed into one line.
+파서는 다음과 같이 코드를 바꾼다.
 
     log('testing!')(options.list || []).forEach(function(i) {})
 
-Chances are **very** high that `log` does **not** return a function; therefore,
-the above will yield a `TypeError` stating that `undefined is not a function`.
+`log` 함수가 함수를 반환할 가능성은 거의 없다. 아마도 `undefined is not a function`이라는 `TypeError`가 발생할 거다.
 
-### In Conclusion
+### 결론
 
-It is highly recommended to **never** omit semicolons; it is also advocated to 
-keep braces on the same line with their corresponding statements and to never omit 
-them for one single-line `if` / `else` statements. Both of these measures will 
-not only improve the consistency of the code, but they will also prevent the 
-JavaScript parser from changing its behavior.
-
+세미콜론은 반드시 사용해야 한다. 그리고 `{}`도 생략하지 않고 꼭 사용하는 것이 좋다. 한 줄밖에 안 되는 `if` / `else` 블럭에서도 꼭 사용해야 한다. 이 두 가지 규칙을 잘 지키면 JavaScript 파서가 잘못 해석하는 일을 미리 방지하고 코드도 튼튼해진다.

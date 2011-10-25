@@ -1,48 +1,37 @@
 ## Function Declarations and Expressions
 
-Functions in JavaScript are first class objects. That means they can be 
-passed around like any other value. One common use of this feature is to pass
-an *anonymous function* as a callback to another, possibly asynchronous function.
+JavaScript의 function은 first class object라서 일반 객체처럼 취급될 수 있다. 그래서 익명 함수를 비동기 함수의 callback 같은 거로 넘길 수 있다.
 
-### The `function` Declaration
+### `function` Declaration
 
     function foo() {}
 
-The above function gets [hoisted](#function.scopes) before the execution of the 
-program starts; thus, it is available *everywhere* in the scope it was *defined* 
-in, even if called before the actual definition in the source.
+코드를 실행하기 전에 이 함수 [hoist](#function.Scopes)되기 때문에 해당 Scope 어디에서나 이 함수를 호출할 수 있다. 심지어 함수를 정의하기 전에 호출해도 된다.
 
-    foo(); // Works because foo was created before this code runs
+    foo(); // 이 코드가 실행되기 전에 foo가 만들어져서 잘 호출된다.
     function foo() {}
 
-### The `function` Expression
+### `function` Expression
 
     var foo = function() {};
 
-This example assigns the unnamed and *anonymous* function to the variable `foo`. 
+`foo` 변수에 *익명* 함수를 할당하는 예를 보자.
 
     foo; // 'undefined'
-    foo(); // this raises a TypeError
+    foo(); // TypeError가 난다.
     var foo = function() {};
 
-Due to the fact that `var` is a declaration that hoists the variable name `foo` 
-before the actual execution of the code starts, `foo` is already defined when 
-the script gets executed.
+JavaScript가 hoist하는 것은 `var`로 선언하는 부분뿐이기 때문에 코드가 실행하기 전에 `foo` 변수는 정의된다.
 
-But since assignments only happen at runtime, the value of `foo` will default
-to [undefined](#core.undefined) before the corresponding code is executed.
+그러나 할당은 런타임에만 가능한 일이라 할당하는 코드가 실행될 때까지 `foo`변수는 기본 값인 [undefined](#core.undefined)다.
 
 ### Named Function Expression
 
-Another special case is the assignment of named functions.
+named function을 할당하는 경우는 조금 특이하다.
 
     var foo = function bar() {
-        bar(); // Works
+        bar(); // 된다.
     }
     bar(); // ReferenceError
 
-Here, `bar` is not available in the outer scope, since the function only gets
-assigned to `foo`; however, inside of `bar`, it is available. This is due to 
-how [name resolution](#function.scopes) in JavaScript works, the name of the 
-function is *always* made available in the local scope of the function itself.
-
+function 밖에서 `bar`를 사용할 수 없지만, function 안에서는 사용할 수 있다. JavaScript가 [이름을 찾는 방법](#function.Scopes)이 있는데 function Scope에서는 항상 그 함수의 이름을 사용할 수 있다.

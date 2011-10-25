@@ -1,37 +1,25 @@
 ## Intro
 
-**JavaScript Garden** is a growing collection of documentation about the most 
-quirky parts of the JavaScript programming language. It gives advice to 
-avoid common mistakes and subtle bugs, as well as performance issues and bad 
-practices, that non-expert JavaScript programmers may encounter on their 
-endeavours into the depths of the language.
+**JavaScript Garden**은 JavaScript 언어의 핵심에 대한 글을 모은 것이다. 이 글은 초보자들이 JavaScript 익히면서 자주 겪는 실수, 미묘한 버그, 성능 이슈, 나쁜 습관들 줄일 수 있도록 도와줄 것이다.
 
-JavaScript Garden does **not** aim to teach you JavaScript. Former knowledge
-of the language is strongly recommended in order to understand the topics covered
-in this guide. In order to learn the basics of the language, please head over to 
-the excellent [guide][1] on the Mozilla Developer Network.
+JavaScript Garden은 단순히 JavaScript를 설명하려 만들지 않았다. 그래서 이 글에서 설명하는 주제들을 이해하려면 반드시 언어에 대한 기본 지식이 필요하다. 먼저 Mozilla Developer Network에 있는 [문서][1]로 JavaScript 언어를 공부하기 바란다.
 
-## The Authors
+## 저자들
 
-This guide is the work of two lovely [Stack Overflow][2] users, [Ivo Wetzel][3]
-(Writing) and [Zhang Yi Jiang][4] (Design).
+이 글은 [Stack Overflow][2]에서 사랑받는 두 사람 [Ivo Wetzel][3]과 [Zhang Yi Jiang][4]의 작품이다. Ivo Wetzel이 글을 썼고 Zhang Yi jiang이 디자인을 맡았다.
 
-## Contributors
+## 기여자들
 
- - [Caio Romão][5] (Spelling corrections)
- - [Andreas Blixt][6] (Language corrections)
+ - [Caio Romão][5] (철자 교정)
+ - [Andreas Blixt][6] (언어 교정)
 
-## Hosting
+## 호스팅
 
-JavaScript Garden is hosted on GitHub, but [Cramer Development][7] supports us
-with a mirror at [JavaScriptGarden.info][8].
+JavaScript Garden은 Github에서 호스팅하고 있고 [Cramer Development][7]가 [JavaScriptGarden.info][8]에서 미러링해주고 있다.
 
-## License
+## 저작권
 
-JavaScript Garden is published under the [MIT license][9] and hosted on
-[GitHub][10]. If you find errors or typos please [file an issue][11] or a pull 
-request on the repository. You can also find us in the [JavaScript room][12] on
-Stack Overflow chat.
+JavaScript Garden은 [MIT license][9]를 따르고 [GitHub][10]에서 호스팅하고 있다. 문제를 발견하면 [이슈를 보고][11]하거나 수정해서 Pull Request를 하라. 아니면 Stack Overflow 채팅 사이트의 [Javascript room][12]에서 우리를 찾아도 된다.
 
 [1]: https://developer.mozilla.org/en/JavaScript/Guide
 [2]: http://stackoverflow.com/

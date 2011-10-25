@@ -1,10 +1,8 @@
-## The `instanceof` Operator
+## `instanceof`
 
-The `instanceof` operator compares the constructors of its two operands. It is 
-only useful when comparing custom made objects. Used on built-in types, it is
-nearly as useless as the [typeof operator](#types.typeof).
+`instanceof`는 두 객체의 생성자를 비교하는 것이고 직접 만든 타입의 객체를 비교할 때 유용하다. 기본 타입만 생각하면 이 연산자는 [typeof](#types.typeof)처럼 거의 쓸모 없다.
 
-### Comparing Custom Objects
+### 직접 만든 타입의 객체를 `intanceof`로 비교하기
 
     function Foo() {}
     function Bar() {}
@@ -13,12 +11,12 @@ nearly as useless as the [typeof operator](#types.typeof).
     new Bar() instanceof Bar; // true
     new Bar() instanceof Foo; // true
 
-    // This just sets Bar.prototype to the function object Foo
-    // But not to an actual instance of Foo
+    // Bar.prototype에 function 객체인 Foo를 할당하면
+    // Bar의 인스턴스는 Foo의 인스턴스가 아니다.
     Bar.prototype = Foo;
     new Bar() instanceof Foo; // false
 
-### Using `instanceof` with Native Types
+### 기본 타입 객체를 `intanceof`로 비교하기
 
     new String('foo') instanceof String; // true
     new String('foo') instanceof Object; // true
@@ -26,13 +24,8 @@ nearly as useless as the [typeof operator](#types.typeof).
     'foo' instanceof String; // false
     'foo' instanceof Object; // false
 
-One important thing to note here is that `instanceof` does not work on objects 
-that originate from different JavaScript contexts (e.g. different documents
-in a web browser), since their constructors will not be the exact same object.
+JavaScript 컨텍스트마다(웹 브라우저의 도큐먼트 같은) 객체의 생성자는 다를 수밖에 없어서 `instanceof`는 다른 JavaScript 컨텍스트에 있는(웹 브라우저의 다른 도큐먼트에 있는) 객체와는 비교할 수 없다.
 
-### In Conclusion
+### 결론
 
-The `instanceof` operator should **only** be used when dealing with custom made 
-objects that originate from the same JavaScript context. Just like the
-[`typeof`](#types.typeof) operator, every other use of it should be **avoided**.
-
+`instanceof`는 한 JavaScript 컨텍스트 내에서 사용자가 만든 타입의 객체를 비교할 때에만 유용하다. [`typeof`](#types.typeof)처럼 다른 목적으로는 사용하지 않는 것이 좋다.

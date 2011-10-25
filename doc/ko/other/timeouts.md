@@ -1,69 +1,48 @@
-### `setTimeout` and `setInterval`
+### `setTimeout`과 `setInterval`
 
-Since JavaScript is asynchronous, it is possible to schedule the execution of a 
-function by using the `setTimeout` and `setInterval` functions.
+JavaScript는 비동기이기 때문에 `setTimeout`과 `setInterval` 로 함수의 실행 순서를 조절할 수 있다.
 
-> **Note:** Timeouts are **not** part of the ECMAScript Standard. They are
-> implemented as part of the [DOM][1].
+> **Note:** Timeout은 ECMAScript 표준이 아니라 [DOM][1]때문에 구현됐다.
 
     function foo() {}
-    var id = setTimeout(foo, 1000); // returns a Number > 0
+    var id = setTimeout(foo, 1000); // 0보다 큰 수를 반환한다.
 
-When `setTimeout` gets called, it will return the ID of the timeout and schedule
-`foo` to run in **approximately** one thousand milliseconds in the future. 
-`foo` will then get executed exactly **once**.
+`setTimeout`을 호출하면 timeout의 ID를 반환하고 **대충** 1,000밀리 초 후에 `foo`를 실행시킨다. `foo`는 **딱 한 번만** 실행된다.
 
-Depending on the timer resolution of the JavaScript engine that is running the 
-code, as well as the fact that JavaScript is single threaded and other code that 
-gets executed might block the thread, it is by **no means** a safe bet that one 
-will get the exact delay that was specified in the `setTimeout` call.
+JavaScript 엔진의 단위 시간(timer resolution)에 따라서 코드를 실행시키고 단일 쓰레드인 JavaScript를 특정 코드가 블록 시켜 버릴 수도 있기 때문에 `setTimeout`으로 코드가 실행돼야 할 시간을 정해줘도 **정확하게 그 시간에 실행되지 않는다.**.
 
-The function that was passed as the first parameter will get called by the
-*global object*, which means that [`this`](#function.this) inside the called function 
-refers to that very object.
+첫 번째 인자로 넘긴 함수가 실행될 때 컨텍스트인 [`this`](#function.this)는 *글로벌* 객체를 가리킨다.
 
     function Foo() {
         this.value = 42;
         this.method = function() {
-            // this refers to the global object
-            console.log(this.value); // will log undefined
+            // this는 global 객체를 가리키기 때문에 
+            console.log(this.value); // undefined를 출력한다.
         };
         setTimeout(this.method, 500);
     }
     new Foo();
 
+> **Note:** `setTimeout`의 첫 번째 파라미터에 **함수** 객체를 넘겨야 하는 데 `setTimeout(foo(), 1000)`처럼 함수의 실행 결과를 넘기는 실수를 저지를 때가 잦다. 이럴 때 `setTimeout`은 그냥 `undefined`를 반환할 뿐이지 에러를 발생시키지 않는다.
 
-> **Note:** As `setTimeout` takes a **function object** as its first parameter, an
-> often made mistake is to use `setTimeout(foo(), 1000)`, which will use the 
-> **return value** of the call `foo` and **not** `foo`. This is, most of the time, 
-> a silent error, since when the function returns `undefined` `setTimeout` will 
-> **not** raise any error.
+### `setInterval`은 계속 함수 호출을 쌓는다(Stacking).
 
-### Stacking Calls with `setInterval`
+`setTimeout`은 딱 한 번 함수를 호출하지만 `setInterval`은 이름처럼 **지정한 시간마다** 함수를 실행해 준다. 이 `setInterval`은 별로다.
 
-While `setTimeout` only runs the function once, `setInterval` - as the name 
-suggests - will execute the function **every** `X` milliseconds, but its use is 
-discouraged. 
-
-When code that is being executed blocks the timeout call, `setInterval` will 
-still issue more calls to the specified function. This can, especially with small
-intervals, result in function calls stacking up.
+만약 실행하는 코드가 일정시간 동안 블럭되도 `setInterval`은 계속 함수를 호출시키려 든다. 특히 주기가 짧으면 밀리기 쉬워서 함수 호출은 계속 쌓일 수 있다.
 
     function foo(){
-        // something that blocks for 1 second
+        // 1초 동안 블럭함.
     }
     setInterval(foo, 100);
 
-In the above code, `foo` will get called once and will then block for one second.
+`foo`는 단순히 호출될 때마다 1초 동안 블럭하는 함수다.
 
-While `foo` blocks the code, `setInterval` will still schedule further calls to
-it. Now, when `foo` has finished, there will already be **ten** further calls to
-it waiting for execution.
+`foo`가 블럭해도 `setInterval`은 계속 함수 호출을 쌓는다. `foo`의 첫 번째 호출이 끝나도 *10번* 이상의 함수 호출이 쌓여 대기하고 있다.
 
-### Dealing with Possible Blocking Code
+### 오래 걸리는 코드 다루기
 
-The easiest solution, as well as most controllable solution, is to use `setTimeout` within
-the function itself.
+`setTimeout` 으로 함수 자신을 호출하는 방법으로 해결하기가 가장 쉽다.
 
     function foo(){
         // something that blocks for 1 second
@@ -71,85 +50,64 @@ the function itself.
     }
     foo();
 
-Not only does this encapsulate the `setTimeout` call, but it also prevents the
-stacking of calls and it gives additional control. `foo` itself can now decide 
-whether it wants to run again or not.
+함수 호출이 쌓이지도 않을 뿐만 아니라 `setTimeout` 호출을 해당 함수 안에서 관리하고 `foo` 함수에서 계속 실행할지 말지 조절할 수도 있다.
 
-### Manually Clearing Timeouts
+### Timeout 없애기
 
-Clearing timeouts and intervals works by passing the respective ID to
-`clearTimeout` or `clearInterval`, depending which `set` function was used in
-the first place.
+`clearTimeout`과 `clearInterval` 함수로 setTimeout과 setInterval로 등록한 timeout과 interval을 삭제할 수 있다. `set` 함수들이 반환한 id를 저장했다가 `clear` 함수를 호출하여 삭제한다.
 
     var id = setTimeout(foo, 1000);
     clearTimeout(id);
 
-### Clearing all timeouts
+### timeout을 전부 없애기
 
-Because there is no built-in method for clearing all timeouts and/or intervals, 
-it is necessary to use brute force in order to achieve this functionality.
+등록한 timeout과 interval을 한꺼번에 삭제하는 메소드는 없다. 구현해서 사용해야 한다.
 
     // clear "all" timeouts
     for(var i = 1; i < 1000; i++) {
         clearTimeout(i);
     }
 
-There might still be timeouts that are unaffected by this arbitrary number;
-therefore, is is instead recommended to keep track of all the timeout IDs, so
-they can be cleared specifically.
+Id가 1부터 1000 사이에 있는 timeout들을 삭제했지만, 그 외의 것은 아직 남아있다. 완벽하게 구현하려면 만들어진 timeout id를 모두 저장했다가 삭제해야 한다.
 
-### Hidden use of `eval`
+### 숨겨진 `eval`
 
-`setTimeout` and `setInterval` can also take a string as their first parameter.
-This feature should **never** be used because it internally makes use of `eval`.
+`setTimeout`과 `setInterval`의 첫 파라미터에 스트링도 넘길 수 있다. 그렇지만, 내부적으로 `eval`을 사용하는 것이기 때문에 절대 사용하지 말아야 한다.
 
-> **Note:** Since the timeout functions are **not** specified by the ECMAScript
-> standard, the exact workings when a string is passed to them might differ in
-> various JavaScript implementations. For example, Microsoft's JScript makes use of
-> the `Function` constructor in place of `eval`.
+> **Note:** timeout 함수는 ECMAScript 표준이 아녀서 첫 인자가 스트링 타입일 때에는 JavaScript 구현체마다 다르게 동작한다. 예를 들어, Microsoft의 JScript는 `eval`이 아니라 `Function` 생성자를 사용한다.
 
     function foo() {
-        // will get called
+        // 이게 호출됨
     }
 
     function bar() {
         function foo() {
-            // never gets called
+            // 이것은 절대 호출 안 됨
         }
         setTimeout('foo()', 1000);
     }
     bar();
 
-Since `eval` is not getting called [directly](#core.eval) in this case, the string 
-passed to `setTimeout` will get executed in the *global scope*; thus, it will 
-not use the local variable `foo` from the scope of `bar`.
+이 경우 `eval`이 [그냥(directly)](#core.eval) 호출되는 것이 아니다. `setTimeout`에 넘겨진 스트링은 *global* scope에서 실행되기 때문에 `bar`의 로컬 함수 `foo`가 실행되는 것이 아니라 *global* scope의 `foo`가 실행된다.
 
-It is further recommended to **not** use a string for passing arguments to the
-function that will get called by either of the timeout functions. 
+함수에 파라미터를 넘겨야 하면 스트링을 사용하지 말아야 한다.
 
     function foo(a, b, c) {}
     
-    // NEVER use this
+    // 절대 사용하면 안 됨
     setTimeout('foo(1,2, 3)', 1000)
 
-    // Instead use an anonymous function
+    // 대신 익명 함수를 사용하는 게 좋다.
     setTimeout(function() {
         foo(a, b, c);
     }, 1000)
 
-> **Note:** While it is also possible to use the syntax 
-> `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
-> to subtle errors when used with [methods](#function.this). 
+> **Note:** `setTimeout(foo, 1000, a, b, c)`처럼 사용하는 것도 가능하지만, 이것도 권장하지 않는다. 메소드를 사용할 때 미묘한 에러가 날 수 있다.
 
-### In Conclusion
+### 결론
 
-**Never** should a string be used as the parameter of `setTimeout` or 
-`setInterval`. It is a clear sign of **really** bad code, when arguments need 
-to be supplied to the function that gets called. An *anonymous function* should
-be passed that then takes care of the actual call.
+`setTimeout`과 `setInterval`의 파라미터로 스트링은 절대 사용하지 말아야 한다. 핸들러 함수에 인자를 넘겨야 하는 경우도 **분명히** 탈 난다. *익명 함수*을 사용해서 호출해야 한다.
 
-Furthermore, the use of `setInterval` should be avoided because its scheduler is not
-blocked by executing JavaScript.
+그리고 `setInterval`은 해당 핸들러가 블럭되든 말든 상관하지 않기 때문에 사용하면 안 된다.
 
 [1]: http://en.wikipedia.org/wiki/Document_Object_Model "Document Object Model"
-

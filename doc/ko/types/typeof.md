@@ -1,19 +1,12 @@
-## The `typeof` Operator
+## `typeof`
 
-The `typeof` operator (together with 
-[`instanceof`](#types.instanceof)) is probably the biggest 
-design flaw of JavaScript, as it is near of being **completely broken**.
+`typeof`도 [`instanceof`](#types.instanceof)와 함께 JavaScript에서 치명적으로 잘못 설계된 부분이다. 이건 정말 아무짝에 쓸모없다.
 
-Although `instanceof` still has its limited uses, `typeof` really has only one
-practical use case, which does **not** happen to be checking the type of an 
-object. 
+`instanceof`는 그래도 쓸 데가 좀 있었는데 `typeof`는 딱 한 군데에만 써먹을 수 있다. 객체의 타입을 검사할 일이 없다.
 
-> **Note:** While `typeof` can also be called with a function like syntax
-> i.e. `typeof(obj)`, this is not a function call. The two parenthesis will
-> behave like normal and the return value will be used as the operand of the
-> `typeof` operator. There is **no** `typeof` function.
+> **Note:** `typeof`는 함수처럼 `typeof(obj)`로 사용할 수 있다. 하지만, 이것은 함수를 호출하는 것이 아니라 단순히 `()`안의 값이 반환되고 `typeof`가 적용되는 것이다. `typeof`라는 함수는 **없다**.
 
-### The JavaScript Type Table
+### JavaScript 타입 표
 
     Value               Class      Type
     -------------------------------------
@@ -33,22 +26,17 @@ object.
     {}                  Object     object
     new Object()        Object     object
 
-In the above table, *Type* refers to the value that the `typeof` operator returns.
-As can be clearly seen, this value is anything but consistent.
+이 표에서 *Type*은 `typeof`가 반환하는 값이다. 표에서 본 것처럼 이 값은 계속 쓸모없다.
 
-The *Class* refers to the value of the internal `[[Class]]` property of an object.
+Class는 객체 내부에 있는 `[[Class]]` 프로퍼티의 값이다.
 
-> **From the Specification:** The value of `[[Class]]` can be one of the
-> following strings. `Arguments`, `Array`, `Boolean`, `Date`, `Error`, 
-> `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`.
+> **표준**에는 `[[Class]]`의 값은 `Arguments`, `Array`, `Boolean`, `Date`, `Error`, `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`중 하나라고 나와있다.
 
-In order to retrieve the value of `[[Class]]`, one has to make use of the
-`toString` method of `Object.prototype`.
+`[[Class]]`의 값을 가져다 쓰려면 `Object.prototype`의 `toString` 메소드를 사용해야 한다.
 
-### The Class of an Object
+### 객체의 클래스
 
-The specification gives exactly one way of accessing the `[[Class]]` value,
-with the use of `Object.prototype.toString`. 
+표준에 의하면 `[[Class]]` 값을 얻는 방법은 `Object.prototype.toString`하나뿐이다.
 
     function is(type, obj) {
         var clas = Object.prototype.toString.call(obj).slice(8, -1);
@@ -58,30 +46,18 @@ with the use of `Object.prototype.toString`.
     is('String', 'test'); // true
     is('String', new String('test')); // true
 
-In the above example, `Object.prototype.toString` gets called with the value of
-[this](#function.this) being set to the object whose `[[Class]]` value should be 
-retrieved.
+`Object.prototype.toString`은 [this](#function.this)의 `[[Class]]` 값을 가져오는 것이니까 this를 obj로 바꾸어 사용한다.
 
-> **ES5 Note:** For convenience the return value of `Object.prototype.toString` 
-> for both `null` and `undefined` was **changed** from `Object` to `Null` and 
-> `Undefined` in ECMAScript 5.
+> **ES5 Note:** ECMAScript 5에서 `Object.prototype.toString`의 컨텍스트가 `null`과 `undefined`일 때 `Object`가 아니라 각각 `Null`과 `Undefined`를 반환하도록 수정됐다.
 
-### Testing for Undefined Variables
+### 변수가 Undefined인지 확인하기
 
     typeof foo !== 'undefined'
 
-The above will check whether `foo` was actually declared or not; just 
-referencing it would result in a `ReferenceError`. This is the only thing
-`typeof` is actually useful for.
+이것은 `foo`가 정의됐는지 아닌지를 확인해준다. 정의되지 않은 변수에 접근하면 `ReferenceError` 나는데 이것을 방지할 수 있다. `typeof`가 유용한 건 이때뿐이다.
 
 ### In Conclusion
 
-In order to check the type of an object, it is highly recommended to use 
-`Object.prototype.toString` because this is the only reliable way of doing so. 
-As shown in the above type table, some return values of `typeof` are not defined 
-in the specification; thus, they can differ across various implementations.
+객체의 타입을 검사하려면 `Object.prototype.toString`를 사용해야 한다. 다른 방법은 신뢰할 수 없다. 위 표에서 보여준 것처럼 typeof가 반환하는 값은 표준에 나와 있지 않기 때문에 구현마다 다르다.
 
-Unless checking whether a variable is defined, `typeof` should be avoided at
-**all costs**.
-
-
+변수가 정의됐는지 확인할 때는 빼고 **목숨을 걸고** `typeof`를 못 사용하게 해야 한다.

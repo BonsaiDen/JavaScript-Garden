@@ -1,6 +1,6 @@
-## Why Not to Use `eval`
+## 왜 `eval`을 사용하면 안 될까?
 
-The `eval` function will execute a string of JavaScript code in the local scope.
+`eval` 함수는 스트링으로 된 JavaScript 코드를 로컬 스콥에서 실행한다.
 
     var foo = 1;
     function test() {
@@ -11,8 +11,7 @@ The `eval` function will execute a string of JavaScript code in the local scope.
     test(); // 3
     foo; // 1
 
-However, `eval` only executes in the local scope when it is being called
-**directly** *and* when the name of the called function is actually `eval`.
+`eval`을 `eval`이라는 이름으로 **직접** 직행할 때에만 로컬 스콥에서 실행된다.
 
     var foo = 1;
     function test() {
@@ -24,24 +23,16 @@ However, `eval` only executes in the local scope when it is being called
     test(); // 2
     foo; // 3
 
-The use of `eval` should be avoided at **all costs**. 99.9% of its "uses" can be
-achieved **without** it.
-    
-### `eval` in Disguise
+어쨌든 `eval`은 사용하지 말아야 한다. eval을 사용하는 경우의 99.9%는 사실 eval이 필요 없다.
 
-The [timeout functions](#other.timeouts) `setTimeout` and `setInterval` can both 
-take a string as their first argument. This string will **always** get executed 
-in the global scope since `eval` is not being called directly in that case.
+### 가짜 `eval`
 
-### Security Issues
+[timeout functions](#other.timeouts)인 `setTimeout`과 `setInterval`은 첫 번째 인자로 스트링을 입력받을 수 있다. 이 경우에는 `eval`을 직접 호출하는 것이 아녀서 항상 global scope에서 실행된다.
 
-`eval` also is a security problem. Because it executes **any** code given to it,
-it should **never** be used with strings of unknown or untrusted origins.
+### 보안 이슈
 
-### In Conclusion
+`eval`은 보안 문제도 있다. 단순히 **모든** 코드를 실행하기 때문에 신뢰하지 못하는 코드가 **절대로** 포함되지 않도록 주의해야 한다.
 
-`eval` should never be used. Any code that makes use of it is to be questioned in
-its workings, performance and security. In case something requires `eval` in 
-order to work, it should **not** be used in the first place.
-A *better design* should be used, that does not require the use of `eval`.
+### 결론
 
+`eval`은 사용하지 않는 게 좋다. `eval`을 사용하는 모든 코드는 성능, 보안, 버그의 문제를 일으킬 수 있다. 만약 `eval`이 필요해지면 *설계를 변경*하여 `eval`이 필요 없게 만들어야 한다.
