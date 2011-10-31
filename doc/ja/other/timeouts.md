@@ -31,26 +31,20 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
 > 関数が`undefined`になる為に表に出ないエラーになるでしょう。`setTimeout`はどんな
 > エラーも発生`させません`。
 
-### Stacking Calls with `setInterval`
+### `setInterval`でスタッキングコール
 
-While `setTimeout` only runs the function once, `setInterval` - as the name 
-suggests - will execute the function **every** `X` milliseconds. But its use is 
-discouraged. 
+`setTimeout`は関数を一度だけ実行します。`setInterval` - 名前が示すように - **毎回**`X`ミリ秒毎に関数を実行しますが、この使用は推奨されていません。
 
-When code that is being executed blocks the timeout call, `setInterval` will 
-still issue more calls to the specified function. This can, especially with small
-intervals, result in function calls stacking up.
+コードがタイムアウト呼び出しブロックで実行される時に、`setInterval`は指定された関数を呼び出します。これは、特に小さい間隔で、関数の結果をスタックに積む事ができます。
 
     function foo(){
-        // something that blocks for 1 second
+        // 1秒おきにブロックの何かを実行
     }
     setInterval(foo, 100);
 
-In the above code `foo` will get called once and will then block for one second.
+上記のコードでは、`foo`が1回呼び出されて、1秒ブロックされます。
 
-While `foo` blocks the code `setInterval` will still schedule further calls to
-it. Now, when `foo` has finished, there will already be **ten** further calls to
-it waiting for execution.
+`foo`がコードをブロックしている間、`setInterval`は呼び出される予定を確保しています。`foo`が完了した瞬間に、実行を待っている間に**10回**以上呼び出されている事になります。
 
 ### Dealing with Possible Blocking Code
 
