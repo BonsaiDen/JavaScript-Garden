@@ -46,20 +46,17 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
 
 `foo`がコードをブロックしている間、`setInterval`は呼び出される予定を確保しています。`foo`が完了した瞬間に、実行を待っている間に**10回**以上呼び出されている事になります。
 
-### Dealing with Possible Blocking Code
+### ブロッキング可能なコードの取り扱い
 
-The easiest as well as most controllable solution, is to use `setTimeout` within
-the function itself.
+簡単かつ、一番コントロール可能な解決法として、関数自体の中で`setTimeout`を使うという方法があります。
 
     function foo(){
-        // something that blocks for 1 second
+        // 1秒ブロックする何か
         setTimeout(foo, 100);
     }
     foo();
 
-Not only does this encapsulate the `setTimeout` call, but it also prevents the
-stacking of calls and it gives additional control.`foo` itself can now decide 
-whether it wants to run again or not.
+このカプセル化は`setTimeout`の呼び出しだけでなく、呼び出しのスタッキングを防止してより詳細なコントロールが出来ます。`foo`それ自身が今や、再度実行するかしないかを決める事が出来るのです。
 
 ### Manually Clearing Timeouts
 
