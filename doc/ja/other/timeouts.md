@@ -58,11 +58,9 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
 
 このカプセル化は`setTimeout`の呼び出しだけでなく、呼び出しのスタッキングを防止してより詳細なコントロールが出来ます。`foo`それ自身が今や、再度実行するかしないかを決める事が出来るのです。
 
-### Manually Clearing Timeouts
+### 手動でタイムアウトをクリアする
 
-Clearing timeouts and intervals works by passing the respective ID to
-`clearTimeout` or `clearInterval`, depending which `set` function was used in
-the first place.
+タイムアウトとインターバルのクリアは、`clearTimeout`か`clearInterval`に個別のIDを渡せば出来ます。最初に`set`関数を使った場所に依存します。
 
     var id = setTimeout(foo, 1000);
     clearTimeout(id);
