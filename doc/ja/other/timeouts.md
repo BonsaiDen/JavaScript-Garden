@@ -65,19 +65,16 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
     var id = setTimeout(foo, 1000);
     clearTimeout(id);
 
-### Clearing all timeouts
+### 全てのタイムアウトをクリアする
 
-As there is no built-in method for clearing all timeouts and/or intervals, 
-it is necessary to use brute force in order to achieve this functionality.
+全てのタイムアウトや、インターバルをクリアする組み込みメソッドが無い為、機能的にクリアする為には暴力的な手段を使う必要があります。
 
-    // clear "all" timeouts
+    // "全ての"タイムアウトをクリアする
     for(var i = 1; i < 1000; i++) {
         clearTimeout(i);
     }
 
-There might still be timeouts that are unaffected by this arbitrary number;
-therefore, is is instead recommended to keep track of all the timeout IDs, so
-they can be cleared specifically.
+ここまでもまだ、任意の数字を与えられた為に影響を受けないタイムアウトがあるかもしれません。しかし、全てのタイムアウトのIDを追跡していく事は推奨されないので、それらは個別にクリアされます。
 
 ### Hidden use of `eval`
 
