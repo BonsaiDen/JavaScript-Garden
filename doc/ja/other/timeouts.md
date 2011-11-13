@@ -76,48 +76,44 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
 
 ここまでもまだ、任意の数字を与えられた為に影響を受けないタイムアウトがあるかもしれません。しかし、全てのタイムアウトのIDを追跡していく事は推奨されないので、それらは個別にクリアされます。
 
-### Hidden use of `eval`
+### 隠された`eval`の使用
 
-`setTimeout` and `setInterval` can also take a string as their first parameter.
-This feature should **never** be used, since it internally makes use of `eval`.
+`setTimeout`と`setInterval` は、第一引数に文字列を取る事が可能です。この仕様は内部で`eval`を使用する為に、**絶対に**使うべきではありません。
 
-> **Note:** Since the timeout functions are **not** specified by the ECMAScript
-> standard, the exact workings when a string is passed to them might differ in
-> various JavaScript implementations. For example, Microsoft's JScript makes use of
-> the `Function` constructor in place of `eval`.
+> **注意点:** タイムアウト関数はECMAScript標準では制定されて**いない**為に
+> 文字列を引数にした場合に厳密な動作は色々なJavaScript実装により異なります。
+> 例えば、MicrosoftのJScriptは`eval`の代わりに`Function`コンストラクターを
+> 使用します。
 
     function foo() {
-        // will get called
+        // この先呼ばれる
     }
 
     function bar() {
         function foo() {
-            // never gets called
+            // 絶対に呼ばれない
         }
         setTimeout('foo()', 1000);
     }
     bar();
 
-Since `eval` is not getting called [directly](#core.eval) in this case, the string 
-passed to `setTimeout` will get executed in the *global scope*; thus, it will 
-not use the local variable `foo` from the scope of `bar`.
+この場合、`eval`は[直接](#core.eval)呼ばれないので、文字列が渡された`setTimeout`は*global scope*で実行されます。よって、`bar`のスコープから`foo`のローカル変数は使われないのです。
 
-It is further recommended to **not** use a string for passing arguments to the
-function that will get called by either of the timeout functions. 
+さらに、文字列を関数に渡さ**ない**ように推奨される理由として、それぞれのタイムアウト関数から呼び出されるという事があります。
 
     function foo(a, b, c) {}
     
-    // NEVER use this
+    // 絶対にこのように使わない
     setTimeout('foo(1,2, 3)', 1000)
 
-    // Instead use an anonymous function
+    // 匿名関数を代わりに使用する
     setTimeout(function() {
         foo(a, b, c);
     }, 1000)
 
-> **Note:** While it is also possible to use the syntax 
-> `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
-> to subtle errors when used with [methods](#function.this). 
+> **注意点:** `setTimeout(foo, 1000, a, b, c)`のようなシンタックスを使用する事も
+> できますが、[メソッド](#function.this)を使用した際に、分かりにくいエラーが起りえるので
+> 使用はお勧めしません。
 
 ### In Conclusion
 
