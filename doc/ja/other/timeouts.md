@@ -115,15 +115,11 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
 > できますが、[メソッド](#function.this)を使用した際に、分かりにくいエラーが起りえるので
 > 使用はお勧めしません。
 
-### In Conclusion
+### 終りに
 
-**Never** should a string be used as the parameter of `setTimeout` or 
-`setInterval`. It is a clear sign of **really** bad code, when arguments need 
-to be supplied to the function that gets called. An *anonymous function* should
-be passed that then takes care of the actual call.
+`setTimeout`や`setInterval`のパラメーターに文字列を使用する事は**絶対**するべきではありません。引数が関数に呼び出される必要がある場合**本当**に悪いコードの明確なサインになります。実際の呼び出しには*匿名関数*を渡すべきです。
 
-Further, the use of `setInterval` should be avoided since its scheduler is not
-blocked by executing JavaScript.
+その上で、`setInterval`の使用はそのスケジューラーがJavaScriptの実行をブロックするので避けるべきでしょう。
 
 [1]: http://en.wikipedia.org/wiki/Document_Object_Model "Document Object Model"
 
