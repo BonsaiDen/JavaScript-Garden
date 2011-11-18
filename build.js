@@ -1,5 +1,5 @@
 var fs = require('fs'),
-    path = require('path');
+    path = require('path'),
     jade = require('jade'),
     md = require('node-markdown'),
     Class = require('neko').Class;
@@ -28,10 +28,10 @@ var Garden = Class(function(options) {
 
             if (that.loadIndex()) {
                 that.languages[lang] = that.lang;
-                that.log('    Done.')
+                that.log('    Done.');
 
             } else {
-                that.log('    Error: Could not find "index.json"!')
+                that.log('    Error: Could not find "index.json"!');
             }
         }
     });
