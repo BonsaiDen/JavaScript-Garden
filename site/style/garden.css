@@ -87,8 +87,9 @@ nav > div li {
 }
 
 nav > div li a, #top, #hide_menu {
-	padding: 7px 10px 9px 10px;
+	padding: 8px 6px 7px;
 	cursor: pointer;
+	font-size: 12px;
 }
 
 nav > div li.active a {
