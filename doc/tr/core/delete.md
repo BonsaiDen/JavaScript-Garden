@@ -1,6 +1,6 @@
 ## `delete` Operatörü
 
-Kısaca genel kapsamda tanımlanmış değişkenleri, fonksiyonları ve `DontDelete`
+Kısacası, genel kapsamda tanımlanmış değişkenleri, fonksiyonları ve `DontDelete`
 niteliğine sahip bazı başka şeyleri silmek *imkansızdır*.
 
 ### Genel kapsam ve fonksiyon kapsamı
@@ -53,7 +53,7 @@ Burada `a`'yı silmek için bir hile kullanıyoruz. [`this`](#function.this)
 burada genel nesneye işaret ediyor ve `a` değişkenini onun özelliği olarak
 atıyoruz, ve böylece onu silebiliyoruz.
 
-IE (en azından 6-8) bazı hatalar içerdiğinden yukarıdaki örenk çalışmayacaktır.
+IE (en azından 6-8) bazı hatalar içerdiğinden yukarıdaki örnek çalışmayacaktır.
 
 ### Fonksiyon argümanları ve önceden tanımlı özellikler
 
