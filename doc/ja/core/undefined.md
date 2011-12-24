@@ -1,6 +1,6 @@
 ## `undefined`と`null`
 
-JavaScriptは`nothing`を表す2つの別個の値を持っています。`undefined`はこれら2つの内より便利な存在です。
+JavaScriptは`nothing`を表す2つの別個の値を持っています。これら2つの内で`undefined`はより便利な存在です。
 
 ### `undefined`の値
 
