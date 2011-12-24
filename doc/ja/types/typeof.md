@@ -55,7 +55,7 @@
 
 > **ES5での注意点:** 便宜上、ECMAScript 5では
 > `Object.prototype.toString`の
-> `null`と`undefined`は`Object`から
+> `null`と`undefined`の返す値は`Object`から
 > `Null`と`Undefined`に**変更され**ました。
 
 ### 未定義変数のテスト
