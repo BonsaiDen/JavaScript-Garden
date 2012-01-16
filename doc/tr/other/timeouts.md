@@ -55,7 +55,7 @@ kullanıldığında, fonksiyon çağrılarının istiflenmesine neden olur.
     function foo(){
         // 1 saniye süren bir işlem
     }
-    setInterval(foo, 100);
+    setInterval(foo, 1000);
 
 Yukarıdaki örnekte `foo` fonksiyonu bir kez çağrılıp bir saniye boyunca bloke
 edecektir.
@@ -71,7 +71,7 @@ kullanmaktır.
 
     function foo(){
         // 1 saniye süren bir işlem
-        setTimeout(foo, 100);
+        setTimeout(foo, 1000);
     }
     foo();
 

@@ -34,7 +34,7 @@ JavaScript 엔진의 단위 시간(timer resolution)에 따라서 코드를 실�
     function foo(){
         // 1초 동안 블럭함.
     }
-    setInterval(foo, 100);
+    setInterval(foo, 1000);
 
 `foo`는 단순히 호출될 때마다 1초 동안 블럭하는 함수다.
 
@@ -46,7 +46,7 @@ JavaScript 엔진의 단위 시간(timer resolution)에 따라서 코드를 실�
 
     function foo(){
         // something that blocks for 1 second
-        setTimeout(foo, 100);
+        setTimeout(foo, 1000);
     }
     foo();
 
