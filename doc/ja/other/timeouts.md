@@ -40,7 +40,7 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
     function foo(){
         // 1秒おきにブロックの何かを実行
     }
-    setInterval(foo, 100);
+    setInterval(foo, 1000);
 
 上記のコードでは、`foo`が1回呼び出されて、1秒ブロックされます。
 
@@ -52,7 +52,7 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
 
     function foo(){
         // 1秒ブロックする何か
-        setTimeout(foo, 100);
+        setTimeout(foo, 1000);
     }
     foo();
 

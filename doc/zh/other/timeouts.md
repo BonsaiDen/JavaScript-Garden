@@ -40,7 +40,7 @@
     function foo(){
         // 阻塞执行 1 秒
     }
-    setInterval(foo, 100);
+    setInterval(foo, 1000);
 
 上面代码中，`foo` 会执行一次随后被阻塞了一分钟。
 
@@ -53,7 +53,7 @@
 
     function foo(){
         // 阻塞执行 1 秒
-        setTimeout(foo, 100);
+        setTimeout(foo, 1000);
     }
     foo();
 
