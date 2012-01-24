@@ -9,13 +9,13 @@ JavaScript는 '{}' Block이 배배 꼬여 있어도 문법적으로는 잘 처�
         console.log(i); // 10
     }
 
-> **Note:** 할당할 때, 반환할 때, 함수 인자에서 사용되는 것을 제외하면 `{...}`는 모두 객체 리터럴이 아니라 Block 구문으로 해석된다. 그래서 [세미콜론을 자동으로 넣어주면](#core.semicolon) 에러가 생길 수 있다.
+> **Note:** 할당할 때, 반환할 때, Function 인자에서 사용되는 것을 제외하면 `{...}`는 모두 객체 리터럴이 아니라 Block 구문으로 해석된다. 그래서 [세미콜론을 자동으로 넣어주면](#core.semicolon) 에러가 생길 수 있다.
 
-그리고 JavaScript에는 namespace 개념이 없어서 *항상 공유하는* namepace가 하나 있는 거다.
+그리고 JavaScript에는 Namepspace 개념이 없어서 *항상 공유하는* namepace가 딱 하나다.
 
-변수를 사용할 때마다 JavaScript는 아는 Scope을 상위방향으로 찾는다. Global Scope에까지 해당 변수를 찾지 못하면 `ReferenceError`가 난다.
+변수를 사용할 때마다 JavaScript는 아는 Scope을 상위 방향으로 찾는다. Global Scope에까지 해당 변수를 찾지 못하면 `ReferenceError`가 난다.
 
-### Global 변수의 지옥.
+### Global 변수 지옥.
 
     // script A
     foo = '42';
@@ -23,9 +23,9 @@ JavaScript는 '{}' Block이 배배 꼬여 있어도 문법적으로는 잘 처�
     // script B
     var foo = '42'
 
-이 두 스크립트는 다르다. Script A는 *Global* Scope에 `foo`라는 변수를 정의하는 것이고 Script B는 *현* Scope에 변수 `foo`를 정의하는 것이다.
+이 두 스크립트는 전혀 다르다. Script A는 *Global* Scope에 `foo`라는 변수를 정의하는 것이고 Script B는 *현* Scope에 변수 `foo`를 정의하는 것이다.
 
-다시 말하지만, 이 둘은 전혀 다르고 `var`가 없는 것이 중요한 의미가 있다.
+다시 말하지만, 이 둘은 전혀 다르고 `var`가 없을 때 특별한 의미가 있다.
 
     // Global Scope
     var foo = 42;
@@ -36,7 +36,7 @@ JavaScript는 '{}' Block이 배배 꼬여 있어도 문법적으로는 잘 처�
     test();
     foo; // 21
 
-함수에서 `var` 구문을 빼버리면 Global Scope의 `foo`의 값을 바꿔버린다. '뭐 이게 뭐가 문제야'라고 생각될 수 있지만 수천 줄인 JavaScript 코드에서 `var`를 빼먹어서 생긴 버그를 해결하는 것은 정말 어렵다.
+Function에서 `var` 구문을 빼버리면 Global Scope의 `foo`의 값을 바꿔버린다. '뭐 이게 뭐가 문제야'라고 생각될 수 있지만 수천 줄인 JavaScript 코드에서 `var`를 빼먹어서 생긴 버그를 해결하는 것은 정말 어렵다.
 
     // Global Scope
     var items = [/* some list */];
@@ -47,7 +47,7 @@ JavaScript는 '{}' Block이 배배 꼬여 있어도 문법적으로는 잘 처�
     function subLoop() {
         // Scope of subLoop
         for(i = 0; i < 10; i++) { // var가 없다.
-            // 내가 for문도 하는데...
+            // 내가 for문도 해봐서 아는데...
         }
     }
 
@@ -55,7 +55,7 @@ subLoop이 Global 변수 `i`의 값을 변경해버리기 때문에 외부 Loop�
 
 ### Local 변수
 
-JavaScript에서 Local 변수를 정의하는 방법은 [함수 파라미터](#function.general)와 `var`로 정의한 변수뿐이다.
+JavaScript에서 Local 변수는 [Function 파라미터](#function.general)와 `var`로 정의한 변수뿐이다.
 
     // Global Scope
     var foo = 1;
@@ -63,7 +63,7 @@ JavaScript에서 Local 변수를 정의하는 방법은 [함수 파라미터](#f
     var i = 2;
 
     function test(i) {
-        // test 함수의 local Scope
+        // test Function의 local Scope
         i = 5;
 
         var foo = 3;
@@ -123,7 +123,7 @@ Block Scope이 없으므로 Loop이나 if의 Block 안에 있는 `var` 구문들
 
 원래 코드에서 `if` Block은 *Global 변수* `goo`를 바꾸는 것처럼 보였지만 Hoisting 후에는 *local 변수*를 바꾼다.
 
-*Hoisting*을 모르면 다음과 같은 코드는 `ReferenceError`가 날 것으로 생각할 것이다.
+*Hoisting*을 모르면 다음과 같은 코드는 `ReferenceError`를 낼 것으로 생각할 것이다.
 
     // SomeImportantThing이 초기화됐는지 검사한다.
     if (!SomeImportantThing) {
@@ -145,29 +145,29 @@ Block Scope이 없으므로 Loop이나 if의 Block 안에 있는 `var` 구문들
 
 JavaScript의 모든 Scope은 *현 객체*를 가리키는 [`this`](#function.this)를 가지고 있다. *Global Scope*에도 this가 있다.
 
-Function Scope에는 [`arguments`](#function.arguments)라는 변수가 하나 더 있다. 이 변수는 함수에 넘겨진 인자들이 담겨 있다.
+Function Scope에는 [`arguments`](#function.arguments)라는 변수가 하나 더 있다. 이 변수는 Function에 넘겨진 인자들이 담겨 있다.
 
 예를 들어 Function Scope에서 `foo`라는 변수에 접근할 때 JavaScript는 다음과 같은 순서로 찾는다.
 
  1. 해당 Scope에서 `var foo` 구문으로 선언된 것을 찾는다.
- 2. 함수 파라미터에서 `foo`라는 것을 찾는다.
- 3. 해당 함수 이름이 `foo`인지 찾는다.
+ 2. Function 파라미터에서 `foo`라는 것을 찾는다.
+ 3. 해당 Function 이름이 `foo`인지 찾는다.
  4. 상위 Scope으로 있는지 확인하고 있으면 **#1**부터 다시 한다.
  
 > **Note:** `arguments`라는 파라미터가 있으면 Function의 기본 객체인 `arguments`가 생성되지 않는다.
 
 ### Namespace
 
-JavaScript에서는 Global namespace 하나밖에 없어서 변수 이름이 중복되는 문제가 발생하기 쉽다. *Anonymous Wrappers*가 있어서 쉽게 피해갈 수 있다.
+JavaScript에서는 Global Namepspace 하나밖에 없어서 변수 이름이 중복되기 쉽다. 하지만 *Anonymous Wrappers*가 있어서 쉽게 피해갈 수 있다.
 
     (function() {
-        // 일종의 namespace라고 할 수 있다.
+        // 일종의 Namepspace라고 할 수 있다.
         
         window.foo = function() {
             // 이 Closure는 Global Scope에 노출된다.
         };
 
-    })(); // 함수를 정의하자마자 실행한다.
+    })(); // Function를 정의하자마자 실행한다.
 
 Unnamed Function은 [expressions](#function.general)이기 때문에 호출되려면 먼저 Evaluate돼야 한다.
 
@@ -184,6 +184,6 @@ Unnamed Function은 [expressions](#function.general)이기 때문에 호출되�
 
 ### 결론
 
-코드를 캡슐화할 때는 늘 *Anonymous Wrapper*로 namespace를 만들어 사용해야 한다. 이 Wrapper는 이름이 중복되는 것을 막아 주고 더 쉽게 모듈화할 수 있도록 해준다.
+코드를 캡슐화할 때는 늘 *Anonymous Wrapper*로 Namepspace를 만들어 사용해야 한다. 이 Wrapper는 이름이 중복되는 것을 막아 주고 더 쉽게 모듈화할 수 있도록 해준다.
 
-그리고 Global 변수를 사용하는 것은 악질 습관이다. 이유야 어쨌든 에러 나기 쉽고 관리하기 어렵다.
+그리고 Global 변수를 사용하는 것은 악질적인 습관이다. 이유야 어쨌든 에러 나기 쉽고 관리하기도 어렵다.

@@ -7,7 +7,7 @@ JavaScript는 비동기이기 때문에 `setTimeout`과 `setInterval` 로 함수
     function foo() {}
     var id = setTimeout(foo, 1000); // 0보다 큰 수를 반환한다.
 
-`setTimeout`을 호출하면 timeout의 ID를 반환하고 **대충** 1,000밀리 초 후에 `foo`를 실행시킨다. `foo`는 **딱 한 번만** 실행된다.
+`setTimeout`을 호출하면 timeout의 ID를 반환하고 **대충** 1,000밀리 초 후에 `foo`를 실행시킨다. `foo`는 **딱 한 번만** 실행한다.
 
 JavaScript 엔진의 단위 시간(timer resolution)에 따라서 코드를 실행시키고 단일 쓰레드인 JavaScript를 특정 코드가 블록 시켜 버릴 수도 있기 때문에 `setTimeout`으로 코드가 실행돼야 할 시간을 정해줘도 **정확하게 그 시간에 실행되지 않는다.**.
 

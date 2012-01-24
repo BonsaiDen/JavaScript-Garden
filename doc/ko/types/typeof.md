@@ -36,7 +36,7 @@ Class는 객체 내부에 있는 `[[Class]]` 프로퍼티의 값이다.
 
 ### 객체의 클래스
 
-표준에 의하면 `[[Class]]` 값을 얻는 방법은 `Object.prototype.toString`하나뿐이다.
+표준에 의하면 `[[Class]]` 값을 얻는 방법은 `Object.prototype.toString` 하나뿐이다.
 
     function is(type, obj) {
         var clas = Object.prototype.toString.call(obj).slice(8, -1);
@@ -56,8 +56,8 @@ Class는 객체 내부에 있는 `[[Class]]` 프로퍼티의 값이다.
 
 이것은 `foo`가 정의됐는지 아닌지를 확인해준다. 정의되지 않은 변수에 접근하면 `ReferenceError` 나는데 이것을 방지할 수 있다. `typeof`가 유용한 건 이때뿐이다.
 
-### In Conclusion
+### 결론
 
 객체의 타입을 검사하려면 `Object.prototype.toString`를 사용해야 한다. 다른 방법은 신뢰할 수 없다. 위 표에서 보여준 것처럼 typeof가 반환하는 값은 표준에 나와 있지 않기 때문에 구현마다 다르다.
 
-변수가 정의됐는지 확인할 때는 빼고 **목숨을 걸고** `typeof`를 못 사용하게 해야 한다.
+변수가 정의됐는지 확인할 때는 빼고 **목숨을 걸고** `typeof`를 사용하지 못하게 해야 한다.

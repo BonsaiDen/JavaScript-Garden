@@ -27,7 +27,7 @@
 
 ### 가짜 `eval`
 
-[timeout functions](#other.timeouts)인 `setTimeout`과 `setInterval`은 첫 번째 인자로 스트링을 입력받을 수 있다. 이 경우에는 `eval`을 직접 호출하는 것이 아녀서 항상 global scope에서 실행된다.
+[`setTimeout`과 `setInterval`](#other.timeouts)은 첫 번째 인자로 스트링을 입력받을 수 있다. 이 경우에는 `eval`을 직접 호출하는 것이 아니라서 항상 Global Scope에서 실행된다.
 
 ### 보안 이슈
 
@@ -35,4 +35,4 @@
 
 ### 결론
 
-`eval`은 사용하지 않는 게 좋다. `eval`을 사용하는 모든 코드는 성능, 보안, 버그의 문제를 일으킬 수 있다. 만약 `eval`이 필요해지면 *설계를 변경*하여 `eval`이 필요 없게 만들어야 한다.
+`eval`은 사용하지 않는 게 좋다. `eval`을 사용하는 모든 코드는 성능, 보안, 버그 문제를 일으킬 수 있다. 만약 `eval`이 필요해지면 *설계를 변경*하여 `eval`이 필요 없게 만들어야 한다.
