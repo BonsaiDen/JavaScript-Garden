@@ -4,9 +4,9 @@ JavaScript에서 객체를 비교하는 방법은 두 가지다.
 
 ### Equality Operator
 
-`==`가 equality operator이다.
+`==`가 Equality Operator이다.
 
-JavaScript는 weak typing을 따르기 때문에 equality operator가 비교할 때 두 객체의 자료형을 **강제로** 변환한다.
+JavaScript는 Weak Typing을 따르기 때문에 equality operator가 비교할 때 두 객체의 자료형을 **강제로** 변환한다.
 
     ""           ==   "0"           // false
     0            ==   ""            // true

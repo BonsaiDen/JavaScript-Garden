@@ -1,17 +1,17 @@
 ## `delete`
 
-간단히 말해서 global 변수, 함수, 등은 `DontDelete` 속성이기 때문에 삭제 못 한다.
+간단히 말해서 global 변수, Function, 등은 `DontDelete` 속성이기 때문에 delete하지 못 한다.
 
-### Global 코드와 함수 코드
+### Global 코드와 Function 코드
 
-Global이나 Function scope에 정의된 함수나 변수는 모두 Activation 객체나 Global 객체의 프로퍼티다. 이 프로퍼티는 모두 `DontDelete`속성을 가진다. Global이나 Function 코드에서 변수나 함수의 정의하면 항상 `DontDelete` 프로퍼티로 만들어진다. 그러니까 삭제할 수 없다:
+Global이나 Function Scope에 정의한 Fuction이나 변수는 모두 Activation 객체나 Global 객체의 프로퍼티다. 이 프로퍼티는 모두 `DontDelete` 속성을 가진다. Global이나 Function 코드에서 변수나 Function의 정의하면 항상 `DontDelete` 프로퍼티로 만들어진다. 그러니까 delete할 수 없다:
 
     // Global 변수:
     var a = 1; // DontDelete가 설정된다.
     delete a; // false
     a; // 1
 
-    // 함수:
+    // Function:
     function f() {} // DontDelete가 설정된다.
     delete f; // false
     typeof f; // "function"
@@ -23,7 +23,7 @@ Global이나 Function scope에 정의된 함수나 변수는 모두 Activation �
 
 ### Explicit 프로퍼티
 
-다음 예제에서 만드는 property는 정상적으로 지워진다. 이런 걸 Explicit 프로퍼티라고 부른다:
+다음 예제에서 만드는 프로퍼티는 delete할 수 있다. 이런 걸 Explicit 프로퍼티라고 부른다:
 
     // Explicit 프로퍼티를 만든다:
     var obj = {x: 1};
@@ -33,24 +33,24 @@ Global이나 Function scope에 정의된 함수나 변수는 모두 Activation �
     obj.x; // undefined
     obj.y; // undefined
 
-`obj.x`와 `obj.y`는 `DontDelete` 속성이 아녀서 삭제된다. 그러나 다음과 같은 코드도 잘 동작하기 때문에 헷갈린다.:
+`obj.x`와 `obj.y`는 `DontDelete` 속성이 아니라서 delete할 수 있다. 그러나 다음과 같은 코드도 잘 동작하기 때문에 헷갈린다:
 
-    // IE를 빼고 잘 동작한다.:
+    // IE를 빼고 잘 동작한다:
     var GLOBAL_OBJECT = this;
     GLOBAL_OBJECT.a = 1;
-    a === GLOBAL_OBJECT.a; // true - 진짜 Global 변순지 확인하는 것
+    a === GLOBAL_OBJECT.a; // true - 진짜 Global 변수인지 확인하는 것
     delete GLOBAL_OBJECT.a; // true
     GLOBAL_OBJECT.a; // undefined
 
-[`this`](#function.this)가 Global 객체를 가리키는 것을 이용해서 명시적으로 프로퍼티 `a`를 선언하면 삭제할 수 있다. 이런 꼼수가 가능하다. 
+[`this`](#function.this)가 Global 객체를 가리키는 것을 이용해서 명시적으로 프로퍼티 `a`를 선언하면 삭제할 수 있다. 이것은 꼼수다.
 
 IE (적어도 6-8)는 버그가 있어서 안 된다.
 
-### arguments와 함수의 기본 프로퍼티
+### Argument들과 Function의 기본 프로퍼티
 
-함수의 [`arguments` 객체](#function.arguments)와 built-in 프로퍼티도 `DontDelete` 속성이다.
+Function의 [`arguments` 객체](#function.arguments)와 기본 프로퍼티도 `DontDelete` 속성이다.
 
-    // 함수의 arguments와 프로퍼티:
+    // Function의 arguments와 프로퍼티:
     (function (x) {
     
       delete arguments; // false
@@ -69,7 +69,7 @@ IE (적어도 6-8)는 버그가 있어서 안 된다.
 
 (역주, Host 객체들은 document같은 DOM 객체를 말한다.)
 
-Host 객체를 delete하면 어떻게 될지 알 수 없다. 어떻게 Host 객체를 delete해야 하는지 표준에 정의되지 않았다.
+Host 객체를 delete하면 어떻게 될지 알 수 없다. 표준에는 어떻게 Host 객체를 delete해야 하는지 정의하지 않았다.
 
 ### 결론
 

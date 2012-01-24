@@ -49,7 +49,7 @@ JavaScript 객체는 name/value 쌍으로 된 프로퍼티로 구성되기 때�
 
 ### 프로퍼티 삭제
 
-객체의 프로퍼티를 삭제하는 방법은 `delete`를 사용하는 것뿐이다. 프로퍼티에 `undefined`나 `null`을 할당하는 것은 프로퍼티를 삭제하는 것이 아니라 프로퍼티에 할당된 *value*만 지우고 *key*는 그대로 두는 것이다.
+객체의 프로퍼티는 `delete`로만 삭제할 수 있다. 프로퍼티에 `undefined`나 `null`을 할당하는 것은 프로퍼티를 삭제하는 것이 아니라 프로퍼티에 할당된 *value*만 지우고 *key*는 그대로 두는 것이다.
 
     var obj = {
         bar: 1,
@@ -76,7 +76,7 @@ JavaScript 객체는 name/value 쌍으로 된 프로퍼티로 구성되기 때�
         delete: 'I am a keyword, so me too' // SyntaxError가 난다.
     };
 
-프로퍼티의 key에 문자열이나 스트링을 사용할 수 있다. 이 부분도 JavaScript 파서가 좀 잘못 설계된 거다. ECMAScript 5 이전에는 `SystaxError`가 났었다.
+프로퍼티의 key에 문자열이나 스트링을 사용할 수 있다. 이 부분도 JavaScript 파서의 설계 오류다. ECMAScript 5 이전에는 `SystaxError`가 났었다.
 
 이 에러는 `delete`가 키워드이기 때문에 발생하는 것이다. key를 스트링 리터럴로 정의하면 JavaScript 엔진은 언제나 잘 해석한다.
 

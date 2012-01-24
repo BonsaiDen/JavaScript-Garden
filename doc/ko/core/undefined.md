@@ -25,7 +25,7 @@ global 변수 `undefined`는 `undefined`라는 객체를 가리키는 것뿐이�
 
 그래서 `undefined`와 비교하려면 먼저 `undefined`의 값을 찾아와야 한다.
 
-보통 `undefined` 변수가 바뀌어 있을 때를 대비해서 undefined라는 변수를 인자로 받는 [anonymous wrapper](#function.scopes)로 감싸고 아무런 인자를 넘기지 않는 꼼수를 사용한다. 
+`undefined` 변수가 바뀔 때를 대비해서 `undefined`라는 변수를 인자로 받는 [anonymous wrapper](#function.scopes)로 감싸고 아무런 인자를 넘기지 않는 꼼수를 사용한다. 
 
     var undefined = 123;
     (function(something, foo, undefined) {
@@ -34,7 +34,7 @@ global 변수 `undefined`는 `undefined`라는 객체를 가리키는 것뿐이�
 
     })('Hello World', 42);
 
-wrapper 안에서 변수를 새로 정의하는 방법으로도 같은 효과를 볼 수 있다.
+wrapper 안에 변수를 새로 정의하는 방법으로도 같은 효과를 볼 수 있다.
 
     var undefined = 123;
     (function(something, foo) {
@@ -47,6 +47,6 @@ wrapper 안에서 변수를 새로 정의하는 방법으로도 같은 효과를
 
 ### `Null` 객체의 용도
 
-JavaScript 언어에서는 `undefined`를 다른 언어에서 *null*을 사용하듯이 쓰고 진짜 `null`은 그냥 다른 데이터 타입 중 하나일 뿐이다.
+JavaScript 언어에서는 `undefined`를 다른 언어의 *null* 처럼 쓴다. 진짜 `null`은 그냥 데이터 타입 중 하나일 뿐이지 더도덜도 아니다.
 
-JavaScript 내부적인 곳에 사용하는 경우가 아니면 null 대신 `undefined`를 사용해도 된다(`Foo.prototype = null`같이 프로토타입 체인을 끊을 때는 null을 사용한다).
+JavaScript를 깊숙히 건드리는 것이 아니면 null 대신 `undefined`를 사용해도 된다(`Foo.prototype = null`같이 프로토타입 체인을 끊을 때는 null을 사용한다).

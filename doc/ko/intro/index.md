@@ -1,8 +1,8 @@
 ## Intro
 
-**JavaScript Garden**은 JavaScript 언어의 핵심에 대한 글을 모은 것이다. 이 글은 초보자들이 JavaScript 익히면서 자주 겪는 실수, 미묘한 버그, 성능 이슈, 나쁜 습관들 줄일 수 있도록 도와줄 것이다.
+JavaScript 언어의 핵심에 대한 내용을 모아 **JavaScript Garden**을 만들어 었다. 이 글이 초보자가 JavaScript 익히면서 자주 겪는 실수, 미묘한 버그, 성능 이슈, 나쁜 습관들 줄일 수 있도록 도와줄 것이다.
 
-JavaScript Garden은 단순히 JavaScript를 설명하려 만들지 않았다. 그래서 이 글에서 설명하는 주제들을 이해하려면 반드시 언어에 대한 기본 지식이 필요하다. 먼저 Mozilla Developer Network에 있는 [문서][1]로 JavaScript 언어를 공부하기 바란다.
+JavaScript Garden은 단순히 JavaScript 언어 자체를 설명하려 만들지 않았다. 그래서 이 글에서 설명하는 주제들을 이해하려면 반드시 언어에 대한 기본 지식이 필요하다. 먼저 Mozilla Developer Network에 있는 [문서][1]로 JavaScript 언어를 공부하기 바란다.
 
 ## 저자들
 
@@ -24,7 +24,7 @@ JavaScript Garden은 Github에서 호스팅하고 있고 [Cramer Development][7]
 
 ## 저작권
 
-JavaScript Garden은 [MIT license][9]를 따르고 [GitHub][10]에서 호스팅하고 있다. 문제를 발견하면 [이슈를 보고][11]하거나 수정해서 Pull Request를 하라. 아니면 Stack Overflow 채팅 사이트의 [Javascript room][12]에서 우리를 찾아도 된다.
+JavaScript Garden은 [MIT license][9]를 따르고 [GitHub][10]에서 호스팅하고 있다. 문제를 발견하면 [이슈를 보고][11]하거나 수정해서 Pull Request를 하라. 아니면 Stack Overflow 채팅 사이트의 [Javascript room][12]에서 우리를 찾으라.
 
 [1]: https://developer.mozilla.org/en/JavaScript/Guide
 [2]: http://stackoverflow.com/
