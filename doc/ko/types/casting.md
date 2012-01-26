@@ -1,6 +1,6 @@
 ## Type Casting
 
-JavaScript는 weak typing 언어이기 때문에 필요할 때마다 알아서 타입을 변환한다.
+JavaScript는 Weak Typing 언어이기 때문에 필요할 때마다 알아서 타입을 변환한다.
 
     // 다음은 모두 true
     new Number(10) == 10; // Number.toString()이 호출되고 
@@ -37,7 +37,7 @@ JavaScript는 weak typing 언어이기 때문에 필요할 때마다 알아서 �
 
     '' + 10 === '10'; // true
 
-숫자를 빈 스트링과 더하면 쉽게 스트링으로 변환된다.
+숫자를 빈 스트링과 더하면 쉽게 스트링으로 변환할 수 있다.
 
 ### 숫자로 변환하기
 

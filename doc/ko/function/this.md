@@ -14,7 +14,7 @@ Global Scope에서도 this가 사용될 수 있고 이때에는 *Global* 객체�
 
 이때에도 `this`는 *Global* 객체를 가리킨다.
 
-> **ES5 Note:** strict 모드에서는 더는 Global 객체를 가리키지 않고 대신 `undefined`를 가리킨다.
+> **ES5 Note:** strict 모드에서 더는 Global 객체를 가리키지 않고 대신 `undefined`를 가리킨다.
 
 ### 메소드로 호출할 때
 
