@@ -52,7 +52,7 @@ Tästä seuraa, että muodollisen parametrin arvon muuttaminen muuttaa myös `ar
 
     function foo(a, b, c) {
         arguments[0] = 2;
-        a; // 2                                                           
+        a; // 2
 
         b = 4;
         arguments[1]; // 4
