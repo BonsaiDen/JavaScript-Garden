@@ -94,8 +94,16 @@ it is necessary to use brute force in order to achieve this functionality.
         clearTimeout(i);
     }
 
-There might still be timeouts that are unaffected by this arbitrary number;
-therefore, is is instead recommended to keep track of all the timeout IDs, so
+But there might still be timeouts that are unaffected by this arbitrary number. Another way of doing this is to consider that the ID given to a timeout is incremented by one everytime you call `setTimeout`.
+
+    // clear "all" timeouts
+    var biggestTimeoutId = window.setTimeout(function(){}, 1),
+    i;
+    for(i = 1; i <= biggestTimeoutId; i++) {
+        clearTimeout(i);
+    }
+
+But even though this works on all main browsers nowadays, it isn't specified that the IDs should be ordered that way and it may change. Therefore, it is instead recommended to keep track of all the timeout IDs, so
 they can be cleared specifically.
 
 ### Hidden use of `eval`
