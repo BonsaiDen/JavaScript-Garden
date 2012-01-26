@@ -19,11 +19,13 @@ overwritten.
 Some examples for when the value `undefined` is returned:
 
  - Accessing the (unmodified) global variable `undefined`.
+ - Accessing a declared *but not* yet initialized variable
  - Implicit returns of functions due to missing `return` statements.
  - `return` statements which do not explicitly return anything.
  - Lookups of non-existent properties.
  - Function parameters which do not had any explicit value passed.
  - Anything that has been set to the value of `undefined`.
+ - Any expression in the form of `void(expression)`
 
 ### Handling Changes to the Value of `undefined`
 

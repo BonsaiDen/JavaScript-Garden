@@ -44,6 +44,10 @@ necessary to use an *external* `hasOwnProperty` in order to get correct results.
     // Use another Object's hasOwnProperty and call it with 'this' set to foo
     ({}).hasOwnProperty.call(foo, 'bar'); // true
 
+    // It's also possible use the hasOwnProperty property from the Object property for this purpuse
+    Object.prototype.hasOwnProperty.call(obj, 'bar'); // true
+
+
 ### In Conclusion
 
 When checking for the existence of a property on a object, `hasOwnProperty` is 

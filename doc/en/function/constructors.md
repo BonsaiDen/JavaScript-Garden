@@ -4,7 +4,7 @@ Constructors in JavaScript are yet again different from many other languages. An
 function call that is preceded by the `new` keyword acts as a constructor.
 
 Inside the constructor - the called function - the value of `this` refers to a 
-newly created `Object`. The [`prototype`](#object.prototype) of this **new** 
+newly created object. The [prototype](#object.prototype) of this **new** 
 object is set to the `prototype` of the function object that was invoked as the
 constructor.
 

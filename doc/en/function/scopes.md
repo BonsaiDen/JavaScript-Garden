@@ -2,7 +2,7 @@
 
 Although JavaScript deals fine with the syntax of two matching curly
 braces for blocks, it does **not** support block scope; hence, all that is left 
-is in the language is *function scope*.
+in the language is *function scope*.
 
     function test() { // a scope
         for(var i = 0; i < 10; i++) { // not a scope
@@ -213,12 +213,14 @@ being callable, they must first be evaluated.
     ) // and return the function object
     () // call the result of the evaluation
 
-There are other ways for evaluating and calling the function expression; which, 
+There are other ways for evaluating and directly calling the function expression; which, 
 while different in syntax, do behave the exact same way.
 
-    // Two other ways
-    +function(){}();
+    // A few other styles for directly invoking the 
+    !function(){}()
+    +function(){}()
     (function(){}());
+    // and so on...
 
 ### In Conclusion
 
