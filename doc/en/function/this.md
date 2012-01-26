@@ -46,7 +46,7 @@ When using the `call` or `apply` methods of `Function.prototype`, the value of
 `this` inside the called function gets **explicitly set** to the first argument 
 of the corresponding function call.
 
-As a result, the above example the *method case* does **not** apply, and `this` 
+As a result, in the above example the *method case* does **not** apply, and `this` 
 inside of `foo` will be set to `bar`.
 
 > **Note:** `this` **cannot** be used to refer to the object inside of an `Object`
