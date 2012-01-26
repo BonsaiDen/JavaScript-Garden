@@ -14,7 +14,7 @@ kapsamı **bulunmaz**; bu nedenle, dilde sadece *fonksiyon kapsamı* mevcuttur.
 > kullanıldığında `{...}` notasyonu bir nesne değişmezi olarak **değil**
 > blok ifade olarak değerlendirilir. Bu özellik 
 > [otomatik noktalı virgül ilavesi](#core.semicolon) ile birleştiğinde fark
-> edilmesizor hatalara neden olabilir.
+> edilmesi zor hatalara neden olabilir.
 
 JavaScript'te isim uzayları kavramı da bulunmaz, tanımlanan herşey
 *genel olarak paylaşılmış* tek bir isim uzayının içindedir.
