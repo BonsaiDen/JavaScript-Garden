@@ -2,7 +2,7 @@
 
 JavaScript에서 생성자는 다른 언어들과 다르게 `new` 키워드로 호출되는 함수가 생성자다.
 
-어쨌든 생성자로 호출된 함수의 this는 막 만들어진 객체를 참조한다. **막 만든** 객체의 [`prototype`](#object.prototype)에는 생성자의 prototype이 할당된다.
+어쨌든 생성자로 호출된 함수의 this는 막 만들어진 객체를 참조한다. **막 만든** 객체의 [prototype](#object.prototype)에는 생성자의 prototype이 할당된다.
 
 생성자에 `return` 구문이 없으면 this가 가리키는 객체를 반환한다.
 

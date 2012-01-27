@@ -61,14 +61,23 @@ JavaScript 엔진의 단위 시간(timer resolution)에 따라서 코드를 실�
 
 ### timeout을 전부 없애기
 
-등록한 timeout과 interval을 한꺼번에 삭제하는 메소드는 없다. 구현해서 사용해야 한다.
+등록한 timeout과 interval을 한꺼번에 제거하는 메소드는 없다. 구현해서 사용해야 한다.
 
     // clear "all" timeouts
     for(var i = 1; i < 1000; i++) {
         clearTimeout(i);
     }
 
-Id가 1부터 1000 사이에 있는 timeout들을 삭제했지만, 그 외의 것은 아직 남아있다. 완벽하게 구현하려면 만들어진 timeout id를 모두 저장했다가 삭제해야 한다.
+Id가 1부터 1000 사이에 있는 timeout들을 제거했지만, 그 외의 것은 아직 남아있다. 또 다른 방법이 있다. `setTimeout`은 항상 호출될 때마다 전보다 1만큼 큰 수를 ID로 반환한다. 이 점을 이용해 1부터 가장최근 ID까지 모두 삭제할 수 있다.
+
+    // clear "all" timeouts
+    var biggestTimeoutId = window.setTimeout(function(){}, 1),
+    i;
+    for(i = 1; i <= biggestTimeoutId; i++) {
+        clearTimeout(i);
+    }
+
+이 방법은 모든 주요 브라우저에서 문제없이 잘 동작한다. 하지만 ID가 항상 순차적이어야 한다고 표준에 명시된 것이 아니다. 그러므로 timeout ID를 모두 저장했다가 삭제하는 것이 가장 안전하다. 그러면 전부 깨끗하게 제거할 수 있다.
 
 ### 숨겨진 `eval`
 

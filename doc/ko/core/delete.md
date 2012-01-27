@@ -67,7 +67,7 @@ Function의 [`arguments` 객체](#function.arguments)와 기본 프로퍼티도 
 
 ### Host 객체
 
-(역주, Host 객체들은 document같은 DOM 객체를 말한다.)
+> **역주:** Host 객체는 document같은 DOM 객체를 말한다.
 
 Host 객체를 delete하면 어떻게 될지 알 수 없다. 표준에는 어떻게 Host 객체를 delete해야 하는지 정의하지 않았다.
 
