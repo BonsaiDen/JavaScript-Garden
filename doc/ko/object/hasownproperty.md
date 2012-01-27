@@ -34,6 +34,10 @@ JavaScript는 `hasOwnProperty` 프로퍼티도 보호해주지 않는다. 그래
     // 다른 객체의 hasOwnProperty를 사용하여 foo 객체의 프로퍼티 유무를 확인한다.
     ({}).hasOwnProperty.call(foo, 'bar'); // true
 
+    // Object에 원래 있는 hasOwnProperty를 사용해도 된다.
+    Object.prototype.hasOwnProperty.call(obj, 'bar'); // true
+
+
 ### 결론
 
 객체에 프로퍼티가 있는지 `hasOwnProperty`로만 확인할 수 있다. [`for in` loop](#object.forinloop)은 항상 `hasOwnProperty`와 함께 사용해야 한다. 네이티브 객체의 [프로토타입](#object.prototype)을 확장하는 사태가 일어나도 안전하게 지켜줄 것이다.

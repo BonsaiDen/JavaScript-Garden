@@ -176,11 +176,13 @@ Unnamed Function은 [expressions](#function.general)이기 때문에 호출되�
     ) // 그리고 Function 객체를 반환한다.
     () // Evaluation된 결과를 호출한다.
 
-같은 표기법이 두 가지 더 있다. 문법은 다르지만 똑같다.
+Function을 Evaluate하고 바로 호출하는 방법이 몇가지 더 있다. 문법은 다르지만 똑같다.
 
-    // 두 가지 다른 방법
+    // Fucntion을 Evaluate하자마자 호출하는 방법들...
+    !function(){}();
     +function(){}();
     (function(){}());
+    // 등등...
 
 ### 결론
 
