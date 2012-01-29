@@ -1,7 +1,6 @@
-## The `delete` Operator
+## `delete`演算子
 
-In short, it's *impossible* to delete global variables, functions and some other
-stuff in JavaScript which have a `DontDelete` attribute set.
+端的に言って、JavaScriptの関数やその他の要素は`DontDelete`属性が設定されているので、グローバル変数を消去する事は*不可能*です。
 
 ### Global code and Function code
 
