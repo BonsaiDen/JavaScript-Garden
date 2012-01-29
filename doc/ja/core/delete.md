@@ -2,26 +2,21 @@
 
 端的に言って、JavaScriptの関数やその他の要素は`DontDelete`属性が設定されているので、グローバル変数を消去する事は*不可能*です。
 
-### Global code and Function code
+### グローバルコードと関数コード
 
-When a variable or a function is defined in a global 
-or a [function scope](#function.scopes) it is a property of either 
-Activation object or Global object. Such properties have a set of attributes, 
-one of these is `DontDelete`. Variable and function declarations in global 
-and function code always create properties with `DontDelete`, therefore 
-cannot be deleted.
+変数や、関数がグローバルまたは[関数スコープ](#function.scopes)で定義された時は、そのプロパティは有効なオブジェクトかグローバルオブジェクトになります。このようなプロパティは属性のセットを持っていますが、それらの内の1つが`DontDelete`になります。変数や関数がグローバルや関数コードで宣言されると、常に`DontDelete`属性を作るために、消去できません。
 
-    // global variable:
-    var a = 1; // DontDelete is set
+    // グローバル変数:
+    var a = 1; // DontDelete属性が設定される
     delete a; // false
     a; // 1
 
-    // normal function:
-    function f() {} // DontDelete is set
+    // 通常関数:
+    function f() {} // DontDelete属性が設定される
     delete f; // false
     typeof f; // "function"
 
-    // reassigning doesn't help:
+    // 再代入も役に立たない:
     f = 1;
     delete f; // false
     f; // 1
