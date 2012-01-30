@@ -138,7 +138,7 @@ function that will get called by either of the timeout functions.
     function foo(a, b, c) {}
     
     // NEVER use this
-    setTimeout('foo(1,2, 3)', 1000)
+    setTimeout('foo(1, 2, 3)', 1000)
 
     // Instead use an anonymous function
     setTimeout(function() {
