@@ -2,7 +2,7 @@
 
 Functions in JavaScript are first class objects. That means they can be 
 passed around like any other value. One common use of this feature is to pass
-an *anonymous function* as a callback to another, possibly asynchronous function.
+an *anonymous function* as a callback to another, possibly an asynchronous function.
 
 ### The `function` Declaration
 

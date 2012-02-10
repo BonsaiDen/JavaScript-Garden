@@ -51,10 +51,10 @@ In the example above `obj.x` and `obj.y` can be deleted because they have no
     GLOBAL_OBJECT.a; // undefined
 
 Here we use a trick to delete `a`. [`this`](#function.this) here refers 
-to the Global object and we explicitly declare variable `a` as it's property 
+to the Global object and we explicitly declare variable `a` as its property 
 which allows us to delete it.
 
-IE (at least 6-8) has some bugs, so code above doesn't work.
+IE (at least 6-8) has some bugs, so the code above doesn't work.
 
 ### Function arguments and built-ins
 

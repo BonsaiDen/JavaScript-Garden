@@ -1,7 +1,7 @@
 ## Array Iteration and Properties
 
 Although arrays in JavaScript are objects, there are no good reasons to use
-the [`for in loop`](#object.forinloop) in for iteration on them. In fact, there 
+the [`for in`](#object.forinloop) loop. In fact, there 
 are a number of good reasons **against** the use of `for in` on arrays.
 
 > **Note:** JavaScript arrays are **not** *associative arrays*. JavaScript only 
