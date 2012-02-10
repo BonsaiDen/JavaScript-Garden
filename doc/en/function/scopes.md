@@ -153,7 +153,7 @@ has been applied.
 Without the knowledge about *hoisting*, the below code might seem to raise a 
 `ReferenceError`.
 
-    // check whether SomeImportantThing has been initiliazed
+    // check whether SomeImportantThing has been initialized
     if (!SomeImportantThing) {
         var SomeImportantThing = {};
     }
@@ -163,7 +163,7 @@ moved to the top of the *global scope*.
 
     var SomeImportantThing;
 
-    // other code might initiliaze SomeImportantThing here, or not
+    // other code might initialize SomeImportantThing here, or not
 
     // make sure it's there
     if (!SomeImportantThing) {

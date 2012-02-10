@@ -28,7 +28,7 @@ literals act as objects too.
 Objects in JavaScript can also be used as a [*Hashmap*][1]; they mainly consist 
 of named properties mapping to values.
 
-Using a object literal - `{}` notation - it is possible to create a 
+Using an object literal - `{}` notation - it is possible to create a 
 plain object. This new object [inherits](#object.prototype) from `Object.prototype` and 
 has no [own properties](#object.hasownproperty) defined on it.
 
@@ -42,7 +42,7 @@ has no [own properties](#object.hasownproperty) defined on it.
 The properties of an object can be accessed in two ways, via either the dot
 notation or the square bracket notation.
     
-    var foo = {name: 'Kitten'}
+    var foo = {name: 'kitten'}
     foo.name; // kitten
     foo['name']; // kitten
     
