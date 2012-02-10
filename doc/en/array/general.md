@@ -45,10 +45,10 @@ elements that are contained in the array, the *setter* can be used to
     foo; // [1, 2, 3]
 
     foo.length = 6;
-    foo; // [1, 2, 3]
+    foo.push(4);
+    foo; // [1, 2, 3, undefined, undefined, undefined, 4]
 
-Assigning a smaller length does truncate the array, but increasing the length 
-does not have any effect on the array.
+Assigning a smaller length truncates the array. Increasing it creates a sparse array.
 
 ### In Conclusion
 
