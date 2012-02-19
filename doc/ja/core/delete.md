@@ -21,12 +21,11 @@
     delete f; // false
     f; // 1
 
-### Explicit properties
+### 明示的なプロパティ
 
-There are things which can be deleted normally: these are explicitly set 
-properties.
+普通にプロパティを消去できる方法が存在します：プロパティを明示的に設定するのです。
 
-    // explicitly set property:
+    // プロパティを明示的に設定する
     var obj = {x: 1};
     obj.y = 2;
     delete obj.x; // true
@@ -34,21 +33,19 @@ properties.
     obj.x; // undefined
     obj.y; // undefined
 
-In the example above `obj.x` and `obj.y` can be deleted because they have no 
-`DontDelete` atribute. That's why an example below works too.
+上記の例の中で、`obj.x`と`obj.y`はそれぞれ`DontDelete`属性が無い為に削除できます。これが下記の例でも動作する理由です。
 
-    // this works fine, except for IE:
+    // IE以外では、これも動作する
     var GLOBAL_OBJECT = this;
     GLOBAL_OBJECT.a = 1;
-    a === GLOBAL_OBJECT.a; // true - just a global var
+    a === GLOBAL_OBJECT.a; // true - ただのグローバルのvar
     delete GLOBAL_OBJECT.a; // true
     GLOBAL_OBJECT.a; // undefined
 
-Here we use a trick to delete `a`. [`this`](#function.this) here refers 
-to the Global object and we explicitly declare variable `a` as it's property 
-which allows us to delete it.
+ここでは`a`. [`this`](#function.this)を消す為にグローバルオブジェクトと明示的に宣言した`a`をそのプロパティとして参照させて、消去する事を許可するトリックを使います。
 
-IE (at least 6-8) has some bugs, so code above doesn't work.
+IE(最低でも6-8で)は多少のバグがある為に、上記のコードは動作しません。
+
 
 ### Function arguments and built-ins
 
