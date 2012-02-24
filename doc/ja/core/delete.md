@@ -47,24 +47,23 @@
 IE(最低でも6-8で)は多少のバグがある為に、上記のコードは動作しません。
 
 
-### Function arguments and built-ins
+### 関数の引数と組み込み引数
 
-Functions' normal arguments, [`arguments` object](#function.arguments) 
-and built-in properties also have `DontDelete` set.
+関数の通常の引数である、[`arguments` object](#function.arguments)と組み込みのプロパティもまた、`DontDelete`が設定されています。
 
-    // function arguments and properties:
+    // 関数の引数とプロパティ:
     (function (x) {
-    
+
       delete arguments; // false
       typeof arguments; // "object"
-      
+
       delete x; // false
       x; // 1
-      
+
       function f(){}
       delete f.length; // false
       typeof f.length; // "number"
-      
+
     })(1);
 
 ### Host objects
