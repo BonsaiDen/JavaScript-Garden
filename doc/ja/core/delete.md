@@ -68,9 +68,8 @@ IE(最低でも6-8で)は多少のバグがある為に、上記のコードは�
 
 ### ホストオブジェクト
 
-`delete`演算子の振る舞いはホストオブジェクトにとって予測不可能になりかねません。仕様によりホストオブジェクトは、あらゆる振る舞いの実行が許可されている為です。
+`delete`演算子の挙動はホストオブジェクトにとって予測不可能になりかねません。仕様によりホストオブジェクトは、あらゆる挙動の実行が許可されている為です。
 
-### In conclusion
+### 終わりに
 
-`delete` operator often has an unexpected behaviour and can be safely used 
-only for dealing with explicitly set properties on normal objects.
+`delete`演算子は、しばしば予期せぬ挙動をします。唯一安全な仕様方法は通常のオブジェクトに明示的に設定されたプロパティを扱う場合だけです。
