@@ -66,10 +66,9 @@ IE(最低でも6-8で)は多少のバグがある為に、上記のコードは�
 
     })(1);
 
-### Host objects
-    
-Behaviour of `delete` operator can be unpredictable for hosted objects. Due to 
-specification, host objects are allowed to implement any kind of behavior. 
+### ホストオブジェクト
+
+`delete`演算子の振る舞いはホストオブジェクトにとって予測不可能になりかねません。仕様によりホストオブジェクトは、あらゆる振る舞いの実行が許可されている為です。
 
 ### In conclusion
 
