@@ -80,7 +80,7 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 `arguments` 对象总会被创建，除了两个特殊情况 - 作为局部变量声明和作为形式参数。
 而不管它是否有被使用。
 
-`arguments` 的 *getters* 和 *setters* 方法总会被创佳；因此使用 `arguments` 对性能不会有什么影响。
+`arguments` 的 *getters* 和 *setters* 方法总会被创建；因此使用 `arguments` 对性能不会有什么影响。
 除非是需要对 `arguments` 对象的属性进行多次访问。
 
 > **ES5 提示:** 这些 *getters* 和 *setters* 在严格模式下（strict mode）不会被创建。
