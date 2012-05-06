@@ -1,6 +1,6 @@
 ## `undefined`と`null`
 
-JavaScriptは`nothing`を表す2つの別個の値を持っています。`undefined`はこれら2つの内より便利な存在です。
+JavaScriptは`nothing`を表す2つの別個の値を持っています。これら2つの内で`undefined`はより便利な存在です。
 
 ### `undefined`の値
 
@@ -11,14 +11,14 @@ JavaScriptは`nothing`を表す2つの別個の値を持っています。`undef
 > **ES5での注意点:** ECMAScript 5での`undefined`は **もはや** strict modeでは *書き変えられない*
 > ようになっています。しかし、この名前は`undefined`という名前の関数の例に痕跡が見られるだけです。
 
-`undefined`が帰される時の例をいくつか挙げます。
+`undefined`が返される時の例をいくつか挙げます。
 
  - (未定義の)グローバル変数`undefined`にアクセスした時
  - `return`文が無い為に、暗黙のうちに関数が返された時
  - 何も返されない`return`がある時
  - 存在しないプロパティを探索する時
  - 関数のパラメーターで明示的な値が何も無い時
- - 全ての`undefined`が設定された値
+ - `undefined`が設定された全ての値
 
 ### `undefined`の値に変更する処理
 

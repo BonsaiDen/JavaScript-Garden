@@ -29,7 +29,7 @@
     {}                  Object     object
     new Object()        Object     object
 
-上記のテーブルの*Type*は値を参照しており、`typeof`演算子が返ってきます。はっきりと分かるように、この値はどれでも一貫しています。
+上記のテーブルにおいて*Type*は`typeof`演算子が返す値を参照しています。はっきりと分かるように、この値はどれでも一貫しています。
 
 *Class*はオブジェクト内部の`[[Class]]`プロパティの値を参照しています。
 
@@ -55,7 +55,7 @@
 
 > **ES5での注意点:** 便宜上、ECMAScript 5では
 > `Object.prototype.toString`の
-> `null`と`undefined`は`Object`から
+> `null`と`undefined`の返す値は`Object`から
 > `Null`と`Undefined`に**変更され**ました。
 
 ### 未定義変数のテスト
