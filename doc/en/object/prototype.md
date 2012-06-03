@@ -4,16 +4,16 @@ JavaScript does not feature a classical inheritance model; instead, it uses a
 *prototypal* one. 
 
 While this is often considered to be one of JavaScript's weaknesses, the 
-prototypal inheritance model is in fact more powerful than the classic model. 
-It is, for example, fairly trivial to build a classic model on top of it, while the
-other way around is a far more difficult task.
+prototypal inheritance model is in fact more powerful than the classic model.
+It is, for example, fairly trivial to build a classic model on top of a
+prototypal model, while the other way around is a far more difficult task.
 
-Due to the fact that JavaScript is basically the only widely used language that
-features prototypal inheritance, it takes some time to adjust to the 
-differences between the two models. 
+JavaScript is the only widely used language that features prototypal
+inheritance, so it can take time to adjust to the differences between the two
+models. 
 
-The first major difference is that inheritance in JavaScript is done by using so
-called *prototype chains*.
+The first major difference is that inheritance in JavaScript uses *prototype
+chains*.
 
 > **Note:** Simply using `Bar.prototype = Foo.prototype` will result in both objects
 > sharing the **same** prototype. Therefore, changes to either object's prototype 
@@ -47,7 +47,7 @@ called *prototype chains*.
                 Object.prototype
                     { toString: ... /* etc. */ }
 
-In the above, the object `test` will inherit from both `Bar.prototype` and
+In the code above, the object `test` will inherit from both `Bar.prototype` and
 `Foo.prototype`; hence, it will have access to the function `method` that was 
 defined on `Foo`. It will also have access to the property `value` of the
 **one** `Foo` instance that is its prototype. It is important to note that `new
@@ -64,7 +64,7 @@ its prototype; thus, all `Bar` instances will share the **same** `value` propert
 When accessing the properties of an object, JavaScript will traverse the
 prototype chain **upwards** until it finds a property with the requested name.
 
-When it reaches the top of the chain - namely `Object.prototype` - and still
+If it reaches the top of the chain - namely `Object.prototype` - and still
 hasn't found the specified property, it will return the value
 [undefined](#core.undefined) instead.
 
@@ -82,12 +82,13 @@ creation of prototype chains.
 
 ### Performance
 
-The lookup time for properties that are high up on the prototype chain can have a
-negative impact on performance critical sections of code. Additionally, trying to 
-access non-existent properties will always traverse the full prototype chain. 
+The lookup time for properties that are high up on the prototype chain can have
+a negative impact on performance, and this may be significant in code where
+performance is critical. Additionally, trying to access non-existent properties
+will always traverse the full prototype chain. 
 
 Also, when [iterating](#object.forinloop) over the properties of an object 
-**every** property that is on the prototype chain will get enumerated.
+**every** property that is on the prototype chain will be enumerated.
 
 ### Extension of Native Prototypes
 
@@ -95,7 +96,7 @@ One mis-feature that is often used is to extend `Object.prototype` or one of the
 other built in prototypes.
 
 This technique is called [monkey patching][1] and breaks *encapsulation*. While 
-used by widely spread frameworks such as [Prototype][2], there is still no good 
+used by popular frameworks such as [Prototype][2], there is still no good 
 reason for cluttering built-in types with additional *non-standard* functionality.
 
 The **only** good reason for extending a built-in prototype is to backport 
@@ -104,11 +105,12 @@ the features of newer JavaScript engines; for example,
 
 ### In Conclusion
 
-It is a **must** to understand the prototypal inheritance model completely 
-before writing complex code which makes use of it. Also, watch the length of 
-the prototype chains and break them up if necessary to avoid possible 
-performance issues. Further, the native prototypes should **never** be extended 
-unless it is for the sake of compatibility with newer JavaScript features.
+It is **essential** to understand the prototypal inheritance model before
+writing complex code that makes use of it. Also, be aware of the length of the
+prototype chains in your code and break them up if necessary to avoid possible
+performance problems. Further, the native prototypes should **never** be
+extended unless it is for the sake of compatibility with newer JavaScript
+features.
 
 [1]: http://en.wikipedia.org/wiki/Monkey_patch
 [2]: http://prototypejs.org/

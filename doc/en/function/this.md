@@ -1,7 +1,7 @@
 ## How `this` Works
 
 JavaScript has a different concept of what the special name `this` refers to 
-than most other programming languages do. There are exactly **five** different 
+than most other programming languages. There are exactly **five** different 
 ways in which the value of `this` can be bound in the language.
 
 ### The Global Scope
@@ -55,7 +55,7 @@ inside of `foo` will be set to `bar`.
 
 ### Common Pitfalls
 
-While most of these cases make sense, the first one is to be considered another
+While most of these cases make sense, the first can be considered another
 mis-design of the language because it **never** has any practical use.
 
     Foo.method = function() {
@@ -69,7 +69,7 @@ A common misconception is that `this` inside of `test` refers to `Foo`; while in
 fact, it **does not**.
 
 In order to gain access to `Foo` from within `test`, it is necessary to create a 
-local variable inside of `method` which refers to `Foo`.
+local variable inside of `method` that refers to `Foo`.
 
     Foo.method = function() {
         var that = this;
@@ -105,7 +105,7 @@ fact, it is what makes [prototypal inheritance](#object.prototype) work.
 
     new Bar().method();
 
-When `method` gets called on a instance of `Bar`, `this` will now refer to that
+When `method` gets called on an instance of `Bar`, `this` will now refer to that
 very instance. 
 
 

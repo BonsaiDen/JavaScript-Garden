@@ -2,16 +2,16 @@
 
 The `typeof` operator (together with 
 [`instanceof`](#types.instanceof)) is probably the biggest 
-design flaw of JavaScript, as it is near of being **completely broken**.
+design flaw of JavaScript, as it is almost **completely broken**.
 
-Although `instanceof` still has its limited uses, `typeof` really has only one
+Although `instanceof` still has limited uses, `typeof` really has only one
 practical use case, which does **not** happen to be checking the type of an 
 object. 
 
-> **Note:** While `typeof` can also be called with a function like syntax
-> i.e. `typeof(obj)`, this is not a function call. The two parenthesis will
-> behave like normal and the return value will be used as the operand of the
-> `typeof` operator. There is **no** `typeof` function.
+> **Note:** While `typeof` can also be called with a function like syntax, i.e.
+> `typeof(obj)`, this is not a function call. The parentheses behave as normal
+> and the return value will be used as the operand of the `typeof` operator.
+> There is **no** `typeof` function.
 
 ### The JavaScript Type Table
 
@@ -79,9 +79,8 @@ referencing it would result in a `ReferenceError`. This is the only thing
 In order to check the type of an object, it is highly recommended to use 
 `Object.prototype.toString` because this is the only reliable way of doing so. 
 As shown in the above type table, some return values of `typeof` are not defined 
-in the specification; thus, they can differ across various implementations.
+in the specification; thus, they can differ between implementations.
 
-Unless checking whether a variable is defined, `typeof` should be avoided at
-**all costs**.
+Unless checking whether a variable is defined, `typeof` should be avoided.
 
 
