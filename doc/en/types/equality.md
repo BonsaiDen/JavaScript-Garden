@@ -31,7 +31,7 @@ to another number.
 
 The strict equality operator consists of **three** equal signs: `===`.
 
-It works exactly like the normal equality operator, except that strict equality 
+It works like the normal equality operator, except that strict equality 
 operator does **not** perform type coercion between its operands.
 
     ""           ===   "0"           // false
@@ -50,8 +50,8 @@ the operands are of different types.
 
 ### Comparing Objects
 
-While both `==` and `===` are stated as **equality** operators, they behave 
-differently when at least one of their operands happens to be an `Object`.
+While both `==` and `===` are called **equality** operators, they behave 
+differently when at least one of their operands is an `Object`.
 
     {} === {};                   // false
     new String('foo') === 'foo'; // false
