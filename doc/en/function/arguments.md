@@ -79,9 +79,9 @@ of the corresponding property on the `arguments` object, and the other way aroun
 
 ### Performance Myths and Truths
 
-The `arguments` object is always created with the only two exceptions being the 
-cases where it is declared as a name inside of a function or one of its formal 
-parameters. It does not matter whether it is used or not.
+The only time  the `arguments` object is not created is where it is declared as
+a name inside of a function or one of its formal parameters. It does not matter
+whether it is used or not.
 
 Both *getters* and *setters* are **always** created; thus, using it has nearly 
 no performance impact at all, especially not in real world code where there is 
@@ -108,8 +108,7 @@ needs to know about both itself and its caller. This not only defeats possible
 performance gains that would arise from inlining, but it also breaks encapsulation
 because the function may now be dependent on a specific calling context.
 
-It is **highly recommended** to **never** make use of `arguments.callee` or any of 
-its properties.
+Making use of `arguments.callee` or any of its properties is **highly discouraged**.
 
 > **ES5 Note:** In strict mode, `arguments.callee` will throw a `TypeError` since 
 > its use has been deprecated.

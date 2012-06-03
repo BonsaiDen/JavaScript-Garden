@@ -8,9 +8,9 @@ an *anonymous function* as a callback to another, possibly an asynchronous funct
 
     function foo() {}
 
-The above function gets [hoisted](#function.scopes) before the execution of the 
-program starts; thus, it is available *everywhere* in the scope it was *defined* 
-in, even if called before the actual definition in the source.
+The above function gets [hoisted](#function.scopes) before the execution of the
+program starts; thus, it is available *everywhere* in the scope it was
+*defined*, even if called before the actual definition in the source.
 
     foo(); // Works because foo was created before this code runs
     function foo() {}
