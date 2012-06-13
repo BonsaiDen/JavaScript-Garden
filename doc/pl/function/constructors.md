@@ -22,7 +22,7 @@ fukcja domyślnie zwraca wartość `this` - nowy obiekt.
 
     var test = new Foo();
 
-Powyżej wywołanya została funkcja `Foo` jako konstruktor oraz ustawia 
+Powyżej wywołana została funkcja `Foo` jako konstruktor oraz ustawia 
 nowo utworzonemu obiektowi właściwość `prototype` na `Foo.prototype`.
 
 W tym przypadku jawna deklaracja `return` w funkcji zwraca wartość 
@@ -53,7 +53,7 @@ obiektu.
 
 Mimo że powyższy kod może zadziałać w pewnych przypadkach, w związku 
 z działaniem [`this`](#function.this) w języku JavaScript, to jako 
-wartość `this`zostanie wykorzystany **obiekt global**.
+wartość `this` zostanie wykorzystany **obiekt global**.
 
 ### Fabryki
 
@@ -113,9 +113,7 @@ nowy obiekt wewnątrz tej fabryki.
 Mimo że powyższy kod jest odporny na brak słowa kluczowego `new` i ułatwia 
 korzystanie ze [zmiennych prywatnych](#function.closures), to posiada 
 pewne wady.
-While the above is robust against a missing `new` keyword and certainly makes 
-the use of [private variables](#function.closures) easier, it comes with some 
-downsides.
+
  1. Zużywa więcej pamięci, ponieważ tworzony obiekt **nie** współdzieli metod 
     poprzez prototyp.
  2. Aby móc dziedziczyć fabryka musi skopiować wszystkie metody z dziedziczonego 
