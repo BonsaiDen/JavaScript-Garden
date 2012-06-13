@@ -58,7 +58,7 @@ to zachowują się różnie, gdy jednym z operandów jest obiekt typu `Object`.
     var foo = {};
     foo === foo;                 // true
 
-Oba operatory porównują **toższmość** a **nie** równość, czyli będą porównywać czy 
+Oba operatory porównują **tożsamość** a **nie** równość, czyli będą porównywać czy 
 jeden i drugi operand jest tą samą **instancją** obiektu (podobnie jak operator 
 `is` w Pythonie i porównanie wskaźników w C).  
 
