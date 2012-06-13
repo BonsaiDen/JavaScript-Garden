@@ -1,7 +1,7 @@
 ## Licencja
 
 JavaScript Garden jest publikowany w ramach [licencji MIT] [1] i kod źródłowy znajduje 
-się na serwerze [GitHub] [2]. Jeśli znajdziesz jakieś błędy lub literówek zgłoś proszę 
+się na serwerze [GitHub] [2]. Jeśli znajdziesz jakieś błędy lub literówki, zgłoś proszę 
 [problem] [3] lub rozwiąż go i zgloś pull request ze swojego repozytorium. 
 Możesz nas także znaleźć w pokoju [JavaScript] [4] na chacie Stack Overflow. 
 
