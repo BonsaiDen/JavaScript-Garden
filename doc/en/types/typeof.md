@@ -2,7 +2,7 @@
 
 The `typeof` operator (together with 
 [`instanceof`](#types.instanceof)) is probably the biggest 
-design flaw of JavaScript, as it is near of being **completely broken**.
+design flaw of JavaScript, as it is nearly **completely broken**.
 
 Although `instanceof` still has its limited uses, `typeof` really has only one
 practical use case, which does **not** happen to be checking the type of an 
