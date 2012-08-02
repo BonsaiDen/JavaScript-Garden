@@ -12,7 +12,7 @@
     new Bar() instanceof Bar; // true
     new Bar() instanceof Foo; // true
 
-    // 如果仅仅设置 Bar.prototype 为函数 Foo 本省，而不是 Foo 构造函数的一个实例
+    // 如果仅仅设置 Bar.prototype 为函数 Foo 本身，而不是 Foo 构造函数的一个实例
     Bar.prototype = Foo;
     new Bar() instanceof Foo; // false
 
