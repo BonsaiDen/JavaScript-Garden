@@ -104,7 +104,7 @@ Id가 1부터 1000 사이에 있는 timeout들을 제거했지만, 그 외의 �
     function foo(a, b, c) {}
     
     // 절대 사용하면 안 됨
-    setTimeout('foo(1,2, 3)', 1000)
+    setTimeout('foo(1, 2, 3)', 1000)
 
     // 대신 익명 함수를 사용하는 게 좋다.
     setTimeout(function() {
