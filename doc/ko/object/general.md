@@ -2,7 +2,7 @@
 
 JavaScript에서 [`null`](#core.undefined)과 [`undefined`](#core.undefined)를 제외한 모든 것은 객체다.
 
-    false.toString() // 'false'
+    false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
 
     function Foo(){}

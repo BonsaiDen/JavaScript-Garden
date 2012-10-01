@@ -3,7 +3,7 @@
 Everything in JavaScript acts like an object, with the only two exceptions being 
 [`null`](#core.undefined) and [`undefined`](#core.undefined).
 
-    false.toString() // 'false'
+    false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
     
     function Foo(){}
