@@ -4,7 +4,7 @@ JavaScript'te iki istisna dışında her şey bir nesne olarak davranır;
 bu istisnalar da [`null`](#core.undefined) ve [`undefined`](#core.undefined) 
 'dır.
 
-    false.toString() // 'false'
+    false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
     
     function Foo(){}

@@ -2,7 +2,7 @@
 
 JavaScript 中所有变量都是对象，除了两个例外 [`null`](#core.undefined) 和 [`undefined`](#core.undefined)。
 
-    false.toString() // 'false'
+    false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
     
     function Foo(){}

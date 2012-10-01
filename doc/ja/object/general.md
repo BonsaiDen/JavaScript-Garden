@@ -3,7 +3,7 @@
 JavaScriptの全ての要素は2つの例外を除いて、オブジェクトのように振る舞います。
 その2つとは[`null`](#core.undefined)と[`undefined`](#core.undefined)です。
 
-    false.toString() // 'false'
+    false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
     
     function Foo(){}

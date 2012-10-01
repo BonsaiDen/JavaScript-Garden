@@ -3,7 +3,7 @@
 Wszystko w JavaScripcie zachowuje sie jak obiekt, z dwoma wyjątkami
 [`null`](#core.undefined) oraz [`undefined`](#core.undefined). 
 
-    false.toString() // 'false'
+    false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
     
     function Foo(){}
