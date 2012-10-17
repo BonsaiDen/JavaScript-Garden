@@ -73,7 +73,7 @@ unless the *desired effect* is to affect the outer scope.
 ### Local Variables
 
 The only source for local variables in JavaScript are
-[function](#function.general) parameters and variables that were declared via the 
+[function](#function.general) parameters and variables declared via the 
 `var` statement.
 
     // global scope
@@ -115,8 +115,8 @@ JavaScript **hoists** declarations. This means that both `var` statements and
         }
     }
 
-The above code gets transformed before any execution is started. JavaScript moves
-the `var` statements, as well as the `function` declarations to the top of the 
+The above code gets transformed before execution starts. JavaScript moves
+the `var` statements, as well as `function` declarations, to the top of the 
 nearest surrounding scope.
 
     // var statements got moved here
@@ -150,7 +150,7 @@ In the original code, although the `if` statement seemed to modify the *global
 variable* `goo`, it actually modifies the *local variable* - after hoisting 
 has been applied.
 
-Without the knowledge about *hoisting*, the below code might seem to raise a 
+Without knowledge of *hoisting*, one might suspect the code below would raise a
 `ReferenceError`.
 
     // check whether SomeImportantThing has been initialized
@@ -158,7 +158,7 @@ Without the knowledge about *hoisting*, the below code might seem to raise a
         var SomeImportantThing = {};
     }
 
-But of course, the above works due to the fact that the `var` statement is being 
+But of course, this works due to the fact that the `var` statement is being 
 moved to the top of the *global scope*.
 
     var SomeImportantThing;
@@ -176,10 +176,10 @@ All scopes in JavaScript, including the *global scope*, have the special name
 [`this`](#function.this), defined in them, which refers to the *current object*. 
 
 Function scopes also have the name [`arguments`](#function.arguments), defined in
-them, which contains the arguments that were passed to a function.
+them, which contains the arguments that were passed to the function.
 
 For example, when trying to access a variable named `foo` inside the scope of a 
-function, JavaScript will lookup the name in the following order:
+function, JavaScript will look up the name in the following order:
 
  1. In case there is a `var foo` statement in the current scope, use that.
  2. If one of the function parameters is named `foo`, use that.
@@ -191,9 +191,9 @@ function, JavaScript will lookup the name in the following order:
 
 ### Namespaces
 
-A common problem of having only one global namespace is the likeliness of running
-into problems where variable names clash. In JavaScript, this problem can
-easily be avoided with the help of *anonymous wrappers*.
+A common problem associated with having only one global namespace is the
+likelihood of running into problems where variable names clash. In JavaScript,
+this problem can easily be avoided with the help of *anonymous wrappers*.
 
     (function() {
         // a self contained "namespace"
@@ -208,13 +208,13 @@ easily be avoided with the help of *anonymous wrappers*.
 Unnamed functions are considered [expressions](#function.general); so in order to
 being callable, they must first be evaluated.
 
-    ( // evaluate the function inside the paranthesis
+    ( // evaluate the function inside the parentheses
     function() {}
     ) // and return the function object
     () // call the result of the evaluation
 
-There are other ways for evaluating and directly calling the function expression; which, 
-while different in syntax, do behave the exact same way.
+There are other ways to evaluate and directly call the function expression
+which, while different in syntax, behave the same way.
 
     // A few other styles for directly invoking the 
     !function(){}()
@@ -224,7 +224,7 @@ while different in syntax, do behave the exact same way.
 
 ### In Conclusion
 
-It is recommended to always use an *anonymous wrapper* for encapsulating code in 
+It is recommended to always use an *anonymous wrapper* to encapsulate code in 
 its own namespace. This does not only protect code against name clashes, but it 
 also allows for better modularization of programs.
 

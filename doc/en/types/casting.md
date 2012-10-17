@@ -21,7 +21,7 @@ JavaScript is a *weakly typed* language, so it will apply *type coercion*
 > (Base 8). Octal support for these has been **removed** in ECMAScript 5 strict 
 > mode.
 
-In order to avoid the above, use of the [strict equal operator](#types.equality) 
+To avoid the issues above, use of the [strict equal operator](#types.equality) 
 is **highly** recommended. Although this avoids a lot of common pitfalls, there 
 are still many further issues that arise from JavaScript's weak typing system.
 
@@ -38,8 +38,8 @@ Using a built-in type like `Number` as a constructor will create a new `Number`
 object, but leaving out the `new` keyword will make the `Number` function behave
 like a converter.
 
-In addition, having literals or non-object values in there will result in even
-more type coercion.
+In addition, passing literals or non-object values will result in even more
+type coercion.
 
 The best option is to cast to one of the three possible types **explicitly**.
 
@@ -47,7 +47,7 @@ The best option is to cast to one of the three possible types **explicitly**.
 
     '' + 10 === '10'; // true
 
-By prepending an empty string, a value can easily be casted to a string.
+By prepending an empty string, a value can easily be cast to a string.
 
 ### Casting to a Number
 

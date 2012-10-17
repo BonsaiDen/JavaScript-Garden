@@ -5,12 +5,11 @@ stuff in JavaScript which have a `DontDelete` attribute set.
 
 ### Global code and Function code
 
-When a variable or a function is defined in a global 
-or a [function scope](#function.scopes) it is a property of either 
-Activation object or Global object. Such properties have a set of attributes, 
-one of these is `DontDelete`. Variable and function declarations in global 
-and function code always create properties with `DontDelete`, therefore 
-cannot be deleted.
+When a variable or a function is defined in a global or a [function
+scope](#function.scopes) it is a property of either the Activation object or
+the Global object. Such properties have a set of attributes, one of which is
+`DontDelete`. Variable and function declarations in global and function code
+always create properties with `DontDelete`, and therefore cannot be deleted.
 
     // global variable:
     var a = 1; // DontDelete is set
@@ -29,8 +28,7 @@ cannot be deleted.
 
 ### Explicit properties
 
-There are things which can be deleted normally: these are explicitly set 
-properties.
+Explicitly set properties can be deleted normally.
 
     // explicitly set property:
     var obj = {x: 1};
@@ -40,8 +38,8 @@ properties.
     obj.x; // undefined
     obj.y; // undefined
 
-In the example above `obj.x` and `obj.y` can be deleted because they have no 
-`DontDelete` atribute. That's why an example below works too.
+In the example above, `obj.x` and `obj.y` can be deleted because they have no 
+`DontDelete` atribute. That's why the example below works too.
 
     // this works fine, except for IE:
     var GLOBAL_OBJECT = this;
@@ -58,7 +56,7 @@ IE (at least 6-8) has some bugs, so the code above doesn't work.
 
 ### Function arguments and built-ins
 
-Functions' normal arguments, [`arguments` object](#function.arguments) 
+Functions' normal arguments, [`arguments` objects](#function.arguments) 
 and built-in properties also have `DontDelete` set.
 
     // function arguments and properties:
@@ -78,10 +76,10 @@ and built-in properties also have `DontDelete` set.
 
 ### Host objects
     
-Behaviour of `delete` operator can be unpredictable for hosted objects. Due to 
-specification, host objects are allowed to implement any kind of behavior. 
+The behaviour of `delete` operator can be unpredictable for hosted objects. Due
+to the specification, host objects are allowed to implement any kind of behavior. 
 
 ### In conclusion
 
-`delete` operator often has an unexpected behaviour and can be safely used 
-only for dealing with explicitly set properties on normal objects.
+The `delete` operator often has unexpected behaviour and can only be safely
+used to delete explicitly set properties on normal objects.
