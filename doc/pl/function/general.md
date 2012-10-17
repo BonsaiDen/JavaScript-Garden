@@ -5,7 +5,7 @@ być przekazywane jak każda inna wartość. Jednym z typowych zastosowań tej c
 jest przekazywanie *anonimowej funkcji* jako callback do innej, prawdopodobnie 
 asynchronicznej funkcji.
 
-### Deklaracja funckcji
+### Deklaracja funkcji
 
     function foo() {}
 
