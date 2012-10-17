@@ -2,7 +2,7 @@
 
 В JavaScript всё является объектом, лишь за двумя исключениями — [`null`](#core.undefined) и [`undefined`](#core.undefined).
 
-    false.toString() // 'false'
+    false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
 
     function Foo(){}

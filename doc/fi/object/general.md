@@ -2,7 +2,7 @@
 
 Kaikki muuttujat, kahta poikkeusta lukuunottamatta, käyttäytyvät JavaScriptissä oliomaisesti. Nämä poikkeukset ovat [`null`](#core.undefined) sekä [`undefined`](#core.undefined).
 
-    false.toString() // epätosi
+    false.toString(); // epätosi
     [1, 2, 3].toString(); // '1,2,3'
     
     function Foo(){}
