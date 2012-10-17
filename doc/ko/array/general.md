@@ -1,6 +1,6 @@
 ## Array Iteration과 프로퍼티
 
-JavaScript에서는 Array도 객체 Iterate를 할 때 [`for in`](#object.forinloop)을 사용해서 좋을 게 없다. 실제로 Array에 `for in`을 사용하지 말아야 할 근거가 매우 많다.
+JavaScript에서는 Array도 객체지만 [`for in`](#object.forinloop)을 사용해서 좋을 게 없다. 실제로 Array에 `for in`을 사용하지 말아야 할 근거가 매우 많다.
 
 > **Note:** JavaScript의 Array는 *Associative Array*가 **아니다**. JavaScript [객체](#object.general)는 key/value만 Mapping할 뿐이다. Associative Array는 순서를 보장하지만, 객체는 보장하지 않는다.
 
@@ -30,9 +30,10 @@ Array를 Iterate할 때에는 구식인 `for`를 사용하는 것이 가장 빠�
     foo; // [1, 2, 3]
 
     foo.length = 6;
-    foo; // [1, 2, 3]
+    foo.push(4);
+    foo; // [1, 2, 3, undefined, undefined, undefined, 4]
 
-현재 크기보다 더 작은 값을 할당하면 Array를 자르지만, 현재 크기보다 더 큰 값을 할당한다고 해서 Array를 늘리지 않는다.
+현재 크기보다 더 작은 값을 할당하면 Array를 자르고, 현재 크기보다 더 큰 값을 할당하면 늘어난다.
 
 ### 결론
 
