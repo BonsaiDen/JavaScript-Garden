@@ -4,16 +4,11 @@ JavaScript posiada inną koncepcję odnośnie tego na co wskazuje słowo kluczow
 `this`, niż większość innych języków programowania. Istnieje dokładnie 
 **pięć** różnych sytuacji, w których wartość `this` jest przypisana w języku JavaScript.
 
-JavaScript has a different concept of what the special name `this` refers to 
-than most other programming languages do. There are exactly **five** different 
-ways in which the value of `this` can be bound in the language.
-
 ### Zasięg globalny
 
     this;
 
 Używanie `this` w globalnym zasięgu, zwróci po prostu referencję do obiektu *global*.
-
 
 ### Wywołanie funkcji
 
