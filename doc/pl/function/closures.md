@@ -3,7 +3,7 @@
 Jedną z najpotężniejszych funkcjonalności języka JavaScript są *domknięcia*. 
 Oznacza to że zasięg **zawsze** posiada dostęp do zewnętrznego zasięgu, w którym 
 został zdefiniowany. Ponieważ zasięg w JavaScript można definiować tylko poprzez 
-[funckję](#function.scopes), wszystkie funkcje domyślnie zachowują się jak domknięcia.
+[funkcję](#function.scopes), wszystkie funkcje domyślnie zachowują się jak domknięcia.
 
 ### Emulowanie prywatnych zmiennych
 
