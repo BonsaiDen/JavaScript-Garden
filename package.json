@@ -4,7 +4,7 @@
     "version": "0.0.0",
     "dependencies": {
         "fomatto": "0.5.0",
-        "forever": "0.4.1",
+        "forever": ">=0.4.1",
         "jade": "0.9.1",
         "neko": "1.1.2",
         "node-markdown": "0.1.0"
