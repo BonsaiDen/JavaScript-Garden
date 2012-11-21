@@ -31,7 +31,7 @@ para realizar la búsqueda en cada interación del bucle. Y mientras que los úl
 motores de JavaScript **pueden** aplicar optimizaciones en este caso, no hay manera 
 de saber si el ćodigo se ejecutará en uno de estos nuevos motores nuevos o no.
 
-De hecho, dejando de lado el alamacenamiento en caché puede resultar que el bucle
+De hecho, dejando de lado el almacenamiento en caché puede resultar que el bucle
 inicie sólo la **mitad de rápido** que con la longitud de la caché.
 
 ### La propiedad `length`
