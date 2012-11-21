@@ -1,6 +1,6 @@
-## 쎄미콜론을 자동으로 삽입해준다.
+## 자동으로 삽입되는 쎄미콜론
 
-JavaScript는 C와 문법이 비슷하지만, 꼭 코드에 쎄미콜론을 사용하도록 강제하지 않는다. 그래서 생략할 수 있다.
+JavaScript는 C와 문법이 비슷하지만, 꼭 코드에 쎄미콜론을 사용하도록 강제하지는 않는다. 그래서 생략할 수 있다.
 
 사실 JavaScript는 쎄미콜론이 꼭 있어야 하고 없으면 이해하지 못한다. 그래서 JavaScript 파서는 쎄미콜론이 없으면 **자동으로** 쎄미콜론을 추가한다. 
 
@@ -81,18 +81,18 @@ JavaScript는 C와 문법이 비슷하지만, 꼭 코드에 쎄미콜론을 사�
 
 파서는 완전히 다른 코드로 만들어 버린다. 이것은 **오류**다.
 
-### Parenthesis
+### 괄호 해석
 
-쎄미콜론 없이 괄호가 붙어 있으면 파서는 쎄미콜론을 넣지 않는다.
+파서는 괄호에는 쎄미콜론을 넣지 않는다.
 
     log('testing!')
     (options.list || []).forEach(function(i) {})
 
-파서는 다음과 같이 코드를 바꾼다.
+그래서 다음과 같이 한줄로 코드를 바꾼다.
 
     log('testing!')(options.list || []).forEach(function(i) {})
 
-`log` 함수가 함수를 반환할 가능성은 거의 없다. 아마도 `undefined is not a function`이라는 `TypeError`가 발생할 거다.
+이렇게 한줄로 바뀌면 `log` 함수가 함수를 반환할 가능성이 거의 없으므로 `undefined is not a function`이라는 `TypeError`가 발생한다.
 
 ### 결론
 

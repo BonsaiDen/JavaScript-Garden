@@ -1,8 +1,8 @@
-## `instanceof`
+## `instanceof` 연산자
 
-`instanceof`는 두 객체의 생성자를 비교하는 것이고 직접 만든 타입의 객체를 비교할 때 유용하다. 기본 타입만 생각하면 이 연산자는 [typeof](#types.typeof)처럼 거의 쓸모 없다.
+`instanceof`연산자는 두 피연산자의 생성자를 비교할때 사용하고 직접 만든 객체를 비교할 때 매우 유용하다. 내장 타입에 쓰는 경우에는 [typeof](#types.typeof)처럼 거의 쓸모가 없다.
 
-### 직접 만든 타입의 객체를 `intanceof`로 비교하기
+### 커스텀 객체를 `intanceof`로 비교하기
 
     function Foo() {}
     function Bar() {}
@@ -11,12 +11,12 @@
     new Bar() instanceof Bar; // true
     new Bar() instanceof Foo; // true
 
-    // Bar.prototype에 function 객체인 Foo를 할당하면
+    // Bar.prototype에 함수 객체인 Foo를 할당하면
     // Bar의 인스턴스는 Foo의 인스턴스가 아니다.
     Bar.prototype = Foo;
     new Bar() instanceof Foo; // false
 
-### 기본 타입 객체를 `intanceof`로 비교하기
+### 기본 내장 객체 타입을 `intanceof`로 비교하기
 
     new String('foo') instanceof String; // true
     new String('foo') instanceof Object; // true

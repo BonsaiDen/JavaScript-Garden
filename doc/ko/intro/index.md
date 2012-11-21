@@ -14,9 +14,10 @@ JavaScript Garden은 단순히 JavaScript 언어 자체를 설명하려 만들�
  - [Andreas Blixt][6] (언어 교정)
 
 ## 번역
- - [박창우][]
+ - [박창우][손병대][]
 
 [박창우]: https://github.com/pismute
+[손병대]: https://github.com/miconblog
 
 ## 호스팅
 
