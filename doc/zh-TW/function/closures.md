@@ -1,11 +1,10 @@
-## Closures and References
+## Closures 和 References
 
-One of JavaScript's most powerful features is the availability of *closures*.
-With closures, scopes **always** keep access to the outer scope, in which they
-were defined. Since the only scoping that JavaScript has is 
-[function scope](#function.scopes), all functions, by default, act as closures.
+JavaScript 有一個很重要的特徵就是 **closures**
+因為有 Closures，所以作用域 **永遠** 能夠去訪問作用區間外面的變數。
+[函數區間](#function.scopes) 是JavaScript 中唯一擁有自生作用域的結構，因此 Closures 的創立需要依賴函數
 
-### Emulating private variables
+### 模仿私有變數
 
     function Counter(start) {
         var count = start;
@@ -24,30 +23,24 @@ were defined. Since the only scoping that JavaScript has is
     foo.increment();
     foo.get(); // 5
 
-Here, `Counter` returns **two** closures: the function `increment` as well as 
-the function `get`. Both of these functions keep a **reference** to the scope of 
-`Counter` and, therefore, always keep access to the `count` variable that was 
-defined in that scope.
+這裡，`Counter` 返回兩個 Closures，函數 `increment` 還有 `get`。這兩個函數都維持著對外部作用域 `Counter` 的引用，因此總可以訪問作用域的變數 `count`。
 
-### Why Private Variables Work
 
-Since it is not possible to reference or assign scopes in JavaScript, there is 
-**no** way of accessing the variable `count` from the outside. The only way to 
-interact with it is via the two closures.
+### 為什麼不可以在外部訪問私有變數
+
+因為 Javascript **不可以** 對作用域進行引用或賦值。因此外部的地方沒有辦法訪問 `count` 變數。
+唯一的途徑就是經過那兩個 Closures
 
     var foo = new Counter(4);
     foo.hack = function() {
         count = 1337;
     };
 
-The above code will **not** change the variable `count` in the scope of `Counter`, 
-since `foo.hack` was not defined in **that** scope. It will instead create - or 
-override - the *global* variable `count`.
+在上面的例子中 `count` **不會** 改變到 `Counter` 裡面的 `count` 的值。因為 `foo.hack` 沒有在 **那個** 作用域內被宣告。它只有會覆蓋或者建立在一個 **全域** 的變數 `count`
 
-### Closures Inside Loops
+### 在循環內的 Closures 
 
-One often made mistake is to use closures inside of loops, as if they were
-copying the value of the loop's index variable.
+一個常見的錯誤就是在 Closures 中使用迴圈，假設我們要使用每次迴圈中所使用的進入變數
 
     for(var i = 0; i < 10; i++) {
         setTimeout(function() {
@@ -55,20 +48,14 @@ copying the value of the loop's index variable.
         }, 1000);
     }
 
-The above will **not** output the numbers `0` through `9`, but will simply print
-the number `10` ten times.
+在上面的例子中它 **不會** 輸出數字從 `0` 到 `9`，但只會出現數字 `10` 十次。
+在 `console.log` 被呼叫的時候，這個 *匿名* 函數中保持一個 **參考** 到 i ，此時 `for`迴圈已經結束， `i` 的值被修改成了 `10`。
+為了要達到想要的結果，需要在每次創造 **副本** 來儲存 `i` 的變數。
 
-The *anonymous* function keeps a **reference** to `i`. At the time 
-`console.log` gets called, the `for loop` has already finished, and the value of 
-`i` as been set to `10`.
+### 避免引用錯誤
 
-In order to get the desired behavior, it is necessary to create a **copy** of 
-the value of `i`.
-
-### Avoiding the Reference Problem
-
-In order to copy the value of the loop's index variable, it is best to use an 
-[anonymous wrapper](#function.scopes).
+為了要有達到正確的效果，最好是把它包在一個
+[匿名函數](#function.scopes).
 
     for(var i = 0; i < 10; i++) {
         (function(e) {
@@ -78,15 +65,9 @@ In order to copy the value of the loop's index variable, it is best to use an
         })(i);
     }
 
-The anonymous outer function gets called immediately with `i` as its first 
-argument and will receive a copy of the **value** of `i` as its parameter `e`.
-
-The anonymous function that gets passed to `setTimeout` now has a reference to 
-`e`, whose value does **not** get changed by the loop.
-
-There is another possible way of achieving this, which is to return a function 
-from the anonymous wrapper that will then have the same behavior as the code 
-above.
+匿名外部的函數被呼叫，並把 `i` 作為它第一個參數，此時函數內 `e` 變數就擁有了一個 `i` 的拷貝。
+當傳遞給 `setTimeout` 這個匿名函數執行時，它就擁有了對 `e` 的引用，而這個值 **不會** 被循環改變。
+另外有一個方法也可以完成這樣的工作，那就是在匿名函數中返回一個函數，這和上面的程式碼有同樣的效果。
 
     for(var i = 0; i < 10; i++) {
         setTimeout((function(e) {
