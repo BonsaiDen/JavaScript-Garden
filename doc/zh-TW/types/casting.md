@@ -1,9 +1,8 @@
-## Type Casting
+## 類型轉換
 
-JavaScript is a *weakly typed* language, so it will apply *type coercion*
-**wherever** possible.
+JavaScript 是一個 *弱類型* 的程式語言，所以在 **任何** 情況下都可以 *強制類型轉換*。
 
-    // These are true
+    // 這些都是真
     new Number(10) == 10; // Number.toString() is converted
                           // back to a number
 
@@ -13,13 +12,15 @@ JavaScript is a *weakly typed* language, so it will apply *type coercion*
     isNaN(null) == false; // null converts to 0
                           // which of course is not NaN
     
-    // These are false
+    // 下面都假
     10 == 010;
     10 == '-10';
 
 > **ES5 Note:** Number literals that start with a `0` are interpreted as octal 
 > (Base 8). Octal support for these has been **removed** in ECMAScript 5 strict 
 > mode.
+> 
+
 
 To avoid the issues above, use of the [strict equal operator](#types.equality) 
 is **highly** recommended. Although this avoids a lot of common pitfalls, there 
