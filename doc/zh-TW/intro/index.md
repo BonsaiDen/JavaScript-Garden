@@ -1,37 +1,38 @@
-## Intro
+## 簡介
 
-**JavaScript Garden** is a growing collection of documentation about the most 
-quirky parts of the JavaScript programming language. It gives advice to 
-avoid common mistakes and subtle bugs, as well as performance issues and bad 
-practices, that non-expert JavaScript programmers may encounter on their 
-endeavours into the depths of the language.
+是一個不斷更新的文件，最主要是要去了解一些 Javascript 比較古怪的部份。
+給一些意見來防止遇到一些常見的錯誤和一些難以發現的問題，以及性能問題和不好的習慣。
+初學者也可以借此去了解 Javascript 這項語言的特性。
 
-JavaScript Garden does **not** aim to teach you JavaScript. Former knowledge
-of the language is strongly recommended in order to understand the topics covered
-in this guide. In order to learn the basics of the language, please head over to 
-the excellent [guide][1] on the Mozilla Developer Network.
+JavaScript 庭院 並 **不是** 要教導你 Javascript 的語言。
+如果要能夠理解這篇文章的內容，你需要事先學習 JavaScript 的基礎知識。
+在 Mozilla 開發者網路中有一系列非常棒的學習[guide][1]。
 
-## The Authors
 
-This guide is the work of two lovely [Stack Overflow][2] users, [Ivo Wetzel][3]
-(Writing) and [Zhang Yi Jiang][4] (Design).
+## 作者
 
-## Contributors
+這個使用手冊是來自於 [Stack Overflow][2] 的使用者, [Ivo Wetzel][3]
+(寫作) 和 [Zhang Yi Jiang][4] (設計).
 
- - [Caio Romão][5] (Spelling corrections)
- - [Andreas Blixt][6] (Language corrections)
+## 貢獻者
+
+ - [Caio Romão][5] (拼寫檢查)
+ - [Andreas Blixt][6] (語言修正)
+
+## 繁體中文翻譯
+
+ - [紀力榮][29]
+ - [張仲威][30]
 
 ## Hosting
 
 JavaScript Garden is hosted on GitHub, but [Cramer Development][7] supports us
 with a mirror at [JavaScriptGarden.info][8].
 
-## License
+## 許可
 
-JavaScript Garden is published under the [MIT license][9] and hosted on
-[GitHub][10]. If you find errors or typos please [file an issue][11] or a pull 
-request on the repository. You can also find us in the [JavaScript room][12] on
-Stack Overflow chat.
+JavaScript 庭院是在 [MIT license][9] 許可協議下發佈，並存在於
+[GitHub][10]. 如果你有發現錯誤或是打字上的錯誤 [新增一個任務][11] 或者發一個請求。 你也可以在 StackOverflow 的 [JavaScript room][12] 上面找到我們。
 
 [1]: https://developer.mozilla.org/en/JavaScript/Guide
 [2]: http://stackoverflow.com/
@@ -45,3 +46,5 @@ Stack Overflow chat.
 [10]: https://github.com/BonsaiDen/JavaScript-Garden
 [11]: https://github.com/BonsaiDen/JavaScript-Garden/issues
 [12]: http://chat.stackoverflow.com/rooms/17/javascript
+[29]: http://github.com/chilijung
+[30]: http://github.com/wwwy3y3
