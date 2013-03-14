@@ -1,24 +1,16 @@
-## The Prototype
+## Prototype
+ 
+JavaScript 不包含原本繼承的模型。然而它使用的是 *prototypal* 原型。
 
-JavaScript does not feature a classical inheritance model; instead, it uses a 
-*prototypal* one. 
+然而常常有人提及 JavaScript 的缺點，就是基於原本繼承模型比類繼承更強大。
+現實傳統的類繼承模型是很簡單。但是在 JavaScript 中實現元繼承則要困難很多。
 
-While this is often considered to be one of JavaScript's weaknesses, the 
-prototypal inheritance model is in fact more powerful than the classic model.
-It is, for example, fairly trivial to build a classic model on top of a
-prototypal model, while the other way around is a far more difficult task.
+由於 JavaScript 是唯一一個被廣泛使用的基於原型繼承的語言，所以我們必須要花時間來理解這兩者的不同。
 
-JavaScript is the only widely used language that features prototypal
-inheritance, so it can take time to adjust to the differences between the two
-models. 
+第一個不同之處在於 JavaScript 使用 *原型鏈* 的繼承方式。
 
-The first major difference is that inheritance in JavaScript uses *prototype
-chains*.
-
-> **Note:** Simply using `Bar.prototype = Foo.prototype` will result in both objects
-> sharing the **same** prototype. Therefore, changes to either object's prototype 
-> will affect the prototype of the other as well, which in most cases is not the 
-> desired effect.
+> **注意: ** 簡單的使用 `Bar.prototype = Foo.prototype` 將會導致兩個對象共享 **相同** 的原型。
+>因此，改變任一個原型都會去影響到另外一個，這在大部分的時候不是想得到的結果。
 
     function Foo() {
         this.value = 42;
@@ -29,16 +21,16 @@ chains*.
 
     function Bar() {}
 
-    // Set Bar's prototype to a new instance of Foo
+    // 設置 Bar 的 prototype 屬性為 Foo 的實例對象
     Bar.prototype = new Foo();
     Bar.prototype.foo = 'Hello World';
 
-    // Make sure to list Bar as the actual constructor
+    // 修正 Bar.prototype.constructor 為 Bar 本身
     Bar.prototype.constructor = Bar;
 
-    var test = new Bar() // create a new bar instance
+    var test = new Bar() // 開啟一個新的實例
 
-    // The resulting prototype chain
+    // 原型鏈
     test [instance of Bar]
         Bar.prototype [instance of Foo] 
             { foo: 'Hello World' }
@@ -47,70 +39,48 @@ chains*.
                 Object.prototype
                     { toString: ... /* etc. */ }
 
-In the code above, the object `test` will inherit from both `Bar.prototype` and
-`Foo.prototype`; hence, it will have access to the function `method` that was 
-defined on `Foo`. It will also have access to the property `value` of the
-**one** `Foo` instance that is its prototype. It is important to note that `new
-Bar()` does **not** create a new `Foo` instance, but reuses the one assigned to 
-its prototype; thus, all `Bar` instances will share the **same** `value` property.
+上面的例子中，物件 `test` 會繼承來自 `Bar.prototype` 和 `Foo.prototype`。因此它可以進入來自 `Foo` 原型的方法 `method`。
+同時它也可以訪問 **那個** 定義在原型上的 `Foo` 實例屬性 `value`。
 
-> **Note:** Do **not** use `Bar.prototype = Foo`, since it will not point to 
-> the prototype of `Foo` but rather to the function object `Foo`. So the 
-> prototype chain will go over `Function.prototype` and not `Foo.prototype`;
-> therefore, `method` will not be on the prototype chain.
+要注意的是 `new Bar()` **沒有** 創立一個新的 `Foo` 實例，它重複利用的原本的 prototype。因此， `Bar` 的實例會分享到 **相同** 的 `value` 屬性。
 
-### Property Lookup
+> **注意:** **不要** 使用 `Bar.prototype = Foo`，因為這不會執行 `Foo` 的原型，而是指向函式 `Foo`。
+> 因此原型鏈將回碩到 `Function.prototype` 而不是 `Foo.prototype` ，因此 `method` 將不會在 Bar 的原型鏈上。
 
-When accessing the properties of an object, JavaScript will traverse the
-prototype chain **upwards** until it finds a property with the requested name.
+### 屬性查詢
 
-If it reaches the top of the chain - namely `Object.prototype` - and still
-hasn't found the specified property, it will return the value
-[undefined](#core.undefined) instead.
+當查詢一個物件的屬性時，JavaScript 會 **向上** 查詢，直到查到指定名稱的屬性為止。
 
-### The Prototype Property
+如果他查到原型鏈的頂部 - 也就是 `Object.prototype` - 但是仍然每有指定的屬定，就會返回 [undefined](#core.undefined)。
 
-While the prototype property is used by the language to build the prototype
-chains, it is still possible to assign **any** given value to it. However, 
-primitives will simply get ignored when assigned as a prototype.
+### 原型屬性
+
+當原型屬性用來建造原型鏈，它還是有可能去把 **任意** 類型的值給它
 
     function Foo() {}
-    Foo.prototype = 1; // no effect
+    Foo.prototype = 1; // 無效
 
-Assigning objects, as shown in the example above, will work, and allows for dynamic
-creation of prototype chains.
+分派物件，在上面的例子中，將會動態的創建原型鏈。
 
-### Performance
+### 效能
 
-The lookup time for properties that are high up on the prototype chain can have
-a negative impact on performance, and this may be significant in code where
-performance is critical. Additionally, trying to access non-existent properties
-will always traverse the full prototype chain. 
+如果看在屬性在原型鏈的上端，對於查詢都會有不利的影響。特別的，試圖獲取一個不存在的屬性將會找遍所有原型鏈。
 
-Also, when [iterating](#object.forinloop) over the properties of an object 
-**every** property that is on the prototype chain will be enumerated.
+並且，當使用 [迴圈](#object.forinloop)找尋所有物件的屬性時，原型鏈上的 **所有** 屬性都會被訪問。
 
-### Extension of Native Prototypes
+### 擴展 Native Prototype
 
-One mis-feature that is often used is to extend `Object.prototype` or one of the
-other built in prototypes.
+一個經常錯誤使用的特定，那就是擴展 `Object.prototype` 或者是其他內置類型的原型物件。
 
-This technique is called [monkey patching][1] and breaks *encapsulation*. While 
-used by popular frameworks such as [Prototype][2], there is still no good 
-reason for cluttering built-in types with additional *non-standard* functionality.
+這種技術叫做 [monkey patching][1] 並且會破壞 *封裝*。雖然被廣泛的應用到一些 Javascript 的架構，但是我仍然認為內置類型添加是一個 *非標準* 的函式的好方法
 
-The **only** good reason for extending a built-in prototype is to backport 
-the features of newer JavaScript engines; for example, 
-[`Array.forEach`][3].
+擴展內置類型的 **唯一** 理由是為了和新的 JavaScript 保持一致，比如說 [`Array.forEach`][3]
 
-### In Conclusion
+### 總結
 
-It is **essential** to understand the prototypal inheritance model before
-writing complex code that makes use of it. Also, be aware of the length of the
-prototype chains in your code and break them up if necessary to avoid possible
-performance problems. Further, the native prototypes should **never** be
-extended unless it is for the sake of compatibility with newer JavaScript
-features.
+在寫複雜的程式碼的時候，要 **充分理解** 所有程式繼承的屬性還有原型鏈。
+還要堤防原型鏈過長帶來的性能問題，並知道如何通過縮短原型鏈來提高性能。
+絕對 **不要使用** native prototype` 除非是為了和新的 JavaScript 引擎作兼容。
 
 [1]: http://en.wikipedia.org/wiki/Monkey_patch
 [2]: http://prototypejs.org/

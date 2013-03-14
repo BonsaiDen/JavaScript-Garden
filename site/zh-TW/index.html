@@ -1,41 +1,41 @@
 <!DOCTYPE html><html lang="zh-TW"><head><title>JavaScript 庭院</title><meta charset="utf-8"><meta name="description" content="JavaScript 語言中古怪用法及缺點的文件總集"><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
 <script src="javascript/html5.js"></script>
 <![endif]-->
-</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li><a href="/JavaScript-Garden/es" title="JavaScript Garden es Español">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha suomeksi">fi</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden in Japanese">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden - ogród JavaScript po polsku">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden Türkçe">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript Garden 中文翻译">zh</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">簡介</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">物件</a></h1><ul><li><a href="#object.general">Object Usage and Properties</a></li><li><a href="#object.prototype">The Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">The <code>for in</code> Loop</a></li></ul></li><li class="nav_function"><h1><a href="#function">函式</a></h1><ul><li><a href="#function.general">函式的宣告和表達方式</a></li><li><a href="#function.this"><code>this</code> 的工作原理</a></li><li><a href="#function.closures">Closures 和 References</a></li><li><a href="#function.arguments"><code>arguments</code> 物件</a></li><li><a href="#function.constructors">建構函式</a></li><li><a href="#function.scopes">作用域和命名空間</a></li></ul></li><li class="nav_array"><h1><a href="#array">陣列</a></h1><ul><li><a href="#array.general">Array 迴圈和屬性</a></li><li><a href="#array.constructor"><code>Array</code> 的建構函式</a></li></ul></li><li class="nav_types"><h1><a href="#types">類型</a></h1><ul><li><a href="#types.equality">Equality and Comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> Operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> Operator</a></li><li><a href="#types.casting">Type Casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">核心</a></h1><ul><li><a href="#core.eval">為什麼不要使用 <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> 和 <code>null</code></a></li><li><a href="#core.semicolon">自動插入分號</a></li><li><a href="#core.delete">The <code>delete</code> Operator</a></li></ul></li><li class="nav_other"><h1><a href="#other">其他</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>簡介</h1><div><p><strong>JavaScript Garden</strong> is a growing collection of documentation about the most 
-quirky parts of the JavaScript programming language. It gives advice to 
-avoid common mistakes and subtle bugs, as well as performance issues and bad 
-practices, that non-expert JavaScript programmers may encounter on their 
-endeavours into the depths of the language.</p>
+</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li><a href="/JavaScript-Garden/es" title="JavaScript Garden es Español">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha suomeksi">fi</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden in Japanese">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden - ogród JavaScript po polsku">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden Türkçe">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript Garden 中文翻译">zh</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">簡介</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">物件</a></h1><ul><li><a href="#object.general">物件的使用和屬性</a></li><li><a href="#object.prototype">Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop"><code>for in</code> 迴圈</a></li></ul></li><li class="nav_function"><h1><a href="#function">函式</a></h1><ul><li><a href="#function.general">函式的宣告和表達方式</a></li><li><a href="#function.this"><code>this</code> 的工作原理</a></li><li><a href="#function.closures">Closures 和 References</a></li><li><a href="#function.arguments"><code>arguments</code> 物件</a></li><li><a href="#function.constructors">建構函式</a></li><li><a href="#function.scopes">作用域和命名空間</a></li></ul></li><li class="nav_array"><h1><a href="#array">陣列</a></h1><ul><li><a href="#array.general">Array 迴圈和屬性</a></li><li><a href="#array.constructor"><code>Array</code> 的建構函式</a></li></ul></li><li class="nav_types"><h1><a href="#types">類型</a></h1><ul><li><a href="#types.equality">Equality and Comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> Operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> Operator</a></li><li><a href="#types.casting">Type Casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">核心</a></h1><ul><li><a href="#core.eval">為什麼不要使用 <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> 和 <code>null</code></a></li><li><a href="#core.semicolon">自動插入分號</a></li><li><a href="#core.delete">The <code>delete</code> Operator</a></li></ul></li><li class="nav_other"><h1><a href="#other">其他</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>簡介</h1><div><p>是一個不斷更新的文件，最主要是要去了解一些 Javascript 比較古怪的部份。
+給一些意見來防止遇到一些常見的錯誤和一些難以發現的問題，以及性能問題和不好的習慣。
+初學者也可以借此去了解 Javascript 這項語言的特性。</p>
 
-<p>JavaScript Garden does <strong>not</strong> aim to teach you JavaScript. Former knowledge
-of the language is strongly recommended in order to understand the topics covered
-in this guide. In order to learn the basics of the language, please head over to 
-the excellent <a href="https://developer.mozilla.org/en/JavaScript/Guide">guide</a> on the Mozilla Developer Network.</p>
+<p>JavaScript 庭院 並 <strong>不是</strong> 要教導你 Javascript 的語言。
+如果要能夠理解這篇文章的內容，你需要事先學習 JavaScript 的基礎知識。
+在 Mozilla 開發者網路中有一系列非常棒的學習<a href="https://developer.mozilla.org/en/JavaScript/Guide">guide</a>。</p>
 
-<h2>The Authors</h2>
+<h2>作者</h2>
 
-<p>This guide is the work of two lovely <a href="http://stackoverflow.com/">Stack Overflow</a> users, <a href="http://stackoverflow.com/users/170224/ivo-wetzel">Ivo Wetzel</a>
-(Writing) and <a href="http://stackoverflow.com/users/313758/yi-jiang">Zhang Yi Jiang</a> (Design).</p>
+<p>這個使用手冊是來自於 <a href="http://stackoverflow.com/">Stack Overflow</a> 的使用者, <a href="http://stackoverflow.com/users/170224/ivo-wetzel">Ivo Wetzel</a>
+(寫作) 和 <a href="http://stackoverflow.com/users/313758/yi-jiang">Zhang Yi Jiang</a> (設計).</p>
 
-<h2>Contributors</h2>
+<h2>貢獻者</h2>
 
 <ul>
-<li><a href="https://github.com/caio">Caio Romão</a> (Spelling corrections)</li>
-<li><a href="https://github.com/blixt">Andreas Blixt</a> (Language corrections)</li>
+<li><a href="https://github.com/caio">Caio Romão</a> (拼寫檢查)</li>
+<li><a href="https://github.com/blixt">Andreas Blixt</a> (語言修正)</li>
 </ul>
 
-<h2>Hosting</h2>
+<h2>繁體中文翻譯</h2>
 
-<p>JavaScript Garden is hosted on GitHub, but <a href="http://cramerdev.com/">Cramer Development</a> supports us
-with a mirror at <a href="http://javascriptgarden.info/">JavaScriptGarden.info</a>.</p>
+<ul>
+<li><a href="http://github.com/chilijung">紀力榮</a></li>
+<li><a href="http://github.com/wwwy3y3">張仲威</a></li>
+</ul>
 
-<h2>License</h2>
+<h2>存在</h2>
 
-<p>JavaScript Garden is published under the <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a> and hosted on
-<a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>. If you find errors or typos please <a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">file an issue</a> or a pull 
-request on the repository. You can also find us in the <a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript room</a> on
-Stack Overflow chat.</p></div></header><!-- Articles--></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>物件</h1></header><!-- Articles--><article id="object.general"><h2>Object Usage and Properties</h2><div><p>Everything in JavaScript acts like an object, with the only two exceptions being 
-<a href="#core.undefined"><code>null</code></a> and <a href="#core.undefined"><code>undefined</code></a>.</p>
+<p>JavaScript 庭院 存在於 GitHub, 但是 <a href="http://cramerdev.com/">Cramer Development</a> 讓我們有一個存放地 <a href="http://javascriptgarden.info/">JavaScriptGarden.info</a>.</p>
+
+<h2>許可</h2>
+
+<p>JavaScript 庭院是在 <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a> 許可協議下發佈，並存在於
+<a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>. 如果你有發現錯誤或是打字上的錯誤 <a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">新增一個任務</a> 或者發一個請求。 你也可以在 StackOverflow 的 <a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript room</a> 上面找到我們。</p></div></header><!-- Articles--></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>物件</h1></header><!-- Articles--><article id="object.general"><h2>物件的使用和屬性</h2><div><p>每個變數可以表現像 JavaScript 物件，除了 <a href="#core.undefined"><code>null</code></a> 和 <a href="#core.undefined"><code>undefined</code></a>。</p>
 
 <pre><code>false.toString(); // &#39;false&#39;
 [1, 2, 3].toString(); // &#39;1,2,3&#39;
@@ -45,40 +45,33 @@ Foo.bar = 1;
 Foo.bar; // 1
 </code></pre>
 
-<p>A common misconception is that number literals cannot be used as
-objects. That is because a flaw in JavaScript&#39;s parser tries to parse the <em>dot 
-notation</em> on a number as a floating point literal.</p>
+<p>一個常見的誤解就是字面值（literal）不是物件。這是因為 JavaScript 編譯器的一個錯誤，它試圖把 <em>點操作符</em> 解析為浮點數的字面值的一部分。</p>
 
-<pre><code>2.toString(); // raises SyntaxError
+<pre><code>2.toString(); // 出錯： SyntaxError
 </code></pre>
 
-<p>There are a couple of workarounds that can be used to make number literals act
-as objects too.</p>
+<p>有很多變通方法可以讓數字的字面值看起來像物件。</p>
 
-<pre><code>2..toString(); // the second point is correctly recognized
-2 .toString(); // note the space left to the dot
-(2).toString(); // 2 is evaluated first
+<pre><code>2..toString(); // 第二個點號可以正常解析
+2 .toString(); // 注意點號前面的空格
+(2).toString(); // 2 先被計算
 </code></pre>
 
-</div><div><h3>Objects as a Data Type</h3>
+</div><div><h3>物件做為數據類型</h3>
 
-<p>Objects in JavaScript can also be used as <a href="http://en.wikipedia.org/wiki/Hashmap"><em>Hashmaps</em></a>; they mainly consist 
-of named properties mapping to values.</p>
+<p>JavaScript 的物件可以作為 <a href="http://en.wikipedia.org/wiki/Hashmap"><em>Hashmaps</em></a>使用，主要用來保存命名的建與值的對應關係。</p>
 
-<p>Using an object literal - <code>{}</code> notation - it is possible to create a 
-plain object. This new object <a href="#object.prototype">inherits</a> from <code>Object.prototype</code> and 
-does not have <a href="#object.hasownproperty">own properties</a> defined.</p>
+<p>使用物件的字面語法 - <code>{}</code> - 可以創建一個簡單的物件。 這個新創建的物件從 <code>Object.prototype</code> <a href="#object.prototype">繼承</a>，下面，沒有任何 <a href="#object.hasownproperty">字定義屬性</a>。</p>
 
-<pre><code>var foo = {}; // a new empty object
+<pre><code>var foo = {}; // 一個空的物件
 
-// a new object with a &#39;test&#39; property with value 12
+// 一個新的物件，有值為 12 的自定義屬性 &#39;test&#39;
 var bar = {test: 12}; 
 </code></pre>
 
-</div><div><h3>Accessing Properties</h3>
+</div><div><h3>訪問屬性</h3>
 
-<p>The properties of an object can be accessed in two ways, via either the dot
-notation or the square bracket notation.</p>
+<p>有兩種訪問物件的屬性，點操作或是中括號操作。</p>
 
 <pre><code>var foo = {name: &#39;kitten&#39;}
 foo.name; // kitten
@@ -91,15 +84,16 @@ foo.1234; // SyntaxError
 foo[&#39;1234&#39;]; // works
 </code></pre>
 
-<p>The notations work almost identically, with the only difference being that the
-square bracket notation allows for dynamic setting of properties and
-the use of property names that would otherwise lead to a syntax error.</p>
+<p>兩種語法是相等的，但是中括號在下面兩個情況依然有效</p>
 
-</div><div><h3>Deleting Properties</h3>
+<ul>
+<li>動態設定屬性</li>
+<li>屬性不是一個有較的變數名</li>
+</ul>
 
-<p>The only way to remove a property from an object is to use the <code>delete</code>
-operator; setting the property to <code>undefined</code> or <code>null</code> only removes the
-<em>value</em> associated with the property, but not the <em>key</em>.</p>
+</div><div><h3>刪除屬性</h3>
+
+<p>唯一刪除屬性的方式就是用 <code>delete</code> 操作符。設置屬性為 <code>undefined</code> 或是 <code>null</code> 只有刪除的屬性和值的關聯，沒有真的刪掉屬性</p>
 
 <pre><code>var obj = {
     bar: 1,
@@ -117,10 +111,10 @@ for(var i in obj) {
 }
 </code></pre>
 
-<p>The above outputs both <code>bar undefined</code> and <code>foo null</code> - only <code>baz</code> was
-removed and is therefore missing from the output.</p>
+<p>上面的輸出結果有 <code>bar undefined</code> 和 <code>foo null</code>
+只有 <code>baz</code> 真正被刪除而已，所以從輸出結果中消失。</p>
 
-</div><div><h3>Notation of Keys</h3>
+</div><div><h3>屬姓名的語法</h3>
 
 <pre><code>var test = {
     &#39;case&#39;: &#39;I am a keyword, so I must be notated as a string&#39;,
@@ -128,32 +122,21 @@ removed and is therefore missing from the output.</p>
 };
 </code></pre>
 
-<p>Object properties can be both notated as plain characters and as strings. Due to
-another mis-design in JavaScript&#39;s parser, the above will throw 
-a <code>SyntaxError</code> prior to ECMAScript 5.</p>
+<p>物件的屬性名可以使用字符串或是普通的宣告。但是由於 JavaScript 編譯器有個另外一個錯誤設計。
+上面的兩種方式在 ECMAScript 5之前都會拋出 <code>SyntaxError</code> 的錯誤。</p>
 
-<p>This error arises from the fact that <code>delete</code> is a <em>keyword</em>; therefore, it must be 
-notated as a <em>string literal</em> to ensure that it will be correctly interpreted by
-older JavaScript engines.</p></div></article><article id="object.prototype"><h2>The Prototype</h2><div><p>JavaScript does not feature a classical inheritance model; instead, it uses a 
-<em>prototypal</em> one. </p>
+<p>這個錯誤的原因是 <code>delete</code> 是 JavaScript 語言的一個 <em>關鍵字</em> 因此為了在更低的版本能執行最好用 <em>string literal</em></p></div></article><article id="object.prototype"><h2>Prototype</h2><div><p>JavaScript 不包含原本繼承的模型。然而它使用的是 <em>prototypal</em> 原型。</p>
 
-<p>While this is often considered to be one of JavaScript&#39;s weaknesses, the 
-prototypal inheritance model is in fact more powerful than the classic model.
-It is, for example, fairly trivial to build a classic model on top of a
-prototypal model, while the other way around is a far more difficult task.</p>
+<p>然而常常有人提及 JavaScript 的缺點，就是基於原本繼承模型比類繼承更強大。
+現實傳統的類繼承模型是很簡單。但是在 JavaScript 中實現元繼承則要困難很多。</p>
 
-<p>JavaScript is the only widely used language that features prototypal
-inheritance, so it can take time to adjust to the differences between the two
-models. </p>
+<p>由於 JavaScript 是唯一一個被廣泛使用的基於原型繼承的語言，所以我們必須要花時間來理解這兩者的不同。</p>
 
-<p>The first major difference is that inheritance in JavaScript uses <em>prototype
-chains</em>.</p>
+<p>第一個不同之處在於 JavaScript 使用 <em>原型鏈</em> 的繼承方式。</p>
 
 <aside>
-  <p><strong>Note:</strong> Simply using <code>Bar.prototype = Foo.prototype</code> will result in both objects
-  sharing the <strong>same</strong> prototype. Therefore, changes to either object&#39;s prototype 
-  will affect the prototype of the other as well, which in most cases is not the 
-  desired effect.</p>
+  <p><strong>注意: <em>* 簡單的使用 <code>Bar.prototype = Foo.prototype</code> 將會導致兩個對象共享 *</em>相同</strong> 的原型。
+  因此，改變任一個原型都會去影響到另外一個，這在大部分的時候不是想得到的結果。</p>
 </aside>
 
 <pre><code>function Foo() {
@@ -165,16 +148,16 @@ Foo.prototype = {
 
 function Bar() {}
 
-// Set Bar&#39;s prototype to a new instance of Foo
+// 設置 Bar 的 prototype 屬性為 Foo 的實例對象
 Bar.prototype = new Foo();
 Bar.prototype.foo = &#39;Hello World&#39;;
 
-// Make sure to list Bar as the actual constructor
+// 修正 Bar.prototype.constructor 為 Bar 本身
 Bar.prototype.constructor = Bar;
 
-var test = new Bar() // create a new bar instance
+var test = new Bar() // 開啟一個新的實例
 
-// The resulting prototype chain
+// 原型鏈
 test [instance of Bar]
     Bar.prototype [instance of Foo] 
         { foo: &#39;Hello World&#39; }
@@ -184,86 +167,60 @@ test [instance of Bar]
                 { toString: ... /* etc. */ }
 </code></pre>
 
-<p>In the code above, the object <code>test</code> will inherit from both <code>Bar.prototype</code> and
-<code>Foo.prototype</code>; hence, it will have access to the function <code>method</code> that was 
-defined on <code>Foo</code>. It will also have access to the property <code>value</code> of the
-<strong>one</strong> <code>Foo</code> instance that is its prototype. It is important to note that <code>new
-Bar()</code> does <strong>not</strong> create a new <code>Foo</code> instance, but reuses the one assigned to 
-its prototype; thus, all <code>Bar</code> instances will share the <strong>same</strong> <code>value</code> property.</p>
+<p>上面的例子中，物件 <code>test</code> 會繼承來自 <code>Bar.prototype</code> 和 <code>Foo.prototype</code>。因此它可以進入來自 <code>Foo</code> 原型的方法 <code>method</code>。
+同時它也可以訪問 <strong>那個</strong> 定義在原型上的 <code>Foo</code> 實例屬性 <code>value</code>。</p>
+
+<p>要注意的是 <code>new Bar()</code> <strong>沒有</strong> 創立一個新的 <code>Foo</code> 實例，它重複利用的原本的 prototype。因此， <code>Bar</code> 的實例會分享到 <strong>相同</strong> 的 <code>value</code> 屬性。</p>
 
 <aside>
-  <p><strong>Note:</strong> Do <strong>not</strong> use <code>Bar.prototype = Foo</code>, since it will not point to 
-  the prototype of <code>Foo</code> but rather to the function object <code>Foo</code>. So the 
-  prototype chain will go over <code>Function.prototype</code> and not <code>Foo.prototype</code>;
-  therefore, <code>method</code> will not be on the prototype chain.</p>
+  <p><strong>注意:</strong> <strong>不要</strong> 使用 <code>Bar.prototype = Foo</code>，因為這不會執行 <code>Foo</code> 的原型，而是指向函式 <code>Foo</code>。
+  因此原型鏈將回碩到 <code>Function.prototype</code> 而不是 <code>Foo.prototype</code> ，因此 <code>method</code> 將不會在 Bar 的原型鏈上。</p>
 </aside>
 
-</div><div><h3>Property Lookup</h3>
+</div><div><h3>屬性查詢</h3>
 
-<p>When accessing the properties of an object, JavaScript will traverse the
-prototype chain <strong>upwards</strong> until it finds a property with the requested name.</p>
+<p>當查詢一個物件的屬性時，JavaScript 會 <strong>向上</strong> 查詢，直到查到指定名稱的屬性為止。</p>
 
-<p>If it reaches the top of the chain - namely <code>Object.prototype</code> - and still
-hasn&#39;t found the specified property, it will return the value
-<a href="#core.undefined">undefined</a> instead.</p>
+<p>如果他查到原型鏈的頂部 - 也就是 <code>Object.prototype</code> - 但是仍然每有指定的屬定，就會返回 <a href="#core.undefined">undefined</a>。</p>
 
-</div><div><h3>The Prototype Property</h3>
+</div><div><h3>原型屬性</h3>
 
-<p>While the prototype property is used by the language to build the prototype
-chains, it is still possible to assign <strong>any</strong> given value to it. However, 
-primitives will simply get ignored when assigned as a prototype.</p>
+<p>當原型屬性用來建造原型鏈，它還是有可能去把 <strong>任意</strong> 類型的值給它</p>
 
 <pre><code>function Foo() {}
-Foo.prototype = 1; // no effect
+Foo.prototype = 1; // 無效
 </code></pre>
 
-<p>Assigning objects, as shown in the example above, will work, and allows for dynamic
-creation of prototype chains.</p>
+<p>分派物件，在上面的例子中，將會動態的創建原型鏈。</p>
 
-</div><div><h3>Performance</h3>
+</div><div><h3>效能</h3>
 
-<p>The lookup time for properties that are high up on the prototype chain can have
-a negative impact on performance, and this may be significant in code where
-performance is critical. Additionally, trying to access non-existent properties
-will always traverse the full prototype chain. </p>
+<p>如果看在屬性在原型鏈的上端，對於查詢都會有不利的影響。特別的，試圖獲取一個不存在的屬性將會找遍所有原型鏈。</p>
 
-<p>Also, when <a href="#object.forinloop">iterating</a> over the properties of an object 
-<strong>every</strong> property that is on the prototype chain will be enumerated.</p>
+<p>並且，當使用 <a href="#object.forinloop">迴圈</a>找尋所有物件的屬性時，原型鏈上的 <strong>所有</strong> 屬性都會被訪問。</p>
 
-</div><div><h3>Extension of Native Prototypes</h3>
+</div><div><h3>擴展 Native Prototype</h3>
 
-<p>One mis-feature that is often used is to extend <code>Object.prototype</code> or one of the
-other built in prototypes.</p>
+<p>一個經常錯誤使用的特定，那就是擴展 <code>Object.prototype</code> 或者是其他內置類型的原型物件。</p>
 
-<p>This technique is called <a href="http://en.wikipedia.org/wiki/Monkey_patch">monkey patching</a> and breaks <em>encapsulation</em>. While 
-used by popular frameworks such as <a href="http://prototypejs.org/">Prototype</a>, there is still no good 
-reason for cluttering built-in types with additional <em>non-standard</em> functionality.</p>
+<p>這種技術叫做 <a href="http://en.wikipedia.org/wiki/Monkey_patch">monkey patching</a> 並且會破壞 <em>封裝</em>。雖然被廣泛的應用到一些 Javascript 的架構，但是我仍然認為內置類型添加是一個 <em>非標準</em> 的函式的好方法</p>
 
-<p>The <strong>only</strong> good reason for extending a built-in prototype is to backport 
-the features of newer JavaScript engines; for example, 
-<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach</code></a>.</p>
+<p>擴展內置類型的 <strong>唯一</strong> 理由是為了和新的 JavaScript 保持一致，比如說 <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach</code></a></p>
 
-</div><div><h3>In Conclusion</h3>
+</div><div><h3>總結</h3>
 
-<p>It is <strong>essential</strong> to understand the prototypal inheritance model before
-writing complex code that makes use of it. Also, be aware of the length of the
-prototype chains in your code and break them up if necessary to avoid possible
-performance problems. Further, the native prototypes should <strong>never</strong> be
-extended unless it is for the sake of compatibility with newer JavaScript
-features.</p></div></article><article id="object.hasownproperty"><h2><code>hasOwnProperty</code></h2><div><p>To check whether an object has a property defined on <em>itself</em> and not somewhere
-on its <a href="#object.prototype">prototype chain</a>, it is necessary to use the
-<code>hasOwnProperty</code> method which all objects inherit from <code>Object.prototype</code>.</p>
+<p>在寫複雜的程式碼的時候，要 <strong>充分理解</strong> 所有程式繼承的屬性還有原型鏈。
+還要堤防原型鏈過長帶來的性能問題，並知道如何通過縮短原型鏈來提高性能。
+絕對 <strong>不要使用</strong> native prototype` 除非是為了和新的 JavaScript 引擎作兼容。</p></div></article><article id="object.hasownproperty"><h2><code>hasOwnProperty</code></h2><div><p>為了判斷一個物件是否包含 <em>自定義</em> 屬性而 <em>不是</em> <a href="#object.prototype">原形</a>上的屬性，我們需要使用繼承 <code>Object.prototype</code> 的 <code>hasOwnProperty</code> 方法。</p>
 
 <aside>
-  <p><strong>Note:</strong> It is <strong>not</strong> enough to check whether a property is <code>undefined</code>. The
-  property might very well exist, but its value just happens to be set to 
-  <code>undefined</code>.</p>
+  <p><strong>注意:</strong> 判斷一個屬性是否 <code>undefined</code> 是 <strong>不夠的</strong>。
+  因為一個屬性可能存在，但是它的值被設成 <code>undefined</code>。</p>
 </aside>
 
-<p><code>hasOwnProperty</code> is the only thing in JavaScript which deals with properties and 
-does <strong>not</strong> traverse the prototype chain.</p>
+<p><code>hasOwnProperty</code> 是 JavaScript 中唯一一個處理屬性但是 <strong>不</strong> 找原型鏈的函式。</p>
 
-<pre><code>// Poisoning Object.prototype
+<pre><code>// 修改 Object.prototype
 Object.prototype.bar = 1; 
 var foo = {goo: undefined};
 
@@ -274,16 +231,11 @@ foo.hasOwnProperty(&#39;bar&#39;); // false
 foo.hasOwnProperty(&#39;goo&#39;); // true
 </code></pre>
 
-<p>Only <code>hasOwnProperty</code> will give the correct and expected result; this is 
-essential when iterating over the properties of any object. There is <strong>no</strong> other 
-way to exclude properties that are not defined on the object itself, but 
-somewhere on its prototype chain.  </p>
+<p>只有 <code>hasOwnProperty</code> 給予正確的結果，這對進入物件的屬性很有效果，<strong>沒有</strong> 其他方法可以用來排除原型上的屬性，而不是定義在物件 <em>自己</em> 上的屬性。</p>
 
-</div><div><h3><code>hasOwnProperty</code> as a Property</h3>
+</div><div><h3><code>hasOwnProperty</code> 作為屬性</h3>
 
-<p>JavaScript does not protect the property name <code>hasOwnProperty</code>; thus, if the
-possibility exists that an object might have a property with this name, it is
-necessary to use an <em>external</em> <code>hasOwnProperty</code> to get correct results.</p>
+<p>JavaScript <strong>不會</strong> 保護 <code>hasOwnProperty</code>被占用，因此如果碰到存在這個屬性，就需要使用 <em>外部</em> 的 <code>hasOwnProperty</code> 來獲取正確的結果。</p>
 
 <pre><code>var foo = {
     hasOwnProperty: function() {
@@ -292,51 +244,40 @@ necessary to use an <em>external</em> <code>hasOwnProperty</code> to get correct
     bar: &#39;Here be dragons&#39;
 };
 
-foo.hasOwnProperty(&#39;bar&#39;); // always returns false
+foo.hasOwnProperty(&#39;bar&#39;); // 永遠返回 false
 
-// Use another Object&#39;s hasOwnProperty and call it with &#39;this&#39; set to foo
+// 使用其他對象的 hasOwnProperty，並將其上下設置為 foo
 ({}).hasOwnProperty.call(foo, &#39;bar&#39;); // true
-
-// It&#39;s also possible to use the hasOwnProperty property from the Object property for this purpose
-Object.prototype.hasOwnProperty.call(obj, &#39;bar&#39;); // true
 </code></pre>
 
-</div><div><h3>In Conclusion</h3>
+</div><div><h3>結論</h3>
 
-<p>Using <code>hasOwnProperty</code> is the <strong>only</strong> reliable method to check for the
-existence of a property on an object. It is recommended that <code>hasOwnProperty</code>
-is used in <strong>every</strong> <a href="#object.forinloop"><code>for in</code> loop</a> to avoid errors from
-extended native <a href="#object.prototype">prototypes</a>.</p></div></article><article id="object.forinloop"><h2>The <code>for in</code> Loop</h2><div><p>Just like the <code>in</code> operator, the <code>for in</code> loop traverses the prototype
-chain when iterating over the properties of an object.</p>
+<p>當檢查一個物件是否存在的時候， <code>hasOwnProperty</code> 是 <strong>唯一</strong> 可用的方法。
+同時在使用 <a href="#object.forinloop"><code>for in loop</code></a>
+建議使用 <code>hasOwnProperty</code> 避免 <a href="#object.prototype">原型</a>所帶來的干擾。</p></div></article><article id="object.forinloop"><h2><code>for in</code> 迴圈</h2><div><p>就像其他的 <code>in</code> 操作符一樣， <code>for in</code> 循環也進入所有在物件中的屬性</p>
 
 <aside>
-  <p><strong>Note:</strong> The <code>for in</code> loop will <strong>not</strong> iterate over any properties that 
-  have their <code>enumerable</code> attribute set to <code>false</code>; for example, the <code>length</code> 
-  property of an array.</p>
+  <p><strong>注意: <em>* <code>for in</code> 迴圈 *</em>不會</strong> 進入那些 <code>enumerable</code> 屬性是 <code>false</code>，舉例來說， 陣列中 <code>length</code> 的屬性</p>
 </aside>
 
-<pre><code>// Poisoning Object.prototype
+<pre><code>// 修改 Object.prototype
 Object.prototype.bar = 1;
 
 var foo = {moo: 2};
 for(var i in foo) {
-    console.log(i); // prints both bar and moo
+    console.log(i); // 輸出兩個屬性：bar 和 moo
 }
 </code></pre>
 
-<p>Since it is not possible to change the behavior of the <code>for in</code> loop itself, it
-is necessary to filter out the unwanted properties inside the loop body; 
-this is done using the <a href="#object.hasownproperty"><code>hasOwnProperty</code></a> method of 
-<code>Object.prototype</code>.</p>
+<p>由於不可能改變 <code>for in</code> 本身的行為，因為有必要過濾出那些不希望在迴圈出現的屬性，這可以用 <code>Object.prototype</code> 原型上的 <a href="#object.hasownproperty"><code>hasOwnProperty</code></a> 的函數來完成。</p>
 
 <aside>
-  <p><strong>Note:</strong> Since <code>for in</code> always traverses the complete prototype chain, it
-  will get slower with each additional layer of inheritance added to an object.</p>
+  <p><em>*注意: *</em> 由於 <code>for in</code> 總是要到所有原型鏈裡，因此如果物件的繼承層次太深的話會影響性能。</p>
 </aside>
 
-</div><div><h3>Using <code>hasOwnProperty</code> for Filtering</h3>
+</div><div><h3>用 <code>hasOwnProperty</code> 來過濾</h3>
 
-<pre><code>// still the foo from above
+<pre><code>// foo 變數是上面範例中的
 for(var i in foo) {
     if (foo.hasOwnProperty(i)) {
         console.log(i);
@@ -344,20 +285,15 @@ for(var i in foo) {
 }
 </code></pre>
 
-<p>This version is the only correct one to use. Due to the use of <code>hasOwnProperty</code>, it
-will <strong>only</strong> print out <code>moo</code>. When <code>hasOwnProperty</code> is left out, the code is 
-prone to errors in cases where the native prototypes - e.g. <code>Object.prototype</code> - 
-have been extended.</p>
+<p>這個版本的程式碼是唯一正確的寫法。由於我們使用了 <code>hasOwnProperty</code>，這次 <strong>只</strong> 輸出 <code>moo</code>。
+如果不只用這個程式碼在原型物件中(比如 <code>Object.prototype</code>)被擴展可能會出錯。</p>
 
-<p>One widely used framework that extends <code>Object.prototype</code> is <a href="http://www.prototypejs.org/">Prototype</a>.
-When this framework is included, <code>for in</code> loops that do not use
-<code>hasOwnProperty</code> are guaranteed to break.</p>
+<p>一個廣泛的模組 <a href="http://www.prototypejs.org/">Prototype</a>就礦展了圓型的 JavaScript 物件。
+因此，但這模組包含在頁面中時，不使用 <code>hasOwnProperty</code> 過濾的 <code>for in</code> 尋難免會出問題。</p>
 
-</div><div><h3>In Conclusion</h3>
+</div><div><h3>總結</h3>
 
-<p>It is recommended to <strong>always</strong> use <code>hasOwnProperty</code>. Assumptions should never
-be made about the environment the code is running in, or whether the native
-prototypes have been extended or not.</p></div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>函式</h1></header><!-- Articles--><article id="function.general"><h2>函式的宣告和表達方式</h2><div><p>函式在 JavaScript 是第一等物件。這表示他們可以把函式當做值一樣傳遞。
+<p>推薦 <strong>總是</strong> 使用 <code>hasOwnProperty</code>。不要對程式碼的環境做任何假設，不要假設原生的對象是否被擴張</p></div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>函式</h1></header><!-- Articles--><article id="function.general"><h2>函式的宣告和表達方式</h2><div><p>函式在 JavaScript 是第一等物件。這表示他們可以把函式當做值一樣傳遞。
 一個常見的用法是用 <em>匿名函式</em> 當做一個回傳去呼叫另一個函式，這是一種非同步函式</p>
 
 </div><div><h3>函式的宣告</h3>
@@ -810,18 +746,14 @@ Bar();
 </code></pre>
 
 <aside>
-  <p><strong>Note:</strong> When not used in an assignment, return statement or as a function 
-  argument, the <code>{...}</code> notation will get interpreted as a block statement and 
-  <strong>not</strong> as an object literal. This, in conjunction with 
-  <a href="#core.semicolon">automatic insertion of semicolons</a>, can lead to subtle errors.</p>
+  <p><strong>注意:</strong> 如果不是在賦值語句中，而是在 return 表達式或者函數參數中， <code>{...}</code> 將會作為程式碼中的解析，而不是作為物件的字面語法解析。
+  如果考慮到 <a href="#core.semicolon">自動分號插入</a>，可能會造成一些不易察覺的錯誤。</p>
 </aside>
 
-<p>There are also no distinct namespaces in JavaScript, which means that everything 
-gets defined in one <em>globally shared</em> namespace.</p>
+<p>JavaScript 中沒有寫示的命名空間定義，這代表著它所有定義的東西都是 <em>全域共享</em> 在同一個命名空間下。</p>
 
-<p>Each time a variable is referenced, JavaScript will traverse upwards through all 
-the scopes until it finds it. In the case that it reaches the global scope and 
-still has not found the requested name, it will raise a <code>ReferenceError</code>.</p>
+<p>每次引用一個變數，JavaScript 會向上找整個作用域直到找到這個變數為止。
+如果在全域中無法找到那個變數，它會拋出 <code>ReferenceError</code> 錯誤碼。</p>
 
 </div><div><h3>全域變數的壞處</h3>
 
@@ -832,17 +764,14 @@ foo = &#39;42&#39;;
 var foo = &#39;42&#39;
 </code></pre>
 
-<p>The above two scripts do <strong>not</strong> have the same effect. Script A defines a 
-variable called <code>foo</code> in the <em>global</em> scope, and script B defines a <code>foo</code> in the
-<em>current</em> scope.</p>
+<p>上面兩個腳本 <em>不會</em> 有同樣的效果。腳本 A 在 <em>全域</em> 空間定義了變數 <code>foo</code>，腳本 B 定義了 <code>foo</code> 在目前的區間內。</p>
 
-<p>Again, that is <strong>not</strong> at all the <em>same effect</em>: not using <code>var</code> can have major 
-implications.</p>
+<p>再次強調，上面的效果是 <strong>完全不同</strong>，不使用 <code>var</code> 會導致隱性的全域變數。</p>
 
-<pre><code>// global scope
+<pre><code>// 全域作用區
 var foo = 42;
 function test() {
-    // local scope
+    // 局部作用區
     foo = 21;
 }
 test();
@@ -852,40 +781,40 @@ foo; // 21
 <p>Leaving out the <code>var</code> statement inside the function <code>test</code> will override the 
 value of <code>foo</code>. While this might not seem like a big deal at first, having 
 thousands of lines of JavaScript and not using <code>var</code> will introduce horrible,
-hard-to-track-down bugs.</p>
+hard-to-track-down bugs.
+在函數 <code>test</code> 中部使用 <code>var</code> 會覆蓋到原本在外面的 <code>foo</code>。
+雖然看起來不是什麼大問題，但是當程式有幾千行的時候沒有使用 <code>var</code> 會照成難以追蹤的臭蟲。</p>
 
-<pre><code>// global scope
+<pre><code>// 全域作用域
 var items = [/* some list */];
 for(var i = 0; i &lt; 10; i++) {
     subLoop();
 }
 
 function subLoop() {
-    // scope of subLoop
-    for(i = 0; i &lt; 10; i++) { // missing var statement
-        // do amazing stuff!
+    // subLoop 的作用域
+    for(i = 0; i &lt; 10; i++) { // 缺少了 var
+        // 做一些事情
     }
 }
 </code></pre>
 
-<p>The outer loop will terminate after the first call to <code>subLoop</code>,  since <code>subLoop</code>
-overwrites the global value of <code>i</code>. Using a <code>var</code> for the second <code>for</code> loop would
-have easily avoided this error. The <code>var</code> statement should <strong>never</strong> be left out 
-unless the <em>desired effect</em> is to affect the outer scope.</p>
+<p>在外面的迴圈在呼叫第一次 <code>subLoop</code> 之後就會停止，因為 <code>subLoop</code> 全域變數中的 <code>i</code> 被覆蓋了。
+在第二次使用 <code>for</code> 迴圈的時候，使用 <code>var</code> 就可以避免這種錯誤。
+在宣告變數的時候 <strong>絕對不要</strong> 忘記 <code>var</code>，除非就是 <code>希望他的效果</code> 是取改變外部的作用域。</p>
 
-</div><div><h3>Local Variables</h3>
+</div><div><h3>局部變數</h3>
 
-<p>The only source for local variables in JavaScript are
-<a href="#function.general">function</a> parameters and variables declared via the 
-<code>var</code> statement.</p>
+<p>在 javascript 中能用兩種方式來宣告局部變數。
+<a href="#function.general">函式</a> 參數和透過 <code>var</code> 來宣告變數。</p>
 
-<pre><code>// global scope
+<pre><code>// 全域變數
 var foo = 1;
 var bar = 2;
 var i = 2;
 
 function test(i) {
-    // local scope of the function test
+    // 函式 test 內部的局部作用域
     i = 5;
 
     var foo = 3;
@@ -894,13 +823,11 @@ function test(i) {
 test(10);
 </code></pre>
 
-<p>While <code>foo</code> and <code>i</code> are local variables inside the scope of the function <code>test</code>,
-the assignment of <code>bar</code> will override the global variable with the same name.</p>
+<p><code>foo</code> 和 <code>i</code> 是它的局部變數在 <code>test</code> 函式中，但是在 <code>bar</code> 的賦值會覆蓋全區域的作用域內的同名變數。</p>
 
-</div><div><h3>Hoisting</h3>
+</div><div><h3>變數宣告</h3>
 
-<p>JavaScript <strong>hoists</strong> declarations. This means that both <code>var</code> statements and
-<code>function</code> declarations will be moved to the top of their enclosing scope.</p>
+<p>JavaScript 會 <strong>提昇</strong> 變數宣告， 這代表著 <code>var</code> 和 <code>function</code> 的圈告都會被提升到當前作用域的頂端。</p>
 
 <pre><code>bar();
 var bar = function() {};
@@ -920,16 +847,14 @@ function test(data) {
 }
 </code></pre>
 
-<p>The above code gets transformed before execution starts. JavaScript moves
-the <code>var</code> statements, as well as <code>function</code> declarations, to the top of the 
-nearest surrounding scope.</p>
+<p>在上面的程式碼會被轉化在執行之前。 JavaScript 會把 <code>var</code>，和 <code>function</code> 宣告，放到最頂端最接近的作用區間</p>
 
-<pre><code>// var statements got moved here
-var bar, someValue; // default to &#39;undefined&#39;
+<pre><code>// var 被移到這裡
+var bar, someValue; //  值等於 &#39;undefined&#39;
 
-// the function declaration got moved up too
+// function 的宣告也被搬上來
 function test(data) {
-    var goo, i, e; // missing block scope moves these here
+    var goo, i, e; // 沒有作用域的也被搬至頂端
     if (false) {
         goo = 1;
 
@@ -941,96 +866,82 @@ function test(data) {
     }
 }
 
-bar(); // fails with a TypeError since bar is still &#39;undefined&#39;
-someValue = 42; // assignments are not affected by hoisting
+bar(); // 出錯：TypeError ， bar 還是 &#39;undefined&#39;
+someValue = 42; // 賦值語句不會被提昇規則影響
 bar = function() {};
 
 test();
 </code></pre>
 
-<p>Missing block scoping will not only move <code>var</code> statements out of loops and
-their bodies, it will also make the results of certain <code>if</code> constructs 
-non-intuitive.</p>
+<p>沒有作用域區間不只會把 <code>var</code> 放到迴圈之外，還會使得 <code>if</code> 表達式更難看懂。</p>
 
-<p>In the original code, although the <code>if</code> statement seemed to modify the <em>global 
-variable</em> <code>goo</code>, it actually modifies the <em>local variable</em> - after hoisting 
-has been applied.</p>
+<p>在一般的程式中，雖然 <code>if</code> 表達式中看起來修改了 <em>全域變數</em> <code>goo</code>，但實際上在提昇規則被運用後，卻是在修改 <em>局部變數</em></p>
 
-<p>Without knowledge of <em>hoisting</em>, one might suspect the code below would raise a
-<code>ReferenceError</code>.</p>
+<p>如果沒有提昇規則的話，可能會出現像下面的看起來會出現 <code>ReferenceError</code> 的錯誤。</p>
 
-<pre><code>// check whether SomeImportantThing has been initialized
+<pre><code>// 檢查 SomeImportantThing 是否已經被初始化
 if (!SomeImportantThing) {
     var SomeImportantThing = {};
 }
 </code></pre>
 
-<p>But of course, this works due to the fact that the <code>var</code> statement is being 
-moved to the top of the <em>global scope</em>.</p>
+<p>但是它沒有錯誤，因為 <code>var</code> 的表達式會被提升到 <em>全域作用域</em> 的頂端。</p>
 
 <pre><code>var SomeImportantThing;
 
-// other code might initialize SomeImportantThing here, or not
+// 有些程式，可能會初始化。
+SomeImportantThing here, or not
 
-// make sure it&#39;s there
+// 檢查是否已經被初始化。
 if (!SomeImportantThing) {
     SomeImportantThing = {};
 }
 </code></pre>
 
-</div><div><h3>Name Resolution Order</h3>
+</div><div><h3>名稱解析順序</h3>
 
-<p>All scopes in JavaScript, including the <em>global scope</em>, have the special name 
-<a href="#function.this"><code>this</code></a>, defined in them, which refers to the <em>current object</em>. </p>
+<p>JavaScript 中所有的作用區，包括 <em>全域作用域</em>，都有一個特殊的名字 <a href="#function.this"><code>this</code></a>, 在它們裡面被定義，指向當前的物件</p>
 
-<p>Function scopes also have the name <a href="#function.arguments"><code>arguments</code></a>, defined in
-them, which contains the arguments that were passed to the function.</p>
+<p>函式作用域也有一個名稱叫做 <a href="#function.arguments"><code>arguments</code></a>, 定義它們，其中包括傳到函式內的參數。</p>
 
-<p>For example, when trying to access a variable named <code>foo</code> inside the scope of a 
-function, JavaScript will look up the name in the following order:</p>
+<p>例如，它們開始試著進入到 <code>foo</code> 的作用域裡面， JavaScript 會依照下面的順序去查詢：</p>
 
 <ol>
-<li>In case there is a <code>var foo</code> statement in the current scope, use that.</li>
-<li>If one of the function parameters is named <code>foo</code>, use that.</li>
-<li>If the function itself is called <code>foo</code>, use that.</li>
-<li>Go to the next outer scope, and start with <strong>#1</strong> again.</li>
+<li>當作用域內是否有 <code>var foo</code> 的定義。</li>
+<li>函式形式參數是否有使用 <code>foo</code> 名稱定義。</li>
+<li>函式自身是剖叫做 <code>foo</code>。</li>
+<li>回溯到上一個層級然後再從第一個開始往下去查。</li>
 </ol>
 
 <aside>
-  <p><strong>Note:</strong> Having a parameter called <code>arguments</code> will <strong>prevent</strong> the creation 
-  of the default <code>arguments</code> object.</p>
+  <p><em>*注意: *</em> 自定義 <code>arguments</code> 參數會阻止原生的 <code>arguments</code> 的物件創立</p>
 </aside>
 
-</div><div><h3>Namespaces</h3>
+</div><div><h3>命名空間</h3>
 
-<p>A common problem associated with having only one global namespace is the
-likelihood of running into problems where variable names clash. In JavaScript,
-this problem can easily be avoided with the help of <em>anonymous wrappers</em>.</p>
+<p>只有一個全域作用域會導致常見的錯誤是命名衝突。在 JavaScript 中可以透過 <em>匿名包裝器</em> 來解決。</p>
 
 <pre><code>(function() {
-    // a self contained "namespace"
+    // 自己本身的匿名空間
 
     window.foo = function() {
-        // an exposed closure
+        // 對外公開的函式
     };
 
-})(); // execute the function immediately
+})(); // 馬上執行這個匿名函式
 </code></pre>
 
-<p>Unnamed functions are considered <a href="#function.general">expressions</a>; so in order to
-being callable, they must first be evaluated.</p>
+<p>匿名函式被認為是 <a href="#function.general">表達式</a>因此為了要可以調用，它們會先被執行。</p>
 
-<pre><code>( // evaluate the function inside the parentheses
+<pre><code>( // 小括號內的先被執行
 function() {}
-) // and return the function object
-() // call the result of the evaluation
+) // 回傳函數對象
+() // 調用上面的執行結果
 </code></pre>
 
-<p>There are other ways to evaluate and directly call the function expression
-which, while different in syntax, behave the same way.</p>
+<p>還有其他方式也可以像上面一樣調用函式的方式達到</p>
 
-<pre><code>// A few other styles for directly invoking the 
-!function(){}()
+<pre><code>!function(){}()
 +function(){}()
 (function(){}());
 // and so on...
@@ -1038,12 +949,9 @@ which, while different in syntax, behave the same way.</p>
 
 </div><div><h3>結語</h3>
 
-<p>It is recommended to always use an <em>anonymous wrapper</em> to encapsulate code in 
-its own namespace. This does not only protect code against name clashes, but it 
-also allows for better modularization of programs.</p>
+<p>建議最好是都用 <em>匿名包裝器</em> 來封裝你的程式碼在自己的命名區間內。這不僅是要防止命名衝突也可以使得程序更有模組化。</p>
 
-<p>Additionally, the use of global variables is considered <strong>bad practice</strong>. <strong>Any</strong>
-use of them indicates badly written code that is prone to errors and hard to maintain.</p></div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>陣列</h1></header><!-- Articles--><article id="array.general"><h2>Array 迴圈和屬性</h2><div><p>雖然在 Javascript 中 Array 都是 Objects，但是沒有好的理由要使用他
+<p>另外，全域變數是個 <strong>不好的</strong> 習慣，因為它會帶來錯誤和更難去維護。</p></div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>陣列</h1></header><!-- Articles--><article id="array.general"><h2>Array 迴圈和屬性</h2><div><p>雖然在 Javascript 中 Array 都是 Objects，但是沒有好的理由要使用他
 在 <a href="#object.forinloop"><code>for in</code></a> 的迴圈中。事實上有很多原因要避免使用 <code>for in</code> 在 Array 之中</p>
 
 <aside>

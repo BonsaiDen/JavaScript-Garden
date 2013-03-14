@@ -1,17 +1,13 @@
-## `hasOwnProperty`
+## `hasOwnProperty` 
 
-To check whether an object has a property defined on *itself* and not somewhere
-on its [prototype chain](#object.prototype), it is necessary to use the
-`hasOwnProperty` method which all objects inherit from `Object.prototype`.
+為了判斷一個物件是否包含 *自定義* 屬性而 *不是* [原形](#object.prototype)上的屬性，我們需要使用繼承 `Object.prototype` 的 `hasOwnProperty` 方法。
 
-> **Note:** It is **not** enough to check whether a property is `undefined`. The
-> property might very well exist, but its value just happens to be set to 
-> `undefined`.
+> **注意:** 判斷一個屬性是否 `undefined` 是 **不夠的**。
+> 因為一個屬性可能存在，但是它的值被設成 `undefined`。
 
-`hasOwnProperty` is the only thing in JavaScript which deals with properties and 
-does **not** traverse the prototype chain.
+`hasOwnProperty` 是 JavaScript 中唯一一個處理屬性但是 **不** 找原型鏈的函式。
 
-    // Poisoning Object.prototype
+    // 修改 Object.prototype
     Object.prototype.bar = 1; 
     var foo = {goo: undefined};
     
@@ -21,16 +17,11 @@ does **not** traverse the prototype chain.
     foo.hasOwnProperty('bar'); // false
     foo.hasOwnProperty('goo'); // true
 
-Only `hasOwnProperty` will give the correct and expected result; this is 
-essential when iterating over the properties of any object. There is **no** other 
-way to exclude properties that are not defined on the object itself, but 
-somewhere on its prototype chain.  
+只有 `hasOwnProperty` 給予正確的結果，這對進入物件的屬性很有效果，**沒有** 其他方法可以用來排除原型上的屬性，而不是定義在物件 *自己* 上的屬性。
 
-### `hasOwnProperty` as a Property
+### `hasOwnProperty` 作為屬性
 
-JavaScript does not protect the property name `hasOwnProperty`; thus, if the
-possibility exists that an object might have a property with this name, it is
-necessary to use an *external* `hasOwnProperty` to get correct results.
+JavaScript **不會** 保護 `hasOwnProperty`被占用，因此如果碰到存在這個屬性，就需要使用 *外部* 的 `hasOwnProperty` 來獲取正確的結果。
 
     var foo = {
         hasOwnProperty: function() {
@@ -39,19 +30,14 @@ necessary to use an *external* `hasOwnProperty` to get correct results.
         bar: 'Here be dragons'
     };
 
-    foo.hasOwnProperty('bar'); // always returns false
+    foo.hasOwnProperty('bar'); // 永遠返回 false
 
-    // Use another Object's hasOwnProperty and call it with 'this' set to foo
+    // 使用其他對象的 hasOwnProperty，並將其上下設置為 foo
     ({}).hasOwnProperty.call(foo, 'bar'); // true
 
-    // It's also possible to use the hasOwnProperty property from the Object property for this purpose
-    Object.prototype.hasOwnProperty.call(obj, 'bar'); // true
 
+### 結論
 
-### In Conclusion
-
-Using `hasOwnProperty` is the **only** reliable method to check for the
-existence of a property on an object. It is recommended that `hasOwnProperty`
-is used in **every** [`for in` loop](#object.forinloop) to avoid errors from
-extended native [prototypes](#object.prototype).
-
+當檢查一個物件是否存在的時候， `hasOwnProperty` 是 **唯一** 可用的方法。
+同時在使用 [`for in loop`](#object.forinloop)
+建議使用 `hasOwnProperty` 避免 [原型](#object.prototype)所帶來的干擾。

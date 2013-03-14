@@ -24,10 +24,9 @@ JavaScript 庭院 並 **不是** 要教導你 Javascript 的語言。
  - [紀力榮][29]
  - [張仲威][30]
 
-## Hosting
+## 存在
 
-JavaScript Garden is hosted on GitHub, but [Cramer Development][7] supports us
-with a mirror at [JavaScriptGarden.info][8].
+JavaScript 庭院 存在於 GitHub, 但是 [Cramer Development][7] 讓我們有一個存放地 [JavaScriptGarden.info][8].
 
 ## 許可
 
