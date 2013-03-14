@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="zh-TW"><head><title>JavaScript Garden</title><meta charset="utf-8"><meta name="description" content="A Guide to JavaScript's Quirks and Flaws."><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
+<!DOCTYPE html><html lang="zh-TW"><head><title>JavaScript 庭院</title><meta charset="utf-8"><meta name="description" content="JavaScript 語言中古怪用法及缺點的文件總集"><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
 <script src="javascript/html5.js"></script>
 <![endif]-->
-</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li><a href="/JavaScript-Garden/es" title="JavaScript Garden es Español">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha suomeksi">fi</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden in Japanese">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden - ogród JavaScript po polsku">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden Türkçe">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript Garden 中文翻译">zh</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">Intro</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">Objects</a></h1><ul><li><a href="#object.general">Object Usage and Properties</a></li><li><a href="#object.prototype">The Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">The <code>for in</code> Loop</a></li></ul></li><li class="nav_function"><h1><a href="#function">Functions</a></h1><ul><li><a href="#function.general">Function Declarations and Expressions</a></li><li><a href="#function.this">How <code>this</code> Works</a></li><li><a href="#function.closures">Closures and References</a></li><li><a href="#function.arguments"><code>arguments</code> 物件</a></li><li><a href="#function.constructors">Constructors</a></li><li><a href="#function.scopes">Scopes and Namespaces</a></li></ul></li><li class="nav_array"><h1><a href="#array">Arrays</a></h1><ul><li><a href="#array.general">Array 迴圈和屬性</a></li><li><a href="#array.constructor"><code>Array</code> 的建構函式</a></li></ul></li><li class="nav_types"><h1><a href="#types">Types</a></h1><ul><li><a href="#types.equality">Equality and Comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> Operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> Operator</a></li><li><a href="#types.casting">Type Casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">Core</a></h1><ul><li><a href="#core.eval">為什麼不要使用 <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> 和 <code>null</code></a></li><li><a href="#core.semicolon">自動插入分號</a></li><li><a href="#core.delete">The <code>delete</code> Operator</a></li></ul></li><li class="nav_other"><h1><a href="#other">Other</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>Intro</h1><div><p><strong>JavaScript Garden</strong> is a growing collection of documentation about the most 
+</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li><a href="/JavaScript-Garden/es" title="JavaScript Garden es Español">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha suomeksi">fi</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden in Japanese">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden - ogród JavaScript po polsku">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden Türkçe">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript Garden 中文翻译">zh</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">簡介</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">物件</a></h1><ul><li><a href="#object.general">Object Usage and Properties</a></li><li><a href="#object.prototype">The Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">The <code>for in</code> Loop</a></li></ul></li><li class="nav_function"><h1><a href="#function">函式</a></h1><ul><li><a href="#function.general">函式的宣告和表達方式</a></li><li><a href="#function.this"><code>this</code> 的工作原理</a></li><li><a href="#function.closures">Closures 和 References</a></li><li><a href="#function.arguments"><code>arguments</code> 物件</a></li><li><a href="#function.constructors">建構函式</a></li><li><a href="#function.scopes">作用域和命名空間</a></li></ul></li><li class="nav_array"><h1><a href="#array">陣列</a></h1><ul><li><a href="#array.general">Array 迴圈和屬性</a></li><li><a href="#array.constructor"><code>Array</code> 的建構函式</a></li></ul></li><li class="nav_types"><h1><a href="#types">類型</a></h1><ul><li><a href="#types.equality">Equality and Comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> Operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> Operator</a></li><li><a href="#types.casting">Type Casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">核心</a></h1><ul><li><a href="#core.eval">為什麼不要使用 <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> 和 <code>null</code></a></li><li><a href="#core.semicolon">自動插入分號</a></li><li><a href="#core.delete">The <code>delete</code> Operator</a></li></ul></li><li class="nav_other"><h1><a href="#other">其他</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>簡介</h1><div><p><strong>JavaScript Garden</strong> is a growing collection of documentation about the most 
 quirky parts of the JavaScript programming language. It gives advice to 
 avoid common mistakes and subtle bugs, as well as performance issues and bad 
 practices, that non-expert JavaScript programmers may encounter on their 
@@ -34,7 +34,7 @@ with a mirror at <a href="http://javascriptgarden.info/">JavaScriptGarden.info</
 <p>JavaScript Garden is published under the <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a> and hosted on
 <a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>. If you find errors or typos please <a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">file an issue</a> or a pull 
 request on the repository. You can also find us in the <a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript room</a> on
-Stack Overflow chat.</p></div></header><!-- Articles--></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>Objects</h1></header><!-- Articles--><article id="object.general"><h2>Object Usage and Properties</h2><div><p>Everything in JavaScript acts like an object, with the only two exceptions being 
+Stack Overflow chat.</p></div></header><!-- Articles--></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>物件</h1></header><!-- Articles--><article id="object.general"><h2>Object Usage and Properties</h2><div><p>Everything in JavaScript acts like an object, with the only two exceptions being 
 <a href="#core.undefined"><code>null</code></a> and <a href="#core.undefined"><code>undefined</code></a>.</p>
 
 <pre><code>false.toString(); // &#39;false&#39;
@@ -357,105 +357,94 @@ When this framework is included, <code>for in</code> loops that do not use
 
 <p>It is recommended to <strong>always</strong> use <code>hasOwnProperty</code>. Assumptions should never
 be made about the environment the code is running in, or whether the native
-prototypes have been extended or not.</p></div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>Functions</h1></header><!-- Articles--><article id="function.general"><h2>Function Declarations and Expressions</h2><div><p>Functions in JavaScript are first class objects. That means they can be 
-passed around like any other value. One common use of this feature is to pass
-an <em>anonymous function</em> as a callback to another, possibly an asynchronous function.</p>
+prototypes have been extended or not.</p></div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>函式</h1></header><!-- Articles--><article id="function.general"><h2>函式的宣告和表達方式</h2><div><p>函式在 JavaScript 是第一等物件。這表示他們可以把函式當做值一樣傳遞。
+一個常見的用法是用 <em>匿名函式</em> 當做一個回傳去呼叫另一個函式，這是一種非同步函式</p>
 
-</div><div><h3>The <code>function</code> Declaration</h3>
+</div><div><h3>函式的宣告</h3>
 
 <pre><code>function foo() {}
 </code></pre>
 
-<p>The above function gets <a href="#function.scopes">hoisted</a> before the execution of the
-program starts; thus, it is available <em>everywhere</em> in the scope it was
-<em>defined</em>, even if called before the actual definition in the source.</p>
+<p>上面的函式在被執行之前會被 <a href="#function.scopes">解析(hoisted)</a>，因此它可以在 <strong>任意</strong> 的地方都是 <em>有宣告的</em> ，就算是在比這個函式還早呼叫。</p>
 
-<pre><code>foo(); // Works because foo was created before this code runs
+<pre><code>foo(); // 可以執行，因為 foo 已經在運行前就被建立
 function foo() {}
 </code></pre>
 
-</div><div><h3>The <code>function</code> Expression</h3>
+</div><div><h3><code>function</code> 的表達式</h3>
 
 <pre><code>var foo = function() {};
 </code></pre>
 
-<p>This example assigns the unnamed and <em>anonymous</em> function to the variable <code>foo</code>. </p>
+<p>這個例子把一個 <em>匿名</em> 函式賦值給變數 <code>foo</code>。</p>
 
 <pre><code>foo; // &#39;undefined&#39;
-foo(); // this raises a TypeError
+foo(); // 錯誤: TypeError
 var foo = function() {};
 </code></pre>
 
-<p>Due to the fact that <code>var</code> is a declaration that hoists the variable name <code>foo</code> 
-before the actual execution of the code starts, <code>foo</code> is already defined when 
-the script gets executed.</p>
+<p>由於 <code>var</code> 已經宣告變數 <code>foo</code> 在所有的程式碼執行之前。
+所以 <code>foo</code>已經在程式運行前就已經被定義過了。
+但是因為賦值只會在運行時去職情，所以在程式碼執行前，<code>foo</code> 的值還沒被宣告所以為 <a href="#core.undefined">undefined</a>。</p>
 
-<p>But since assignments only happen at runtime, the value of <code>foo</code> will default
-to <a href="#core.undefined">undefined</a> before the corresponding code is executed.</p>
+</div><div><h3>命名函式的賦值表達式</h3>
 
-</div><div><h3>Named Function Expression</h3>
-
-<p>Another special case is the assignment of named functions.</p>
+<p>另一個特殊狀況就勢將一個命名函式賦值給一個變數。</p>
 
 <pre><code>var foo = function bar() {
-    bar(); // Works
+    bar(); // 可以運行
 }
-bar(); // ReferenceError
+bar(); // 錯誤：ReferenceError
 </code></pre>
 
-<p>Here, <code>bar</code> is not available in the outer scope, since the function only gets
-assigned to <code>foo</code>; however, inside of <code>bar</code>, it is available. This is due to 
-how <a href="#function.scopes">name resolution</a> in JavaScript works, the name of the 
-function is <em>always</em> made available in the local scope of the function itself.</p></div></article><article id="function.this"><h2>How <code>this</code> Works</h2><div><p>JavaScript has a different concept of what the special name <code>this</code> refers to 
-than most other programming languages. There are exactly <strong>five</strong> different 
-ways in which the value of <code>this</code> can be bound in the language.</p>
+<p><code>bar</code> 不可以在外部的區域被執行，因為它只有在 <code>foo</code> 的函式內才可以去執行。
+然而在 <code>bar</code> 內部還是可以看見。這是由於 JavaScript的 <a href="#function.scopes">命名處理</a>所致。
+函式名在函式內 <em>都</em> 可以去使用。</p></div></article><article id="function.this"><h2><code>this</code> 的工作原理</h2><div><p>JavaScript 有移到完全部屬於其他語言處理 <code>this</code> 的處理機制。
+在 <strong>五</strong> 種物同的情況下， <code>this</code> 指向的個不相同</p>
 
-</div><div><h3>The Global Scope</h3>
+</div><div><h3>全域變數</h3>
 
 <pre><code>this;
 </code></pre>
 
-<p>When using <code>this</code> in global scope, it will simply refer to the <em>global</em> object.</p>
+<p>如果再全域範圍內使用 <code>this</code>，會指向 <em>全域</em> 的物件</p>
 
-</div><div><h3>Calling a Function</h3>
+</div><div><h3>呼叫一個函式</h3>
 
 <pre><code>foo();
 </code></pre>
 
-<p>Here, <code>this</code> will again refer to the <em>global</em> object.</p>
+<p>這裡 <code>this</code> 也會指向 <em>全域</em> 對象。</p>
 
-<aside class="es5"><p><strong>ES5 Note:</strong> In strict mode, the global case <strong>no longer</strong> exists.
-  <code>this</code> will instead have the value of <code>undefined</code> in that case.</p>
+<aside class="es5"><p><strong>ES5 注意:</strong> 在嚴格模式下，不存在全域變數。
+  <code>this</code> 將會是 <code>undefined</code>。</p>
 </aside>
 
-</div><div><h3>Calling a Method</h3>
+</div><div><h3>方法調用</h3>
 
 <pre><code>test.foo(); 
 </code></pre>
 
-<p>In this example, <code>this</code> will refer to <code>test</code>.</p>
+<p>這個例子中， <code>this</code> 指向 <code>test</code> 物件。</p>
 
-</div><div><h3>Calling a Constructor</h3>
+</div><div><h3>呼叫一個建構函式</h3>
 
 <pre><code>new foo(); 
 </code></pre>
 
-<p>A function call that is preceded by the <code>new</code> keyword acts as
-a <a href="#function.constructors">constructor</a>. Inside the function, <code>this</code> will refer 
-to a <em>newly created</em> <code>Object</code>.</p>
+<p>如果函式傾向用 <code>new</code> 關鍵詞使用，我們稱這個函式為 <a href="#function.constructors">建構函式</a>。
+在函式內部， <code>this</code> 指向 <em>新物件的創立</em></p>
 
-</div><div><h3>Explicit Setting of <code>this</code></h3>
+</div><div><h3>顯示的設置 <code>this</code></h3>
 
 <pre><code>function foo(a, b, c) {}
 
 var bar = {};
-foo.apply(bar, [1, 2, 3]); // array will expand to the below
-foo.call(bar, 1, 2, 3); // results in a = 1, b = 2, c = 3
+foo.apply(bar, [1, 2, 3]); // Array 會被擴展，如下所示
+foo.call(bar, 1, 2, 3); // 傳遞參數 a = 1, b = 2, c = 3
 </code></pre>
 
-<p>When using the <code>call</code> or <code>apply</code> methods of <code>Function.prototype</code>, the value of
-<code>this</code> inside the called function gets <strong>explicitly set</strong> to the first argument 
-of the corresponding function call.</p>
+<p>當使用 <code>function.prototype</code> 上的 <code>call</code> 或只 <code>apply</code> 方法時，函式內的 <code>this</code> 將會被 <strong>顯示設置</strong> 為函式調用的第一個參數。</p>
 
 <p>As a result, in the above example the <em>method case</em> does <strong>not</strong> apply, and <code>this</code> 
 inside of <code>foo</code> will be set to <code>bar</code>.</p>
@@ -466,7 +455,7 @@ inside of <code>foo</code> will be set to <code>bar</code>.</p>
   <code>obj</code>, since <code>this</code> only gets bound by one of the five listed cases.</p>
 </aside>
 
-</div><div><h3>Common Pitfalls</h3>
+</div><div><h3>常見誤解</h3>
 
 <p>While most of these cases make sense, the first can be considered another
 mis-design of the language because it <strong>never</strong> has any practical use.</p>
@@ -523,12 +512,11 @@ new Bar().method();
 </code></pre>
 
 <p>When <code>method</code> gets called on an instance of <code>Bar</code>, <code>this</code> will now refer to that
-very instance. </p></div></article><article id="function.closures"><h2>Closures and References</h2><div><p>One of JavaScript&#39;s most powerful features is the availability of <em>closures</em>.
-With closures, scopes <strong>always</strong> keep access to the outer scope, in which they
-were defined. Since the only scoping that JavaScript has is 
-<a href="#function.scopes">function scope</a>, all functions, by default, act as closures.</p>
+very instance. </p></div></article><article id="function.closures"><h2>Closures 和 References</h2><div><p>JavaScript 有一個很重要的特徵就是 <strong>closures</strong>
+因為有 Closures，所以作用域 <strong>永遠</strong> 能夠去訪問作用區間外面的變數。
+<a href="#function.scopes">函數區間</a> 是JavaScript 中唯一擁有自生作用域的結構，因此 Closures 的創立需要依賴函數</p>
 
-</div><div><h3>Emulating private variables</h3>
+</div><div><h3>模仿私有變數</h3>
 
 <pre><code>function Counter(start) {
     var count = start;
@@ -548,16 +536,12 @@ foo.increment();
 foo.get(); // 5
 </code></pre>
 
-<p>Here, <code>Counter</code> returns <strong>two</strong> closures: the function <code>increment</code> as well as 
-the function <code>get</code>. Both of these functions keep a <strong>reference</strong> to the scope of 
-<code>Counter</code> and, therefore, always keep access to the <code>count</code> variable that was 
-defined in that scope.</p>
+<p>這裡，<code>Counter</code> 返回兩個 Closures，函數 <code>increment</code> 還有 <code>get</code>。這兩個函數都維持著對外部作用域 <code>Counter</code> 的引用，因此總可以訪問作用域的變數 <code>count</code>。</p>
 
-</div><div><h3>Why Private Variables Work</h3>
+</div><div><h3>為什麼不可以在外部訪問私有變數</h3>
 
-<p>Since it is not possible to reference or assign scopes in JavaScript, there is 
-<strong>no</strong> way of accessing the variable <code>count</code> from the outside. The only way to 
-interact with it is via the two closures.</p>
+<p>因為 Javascript <strong>不可以</strong> 對作用域進行引用或賦值。因此外部的地方沒有辦法訪問 <code>count</code> 變數。
+唯一的途徑就是經過那兩個 Closures</p>
 
 <pre><code>var foo = new Counter(4);
 foo.hack = function() {
@@ -565,14 +549,11 @@ foo.hack = function() {
 };
 </code></pre>
 
-<p>The above code will <strong>not</strong> change the variable <code>count</code> in the scope of <code>Counter</code>, 
-since <code>foo.hack</code> was not defined in <strong>that</strong> scope. It will instead create - or 
-override - the <em>global</em> variable <code>count</code>.</p>
+<p>在上面的例子中 <code>count</code> <strong>不會</strong> 改變到 <code>Counter</code> 裡面的 <code>count</code> 的值。因為 <code>foo.hack</code> 沒有在 <strong>那個</strong> 作用域內被宣告。它只有會覆蓋或者建立在一個 <strong>全域</strong> 的變數 <code>count</code></p>
 
-</div><div><h3>Closures Inside Loops</h3>
+</div><div><h3>在循環內的 Closures</h3>
 
-<p>One often made mistake is to use closures inside of loops, as if they were
-copying the value of the loop&#39;s index variable.</p>
+<p>一個常見的錯誤就是在 Closures 中使用迴圈，假設我們要使用每次迴圈中所使用的進入變數</p>
 
 <pre><code>for(var i = 0; i &lt; 10; i++) {
     setTimeout(function() {
@@ -581,20 +562,14 @@ copying the value of the loop&#39;s index variable.</p>
 }
 </code></pre>
 
-<p>The above will <strong>not</strong> output the numbers <code>0</code> through <code>9</code>, but will simply print
-the number <code>10</code> ten times.</p>
+<p>在上面的例子中它 <strong>不會</strong> 輸出數字從 <code>0</code> 到 <code>9</code>，但只會出現數字 <code>10</code> 十次。
+在 <code>console.log</code> 被呼叫的時候，這個 <em>匿名</em> 函數中保持一個 <strong>參考</strong> 到 i ，此時 <code>for</code>迴圈已經結束， <code>i</code> 的值被修改成了 <code>10</code>。
+為了要達到想要的結果，需要在每次創造 <strong>副本</strong> 來儲存 <code>i</code> 的變數。</p>
 
-<p>The <em>anonymous</em> function keeps a <strong>reference</strong> to <code>i</code>. At the time 
-<code>console.log</code> gets called, the <code>for loop</code> has already finished, and the value of 
-<code>i</code> as been set to <code>10</code>.</p>
+</div><div><h3>避免引用錯誤</h3>
 
-<p>In order to get the desired behavior, it is necessary to create a <strong>copy</strong> of 
-the value of <code>i</code>.</p>
-
-</div><div><h3>Avoiding the Reference Problem</h3>
-
-<p>In order to copy the value of the loop&#39;s index variable, it is best to use an 
-<a href="#function.scopes">anonymous wrapper</a>.</p>
+<p>為了要有達到正確的效果，最好是把它包在一個
+<a href="#function.scopes">匿名函數</a>.</p>
 
 <pre><code>for(var i = 0; i &lt; 10; i++) {
     (function(e) {
@@ -605,15 +580,9 @@ the value of <code>i</code>.</p>
 }
 </code></pre>
 
-<p>The anonymous outer function gets called immediately with <code>i</code> as its first 
-argument and will receive a copy of the <strong>value</strong> of <code>i</code> as its parameter <code>e</code>.</p>
-
-<p>The anonymous function that gets passed to <code>setTimeout</code> now has a reference to 
-<code>e</code>, whose value does <strong>not</strong> get changed by the loop.</p>
-
-<p>There is another possible way of achieving this, which is to return a function 
-from the anonymous wrapper that will then have the same behavior as the code 
-above.</p>
+<p>匿名外部的函數被呼叫，並把 <code>i</code> 作為它第一個參數，此時函數內 <code>e</code> 變數就擁有了一個 <code>i</code> 的拷貝。
+當傳遞給 <code>setTimeout</code> 這個匿名函數執行時，它就擁有了對 <code>e</code> 的引用，而這個值 <strong>不會</strong> 被循環改變。
+另外有一個方法也可以完成這樣的工作，那就是在匿名函數中返回一個函數，這和上面的程式碼有同樣的效果。</p>
 
 <pre><code>for(var i = 0; i &lt; 10; i++) {
     setTimeout((function(e) {
@@ -724,16 +693,13 @@ function bigLoop() {
 <p><strong>強烈建議不要使用</strong>  <code>arguments.callee</code> 或是其他它的屬性</p>
 
 <aside class="es5"><p><strong>ES5 Note:</strong> 在嚴格的模式下 <code>arguments.callee</code> 會丟出一個 <code>TypeError</code>， 因為這種方法已經被廢除了</p>
-</aside></div></article><article id="function.constructors"><h2>Constructors</h2><div><p>Constructors in JavaScript are yet again different from many other languages. Any
-function call that is preceded by the <code>new</code> keyword acts as a constructor.</p>
-
-<p>Inside the constructor - the called function - the value of <code>this</code> refers to a 
-newly created object. The <a href="#object.prototype">prototype</a> of this <strong>new</strong> 
-object is set to the <code>prototype</code> of the function object that was invoked as the
-constructor.</p>
+</aside></div></article><article id="function.constructors"><h2>建構函式</h2><div><p>JavaScript 中的建構函式和其他語言中的建構函式是不同的。
+用 <code>new</code> 的關鍵字方式調用的函式都被認為是建構函式。
+在建構函式內部 - 被呼叫的函式 - <code>this</code> 指向一個新建立的 <code>object</code>。<a href="#object.prototype">prototype</a> 這是一個新的物件一個被指向函式的 <code>prototype</code> 的建構函式。</p>
 
 <p>If the function that was called has no explicit <code>return</code> statement, then it
-implicitly returns the value of <code>this</code> - the new object. </p>
+implicitly returns the value of <code>this</code> - the new object. 
+如果被使用的函式沒有明顯的呼叫 <code>return</code> 的表達式，它會回傳一個隱性的 <code>this</code> 的新物件。</p>
 
 <pre><code>function Foo() {
     this.bla = 1;
@@ -746,16 +712,13 @@ Foo.prototype.test = function() {
 var test = new Foo();
 </code></pre>
 
-<p>The above calls <code>Foo</code> as constructor and sets the <code>prototype</code> of the newly
-created object to <code>Foo.prototype</code>.</p>
-
-<p>In case of an explicit <code>return</code> statement, the function returns the value 
-specified by that statement, but <strong>only</strong> if the return value is an <code>Object</code>.</p>
+<p>在上面的例子中 <code>Foo</code> 建立一個建構函式，並設立一個 <code>prototype</code> 來創建一個新的物件叫 <code>Foo.prototype</code>。
+這個情況下它顯示的 <code>return</code> 一個表達式，但他 <strong>只</strong> 返回一個 <code>Object</code>。</p>
 
 <pre><code>function Bar() {
     return 2;
 }
-new Bar(); // a new object
+new Bar(); // 返回一個新物件
 
 function Test() {
     this.value = 2;
@@ -764,25 +727,22 @@ function Test() {
         foo: 1
     };
 }
-new Test(); // the returned object
+new Test(); // 回傳物件
 </code></pre>
 
-<p>When the <code>new</code> keyword is omitted, the function will <strong>not</strong> return a new object. </p>
+<p>如果 <code>new</code> 的關鍵字被忽略，函式就 <strong>不會</strong> 回傳一個新的物件。</p>
 
 <pre><code>function Foo() {
-    this.bla = 1; // gets set on the global object
+    this.bla = 1; // 獲取一個全域的參數
 }
 Foo(); // undefined
 </code></pre>
 
-<p>While the above example might still appear to work in some cases, due to the 
-workings of <a href="#function.this"><code>this</code></a> in JavaScript, it will use the 
-<em>global object</em> as the value of <code>this</code>.</p>
+<p>雖然上面有些情況也能正常運行，但是由於 JavaScript 中 <a href="#funciton.this"><code>this</code></a> 的工作原理，這裡的 <code>this</code> 指向 <em>全域對象</em>。</p>
 
-</div><div><h3>Factories</h3>
+</div><div><h3>工廠模式</h3>
 
-<p>In order to be able to omit the <code>new</code> keyword, the constructor function has to 
-explicitly return a value.</p>
+<p>為了不使用 <code>new</code> 關鍵字，建構函式必須顯性的返回一個值。</p>
 
 <pre><code>function Bar() {
     var value = 1;
@@ -800,24 +760,16 @@ new Bar();
 Bar();
 </code></pre>
 
-<p>Both calls to <code>Bar</code> return the same thing, a newly create object that
-has a property called <code>method</code>, which is a 
-<a href="#function.closures">Closure</a>.</p>
+<p>上面兩個呼叫 <code>Bar</code> 的方法回傳的值都一樣，一個新創建的擁有 <code>method</code> 屬性被返回，這裡創建了一個 <a href="#function.closures">Closure</a>.</p>
 
-<p>It should also be noted that the call <code>new Bar()</code> does <strong>not</strong> affect the
-prototype of the returned object. While the prototype will be set on the newly
-created object, <code>Bar</code> never returns that new object.</p>
+<p>還有注意， <code>new Bar()</code> 並 <strong>不會</strong> 改變返回物件的原型。
+因為建構函式的原型會指向剛剛創立的新物件，而在這裡的 <code>Bar</code> 沒有把這個新物件返回。
+在上面的例子中，使用或者不使用 <code>new</code> 關鍵字沒有什麼功能性的區別</p>
 
-<p>In the above example, there is no functional difference between using and
-not using the <code>new</code> keyword.</p>
+</div><div><h3>通過工廠模式創建的新對象</h3>
 
-</div><div><h3>Creating New Objects via Factories</h3>
-
-<p>It is often recommended to <strong>not</strong> use <code>new</code> because forgetting its use may
-lead to bugs.</p>
-
-<p>In order to create a new object, one should rather use a factory and construct a 
-new object inside of that factory.</p>
+<p>常聽到建議 <strong>不要</strong> 使用 <code>new</code>，因為如果忘記如何使用它會造成錯誤。
+為了創建一個新的物件，我們可以用工廠方法，來創造一個新的物件在那個方法中。</p>
 
 <pre><code>function Foo() {
     var obj = {};
@@ -835,32 +787,23 @@ new object inside of that factory.</p>
 }
 </code></pre>
 
-<p>While the above is robust against a missing <code>new</code> keyword and certainly makes 
-the use of <a href="#function.closures">private variables</a> easier, it comes with some 
-downsides.</p>
+<p>雖然上面的方式比起 <code>new</code> 的調用方式更不容易出錯，並且可以充分的使用 <a href="#function.closures">私有變數</a>所帶來的便利，但是還是有一些不好的地方</p>
 
 <ol>
-<li>It uses more memory since the created objects do <strong>not</strong> share the methods
-on a prototype.</li>
-<li>In order to inherit, the factory needs to copy all the methods from another
-object or put that object on the prototype of the new object.</li>
-<li>Dropping the prototype chain just because of a left out <code>new</code> keyword
-is contrary to the spirit of the language.</li>
+<li>會占用更多的記憶體，因為創建的物件 <strong>沒有</strong> 辦法放在在同一個原型上。</li>
+<li>為了要用繼承的方式，工廠方法需要複製所有的屬性或是把一個物件作為新的物件的原型。</li>
+<li>放棄原型鏈僅僅是因為防止遺漏 <code>new</code> 所帶來的問題，這與語言本身的思想鄉違背。</li>
 </ol>
 
-</div><div><h3>In Conclusion</h3>
+</div><div><h3>結語</h3>
 
-<p>While omitting the <code>new</code> keyword might lead to bugs, it is certainly <strong>not</strong> a
-reason to drop the use of prototypes altogether. In the end it comes down to
-which solution is better suited for the needs of the application. It is
-especially important to choose a specific style of object creation and use it
-<strong>consistently</strong>.</p></div></article><article id="function.scopes"><h2>Scopes and Namespaces</h2><div><p>Although JavaScript deals fine with the syntax of two matching curly
-braces for blocks, it does <strong>not</strong> support block scope; hence, all that is left 
-in the language is <em>function scope</em>.</p>
+<p>雖然遺漏 <code>new</code> 關鍵字可能會導致問題，但這並 <strong>不是</strong> 放棄只用原型的藉口。
+最終使用哪種方式取決於應用程式的需求，選擇一種程式語言風格並堅持下去才是最重要的。</p></div></article><article id="function.scopes"><h2>作用域和命名空間</h2><div><p>儘管 JavaScript 支持一個大括號創建的程式碼，但並不支持塊級作用域。
+而僅僅支援 <em>函式作用域</em></p>
 
-<pre><code>function test() { // a scope
-    for(var i = 0; i &lt; 10; i++) { // not a scope
-        // count
+<pre><code>function test() { // 一個作用域
+    for(var i = 0; i &lt; 10; i++) { // 不是一個作用域
+        // 算數
     }
     console.log(i); // 10
 }
@@ -880,7 +823,7 @@ gets defined in one <em>globally shared</em> namespace.</p>
 the scopes until it finds it. In the case that it reaches the global scope and 
 still has not found the requested name, it will raise a <code>ReferenceError</code>.</p>
 
-</div><div><h3>The Bane of Global Variables</h3>
+</div><div><h3>全域變數的壞處</h3>
 
 <pre><code>// script A
 foo = &#39;42&#39;;
@@ -1093,14 +1036,14 @@ which, while different in syntax, behave the same way.</p>
 // and so on...
 </code></pre>
 
-</div><div><h3>In Conclusion</h3>
+</div><div><h3>結語</h3>
 
 <p>It is recommended to always use an <em>anonymous wrapper</em> to encapsulate code in 
 its own namespace. This does not only protect code against name clashes, but it 
 also allows for better modularization of programs.</p>
 
 <p>Additionally, the use of global variables is considered <strong>bad practice</strong>. <strong>Any</strong>
-use of them indicates badly written code that is prone to errors and hard to maintain.</p></div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>Arrays</h1></header><!-- Articles--><article id="array.general"><h2>Array 迴圈和屬性</h2><div><p>雖然在 Javascript 中 Array 都是 Objects，但是沒有好的理由要使用他
+use of them indicates badly written code that is prone to errors and hard to maintain.</p></div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>陣列</h1></header><!-- Articles--><article id="array.general"><h2>Array 迴圈和屬性</h2><div><p>雖然在 Javascript 中 Array 都是 Objects，但是沒有好的理由要使用他
 在 <a href="#object.forinloop"><code>for in</code></a> 的迴圈中。事實上有很多原因要避免使用 <code>for in</code> 在 Array 之中</p>
 
 <aside>
@@ -1174,7 +1117,7 @@ arr[1]; // undefined
 
 </div><div><h3>結語</h3>
 
-<p><code>Array</code> 的建構函式需要避免，建議使用字面語法。因為他們比較簡短、也更增加閱讀性</p></div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>Types</h1></header><!-- Articles--><article id="types.equality"><h2>Equality and Comparisons</h2><div><p>JavaScript has two different ways of comparing the values of objects for equality. </p>
+<p><code>Array</code> 的建構函式需要避免，建議使用字面語法。因為他們比較簡短、也更增加閱讀性</p></div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>類型</h1></header><!-- Articles--><article id="types.equality"><h2>Equality and Comparisons</h2><div><p>JavaScript has two different ways of comparing the values of objects for equality. </p>
 
 </div><div><h3>The Equality Operator</h3>
 
@@ -1440,7 +1383,7 @@ type coercion.</p>
 !!&#39;-1&#39;     // true
 !!{};      // true
 !!true;    // true
-</code></pre></div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>Core</h1></header><!-- Articles--><article id="core.eval"><h2>為什麼不要使用 <code>eval</code></h2><div><p>因為 <code>eval</code> 函數會在 Javascript 的區域性的區間執行那段程式碼。</p>
+</code></pre></div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>核心</h1></header><!-- Articles--><article id="core.eval"><h2>為什麼不要使用 <code>eval</code></h2><div><p>因為 <code>eval</code> 函數會在 Javascript 的區域性的區間執行那段程式碼。</p>
 
 <pre><code>var foo = 1;
 function test() {
@@ -1728,7 +1671,7 @@ to the specification, host objects are allowed to implement any kind of behavior
 </div><div><h3>In conclusion</h3>
 
 <p>The <code>delete</code> operator often has unexpected behaviour and can only be safely
-used to delete explicitly set properties on normal objects.</p></div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>Other</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> and <code>setInterval</code></h2><div><p>Since JavaScript is asynchronous, it is possible to schedule the execution of a 
+used to delete explicitly set properties on normal objects.</p></div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>其他</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> and <code>setInterval</code></h2><div><p>Since JavaScript is asynchronous, it is possible to schedule the execution of a 
 function using the <code>setTimeout</code> and <code>setInterval</code> functions.</p>
 
 <aside>
