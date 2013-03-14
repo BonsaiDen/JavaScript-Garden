@@ -16,49 +16,44 @@ JavaScript 是一個 *弱類型* 的程式語言，所以在 **任何** 情況�
     10 == 010;
     10 == '-10';
 
-> **ES5 Note:** Number literals that start with a `0` are interpreted as octal 
-> (Base 8). Octal support for these has been **removed** in ECMAScript 5 strict 
-> mode.
-> 
+> **ES5 注意:** 如果數字字面值的開頭是 `0` 它會強制轉為八進位數字解析。
+> 而在 ES5 嚴格模式下，它已經被刪除了。
 
 
 To avoid the issues above, use of the [strict equal operator](#types.equality) 
 is **highly** recommended. Although this avoids a lot of common pitfalls, there 
 are still many further issues that arise from JavaScript's weak typing system.
+為了去避免上驗的事件發生，我們會用 [嚴格等於操作符](#types.equality) 這是強烈建議。
+因為它可以避免很多常見的問題，但 JavaScript 的弱類型系同仍然會導致一些其他問題。
 
-### Constructors of Built-In Types
+### 內置類型的建構函式
 
-The constructors of the built in types like `Number` and `String` behave
-differently when being used with the `new` keyword and without it.
+內置類型（比如 `Number` 和 `String`)在被調用時，使用或不使用 `new` 的結果完全不同。
 
     new Number(10) === 10;     // False, Object and Number
     Number(10) === 10;         // True, Number and Number
     new Number(10) + 0 === 10; // True, due to implicit conversion
 
-Using a built-in type like `Number` as a constructor will create a new `Number` 
-object, but leaving out the `new` keyword will make the `Number` function behave
-like a converter.
+使用內置類型 `Number` 作為建構函式會建造一個新的 `Number` 物件，而在不使用 `new` 關鍵字的 `Number` 函式更像是一個數字轉換器。
 
-In addition, passing literals or non-object values will result in even more
-type coercion.
+另外，在比較中引入物件的字面值會導致更加複雜的強制類型轉換。
 
-The best option is to cast to one of the three possible types **explicitly**.
+最好的方式是比較值的 **顯示** 的轉換成最有可能的三種形態
 
-### Casting to a String
+### 轉換成字符串
 
     '' + 10 === '10'; // true
 
-By prepending an empty string, a value can easily be cast to a string.
+將一個值加上空字符串可以輕鬆轉為字符串類型。
 
-### Casting to a Number
+### 轉換成一個數字
 
     +'10' === 10; // true
 
-Using the **unary** plus operator, it is possible to cast to a number.
+使用 **一元** 的加號操作符，可以把字符串轉為數字。
 
-### Casting to a Boolean
-
-By using the **not** operator twice, a value can be converted a boolean.
+### 轉換成一個 Bool
+通過使用 **否** 操作符兩字，可以把一個值轉換為 Bool。
 
     !!'foo';   // true
     !!'';      // false

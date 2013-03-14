@@ -1,19 +1,17 @@
-## The `typeof` Operator
+## `typeof` 操作符
 
-The `typeof` operator (together with 
-[`instanceof`](#types.instanceof)) is probably the biggest 
-design flaw of JavaScript, as it is almost **completely broken**.
+`typeof` 操作符 (和
+[`instanceof`](#types.instanceof)) 可能是最大的設計錯誤在 JavaScript，因為它幾乎不可能從它們那裡得到想要的結果。
 
-Although `instanceof` still has limited uses, `typeof` really has only one
-practical use case, which does **not** happen to be checking the type of an 
-object. 
+雖然 `instanceof` 還是有一些限制上的使用， `typeof` 只有一個實際上的運傭情形，但是 **不是** 用在檢查物件的類型。
 
 > **Note:** While `typeof` can also be called with a function like syntax, i.e.
 > `typeof(obj)`, this is not a function call. The parentheses behave as normal
 > and the return value will be used as the operand of the `typeof` operator.
 > There is **no** `typeof` function.
 
-### The JavaScript Type Table
+
+### JavaScript 類型表格
 
     Value               Class      Type
     -------------------------------------
