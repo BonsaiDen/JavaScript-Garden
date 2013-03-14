@@ -1,7 +1,6 @@
-## Object Usage and Properties
+## 物件的使用和屬性
 
-Everything in JavaScript acts like an object, with the only two exceptions being 
-[`null`](#core.undefined) and [`undefined`](#core.undefined).
+每個變數可以表現像 JavaScript 物件，除了 [`null`](#core.undefined) 和 [`undefined`](#core.undefined)。
 
     false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
@@ -10,37 +9,30 @@ Everything in JavaScript acts like an object, with the only two exceptions being
     Foo.bar = 1;
     Foo.bar; // 1
 
-A common misconception is that number literals cannot be used as
-objects. That is because a flaw in JavaScript's parser tries to parse the *dot 
-notation* on a number as a floating point literal.
+一個常見的誤解就是字面值（literal）不是物件。這是因為 JavaScript 編譯器的一個錯誤，它試圖把 *點操作符* 解析為浮點數的字面值的一部分。
 
-    2.toString(); // raises SyntaxError
+    2.toString(); // 出錯： SyntaxError
 
-There are a couple of workarounds that can be used to make number literals act
-as objects too.
+有很多變通方法可以讓數字的字面值看起來像物件。
 
-    2..toString(); // the second point is correctly recognized
-    2 .toString(); // note the space left to the dot
-    (2).toString(); // 2 is evaluated first
+    2..toString(); // 第二個點號可以正常解析
+    2 .toString(); // 注意點號前面的空格
+    (2).toString(); // 2 先被計算
 
-### Objects as a Data Type
+### 物件做為數據類型
 
-Objects in JavaScript can also be used as [*Hashmaps*][1]; they mainly consist 
-of named properties mapping to values.
+JavaScript 的物件可以作為 [*Hashmaps*][1]使用，主要用來保存命名的建與值的對應關係。
 
-Using an object literal - `{}` notation - it is possible to create a 
-plain object. This new object [inherits](#object.prototype) from `Object.prototype` and 
-does not have [own properties](#object.hasownproperty) defined.
+使用物件的字面語法 - `{}` - 可以創建一個簡單的物件。 這個新創建的物件從 `Object.prototype` [繼承](#object.prototype)，下面，沒有任何 [字定義屬性](#object.hasownproperty)。
 
-    var foo = {}; // a new empty object
+    var foo = {}; // 一個空的物件
 
-    // a new object with a 'test' property with value 12
+    // 一個新的物件，有值為 12 的自定義屬性 'test'
     var bar = {test: 12}; 
 
-### Accessing Properties
+### 訪問屬性
 
-The properties of an object can be accessed in two ways, via either the dot
-notation or the square bracket notation.
+有兩種訪問物件的屬性，點操作或是中括號操作。
     
     var foo = {name: 'kitten'}
     foo.name; // kitten
@@ -52,15 +44,14 @@ notation or the square bracket notation.
     foo.1234; // SyntaxError
     foo['1234']; // works
 
-The notations work almost identically, with the only difference being that the
-square bracket notation allows for dynamic setting of properties and
-the use of property names that would otherwise lead to a syntax error.
+兩種語法是相等的，但是中括號在下面兩個情況依然有效
 
-### Deleting Properties
+- 動態設定屬性
+- 屬性不是一個有較的變數名
 
-The only way to remove a property from an object is to use the `delete`
-operator; setting the property to `undefined` or `null` only removes the
-*value* associated with the property, but not the *key*.
+### 刪除屬性
+
+唯一刪除屬性的方式就是用 `delete` 操作符。設置屬性為 `undefined` 或是 `null` 只有刪除的屬性和值的關聯，沒有真的刪掉屬性
 
     var obj = {
         bar: 1,
@@ -77,23 +68,21 @@ operator; setting the property to `undefined` or `null` only removes the
         }
     }
 
-The above outputs both `bar undefined` and `foo null` - only `baz` was
-removed and is therefore missing from the output.
+上面的輸出結果有 `bar undefined` 和 `foo null`
+只有 `baz` 真正被刪除而已，所以從輸出結果中消失。
 
-### Notation of Keys
+
+### 屬姓名的語法
 
     var test = {
         'case': 'I am a keyword, so I must be notated as a string',
         delete: 'I am a keyword, so me too' // raises SyntaxError
     };
 
-Object properties can be both notated as plain characters and as strings. Due to
-another mis-design in JavaScript's parser, the above will throw 
-a `SyntaxError` prior to ECMAScript 5.
+物件的屬性名可以使用字符串或是普通的宣告。但是由於 JavaScript 編譯器有個另外一個錯誤設計。
+上面的兩種方式在 ECMAScript 5之前都會拋出 `SyntaxError` 的錯誤。
 
-This error arises from the fact that `delete` is a *keyword*; therefore, it must be 
-notated as a *string literal* to ensure that it will be correctly interpreted by
-older JavaScript engines.
+這個錯誤的原因是 `delete` 是 JavaScript 語言的一個 *關鍵字* 因此為了在更低的版本能執行最好用 *string literal*
 
 [1]: http://en.wikipedia.org/wiki/Hashmap
 
