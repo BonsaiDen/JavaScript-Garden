@@ -1,50 +1,46 @@
-## How `this` Works
+## `this` 的工作原理
 
-JavaScript has a different concept of what the special name `this` refers to 
-than most other programming languages. There are exactly **five** different 
-ways in which the value of `this` can be bound in the language.
+JavaScript 有移到完全部屬於其他語言處理 `this` 的處理機制。
+在 **五** 種物同的情況下， `this` 指向的個不相同
 
-### The Global Scope
+### 全域變數
 
     this;
 
-When using `this` in global scope, it will simply refer to the *global* object.
+如果再全域範圍內使用 `this`，會指向 *全域* 的物件
 
 
-### Calling a Function
+### 呼叫一個函式
 
     foo();
 
-Here, `this` will again refer to the *global* object.
+這裡 `this` 也會指向 *全域* 對象。
 
-> **ES5 Note:** In strict mode, the global case **no longer** exists.
-> `this` will instead have the value of `undefined` in that case.
+> **ES5 注意:** 在嚴格模式下，不存在全域變數。
+> `this` 將會是 `undefined`。
 
-### Calling a Method
+### 方法調用
 
     test.foo(); 
 
-In this example, `this` will refer to `test`.
+這個例子中， `this` 指向 `test` 物件。
 
-### Calling a Constructor
+### 呼叫一個建構函式
 
     new foo(); 
 
-A function call that is preceded by the `new` keyword acts as
-a [constructor](#function.constructors). Inside the function, `this` will refer 
-to a *newly created* `Object`.
+如果函式傾向用 `new` 關鍵詞使用，我們稱這個函式為 [建構函式](#function.constructors)。
+在函式內部， `this` 指向 *新物件的創立*
 
-### Explicit Setting of `this`
+### 顯示的設置 `this`
 
     function foo(a, b, c) {}
                           
     var bar = {};
-    foo.apply(bar, [1, 2, 3]); // array will expand to the below
-    foo.call(bar, 1, 2, 3); // results in a = 1, b = 2, c = 3
+    foo.apply(bar, [1, 2, 3]); // Array 會被擴展，如下所示
+    foo.call(bar, 1, 2, 3); // 傳遞參數 a = 1, b = 2, c = 3
 
-When using the `call` or `apply` methods of `Function.prototype`, the value of
-`this` inside the called function gets **explicitly set** to the first argument 
-of the corresponding function call.
+當使用 `function.prototype` 上的 `call` 或只 `apply` 方法時，函式內的 `this` 將會被 **顯示設置** 為函式調用的第一個參數。
 
 As a result, in the above example the *method case* does **not** apply, and `this` 
 inside of `foo` will be set to `bar`.
@@ -53,7 +49,7 @@ inside of `foo` will be set to `bar`.
 > literal. So `var obj = {me: this}` will **not** result in `me` referring to
 > `obj`, since `this` only gets bound by one of the five listed cases.
 
-### Common Pitfalls
+### 常見誤解
 
 While most of these cases make sense, the first can be considered another
 mis-design of the language because it **never** has any practical use.

@@ -1,12 +1,11 @@
-## Scopes and Namespaces
+## 作用域和命名空間
 
-Although JavaScript deals fine with the syntax of two matching curly
-braces for blocks, it does **not** support block scope; hence, all that is left 
-in the language is *function scope*.
+儘管 JavaScript 支持一個大括號創建的程式碼，但並不支持塊級作用域。
+而僅僅支援 *函式作用域*
 
-    function test() { // a scope
-        for(var i = 0; i < 10; i++) { // not a scope
-            // count
+    function test() { // 一個作用域
+        for(var i = 0; i < 10; i++) { // 不是一個作用域
+            // 算數
         }
         console.log(i); // 10
     }
@@ -16,6 +15,7 @@ in the language is *function scope*.
 > **not** as an object literal. This, in conjunction with 
 > [automatic insertion of semicolons](#core.semicolon), can lead to subtle errors.
 
+
 There are also no distinct namespaces in JavaScript, which means that everything 
 gets defined in one *globally shared* namespace.
 
@@ -23,7 +23,7 @@ Each time a variable is referenced, JavaScript will traverse upwards through all
 the scopes until it finds it. In the case that it reaches the global scope and 
 still has not found the requested name, it will raise a `ReferenceError`.
 
-### The Bane of Global Variables
+### 全域變數的壞處
 
     // script A
     foo = '42';
@@ -222,7 +222,7 @@ which, while different in syntax, behave the same way.
     (function(){}());
     // and so on...
 
-### In Conclusion
+### 結語
 
 It is recommended to always use an *anonymous wrapper* to encapsulate code in 
 its own namespace. This does not only protect code against name clashes, but it 
