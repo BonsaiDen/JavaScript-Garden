@@ -5,10 +5,9 @@
 
 雖然 `instanceof` 還是有一些限制上的使用， `typeof` 只有一個實際上的運傭情形，但是 **不是** 用在檢查物件的類型。
 
-> **Note:** While `typeof` can also be called with a function like syntax, i.e.
-> `typeof(obj)`, this is not a function call. The parentheses behave as normal
-> and the return value will be used as the operand of the `typeof` operator.
-> There is **no** `typeof` function.
+> **注意:** 由於 `typeof` 也可以像函式的語法被調用，例如 `typeof(obj)`，但這並是一個函數調用。
+> 那兩個小括號只是用來計算一個表達式的值，這個返回值會作為 `typeof` 操作符的一個操作數。
+> 實際上 **不存在** 名為 `typeof` 的函式。 
 
 
 ### JavaScript 類型表格
@@ -31,22 +30,20 @@
     {}                  Object     object
     new Object()        Object     object
 
-In the above table, *Type* refers to the value that the `typeof` operator returns.
-As can be clearly seen, this value is anything but consistent.
+上面的表格中， *Type* 這一系列表示 `typeof` 的操作符的運算結果。可以看到，這個值的大多數情況下都返回物件。
 
-The *Class* refers to the value of the internal `[[Class]]` property of an object.
+*Class* 表示物件內部的屬性 `[[Class]]` 的值。
 
-> **From the Specification:** The value of `[[Class]]` can be one of the
-> following strings. `Arguments`, `Array`, `Boolean`, `Date`, `Error`, 
-> `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`.
 
-In order to retrieve the value of `[[Class]]`, one has to make use of the
-`toString` method of `Object.prototype`.
+> **JavaScript 標準文檔中定義：** `[[Class]]`的值只可能是下面字符串中的一個：
+> `Arguments`, `Array`, `Boolean`, `Date`, `Error`,
+> `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`
 
-### The Class of an Object
+為了獲取對象的 `[[Class]]`，我們可以使用定義在 `Object.prototype` 上的方法 `toString`。
 
-The specification gives exactly one way of accessing the `[[Class]]` value,
-with the use of `Object.prototype.toString`. 
+### 物件的類定義
+
+JavaScript 標準文檔只給出了一種獲取 `[[Class]]` 值的方法，那就是使用 `Object.prototype.toString`。
 
     function is(type, obj) {
         var clas = Object.prototype.toString.call(obj).slice(8, -1);
@@ -56,29 +53,22 @@ with the use of `Object.prototype.toString`.
     is('String', 'test'); // true
     is('String', new String('test')); // true
 
-In the above example, `Object.prototype.toString` gets called with the value of
-[this](#function.this) being set to the object whose `[[Class]]` value should be 
-retrieved.
+上面的例子中，**`Object.prototype.toString` 用 [this](#function.this)的值來來調用被設置需要獲取 `[[Class]]` 值的物件。
 
-> **ES5 Note:** For convenience the return value of `Object.prototype.toString` 
-> for both `null` and `undefined` was **changed** from `Object` to `Null` and 
-> `Undefined` in ECMAScript 5.
+> **ES5 Note:** 為了回傳 `Object.prototyp.toString` 值的方便
+> `null` 和 `undefined` 被 **改變** 從 `object` 到 `null` 和 `undefined` 在 ECMAScript 5。
 
-### Testing for Undefined Variables
+### 測試未定義變數
 
     typeof foo !== 'undefined'
 
-The above will check whether `foo` was actually declared or not; just 
-referencing it would result in a `ReferenceError`. This is the only thing
-`typeof` is actually useful for.
+上面的例子確認 `foo` 是否真的被宣告。如果沒有定義會導致 `ReferenceError` 這是 `typeof` 唯一有用的地方
 
-### In Conclusion
+### 結語
 
-In order to check the type of an object, it is highly recommended to use 
-`Object.prototype.toString` because this is the only reliable way of doing so. 
-As shown in the above type table, some return values of `typeof` are not defined 
-in the specification; thus, they can differ between implementations.
+為了去檢查一個物件，強烈建議去使用 `Object.prototype.toString` 因為這是唯一可以依賴的方式。
+正如上面所看到的 `typeof` 的亦先返回值在標準文檔中未定義，因此不同的引擎可能不同。
 
-Unless checking whether a variable is defined, `typeof` should be avoided.
+除非為了檢測一個變數是否定義，我們應該避免是用 `typeof` 操作符。
 
 

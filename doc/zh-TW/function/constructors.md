@@ -4,8 +4,6 @@ JavaScript 中的建構函式和其他語言中的建構函式是不同的。
 用 `new` 的關鍵字方式調用的函式都被認為是建構函式。
 在建構函式內部 - 被呼叫的函式 - `this` 指向一個新建立的 `object`。[prototype](#object.prototype) 這是一個新的物件一個被指向函式的 `prototype` 的建構函式。
 
-If the function that was called has no explicit `return` statement, then it
-implicitly returns the value of `this` - the new object. 
 如果被使用的函式沒有明顯的呼叫 `return` 的表達式，它會回傳一個隱性的 `this` 的新物件。
 
     function Foo() {
