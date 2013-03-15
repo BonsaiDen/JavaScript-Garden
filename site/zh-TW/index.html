@@ -382,19 +382,16 @@ foo.call(bar, 1, 2, 3); // 傳遞參數 a = 1, b = 2, c = 3
 
 <p>當使用 <code>function.prototype</code> 上的 <code>call</code> 或只 <code>apply</code> 方法時，函式內的 <code>this</code> 將會被 <strong>顯示設置</strong> 為函式調用的第一個參數。</p>
 
-<p>As a result, in the above example the <em>method case</em> does <strong>not</strong> apply, and <code>this</code> 
-inside of <code>foo</code> will be set to <code>bar</code>.</p>
+<p>因此<em>函式調用</em>的規則在上例中已經不適用了，在 <code>foo</code>函式內 <code>this</code> 被設置程了 <code>bar</code>。</p>
 
 <aside>
-  <p><strong>Note:</strong> <code>this</code> <strong>cannot</strong> be used to refer to the object inside of an <code>Object</code>
-  literal. So <code>var obj = {me: this}</code> will <strong>not</strong> result in <code>me</code> referring to
-  <code>obj</code>, since <code>this</code> only gets bound by one of the five listed cases.</p>
+  <p><strong>注意:</strong> 在物件的字面宣告語法中，<code>this</code> <strong>不能</strong>用來指向物件本身。
+  因此 <code>var obj = {me: this}</code> 中的 <code>me</code> 不會指向 <code>obj</code>因為 <code>this</code> 只可能出現在上面的五種情形。</p>
 </aside>
 
 </div><div><h3>常見誤解</h3>
 
-<p>While most of these cases make sense, the first can be considered another
-mis-design of the language because it <strong>never</strong> has any practical use.</p>
+<p>儘管大部分的情況都是這樣，不過第一個被認為是設計錯誤的地方，因為他沒有實際的用途。</p>
 
 <pre><code>Foo.method = function() {
     function test() {
@@ -404,11 +401,9 @@ mis-design of the language because it <strong>never</strong> has any practical u
 }
 </code></pre>
 
-<p>A common misconception is that <code>this</code> inside of <code>test</code> refers to <code>Foo</code>; while in
-fact, it <strong>does not</strong>.</p>
+<p>一個常見的錯誤 <code>test</code> 中的 <code>this</code> 會指向 <code>Foo</code> 對象，但其實不是。</p>
 
-<p>In order to gain access to <code>Foo</code> from within <code>test</code>, it is necessary to create a 
-local variable inside of <code>method</code> that refers to <code>Foo</code>.</p>
+<p>為了在 <code>test</code> 中獲得對 <code>Foo</code> 物件的引用，我們需要在 <code>method</code> 函式內創建一個局部變數指向 <code>Foo</code> 對象。</p>
 
 <pre><code>Foo.method = function() {
     var that = this;
@@ -419,24 +414,19 @@ local variable inside of <code>method</code> that refers to <code>Foo</code>.</p
 }
 </code></pre>
 
-<p><code>that</code> is just a normal variable name, but it is commonly used for the reference to an 
-outer <code>this</code>. In combination with <a href="#function.closures">closures</a>, it can also 
-be used to pass <code>this</code> values around.</p>
+<p><code>that</code> 只是一個普通的變數名，我們可以用來指向 <code>this</code>。在 <a href="#function.closures">closures</a>，我們可以看到 <code>that</code> 用來參數傳遞。</p>
 
-</div><div><h3>Assigning Methods</h3>
+</div><div><h3>方法賦值的表達式</h3>
 
-<p>Another thing that does <strong>not</strong> work in JavaScript is function aliasing, which is
-<strong>assigning</strong> a method to a variable.</p>
+<p>另一個看起來奇怪的地方式函式別名，也就是將一個方法賦值到另一個變數。</p>
 
 <pre><code>var test = someObject.methodTest;
 test();
 </code></pre>
 
-<p>Due to the first case, <code>test</code> now acts like a plain function call; therefore,
-<code>this</code> inside it will no longer refer to <code>someObject</code>.</p>
+<p>上面的 <code>test</code> 就像普通的函式一樣被調用，因此，函式內的 <code>this</code> 不再被指向到 <code>someObject</code> 物件。</p>
 
-<p>While the late binding of <code>this</code> might seem like a bad idea at first, in 
-fact, it is what makes <a href="#object.prototype">prototypal inheritance</a> work. </p>
+<p>雖然 <code>this</code> 的綁定似乎並不好，但是它是在 <a href="#object.prototype">prototypal inheritance</a>中讓他運作的原因。</p>
 
 <pre><code>function Foo() {}
 Foo.prototype.method = function() {};
@@ -447,8 +437,7 @@ Bar.prototype = Foo.prototype;
 new Bar().method();
 </code></pre>
 
-<p>When <code>method</code> gets called on an instance of <code>Bar</code>, <code>this</code> will now refer to that
-very instance. </p></div></article><article id="function.closures"><h2>Closures 和 References</h2><div><p>JavaScript 有一個很重要的特徵就是 <strong>closures</strong>
+<p>當 <code>method</code> 被使用時， <code>this</code> 將會指向 <code>Bar</code> 的物件。</p></div></article><article id="function.closures"><h2>Closures 和 References</h2><div><p>JavaScript 有一個很重要的特徵就是 <strong>closures</strong>
 因為有 Closures，所以作用域 <strong>永遠</strong> 能夠去訪問作用區間外面的變數。
 <a href="#function.scopes">函數區間</a> 是JavaScript 中唯一擁有自生作用域的結構，因此 Closures 的創立需要依賴函數</p>
 
@@ -1621,14 +1610,11 @@ for(i = 1; i &lt;= biggestTimeoutId; i++) {
 
 </div><div><h3>隱藏使用 <code>eval</code></h3>
 
-<p><code>setTimeout</code> and <code>setInterval</code> can also take a string as their first parameter.
-This feature should <strong>never</strong> be used because it internally makes use of <code>eval</code>.</p>
+<p>也接受了第一參數為字符串的情況。
+這個特性<strong>絕對</strong>不要使用，因為它在內部使用了 <code>eval</code>。</p>
 
 <aside>
-  <p><strong>Note:</strong> Since the timeout functions are <strong>not</strong> specified by the ECMAScript
-  standard, the exact workings when a string is passed to them might differ in
-  various JavaScript implementations. For example, Microsoft&#39;s JScript uses
-  the <code>Function</code> constructor in place of <code>eval</code>.</p>
+  <p><strong>注意:</strong> 由於定時器函式不是 ECMAScript 中的標準，所以以解析字符串參數在不同的 JavaScript 引擎實現中可能不同。</p>
 </aside>
 
 <pre><code>function foo() {
@@ -1644,12 +1630,10 @@ function bar() {
 bar();
 </code></pre>
 
-<p>Since <code>eval</code> is not getting called <a href="#core.eval">directly</a> in this case, the string 
-passed to <code>setTimeout</code> will be executed in the <em>global scope</em>; thus, it will 
-not use the local variable <code>foo</code> from the scope of <code>bar</code>.</p>
+<p>由於 <code>eval</code> 在這種情況下不是被 <a href="#core.eval">直接</a>調用，因此傳遞到 <code>setTimeout</code> 的字符串會字 <em>全局作用域</em> 中做執行。
+因此上面的回傳函數使用不是定義在 <code>bar</code> 作用域中的局部變數 <code>foo</code>。</p>
 
-<p>It is further recommended to <strong>not</strong> use a string to pass arguments to the
-function that will get called by either of the timeout functions. </p>
+<p>建議<strong>不要</strong>在調用定時器函式時，為了向回傳函式傳遞參數而使用字符串的形式。</p>
 
 <pre><code>function foo(a, b, c) {}
 
@@ -1663,20 +1647,16 @@ setTimeout(function() {
 </code></pre>
 
 <aside>
-  <p><strong>Note:</strong> While it is also possible to use the syntax 
-  <code>setTimeout(foo, 1000, a, b, c)</code>, it is not recommended, as its use may lead
-  to subtle errors when used with <a href="#function.this">methods</a>. </p>
+  <p><strong>注意:</strong> 雖然也可以只用這樣的語法 <code>setTimeout(foo, 1000, a, b, c)</code>，
+  但是不推薦這樣使用，因為可能在使用物件的時候可能出錯 <a href="#function.this">屬性方法</a>。</p>
 </aside>
 
-</div><div><h3>In Conclusion</h3>
+</div><div><h3>結語</h3>
 
-<p>A string should <strong>never</strong> be used as the parameter of <code>setTimeout</code> or 
-<code>setInterval</code>. It is a clear sign of <strong>really</strong> bad code, when arguments need 
-to be supplied to the function that gets called. An <em>anonymous function</em> should
-be passed that then takes care of the actual call.</p>
+<p><strong>絕對不要</strong>使用字符串作為 <code>setTimeout</code>或者 <code>setInterval</code> 的第一個參數，這麼寫的程式碼的食量很差。
+當要回傳一個函式傳遞參數時，可以創一個<em>匿名函式</em>，在函式內執行真實的回傳函數。</p>
 
-<p>Furthermore, the use of <code>setInterval</code> should be avoided because its scheduler is not
-blocked by executing JavaScript.</p></div></article></section><!-- Footer--><footer><p>Copyright &copy; 2011. Built with 
+<p>要避免使用 <code>setInterval</code>，因為它的定時執行不會被Javascript阻塞。</p></div></article></section><!-- Footer--><footer><p>Copyright &copy; 2011. Built with 
 <a href="http://nodejs.org/">Node.js </a>using a
 <a href="https://github.com/visionmedia/jade/">jade </a>template. 
 Hosted by 
