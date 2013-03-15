@@ -1,0 +1,1684 @@
+<!DOCTYPE html><html lang="zhtw"><head><title>JavaScript 庭院</title><meta charset="utf-8"><meta name="description" content="JavaScript 語言中古怪用法及缺點的文件總集"><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
+<script src="javascript/html5.js"></script>
+<![endif]-->
+</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li><a href="/JavaScript-Garden/es" title="JavaScript Garden es Español">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha suomeksi">fi</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden in Japanese">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden - ogród JavaScript po polsku">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden Türkçe">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript Garden 中文翻译">zh</a></li><li class="active"><a href="/JavaScript-Garden/zhtw" title="JavaScript Garden 繁體中文翻譯">zhtw</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">簡介</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">物件</a></h1><ul><li><a href="#object.general">物件的使用和屬性</a></li><li><a href="#object.prototype">Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop"><code>for in</code> 迴圈</a></li></ul></li><li class="nav_function"><h1><a href="#function">函式</a></h1><ul><li><a href="#function.general">函式的宣告和表達方式</a></li><li><a href="#function.this"><code>this</code> 的工作原理</a></li><li><a href="#function.closures">Closures 和 References</a></li><li><a href="#function.arguments"><code>arguments</code> 物件</a></li><li><a href="#function.constructors">建構函式</a></li><li><a href="#function.scopes">作用域和命名空間</a></li></ul></li><li class="nav_array"><h1><a href="#array">陣列</a></h1><ul><li><a href="#array.general">Array 迴圈和屬性</a></li><li><a href="#array.constructor"><code>Array</code> 的建構函式</a></li></ul></li><li class="nav_types"><h1><a href="#types">類型</a></h1><ul><li><a href="#types.equality">相等與比較</a></li><li><a href="#types.typeof"><code>typeof</code> 操作符</a></li><li><a href="#types.instanceof"><code>instanceof</code> 操作符</a></li><li><a href="#types.casting">類型轉換</a></li></ul></li><li class="nav_core"><h1><a href="#core">核心</a></h1><ul><li><a href="#core.eval">為什麼不要使用 <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> 和 <code>null</code></a></li><li><a href="#core.semicolon">自動插入分號</a></li><li><a href="#core.delete"><code>delete</code> 控制符</a></li></ul></li><li class="nav_other"><h1><a href="#other">其他</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> 和 <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>簡介</h1><div><p>JavaScript 庭院 是一個不斷更新的文件，最主要是要去了解一些 Javascript 比較古怪的部份。
+給一些意見來防止遇到一些常見的錯誤和一些難以發現的問題，以及性能問題和不好的習慣。
+初學者也可以藉此去了解 Javascript 這項語言的特性。</p>
+
+<p>JavaScript 庭院 並 <strong>不是</strong> 要教導你 Javascript 的語言。
+如果要能夠理解這篇文章的內容，你需要事先學習 JavaScript 的基礎知識。
+在 Mozilla 開發者網路中有一系列非常棒的學習<a href="https://developer.mozilla.org/en/JavaScript/Guide">guide</a>。</p>
+
+<h2>作者</h2>
+
+<p>這個使用手冊是來自於 <a href="http://stackoverflow.com/">Stack Overflow</a> 的使用者, <a href="http://stackoverflow.com/users/170224/ivo-wetzel">Ivo Wetzel</a>
+(寫作) 和 <a href="http://stackoverflow.com/users/313758/yi-jiang">Zhang Yi Jiang</a> (設計).</p>
+
+<h2>貢獻者</h2>
+
+<ul>
+<li><a href="https://github.com/caio">Caio Romão</a> (拼寫檢查)</li>
+<li><a href="https://github.com/blixt">Andreas Blixt</a> (語言修正)</li>
+</ul>
+
+<h2>繁體中文翻譯</h2>
+
+<ul>
+<li><a href="http://github.com/chilijung">紀力榮</a></li>
+<li><a href="http://github.com/wwwy3y3">張仲威</a></li>
+</ul>
+
+<h2>存在</h2>
+
+<p>JavaScript 庭院 存在於 GitHub, 但是 <a href="http://cramerdev.com/">Cramer Development</a> 讓我們有一個存放地 <a href="http://javascriptgarden.info/">JavaScriptGarden.info</a>.</p>
+
+<h2>許可</h2>
+
+<p>JavaScript 庭院是在 <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a> 許可協議下發佈，並存在於
+<a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>. 如果你有發現錯誤或是打字上的錯誤 <a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">新增一個任務</a> 或者發一個請求。 你也可以在 StackOverflow 的 <a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript room</a> 上面找到我們。</p></div></header><!-- Articles--></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>物件</h1></header><!-- Articles--><article id="object.general"><h2>物件的使用和屬性</h2><div><p>每個變數可以表現像 JavaScript 物件，除了 <a href="#core.undefined"><code>null</code></a> 和 <a href="#core.undefined"><code>undefined</code></a>。</p>
+
+<pre><code>false.toString(); // &#39;false&#39;
+[1, 2, 3].toString(); // &#39;1,2,3&#39;
+
+function Foo(){}
+Foo.bar = 1;
+Foo.bar; // 1
+</code></pre>
+
+<p>一個常見的誤解就是字面值（literal）不是物件。這是因為 JavaScript 編譯器的一個錯誤，它試圖把 <em>點操作符</em> 解析為浮點數的字面值的一部分。</p>
+
+<pre><code>2.toString(); // 出錯： SyntaxError
+</code></pre>
+
+<p>有很多變通方法可以讓數字的字面值看起來像物件。</p>
+
+<pre><code>2..toString(); // 第二個點號可以正常解析
+2 .toString(); // 注意點號前面的空格
+(2).toString(); // 2 先被計算
+</code></pre>
+
+</div><div><h3>物件做為數據類型</h3>
+
+<p>JavaScript 的物件可以作為 <a href="http://en.wikipedia.org/wiki/Hashmap"><em>Hashmaps</em></a>使用，主要用來保存命名的建與值的對應關係。</p>
+
+<p>使用物件的字面語法 - <code>{}</code> - 可以創建一個簡單的物件。 這個新創建的物件從 <code>Object.prototype</code> <a href="#object.prototype">繼承</a>，下面，沒有任何 <a href="#object.hasownproperty">字定義屬性</a>。</p>
+
+<pre><code>var foo = {}; // 一個空的物件
+
+// 一個新的物件，有值為 12 的自定義屬性 &#39;test&#39;
+var bar = {test: 12}; 
+</code></pre>
+
+</div><div><h3>訪問屬性</h3>
+
+<p>有兩種訪問物件的屬性，點操作或是中括號操作。</p>
+
+<pre><code>var foo = {name: &#39;kitten&#39;}
+foo.name; // kitten
+foo[&#39;name&#39;]; // kitten
+
+var get = &#39;name&#39;;
+foo[get]; // kitten
+
+foo.1234; // SyntaxError
+foo[&#39;1234&#39;]; // works
+</code></pre>
+
+<p>兩種語法是相等的，但是中括號在下面兩個情況依然有效</p>
+
+<ul>
+<li>動態設定屬性</li>
+<li>屬性不是一個有較的變數名</li>
+</ul>
+
+</div><div><h3>刪除屬性</h3>
+
+<p>唯一刪除屬性的方式就是用 <code>delete</code> 操作符。設置屬性為 <code>undefined</code> 或是 <code>null</code> 只有刪除的屬性和值的關聯，沒有真的刪掉屬性</p>
+
+<pre><code>var obj = {
+    bar: 1,
+    foo: 2,
+    baz: 3
+};
+obj.bar = undefined;
+obj.foo = null;
+delete obj.baz;
+
+for(var i in obj) {
+    if (obj.hasOwnProperty(i)) {
+        console.log(i, &#39;&#39; + obj[i]);
+    }
+}
+</code></pre>
+
+<p>上面的輸出結果有 <code>bar undefined</code> 和 <code>foo null</code>
+只有 <code>baz</code> 真正被刪除而已，所以從輸出結果中消失。</p>
+
+</div><div><h3>屬姓名的語法</h3>
+
+<pre><code>var test = {
+    &#39;case&#39;: &#39;I am a keyword, so I must be notated as a string&#39;,
+    delete: &#39;I am a keyword, so me too&#39; // raises SyntaxError
+};
+</code></pre>
+
+<p>物件的屬性名可以使用字符串或是普通的宣告。但是由於 JavaScript 編譯器有個另外一個錯誤設計。
+上面的兩種方式在 ECMAScript 5之前都會拋出 <code>SyntaxError</code> 的錯誤。</p>
+
+<p>這個錯誤的原因是 <code>delete</code> 是 JavaScript 語言的一個 <em>關鍵字</em> 因此為了在更低的版本能執行最好用 <em>string literal</em></p></div></article><article id="object.prototype"><h2>Prototype</h2><div><p>JavaScript 不包含原本繼承的模型。然而它使用的是 <em>prototypal</em> 原型。</p>
+
+<p>然而常常有人提及 JavaScript 的缺點，就是基於原本繼承模型比類繼承更強大。
+現實傳統的類繼承模型是很簡單。但是在 JavaScript 中實現元繼承則要困難很多。</p>
+
+<p>由於 JavaScript 是唯一一個被廣泛使用的基於原型繼承的語言，所以我們必須要花時間來理解這兩者的不同。</p>
+
+<p>第一個不同之處在於 JavaScript 使用 <em>原型鏈</em> 的繼承方式。</p>
+
+<aside>
+  <p><strong>注意: <em>* 簡單的使用 <code>Bar.prototype = Foo.prototype</code> 將會導致兩個對象共享 *</em>相同</strong> 的原型。
+  因此，改變任一個原型都會去影響到另外一個，這在大部分的時候不是想得到的結果。</p>
+</aside>
+
+<pre><code>function Foo() {
+    this.value = 42;
+}
+Foo.prototype = {
+    method: function() {}
+};
+
+function Bar() {}
+
+// 設置 Bar 的 prototype 屬性為 Foo 的實例對象
+Bar.prototype = new Foo();
+Bar.prototype.foo = &#39;Hello World&#39;;
+
+// 修正 Bar.prototype.constructor 為 Bar 本身
+Bar.prototype.constructor = Bar;
+
+var test = new Bar() // 開啟一個新的實例
+
+// 原型鏈
+test [instance of Bar]
+    Bar.prototype [instance of Foo] 
+        { foo: &#39;Hello World&#39; }
+        Foo.prototype
+            { method: ... }
+            Object.prototype
+                { toString: ... /* etc. */ }
+</code></pre>
+
+<p>上面的例子中，物件 <code>test</code> 會繼承來自 <code>Bar.prototype</code> 和 <code>Foo.prototype</code>。因此它可以進入來自 <code>Foo</code> 原型的方法 <code>method</code>。
+同時它也可以訪問 <strong>那個</strong> 定義在原型上的 <code>Foo</code> 實例屬性 <code>value</code>。</p>
+
+<p>要注意的是 <code>new Bar()</code> <strong>沒有</strong> 創立一個新的 <code>Foo</code> 實例，它重複利用的原本的 prototype。因此， <code>Bar</code> 的實例會分享到 <strong>相同</strong> 的 <code>value</code> 屬性。</p>
+
+<aside>
+  <p><strong>注意:</strong> <strong>不要</strong> 使用 <code>Bar.prototype = Foo</code>，因為這不會執行 <code>Foo</code> 的原型，而是指向函式 <code>Foo</code>。
+  因此原型鏈將回碩到 <code>Function.prototype</code> 而不是 <code>Foo.prototype</code> ，因此 <code>method</code> 將不會在 Bar 的原型鏈上。</p>
+</aside>
+
+</div><div><h3>屬性查詢</h3>
+
+<p>當查詢一個物件的屬性時，JavaScript 會 <strong>向上</strong> 查詢，直到查到指定名稱的屬性為止。</p>
+
+<p>如果他查到原型鏈的頂部 - 也就是 <code>Object.prototype</code> - 但是仍然每有指定的屬定，就會返回 <a href="#core.undefined">undefined</a>。</p>
+
+</div><div><h3>原型屬性</h3>
+
+<p>當原型屬性用來建造原型鏈，它還是有可能去把 <strong>任意</strong> 類型的值給它</p>
+
+<pre><code>function Foo() {}
+Foo.prototype = 1; // 無效
+</code></pre>
+
+<p>分派物件，在上面的例子中，將會動態的創建原型鏈。</p>
+
+</div><div><h3>效能</h3>
+
+<p>如果看在屬性在原型鏈的上端，對於查詢都會有不利的影響。特別的，試圖獲取一個不存在的屬性將會找遍所有原型鏈。</p>
+
+<p>並且，當使用 <a href="#object.forinloop">迴圈</a>找尋所有物件的屬性時，原型鏈上的 <strong>所有</strong> 屬性都會被訪問。</p>
+
+</div><div><h3>擴展 Native Prototype</h3>
+
+<p>一個經常錯誤使用的特定，那就是擴展 <code>Object.prototype</code> 或者是其他內置類型的原型物件。</p>
+
+<p>這種技術叫做 <a href="http://en.wikipedia.org/wiki/Monkey_patch">monkey patching</a> 並且會破壞 <em>封裝</em>。雖然被廣泛的應用到一些 Javascript 的架構，但是我仍然認為內置類型添加是一個 <em>非標準</em> 的函式的好方法</p>
+
+<p>擴展內置類型的 <strong>唯一</strong> 理由是為了和新的 JavaScript 保持一致，比如說 <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach</code></a></p>
+
+</div><div><h3>總結</h3>
+
+<p>在寫複雜的程式碼的時候，要 <strong>充分理解</strong> 所有程式繼承的屬性還有原型鏈。
+還要堤防原型鏈過長帶來的性能問題，並知道如何通過縮短原型鏈來提高性能。
+絕對 <strong>不要使用</strong> native prototype` 除非是為了和新的 JavaScript 引擎作兼容。</p></div></article><article id="object.hasownproperty"><h2><code>hasOwnProperty</code></h2><div><p>為了判斷一個物件是否包含 <em>自定義</em> 屬性而 <em>不是</em> <a href="#object.prototype">原形</a>上的屬性，我們需要使用繼承 <code>Object.prototype</code> 的 <code>hasOwnProperty</code> 方法。</p>
+
+<aside>
+  <p><strong>注意:</strong> 判斷一個屬性是否 <code>undefined</code> 是 <strong>不夠的</strong>。
+  因為一個屬性可能存在，但是它的值被設成 <code>undefined</code>。</p>
+</aside>
+
+<p><code>hasOwnProperty</code> 是 JavaScript 中唯一一個處理屬性但是 <strong>不</strong> 找原型鏈的函式。</p>
+
+<pre><code>// 修改 Object.prototype
+Object.prototype.bar = 1; 
+var foo = {goo: undefined};
+
+foo.bar; // 1
+&#39;bar&#39; in foo; // true
+
+foo.hasOwnProperty(&#39;bar&#39;); // false
+foo.hasOwnProperty(&#39;goo&#39;); // true
+</code></pre>
+
+<p>只有 <code>hasOwnProperty</code> 給予正確的結果，這對進入物件的屬性很有效果，<strong>沒有</strong> 其他方法可以用來排除原型上的屬性，而不是定義在物件 <em>自己</em> 上的屬性。</p>
+
+</div><div><h3><code>hasOwnProperty</code> 作為屬性</h3>
+
+<p>JavaScript <strong>不會</strong> 保護 <code>hasOwnProperty</code>被占用，因此如果碰到存在這個屬性，就需要使用 <em>外部</em> 的 <code>hasOwnProperty</code> 來獲取正確的結果。</p>
+
+<pre><code>var foo = {
+    hasOwnProperty: function() {
+        return false;
+    },
+    bar: &#39;Here be dragons&#39;
+};
+
+foo.hasOwnProperty(&#39;bar&#39;); // 永遠返回 false
+
+// 使用其他對象的 hasOwnProperty，並將其上下設置為 foo
+({}).hasOwnProperty.call(foo, &#39;bar&#39;); // true
+</code></pre>
+
+</div><div><h3>結論</h3>
+
+<p>當檢查一個物件是否存在的時候， <code>hasOwnProperty</code> 是 <strong>唯一</strong> 可用的方法。
+同時在使用 <a href="#object.forinloop"><code>for in loop</code></a>
+建議使用 <code>hasOwnProperty</code> 避免 <a href="#object.prototype">原型</a>所帶來的干擾。</p></div></article><article id="object.forinloop"><h2><code>for in</code> 迴圈</h2><div><p>就像其他的 <code>in</code> 操作符一樣， <code>for in</code> 循環也進入所有在物件中的屬性</p>
+
+<aside>
+  <p><strong>注意: <em>* <code>for in</code> 迴圈 *</em>不會</strong> 進入那些 <code>enumerable</code> 屬性是 <code>false</code>，舉例來說， 陣列中 <code>length</code> 的屬性</p>
+</aside>
+
+<pre><code>// 修改 Object.prototype
+Object.prototype.bar = 1;
+
+var foo = {moo: 2};
+for(var i in foo) {
+    console.log(i); // 輸出兩個屬性：bar 和 moo
+}
+</code></pre>
+
+<p>由於不可能改變 <code>for in</code> 本身的行為，因為有必要過濾出那些不希望在迴圈出現的屬性，這可以用 <code>Object.prototype</code> 原型上的 <a href="#object.hasownproperty"><code>hasOwnProperty</code></a> 的函數來完成。</p>
+
+<aside>
+  <p><em>*注意: *</em> 由於 <code>for in</code> 總是要到所有原型鏈裡，因此如果物件的繼承層次太深的話會影響性能。</p>
+</aside>
+
+</div><div><h3>用 <code>hasOwnProperty</code> 來過濾</h3>
+
+<pre><code>// foo 變數是上面範例中的
+for(var i in foo) {
+    if (foo.hasOwnProperty(i)) {
+        console.log(i);
+    }
+}
+</code></pre>
+
+<p>這個版本的程式碼是唯一正確的寫法。由於我們使用了 <code>hasOwnProperty</code>，這次 <strong>只</strong> 輸出 <code>moo</code>。
+如果不只用這個程式碼在原型物件中(比如 <code>Object.prototype</code>)被擴展可能會出錯。</p>
+
+<p>一個廣泛的模組 <a href="http://www.prototypejs.org/">Prototype</a>就礦展了圓型的 JavaScript 物件。
+因此，但這模組包含在頁面中時，不使用 <code>hasOwnProperty</code> 過濾的 <code>for in</code> 尋難免會出問題。</p>
+
+</div><div><h3>總結</h3>
+
+<p>推薦 <strong>總是</strong> 使用 <code>hasOwnProperty</code>。不要對程式碼的環境做任何假設，不要假設原生的對象是否被擴張</p></div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>函式</h1></header><!-- Articles--><article id="function.general"><h2>函式的宣告和表達方式</h2><div><p>函式在 JavaScript 是第一等物件。這表示他們可以把函式當做值一樣傳遞。
+一個常見的用法是用 <em>匿名函式</em> 當做一個回傳去呼叫另一個函式，這是一種非同步函式</p>
+
+</div><div><h3>函式的宣告</h3>
+
+<pre><code>function foo() {}
+</code></pre>
+
+<p>上面的函式在被執行之前會被 <a href="#function.scopes">解析(hoisted)</a>，因此它可以在 <strong>任意</strong> 的地方都是 <em>有宣告的</em> ，就算是在比這個函式還早呼叫。</p>
+
+<pre><code>foo(); // 可以執行，因為 foo 已經在運行前就被建立
+function foo() {}
+</code></pre>
+
+</div><div><h3><code>function</code> 的表達式</h3>
+
+<pre><code>var foo = function() {};
+</code></pre>
+
+<p>這個例子把一個 <em>匿名</em> 函式賦值給變數 <code>foo</code>。</p>
+
+<pre><code>foo; // &#39;undefined&#39;
+foo(); // 錯誤: TypeError
+var foo = function() {};
+</code></pre>
+
+<p>由於 <code>var</code> 已經宣告變數 <code>foo</code> 在所有的程式碼執行之前。
+所以 <code>foo</code>已經在程式運行前就已經被定義過了。
+但是因為賦值只會在運行時去職情，所以在程式碼執行前，<code>foo</code> 的值還沒被宣告所以為 <a href="#core.undefined">undefined</a>。</p>
+
+</div><div><h3>命名函式的賦值表達式</h3>
+
+<p>另一個特殊狀況就勢將一個命名函式賦值給一個變數。</p>
+
+<pre><code>var foo = function bar() {
+    bar(); // 可以運行
+}
+bar(); // 錯誤：ReferenceError
+</code></pre>
+
+<p><code>bar</code> 不可以在外部的區域被執行，因為它只有在 <code>foo</code> 的函式內才可以去執行。
+然而在 <code>bar</code> 內部還是可以看見。這是由於 JavaScript的 <a href="#function.scopes">命名處理</a>所致。
+函式名在函式內 <em>都</em> 可以去使用。</p></div></article><article id="function.this"><h2><code>this</code> 的工作原理</h2><div><p>JavaScript 有移到完全部屬於其他語言處理 <code>this</code> 的處理機制。
+在 <strong>五</strong> 種物同的情況下， <code>this</code> 指向的個不相同</p>
+
+</div><div><h3>全域變數</h3>
+
+<pre><code>this;
+</code></pre>
+
+<p>如果再全域範圍內使用 <code>this</code>，會指向 <em>全域</em> 的物件</p>
+
+</div><div><h3>呼叫一個函式</h3>
+
+<pre><code>foo();
+</code></pre>
+
+<p>這裡 <code>this</code> 也會指向 <em>全域</em> 對象。</p>
+
+<aside class="es5"><p><strong>ES5 注意:</strong> 在嚴格模式下，不存在全域變數。
+  <code>this</code> 將會是 <code>undefined</code>。</p>
+</aside>
+
+</div><div><h3>方法調用</h3>
+
+<pre><code>test.foo(); 
+</code></pre>
+
+<p>這個例子中， <code>this</code> 指向 <code>test</code> 物件。</p>
+
+</div><div><h3>呼叫一個建構函式</h3>
+
+<pre><code>new foo(); 
+</code></pre>
+
+<p>如果函式傾向用 <code>new</code> 關鍵詞使用，我們稱這個函式為 <a href="#function.constructors">建構函式</a>。
+在函式內部， <code>this</code> 指向 <em>新物件的創立</em></p>
+
+</div><div><h3>顯示的設置 <code>this</code></h3>
+
+<pre><code>function foo(a, b, c) {}
+
+var bar = {};
+foo.apply(bar, [1, 2, 3]); // Array 會被擴展，如下所示
+foo.call(bar, 1, 2, 3); // 傳遞參數 a = 1, b = 2, c = 3
+</code></pre>
+
+<p>當使用 <code>function.prototype</code> 上的 <code>call</code> 或只 <code>apply</code> 方法時，函式內的 <code>this</code> 將會被 <strong>顯示設置</strong> 為函式調用的第一個參數。</p>
+
+<p>As a result, in the above example the <em>method case</em> does <strong>not</strong> apply, and <code>this</code> 
+inside of <code>foo</code> will be set to <code>bar</code>.</p>
+
+<aside>
+  <p><strong>Note:</strong> <code>this</code> <strong>cannot</strong> be used to refer to the object inside of an <code>Object</code>
+  literal. So <code>var obj = {me: this}</code> will <strong>not</strong> result in <code>me</code> referring to
+  <code>obj</code>, since <code>this</code> only gets bound by one of the five listed cases.</p>
+</aside>
+
+</div><div><h3>常見誤解</h3>
+
+<p>While most of these cases make sense, the first can be considered another
+mis-design of the language because it <strong>never</strong> has any practical use.</p>
+
+<pre><code>Foo.method = function() {
+    function test() {
+        // this is set to the global object
+    }
+    test();
+}
+</code></pre>
+
+<p>A common misconception is that <code>this</code> inside of <code>test</code> refers to <code>Foo</code>; while in
+fact, it <strong>does not</strong>.</p>
+
+<p>In order to gain access to <code>Foo</code> from within <code>test</code>, it is necessary to create a 
+local variable inside of <code>method</code> that refers to <code>Foo</code>.</p>
+
+<pre><code>Foo.method = function() {
+    var that = this;
+    function test() {
+        // Use that instead of this here
+    }
+    test();
+}
+</code></pre>
+
+<p><code>that</code> is just a normal variable name, but it is commonly used for the reference to an 
+outer <code>this</code>. In combination with <a href="#function.closures">closures</a>, it can also 
+be used to pass <code>this</code> values around.</p>
+
+</div><div><h3>Assigning Methods</h3>
+
+<p>Another thing that does <strong>not</strong> work in JavaScript is function aliasing, which is
+<strong>assigning</strong> a method to a variable.</p>
+
+<pre><code>var test = someObject.methodTest;
+test();
+</code></pre>
+
+<p>Due to the first case, <code>test</code> now acts like a plain function call; therefore,
+<code>this</code> inside it will no longer refer to <code>someObject</code>.</p>
+
+<p>While the late binding of <code>this</code> might seem like a bad idea at first, in 
+fact, it is what makes <a href="#object.prototype">prototypal inheritance</a> work. </p>
+
+<pre><code>function Foo() {}
+Foo.prototype.method = function() {};
+
+function Bar() {}
+Bar.prototype = Foo.prototype;
+
+new Bar().method();
+</code></pre>
+
+<p>When <code>method</code> gets called on an instance of <code>Bar</code>, <code>this</code> will now refer to that
+very instance. </p></div></article><article id="function.closures"><h2>Closures 和 References</h2><div><p>JavaScript 有一個很重要的特徵就是 <strong>closures</strong>
+因為有 Closures，所以作用域 <strong>永遠</strong> 能夠去訪問作用區間外面的變數。
+<a href="#function.scopes">函數區間</a> 是JavaScript 中唯一擁有自生作用域的結構，因此 Closures 的創立需要依賴函數</p>
+
+</div><div><h3>模仿私有變數</h3>
+
+<pre><code>function Counter(start) {
+    var count = start;
+    return {
+        increment: function() {
+            count++;
+        },
+
+        get: function() {
+            return count;
+        }
+    }
+}
+
+var foo = Counter(4);
+foo.increment();
+foo.get(); // 5
+</code></pre>
+
+<p>這裡，<code>Counter</code> 返回兩個 Closures，函數 <code>increment</code> 還有 <code>get</code>。這兩個函數都維持著對外部作用域 <code>Counter</code> 的引用，因此總可以訪問作用域的變數 <code>count</code>。</p>
+
+</div><div><h3>為什麼不可以在外部訪問私有變數</h3>
+
+<p>因為 Javascript <strong>不可以</strong> 對作用域進行引用或賦值。因此外部的地方沒有辦法訪問 <code>count</code> 變數。
+唯一的途徑就是經過那兩個 Closures</p>
+
+<pre><code>var foo = new Counter(4);
+foo.hack = function() {
+    count = 1337;
+};
+</code></pre>
+
+<p>在上面的例子中 <code>count</code> <strong>不會</strong> 改變到 <code>Counter</code> 裡面的 <code>count</code> 的值。因為 <code>foo.hack</code> 沒有在 <strong>那個</strong> 作用域內被宣告。它只有會覆蓋或者建立在一個 <strong>全域</strong> 的變數 <code>count</code></p>
+
+</div><div><h3>在循環內的 Closures</h3>
+
+<p>一個常見的錯誤就是在 Closures 中使用迴圈，假設我們要使用每次迴圈中所使用的進入變數</p>
+
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout(function() {
+        console.log(i);  
+    }, 1000);
+}
+</code></pre>
+
+<p>在上面的例子中它 <strong>不會</strong> 輸出數字從 <code>0</code> 到 <code>9</code>，但只會出現數字 <code>10</code> 十次。
+在 <code>console.log</code> 被呼叫的時候，這個 <em>匿名</em> 函數中保持一個 <strong>參考</strong> 到 i ，此時 <code>for</code>迴圈已經結束， <code>i</code> 的值被修改成了 <code>10</code>。
+為了要達到想要的結果，需要在每次創造 <strong>副本</strong> 來儲存 <code>i</code> 的變數。</p>
+
+</div><div><h3>避免引用錯誤</h3>
+
+<p>為了要有達到正確的效果，最好是把它包在一個
+<a href="#function.scopes">匿名函數</a>.</p>
+
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    (function(e) {
+        setTimeout(function() {
+            console.log(e);  
+        }, 1000);
+    })(i);
+}
+</code></pre>
+
+<p>匿名外部的函數被呼叫，並把 <code>i</code> 作為它第一個參數，此時函數內 <code>e</code> 變數就擁有了一個 <code>i</code> 的拷貝。
+當傳遞給 <code>setTimeout</code> 這個匿名函數執行時，它就擁有了對 <code>e</code> 的引用，而這個值 <strong>不會</strong> 被循環改變。
+另外有一個方法也可以完成這樣的工作，那就是在匿名函數中返回一個函數，這和上面的程式碼有同樣的效果。</p>
+
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout((function(e) {
+        return function() {
+            console.log(e);
+        }
+    })(i), 1000)
+}
+</code></pre></div></article><article id="function.arguments"><h2><code>arguments</code> 物件</h2><div><p>所有函數在 JavaScript 中都可以有個特別的參數 <code>arguments</code>。
+這個變數掌握了一列傳入函數中的參數</p>
+
+<aside>
+  <p><strong>注意:</strong> 由於 <code>arguments</code> 都已經在函數中被定義了
+  經過 <code>var</code> 定義或是用 <code>arguments</code> 宣告參數
+  <code>arguments</code> 物件都不會被建立</p>
+</aside>
+
+<p><code>arguments</code> 物件 <strong>不是</strong> 一個 <code>Array</code>，雖然都有很多 Array 的語法 - 就像是 <code>length</code> 屬性 - 但是它沒有繼承來自 <code>Array.prototype</code> 事實上它繼承 <code>object</code>。</p>
+
+<p>由於這些原因，這 <strong>不可能</strong> 用 Array 的一些功能像是 <code>push</code>、<code>pop</code>或是 <code>slice</code> 在 <code>arguments</code>。
+但是像 <code>for</code> 迴圈這些迴圈都是可以用的，如果真的需要使用一些標準的 <code>Array</code> 功能可以先把它轉成真的 <code>Array</code> 再去使用。</p>
+
+</div><div><h3>轉為 Array</h3>
+
+<p>下面的程式可以回傳一個新的 <code>Array</code> 包含所有的元素在 <code>Arguments</code>的物件中</p>
+
+<pre><code>Array.prototype.slice.call(arguments);
+</code></pre>
+
+<p>這種轉化方式比較 <strong>慢</strong> ，不建議使用這種作法如果再追求效率的程式中。</p>
+
+</div><div><h3>傳遞參數</h3>
+
+<p>下面是建議用這種方式去傳參數到另一個函數</p>
+
+<pre><code>function foo() {
+    bar.apply(null, arguments);
+}
+function bar(a, b, c) {
+    // 在這裡做一些事情
+}
+</code></pre>
+
+<p>另一個技巧是用 <code>call</code> 和 <code>apply</code> 放在一起來創造一個更快的解綁定包裝器</p>
+
+<pre><code>function Foo() {}
+
+Foo.prototype.method = function(a, b, c) {
+    console.log(this, a, b, c);
+};
+
+// Create an unbound version of "method" 
+// 輸入的參數: this, arg1, arg2...argN
+Foo.method = function() {
+
+    // 結果: Foo.prototype.method.call(this, arg1, arg2... argN)
+    Function.call.apply(Foo.prototype.method, arguments);
+};
+</code></pre>
+
+</div><div><h3>自動更新</h3>
+
+<p>在 <code>Arguments</code> 物件創造的 <em>getter</em> 和 <em>setter</em> 的函數方法，可以被視為原本函數的變數。</p>
+
+<p>因此，改變了一個變數會跟著改變它的值而且也間接的改變稻香對應的 <code>arguments</code> 的物件，反之亦然。</p>
+
+<pre><code>function foo(a, b, c) {
+    arguments[0] = 2;
+    a; // 2
+
+    b = 4;
+    arguments[1]; // 4
+
+    var d = c;
+    d = 9;
+    c; // 3
+}
+foo(1, 2, 3);
+</code></pre>
+
+</div><div><h3>性能</h3>
+
+<p><code>arguments</code> 總是會被宣告，但除了兩個情況，一個是在一個函式中或是在其中一個參入。而不論他是否有被使用。</p>
+
+<p><em>getters</em> 和 <em>setter</em> 會永遠被創造。然而，他們對任何性能都沒有影響，除非對它的屬性有多次的訪問</p>
+
+<aside class="es5"><p><strong>ES5 提示:</strong> 那些 <em>getters</em> 和 <em>setters</em> 在嚴格的模式像不會被建立</p>
+</aside>
+
+<p>然而會有一種情況來降低 JavaScript 引擎的效能。就是使用 <code>arguments.callee</code>。</p>
+
+<pre><code>function foo() {
+    arguments.callee; // 做一些在這個函數物件
+    arguments.callee.caller; // 然後呼叫這個函數物件
+}
+
+function bigLoop() {
+    for(var i = 0; i &lt; 100000; i++) {
+        foo(); // 通常會在內聯
+    }
+}
+</code></pre>
+
+<p>在上面的程式中， <code>foo</code> 不再是一個單存的互聯函數
+因為它需要知道他自己和它的調用者。
+這不僅減低了它的性能，而且還破壞的封裝</p>
+
+<p><strong>強烈建議不要使用</strong>  <code>arguments.callee</code> 或是其他它的屬性</p>
+
+<aside class="es5"><p><strong>ES5 Note:</strong> 在嚴格的模式下 <code>arguments.callee</code> 會丟出一個 <code>TypeError</code>， 因為這種方法已經被廢除了</p>
+</aside></div></article><article id="function.constructors"><h2>建構函式</h2><div><p>JavaScript 中的建構函式和其他語言中的建構函式是不同的。
+用 <code>new</code> 的關鍵字方式調用的函式都被認為是建構函式。
+在建構函式內部 - 被呼叫的函式 - <code>this</code> 指向一個新建立的 <code>object</code>。<a href="#object.prototype">prototype</a> 這是一個新的物件一個被指向函式的 <code>prototype</code> 的建構函式。</p>
+
+<p>如果被使用的函式沒有明顯的呼叫 <code>return</code> 的表達式，它會回傳一個隱性的 <code>this</code> 的新物件。</p>
+
+<pre><code>function Foo() {
+    this.bla = 1;
+}
+
+Foo.prototype.test = function() {
+    console.log(this.bla);
+};
+
+var test = new Foo();
+</code></pre>
+
+<p>在上面的例子中 <code>Foo</code> 建立一個建構函式，並設立一個 <code>prototype</code> 來創建一個新的物件叫 <code>Foo.prototype</code>。
+這個情況下它顯示的 <code>return</code> 一個表達式，但他 <strong>只</strong> 返回一個 <code>Object</code>。</p>
+
+<pre><code>function Bar() {
+    return 2;
+}
+new Bar(); // 返回一個新物件
+
+function Test() {
+    this.value = 2;
+
+    return {
+        foo: 1
+    };
+}
+new Test(); // 回傳物件
+</code></pre>
+
+<p>如果 <code>new</code> 的關鍵字被忽略，函式就 <strong>不會</strong> 回傳一個新的物件。</p>
+
+<pre><code>function Foo() {
+    this.bla = 1; // 獲取一個全域的參數
+}
+Foo(); // undefined
+</code></pre>
+
+<p>雖然上面有些情況也能正常運行，但是由於 JavaScript 中 <a href="#funciton.this"><code>this</code></a> 的工作原理，這裡的 <code>this</code> 指向 <em>全域對象</em>。</p>
+
+</div><div><h3>工廠模式</h3>
+
+<p>為了不使用 <code>new</code> 關鍵字，建構函式必須顯性的返回一個值。</p>
+
+<pre><code>function Bar() {
+    var value = 1;
+    return {
+        method: function() {
+            return value;
+        }
+    }
+}
+Bar.prototype = {
+    foo: function() {}
+};
+
+new Bar();
+Bar();
+</code></pre>
+
+<p>上面兩個呼叫 <code>Bar</code> 的方法回傳的值都一樣，一個新創建的擁有 <code>method</code> 屬性被返回，這裡創建了一個 <a href="#function.closures">Closure</a>.</p>
+
+<p>還有注意， <code>new Bar()</code> 並 <strong>不會</strong> 改變返回物件的原型。
+因為建構函式的原型會指向剛剛創立的新物件，而在這裡的 <code>Bar</code> 沒有把這個新物件返回。
+在上面的例子中，使用或者不使用 <code>new</code> 關鍵字沒有什麼功能性的區別</p>
+
+</div><div><h3>通過工廠模式創建的新對象</h3>
+
+<p>常聽到建議 <strong>不要</strong> 使用 <code>new</code>，因為如果忘記如何使用它會造成錯誤。
+為了創建一個新的物件，我們可以用工廠方法，來創造一個新的物件在那個方法中。</p>
+
+<pre><code>function Foo() {
+    var obj = {};
+    obj.value = &#39;blub&#39;;
+
+    var private = 2;
+    obj.someMethod = function(value) {
+        this.value = value;
+    }
+
+    obj.getPrivate = function() {
+        return private;
+    }
+    return obj;
+}
+</code></pre>
+
+<p>雖然上面的方式比起 <code>new</code> 的調用方式更不容易出錯，並且可以充分的使用 <a href="#function.closures">私有變數</a>所帶來的便利，但是還是有一些不好的地方</p>
+
+<ol>
+<li>會占用更多的記憶體，因為創建的物件 <strong>沒有</strong> 辦法放在在同一個原型上。</li>
+<li>為了要用繼承的方式，工廠方法需要複製所有的屬性或是把一個物件作為新的物件的原型。</li>
+<li>放棄原型鏈僅僅是因為防止遺漏 <code>new</code> 所帶來的問題，這與語言本身的思想鄉違背。</li>
+</ol>
+
+</div><div><h3>結語</h3>
+
+<p>雖然遺漏 <code>new</code> 關鍵字可能會導致問題，但這並 <strong>不是</strong> 放棄只用原型的藉口。
+最終使用哪種方式取決於應用程式的需求，選擇一種程式語言風格並堅持下去才是最重要的。</p></div></article><article id="function.scopes"><h2>作用域和命名空間</h2><div><p>儘管 JavaScript 支持一個大括號創建的程式碼，但並不支持塊級作用域。
+而僅僅支援 <em>函式作用域</em></p>
+
+<pre><code>function test() { // 一個作用域
+    for(var i = 0; i &lt; 10; i++) { // 不是一個作用域
+        // 算數
+    }
+    console.log(i); // 10
+}
+</code></pre>
+
+<aside>
+  <p><strong>注意:</strong> 如果不是在賦值語句中，而是在 return 表達式或者函數參數中， <code>{...}</code> 將會作為程式碼中的解析，而不是作為物件的字面語法解析。
+  如果考慮到 <a href="#core.semicolon">自動分號插入</a>，可能會造成一些不易察覺的錯誤。</p>
+</aside>
+
+<p>JavaScript 中沒有寫示的命名空間定義，這代表著它所有定義的東西都是 <em>全域共享</em> 在同一個命名空間下。</p>
+
+<p>每次引用一個變數，JavaScript 會向上找整個作用域直到找到這個變數為止。
+如果在全域中無法找到那個變數，它會拋出 <code>ReferenceError</code> 錯誤碼。</p>
+
+</div><div><h3>全域變數的壞處</h3>
+
+<pre><code>// script A
+foo = &#39;42&#39;;
+
+// script B
+var foo = &#39;42&#39;
+</code></pre>
+
+<p>上面兩個腳本 <em>不會</em> 有同樣的效果。腳本 A 在 <em>全域</em> 空間定義了變數 <code>foo</code>，腳本 B 定義了 <code>foo</code> 在目前的區間內。</p>
+
+<p>再次強調，上面的效果是 <strong>完全不同</strong>，不使用 <code>var</code> 會導致隱性的全域變數。</p>
+
+<pre><code>// 全域作用區
+var foo = 42;
+function test() {
+    // 局部作用區
+    foo = 21;
+}
+test();
+foo; // 21
+</code></pre>
+
+<p>在函數 <code>test</code> 中部使用 <code>var</code> 會覆蓋到原本在外面的 <code>foo</code>。
+雖然看起來不是什麼大問題，但是當程式有幾千行的時候沒有使用 <code>var</code> 會照成難以追蹤的臭蟲。</p>
+
+<pre><code>// 全域作用域
+var items = [/* some list */];
+for(var i = 0; i &lt; 10; i++) {
+    subLoop();
+}
+
+function subLoop() {
+    // subLoop 的作用域
+    for(i = 0; i &lt; 10; i++) { // 缺少了 var
+        // 做一些事情
+    }
+}
+</code></pre>
+
+<p>在外面的迴圈在呼叫第一次 <code>subLoop</code> 之後就會停止，因為 <code>subLoop</code> 全域變數中的 <code>i</code> 被覆蓋了。
+在第二次使用 <code>for</code> 迴圈的時候，使用 <code>var</code> 就可以避免這種錯誤。
+在宣告變數的時候 <strong>絕對不要</strong> 忘記 <code>var</code>，除非就是 <code>希望他的效果</code> 是取改變外部的作用域。</p>
+
+</div><div><h3>局部變數</h3>
+
+<p>在 javascript 中能用兩種方式來宣告局部變數。
+<a href="#function.general">函式</a> 參數和透過 <code>var</code> 來宣告變數。</p>
+
+<pre><code>// 全域變數
+var foo = 1;
+var bar = 2;
+var i = 2;
+
+function test(i) {
+    // 函式 test 內部的局部作用域
+    i = 5;
+
+    var foo = 3;
+    bar = 4;
+}
+test(10);
+</code></pre>
+
+<p><code>foo</code> 和 <code>i</code> 是它的局部變數在 <code>test</code> 函式中，但是在 <code>bar</code> 的賦值會覆蓋全區域的作用域內的同名變數。</p>
+
+</div><div><h3>變數宣告</h3>
+
+<p>JavaScript 會 <strong>提昇</strong> 變數宣告， 這代表著 <code>var</code> 和 <code>function</code> 的圈告都會被提升到當前作用域的頂端。</p>
+
+<pre><code>bar();
+var bar = function() {};
+var someValue = 42;
+
+test();
+function test(data) {
+    if (false) {
+        goo = 1;
+
+    } else {
+        var goo = 2;
+    }
+    for(var i = 0; i &lt; 100; i++) {
+        var e = data[i];
+    }
+}
+</code></pre>
+
+<p>在上面的程式碼會被轉化在執行之前。 JavaScript 會把 <code>var</code>，和 <code>function</code> 宣告，放到最頂端最接近的作用區間</p>
+
+<pre><code>// var 被移到這裡
+var bar, someValue; //  值等於 &#39;undefined&#39;
+
+// function 的宣告也被搬上來
+function test(data) {
+    var goo, i, e; // 沒有作用域的也被搬至頂端
+    if (false) {
+        goo = 1;
+
+    } else {
+        goo = 2;
+    }
+    for(i = 0; i &lt; 100; i++) {
+        e = data[i];
+    }
+}
+
+bar(); // 出錯：TypeError ， bar 還是 &#39;undefined&#39;
+someValue = 42; // 賦值語句不會被提昇規則影響
+bar = function() {};
+
+test();
+</code></pre>
+
+<p>沒有作用域區間不只會把 <code>var</code> 放到迴圈之外，還會使得 <code>if</code> 表達式更難看懂。</p>
+
+<p>在一般的程式中，雖然 <code>if</code> 表達式中看起來修改了 <em>全域變數</em> <code>goo</code>，但實際上在提昇規則被運用後，卻是在修改 <em>局部變數</em></p>
+
+<p>如果沒有提昇規則的話，可能會出現像下面的看起來會出現 <code>ReferenceError</code> 的錯誤。</p>
+
+<pre><code>// 檢查 SomeImportantThing 是否已經被初始化
+if (!SomeImportantThing) {
+    var SomeImportantThing = {};
+}
+</code></pre>
+
+<p>但是它沒有錯誤，因為 <code>var</code> 的表達式會被提升到 <em>全域作用域</em> 的頂端。</p>
+
+<pre><code>var SomeImportantThing;
+
+// 有些程式，可能會初始化。
+SomeImportantThing here, or not
+
+// 檢查是否已經被初始化。
+if (!SomeImportantThing) {
+    SomeImportantThing = {};
+}
+</code></pre>
+
+</div><div><h3>名稱解析順序</h3>
+
+<p>JavaScript 中所有的作用區，包括 <em>全域作用域</em>，都有一個特殊的名字 <a href="#function.this"><code>this</code></a>, 在它們裡面被定義，指向當前的物件</p>
+
+<p>函式作用域也有一個名稱叫做 <a href="#function.arguments"><code>arguments</code></a>, 定義它們，其中包括傳到函式內的參數。</p>
+
+<p>例如，它們開始試著進入到 <code>foo</code> 的作用域裡面， JavaScript 會依照下面的順序去查詢：</p>
+
+<ol>
+<li>當作用域內是否有 <code>var foo</code> 的定義。</li>
+<li>函式形式參數是否有使用 <code>foo</code> 名稱定義。</li>
+<li>函式自身是剖叫做 <code>foo</code>。</li>
+<li>回溯到上一個層級然後再從第一個開始往下去查。</li>
+</ol>
+
+<aside>
+  <p><em>*注意: *</em> 自定義 <code>arguments</code> 參數會阻止原生的 <code>arguments</code> 的物件創立</p>
+</aside>
+
+</div><div><h3>命名空間</h3>
+
+<p>只有一個全域作用域會導致常見的錯誤是命名衝突。在 JavaScript 中可以透過 <em>匿名包裝器</em> 來解決。</p>
+
+<pre><code>(function() {
+    // 自己本身的匿名空間
+
+    window.foo = function() {
+        // 對外公開的函式
+    };
+
+})(); // 馬上執行這個匿名函式
+</code></pre>
+
+<p>匿名函式被認為是 <a href="#function.general">表達式</a>因此為了要可以調用，它們會先被執行。</p>
+
+<pre><code>( // 小括號內的先被執行
+function() {}
+) // 回傳函數對象
+() // 調用上面的執行結果
+</code></pre>
+
+<p>還有其他方式也可以像上面一樣調用函式的方式達到</p>
+
+<pre><code>!function(){}()
++function(){}()
+(function(){}());
+// and so on...
+</code></pre>
+
+</div><div><h3>結語</h3>
+
+<p>建議最好是都用 <em>匿名包裝器</em> 來封裝你的程式碼在自己的命名區間內。這不僅是要防止命名衝突也可以使得程序更有模組化。</p>
+
+<p>另外，全域變數是個 <strong>不好的</strong> 習慣，因為它會帶來錯誤和更難去維護。</p></div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>陣列</h1></header><!-- Articles--><article id="array.general"><h2>Array 迴圈和屬性</h2><div><p>雖然在 Javascript 中 Array 都是 Objects，但是沒有好的理由要使用他
+在 <a href="#object.forinloop"><code>for in</code></a> 的迴圈中。事實上有很多原因要避免使用 <code>for in</code> 在 Array 之中</p>
+
+<aside>
+  <p><strong>注意:</strong> Javascript Arrays <strong>不是</strong> <em>關連性 Arrays</em>
+  只有 <a href="#object.general">objects</a> 來管理建值的相對應關係
+  Arrays 是<strong>保持</strong> 順序的，Objects <strong>則沒有</strong></p>
+</aside>
+
+<p>因為 <code>for in</code> 迴圈會列舉所有在原型 Array 上的屬性因為他會使用<a href="#object.hasownproperty"><code>hasOwnProperty</code></a>, 這會使得 Array 比原本的 <code>for</code> 迴圈慢上二十幾倍</p>
+
+</div><div><h3>迴圈</h3>
+
+<p>為了要達到最好的性能所以最好使用 <code>for</code> 迴圈來讀取一個 Array 裡面的數值。</p>
+
+<pre><code>var list = [1, 2, 3, 4, 5, ...... 100000000];
+for(var i = 0, l = list.length; i &lt; l; i++) {
+    console.log(list[i]);
+}
+</code></pre>
+
+<p>在上面的例子中利用 <code>l = list.length</code> 來處理 Array 的長度問題。</p>
+
+<p>雖然 <code>length</code> 屬性是屬於 Array 中其中一個屬性，但是他還使有一定的性能消耗在每次循環的訪問。
+近期 Javascript 使用 <strong>may</strong> 來解決在這上面的效率問題，但是在現在的引擎上還不一定有支援。</p>
+
+<p>實際上，不使用暫存 Array 長度的方式比使用暫存的版本還要慢很多。</p>
+
+</div><div><h3><code>length</code> 的屬性</h3>
+
+<p><code>length</code> 屬性中的 <em>getter</em> 直接回傳在 Array 之中的程度，而 <em>setter</em> 可以用來 <strong>刪除</strong> Array。</p>
+
+<pre><code>var foo = [1, 2, 3, 4, 5, 6];
+foo.length = 3;
+foo; // [1, 2, 3]
+
+foo.length = 6;
+foo.push(4);
+foo; // [1, 2, 3, undefined, undefined, undefined, 4]
+</code></pre>
+
+<p>在上面的例子可以看到，如果給的長度比較小他就會去刪除 Array 中的數值。如果比較大的話，他就會自己增加一些 <code>undefined</code> 的數值進去</p>
+
+</div><div><h3>結語</h3>
+
+<p>為了達到更好的效率，建議使用 <code>for</code> 迴圈還有暫存 <code>length</code> 的屬性。
+而 <code>for in</code> 迴圈則是會讓程式中有更多的錯誤和性能問題。</p></div></article><article id="array.constructor"><h2><code>Array</code> 的建構函式</h2><div><p><code>Array</code> 的建構函式在處理參數上一直有模糊的地帶，所以建議使用 <code>array</code>的字面語法來使用 - <code>[]</code> - 來新增一個的Array</p>
+
+<pre><code>[1, 2, 3]; // 結果: [1, 2, 3]
+new Array(1, 2, 3); // 結果: [1, 2, 3]
+
+[3]; // 結果: [3]
+new Array(3); // 結果: []
+new Array(&#39;3&#39;) // 結果: [&#39;3&#39;]
+</code></pre>
+
+<p>在上面的範例 <code>new Array(3)</code> 當只有一個參數傳入到 <code>Array</code> 的建構函數
+且那個參數事宜個數字，建構函數會回傳空值
+但是 <code>Array</code> 長度的屬性會變成跟那個參數一樣（以此範例來看他回傳的長度為 3）
+<strong>注意</strong> 只有他長度的屬性會被設定，整個 Array裡面的數值都不會初始化</p>
+
+<pre><code>var arr = new Array(3);
+arr[1]; // undefined
+1 in arr; // false, 數值沒有被設定進去
+</code></pre>
+
+<p>被設定用來當做 <code>Array</code> 的長度只有少數情況使用
+先設定 <code>Array</code> 的長度可以用一下的範例來避免使用 <code>for loop</code> 的麻煩</p>
+
+<pre><code>new Array(count + 1).join(stringToRepeat);
+</code></pre>
+
+</div><div><h3>結語</h3>
+
+<p><code>Array</code> 的建構函式需要避免，建議使用字面語法。因為他們比較簡短、也更增加閱讀性</p></div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>類型</h1></header><!-- Articles--><article id="types.equality"><h2>相等與比較</h2><div><p>JavaScript 有兩個不同的方式來比較兩個物件是否相等。</p>
+
+</div><div><h3>等於操作符</h3>
+
+<p>等於操作符是由兩個等號組成: <code>==</code></p>
+
+<p>JavaScript 是一個 <em>弱類型</em> 語言。這代表它會為了比較兩個值而做 <strong>強制類型轉換</strong>。</p>
+
+<pre><code>""           ==   "0"           // false
+0            ==   ""            // true
+0            ==   "0"           // true
+false        ==   "false"       // false
+false        ==   "0"           // true
+false        ==   undefined     // false
+false        ==   null          // false
+null         ==   undefined     // true
+" \t\r\n"    ==   0             // true
+</code></pre>
+
+<p>上面的表格可以看出來這些結果強制轉換類型，這也代表說用 <code>==</code> 是一個不好的習慣，因為它會很難追蹤問題由於它複雜的規則。</p>
+
+<p>此外，也有效率上面的問題在強制轉換類型。
+例如說一個字串會被轉成數字來和別的數字做比較。</p>
+
+</div><div><h3>嚴格等於操作符</h3>
+
+<p>不像普通的等於操作符 <code>===</code> 不會做強制類型轉換。</p>
+
+<pre><code>""           ===   "0"           // false
+0            ===   ""            // false
+0            ===   "0"           // false
+false        ===   "false"       // false
+false        ===   "0"           // false
+false        ===   undefined     // false
+false        ===   null          // false
+null         ===   undefined     // false
+" \t\r\n"    ===   0             // false
+</code></pre>
+
+<p>上面的結果比較清楚，也有利於程式碼的分析。如果這兩個操作數的類型不一樣都就不會相等，有助於它性能的提昇。</p>
+
+</div><div><h3>比較物件</h3>
+
+<p>雖然 <code>==</code> 和 <code>===</code> 都是等於操作符，但其中有一個操作數為物件時，它的行為就會不同。</p>
+
+<pre><code>{} === {};                   // false
+new String(&#39;foo&#39;) === &#39;foo&#39;; // false
+new Number(10) === 10;       // false
+var foo = {};
+foo === foo;                 // true
+</code></pre>
+
+<p>在這裡等於操作符比較 <strong>不是</strong> 值的相等，而是否是 <strong>相同</strong> 的身分。
+有點像 Python 的 <code>is</code> 和 C 中的指標。</p>
+
+</div><div><h3>結論</h3>
+
+<p>強烈建議使用 <strong>嚴格等於</strong>
+如果要轉換類型，應該要在 <a href="#types.casting">explicitly</a>的時候轉換，而不是在語言本身用複雜的轉換規則。</p></div></article><article id="types.typeof"><h2><code>typeof</code> 操作符</h2><div><p><code>typeof</code> 操作符 (和
+<a href="#types.instanceof"><code>instanceof</code></a>) 可能是最大的設計錯誤在 JavaScript，因為它幾乎不可能從它們那裡得到想要的結果。</p>
+
+<p>雖然 <code>instanceof</code> 還是有一些限制上的使用， <code>typeof</code> 只有一個實際上的運傭情形，但是 <strong>不是</strong> 用在檢查物件的類型。</p>
+
+<aside>
+  <p><strong>注意:</strong> 由於 <code>typeof</code> 也可以像函式的語法被調用，例如 <code>typeof(obj)</code>，但這並是一個函數調用。
+  那兩個小括號只是用來計算一個表達式的值，這個返回值會作為 <code>typeof</code> 操作符的一個操作數。
+  實際上 <strong>不存在</strong> 名為 <code>typeof</code> 的函式。 </p>
+</aside>
+
+</div><div><h3>JavaScript 類型表格</h3>
+
+<pre><code>Value               Class      Type
+-------------------------------------
+"foo"               String     string
+new String("foo")   String     object
+1.2                 Number     number
+new Number(1.2)     Number     object
+true                Boolean    boolean
+new Boolean(true)   Boolean    object
+new Date()          Date       object
+new Error()         Error      object
+[1,2,3]             Array      object
+new Array(1, 2, 3)  Array      object
+new Function("")    Function   function
+/abc/g              RegExp     object (function in Nitro/V8)
+new RegExp("meow")  RegExp     object (function in Nitro/V8)
+{}                  Object     object
+new Object()        Object     object
+</code></pre>
+
+<p>上面的表格中， <em>Type</em> 這一系列表示 <code>typeof</code> 的操作符的運算結果。可以看到，這個值的大多數情況下都返回物件。</p>
+
+<p><em>Class</em> 表示物件內部的屬性 <code>[[Class]]</code> 的值。</p>
+
+<aside>
+  <p><strong>JavaScript 標準文檔中定義：</strong> <code>[[Class]]</code>的值只可能是下面字符串中的一個：
+  <code>Arguments</code>, <code>Array</code>, <code>Boolean</code>, <code>Date</code>, <code>Error</code>,
+  <code>Function</code>, <code>JSON</code>, <code>Math</code>, <code>Number</code>, <code>Object</code>, <code>RegExp</code>, <code>String</code></p>
+</aside>
+
+<p>為了獲取對象的 <code>[[Class]]</code>，我們可以使用定義在 <code>Object.prototype</code> 上的方法 <code>toString</code>。</p>
+
+</div><div><h3>物件的類定義</h3>
+
+<p>JavaScript 標準文檔只給出了一種獲取 <code>[[Class]]</code> 值的方法，那就是使用 <code>Object.prototype.toString</code>。</p>
+
+<pre><code>function is(type, obj) {
+    var clas = Object.prototype.toString.call(obj).slice(8, -1);
+    return obj !== undefined &amp;&amp; obj !== null &amp;&amp; clas === type;
+}
+
+is(&#39;String&#39;, &#39;test&#39;); // true
+is(&#39;String&#39;, new String(&#39;test&#39;)); // true
+</code></pre>
+
+<p>上面的例子中，**<code>Object.prototype.toString</code> 用 <a href="#function.this">this</a>的值來來調用被設置需要獲取 <code>[[Class]]</code> 值的物件。</p>
+
+<aside class="es5"><p><strong>ES5 Note:</strong> 為了回傳 <code>Object.prototyp.toString</code> 值的方便
+  <code>null</code> 和 <code>undefined</code> 被 <strong>改變</strong> 從 <code>object</code> 到 <code>null</code> 和 <code>undefined</code> 在 ECMAScript 5。</p>
+</aside>
+
+</div><div><h3>測試未定義變數</h3>
+
+<pre><code>typeof foo !== &#39;undefined&#39;
+</code></pre>
+
+<p>上面的例子確認 <code>foo</code> 是否真的被宣告。如果沒有定義會導致 <code>ReferenceError</code> 這是 <code>typeof</code> 唯一有用的地方</p>
+
+</div><div><h3>結語</h3>
+
+<p>為了去檢查一個物件，強烈建議去使用 <code>Object.prototype.toString</code> 因為這是唯一可以依賴的方式。
+正如上面所看到的 <code>typeof</code> 的亦先返回值在標準文檔中未定義，因此不同的引擎可能不同。</p>
+
+<p>除非為了檢測一個變數是否定義，我們應該避免是用 <code>typeof</code> 操作符。</p></div></article><article id="types.instanceof"><h2><code>instanceof</code> 操作符</h2><div><p><code>instanceof</code> 操作符用來比較兩個建構函數的操作數。只有在比較字定義的物件時才有意義。這和 <a href="#types.typeof">typeof operator</a>一樣用處不大。</p>
+
+</div><div><h3>比較定意義物件</h3>
+
+<pre><code>function Foo() {}
+function Bar() {}
+Bar.prototype = new Foo();
+
+new Bar() instanceof Bar; // true
+new Bar() instanceof Foo; // true
+
+// This just sets Bar.prototype to the function object Foo,
+// but not to an actual instance of Foo
+Bar.prototype = Foo;
+new Bar() instanceof Foo; // false
+</code></pre>
+
+</div><div><h3><code>instanceof</code> 比較內置類型</h3>
+
+<pre><code>new String(&#39;foo&#39;) instanceof String; // true
+new String(&#39;foo&#39;) instanceof Object; // true
+
+&#39;foo&#39; instanceof String; // false
+&#39;foo&#39; instanceof Object; // false
+</code></pre>
+
+<p>有一點需要注意的， <code>instanceof</code> 不能用來物件來自上下文不同的屬性（例如：瀏覽器中不同的文檔結構），因為它的建構函數不一樣。</p>
+
+</div><div><h3>In Conclusion</h3>
+
+<p><code>instanceof</code> 操作符應該 <strong>只</strong> 用來比較同一個 JavaScript 上下文定意義的物件。
+正如 <a href="#types.typeof"><code>typeof</code></a>操作符一樣，任何其他用法都要避免。</p></div></article><article id="types.casting"><h2>類型轉換</h2><div><p>JavaScript 是一個 <em>弱類型</em> 的程式語言，所以在 <strong>任何</strong> 情況下都可以 <em>強制類型轉換</em>。</p>
+
+<pre><code>// 這些都是真
+new Number(10) == 10; // Number.toString() is converted
+                      // back to a number
+
+10 == &#39;10&#39;;           // Strings gets converted to Number
+10 == &#39;+10 &#39;;         // More string madness
+10 == &#39;010&#39;;          // And more 
+isNaN(null) == false; // null converts to 0
+                      // which of course is not NaN
+
+// 下面都假
+10 == 010;
+10 == &#39;-10&#39;;
+</code></pre>
+
+<aside class="es5"><p><strong>ES5 注意:</strong> 如果數字字面值的開頭是 <code>0</code> 它會強制轉為八進位數字解析。
+  而在 ES5 嚴格模式下，它已經被刪除了。</p>
+</aside>
+
+<p>為了去避免上驗的事件發生，我們會用 <a href="#types.equality">嚴格等於操作符</a> 這是強烈建議。
+因為它可以避免很多常見的問題，但 JavaScript 的弱類型系同仍然會導致一些其他問題。</p>
+
+</div><div><h3>內置類型的建構函式</h3>
+
+<p>內置類型（比如 <code>Number</code> 和 <code>String</code>)在被調用時，使用或不使用 <code>new</code> 的結果完全不同。</p>
+
+<pre><code>new Number(10) === 10;     // False, Object and Number
+Number(10) === 10;         // True, Number and Number
+new Number(10) + 0 === 10; // True, due to implicit conversion
+</code></pre>
+
+<p>使用內置類型 <code>Number</code> 作為建構函式會建造一個新的 <code>Number</code> 物件，而在不使用 <code>new</code> 關鍵字的 <code>Number</code> 函式更像是一個數字轉換器。</p>
+
+<p>另外，在比較中引入物件的字面值會導致更加複雜的強制類型轉換。</p>
+
+<p>最好的方式是比較值的 <strong>顯示</strong> 的轉換成最有可能的三種形態</p>
+
+</div><div><h3>轉換成字符串</h3>
+
+<pre><code>&#39;&#39; + 10 === &#39;10&#39;; // true
+</code></pre>
+
+<p>將一個值加上空字符串可以輕鬆轉為字符串類型。</p>
+
+</div><div><h3>轉換成一個數字</h3>
+
+<pre><code>+&#39;10&#39; === 10; // true
+</code></pre>
+
+<p>使用 <strong>一元</strong> 的加號操作符，可以把字符串轉為數字。</p>
+
+</div><div><h3>轉換成一個 Bool</h3>
+
+<p>通過使用 <strong>否</strong> 操作符兩字，可以把一個值轉換為 Bool。</p>
+
+<pre><code>!!&#39;foo&#39;;   // true
+!!&#39;&#39;;      // false
+!!&#39;0&#39;;     // true
+!!&#39;1&#39;;     // true
+!!&#39;-1&#39;     // true
+!!{};      // true
+!!true;    // true
+</code></pre></div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>核心</h1></header><!-- Articles--><article id="core.eval"><h2>為什麼不要使用 <code>eval</code></h2><div><p>因為 <code>eval</code> 函數會在 Javascript 的區域性的區間執行那段程式碼。</p>
+
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    eval(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 3
+foo; // 1
+</code></pre>
+
+<p>但是， <code>eval</code> 只接受直接的呼叫而且那個函數只能叫做 <code>eval</code>，才能在一個區段中執行。</p>
+
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    var bar = eval;
+    bar(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 2
+foo; // 3
+</code></pre>
+
+<p>所有的 <code>eval</code> 都應該去比免試用。有 99.9% 的使用情況都可以 <strong>不必</strong> 使用到而達到同等效果。</p>
+
+</div><div><h3>偽裝的 <code>eval</code></h3>
+
+<p><a href="#other.timeouts">定時函數</a> <code>setTimeout</code> 和 <code>setInterval</code> 都可以接受一個字串當做他們第一個參數。這些字串 <strong>永遠</strong> 都會在全域範圍內執行，因此在這種情況下 <code>eval</code> 沒有被直接的使用。</p>
+
+</div><div><h3>安全上的顧慮</h3>
+
+<p><code>eval</code> 同樣有安全上的問題，因為所有的程式碼都可以被直接執行。
+而他不應去執行一串未知的字串或是來自不幸任的來源。</p>
+
+</div><div><h3>結語</h3>
+
+<p><code>eval</code> 應該永遠不要去只用它，任何的程式在被他執行後都有性能和安全上的考慮。如果有情況需要去使用他，他都不應該列為第一順位的解決方法。</p>
+
+<p>應該有更好的方法能夠去使用，但是最好都不要去使用 <code>eval</code>。</p></div></article><article id="core.undefined"><h2><code>undefined</code> 和 <code>null</code></h2><div><p>JavaScript 中有兩個表示空值的方式， <code>null</code> 和 <code>undefined</code> ， <code>undefined</code>式比較常用的一種。</p>
+
+</div><div><h3><code>undefined</code> 的值</h3>
+
+<p><code>undefined</code> 是一個值為 <code>undefined</code> 的類型。</p>
+
+<p>語言中也定義了一個全域變數，它的值為 <code>undefined</code>，這個變數的被稱作 <code>undefined</code> 。
+這個變數 <strong>不是</strong> 一個常數，也不是一個關鍵字。這表示它的值可以被輕易的覆蓋。</p>
+
+<aside class="es5"><p><strong>ES5 提示: <em>* <code>undefined</code> 在 ECMAScript 5 裡 *</em>不再是</strong> <em>可寫</em> 的
+  但是它的名稱還是可以被隱藏，比如說定義一個函數為 <code>undefined</code>。</p>
+</aside>
+
+<p>這裡有一些例子會回傳 <code>undefined</code> 的值：</p>
+
+<ul>
+<li>進入尚未修改的全域變數 <code>undefined</code>。</li>
+<li>進入一個宣告但 <strong>尚未</strong> 初始化的變數。</li>
+<li><code>return</code> 表示式中沒有返回任何內容。</li>
+<li>呼叫不存在的屬性。</li>
+<li>函式參數沒有被傳遞數值。</li>
+<li>任何被被設定為 <code>undefined</code> 的變數。</li>
+<li>任何表達式中形式為 <code>void(expression)</code></li>
+</ul>
+
+</div><div><h3>處理 <code>undefined</code> 值的改變</h3>
+
+<p>由於全域變數 <code>undefined</code> 只有保存 <code>undefined</code> 類型實際值的一個副本，指定了一個新的值並 <strong>不會</strong> 改變 <code>undefined</code>類型裡面的值。</p>
+
+<p>為了避免去改變 <code>undefined</code> 的值，常用的技巧就是加上一個新的變數到 <a href="#function.scopes">匿名包裝器</a>。在使用的時候，這個參數不會接受任何的值。</p>
+
+<pre><code>var undefined = 123;
+(function(something, foo, undefined) {
+    // undefined 在區域區間內得到了 `undefined` 的值
+
+})(&#39;Hello World&#39;, 42);
+</code></pre>
+
+<p>另外一個可以得到同樣的效果就是在內部宣告一個變數</p>
+
+<pre><code>var undefined = 123;
+(function(something, foo) {
+    var undefined;
+    ...
+
+})(&#39;Hello World&#39;, 42);
+</code></pre>
+
+<p>唯一的不同就是在下者會多 4 個多 bytes 用來壓縮檔案，而且函數內野沒有其他需要使用 <code>var</code></p>
+
+</div><div><h3>使用 <code>null</code></h3>
+
+<p>JavaScript 中所使用的 <code>undefined</code> 類似別的語言中的 <em>null</em> , 但實際上在 JavaScript 中的 <code>null</code> 算是另外一個類型。</p>
+
+<p>它在 JavaScript 有些可以使用的地方 （例如說宣告一個原型的終結，例如 <code>Foo.prototype = null</code> ）。
+但是在大部分的時候可以用 <code>undefined</code>，來取代。</p></div></article><article id="core.semicolon"><h2>自動插入分號</h2><div><p>雖然 JavaScript 有 C 語言的語法，但是他不強制一定要加上分號。
+所以分號可以被忽略。</p>
+
+<p>Javascript 並 <strong>不是</strong> 一個不需要分號的語言。實際上，它需要分號來讓程式碼更容易被理解。因此 Javascript 的編譯器中遇到了缺少分號的情形，它會自動的在程式碼中插入分號。</p>
+
+<pre><code>var foo = function() {
+} // 編輯錯誤，因沒分號
+test()
+</code></pre>
+
+<p>這時候編譯器在編輯的時候，會自動的加上分號，然後重新編輯。</p>
+
+<pre><code>var foo = function() {
+}; // 沒有錯誤，編輯繼續
+test()
+</code></pre>
+
+<p>自動的加入分號是被認為 <strong>最大</strong> 的設計缺陷之一，因為它能改變程式碼的行為。</p>
+
+</div><div><h3>工作原理</h3>
+
+<p>下面的程式碼中沒有使用任何的分號，所以編譯器需要去決定在哪些地方加入分號。</p>
+
+<pre><code>(function(window, undefined) {
+    function test(options) {
+        log(&#39;testing!&#39;)
+
+        (options.list || []).forEach(function(i) {
+
+        })
+
+        options.value.test(
+            &#39;long string to pass here&#39;,
+            &#39;and another long string to pass&#39;
+        )
+
+        return
+        {
+            foo: function() {}
+        }
+    }
+    window.test = test
+
+})(window)
+
+(function(window) {
+    window.someLibrary = {}
+
+})(window)
+</code></pre>
+
+<p>下面的程式碼是編譯器 <strong>猜測</strong> 的結果。</p>
+
+<pre><code>(function(window, undefined) {
+    function test(options) {
+
+        // 沒有加入分號，兩行被合併為一行
+        log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {
+
+        }); // &lt;- 插入分號
+
+        options.value.test(
+            &#39;long string to pass here&#39;,
+            &#39;and another long string to pass&#39;
+        ); // &lt;- 插入分號
+
+        return; // &lt;- 插入分號，改變了 return 的表達行為
+        { // 作為另一個程式碼的處理
+
+            // 被當做一個獨立的函數來看
+            foo: function() {} 
+        }; // &lt;- 插入分號
+    }
+    window.test = test; // &lt;- 插入分號
+
+// 兩行又被合併
+})(window)(function(window) {
+    window.someLibrary = {}; // &lt;- 插入分號
+
+})(window); //&lt;- 插入分號
+</code></pre>
+
+<aside>
+  <p><strong>注意:</strong> 在這個範例中 Javascript 編譯器沒有正確的處理 <code>return</code> ，因為緊接的換行符號。
+  雖然這不能算是自動分號插入的錯誤，但是它是非常不樂見的效果。</p>
+</aside>
+
+<p>編譯器在上面的程式碼中改變了原本程式碼的行為。在一些情況下，會做出 <strong>錯誤的行為</strong></p>
+
+</div><div><h3>前置括號</h3>
+
+<p>在這種前置括號的情況下，編譯器 <strong>不會</strong> 自動的插入分號。</p>
+
+<pre><code>log(&#39;testing!&#39;)
+(options.list || []).forEach(function(i) {})
+</code></pre>
+
+<p>上面的程式碼被編譯器轉為只有一行程式</p>
+
+<pre><code>log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {})
+</code></pre>
+
+<p>以上的範例中 <code>log</code> 有 <strong>很大</strong> 的可能 <strong>不是</strong> 回傳一個函數。然而這個情況下會出現 <code>TypeError</code> 的錯誤或是會出現 <code>undefined is not a function</code> .</p>
+
+</div><div><h3>結語</h3>
+
+<p>建議永遠 <strong>不要</strong> 忽略分號。同樣的也建議大括號應在他對應的表達式在同一行。在 <code>if... else...</code>的表達式中也是如此，不應省略大括號。
+這個習慣可以不僅僅是讓你的程式更一致，也可以避免編譯器因為改變程式而出錯。</p></div></article><article id="core.delete"><h2><code>delete</code> 控制符</h2><div><p>簡單來說，那是 <em>不可能</em> 去刪除一個全域變數，函式和其他東西在 JavaScript 中有一個 <code>DontDelete</code> 的屬性</p>
+
+</div><div><h3>全域和函式</h3>
+
+<p>當一個變數或是一個函式在一個全域範圍被定義或是在一個 <a href="#function.scopes">funciton scope</a> ，這些屬性可能是動態的物件或是全域的物件。這些特性有一系列的屬性。其中一個就是 <code>DontDelete</code>。
+在這些變數和函式的宣告都會有一個屬性叫 <code>DontDelete</code>，這會使得它無法被刪除。</p>
+
+<pre><code>// 全域變數
+var a = 1; // DontDelete 屬性被建立
+delete a; // false
+a; // 1
+
+// normal function:
+function f() {} // DontDelete 屬性被建立
+delete f; // false
+typeof f; // "function"
+
+// reassigning doesn&#39;t help:
+f = 1;
+delete f; // false
+f; // 1
+</code></pre>
+
+</div><div><h3>明確的屬性</h3>
+
+<p>明確的屬性可以被簡單的刪除。</p>
+
+<pre><code>// explicitly set property:
+var obj = {x: 1};
+obj.y = 2;
+delete obj.x; // true
+delete obj.y; // true
+obj.x; // undefined
+obj.y; // undefined
+</code></pre>
+
+<p>在上面的例子中， <code>obj.x</code> 和 <code>obj.y</code> 可以被刪除是因為他們沒有 <code>DontDelete</code> 的屬性。
+所以下面的例子也可以這樣用。</p>
+
+<pre><code>// 可以運作，除了 IE:
+var GLOBAL_OBJECT = this;
+GLOBAL_OBJECT.a = 1;
+a === GLOBAL_OBJECT.a; // true - just a global var
+delete GLOBAL_OBJECT.a; // true
+GLOBAL_OBJECT.a; // undefined
+</code></pre>
+
+<p>這裡我們想要去刪除 <code>a</code>。 <a href="#funciton.this"><code>this</code></a> 這裡指向一個全域的物件，和我們明確了地定義 <code>a</code> 是它的屬性，所以可以刪除它。</p>
+
+<p>IE 有些臭蟲，所以上面的程式碼無法使用（至少 6~8）</p>
+
+</div><div><h3>函式的參數和內建</h3>
+
+<p>函式的普通參數，<a href="#function.arguments"><code>arguments</code> object</a> 還有一些內建的屬性都有 <code>DontDelete</code> 的建立</p>
+
+<pre><code>// function 參數和屬性
+(function (x) {
+
+  delete arguments; // false
+  typeof arguments; // "object"
+
+  delete x; // false
+  x; // 1
+
+  function f(){}
+  delete f.length; // false
+  typeof f.length; // "number"
+
+})(1);
+</code></pre>
+
+</div><div><h3>接受物件</h3>
+
+<p>控制符可以接受無法預測的物件。由於一些特別的情況，會允許它能夠 <code>delete</code></p>
+
+</div><div><h3>結語</h3>
+
+<p><code>delete</code> 控制符通常都有難以預料的行為，所以我們只可以安全的刪除顯著的屬性在普通的物件上。</p></div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>其他</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> 和 <code>setInterval</code></h2><div><p>由於 Javascript 是一個非同步傳輸的系統，因此可以執行一個函式用 <code>setTimeout</code> 和 <code>setInterval</code>。</p>
+
+<aside>
+  <p><strong>注意:</strong> Timeouts 不在 ECMAScript 的標準中。它們是 <a href="http://en.wikipedia.org/wiki/Document_Object_Model" title="Document Object Model">DOM</a> 其中的一部分</p>
+</aside>
+
+<pre><code>function foo() {}
+var id = setTimeout(foo, 1000); // returns a Number &gt; 0
+</code></pre>
+
+<p>當 <code>setTimeout</code> 被呼叫，它會回傳一個 ID 標準並是計畫在將來 <strong>大約</strong> 1000 毫秒後在在去呼叫 <code>foo</code> 函式。
+<code>foo</code> 函式只會被執行 <strong>一次</strong>。</p>
+
+<p>基於 JavaScript 引擎的計時策略，以及基本的單線程運行的方式，所以其他的程式碼可以被阻塞。
+因此 <strong>沒法確保</strong>函式會在 <code>setTimeout</code> 指定的時可被調用。</p>
+
+<p>第一個參數被函式呼叫的會在 <em>全域物件</em> 被呼叫，這代表 <a href="#function.this"><code>this</code></a>在這個函式會指向全域物件。</p>
+
+<pre><code>function Foo() {
+    this.value = 42;
+    this.method = function() {
+        // 指向全域
+        console.log(this.value); // 會跑出 undefined
+    };
+    setTimeout(this.method, 500);
+}
+new Foo();
+</code></pre>
+
+<aside>
+  <p><strong>注意: <em>* <code>setTimeout</code> 第一個參數是 *</em>參數的物件</strong>，這是一個很常見的錯誤使用 <code>setTimeout(foo(), 1000)，
+  這裡會調用</code>foo<code>的 **return value** 而 **不是**</code>foo<code>本身。
+  如果函式返回</code>undefined<code>，</code>setTimeout` 也不會出錯。</p>
+</aside>
+
+</div><div><h3><code>setInterval</code> 的堆調用</h3>
+
+<p><code>setTimeout</code> 只會在函式上跑一次而已， <code>setInterval</code> - 則會在每隔 <code>X</code> 毫秒執行函式一次。但不鼓勵這種寫法。</p>
+
+<p>當回傳函式的執行被阻塞時， <code>setInterval</code> 仍然會發佈更多的回傳函式。在很小的定時間隔情況像會使得回傳函式被堆疊起來。</p>
+
+<pre><code>function foo(){
+    // 執行 1 秒
+}
+setInterval(foo, 1000);
+</code></pre>
+
+<p>上面的程式中， <code>foo</code> 會執行一次然後被阻塞了義分鐘</p>
+
+<p>在 <code>foo</code> 被阻塞的時候 <code>setInterval</code> 還是會組織將對回傳函式的調用。因此當第一次 <code>foo</code> 函式調用結束時，已經有 <strong>10</strong> 次函式的調用在等待執行。</p>
+
+</div><div><h3>處理可能被阻塞的調用</h3>
+
+<p>最簡單的解決方法，也是最容易控制的解決方法，就是在函式中使用 <code>setTimeout</code>。</p>
+
+<pre><code>function foo(){
+    // something that blocks for 1 second
+    setTimeout(foo, 1000);
+}
+foo();
+</code></pre>
+
+<p>這樣不只封裝了 <code>setTimeout</code>，也防止了堆疊的呼叫，還有給它更多的控制。 <code>foo</code> 可以去決定要不要繼續執行。</p>
+
+</div><div><h3>手動清理 Timeouts</h3>
+
+<p>清除 timeouts 所產生的 ID 標準傳遞給 <code>clearTimeout</code> 或 <code>clearInterval</code> 函式來清除定時，
+至於使用哪個函式取決於調用的時候使用的是 <code>setTimeout</code> 還是 <code>setInterval</code>。</p>
+
+<pre><code>var id = setTimeout(foo, 1000);
+clearTimeout(id);
+</code></pre>
+
+</div><div><h3>清除所有 Timeouts</h3>
+
+<p>由於沒有一個內建的方法可以一次清空所有的 timeouts 和 intervals，所以只有用暴力法來達到這樣的需求。</p>
+
+<pre><code>// clear "all" timeouts
+for(var i = 1; i &lt; 1000; i++) {
+    clearTimeout(i);
+}
+</code></pre>
+
+<p>可能還有一些定石器不會在上面的代碼中被清除，因此我們可以事先保存所有的定時器 ID，然後一把清除。</p>
+
+<pre><code>// clear "all" timeouts
+var biggestTimeoutId = window.setTimeout(function(){}, 1),
+i;
+for(i = 1; i &lt;= biggestTimeoutId; i++) {
+    clearTimeout(i);
+}
+</code></pre>
+
+</div><div><h3>隱藏使用 <code>eval</code></h3>
+
+<p><code>setTimeout</code> and <code>setInterval</code> can also take a string as their first parameter.
+This feature should <strong>never</strong> be used because it internally makes use of <code>eval</code>.</p>
+
+<aside>
+  <p><strong>Note:</strong> Since the timeout functions are <strong>not</strong> specified by the ECMAScript
+  standard, the exact workings when a string is passed to them might differ in
+  various JavaScript implementations. For example, Microsoft&#39;s JScript uses
+  the <code>Function</code> constructor in place of <code>eval</code>.</p>
+</aside>
+
+<pre><code>function foo() {
+    // will get called
+}
+
+function bar() {
+    function foo() {
+        // never gets called
+    }
+    setTimeout(&#39;foo()&#39;, 1000);
+}
+bar();
+</code></pre>
+
+<p>Since <code>eval</code> is not getting called <a href="#core.eval">directly</a> in this case, the string 
+passed to <code>setTimeout</code> will be executed in the <em>global scope</em>; thus, it will 
+not use the local variable <code>foo</code> from the scope of <code>bar</code>.</p>
+
+<p>It is further recommended to <strong>not</strong> use a string to pass arguments to the
+function that will get called by either of the timeout functions. </p>
+
+<pre><code>function foo(a, b, c) {}
+
+// NEVER use this
+setTimeout(&#39;foo(1, 2, 3)&#39;, 1000)
+
+// Instead use an anonymous function
+setTimeout(function() {
+    foo(a, b, c);
+}, 1000)
+</code></pre>
+
+<aside>
+  <p><strong>Note:</strong> While it is also possible to use the syntax 
+  <code>setTimeout(foo, 1000, a, b, c)</code>, it is not recommended, as its use may lead
+  to subtle errors when used with <a href="#function.this">methods</a>. </p>
+</aside>
+
+</div><div><h3>In Conclusion</h3>
+
+<p>A string should <strong>never</strong> be used as the parameter of <code>setTimeout</code> or 
+<code>setInterval</code>. It is a clear sign of <strong>really</strong> bad code, when arguments need 
+to be supplied to the function that gets called. An <em>anonymous function</em> should
+be passed that then takes care of the actual call.</p>
+
+<p>Furthermore, the use of <code>setInterval</code> should be avoided because its scheduler is not
+blocked by executing JavaScript.</p></div></article></section><!-- Footer--><footer><p>Copyright &copy; 2011. Built with 
+<a href="http://nodejs.org/">Node.js </a>using a
+<a href="https://github.com/visionmedia/jade/">jade </a>template. 
+Hosted by 
+<a href="http://cramerdev.com">Cramer Development</a>.
+</p></footer><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script><script src="../javascript/prettify.js"></script><script src="../javascript/plugin.js"></script><script src="../javascript/garden.js"></script></body></html>
