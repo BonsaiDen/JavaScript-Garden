@@ -85,13 +85,10 @@
 
 ### 隱藏使用 `eval`
 
-`setTimeout` and `setInterval` can also take a string as their first parameter.
-This feature should **never** be used because it internally makes use of `eval`.
+也接受了第一參數為字符串的情況。
+這個特性**絕對**不要使用，因為它在內部使用了 `eval`。
 
-> **Note:** Since the timeout functions are **not** specified by the ECMAScript
-> standard, the exact workings when a string is passed to them might differ in
-> various JavaScript implementations. For example, Microsoft's JScript uses
-> the `Function` constructor in place of `eval`.
+> **注意:** 由於定時器函式不是 ECMAScript 中的標準，所以以解析字符串參數在不同的 JavaScript 引擎實現中可能不同。
 
     function foo() {
         // will get called
@@ -105,12 +102,10 @@ This feature should **never** be used because it internally makes use of `eval`.
     }
     bar();
 
-Since `eval` is not getting called [directly](#core.eval) in this case, the string 
-passed to `setTimeout` will be executed in the *global scope*; thus, it will 
-not use the local variable `foo` from the scope of `bar`.
+由於 `eval` 在這種情況下不是被 [直接](#core.eval)調用，因此傳遞到 `setTimeout` 的字符串會字 *全局作用域* 中做執行。
+因此上面的回傳函數使用不是定義在 `bar` 作用域中的局部變數 `foo`。
 
-It is further recommended to **not** use a string to pass arguments to the
-function that will get called by either of the timeout functions. 
+建議**不要**在調用定時器函式時，為了向回傳函式傳遞參數而使用字符串的形式。
 
     function foo(a, b, c) {}
     
@@ -122,19 +117,15 @@ function that will get called by either of the timeout functions.
         foo(a, b, c);
     }, 1000)
 
-> **Note:** While it is also possible to use the syntax 
-> `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
-> to subtle errors when used with [methods](#function.this). 
+> **注意:** 雖然也可以只用這樣的語法 `setTimeout(foo, 1000, a, b, c)`，
+>但是不推薦這樣使用，因為可能在使用物件的時候可能出錯 [屬性方法](#function.this)。
 
-### In Conclusion
+### 結語
 
-A string should **never** be used as the parameter of `setTimeout` or 
-`setInterval`. It is a clear sign of **really** bad code, when arguments need 
-to be supplied to the function that gets called. An *anonymous function* should
-be passed that then takes care of the actual call.
+**絕對不要**使用字符串作為 `setTimeout`或者 `setInterval` 的第一個參數，這麼寫的程式碼的食量很差。
+當要回傳一個函式傳遞參數時，可以創一個*匿名函式*，在函式內執行真實的回傳函數。
 
-Furthermore, the use of `setInterval` should be avoided because its scheduler is not
-blocked by executing JavaScript.
+要避免使用 `setInterval`，因為它的定時執行不會被Javascript阻塞。
 
 [1]: http://en.wikipedia.org/wiki/Document_Object_Model "Document Object Model"
 

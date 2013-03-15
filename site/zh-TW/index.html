@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="zh-TW"><head><title>JavaScript 庭院</title><meta charset="utf-8"><meta name="description" content="JavaScript 語言中古怪用法及缺點的文件總集"><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
 <script src="javascript/html5.js"></script>
 <![endif]-->
-</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li><a href="/JavaScript-Garden/es" title="JavaScript Garden es Español">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha suomeksi">fi</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden in Japanese">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden - ogród JavaScript po polsku">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden Türkçe">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript Garden 中文翻译">zh</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">簡介</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">物件</a></h1><ul><li><a href="#object.general">物件的使用和屬性</a></li><li><a href="#object.prototype">Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop"><code>for in</code> 迴圈</a></li></ul></li><li class="nav_function"><h1><a href="#function">函式</a></h1><ul><li><a href="#function.general">函式的宣告和表達方式</a></li><li><a href="#function.this"><code>this</code> 的工作原理</a></li><li><a href="#function.closures">Closures 和 References</a></li><li><a href="#function.arguments"><code>arguments</code> 物件</a></li><li><a href="#function.constructors">建構函式</a></li><li><a href="#function.scopes">作用域和命名空間</a></li></ul></li><li class="nav_array"><h1><a href="#array">陣列</a></h1><ul><li><a href="#array.general">Array 迴圈和屬性</a></li><li><a href="#array.constructor"><code>Array</code> 的建構函式</a></li></ul></li><li class="nav_types"><h1><a href="#types">類型</a></h1><ul><li><a href="#types.equality">相等與比較</a></li><li><a href="#types.typeof"><code>typeof</code> 操作符</a></li><li><a href="#types.instanceof"><code>instanceof</code> 操作符</a></li><li><a href="#types.casting">類型轉換</a></li></ul></li><li class="nav_core"><h1><a href="#core">核心</a></h1><ul><li><a href="#core.eval">為什麼不要使用 <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> 和 <code>null</code></a></li><li><a href="#core.semicolon">自動插入分號</a></li><li><a href="#core.delete"><code>delete</code> 控制符</a></li></ul></li><li class="nav_other"><h1><a href="#other">其他</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>簡介</h1><div><p>JavaScript 庭院 是一個不斷更新的文件，最主要是要去了解一些 Javascript 比較古怪的部份。
+</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li><a href="/JavaScript-Garden/es" title="JavaScript Garden es Español">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha suomeksi">fi</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden in Japanese">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden - ogród JavaScript po polsku">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden Türkçe">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript Garden 中文翻译">zh</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">簡介</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">物件</a></h1><ul><li><a href="#object.general">物件的使用和屬性</a></li><li><a href="#object.prototype">Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop"><code>for in</code> 迴圈</a></li></ul></li><li class="nav_function"><h1><a href="#function">函式</a></h1><ul><li><a href="#function.general">函式的宣告和表達方式</a></li><li><a href="#function.this"><code>this</code> 的工作原理</a></li><li><a href="#function.closures">Closures 和 References</a></li><li><a href="#function.arguments"><code>arguments</code> 物件</a></li><li><a href="#function.constructors">建構函式</a></li><li><a href="#function.scopes">作用域和命名空間</a></li></ul></li><li class="nav_array"><h1><a href="#array">陣列</a></h1><ul><li><a href="#array.general">Array 迴圈和屬性</a></li><li><a href="#array.constructor"><code>Array</code> 的建構函式</a></li></ul></li><li class="nav_types"><h1><a href="#types">類型</a></h1><ul><li><a href="#types.equality">相等與比較</a></li><li><a href="#types.typeof"><code>typeof</code> 操作符</a></li><li><a href="#types.instanceof"><code>instanceof</code> 操作符</a></li><li><a href="#types.casting">類型轉換</a></li></ul></li><li class="nav_core"><h1><a href="#core">核心</a></h1><ul><li><a href="#core.eval">為什麼不要使用 <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> 和 <code>null</code></a></li><li><a href="#core.semicolon">自動插入分號</a></li><li><a href="#core.delete"><code>delete</code> 控制符</a></li></ul></li><li class="nav_other"><h1><a href="#other">其他</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> 和 <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>簡介</h1><div><p>JavaScript 庭院 是一個不斷更新的文件，最主要是要去了解一些 Javascript 比較古怪的部份。
 給一些意見來防止遇到一些常見的錯誤和一些難以發現的問題，以及性能問題和不好的習慣。
 初學者也可以藉此去了解 Javascript 這項語言的特性。</p>
 
@@ -1123,8 +1123,7 @@ new Object()        Object     object
 
 </div><div><h3>物件的類定義</h3>
 
-<p>The specification gives exactly one way of accessing the <code>[[Class]]</code> value,
-with the use of <code>Object.prototype.toString</code>. </p>
+<p>JavaScript 標準文檔只給出了一種獲取 <code>[[Class]]</code> 值的方法，那就是使用 <code>Object.prototype.toString</code>。</p>
 
 <pre><code>function is(type, obj) {
     var clas = Object.prototype.toString.call(obj).slice(8, -1);
@@ -1135,32 +1134,25 @@ is(&#39;String&#39;, &#39;test&#39;); // true
 is(&#39;String&#39;, new String(&#39;test&#39;)); // true
 </code></pre>
 
-<p>In the above example, <code>Object.prototype.toString</code> gets called with the value of
-<a href="#function.this">this</a> being set to the object whose <code>[[Class]]</code> value should be 
-retrieved.</p>
+<p>上面的例子中，**<code>Object.prototype.toString</code> 用 <a href="#function.this">this</a>的值來來調用被設置需要獲取 <code>[[Class]]</code> 值的物件。</p>
 
-<aside class="es5"><p><strong>ES5 Note:</strong> For convenience the return value of <code>Object.prototype.toString</code> 
-  for both <code>null</code> and <code>undefined</code> was <strong>changed</strong> from <code>Object</code> to <code>Null</code> and 
-  <code>Undefined</code> in ECMAScript 5.</p>
+<aside class="es5"><p><strong>ES5 Note:</strong> 為了回傳 <code>Object.prototyp.toString</code> 值的方便
+  <code>null</code> 和 <code>undefined</code> 被 <strong>改變</strong> 從 <code>object</code> 到 <code>null</code> 和 <code>undefined</code> 在 ECMAScript 5。</p>
 </aside>
 
-</div><div><h3>Testing for Undefined Variables</h3>
+</div><div><h3>測試未定義變數</h3>
 
 <pre><code>typeof foo !== &#39;undefined&#39;
 </code></pre>
 
-<p>The above will check whether <code>foo</code> was actually declared or not; just 
-referencing it would result in a <code>ReferenceError</code>. This is the only thing
-<code>typeof</code> is actually useful for.</p>
+<p>上面的例子確認 <code>foo</code> 是否真的被宣告。如果沒有定義會導致 <code>ReferenceError</code> 這是 <code>typeof</code> 唯一有用的地方</p>
 
-</div><div><h3>In Conclusion</h3>
+</div><div><h3>結語</h3>
 
-<p>In order to check the type of an object, it is highly recommended to use 
-<code>Object.prototype.toString</code> because this is the only reliable way of doing so. 
-As shown in the above type table, some return values of <code>typeof</code> are not defined 
-in the specification; thus, they can differ between implementations.</p>
+<p>為了去檢查一個物件，強烈建議去使用 <code>Object.prototype.toString</code> 因為這是唯一可以依賴的方式。
+正如上面所看到的 <code>typeof</code> 的亦先返回值在標準文檔中未定義，因此不同的引擎可能不同。</p>
 
-<p>Unless checking whether a variable is defined, <code>typeof</code> should be avoided.</p></div></article><article id="types.instanceof"><h2><code>instanceof</code> 操作符</h2><div><p><code>instanceof</code> 操作符用來比較兩個建構函數的操作數。只有在比較字定義的物件時才有意義。這和 <a href="#types.typeof">typeof operator</a>一樣用處不大。</p>
+<p>除非為了檢測一個變數是否定義，我們應該避免是用 <code>typeof</code> 操作符。</p></div></article><article id="types.instanceof"><h2><code>instanceof</code> 操作符</h2><div><p><code>instanceof</code> 操作符用來比較兩個建構函數的操作數。只有在比較字定義的物件時才有意義。這和 <a href="#types.typeof">typeof operator</a>一樣用處不大。</p>
 
 </div><div><h3>比較定意義物件</h3>
 
@@ -1534,36 +1526,29 @@ GLOBAL_OBJECT.a; // undefined
 
 </div><div><h3>結語</h3>
 
-<p><code>delete</code> 控制符通常都有難以預料的行為，所以我們只可以安全的刪除顯著的屬性在普通的物件上。</p></div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>其他</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> and <code>setInterval</code></h2><div><p>Since JavaScript is asynchronous, it is possible to schedule the execution of a 
-function using the <code>setTimeout</code> and <code>setInterval</code> functions.</p>
+<p><code>delete</code> 控制符通常都有難以預料的行為，所以我們只可以安全的刪除顯著的屬性在普通的物件上。</p></div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>其他</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> 和 <code>setInterval</code></h2><div><p>由於 Javascript 是一個非同步傳輸的系統，因此可以執行一個函式用 <code>setTimeout</code> 和 <code>setInterval</code>。</p>
 
 <aside>
-  <p><strong>Note:</strong> Timeouts are <strong>not</strong> part of the ECMAScript Standard. They are
-  implemented as part of the <a href="http://en.wikipedia.org/wiki/Document_Object_Model" title="Document Object Model">DOM</a>.</p>
+  <p><strong>注意:</strong> Timeouts 不在 ECMAScript 的標準中。它們是 <a href="http://en.wikipedia.org/wiki/Document_Object_Model" title="Document Object Model">DOM</a> 其中的一部分</p>
 </aside>
 
 <pre><code>function foo() {}
 var id = setTimeout(foo, 1000); // returns a Number &gt; 0
 </code></pre>
 
-<p>When <code>setTimeout</code> is called, it returns the ID of the timeout and schedule
-<code>foo</code> to run <strong>approximately</strong> one thousand milliseconds in the future. 
-<code>foo</code> will then be executed <strong>once</strong>.</p>
+<p>當 <code>setTimeout</code> 被呼叫，它會回傳一個 ID 標準並是計畫在將來 <strong>大約</strong> 1000 毫秒後在在去呼叫 <code>foo</code> 函式。
+<code>foo</code> 函式只會被執行 <strong>一次</strong>。</p>
 
-<p>Depending on the timer resolution of the JavaScript engine running the code, as
-well as the fact that JavaScript is single threaded and other code that gets
-executed might block the thread, it is by <strong>no means</strong> a safe bet that one will
-get the exact delay specified in the <code>setTimeout</code> call.</p>
+<p>基於 JavaScript 引擎的計時策略，以及基本的單線程運行的方式，所以其他的程式碼可以被阻塞。
+因此 <strong>沒法確保</strong>函式會在 <code>setTimeout</code> 指定的時可被調用。</p>
 
-<p>The function that was passed as the first parameter will get called by the
-<em>global object</em>, which means that <a href="#function.this"><code>this</code></a> inside the called function 
-refers to the global object.</p>
+<p>第一個參數被函式呼叫的會在 <em>全域物件</em> 被呼叫，這代表 <a href="#function.this"><code>this</code></a>在這個函式會指向全域物件。</p>
 
 <pre><code>function Foo() {
     this.value = 42;
     this.method = function() {
-        // this refers to the global object
-        console.log(this.value); // will log undefined
+        // 指向全域
+        console.log(this.value); // 會跑出 undefined
     };
     setTimeout(this.method, 500);
 }
@@ -1571,39 +1556,30 @@ new Foo();
 </code></pre>
 
 <aside>
-  <p><strong>Note:</strong> As <code>setTimeout</code> takes a <strong>function object</strong> as its first parameter, an
-  common mistake is to use <code>setTimeout(foo(), 1000)</code>, which will use the 
-  <strong>return value</strong> of the call <code>foo</code> and <strong>not</strong> <code>foo</code>. This is, most of the time, 
-  a silent error, since when the function returns <code>undefined</code> <code>setTimeout</code> will 
-  <strong>not</strong> raise any error.</p>
+  <p><strong>注意: <em>* <code>setTimeout</code> 第一個參數是 *</em>參數的物件</strong>，這是一個很常見的錯誤使用 <code>setTimeout(foo(), 1000)，
+  這裡會調用</code>foo<code>的 **return value** 而 **不是**</code>foo<code>本身。
+  如果函式返回</code>undefined<code>，</code>setTimeout` 也不會出錯。</p>
 </aside>
 
-</div><div><h3>Stacking Calls with <code>setInterval</code></h3>
+</div><div><h3><code>setInterval</code> 的堆調用</h3>
 
-<p>While <code>setTimeout</code> only runs the function once, <code>setInterval</code> - as the name 
-suggests - will execute the function <strong>every</strong> <code>X</code> milliseconds, but its use is 
-discouraged. </p>
+<p><code>setTimeout</code> 只會在函式上跑一次而已， <code>setInterval</code> - 則會在每隔 <code>X</code> 毫秒執行函式一次。但不鼓勵這種寫法。</p>
 
-<p>When code that is being executed blocks the timeout call, <code>setInterval</code> will 
-still issue more calls to the specified function. This can, especially with small
-intervals, result in function calls stacking up.</p>
+<p>當回傳函式的執行被阻塞時， <code>setInterval</code> 仍然會發佈更多的回傳函式。在很小的定時間隔情況像會使得回傳函式被堆疊起來。</p>
 
 <pre><code>function foo(){
-    // something that blocks for 1 second
+    // 執行 1 秒
 }
 setInterval(foo, 1000);
 </code></pre>
 
-<p>In the above code, <code>foo</code> will get called once and will then block for one second.</p>
+<p>上面的程式中， <code>foo</code> 會執行一次然後被阻塞了義分鐘</p>
 
-<p>While <code>foo</code> blocks the code, <code>setInterval</code> will still schedule further calls to
-it. Now, when <code>foo</code> has finished, there will already be <strong>ten</strong> further calls to
-it waiting for execution.</p>
+<p>在 <code>foo</code> 被阻塞的時候 <code>setInterval</code> 還是會組織將對回傳函式的調用。因此當第一次 <code>foo</code> 函式調用結束時，已經有 <strong>10</strong> 次函式的調用在等待執行。</p>
 
-</div><div><h3>Dealing with Possible Blocking Code</h3>
+</div><div><h3>處理可能被阻塞的調用</h3>
 
-<p>The easiest solution, as well as most controllable solution, is to use <code>setTimeout</code> within
-the function itself.</p>
+<p>最簡單的解決方法，也是最容易控制的解決方法，就是在函式中使用 <code>setTimeout</code>。</p>
 
 <pre><code>function foo(){
     // something that blocks for 1 second
@@ -1612,24 +1588,20 @@ the function itself.</p>
 foo();
 </code></pre>
 
-<p>Not only does this encapsulate the <code>setTimeout</code> call, but it also prevents the
-stacking of calls and gives additional control. <code>foo</code> itself can now decide 
-whether it wants to run again or not.</p>
+<p>這樣不只封裝了 <code>setTimeout</code>，也防止了堆疊的呼叫，還有給它更多的控制。 <code>foo</code> 可以去決定要不要繼續執行。</p>
 
-</div><div><h3>Manually Clearing Timeouts</h3>
+</div><div><h3>手動清理 Timeouts</h3>
 
-<p>Clearing timeouts and intervals works by passing the respective ID to
-<code>clearTimeout</code> or <code>clearInterval</code>, depending on which <code>set</code> function was used
-in the first place.</p>
+<p>清除 timeouts 所產生的 ID 標準傳遞給 <code>clearTimeout</code> 或 <code>clearInterval</code> 函式來清除定時，
+至於使用哪個函式取決於調用的時候使用的是 <code>setTimeout</code> 還是 <code>setInterval</code>。</p>
 
 <pre><code>var id = setTimeout(foo, 1000);
 clearTimeout(id);
 </code></pre>
 
-</div><div><h3>Clearing All Timeouts</h3>
+</div><div><h3>清除所有 Timeouts</h3>
 
-<p>As there is no built-in method for clearing all timeouts and/or intervals, 
-it is necessary to use brute force in order to achieve this functionality.</p>
+<p>由於沒有一個內建的方法可以一次清空所有的 timeouts 和 intervals，所以只有用暴力法來達到這樣的需求。</p>
 
 <pre><code>// clear "all" timeouts
 for(var i = 1; i &lt; 1000; i++) {
@@ -1637,9 +1609,7 @@ for(var i = 1; i &lt; 1000; i++) {
 }
 </code></pre>
 
-<p>But there might still be timeouts that are unaffected by this arbitrary number.
-Another way of doing this is to consider that the ID given to a timeout is
-incremented by one every time you call <code>setTimeout</code>.</p>
+<p>可能還有一些定石器不會在上面的代碼中被清除，因此我們可以事先保存所有的定時器 ID，然後一把清除。</p>
 
 <pre><code>// clear "all" timeouts
 var biggestTimeoutId = window.setTimeout(function(){}, 1),
@@ -1649,12 +1619,7 @@ for(i = 1; i &lt;= biggestTimeoutId; i++) {
 }
 </code></pre>
 
-<p>Even though this works on all major browsers today, it isn&#39;t specified that
-the IDs should be ordered that way and it may change. Therefore, it is instead
-recommended to keep track of all the timeout IDs, so they can be cleared
-specifically.</p>
-
-</div><div><h3>Hidden Use of <code>eval</code></h3>
+</div><div><h3>隱藏使用 <code>eval</code></h3>
 
 <p><code>setTimeout</code> and <code>setInterval</code> can also take a string as their first parameter.
 This feature should <strong>never</strong> be used because it internally makes use of <code>eval</code>.</p>
