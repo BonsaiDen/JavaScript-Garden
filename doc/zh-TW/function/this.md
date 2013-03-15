@@ -42,17 +42,15 @@ JavaScript 有移到完全部屬於其他語言處理 `this` 的處理機制。
 
 當使用 `function.prototype` 上的 `call` 或只 `apply` 方法時，函式內的 `this` 將會被 **顯示設置** 為函式調用的第一個參數。
 
-As a result, in the above example the *method case* does **not** apply, and `this` 
-inside of `foo` will be set to `bar`.
+因此*函式調用*的規則在上例中已經不適用了，在 `foo`函式內 `this` 被設置程了 `bar`。
 
-> **Note:** `this` **cannot** be used to refer to the object inside of an `Object`
-> literal. So `var obj = {me: this}` will **not** result in `me` referring to
-> `obj`, since `this` only gets bound by one of the five listed cases.
+> **注意:** 在物件的字面宣告語法中，`this` **不能**用來指向物件本身。
+> 因此 `var obj = {me: this}` 中的 `me` 不會指向 `obj`因為 `this` 只可能出現在上面的五種情形。
+
 
 ### 常見誤解
 
-While most of these cases make sense, the first can be considered another
-mis-design of the language because it **never** has any practical use.
+儘管大部分的情況都是這樣，不過第一個被認為是設計錯誤的地方，因為他沒有實際的用途。
 
     Foo.method = function() {
         function test() {
@@ -61,11 +59,9 @@ mis-design of the language because it **never** has any practical use.
         test();
     }
 
-A common misconception is that `this` inside of `test` refers to `Foo`; while in
-fact, it **does not**.
+一個常見的錯誤 `test` 中的 `this` 會指向 `Foo` 對象，但其實不是。
 
-In order to gain access to `Foo` from within `test`, it is necessary to create a 
-local variable inside of `method` that refers to `Foo`.
+為了在 `test` 中獲得對 `Foo` 物件的引用，我們需要在 `method` 函式內創建一個局部變數指向 `Foo` 對象。
 
     Foo.method = function() {
         var that = this;
@@ -75,23 +71,18 @@ local variable inside of `method` that refers to `Foo`.
         test();
     }
 
-`that` is just a normal variable name, but it is commonly used for the reference to an 
-outer `this`. In combination with [closures](#function.closures), it can also 
-be used to pass `this` values around.
+`that` 只是一個普通的變數名，我們可以用來指向 `this`。在 [closures](#function.closures)，我們可以看到 `that` 用來參數傳遞。
 
-### Assigning Methods
+### 方法賦值的表達式
 
-Another thing that does **not** work in JavaScript is function aliasing, which is
-**assigning** a method to a variable.
+另一個看起來奇怪的地方式函式別名，也就是將一個方法賦值到另一個變數。
 
     var test = someObject.methodTest;
     test();
 
-Due to the first case, `test` now acts like a plain function call; therefore,
-`this` inside it will no longer refer to `someObject`.
+上面的 `test` 就像普通的函式一樣被調用，因此，函式內的 `this` 不再被指向到 `someObject` 物件。
 
-While the late binding of `this` might seem like a bad idea at first, in 
-fact, it is what makes [prototypal inheritance](#object.prototype) work. 
+雖然 `this` 的綁定似乎並不好，但是它是在 [prototypal inheritance](#object.prototype)中讓他運作的原因。
 
     function Foo() {}
     Foo.prototype.method = function() {};
@@ -101,7 +92,6 @@ fact, it is what makes [prototypal inheritance](#object.prototype) work.
 
     new Bar().method();
 
-When `method` gets called on an instance of `Bar`, `this` will now refer to that
-very instance. 
+當 `method` 被使用時， `this` 將會指向 `Bar` 的物件。
 
 
