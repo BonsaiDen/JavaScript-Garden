@@ -39,10 +39,6 @@ JavaScript 中沒有寫示的命名空間定義，這代表著它所有定義的
     test();
     foo; // 21
 
-Leaving out the `var` statement inside the function `test` will override the 
-value of `foo`. While this might not seem like a big deal at first, having 
-thousands of lines of JavaScript and not using `var` will introduce horrible,
-hard-to-track-down bugs.
 在函數 `test` 中部使用 `var` 會覆蓋到原本在外面的 `foo`。
 雖然看起來不是什麼大問題，但是當程式有幾千行的時候沒有使用 `var` 會照成難以追蹤的臭蟲。
 

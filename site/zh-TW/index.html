@@ -1,9 +1,9 @@
 <!DOCTYPE html><html lang="zh-TW"><head><title>JavaScript 庭院</title><meta charset="utf-8"><meta name="description" content="JavaScript 語言中古怪用法及缺點的文件總集"><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
 <script src="javascript/html5.js"></script>
 <![endif]-->
-</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li><a href="/JavaScript-Garden/es" title="JavaScript Garden es Español">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha suomeksi">fi</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden in Japanese">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden - ogród JavaScript po polsku">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden Türkçe">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript Garden 中文翻译">zh</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">簡介</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">物件</a></h1><ul><li><a href="#object.general">物件的使用和屬性</a></li><li><a href="#object.prototype">Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop"><code>for in</code> 迴圈</a></li></ul></li><li class="nav_function"><h1><a href="#function">函式</a></h1><ul><li><a href="#function.general">函式的宣告和表達方式</a></li><li><a href="#function.this"><code>this</code> 的工作原理</a></li><li><a href="#function.closures">Closures 和 References</a></li><li><a href="#function.arguments"><code>arguments</code> 物件</a></li><li><a href="#function.constructors">建構函式</a></li><li><a href="#function.scopes">作用域和命名空間</a></li></ul></li><li class="nav_array"><h1><a href="#array">陣列</a></h1><ul><li><a href="#array.general">Array 迴圈和屬性</a></li><li><a href="#array.constructor"><code>Array</code> 的建構函式</a></li></ul></li><li class="nav_types"><h1><a href="#types">類型</a></h1><ul><li><a href="#types.equality">Equality and Comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> Operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> Operator</a></li><li><a href="#types.casting">Type Casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">核心</a></h1><ul><li><a href="#core.eval">為什麼不要使用 <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> 和 <code>null</code></a></li><li><a href="#core.semicolon">自動插入分號</a></li><li><a href="#core.delete">The <code>delete</code> Operator</a></li></ul></li><li class="nav_other"><h1><a href="#other">其他</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>簡介</h1><div><p>是一個不斷更新的文件，最主要是要去了解一些 Javascript 比較古怪的部份。
+</head><body><!-- Navigation--><nav id="nav_main"><div><ul><li><a href="/JavaScript-Garden/" title="JavaScript Garden in English">en</a></li><li><a href="/JavaScript-Garden/es" title="JavaScript Garden es Español">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha suomeksi">fi</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden in Japanese">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden - ogród JavaScript po polsku">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден по-русски">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden Türkçe">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript Garden 中文翻译">zh</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">簡介</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">物件</a></h1><ul><li><a href="#object.general">物件的使用和屬性</a></li><li><a href="#object.prototype">Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop"><code>for in</code> 迴圈</a></li></ul></li><li class="nav_function"><h1><a href="#function">函式</a></h1><ul><li><a href="#function.general">函式的宣告和表達方式</a></li><li><a href="#function.this"><code>this</code> 的工作原理</a></li><li><a href="#function.closures">Closures 和 References</a></li><li><a href="#function.arguments"><code>arguments</code> 物件</a></li><li><a href="#function.constructors">建構函式</a></li><li><a href="#function.scopes">作用域和命名空間</a></li></ul></li><li class="nav_array"><h1><a href="#array">陣列</a></h1><ul><li><a href="#array.general">Array 迴圈和屬性</a></li><li><a href="#array.constructor"><code>Array</code> 的建構函式</a></li></ul></li><li class="nav_types"><h1><a href="#types">類型</a></h1><ul><li><a href="#types.equality">相等與比較</a></li><li><a href="#types.typeof"><code>typeof</code> 操作符</a></li><li><a href="#types.instanceof"><code>instanceof</code> 操作符</a></li><li><a href="#types.casting">類型轉換</a></li></ul></li><li class="nav_core"><h1><a href="#core">核心</a></h1><ul><li><a href="#core.eval">為什麼不要使用 <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> 和 <code>null</code></a></li><li><a href="#core.semicolon">自動插入分號</a></li><li><a href="#core.delete"><code>delete</code> 控制符</a></li></ul></li><li class="nav_other"><h1><a href="#other">其他</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>簡介</h1><div><p>JavaScript 庭院 是一個不斷更新的文件，最主要是要去了解一些 Javascript 比較古怪的部份。
 給一些意見來防止遇到一些常見的錯誤和一些難以發現的問題，以及性能問題和不好的習慣。
-初學者也可以借此去了解 Javascript 這項語言的特性。</p>
+初學者也可以藉此去了解 Javascript 這項語言的特性。</p>
 
 <p>JavaScript 庭院 並 <strong>不是</strong> 要教導你 Javascript 的語言。
 如果要能夠理解這篇文章的內容，你需要事先學習 JavaScript 的基礎知識。
@@ -633,9 +633,7 @@ function bigLoop() {
 用 <code>new</code> 的關鍵字方式調用的函式都被認為是建構函式。
 在建構函式內部 - 被呼叫的函式 - <code>this</code> 指向一個新建立的 <code>object</code>。<a href="#object.prototype">prototype</a> 這是一個新的物件一個被指向函式的 <code>prototype</code> 的建構函式。</p>
 
-<p>If the function that was called has no explicit <code>return</code> statement, then it
-implicitly returns the value of <code>this</code> - the new object. 
-如果被使用的函式沒有明顯的呼叫 <code>return</code> 的表達式，它會回傳一個隱性的 <code>this</code> 的新物件。</p>
+<p>如果被使用的函式沒有明顯的呼叫 <code>return</code> 的表達式，它會回傳一個隱性的 <code>this</code> 的新物件。</p>
 
 <pre><code>function Foo() {
     this.bla = 1;
@@ -778,11 +776,7 @@ test();
 foo; // 21
 </code></pre>
 
-<p>Leaving out the <code>var</code> statement inside the function <code>test</code> will override the 
-value of <code>foo</code>. While this might not seem like a big deal at first, having 
-thousands of lines of JavaScript and not using <code>var</code> will introduce horrible,
-hard-to-track-down bugs.
-在函數 <code>test</code> 中部使用 <code>var</code> 會覆蓋到原本在外面的 <code>foo</code>。
+<p>在函數 <code>test</code> 中部使用 <code>var</code> 會覆蓋到原本在外面的 <code>foo</code>。
 雖然看起來不是什麼大問題，但是當程式有幾千行的時候沒有使用 <code>var</code> 會照成難以追蹤的臭蟲。</p>
 
 <pre><code>// 全域作用域
@@ -1025,14 +1019,13 @@ arr[1]; // undefined
 
 </div><div><h3>結語</h3>
 
-<p><code>Array</code> 的建構函式需要避免，建議使用字面語法。因為他們比較簡短、也更增加閱讀性</p></div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>類型</h1></header><!-- Articles--><article id="types.equality"><h2>Equality and Comparisons</h2><div><p>JavaScript has two different ways of comparing the values of objects for equality. </p>
+<p><code>Array</code> 的建構函式需要避免，建議使用字面語法。因為他們比較簡短、也更增加閱讀性</p></div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>類型</h1></header><!-- Articles--><article id="types.equality"><h2>相等與比較</h2><div><p>JavaScript 有兩個不同的方式來比較兩個物件是否相等。</p>
 
-</div><div><h3>The Equality Operator</h3>
+</div><div><h3>等於操作符</h3>
 
-<p>The equality operator consists of two equal signs: <code>==</code></p>
+<p>等於操作符是由兩個等號組成: <code>==</code></p>
 
-<p>JavaScript features <em>weak typing</em>. This means that the equality operator 
-<strong>coerces</strong> types in order to compare them.</p>
+<p>JavaScript 是一個 <em>弱類型</em> 語言。這代表它會為了比較兩個值而做 <strong>強制類型轉換</strong>。</p>
 
 <pre><code>""           ==   "0"           // false
 0            ==   ""            // true
@@ -1045,20 +1038,14 @@ null         ==   undefined     // true
 " \t\r\n"    ==   0             // true
 </code></pre>
 
-<p>The above table shows the results of the type coercion, and it is the main reason 
-why the use of <code>==</code> is widely regarded as bad practice. It introduces
-hard-to-track-down bugs due to its complicated conversion rules.</p>
+<p>上面的表格可以看出來這些結果強制轉換類型，這也代表說用 <code>==</code> 是一個不好的習慣，因為它會很難追蹤問題由於它複雜的規則。</p>
 
-<p>Additionally, there is also a performance impact when type coercion is in play;
-for example, a string has to be converted to a number before it can be compared
-to another number.</p>
+<p>此外，也有效率上面的問題在強制轉換類型。
+例如說一個字串會被轉成數字來和別的數字做比較。</p>
 
-</div><div><h3>The Strict Equality Operator</h3>
+</div><div><h3>嚴格等於操作符</h3>
 
-<p>The strict equality operator consists of <strong>three</strong> equal signs: <code>===</code>.</p>
-
-<p>It works like the normal equality operator, except that strict equality 
-operator does <strong>not</strong> perform type coercion between its operands.</p>
+<p>不像普通的等於操作符 <code>===</code> 不會做強制類型轉換。</p>
 
 <pre><code>""           ===   "0"           // false
 0            ===   ""            // false
@@ -1071,14 +1058,11 @@ null         ===   undefined     // false
 " \t\r\n"    ===   0             // false
 </code></pre>
 
-<p>The above results are a lot clearer and allow for early breakage of code. This
-hardens code to a certain degree and also gives performance improvements in case
-the operands are of different types.</p>
+<p>上面的結果比較清楚，也有利於程式碼的分析。如果這兩個操作數的類型不一樣都就不會相等，有助於它性能的提昇。</p>
 
-</div><div><h3>Comparing Objects</h3>
+</div><div><h3>比較物件</h3>
 
-<p>While both <code>==</code> and <code>===</code> are called <strong>equality</strong> operators, they behave 
-differently when at least one of their operands is an <code>Object</code>.</p>
+<p>雖然 <code>==</code> 和 <code>===</code> 都是等於操作符，但其中有一個操作數為物件時，它的行為就會不同。</p>
 
 <pre><code>{} === {};                   // false
 new String(&#39;foo&#39;) === &#39;foo&#39;; // false
@@ -1087,30 +1071,24 @@ var foo = {};
 foo === foo;                 // true
 </code></pre>
 
-<p>Here, both operators compare for <strong>identity</strong> and <strong>not</strong> equality; that is, they
-will compare for the same <strong>instance</strong> of the object, much like <code>is</code> in Python 
-and pointer comparison in C.</p>
+<p>在這裡等於操作符比較 <strong>不是</strong> 值的相等，而是否是 <strong>相同</strong> 的身分。
+有點像 Python 的 <code>is</code> 和 C 中的指標。</p>
 
-</div><div><h3>In Conclusion</h3>
+</div><div><h3>結論</h3>
 
-<p>It is highly recommended to only use the <strong>strict equality</strong> operator. In cases
-where types need to be coerced, it should be done <a href="#types.casting">explicitly</a> 
-and not left to the language&#39;s complicated coercion rules.</p></div></article><article id="types.typeof"><h2>The <code>typeof</code> Operator</h2><div><p>The <code>typeof</code> operator (together with 
-<a href="#types.instanceof"><code>instanceof</code></a>) is probably the biggest 
-design flaw of JavaScript, as it is almost <strong>completely broken</strong>.</p>
+<p>強烈建議使用 <strong>嚴格等於</strong>
+如果要轉換類型，應該要在 <a href="#types.casting">explicitly</a>的時候轉換，而不是在語言本身用複雜的轉換規則。</p></div></article><article id="types.typeof"><h2><code>typeof</code> 操作符</h2><div><p><code>typeof</code> 操作符 (和
+<a href="#types.instanceof"><code>instanceof</code></a>) 可能是最大的設計錯誤在 JavaScript，因為它幾乎不可能從它們那裡得到想要的結果。</p>
 
-<p>Although <code>instanceof</code> still has limited uses, <code>typeof</code> really has only one
-practical use case, which does <strong>not</strong> happen to be checking the type of an 
-object. </p>
+<p>雖然 <code>instanceof</code> 還是有一些限制上的使用， <code>typeof</code> 只有一個實際上的運傭情形，但是 <strong>不是</strong> 用在檢查物件的類型。</p>
 
 <aside>
-  <p><strong>Note:</strong> While <code>typeof</code> can also be called with a function like syntax, i.e.
-  <code>typeof(obj)</code>, this is not a function call. The parentheses behave as normal
-  and the return value will be used as the operand of the <code>typeof</code> operator.
-  There is <strong>no</strong> <code>typeof</code> function.</p>
+  <p><strong>注意:</strong> 由於 <code>typeof</code> 也可以像函式的語法被調用，例如 <code>typeof(obj)</code>，但這並是一個函數調用。
+  那兩個小括號只是用來計算一個表達式的值，這個返回值會作為 <code>typeof</code> 操作符的一個操作數。
+  實際上 <strong>不存在</strong> 名為 <code>typeof</code> 的函式。 </p>
 </aside>
 
-</div><div><h3>The JavaScript Type Table</h3>
+</div><div><h3>JavaScript 類型表格</h3>
 
 <pre><code>Value               Class      Type
 -------------------------------------
@@ -1131,21 +1109,19 @@ new RegExp("meow")  RegExp     object (function in Nitro/V8)
 new Object()        Object     object
 </code></pre>
 
-<p>In the above table, <em>Type</em> refers to the value that the <code>typeof</code> operator returns.
-As can be clearly seen, this value is anything but consistent.</p>
+<p>上面的表格中， <em>Type</em> 這一系列表示 <code>typeof</code> 的操作符的運算結果。可以看到，這個值的大多數情況下都返回物件。</p>
 
-<p>The <em>Class</em> refers to the value of the internal <code>[[Class]]</code> property of an object.</p>
+<p><em>Class</em> 表示物件內部的屬性 <code>[[Class]]</code> 的值。</p>
 
 <aside>
-  <p><strong>From the Specification:</strong> The value of <code>[[Class]]</code> can be one of the
-  following strings. <code>Arguments</code>, <code>Array</code>, <code>Boolean</code>, <code>Date</code>, <code>Error</code>, 
-  <code>Function</code>, <code>JSON</code>, <code>Math</code>, <code>Number</code>, <code>Object</code>, <code>RegExp</code>, <code>String</code>.</p>
+  <p><strong>JavaScript 標準文檔中定義：</strong> <code>[[Class]]</code>的值只可能是下面字符串中的一個：
+  <code>Arguments</code>, <code>Array</code>, <code>Boolean</code>, <code>Date</code>, <code>Error</code>,
+  <code>Function</code>, <code>JSON</code>, <code>Math</code>, <code>Number</code>, <code>Object</code>, <code>RegExp</code>, <code>String</code></p>
 </aside>
 
-<p>In order to retrieve the value of <code>[[Class]]</code>, one has to make use of the
-<code>toString</code> method of <code>Object.prototype</code>.</p>
+<p>為了獲取對象的 <code>[[Class]]</code>，我們可以使用定義在 <code>Object.prototype</code> 上的方法 <code>toString</code>。</p>
 
-</div><div><h3>The Class of an Object</h3>
+</div><div><h3>物件的類定義</h3>
 
 <p>The specification gives exactly one way of accessing the <code>[[Class]]</code> value,
 with the use of <code>Object.prototype.toString</code>. </p>
@@ -1184,11 +1160,9 @@ referencing it would result in a <code>ReferenceError</code>. This is the only t
 As shown in the above type table, some return values of <code>typeof</code> are not defined 
 in the specification; thus, they can differ between implementations.</p>
 
-<p>Unless checking whether a variable is defined, <code>typeof</code> should be avoided.</p></div></article><article id="types.instanceof"><h2>The <code>instanceof</code> Operator</h2><div><p>The <code>instanceof</code> operator compares the constructors of its two operands. It is 
-only useful when comparing custom made objects. Used on built-in types, it is
-nearly as useless as the <a href="#types.typeof">typeof operator</a>.</p>
+<p>Unless checking whether a variable is defined, <code>typeof</code> should be avoided.</p></div></article><article id="types.instanceof"><h2><code>instanceof</code> 操作符</h2><div><p><code>instanceof</code> 操作符用來比較兩個建構函數的操作數。只有在比較字定義的物件時才有意義。這和 <a href="#types.typeof">typeof operator</a>一樣用處不大。</p>
 
-</div><div><h3>Comparing Custom Objects</h3>
+</div><div><h3>比較定意義物件</h3>
 
 <pre><code>function Foo() {}
 function Bar() {}
@@ -1203,7 +1177,7 @@ Bar.prototype = Foo;
 new Bar() instanceof Foo; // false
 </code></pre>
 
-</div><div><h3>Using <code>instanceof</code> with Native Types</h3>
+</div><div><h3><code>instanceof</code> 比較內置類型</h3>
 
 <pre><code>new String(&#39;foo&#39;) instanceof String; // true
 new String(&#39;foo&#39;) instanceof Object; // true
@@ -1212,18 +1186,14 @@ new String(&#39;foo&#39;) instanceof Object; // true
 &#39;foo&#39; instanceof Object; // false
 </code></pre>
 
-<p>One important thing to note here is that <code>instanceof</code> does not work on objects 
-that originate from different JavaScript contexts (e.g. different documents
-in a web browser), since their constructors will not be the exact same object.</p>
+<p>有一點需要注意的， <code>instanceof</code> 不能用來物件來自上下文不同的屬性（例如：瀏覽器中不同的文檔結構），因為它的建構函數不一樣。</p>
 
 </div><div><h3>In Conclusion</h3>
 
-<p>The <code>instanceof</code> operator should <strong>only</strong> be used when dealing with custom made 
-objects that originate from the same JavaScript context. Just like the
-<a href="#types.typeof"><code>typeof</code></a> operator, every other use of it should be <strong>avoided</strong>.</p></div></article><article id="types.casting"><h2>Type Casting</h2><div><p>JavaScript is a <em>weakly typed</em> language, so it will apply <em>type coercion</em>
-<strong>wherever</strong> possible.</p>
+<p><code>instanceof</code> 操作符應該 <strong>只</strong> 用來比較同一個 JavaScript 上下文定意義的物件。
+正如 <a href="#types.typeof"><code>typeof</code></a>操作符一樣，任何其他用法都要避免。</p></div></article><article id="types.casting"><h2>類型轉換</h2><div><p>JavaScript 是一個 <em>弱類型</em> 的程式語言，所以在 <strong>任何</strong> 情況下都可以 <em>強制類型轉換</em>。</p>
 
-<pre><code>// These are true
+<pre><code>// 這些都是真
 new Number(10) == 10; // Number.toString() is converted
                       // back to a number
 
@@ -1233,56 +1203,50 @@ new Number(10) == 10; // Number.toString() is converted
 isNaN(null) == false; // null converts to 0
                       // which of course is not NaN
 
-// These are false
+// 下面都假
 10 == 010;
 10 == &#39;-10&#39;;
 </code></pre>
 
-<aside class="es5"><p><strong>ES5 Note:</strong> Number literals that start with a <code>0</code> are interpreted as octal 
-  (Base 8). Octal support for these has been <strong>removed</strong> in ECMAScript 5 strict 
-  mode.</p>
+<aside class="es5"><p><strong>ES5 注意:</strong> 如果數字字面值的開頭是 <code>0</code> 它會強制轉為八進位數字解析。
+  而在 ES5 嚴格模式下，它已經被刪除了。</p>
 </aside>
 
-<p>To avoid the issues above, use of the <a href="#types.equality">strict equal operator</a> 
-is <strong>highly</strong> recommended. Although this avoids a lot of common pitfalls, there 
-are still many further issues that arise from JavaScript&#39;s weak typing system.</p>
+<p>為了去避免上驗的事件發生，我們會用 <a href="#types.equality">嚴格等於操作符</a> 這是強烈建議。
+因為它可以避免很多常見的問題，但 JavaScript 的弱類型系同仍然會導致一些其他問題。</p>
 
-</div><div><h3>Constructors of Built-In Types</h3>
+</div><div><h3>內置類型的建構函式</h3>
 
-<p>The constructors of the built in types like <code>Number</code> and <code>String</code> behave
-differently when being used with the <code>new</code> keyword and without it.</p>
+<p>內置類型（比如 <code>Number</code> 和 <code>String</code>)在被調用時，使用或不使用 <code>new</code> 的結果完全不同。</p>
 
 <pre><code>new Number(10) === 10;     // False, Object and Number
 Number(10) === 10;         // True, Number and Number
 new Number(10) + 0 === 10; // True, due to implicit conversion
 </code></pre>
 
-<p>Using a built-in type like <code>Number</code> as a constructor will create a new <code>Number</code> 
-object, but leaving out the <code>new</code> keyword will make the <code>Number</code> function behave
-like a converter.</p>
+<p>使用內置類型 <code>Number</code> 作為建構函式會建造一個新的 <code>Number</code> 物件，而在不使用 <code>new</code> 關鍵字的 <code>Number</code> 函式更像是一個數字轉換器。</p>
 
-<p>In addition, passing literals or non-object values will result in even more
-type coercion.</p>
+<p>另外，在比較中引入物件的字面值會導致更加複雜的強制類型轉換。</p>
 
-<p>The best option is to cast to one of the three possible types <strong>explicitly</strong>.</p>
+<p>最好的方式是比較值的 <strong>顯示</strong> 的轉換成最有可能的三種形態</p>
 
-</div><div><h3>Casting to a String</h3>
+</div><div><h3>轉換成字符串</h3>
 
 <pre><code>&#39;&#39; + 10 === &#39;10&#39;; // true
 </code></pre>
 
-<p>By prepending an empty string, a value can easily be cast to a string.</p>
+<p>將一個值加上空字符串可以輕鬆轉為字符串類型。</p>
 
-</div><div><h3>Casting to a Number</h3>
+</div><div><h3>轉換成一個數字</h3>
 
 <pre><code>+&#39;10&#39; === 10; // true
 </code></pre>
 
-<p>Using the <strong>unary</strong> plus operator, it is possible to cast to a number.</p>
+<p>使用 <strong>一元</strong> 的加號操作符，可以把字符串轉為數字。</p>
 
-</div><div><h3>Casting to a Boolean</h3>
+</div><div><h3>轉換成一個 Bool</h3>
 
-<p>By using the <strong>not</strong> operator twice, a value can be converted a boolean.</p>
+<p>通過使用 <strong>否</strong> 操作符兩字，可以把一個值轉換為 Bool。</p>
 
 <pre><code>!!&#39;foo&#39;;   // true
 !!&#39;&#39;;      // false
@@ -1493,24 +1457,20 @@ test()
 </div><div><h3>結語</h3>
 
 <p>建議永遠 <strong>不要</strong> 忽略分號。同樣的也建議大括號應在他對應的表達式在同一行。在 <code>if... else...</code>的表達式中也是如此，不應省略大括號。
-這個習慣可以不僅僅是讓你的程式更一致，也可以避免編譯器因為改變程式而出錯。</p></div></article><article id="core.delete"><h2>The <code>delete</code> Operator</h2><div><p>In short, it&#39;s <em>impossible</em> to delete global variables, functions and some other
-stuff in JavaScript which have a <code>DontDelete</code> attribute set.</p>
+這個習慣可以不僅僅是讓你的程式更一致，也可以避免編譯器因為改變程式而出錯。</p></div></article><article id="core.delete"><h2><code>delete</code> 控制符</h2><div><p>簡單來說，那是 <em>不可能</em> 去刪除一個全域變數，函式和其他東西在 JavaScript 中有一個 <code>DontDelete</code> 的屬性</p>
 
-</div><div><h3>Global code and Function code</h3>
+</div><div><h3>全域和函式</h3>
 
-<p>When a variable or a function is defined in a global or a <a href="#function.scopes">function
-scope</a> it is a property of either the Activation object or
-the Global object. Such properties have a set of attributes, one of which is
-<code>DontDelete</code>. Variable and function declarations in global and function code
-always create properties with <code>DontDelete</code>, and therefore cannot be deleted.</p>
+<p>當一個變數或是一個函式在一個全域範圍被定義或是在一個 <a href="#function.scopes">funciton scope</a> ，這些屬性可能是動態的物件或是全域的物件。這些特性有一系列的屬性。其中一個就是 <code>DontDelete</code>。
+在這些變數和函式的宣告都會有一個屬性叫 <code>DontDelete</code>，這會使得它無法被刪除。</p>
 
-<pre><code>// global variable:
-var a = 1; // DontDelete is set
+<pre><code>// 全域變數
+var a = 1; // DontDelete 屬性被建立
 delete a; // false
 a; // 1
 
 // normal function:
-function f() {} // DontDelete is set
+function f() {} // DontDelete 屬性被建立
 delete f; // false
 typeof f; // "function"
 
@@ -1520,9 +1480,9 @@ delete f; // false
 f; // 1
 </code></pre>
 
-</div><div><h3>Explicit properties</h3>
+</div><div><h3>明確的屬性</h3>
 
-<p>Explicitly set properties can be deleted normally.</p>
+<p>明確的屬性可以被簡單的刪除。</p>
 
 <pre><code>// explicitly set property:
 var obj = {x: 1};
@@ -1533,10 +1493,10 @@ obj.x; // undefined
 obj.y; // undefined
 </code></pre>
 
-<p>In the example above, <code>obj.x</code> and <code>obj.y</code> can be deleted because they have no 
-<code>DontDelete</code> atribute. That&#39;s why the example below works too.</p>
+<p>在上面的例子中， <code>obj.x</code> 和 <code>obj.y</code> 可以被刪除是因為他們沒有 <code>DontDelete</code> 的屬性。
+所以下面的例子也可以這樣用。</p>
 
-<pre><code>// this works fine, except for IE:
+<pre><code>// 可以運作，除了 IE:
 var GLOBAL_OBJECT = this;
 GLOBAL_OBJECT.a = 1;
 a === GLOBAL_OBJECT.a; // true - just a global var
@@ -1544,18 +1504,15 @@ delete GLOBAL_OBJECT.a; // true
 GLOBAL_OBJECT.a; // undefined
 </code></pre>
 
-<p>Here we use a trick to delete <code>a</code>. <a href="#function.this"><code>this</code></a> here refers 
-to the Global object and we explicitly declare variable <code>a</code> as its property 
-which allows us to delete it.</p>
+<p>這裡我們想要去刪除 <code>a</code>。 <a href="#funciton.this"><code>this</code></a> 這裡指向一個全域的物件，和我們明確了地定義 <code>a</code> 是它的屬性，所以可以刪除它。</p>
 
-<p>IE (at least 6-8) has some bugs, so the code above doesn&#39;t work.</p>
+<p>IE 有些臭蟲，所以上面的程式碼無法使用（至少 6~8）</p>
 
-</div><div><h3>Function arguments and built-ins</h3>
+</div><div><h3>函式的參數和內建</h3>
 
-<p>Functions&#39; normal arguments, <a href="#function.arguments"><code>arguments</code> objects</a> 
-and built-in properties also have <code>DontDelete</code> set.</p>
+<p>函式的普通參數，<a href="#function.arguments"><code>arguments</code> object</a> 還有一些內建的屬性都有 <code>DontDelete</code> 的建立</p>
 
-<pre><code>// function arguments and properties:
+<pre><code>// function 參數和屬性
 (function (x) {
 
   delete arguments; // false
@@ -1571,15 +1528,13 @@ and built-in properties also have <code>DontDelete</code> set.</p>
 })(1);
 </code></pre>
 
-</div><div><h3>Host objects</h3>
+</div><div><h3>接受物件</h3>
 
-<p>The behaviour of <code>delete</code> operator can be unpredictable for hosted objects. Due
-to the specification, host objects are allowed to implement any kind of behavior. </p>
+<p>控制符可以接受無法預測的物件。由於一些特別的情況，會允許它能夠 <code>delete</code></p>
 
-</div><div><h3>In conclusion</h3>
+</div><div><h3>結語</h3>
 
-<p>The <code>delete</code> operator often has unexpected behaviour and can only be safely
-used to delete explicitly set properties on normal objects.</p></div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>其他</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> and <code>setInterval</code></h2><div><p>Since JavaScript is asynchronous, it is possible to schedule the execution of a 
+<p><code>delete</code> 控制符通常都有難以預料的行為，所以我們只可以安全的刪除顯著的屬性在普通的物件上。</p></div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>其他</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> and <code>setInterval</code></h2><div><p>Since JavaScript is asynchronous, it is possible to schedule the execution of a 
 function using the <code>setTimeout</code> and <code>setInterval</code> functions.</p>
 
 <aside>
