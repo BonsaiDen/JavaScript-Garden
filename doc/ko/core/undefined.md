@@ -15,7 +15,6 @@ JavaScript는 `nothing`을 두 가지로 표현할 수 있고 그중 `undefined`
  - global 변수 `undefined`에 접근할 때.
  - 아직 초기화하지 않은 변수
  - `return` 구문이 없는 함수는 `undefined`를 반환함.
- - `return` 구문이 없는 함수는 `undefined`를 반환함.
  - `return` 구문으로 아무것도 반환하지 않을 때.
  - 없는 프로퍼티를 찾을 때.
  - 함수 인자가 생략될 때.
