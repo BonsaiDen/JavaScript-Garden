@@ -1,4 +1,4 @@
-## Type Casting
+## 타입 캐스팅
 
 JavaScript는 Weak Typing 언어이기 때문에 필요할 때마다 알아서 타입을 변환한다.
 
@@ -15,9 +15,9 @@ JavaScript는 Weak Typing 언어이기 때문에 필요할 때마다 알아서 �
     10 == 010;
     10 == '-10';
 
-> **ES5 Note:** `0`으로 시작하는 숫자 리터럴은 8진수다. 하지만, ECMAScript 5의 strict 모드에서는 더는 8진수로 해석하지 않는다.
+> **ES5 Note:** `0`으로 시작하는 숫자 리터럴은 8진수다. 하지만, ECMAScript 5의 strict 모드에서는 8진수로 더이상 해석하지 않는다.
 
-이런 문제들은 [strict equal operator](#types.equality)로 **미리 방지해야** 한다. 이 operator로 JavaScript의 많은 결점을 보완할 수 있지만, 아직도 weak typing 시스템 때문에 생기는 문제가 많다.
+위와 같은 문제들은 ***반드시** [삼중 등호 연산자](#types.equality)를 이용해 해결하길 권한다. 물론 삼중 등호로 많은 결점을 보완할 수 있지만, 여전히 weak typing 시스템 때문에 생기는 많은 문제가 남아있다.
 
 ### 기본 타입 생성자
 
