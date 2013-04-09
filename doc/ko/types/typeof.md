@@ -1,10 +1,10 @@
-## `typeof`
+## `typeof` 연산자
 
-`typeof`도 [`instanceof`](#types.instanceof)와 함께 JavaScript에서 치명적으로 잘못 설계된 부분이다. 이건 정말 아무짝에 쓸모없다.
+`typeof` 연산자도 [`instanceof`](#types.instanceof) 연산자와 함께 JavaScript에서 치명적으로 잘못 설계된 부분이다. 이건 정말이지 아무짝에도 쓸모가 없다.
 
-`instanceof`는 그래도 쓸 데가 좀 있었는데 `typeof`는 딱 한 군데에만 써먹을 수 있다. 객체의 타입을 검사할 일이 없다.
+`instanceof` 연산자는 그래도 여전히 쓸만한 데가 좀 있는데 `typeof` 연산자는 객체의 타입을 검사하는 것 외에는 쓸만한데가 없고, 이마저도 거의 쓸일이 없다.
 
-> **Note:** `typeof`는 함수처럼 `typeof(obj)`로 사용할 수 있다. 하지만, 이것은 함수를 호출하는 것이 아니라 단순히 `()`안의 값이 반환되고 `typeof`가 적용되는 것이다. `typeof`라는 함수는 **없다**.
+> **Note:** `typeof` 연산자는 함수처럼 `typeof(obj)`로 사용할수 있지만 함수 호출은 아니다. 괄호 안의 값은 `typeof`의 피연산자로 적용되고 그 결과가 반환된다. `typeof`라는 함수는 **없다**.
 
 ### JavaScript 타입 표
 
@@ -26,13 +26,13 @@
     {}                  Object     object
     new Object()        Object     object
 
-이 표에서 *Type*은 `typeof`가 반환하는 값이다. 표에서 본 것처럼 이 값은 계속 쓸모없다.
+위 표에서 *Type*은 `typeof`가 반환하는 값이다. 위 표에서처럼 일치되는 값이 거의 없다.
 
-Class는 객체 내부에 있는 `[[Class]]` 프로퍼티의 값이다.
+위 표에서 *Class*는 객체 내부에 있는 `[[Class]]` 프로퍼티의 값을 말한다.
 
 > **표준**에는 `[[Class]]`의 값은 `Arguments`, `Array`, `Boolean`, `Date`, `Error`, `Function`, `JSON`, `Math`, `Number`, `Object`, `RegExp`, `String`중 하나라고 나와있다.
 
-`[[Class]]`의 값을 가져다 쓰려면 `Object.prototype`의 `toString` 메소드를 사용해야 한다.
+`[[Class]]` 프로퍼티의 값을 가져다 쓰려면 `Object.prototype`의 `toString` 메소드를 사용한다.
 
 ### 객체의 클래스
 
@@ -54,10 +54,10 @@ Class는 객체 내부에 있는 `[[Class]]` 프로퍼티의 값이다.
 
     typeof foo !== 'undefined'
 
-이것은 `foo`가 정의됐는지 아닌지를 확인해준다. 정의되지 않은 변수에 접근하면 `ReferenceError` 나는데 이것을 방지할 수 있다. `typeof`가 유용한 건 이때뿐이다.
+위 코드는 `foo`가 정의됐는지 아닌지를 확인해준다. 정의되지 않은 변수에 접근하면 `ReferenceError` 나는데 이것을 방지할 수 있다. `typeof`가 유용한 건 이때뿐이다.
 
 ### 결론
 
-객체의 타입을 검사하려면 `Object.prototype.toString`를 사용해야 한다. 다른 방법은 신뢰할 수 없다. 위 표에서 보여준 것처럼 typeof가 반환하는 값은 표준에 나와 있지 않기 때문에 구현마다 다르다.
+객체의 타입을 검사하려면 `Object.prototype.toString`를 사용해야 한다. 다른 방법은 신뢰할 수 없다. 위 표에서 보여준 것처럼 typeof가 반환하는 값은 표준에 나와 있지 않기 때문에 구현방법도 제각각이다.
 
-변수가 정의됐는지 확인할 때는 빼고 **목숨을 걸고** `typeof`를 사용하지 못하게 해야 한다.
+변수가 정의됐는지 확인할 때를 제외하고 **가급적** `typeof`는 피해야한다.

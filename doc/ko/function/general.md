@@ -1,37 +1,37 @@
-## Function Declarations과 Function Expressions
+## 함수 선언과 함수 표현식
 
-JavaScript의 Function은 First Class Object라서 일반 객체처럼 취급될 수 있다. 그래서 익명 함수를 비동기 함수의 callback 같은 거로 넘길 수 있다.
+JavaScript에서 함수는 First Class Object다. 즉, 함수 자체가 또 다른 함수의 인자될 수 있다는 말이다. 그래서 익명 함수를 비동기 함수의 콜백으로 넘기는 것도 이런 특징을 이용한 일반적인 사용법이다.
 
-### `function` Declaration
+### `함수` 선언
 
     function foo() {}
 
-코드를 실행하기 전에 이 함수는 [Hoist](#function.scopes)되기 때문에 해당 Scope 어디에서나 이 함수를 호출할 수 있다. 심지어 함수를 정의하기 전에 호출해도 된다.
+위와 같이 선언한 함수는 프로그램이 실행하기 전에 먼저 [호이스트(Hoist)](#function.scopes) (스코프가 생성)되기 때문에 정의된 스코프(Scope) 안에서는 어디서든 이 함수를 사용할 수 있다. 심지어 함수를 정의하기 전에 호출해도 된다.
 
-    foo(); // 이 코드가 실행되기 전에 foo가 만들어져서 잘 호출된다.
+    foo(); // 이 코드가 실행되기 전에 foo가 만들어지므로 잘 동작한다.
     function foo() {}
 
-### `function` Expression
+### `함수` 표현식
 
     var foo = function() {};
 
-`foo` 변수에 *익명* 함수를 할당하는 예를 보자.
+위 예제는 `foo` 변수에 *익명* 함수를 할당한다.
 
     foo; // 'undefined'
     foo(); // TypeError가 난다.
     var foo = function() {};
 
-JavaScript가 Hoist하는 것은 `var`로 선언하는 부분뿐이기 때문에 코드가 실행하기 전에 `foo` 변수는 정의된다.
+'var'문을 이용해 선언하는 경우, 코드가 실행되기 전에 'foo' 라는 이름의 변수를 스코프의 맨 위로 올리게 된다.(호이스트 된다) 이때 foo 값은 undefiend로 정의된다. 
 
-그러나 할당은 런타임에만 가능한 일이라 할당하는 코드가 실행될 때까지 `foo`변수는 기본 값인 [undefined](#core.undefined)다.
+하지만 변수에 값을 할당하는 일은 런타임 상황에서 이루어지게 되므로 실제 코드가 실행되는 순간의 `foo`변수는 기본 값인 [undefined](#core.undefined)이 된다.
 
-### Named Function Expression
+### 이름있는 함수 표현식
 
-Named Function을 할당하는 경우는 조금 특이하다.
+이름있는 함수를 할당할때도 특이한 경우가 있다.
 
     var foo = function bar() {
-        bar(); // 된다.
+        bar(); // 이 경우는 동작 하지만, 
     }
-    bar(); // ReferenceError
+    bar(); // 이 경우는 참조에러를 발생시킨다. 
 
-함수 밖에서는 `bar`를 사용할 수 없지만, 함수 안에서는 사용할 수 있다. JavaScript가 [이름을 찾는 방법](#function.scopes)이 있는데 function Scope에서는 항상 그 함수의 이름을 사용할 수 있다.
+foo 함수 스코프 밖에서는 foo 변수 외에는 다른 값이 없기 때문에 `bar`는 함수 밖에서 사용할 수 없지만 함수 안에서는 사용할 수 있다. [이와 같은 방법](#function.scopes)으로 자바스크립트에서 어떤 함수의 이름은 항상 그 함수의 지역 스코프 안에서 사용할수있다. 

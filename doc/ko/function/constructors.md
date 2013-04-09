@@ -1,10 +1,10 @@
 ## 생성자
 
-JavaScript에서 생성자는 다른 언어들과 다르게 `new` 키워드로 호출되는 함수가 생성자다.
+JavaScript의 생성자는 다른 언어들과 다르게 `new` 키워드로 호출되는 함수가 생성자가 된다.
 
-어쨌든 생성자로 호출된 함수의 this는 막 만들어진 객체를 참조한다. **막 만든** 객체의 [prototype](#object.prototype)에는 생성자의 prototype이 할당된다.
+생성자로 호출된 함수의 this 객체는 새로 생성된 객체를 가리키고, **새로 만든** 객체의 [prototype](#object.prototype)에는 생성자의 prototype이 할당된다.
 
-생성자에 `return` 구문이 없으면 this가 가리키는 객체를 반환한다.
+그리고 생성자에 명시적인 `return` 구문이 없으면 this가 가리키는 객체를 반환한다.
 
     function Foo() {
         this.bla = 1;
@@ -16,9 +16,9 @@ JavaScript에서 생성자는 다른 언어들과 다르게 `new` 키워드로 �
 
     var test = new Foo();
 
-`new` 키워드가 실행되는 시점에 `Foo`를 생성자로 호출하고 `Foo.prototype`을 새 객체의 prototype에 할당한다.
+위 코드는 `new` 키워드가 실행되는 시점에 `Foo`를 생성자로 호출하고 `Foo.prototype`을 새 객체의 prototype에 할당한다.
 
-생성자에 `return` 구문이 있고 literal이 아니라 `객체`를 반환하면 그 객체가 반환된다.
+아래 코드와 같이 생성자에 명시적인 `return` 문이 있는 경우에는 반환하는 값이 객체인 경우에만 그 값을 반환한다.
 
     function Bar() {
         return 2;
@@ -37,11 +37,12 @@ JavaScript에서 생성자는 다른 언어들과 다르게 `new` 키워드로 �
 new 키워드가 없으면 그 함수는 객체를 반환하지 않는다.
 
     function Foo() {
-        this.bla = 1; // gets set on the global object
+        this.bla = 1; // 전역객체에 할당된다.
     }
     Foo(); // undefined
 
-이 함수는 그때그때 다르게 동작하지만 보통 [`this`](#function.this)의 규칙에 따라 `this`의 값으로 *Global 객체*가 사용된다.:w
+위 예제는 그때그때 다르게 동작한다. 그리고 [`this`](#function.this) 객체의 동작 원리에 따라서 Foo 함수안의 `this`의 값은 *Global 객체*를 가리키게된다. 
+(역주: 결국 new 키워드를 빼고, 코드를 작성할 경우 원치 않은 this 참조 오류가 발생할 수 있다.)
 
 ### 팩토리
 
@@ -62,11 +63,12 @@ new 키워드가 없으면 그 함수는 객체를 반환하지 않는다.
     new Bar();
     Bar();
 
-new 키워드가 있으나 없으니 `Bar` 생성자는 똑같이 동작한다. [Closure](#function.closures)가 할당된 method 프로퍼티가 있는 객체를 만들어 반환한다.
+new 키워드의 유무과 관계없이 `Bar` 생성자의 동작은 동일한다. 즉 [클로저](#function.closures)가 할당된 method 프로퍼티가 있는 새로운 객체를 만들어 반환한다.
 
-`new Bar()`는 반환된 객체의 prototype 프로퍼티에 아무런 영향을 주지 않는다. 객체를 반환하지 않는 생성자로 만들어지는 경우에만 객체의 prototype이 생성자의 것으로 할당된다.
+`new Bar()`로 호출되는 생성자는 반환되는 객체의 prototype 프로퍼티에 아무런 영향을 주지 않는다. 객체를 반환하지 않는 생성자로 만들어지는 경우에만 객체의 prototype이 생성자의 것으로 할당된다.
 
-그러니까 이 예제에서 `new` 키워드의 유무는 아무 차이가 없다.
+그러니까 이 예제에서 `new` 키워드의 유무는 아무런 차이가 없다.
+(역주: 생성자에 객체를 만들어 명시적으로 반환하면 new 키워드에 관계없이 잘 동작하는 생성자를 만들수있다. 즉, new 키워드가 빠졌을때 발생하는 this 참조 오류를 방어해준다.)
 
 ### 팩토리로 객체 만들기
 
@@ -89,7 +91,7 @@ new 키워드가 있으나 없으니 `Bar` 생성자는 똑같이 동작한다. 
         return obj;
     }
 
-`new` 키워드가 없어도 괜찮고 [private 변수](#function.closures)를 사용하기도 쉽다. 그렇지만, 단점도 있다.
+`new` 키워드가 없어도 잘 동작하고 [private 변수](#function.closures)를 사용하기도 쉽다. 그렇지만, 단점도 있다.
 
  1. prototype으로 메소드를 공유하지 않으므로 메모리를 좀 더 사용한다.
  2. 팩토리를 상속하려면 모든 메소드를 복사하거나 객체의 prototype에 객체를 할당해 주어야 한다.
