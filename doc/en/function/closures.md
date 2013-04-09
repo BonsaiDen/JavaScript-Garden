@@ -27,7 +27,7 @@ were defined. Since the only scoping that JavaScript has is
 Here, `Counter` returns **two** closures: the function `increment` as well as 
 the function `get`. Both of these functions keep a **reference** to the scope of 
 `Counter` and, therefore, always keep access to the `count` variable that was 
-defined in that very scope.
+defined in that scope.
 
 ### Why Private Variables Work
 
@@ -47,7 +47,7 @@ override - the *global* variable `count`.
 ### Closures Inside Loops
 
 One often made mistake is to use closures inside of loops, as if they were
-copying the value of the loops index variable.
+copying the value of the loop's index variable.
 
     for(var i = 0; i < 10; i++) {
         setTimeout(function() {

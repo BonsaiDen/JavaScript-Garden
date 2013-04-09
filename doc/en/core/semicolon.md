@@ -84,7 +84,7 @@ Below is the result of the parser's "guessing" game.
     })(window); //<- inserted
 
 > **Note:** The JavaScript parser does not "correctly" handle return statements 
-> which are followed by a new line, while this is not neccessarily the fault of 
+> that are followed by a new line. While this is not neccessarily the fault of 
 > the automatic semicolon insertion, it can still be an unwanted side-effect. 
 
 The parser drastically changed the behavior of the code above. In certain cases,
@@ -106,9 +106,9 @@ the above will yield a `TypeError` stating that `undefined is not a function`.
 
 ### In Conclusion
 
-It is highly recommended to **never** omit semicolons; it is also advocated to 
-keep braces on the same line with their corresponding statements and to never omit 
-them for one single-line `if` / `else` statements. Both of these measures will 
-not only improve the consistency of the code, but they will also prevent the 
-JavaScript parser from changing its behavior.
+It is highly recommended to **never** omit semicolons. It is also recommended
+that braces be kept on the same line as their corresponding statements and to
+never omit them for single-line `if` / `else` statements. These measures will
+not only improve the consistency of the code, but they will also prevent the
+JavaScript parser from changing code behavior.
 

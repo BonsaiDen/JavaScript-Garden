@@ -13,5 +13,7 @@
 /site/ko
 /site/ja
 /site/es
+/site/zhtw
 *.md~
 *.src.md
+*.DS_store

@@ -13,8 +13,8 @@ nearly as useless as the [typeof operator](#types.typeof).
     new Bar() instanceof Bar; // true
     new Bar() instanceof Foo; // true
 
-    // This just sets Bar.prototype to the function object Foo
-    // But not to an actual instance of Foo
+    // This just sets Bar.prototype to the function object Foo,
+    // but not to an actual instance of Foo
     Bar.prototype = Foo;
     new Bar() instanceof Foo; // false
 

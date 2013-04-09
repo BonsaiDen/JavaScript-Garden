@@ -1,7 +1,7 @@
 ## `undefined` and `null`
 
-JavaScript has two distinct values for `nothing`, the more useful of these two
-being `undefined`.
+JavaScript has two distinct values for nothing, `null` and `undefined`, with
+the latter being more useful.
 
 ### The Value `undefined`
 
@@ -16,14 +16,14 @@ overwritten.
 > mode, but its name can still be shadowed by for example a function with the name 
 > `undefined`.
 
-Some examples for when the value `undefined` is returned:
+Here are some examples of when the value `undefined` is returned:
 
  - Accessing the (unmodified) global variable `undefined`.
- - Accessing a declared *but not* yet initialized variable
+ - Accessing a declared *but not* yet initialized variable.
  - Implicit returns of functions due to missing `return` statements.
- - `return` statements which do not explicitly return anything.
+ - `return` statements that do not explicitly return anything.
  - Lookups of non-existent properties.
- - Function parameters which do not had any explicit value passed.
+ - Function parameters that do not have any explicit value passed.
  - Anything that has been set to the value of `undefined`.
  - Any expression in the form of `void(expression)`
 
@@ -36,14 +36,14 @@ Since the global variable `undefined` only holds a copy of the actual *value* of
 Still, in order to compare something against the value of `undefined`, it is
 necessary to retrieve the value of `undefined` first.
 
-In order to protect code against a possible overwritten `undefined` variable, a 
-common technique used is to add an additional parameter to an
-[anonymous wrapper](#function.scopes) that gets no argument passed to it.
+To protect code against a possible overwritten `undefined` variable, a common
+technique used is to add an additional parameter to an [anonymous
+wrapper](#function.scopes) that gets no argument passed to it.
 
     var undefined = 123;
     (function(something, foo, undefined) {
         // undefined in the local scope does 
-        // now again refer to the value
+        // now again refer to the value `undefined`
 
     })('Hello World', 42);
 

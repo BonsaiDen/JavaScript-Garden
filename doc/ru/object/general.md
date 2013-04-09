@@ -1,8 +1,8 @@
 ## Объекты и их свойства
 
-В JavaScript всё является объектом, лишь за двумя исключениями — [`null`](#core.undefined) и [`undefined`](#core.undefined).
+В JavaScript всё ведет себя, как объект, лишь за двумя исключениями — [`null`](#core.undefined) и [`undefined`](#core.undefined).
 
-    false.toString() // 'false'
+    false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
 
     function Foo(){}
@@ -84,14 +84,14 @@
 
     // валидный JavaScript и валидный JSON
     {
-        'foo': 'oof',
-        'bar': 'rab'
+        "foo": "oof",
+        "bar": "rab"
     }
 
-    // валидный JavaScript и НЕ валидный JSON
+    // валидный JavaScript и НЕвалидный JSON
     {
-        foo: 'oof',
-        bar: 'rab'
+        foo: "oof",
+        bar: "rab"
     }
 
 [1]: http://ru.wikipedia.org/wiki/%D0%A5%D0%B5%D1%88-%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0
