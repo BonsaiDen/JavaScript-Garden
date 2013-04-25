@@ -2,7 +2,7 @@
 
 Although JavaScript deals fine with the syntax of two matching curly
 braces for blocks, it does **not** support block scope; hence, all that is left 
-is in the language is *function scope*.
+in the language is *function scope*.
 
     function test() { // a scope
         for(var i = 0; i < 10; i++) { // not a scope
@@ -16,7 +16,7 @@ is in the language is *function scope*.
 > **not** as an object literal. This, in conjunction with 
 > [automatic insertion of semicolons](#core.semicolon), can lead to subtle errors.
 
-There are also no distinct namespaces in JavaScript, that means that everything 
+There are also no distinct namespaces in JavaScript, which means that everything 
 gets defined in one *globally shared* namespace.
 
 Each time a variable is referenced, JavaScript will traverse upwards through all 
@@ -32,10 +32,10 @@ still has not found the requested name, it will raise a `ReferenceError`.
     var foo = '42'
 
 The above two scripts do **not** have the same effect. Script A defines a 
-variable called `foo` in the *global* scope and script B defines a `foo` in the
+variable called `foo` in the *global* scope, and script B defines a `foo` in the
 *current* scope.
 
-Again, that is **not** at all the *same effect*, not using `var` can have major 
+Again, that is **not** at all the *same effect*: not using `var` can have major 
 implications.
 
     // global scope
@@ -49,8 +49,8 @@ implications.
 
 Leaving out the `var` statement inside the function `test` will override the 
 value of `foo`. While this might not seem like a big deal at first, having 
-thousands of lines of JavaScript and not using `var` will introduce horrible and 
-hard to track down bugs.
+thousands of lines of JavaScript and not using `var` will introduce horrible,
+hard-to-track-down bugs.
     
     // global scope
     var items = [/* some list */];
@@ -73,7 +73,7 @@ unless the *desired effect* is to affect the outer scope.
 ### Local Variables
 
 The only source for local variables in JavaScript are
-[function](#function.general) parameters and variables that were declared via the 
+[function](#function.general) parameters and variables declared via the 
 `var` statement.
 
     // global scope
@@ -115,14 +115,14 @@ JavaScript **hoists** declarations. This means that both `var` statements and
         }
     }
 
-The above code gets transformed before any execution is started. JavaScript moves
-the `var` statements as well as the `function` declarations to the top of the 
+The above code gets transformed before execution starts. JavaScript moves
+the `var` statements, as well as `function` declarations, to the top of the 
 nearest surrounding scope.
 
     // var statements got moved here
     var bar, someValue; // default to 'undefined'
 
-    // the function declartion got moved up too
+    // the function declaration got moved up too
     function test(data) {
         var goo, i, e; // missing block scope moves these here
         if (false) {
@@ -146,24 +146,24 @@ Missing block scoping will not only move `var` statements out of loops and
 their bodies, it will also make the results of certain `if` constructs 
 non-intuitive.
 
-In the original code the `if` statement seemed to modify the *global 
-variable* `goo`, while actually it modifies the *local variable* - after hoisting 
+In the original code, although the `if` statement seemed to modify the *global 
+variable* `goo`, it actually modifies the *local variable* - after hoisting 
 has been applied.
 
-Without the knowledge about *hoisting*, below code might seem to raise a 
+Without knowledge of *hoisting*, one might suspect the code below would raise a
 `ReferenceError`.
 
-    // check whether SomeImportantThing has been initiliazed
+    // check whether SomeImportantThing has been initialized
     if (!SomeImportantThing) {
         var SomeImportantThing = {};
     }
 
-But of course, the above works due to the fact that the `var` statement is being 
+But of course, this works due to the fact that the `var` statement is being 
 moved to the top of the *global scope*.
 
     var SomeImportantThing;
 
-    // other code might initiliaze SomeImportantThing here, or not
+    // other code might initialize SomeImportantThing here, or not
 
     // make sure it's there
     if (!SomeImportantThing) {
@@ -173,27 +173,27 @@ moved to the top of the *global scope*.
 ### Name Resolution Order
 
 All scopes in JavaScript, including the *global scope*, have the special name 
-[`this`](#function.this) defined in them, which refers to the *current object*. 
+[`this`](#function.this), defined in them, which refers to the *current object*. 
 
-Function scopes also have the name [`arguments`](#function.arguments) defined in
-them which contains the arguments that were passed to a function.
+Function scopes also have the name [`arguments`](#function.arguments), defined in
+them, which contains the arguments that were passed to the function.
 
 For example, when trying to access a variable named `foo` inside the scope of a 
-function, JavaScript will lookup the name in the following order:
+function, JavaScript will look up the name in the following order:
 
- 1. In case there is a `var foo` statement in the current scope use that.
- 2. If one of the function parameters is named `foo` use that.
- 3. If the function itself is called `foo` use that.
- 4. Go to the next outer scope and start with **#1** again.
+ 1. In case there is a `var foo` statement in the current scope, use that.
+ 2. If one of the function parameters is named `foo`, use that.
+ 3. If the function itself is called `foo`, use that.
+ 4. Go to the next outer scope, and start with **#1** again.
 
 > **Note:** Having a parameter called `arguments` will **prevent** the creation 
 > of the default `arguments` object.
 
 ### Namespaces
 
-A common problem of having only one global namespace is the likeliness of running
-into problems where variable names clash. In JavaScript, this problem can
-easily be avoided with the help of *anonymous wrappers*.
+A common problem associated with having only one global namespace is the
+likelihood of running into problems where variable names clash. In JavaScript,
+this problem can easily be avoided with the help of *anonymous wrappers*.
 
     (function() {
         // a self contained "namespace"
@@ -208,22 +208,24 @@ easily be avoided with the help of *anonymous wrappers*.
 Unnamed functions are considered [expressions](#function.general); so in order to
 being callable, they must first be evaluated.
 
-    ( // evaluate the function inside the paranthesis
+    ( // evaluate the function inside the parentheses
     function() {}
     ) // and return the function object
     () // call the result of the evaluation
 
-There are other ways for evaluating and calling the function expression; which, 
-while different in syntax, do behave the exact same way.
+There are other ways to evaluate and directly call the function expression
+which, while different in syntax, behave the same way.
 
-    // Two other ways
-    +function(){}();
+    // A few other styles for directly invoking the 
+    !function(){}()
+    +function(){}()
     (function(){}());
+    // and so on...
 
 ### In Conclusion
 
-It is recommended to always use an *anonymous wrapper* for encapsulating code in 
-its own namespace. This does not only protect code against name clashes, it 
+It is recommended to always use an *anonymous wrapper* to encapsulate code in 
+its own namespace. This does not only protect code against name clashes, but it 
 also allows for better modularization of programs.
 
 Additionally, the use of global variables is considered **bad practice**. **Any**

@@ -1,7 +1,7 @@
 ## How `this` Works
 
 JavaScript has a different concept of what the special name `this` refers to 
-than most other programming languages do. There are exactly **five** different 
+than most other programming languages. There are exactly **five** different 
 ways in which the value of `this` can be bound in the language.
 
 ### The Global Scope
@@ -15,7 +15,7 @@ When using `this` in global scope, it will simply refer to the *global* object.
 
     foo();
 
-Here `this` will again refer to the *global* object.
+Here, `this` will again refer to the *global* object.
 
 > **ES5 Note:** In strict mode, the global case **no longer** exists.
 > `this` will instead have the value of `undefined` in that case.
@@ -24,14 +24,14 @@ Here `this` will again refer to the *global* object.
 
     test.foo(); 
 
-In this example `this` will refer to `test`.
+In this example, `this` will refer to `test`.
 
 ### Calling a Constructor
 
     new foo(); 
 
 A function call that is preceded by the `new` keyword acts as
-a [constructor](#function.constructors). Inside the function `this` will refer 
+a [constructor](#function.constructors). Inside the function, `this` will refer 
 to a *newly created* `Object`.
 
 ### Explicit Setting of `this`
@@ -46,7 +46,7 @@ When using the `call` or `apply` methods of `Function.prototype`, the value of
 `this` inside the called function gets **explicitly set** to the first argument 
 of the corresponding function call.
 
-As a result, the above example the *method case* does **not** apply, and `this` 
+As a result, in the above example the *method case* does **not** apply, and `this` 
 inside of `foo` will be set to `bar`.
 
 > **Note:** `this` **cannot** be used to refer to the object inside of an `Object`
@@ -55,8 +55,8 @@ inside of `foo` will be set to `bar`.
 
 ### Common Pitfalls
 
-While most of these cases make sense, the first one is to be considered another
-mis-design of the language, as it **never** has any practical use.
+While most of these cases make sense, the first can be considered another
+mis-design of the language because it **never** has any practical use.
 
     Foo.method = function() {
         function test() {
@@ -65,11 +65,11 @@ mis-design of the language, as it **never** has any practical use.
         test();
     }
 
-A common misconception is that `this` inside of `test` refers to `Foo`, while in
-fact it **does not**.
+A common misconception is that `this` inside of `test` refers to `Foo`; while in
+fact, it **does not**.
 
-In order to gain access to `Foo` from within `test` it is necessary to create a 
-local variable inside of `method` which refers to `Foo`.
+In order to gain access to `Foo` from within `test`, it is necessary to create a 
+local variable inside of `method` that refers to `Foo`.
 
     Foo.method = function() {
         var that = this;
@@ -85,17 +85,17 @@ be used to pass `this` values around.
 
 ### Assigning Methods
 
-Another thing that does **not** work in JavaScript is function aliasing, that is,
+Another thing that does **not** work in JavaScript is function aliasing, which is
 **assigning** a method to a variable.
 
     var test = someObject.methodTest;
     test();
 
-Due to the first case `test` now acts like a plain function call; therefore,
+Due to the first case, `test` now acts like a plain function call; therefore,
 `this` inside it will no longer refer to `someObject`.
 
-While the late binding of `this` might seem like a bad idea at first, it is in 
-fact what makes [prototypal inheritance](#object.prototype) work. 
+While the late binding of `this` might seem like a bad idea at first, in 
+fact, it is what makes [prototypal inheritance](#object.prototype) work. 
 
     function Foo() {}
     Foo.prototype.method = function() {};
@@ -105,7 +105,7 @@ fact what makes [prototypal inheritance](#object.prototype) work.
 
     new Bar().method();
 
-When `method` gets called on a instance of `Bar`, `this` will now refer to that
+When `method` gets called on an instance of `Bar`, `this` will now refer to that
 very instance. 
 
 

@@ -3,7 +3,7 @@
 Everything in JavaScript acts like an object, with the only two exceptions being 
 [`null`](#core.undefined) and [`undefined`](#core.undefined).
 
-    false.toString() // 'false'
+    false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
     
     function Foo(){}
@@ -16,8 +16,8 @@ notation* on a number as a floating point literal.
 
     2.toString(); // raises SyntaxError
 
-There are a couple of workarounds which can be used in order make number 
-literals act as objects too.
+There are a couple of workarounds that can be used to make number literals act
+as objects too.
 
     2..toString(); // the second point is correctly recognized
     2 .toString(); // note the space left to the dot
@@ -25,24 +25,24 @@ literals act as objects too.
 
 ### Objects as a Data Type
 
-Objects in JavaScript can also be used as a [*Hashmap*][1], they mainly consist 
+Objects in JavaScript can also be used as [*Hashmaps*][1]; they mainly consist 
 of named properties mapping to values.
 
-Using a object literal - `{}` notation - it is possible to create a 
+Using an object literal - `{}` notation - it is possible to create a 
 plain object. This new object [inherits](#object.prototype) from `Object.prototype` and 
-has no [own properties](#object.hasownproperty) defined on it.
+does not have [own properties](#object.hasownproperty) defined.
 
     var foo = {}; // a new empty object
 
-    // a new object with a property called 'test' with value 12
+    // a new object with a 'test' property with value 12
     var bar = {test: 12}; 
 
 ### Accessing Properties
 
 The properties of an object can be accessed in two ways, via either the dot
-notation, or the square bracket notation.
+notation or the square bracket notation.
     
-    var foo = {name: 'Kitten'}
+    var foo = {name: 'kitten'}
     foo.name; // kitten
     foo['name']; // kitten
     
@@ -52,14 +52,14 @@ notation, or the square bracket notation.
     foo.1234; // SyntaxError
     foo['1234']; // works
 
-Both notations are identical in their workings, with the only difference being that
-the square bracket notation allows for dynamic setting of properties, as well as
+The notations work almost identically, with the only difference being that the
+square bracket notation allows for dynamic setting of properties and
 the use of property names that would otherwise lead to a syntax error.
 
 ### Deleting Properties
 
-The only way to actually remove a property from an object is to use the `delete`
-operator; setting the property to `undefined` or `null` only remove the
+The only way to remove a property from an object is to use the `delete`
+operator; setting the property to `undefined` or `null` only removes the
 *value* associated with the property, but not the *key*.
 
     var obj = {
@@ -83,8 +83,8 @@ removed and is therefore missing from the output.
 ### Notation of Keys
 
     var test = {
-        'case': 'I am a keyword so I must be notated as a string',
-        delete: 'I am a keyword too so me' // raises SyntaxError
+        'case': 'I am a keyword, so I must be notated as a string',
+        delete: 'I am a keyword, so me too' // raises SyntaxError
     };
 
 Object properties can be both notated as plain characters and as strings. Due to

@@ -21,16 +21,16 @@ JavaScript jest słabo typowanym językiem. Oznacza to, że operator równości
 
 Powyższa tabela przedstawia wyniki koercji typów. Nieprzewidywalne wyniki 
 porównania są głównym powodem, że stosowanie `==` jest powszechnie uważane za złą 
-praktykę. Skomplikowane reguły konwersji są powodem trudnych do wyśledzenia błędy.
+praktykę. Skomplikowane reguły konwersji są powodem trudnych do wyśledzenia błędów.
 
-Ponadto koercja ma również wpływ na wydajność na przykład gdy typ String musi zostać 
+Ponadto koercja ma również wpływ na wydajność, Na przykład gdy typ String musi zostać 
 przekształcony na typ Number przed porównaniem z drugą liczbą.
 
 ### Operator ścisłej równości
 
 Operator ścisłej równości składa się z **trzech** znaków "równa się": `===`
 
-Działa on dokładnie tak jak normalny operator równości, z jednym wyjątkiem nie 
+Działa on dokładnie tak jak normalny operator równości, z jednym wyjątkiem - nie 
 dokonuje koercji typów przed porównaniem.
 
     ""           ===   "0"           // false
@@ -49,8 +49,8 @@ obiektów o różnych typach.
 
 ### Porównywanie obiektów
 
-Mimo, że oba operatory `==` i `===` nazywane są operatorami **równościowymi**, 
-to zachowują się różnie gdy jednym z operandów jest obiekt typu `Object`.
+Mimo że oba operatory `==` i `===` nazywane są operatorami **równościowymi**, 
+to zachowują się różnie, gdy jednym z operandów jest obiekt typu `Object`.
 
     {} === {};                   // false
     new String('foo') === 'foo'; // false
@@ -58,14 +58,14 @@ to zachowują się różnie gdy jednym z operandów jest obiekt typu `Object`.
     var foo = {};
     foo === foo;                 // true
 
-Oba operatory porównują **toższmość** a **nie** równość, czyli będą porównywać czy 
-jeden i drugi operand jest tą samą **instancją** obiektu, podobnie jak operator 
-`is` w Pythonie i porównanie wskaźników w C.  
+Oba operatory porównują **tożsamość** a **nie** równość, czyli będą porównywać czy 
+jeden i drugi operand jest tą samą **instancją** obiektu (podobnie jak operator 
+`is` w Pythonie i porównanie wskaźników w C).  
 
 ### Wnioski
 
-Zaleca się aby używać tylko operatora **ścisłej równości**. W sytuacjach gdy 
+Zaleca się, aby używać tylko operatora **ścisłej równości**. W sytuacjach gdy 
 potrzebna jest koercja (porównanie obiektów różnych typów), konwersja powinna 
-być dokonana [jawnie](#types.casting) a nie pozostawiona trudnym regułom koercji 
+być dokonana [jawnie](#types.casting), a nie pozostawiona trudnym regułom koercji 
 obowiązującym w języku.
 

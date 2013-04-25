@@ -1,7 +1,7 @@
 ## Konstruktory 
 
-Konstruktory w JavaScript również wyglądają inaczej niż innych języka. Każde 
-wywołanie funkcji, które jest poprzedone słowem kluczowym `new` zachowuje się 
+Konstruktory w JavaScript również wyglądają inaczej niż innych językach. Każde 
+wywołanie funkcji, które jest poprzedone słowem kluczowym `new`, zachowuje się 
 jak konstruktor. 
 
 Wewnątrz konstruktora - wywoływanej fukcji - wartość `this` wskazuje na 
@@ -22,7 +22,7 @@ fukcja domyślnie zwraca wartość `this` - nowy obiekt.
 
     var test = new Foo();
 
-Powyżej wywołanya została funkcja `Foo` jako konstruktor oraz ustawia 
+Powyżej wywołana została funkcja `Foo` jako konstruktor oraz ustawia 
 nowo utworzonemu obiektowi właściwość `prototype` na `Foo.prototype`.
 
 W tym przypadku jawna deklaracja `return` w funkcji zwraca wartość 
@@ -43,7 +43,7 @@ obiekt `Object`.
     }
     new Test(); // zwrócony obiekt
 
-Jeżeli słowo kluczowe `new` zostanie pominięte funkcja **nie** zwróci nowego 
+Jeżeli słowo kluczowe `new` zostanie pominięte, funkcja **nie** zwróci nowego 
 obiektu.
 
     function Foo() {
@@ -51,13 +51,13 @@ obiektu.
     }
     Foo(); // undefined
 
-Mimo, że powyższy kod może zadziałać w pewnych przypadkach, w związku 
-z działaniem [`this`](#function.this) w języku JavaScript to jako 
-wartość `this`zostanie wykorzystany **obiekt global**.
+Mimo że powyższy kod może zadziałać w pewnych przypadkach, w związku 
+z działaniem [`this`](#function.this) w języku JavaScript, to jako 
+wartość `this` zostanie wykorzystany **obiekt global**.
 
 ### Fabryki
 
-Aby móc ominąć słowo kluczowe `new` konstruktor musi jawnie zwracać wartość.
+Aby móc ominąć słowo kluczowe `new`, konstruktor musi jawnie zwracać wartość.
 
     function Bar() {
         var value = 1;
@@ -74,13 +74,13 @@ Aby móc ominąć słowo kluczowe `new` konstruktor musi jawnie zwracać wartoś
     new Bar();
     Bar();
 
-Oba wywołania `Bar` zwrócą tą samą rzecz, nowo utworzony obiekt, który posiada 
-właściwość nazwaną `method` w sobie, dla którego `Bar` jest [Domknięciem](#function.closures).
+Oba wywołania `Bar` zwrócą tę samą rzecz, nowo utworzony obiekt, który posiada 
+właściwość nazwaną `method` i dla którego `Bar` jest [Domknięciem](#function.closures).
 
 Należy również pamiętać, że wywołanie `new Bar()` **nie** ma wpływu na 
 prototyp zwróconego obiektu (prototypem będzie `object.prototype` a nie `Bar.prototype`). 
-Podczas gdy prototyp zostanie przypisany do nowo utworzonego obiektu, to jednak `Bar` 
-nidgy nie zwróci tego nowego obiektu `Bar`, ale literał obiektu, który jest po 
+Kiedy prototyp zostanie przypisany do nowo utworzonego obiektu, `Bar` nidgy 
+nie zwróci tego nowego obiektu `Bar`, tylko literał obiektu, który jest po 
 słowie kluczowym `return`.
 
 W powyższym przykładzie nie ma żadnej różnicy w działaniu pomiędzy użyciem 
@@ -88,8 +88,8 @@ i nieużyciem słowa kluczowego `new`.
 
 ### Tworzenie nowych obiektów korzystając z fabryk
 
-Często zaleca się **nie** korzystać z operatora `new` ponieważ zapominając 
-go zastosować może prowadzić do błędów.
+Często zaleca się **nie** korzystać z operatora `new`, ponieważ zapominanie
+o jego stosowaniu może prowadzić do błędów.
 
 W celu stworzenia nowego obiektu, powinno się używać fabryki i konstruować 
 nowy obiekt wewnątrz tej fabryki.
@@ -110,14 +110,12 @@ nowy obiekt wewnątrz tej fabryki.
     }
 
 
-Mimo, że powyższy kod jest odporny na brak słowa kluczowego `new` i ułatwia 
+Mimo że powyższy kod jest odporny na brak słowa kluczowego `new` i ułatwia 
 korzystanie ze [zmiennych prywatnych](#function.closures), to posiada 
 pewne wady.
-While the above is robust against a missing `new` keyword and certainly makes 
-the use of [private variables](#function.closures) easier, it comes with some 
-downsides.
+
  1. Zużywa więcej pamięci, ponieważ tworzony obiekt **nie** współdzieli metod 
-    poprzez prototyp
+    poprzez prototyp.
  2. Aby móc dziedziczyć fabryka musi skopiować wszystkie metody z dziedziczonego 
     obiektu lub przypisać ten obiekt, z którego się dziedziczy, jako prototyp 
     do nowo utworzonego obiektu.
@@ -129,5 +127,5 @@ downsides.
 Pominięcie słowa kluczowego `new` może prowadzić do błędów, ale na pewno nie 
 powinno to być powodem odrzucenia używania prototypów w ogóle. Sprowadza się to 
 do wyboru rozwiązania, które bardziej pasuje do potrzeb aplikacji. Szczególnie 
-ważne jest aby wybrać określony styl tworzenia obiektów i się go **trzymać**.
+ważne jest, aby wybrać określony styl tworzenia obiektów i **trzymać** się go.
 

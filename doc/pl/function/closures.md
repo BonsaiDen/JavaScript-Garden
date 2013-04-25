@@ -1,9 +1,9 @@
 ## Domknięcia i referencje
 
-Jedną z najpotężniejszych funkcjonalności języka JavaScript są *domknięcia*, 
-oznacza to że zasięg **zawsze** posiada dostęp do zewnętrznego zasięgu w którym 
+Jedną z najpotężniejszych funkcjonalności języka JavaScript są *domknięcia*. 
+Oznacza to że zasięg **zawsze** posiada dostęp do zewnętrznego zasięgu, w którym 
 został zdefiniowany. Ponieważ zasięg w JavaScript można definiować tylko poprzez 
-[funckję](#function.scopes), wszystkie funkcje domyślnie zachowują się jak domknięcia.
+[funkcję](#function.scopes), wszystkie funkcje domyślnie zachowują się jak domknięcia.
 
 ### Emulowanie prywatnych zmiennych
 
@@ -24,16 +24,16 @@ został zdefiniowany. Ponieważ zasięg w JavaScript można definiować tylko po
     foo.increment();
     foo.get(); // 5
 
-Tutaj `Counter` zwraca **dwa** domknięcia: funkcję `increment` oraz funckję `get`. 
-Obie te funkcję trzymają **referencję** do zasięgu `Counter` a co za tym idzie 
+Tutaj `Counter` zwraca **dwa** domknięcia: funkcję `increment` oraz funkcję `get`. 
+Obie te funkcje trzymają **referencję** do zasięgu `Counter`, a co za tym idzie 
 zawsze posiadają dostęp do zmiennej `count` tak, jakby ta zmienna była zdefiniowana 
 w zasięgu tych funkcji.
 
-### Dlaczego zmienne przywatne działają
+### Dlaczego zmienne prywatne działają?
 
-Ponieważ nie ma możliwości wskazania lub przypisania zasięgu w JavaScript, to 
-**nie** istnieje sposób aby uzyskać dostęp do zmiennej `count` z zewnątrz. 
-Wykorzystanie tych dwóch domkinęć jest jedynym sposobem na interakcję z tą zmienną.
+Ponieważ nie ma możliwości wskazania lub przypisania zasięgu w JavaScript, 
+**nie** istnieje sposób, aby uzyskać dostęp do zmiennej `count` z zewnątrz. 
+Wykorzystanie tych dwóch domknięć jest jedynym sposobem na interakcję z tą zmienną.
 
     var foo = new Counter(4);
     foo.hack = function() {
@@ -48,7 +48,7 @@ Zamiast tego funkcja utworzy lub nadpisze *globalną* zmienną `count`.
 ### Domknięcia wewnątrz pętli
 
 Jednym z częstrzych błędów jest wykorzystywanie domknięć wewnątrz pętli, 
-aby wartość zmiennej po której odbywa się iteracja był kopiowana do 
+aby wartość zmiennej po której odbywa się iteracja była kopiowana do 
 wewnętrznej funkcji.
 
     for(var i = 0; i < 10; i++) {
@@ -80,8 +80,8 @@ z [anonimowego wrappera](#function.scopes).
         })(i);
     }
 
-Zewnętrzna anonimowa funkcja zostaje wywołana od razu z parametrem `i` 
-jako pierwszym argumentem i otrzyma kopię **wartości** zmiennej `i` jako 
+Zewnętrzna anonimowa funkcja zostanie wywołana od razu z parametrem `i` 
+jako pierwszym argumentem oraz otrzyma kopię **wartości** zmiennej `i` jako 
 zmienną `e`.
 
 Anonimowa funkcja która zostaje przekazana do `setTimeout` teraz posiada 

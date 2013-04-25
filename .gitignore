@@ -9,6 +9,12 @@
 /site/zh
 /site/en
 /site/fi
+/site/pl
 /site/tr
+/site/ko
+/site/ja
+/site/es
+/site/zhtw
 *.md~
 *.src.md
+*.DS_store

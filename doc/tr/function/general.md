@@ -29,8 +29,8 @@ Bu örnekte *isimsiz fonksiyon* `foo` değişkenine atanır.
 Yukarıdaki `var` anahtar kelimesi bir bildirim olduğu için `foo` değişkeni
 program çalışmadan önce yukarı alınır, program çalıştığında `foo` tanımlanmştır.
 
-Fakat değer ataması program çalışırken gerçekleşeceği için, ilgili satır
-çalıştığında, `foo` değişkeninin değeri varsayılan olarak
+Fakat değer atamaları sadece program çalışırken gerçekleşeceği için, ilgili
+satır çalıştığında, `foo` değişkeninin değeri varsayılan olarak
 [undefined](#core.undefined) olacaktır.
 
 ### İsimli fonksiyon ifadesi

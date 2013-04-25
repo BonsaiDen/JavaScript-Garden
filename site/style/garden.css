@@ -87,13 +87,15 @@ nav > div li {
 }
 
 nav > div li a, #top, #hide_menu {
-	padding: 7px 10px 9px 10px;
+	padding: 8px 6px 7px;
 	cursor: pointer;
+	font-size: 12px;
+	font-weight: bold;
 }
 
 nav > div li.active a {
 	border-top: 4px solid #0D2E4C;
-	padding-top: 3px;
+	padding-top: 4px;
     color: #FFC76D;
 }
 
@@ -112,6 +114,7 @@ nav > div li.active a {
 
 #nav_main > div ul {
 	float: left;
+	width: 200px;
 }
 
 nav li {
@@ -185,6 +188,9 @@ nav a:hover, nav ul.active a:hover, nav a, nav li {
 	
 	-o-transition-property: background-color, color;
 	-o-transition-duration: 0.3s;
+
+	transition-property: background-color, color;
+	transition-duration: 0.3s;
 }
 
 #nav_mobile {
@@ -443,6 +449,19 @@ a abbr {
 		font-size: inherit;
 		margin-left: 30px;
 		margin-right: 0;
+	}
+
+	#nav_main > div ul {
+		width: auto;
+	}
+
+	nav > div li a, #top, #hide_menu {
+		font-size: 14px;
+		padding: 12px 12px 10px;
+	}
+
+	nav > div li.active a {
+		padding-top: 8px;
 	}
 	
 	#nav_main {

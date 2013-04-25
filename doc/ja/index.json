@@ -1,0 +1,69 @@
+{
+    "title": "JavaScript Garden",
+    "langTitle": "JavaScript Garden in Japanese",
+    "description": "JavaScriptの奇妙さと欠陥についてのガイドライン",
+    "sections": [
+        {
+            "title": "前書き",
+            "dir": "intro",
+            "articles": []
+        },
+        {
+            "title": "オブジェクト",
+            "dir": "object",
+            "articles": [
+                "general",
+                "prototype",
+                "hasownproperty",
+                "forinloop"
+            ]
+        },
+        {
+            "title": "関数",
+            "dir": "function",
+            "articles": [
+                "general",
+                "this",
+                "closures",
+                "arguments",
+                "constructors",
+                "scopes"
+            ]
+        },
+        {
+            "title": "配列",
+            "dir": "array",
+            "articles": [
+                "general",
+                "constructor"
+            ]
+        },
+        {
+            "title": "型",
+            "dir": "types",
+            "articles": [
+                "equality",
+                "typeof",
+                "instanceof",
+                "casting"
+            ]
+        },
+        {
+            "title": "コア",
+            "dir": "core",
+            "articles": [
+                "eval",
+                "undefined",
+                "semicolon",
+                "delete"
+            ]
+        },
+        {
+            "title": "その他",
+            "dir": "other",
+            "articles": [
+                "timeouts"
+            ]
+        }
+    ]
+}

@@ -4,7 +4,7 @@ Constructors in JavaScript are yet again different from many other languages. An
 function call that is preceded by the `new` keyword acts as a constructor.
 
 Inside the constructor - the called function - the value of `this` refers to a 
-newly created `Object`. The [`prototype`](#object.prototype) of this **new** 
+newly created object. The [prototype](#object.prototype) of this **new** 
 object is set to the `prototype` of the function object that was invoked as the
 constructor.
 
@@ -24,8 +24,8 @@ implicitly returns the value of `this` - the new object.
 The above calls `Foo` as constructor and sets the `prototype` of the newly
 created object to `Foo.prototype`.
 
-In case of an explicit `return` statement the function returns the value 
-specified that statement, **but only** if the return value is an `Object`.                                     
+In case of an explicit `return` statement, the function returns the value 
+specified by that statement, but **only** if the return value is an `Object`.
 
     function Bar() {
         return 2;
@@ -72,13 +72,13 @@ explicitly return a value.
     new Bar();
     Bar();
 
-Both calls to `Bar` return the exact same thing, a newly create object which
-has a property called `method` on it, that is a 
+Both calls to `Bar` return the same thing, a newly create object that
+has a property called `method`, which is a 
 [Closure](#function.closures).
 
-It is also to note that the call `new Bar()` does **not** affect the prototype 
-of the returned object. While the prototype will be set on the newly created 
-object, `Bar` never returns that new object.
+It should also be noted that the call `new Bar()` does **not** affect the
+prototype of the returned object. While the prototype will be set on the newly
+created object, `Bar` never returns that new object.
 
 In the above example, there is no functional difference between using and
 not using the `new` keyword.
@@ -86,10 +86,10 @@ not using the `new` keyword.
 
 ### Creating New Objects via Factories
 
-An often made recommendation is to **not** use `new` since forgetting its use
-may lead to bugs.
+It is often recommended to **not** use `new` because forgetting its use may
+lead to bugs.
 
-In order to create new object, one should rather use a factory and construct a 
+In order to create a new object, one should rather use a factory and construct a 
 new object inside of that factory.
 
     function Foo() {
@@ -113,16 +113,16 @@ downsides.
 
  1. It uses more memory since the created objects do **not** share the methods
     on a prototype.
- 2. In order to inherit the factory needs to copy all the methods from another
+ 2. In order to inherit, the factory needs to copy all the methods from another
     object or put that object on the prototype of the new object.
  3. Dropping the prototype chain just because of a left out `new` keyword
-    somehow goes against the spirit of the language.
+    is contrary to the spirit of the language.
 
 ### In Conclusion
 
-While omitting the `new` keyword might lead to bugs, it is certainly **not** a 
-reason to drop the use of prototypes altogether. In the end it comes down to 
-which solution is better suited for the needs of the application, it is 
-especially important to choose a specific style of object creation **and stick** 
-with it.
+While omitting the `new` keyword might lead to bugs, it is certainly **not** a
+reason to drop the use of prototypes altogether. In the end it comes down to
+which solution is better suited for the needs of the application. It is
+especially important to choose a specific style of object creation and use it
+**consistently**.
 

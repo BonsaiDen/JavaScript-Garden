@@ -1,5 +1,5 @@
 var fs = require('fs'),
-    path = require('path');
+    path = require('path'),
     jade = require('jade'),
     md = require('node-markdown'),
     Class = require('neko').Class;
@@ -28,10 +28,10 @@ var Garden = Class(function(options) {
 
             if (that.loadIndex()) {
                 that.languages[lang] = that.lang;
-                that.log('    Done.')
+                that.log('    Done.');
 
             } else {
-                that.log('    Error: Could not find "index.json"!')
+                that.log('    Error: Could not find "index.json"!');
             }
         }
     });
@@ -164,10 +164,10 @@ var Garden = Class(function(options) {
                 top: lang.navigation[0]
             };
 
-            jade.renderFile(template, {locals: options}, function(err, html){
-                if (err) throw err;
-                fs.writeFileSync(out, html);
-            });
+            var jadefile = fs.readFileSync(template);
+            var jadetemplate = jade.compile (jadefile);
+            var html = jadetemplate(options);
+            fs.writeFileSync(out, html);
             this.log('    Done.');
         }
     },

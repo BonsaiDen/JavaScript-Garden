@@ -23,8 +23,8 @@ The code below will return a new `Array` containing all the elements of the
 
     Array.prototype.slice.call(arguments);
 
-This conversion is **slow**, it is **not recommended** to use it in performance 
-critical sections of code.
+Because this conversion is **slow**, it is **not recommended** to use it in
+performance-critical sections of code.
 
 ### Passing Arguments
 
@@ -59,14 +59,14 @@ wrappers.
 ### Formal Parameters and Arguments Indices
 
 The `arguments` object creates *getter* and *setter* functions for both its 
-properties as well as the function's formal parameters.
+properties, as well as the function's formal parameters.
 
 As a result, changing the value of a formal parameter will also change the value
 of the corresponding property on the `arguments` object, and the other way around.
 
     function foo(a, b, c) {
         arguments[0] = 2;
-        a; // 2                                                           
+        a; // 2
 
         b = 4;
         arguments[1]; // 4
@@ -79,9 +79,9 @@ of the corresponding property on the `arguments` object, and the other way aroun
 
 ### Performance Myths and Truths
 
-The `arguments` object is always created with the only two exceptions being the 
-cases where it is declared as a name inside of a function or one of its formal 
-parameters. It does not matter whether it is used or not.
+The only time  the `arguments` object is not created is where it is declared as
+a name inside of a function or one of its formal parameters. It does not matter
+whether it is used or not.
 
 Both *getters* and *setters* are **always** created; thus, using it has nearly 
 no performance impact at all, especially not in real world code where there is 
@@ -105,11 +105,10 @@ modern JavaScript engines. That case is the use of `arguments.callee`.
 
 In the above code, `foo` can no longer be a subject to [inlining][1] since it 
 needs to know about both itself and its caller. This not only defeats possible 
-performance gains that would arise from inlining, it also breaks encapsulation
-since the function may now be dependent on a specific calling context.
+performance gains that would arise from inlining, but it also breaks encapsulation
+because the function may now be dependent on a specific calling context.
 
-It is **highly recommended** to **never** make use of `arguments.callee` or any of 
-its properties.
+Making use of `arguments.callee` or any of its properties is **highly discouraged**.
 
 > **ES5 Note:** In strict mode, `arguments.callee` will throw a `TypeError` since 
 > its use has been deprecated.

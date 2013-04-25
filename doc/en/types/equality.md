@@ -19,19 +19,19 @@ JavaScript features *weak typing*. This means that the equality operator
     null         ==   undefined     // true
     " \t\r\n"    ==   0             // true
 
-The above table shows the results of the type coercion and it is the main reason 
-why the use of `==` is widely regarded as bad practice, it introduces hard to 
-track down bugs due to its complicated conversion rules.
+The above table shows the results of the type coercion, and it is the main reason 
+why the use of `==` is widely regarded as bad practice. It introduces
+hard-to-track-down bugs due to its complicated conversion rules.
 
-Additionally there is also a performance impact when type coercion is in play;
+Additionally, there is also a performance impact when type coercion is in play;
 for example, a string has to be converted to a number before it can be compared
 to another number.
 
 ### The Strict Equality Operator
 
-The strict equality operator consists of **three** equal signs: `===`
+The strict equality operator consists of **three** equal signs: `===`.
 
-It works exactly like the normal equality operator, except that strict equality 
+It works like the normal equality operator, except that strict equality 
 operator does **not** perform type coercion between its operands.
 
     ""           ===   "0"           // false
@@ -50,8 +50,8 @@ the operands are of different types.
 
 ### Comparing Objects
 
-While both `==` and `===` are stated as **equality** operators, they behave 
-different when at least one of their operands happens to be an `Object`.
+While both `==` and `===` are called **equality** operators, they behave 
+differently when at least one of their operands is an `Object`.
 
     {} === {};                   // false
     new String('foo') === 'foo'; // false
@@ -59,7 +59,7 @@ different when at least one of their operands happens to be an `Object`.
     var foo = {};
     foo === foo;                 // true
 
-Here both operators compare for **identity** and **not** equality; that is, they
+Here, both operators compare for **identity** and **not** equality; that is, they
 will compare for the same **instance** of the object, much like `is` in Python 
 and pointer comparison in C.
 

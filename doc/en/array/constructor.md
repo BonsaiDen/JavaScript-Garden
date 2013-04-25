@@ -11,25 +11,25 @@ when creating new arrays.
     new Array(3); // Result: []
     new Array('3') // Result: ['3']
 
-In cases when there is only one argument passed to the `Array` constructor,
-and that argument is a `Number`, the constructor will return a new *sparse* 
+In cases when there is only one argument passed to the `Array` constructor
+and when that argument is a `Number`, the constructor will return a new *sparse* 
 array with the `length` property set to the value of the argument. It should be 
-noted that **only** the `length` property of the new array will be set this way, 
+noted that **only** the `length` property of the new array will be set this way; 
 the actual indexes of the array will not be initialized. 
 
     var arr = new Array(3);
     arr[1]; // undefined
     1 in arr; // false, the index was not set
 
-The behavior of being able to set the length of the array upfront only comes in 
-handy in a few cases, like repeating a string, in which it avoids the use of a 
-`for loop` code.
+Being able to set the length of the array in advance is only useful in a few
+cases, like repeating a string, in which it avoids the use of a `for loop`
+code.
 
     new Array(count + 1).join(stringToRepeat);
 
 ### In Conclusion
 
-The use of the `Array` constructor should be avoided as much as possible. 
-Literals are definitely preferred. They are shorter and have a clearer syntax; 
-therefore, they also increase the readability of the code.
+The use of the `Array` constructor should be avoided. Literals are definitely
+preferred. They are shorter, have a clearer syntax, and increase code
+readability.
 

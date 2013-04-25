@@ -36,7 +36,7 @@ JavaScript **不会**保护 `hasOwnProperty` 被非法占用，因此如果一�
     foo.hasOwnProperty('bar'); // 总是返回 false
 
     // 使用其它对象的 hasOwnProperty，并将其上下为设置为foo
-    {}.hasOwnProperty.call(foo, 'bar'); // true
+    ({}).hasOwnProperty.call(foo, 'bar'); // true
 
 ###结论
 

@@ -2,7 +2,7 @@
 
 В JavaScript все значения ведут себя как объекты, лишь за двумя исключениями — [`null`](#core.undefined) и [`undefined`](#core.undefined).
 
-    false.toString() // 'false'
+    false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
 
     function Foo(){}
@@ -88,7 +88,7 @@
         "bar": "rab"
     }
 
-    // валидный JavaScript и НЕ валидный JSON
+    // валидный JavaScript и НЕвалидный JSON
     {
         foo: "oof",
         bar: "rab"
