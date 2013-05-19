@@ -55,7 +55,7 @@
             ]
         },
         {
-            "title": "Нативности",
+            "title": "Ядро",
             "dir": "core",
             "articles": [
                 "eval",
