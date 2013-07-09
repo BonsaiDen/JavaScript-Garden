@@ -40,7 +40,7 @@ JavaScript 有移到完全部屬於其他語言處理 `this` 的處理機制。
     foo.apply(bar, [1, 2, 3]); // Array 會被擴展，如下所示
     foo.call(bar, 1, 2, 3); // 傳遞參數 a = 1, b = 2, c = 3
 
-當使用 `function.prototype` 上的 `call` 或只 `apply` 方法時，函式內的 `this` 將會被 **顯示設置** 為函式調用的第一個參數。
+當使用 `function.prototype` 上的 `call` 或是 `apply` 方法時，函式內的 `this` 將會被 **顯示設置** 為函式調用的第一個參數。
 
 As a result, in the above example the *method case* does **not** apply, and `this` 
 inside of `foo` will be set to `bar`.
