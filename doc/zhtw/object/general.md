@@ -21,9 +21,9 @@
 
 ### 物件做為數據類型
 
-JavaScript 的物件可以作為 [*Hashmaps*][1]使用，主要用來保存命名的建與值的對應關係。
+JavaScript 的物件可以作為 [*Hashmaps*][1]使用，主要用來保存命名的鍵與值的對應關係。
 
-使用物件的字面語法 - `{}` - 可以創建一個簡單的物件。 這個新創建的物件從 `Object.prototype` [繼承](#object.prototype)，下面，沒有任何 [字定義屬性](#object.hasownproperty)。
+使用物件的字面語法 - `{}` - 可以創建一個簡單的物件。 這個新創建的物件從 `Object.prototype` [繼承](#object.prototype)，下面，沒有任何 [自定義屬性](#object.hasownproperty)。
 
     var foo = {}; // 一個空的物件
 
@@ -44,10 +44,7 @@ JavaScript 的物件可以作為 [*Hashmaps*][1]使用，主要用來保存命�
     foo.1234; // SyntaxError
     foo['1234']; // works
 
-兩種語法是相等的，但是中括號在下面兩個情況依然有效
-
-- 動態設定屬性
-- 屬性不是一個有較的變數名
+兩種語法是相等的，唯一的差別是，使用中括號允許你動態的設定屬性，使用點操作不允許屬性為變數，否則會造成語法錯誤
 
 ### 刪除屬性
 
