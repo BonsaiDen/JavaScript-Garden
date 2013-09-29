@@ -1,0 +1,127 @@
+## Object Usage and Properties
+
+Everything in JavaScript acts like an object, with the only two exceptions being 
+[`null`](#core.undefined) and [`undefined`](#core.undefined).
+
+A JavaSciprtben minden objektumként mûködik, a [`null`](#core.undefined) és az [`undefined`](#core.undefined) kivételével.
+
+    false.toString(); // 'false'
+    [1, 2, 3].toString(); // '1,2,3'
+    
+    function Foo(){}
+    Foo.bar = 1;
+    Foo.bar; // 1
+
+A common misconception is that number literals cannot be used as
+objects. That is because a flaw in JavaScript's parser tries to parse the *dot 
+notation* on a number as a floating point literal.
+
+Gyakori tévhitként terjed, hogy a JavaScript számok nem használhatóak objektumként. Ez látszólag igaz, mivel a JavaScript értelmezõ a pont utáni részt úgy próbálja beolvasni, mintha lebegõpontos számot látna. Így hibát kaphatunk.  
+
+    2.toString(); // SyntaxError-t vált ki
+
+There are a couple of workarounds that can be used to make number literals act
+as objects too.
+
+Azonban számos kifejezés létezik megoldásként, amelyekkel megkerülhetõ ez a probléma.
+
+    2..toString(); // így a második pont már az objektumra utal
+    2 .toString(); // fontos a space-t észrevenni itt a pont elõtt
+    (2).toString(); // a 2 értékelõdik ki hamarabb
+
+### Objektumok mint adattípusok
+
+Objects in JavaScript can also be used as [*Hashmaps*][1]; they mainly consist 
+of named properties mapping to values.
+
+A JS-beli objektumok [*Hashmaps*][1];-ekként is használhatóak; mivel természetszerûleg kulcs-érték párokat tartalmaznak.
+
+Using an object literal - `{}` notation - it is possible to create a 
+plain object. This new object [inherits](#object.prototype) from `Object.prototype` and 
+does not have [own properties](#object.hasownproperty) defined.
+
+Az objektum literál leírásával - `{}` jelöléssel - lehet létrehozni egy új objektumot. Ez az új objektum az `Object.prototype`-ból [származtat](#object.prototype) és nincsenek [saját mezõi](#object.hasownproperty) definiálva.
+
+    var foo = {}; // a new empty object
+
+    // a new object with a 'test' property with value 12
+    var bar = {test: 12}; 
+
+### Mezõk elérése
+
+The properties of an object can be accessed in two ways, via either the dot
+notation or the square bracket notation.
+
+Egy objektum mezõi kétféle módon érhetõek el, vagy az objektum.mezõnév jelöléssel, vagy a szögletes zárójelek kirakásával.
+    
+    var foo = {name: 'kitten'}
+    foo.name; // kitten
+    foo['name']; // kitten
+    
+    var get = 'name';
+    foo[get]; // kitten
+    
+    foo.1234; // SyntaxError
+    foo['1234']; // mûködik
+
+The notations work almost identically, with the only difference being that the
+square bracket notation allows for dynamic setting of properties and
+the use of property names that would otherwise lead to a syntax error.
+
+A két jelölés majdnem egyenértékûen használható, kivéve, hogy a szögletes zárójelekkel dinamkusan állíthatunk be mezõket és olyan mezõneveket is választhatunk, amik amúgy szintaxis hibához vezetnének (Fordító: mivel a neveket stringbe kell rakni, így nem érdekes hogy a JS által lefoglalt neveket használunk, habár ennek kihasználása erõsen kerülendõ).
+
+### Mezõk törlése
+
+The only way to remove a property from an object is to use the `delete`
+operator; setting the property to `undefined` or `null` only removes the
+*value* associated with the property, but not the *key*.
+
+Egyetlen módon lehet mezõt törölni egy objektumból ez pedig a `delete` operátor
+használata; a mezõ értékének `undefined`-ra vagy `null`-ra való állítása csak
+magára az értékre van kihatással, de a kulcs ugyanúgy megmarad az objektumban.
+
+    var obj = {
+        bar: 1,
+        foo: 2,
+        baz: 3
+    };
+    obj.bar = undefined;
+    obj.foo = null;
+    delete obj.baz;
+
+    for(var i in obj) {
+        if (obj.hasOwnProperty(i)) {
+            console.log(i, '' + obj[i]);
+        }
+    }
+
+The above outputs both `bar undefined` and `foo null` - only `baz` was
+removed and is therefore missing from the output.
+
+A fenti kód mind a `bar undefined` és `foo null` eredményeket fogja adni - 
+egyedül a `baz` mezõ került törlésre, és emiatt hiányzik is az outputról.
+
+### Kulcsok jelölése
+
+    var test = {
+        'case': 'Kulcsszó vagyok, ezért stringként kell leírnod',
+        delete: 'Én is, az vagyok' // Szintaxis hiba (SyntaxError)
+    };
+
+Object properties can be both notated as plain characters and as strings. Due to
+another mis-design in JavaScript's parser, the above will throw 
+a `SyntaxError` prior to ECMAScript 5.
+
+Az objektumok mezõnevei mind stringként, mind egyszerû szövegként (Ford.: aposztrófok nélkül)
+leírhatóak. A JavaScript értelmezõ hibája miatt, a fenti kód azonban `SyntaxError`-t eredményez
+az ECMAScript 5 elõtti verzió esetén.
+
+This error arises from the fact that `delete` is a *keyword*; therefore, it must be 
+notated as a *string literal* to ensure that it will be correctly interpreted by
+older JavaScript engines.
+
+Ez a hiba onnan ered, hogy a `delete` egy *kulcsszó*, viszont érdemes *string literálként*
+leírni hogy helyesen megértsék az öregebb JavaScript motorok is.
+
+[1]: http://en.wikipedia.org/wiki/Hashmap
+
