@@ -29,7 +29,7 @@ használ.
     function Bar() {}
 
     // Beállítjuk a Bar prototípusát a Foo egy új példányára
-    Bar.prototype = new Foo();
+    Bar.prototype = new Foo(); // !
     Bar.prototype.foo = 'Hello World';
 
     // Beállítjuk a Bar konstruktorát
@@ -50,8 +50,8 @@ A fenti kódban a `test` objektum mind a `Bar.prototype` és `Foo.prototype`
 prototípusokból származik, így lesz hozzáférése a `method` nevű függvényhez amely
 a `Foo` prototípusában lett definiálva. A `value` mezőhöz szintén lesz hozzáférése,
 amely akkor jött létre, amikor (szám szerint) **egy** új `Foo` példányt hoztunk létre.
-Érdemes észrevenni hogy az `new Bar()` kifejezés **nem** hoz létre egy új `Foo` példányt
-minden alkalommal, azonban újrahasználja azt az egyetlen inicilalizált `Foo`-t. Így az összes `Bar` példány *egy és ugyanazt* a `value` mezőt (és
+Érdemes észrevenni hogy a `new Bar()` kifejezés **nem** hoz létre egy új `Foo` példányt
+minden alkalommal, azonban újrahasználja azt az egyetlen újonnan inicilalizált `Foo` pédlányunkat. Így az összes `Bar` példány *egy és ugyanazt* a `value` mezőt (és
 értéket) fogja használni.
 
 > **Megj.:** **Ne** használd a `Bar.prototype = Foo` kifejezést, mivel ez nem
@@ -59,58 +59,58 @@ minden alkalommal, azonban újrahasználja azt az egyetlen inicilalizált `Foo`-
 > Így a prototípus lánc a `Function.prototype`-ra fog futni a `Foo.prototype` helyett.
 > Ekkor, a `method` függvény nem lesz benne a prototípus láncban.
 
-### Property Lookup
+### Mezők keresése
 
-When accessing the properties of an object, JavaScript will traverse the
-prototype chain **upwards** until it finds a property with the requested name.
+Amikor olyan utasítást adunk ki, amellyel egy objektum mezőjét keressük, a
+JavaScript **felfele** bejárja az egész prototípus láncot, amíg meg nem találja
+a kért mezőt.
 
-If it reaches the top of the chain - namely `Object.prototype` - and still
-hasn't found the specified property, it will return the value
-[undefined](#core.undefined) instead.
+Hogyha eléri a lánc legtetejét - nevezetesen az `Object.prototype`-t és még
+ekkor sem találja a kért mezőt, akkor az [undefined](#core.undefined)-del fog
+visszatérni.
 
-### The Prototype Property
+### A Prototype mező
 
-While the prototype property is used by the language to build the prototype
-chains, it is still possible to assign **any** given value to it. However,
-primitives will simply get ignored when assigned as a prototype.
+Alapjáraton, a JavaScript a prototype nevű mezőt használja a prototípus láncok
+kialakításához, de ettől függetlenül ez is ugyanolyan mező mint a többi, és 
+**bármilyen** értéket belehet neki állítani. Viszont a primitív típusokat egyszerűen
+figyelmen kívül fogja hagyni a feldolgozó.
 
     function Foo() {}
-    Foo.prototype = 1; // no effect
+    Foo.prototype = 1; // nincs hatása
 
-Assigning objects, as shown in the example above, will work, and allows for dynamic
-creation of prototype chains.
+Az objektumok megadása, mint azt a fentebbi példában láthattuk, hatással van a prototype
+mezőkre és ezeknek az átállításával bele lehet szólni a prototípus láncok kialakításába.
 
-### Performance
+### Teljesítmény
 
-The lookup time for properties that are high up on the prototype chain can have
-a negative impact on performance, and this may be significant in code where
-performance is critical. Additionally, trying to access non-existent properties
-will always traverse the full prototype chain.
+Értelemszerűen, minnél nagyobb a prototípus lánc, annál tovább tart egy-egy mező
+felkeresése, és ez rossz hatással lehet a kód teljesítményére. Emellett, ha egy
+olyan mezőt próbálunk elérni amely nincs az adott objektum példányban, az mindig
+a teljes lánc bejárását fogja eredményezni.
 
-Also, when [iterating](#object.forinloop) over the properties of an object
-**every** property that is on the prototype chain will be enumerated.
+Vigyázat! Akkor is bejárjuk a teljes láncot, amikor egy objektum mezőin próbálunk [iterálni](#object.forinloop).
 
-### Extension of Native Prototypes
+### Natív prototípusok bővítése
 
-One mis-feature that is often used is to extend `Object.prototype` or one of the
-other built in prototypes.
+Egy gyakran elkövetett hiba, hogy az `Object.prototype` prototípust vagy egy másik előre
+definiált prototípust próbálunk kiegészíteni új kóddal.
 
-This technique is called [monkey patching][1] and breaks *encapsulation*. While
-used by popular frameworks such as [Prototype][2], there is still no good
-reason for cluttering built-in types with additional *non-standard* functionality.
+Ezt [monkey patching][1]-nek is hívják, és aktívan kerülendő, mivel megtöri az *egységbe zárás* elvét. 
+Megtévesztő miszkoncepció, mivel olyan népszerű frameworkök is használják ezt a technikát mint a [Prototype][2], de ettől függetlenül ne hagyjuk magunkat csőbe húzni; nincs ésszerű indok arra, hogy összezavarjuk a beépített típusokat, további *nem standard* saját funkcionalitással.
 
-The **only** good reason for extending a built-in prototype is to backport
-the features of newer JavaScript engines; for example,
-[`Array.forEach`][3].
+Az **egyetlen** ésszerű indok erre csak az lehet, hogy szimuláljuk az újabb
+JavaScript motorok működését régebbi társaikon, például
+az [`Array.forEach`][3] implementálásával.
 
-### In Conclusion
+### Zárásként
 
-It is **essential** to understand the prototypal inheritance model before
-writing complex code that makes use of it. Also, be aware of the length of the
-prototype chains in your code and break them up if necessary to avoid possible
-performance problems. Further, the native prototypes should **never** be
-extended unless it is for the sake of compatibility with newer JavaScript
-features.
+**Nagyon fontos** megérteni a prototípusos származtatási modellt, mielőtt olyan
+kódot próbálnánk írni, amely megpróbálja kihasználni a sajátosságait. Nagyon
+oda kell figyelni a prototípuslánc hosszára - osszuk fel több kis láncra ha
+szükséges - hogy elkerüljük a performancia problémákat. Továbbá, a natív
+prototípusokat **soha** ne egészítsük ki, egészen addig amíg nem akarunk
+JavaScript motorok közötti kompatibilitási problémákat áthidalni.
 
 [1]: http://en.wikipedia.org/wiki/Monkey_patch
 [2]: http://prototypejs.org/
