@@ -1,51 +1,51 @@
-## The `for in` Loop
+﻿## A `for in` ciklus
 
-Just like the `in` operator, the `for in` loop traverses the prototype
-chain when iterating over the properties of an object.
+Csak úgy mint a jó öreg `in` operátor, a `for in` is bejárja az egész
+prototípus láncot, amikor egy objektum mezőin próbálnánk iterálni.
 
-> **Note:** The `for in` loop will **not** iterate over any properties that 
-> have their `enumerable` attribute set to `false`; for example, the `length` 
-> property of an array.
+> **Megjegyzés:** A `for in` ciklus **nem** fog iterálni azokon a mezőkön,
+> amelyeknek az `enumerable` tulajdonsága `false`-ra van állítva. Például a 
+> `length` mező nem kerül az iterációba amikor egy tömbön iterálnánk végig.
     
-    // Poisoning Object.prototype
+    // Mérgezzük Object.prototypeot!
     Object.prototype.bar = 1;
 
     var foo = {moo: 2};
     for(var i in foo) {
-        console.log(i); // prints both bar and moo
+        console.log(i); // mind a moo és bar is kiírásra kerül
     }
 
-Since it is not possible to change the behavior of the `for in` loop itself, it
-is necessary to filter out the unwanted properties inside the loop body; 
-this is done using the [`hasOwnProperty`](#object.hasownproperty) method of 
-`Object.prototype`.
+Mivel -hála égnek- magának a `for in` ciklusnak a működését nem lehet befolyásolni,
+így más módszert kell találnunk ahhoz hogy száműzzük a váratlan mezőket a ciklus magból.
+(Értsd: Azokat amelyek a prototípus láncon csücsülnek csak). Ezt pedig az `Object.prototype`-ban
+lakó [`hasOwnProperty`](#object.hasownproperty) függvény használatával érhetjük el.
 
-> **Note:** Since `for in` always traverses the complete prototype chain, it
-> will get slower with each additional layer of inheritance added to an object.
+> **Fontoljuk meg:** Mivel a `for in` mindig bejárja a teljes prototípus láncot,
+> így minnél több elemet adunk a származtatási láncunkba, annál lassabban fog tekerni.
 
-### Using `hasOwnProperty` for Filtering
+### Szűrés használata a `hasOwnProperty`-vel
 
-    // still the foo from above
+    // még mindig a fenti foo-nál tartunk
     for(var i in foo) {
         if (foo.hasOwnProperty(i)) {
             console.log(i);
         }
     }
 
-This version is the only correct one to use. Due to the use of `hasOwnProperty`, it
-will **only** print out `moo`. When `hasOwnProperty` is left out, the code is 
-prone to errors in cases where the native prototypes - e.g. `Object.prototype` - 
-have been extended.
+Ez az egyetlen helyes útja annak hogy az objektum saját mezőin iteráljunk csak végig.
+Mivel a `hasOwnProperty`-t használjuk, így csak a várt `moo`-t fogja kiírni. Tehén jó
+kódunk van! Hogyha a `hasOwnProperty`-t kihagynánk, nem csak a Milka gyár nem örülne,
+de a kódunk is ki lenne téve nem várt hibáknak, amik pl. abból fakadnak hogy valaki ocsmányul
+kiterjesztette az `Object.prototype`-t.
 
-One widely used framework that extends `Object.prototype` is [Prototype][1].
-When this framework is included, `for in` loops that do not use
-`hasOwnProperty` are guaranteed to break.
+Például, ha a [Prototype][1] frameworköt használjuk, és nem ilyen stílusban írjuk a ciklusainkat, a hibák szinte garantáltak, ugyanis ők saját szájízükre kiterjesztik az `Object.prototype`-t.
 
-### In Conclusion
+### Konklúzió
 
-It is recommended to **always** use `hasOwnProperty`. Assumptions should never
-be made about the environment the code is running in, or whether the native
-prototypes have been extended or not.
+Erősen javallott **mindig** használni a `hasOwnProperty`-t. Soha ne éljünk pozitív
+feltételezésekkel a futó kódot illetően, főleg olyan döntésekben nem érdemes
+orosz rulettezni, mint hogy kiterjeszti-e valaki a natív prototípusokat vagy nem.
+Mert általában de.
 
 [1]: http://www.prototypejs.org/
 

@@ -1,57 +1,61 @@
-## `hasOwnProperty`
+﻿## `hasOwnProperty`
 
-To check whether an object has a property defined on *itself* and not somewhere
-on its [prototype chain](#object.prototype), it is necessary to use the
-`hasOwnProperty` method which all objects inherit from `Object.prototype`.
+Hogy megtudjuk nézni egy adott objektum saját mezőit - azokat a mezőket amelyek
+az objektumon *közvetlenül* vannak definiálva, és nem valahol a 
+[prototípus láncon](#object.prototype) -, a `hasOwnProperty` függvényt használata 
+ajánlott, amelyet az összes objektum amúgy is örököl az `Object.prototype`-ból.
 
-> **Note:** It is **not** enough to check whether a property is `undefined`. The
-> property might very well exist, but its value just happens to be set to
-> `undefined`.
+> **Megj.:** Vicces programozók miatt, **nem** biztos hogy elég lesz megnézni hogy 
+> egy adott mező `undefined`-e. Mivel lehet hogy ekkor maga a mező létezik, csak valaki
+> konkrétan az értékét `undefined`-ra állította.
 
-`hasOwnProperty` is the only thing in JavaScript which deals with properties and
-does **not** traverse the prototype chain.
+A `hasOwnProperty` függvény az egyetlen olyan dolog amelyik anélkül tudja ellenőrizni
+az objektum mezőit, hogy megpróbálná bejárni a prototípus láncot.
 
-    // Poisoning Object.prototype
+    // Az Object.prototype beszennyezése
     Object.prototype.bar = 1;
     var foo = {goo: undefined};
 
     foo.bar; // 1
-    'bar' in foo; // true
+    'bar' in foo; // igaz
 
-    foo.hasOwnProperty('bar'); // false
-    foo.hasOwnProperty('goo'); // true
+    foo.hasOwnProperty('bar'); // hamis
+    foo.hasOwnProperty('goo'); // igaz
 
-Only `hasOwnProperty` will give the correct and expected result; this is
-essential when iterating over the properties of any object. There is **no** other
-way to exclude properties that are not defined on the object itself, but
-somewhere on its prototype chain.
+Hogy megértsük a fontosságát, egyedül a `hasOwnProperty` tudja hozni a korrekt
+és elvárt eredményeket mezőellenőrzés szempontjából. Egyszerűen **nincs más** 
+módja annak, hogy kizárjuk a szűrésünkből azokat a mezőket amelyek nem az objektumon, 
+hanem valahol feljebb, a prototípus láncon lettek definiálva.
 
-### `hasOwnProperty` as a Property
+### A `hasOwnProperty` mint mező
 
-JavaScript does not protect the property name `hasOwnProperty`; thus, if the
-possibility exists that an object might have a property with this name, it is
-necessary to use an *external* `hasOwnProperty` to get correct results.
+A JavaScript persze nem védi magát a `hasOwnProperty` nevet, így egy jókedvű
+programozóban mindig megvan a lehetőség, hogy így nevezze el a saját függvényét.
+Ennek kikerülése érdekében ajánlott mindig a `hasOwnProperty`-re *kívülről* hivatkozni
+(Értsd: A hackelt -saját hasOwnPropertyvel ellátott- objektum kontextusán kívüli objektum hasOwnPropertyjét hívjuk meg).
 
     var foo = {
         hasOwnProperty: function() {
             return false;
         },
-        bar: 'Here be dragons'
+        bar: 'Mordor itt kezdődik'
     };
 
-    foo.hasOwnProperty('bar'); // always returns false
+    foo.hasOwnProperty('bar'); // mindig hamissal tér vissza
 
-    // Use another Object's hasOwnProperty and call it with 'this' set to foo
-    ({}).hasOwnProperty.call(foo, 'bar'); // true
+    // Használhatjuk egy másik objektum hasOwnPropertyjét, 
+	// hogy meghívjuk a foo-n.
+    ({}).hasOwnProperty.call(foo, 'bar'); // ez már igaz
 
-    // It's also possible to use the hasOwnProperty property from the Object property for this purpose
-    Object.prototype.hasOwnProperty.call(foo, 'bar'); // true
+    // Szintén jó megoldás lehet közvetlenül az 
+	// Object prototypejából hívni ezt a függvényt.
+    Object.prototype.hasOwnProperty.call(foo, 'bar'); // ez is igaz
 
 
-### In Conclusion
+### Konklúzió
 
-Using `hasOwnProperty` is the **only** reliable method to check for the
-existence of a property on an object. It is recommended that `hasOwnProperty`
-is used in **every** [`for in` loop](#object.forinloop) to avoid errors from
-extended native [prototypes](#object.prototype).
-
+A `hasOwnProperty` használata az **egyetlen** megbízható módszer annak eldöntésére,
+hogy egy mező közvetlenül az objektumon lett-e létrehozva. Melegen ajánlott a 
+`hasOwnProperty`-t **minden** [`for in` ciklusban](#object.forinloop) használni.
+Használatával ugyanis elkerülhetjük a kontár módon kiegészített natív prototípusokból
+fakadó esetleges hibákat, amire példát az imént láttunk.
