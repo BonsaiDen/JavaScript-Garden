@@ -1,40 +1,39 @@
-## How `this` Works
+﻿## A `this` mágikus működése
 
-JavaScript has a different concept of what the special name `this` refers to 
-than most other programming languages. There are exactly **five** different 
-ways in which the value of `this` can be bound in the language.
+A `this` kicsit másképp működik a JavaScriptben mint ahogy azt megszokhattuk más nyelvekben.
+Mondjuk úgy hogy egy átlagos Java programozó rosszul hiszi hogy ismeri a thist amikor ránéz
+erre a nyelvre. Ugyanis pontosan **ötféle** módja lehet annak hogy a `this` éppen mire
+utal a nyelvben.
 
-### The Global Scope
+### A Global Scope
 
-    this;
+	this;
+	
+Amikor globális hatókörben van használva a this, akkor pontosan a *globális* objektumra utal.
 
-When using `this` in global scope, it will simply refer to the *global* object.
+### Függvény híváskor
 
+	foo();
+	
+Itt, a `this` megint a *globális* objektumra fog utalni.
 
-### Calling a Function
+> **ES5 Megjegyzés:** Strict módban a globális eset **nem létezik** többé.
+> Ezekben az esetekben a `this` értéke undefined lesz.
 
-    foo();
-
-Here, `this` will again refer to the *global* object.
-
-> **ES5 Note:** In strict mode, the global case **no longer** exists.
-> `this` will instead have the value of `undefined` in that case.
-
-### Calling a Method
+### Eljárás hívásakor
 
     test.foo(); 
 
-In this example, `this` will refer to `test`.
+Ebben a példában a `this` a `test` objektumra fog hivatkozni.
 
-### Calling a Constructor
+### Konstuktor hívásakor
 
     new foo(); 
 
-A function call that is preceded by the `new` keyword acts as
-a [constructor](#function.constructors). Inside the function, `this` will refer 
-to a *newly created* `Object`.
+Ha a függvény hívását a `new` kulcsszóval előzzük meg, akkor a függvény  [konstruktorként](#function.constructors) fog viselkedni. A függvényen belül, a `this`
+az *újonnan létrehozott* `Ojjektumra` fog hivatkozni.
 
-### Explicit Setting of `this`
+### A `this` explicit beállítása
 
     function foo(a, b, c) {}
                           
@@ -42,34 +41,35 @@ to a *newly created* `Object`.
     foo.apply(bar, [1, 2, 3]); // array will expand to the below
     foo.call(bar, 1, 2, 3); // results in a = 1, b = 2, c = 3
 
-When using the `call` or `apply` methods of `Function.prototype`, the value of
-`this` inside the called function gets **explicitly set** to the first argument 
-of the corresponding function call.
+A `Function.prototype`-ban levő `call` vagy `apply` használatakor aztán elszabadul a pokol :).
+Ezekben az esetekben ugyanis a this a foo hívásakor **egzaktan** be lesz állítva az apply/call
+első argumentumára. 
 
-As a result, in the above example the *method case* does **not** apply, and `this` 
-inside of `foo` will be set to `bar`.
+Eredményképp a foo meghívásakor a `this` értéke a `bar` objektumra lesz beállítva.
 
-> **Note:** `this` **cannot** be used to refer to the object inside of an `Object`
-> literal. So `var obj = {me: this}` will **not** result in `me` referring to
-> `obj`, since `this` only gets bound by one of the five listed cases.
+> **Megj.:** A `this` kulcsszót **nem lehet** `Object` literál létrehozásakor arra használni,
+> hogy magára az objektumra hivatkozzon.
+> Így a `var obj = {me: this}` kódban a `me` **nem fog** a `this`-re hivatkozni, ugyanis
+> ez az eset nem tartozik egyikhez sem a fent megtalálható öt közül.
 
-### Common Pitfalls
+### Gyakori buktatók
 
-While most of these cases make sense, the first can be considered another
-mis-design of the language because it **never** has any practical use.
+A fent megtalálható eseteknek többé-kevésbé van értelme, kivéve az elsőt, és
+ez is a nyelv rossz designjára utal. Ugyanis az első esetnek **soha** nem lesz
+semmilyen praktikus felhasználási módja.
 
     Foo.method = function() {
         function test() {
-            // this is set to the global object
+            // A this itt a globális ojjektum.
         }
         test();
     }
 
-A common misconception is that `this` inside of `test` refers to `Foo`; while in
-fact, it **does not**.
+Gyakori hiba, hogy úgy gondolják a fenti példában az emberek, hogy a `this` a `test` függvényen
+belül a `Foo`-ra fog mutatni, pedig **nem**.
 
-In order to gain access to `Foo` from within `test`, it is necessary to create a 
-local variable inside of `method` that refers to `Foo`.
+Megoldásképp, hogy a `Foo`-hoz hozzáférhessük a `test`-en belül, szükségszerű egy változót
+lokálisan elhelyezni a `method`-on belül, ami már valóban a kívánt `this`-re (`Foo`-ra) mutat.
 
     Foo.method = function() {
         var that = this;
@@ -78,24 +78,26 @@ local variable inside of `method` that refers to `Foo`.
         }
         test();
     }
+	
+A `that` tuladjonképpen egy mezei változónév (nem kulcsszó), de sokszor használják arra,
+hogy egy másik `this`-re hivatkozzanak vele. A [colsureökkel](#function.closures) kombinálva
+ez a módszer arra is használható hogy `this`eket passzolgassunk a vakvilágban és mégtovább.
 
-`that` is just a normal variable name, but it is commonly used for the reference to an 
-outer `this`. In combination with [closures](#function.closures), it can also 
-be used to pass `this` values around.
+### Eljárások értékül adása
 
-### Assigning Methods
-
-Another thing that does **not** work in JavaScript is function aliasing, which is
-**assigning** a method to a variable.
+Egy másik koncepció ami **nem** fog a JavaScriptben működni, az az aljas függvények létrehozása (függvény aliasok :)), ami tulajdonképpen egy függvény másik névhez
+való **kötését** jelentené.
 
     var test = someObject.methodTest;
     test();
 
-Due to the first case, `test` now acts like a plain function call; therefore,
-`this` inside it will no longer refer to `someObject`.
 
-While the late binding of `this` might seem like a bad idea at first, in 
-fact, it is what makes [prototypal inheritance](#object.prototype) work. 
+Az első eset miatt a `test` egy sima függvényhívásként működik, azonban a `this` értéke
+a függvényen belül a továbbiakban **nem** a `someObject` lesz.	
+
+Elsőre a this ilyen módon való utánkötése (late binding) nem tűnik jó ötletnek.
+Azonban ez az, amitől a [prototípusos öröklődés](#object.prototype) is működni tud, ami
+a nyelv egyik fő erőssége.
 
     function Foo() {}
     Foo.prototype.method = function() {};
@@ -105,7 +107,5 @@ fact, it is what makes [prototypal inheritance](#object.prototype) work.
 
     new Bar().method();
 
-When `method` gets called on an instance of `Bar`, `this` will now refer to that
-very instance. 
-
-
+Amikor a `method` meghívódik a `Bar` példányaként, a `this` pontosan a `Bar`
+megfelelő példányára fog mutatni.
