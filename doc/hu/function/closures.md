@@ -1,11 +1,11 @@
-## Closures and References
+﻿## Closureök és referenciák
 
-One of JavaScript's most powerful features is the availability of *closures*.
-With closures, scopes **always** keep access to the outer scope, in which they
-were defined. Since the only scoping that JavaScript has is 
-[function scope](#function.scopes), all functions, by default, act as closures.
+A JavaScript nyelv egyik legerőteljesebb tulajdonsága a *closureök* használatában rejlik.
+Ezek használatával a hatókörök egymásba ágyazhatóak, és egy belső hatókör mindig hozzáfér
+az őt körülvevő, külső hatókör változóihoz. Miután JavaScriptben egyetlen dologgal lehet
+hatóköröket kifejezni, és ez a [funkció](#function.scopes) (bizony az if, try/catch és hasonló blokkok **nem** jelentenek új hatókört, mint pl. a Javaban), az összes funkció closureként szerepel.
 
-### Emulating private variables
+### Privát változók "becsalása"
 
     function Counter(start) {
         var count = start;
@@ -23,31 +23,31 @@ were defined. Since the only scoping that JavaScript has is
     var foo = Counter(4);
     foo.increment();
     foo.get(); // 5
+	
+Ebben a példában a `Counter` **két** closurerel tér vissza: az `increment` és
+a `get` funkcióval. Mind a két funkció **referenciát** tárol a `Counter` hatókörre,
+és így mindketten hozzáférnek a `count` változóhoz, ami ebben a hatókörben lett
+definiálva.
 
-Here, `Counter` returns **two** closures: the function `increment` as well as 
-the function `get`. Both of these functions keep a **reference** to the scope of 
-`Counter` and, therefore, always keep access to the `count` variable that was 
-defined in that scope.
+### Miért működnek a privát változók?
 
-### Why Private Variables Work
-
-Since it is not possible to reference or assign scopes in JavaScript, there is 
-**no** way of accessing the variable `count` from the outside. The only way to 
-interact with it is via the two closures.
+Mivel a JavaScriptben egyszerűen **nem** lehet hatókörre referálni, vagy hatókört
+értékül adni, így ezért szintén lehetetlen elérni az iménti `count` változót a külvilág számára.
+Egyetlen mód van a megszólítására, ez pedig a fentebbi két closureön belül történik.
 
     var foo = new Counter(4);
     foo.hack = function() {
         count = 1337;
     };
+	
+A fentebbi kód **nem** fogja megváltoztatni a `Counter` hatókör `count` változóját,
+mivel a `foo.hack` mező **nem abban** a hatókörben lett létrehozva. Ehelyett, okosan,
+létre fogja hozni, vagy felül fogja írni a *globális* `count` változót (window.count).
 
-The above code will **not** change the variable `count` in the scope of `Counter`, 
-since `foo.hack` was not defined in **that** scope. It will instead create - or 
-override - the *global* variable `count`.
+### Closureök használata ciklusokban
 
-### Closures Inside Loops
-
-One often made mistake is to use closures inside of loops, as if they were
-copying the value of the loop's index variable.
+Az egyik leggyakoribb hiba amit el lehet követni, az a closureök ciklusokban való használata.
+Annak is azon speciális esete amikor a ciklus indexváltozóját szeretnénk lemásolni a closureön belül.
 
     for(var i = 0; i < 10; i++) {
         setTimeout(function() {
@@ -55,20 +55,21 @@ copying the value of the loop's index variable.
         }, 1000);
     }
 
-The above will **not** output the numbers `0` through `9`, but will simply print
-the number `10` ten times.
+A fenti kódrészlet marhára **nem** a számokat fogja kiírni `0`-tól `9`-ig, de inkább
+a `10`-et fogja tízszer kiírni.
 
-The *anonymous* function keeps a **reference** to `i`. At the time 
-`console.log` gets called, the `for loop` has already finished, and the value of 
-`i` as been set to `10`.
+Ugyanis a belső *névtelen* függvény egy **referenciát** fog tárolni a külső `i` változóra, és
+akkor, amikor végül a `console.log` sor lefut, a `for loop` már végzett az egész ciklussal,
+így az `i` értéke `10`-re lesz beállítva.
 
-In order to get the desired behavior, it is necessary to create a **copy** of 
-the value of `i`.
+Ahhoz, hogy a várt működést kapjuk (tehát a számokat 0-tól 9-ig), szükségszerű az `i` változó
+értékét **lemásolni**.
 
-### Avoiding the Reference Problem
+### A referencia probléma elkerülése
 
-In order to copy the value of the loop's index variable, it is best to use an 
-[anonymous wrapper](#function.scopes).
+Az előző problémára megoldást úgy lehet jól adni, hogy az utasításoknak megfelelően 
+lemásoljuk a ciklusváltozót, úgy hogy a jelenlegi ciklusmagöt körbevesszük egy [névtelen
+függvénnyel](#function.scopes).
 
     for(var i = 0; i < 10; i++) {
         (function(e) {
@@ -78,15 +79,12 @@ In order to copy the value of the loop's index variable, it is best to use an
         })(i);
     }
 
-The anonymous outer function gets called immediately with `i` as its first 
-argument and will receive a copy of the **value** of `i` as its parameter `e`.
+A külső ("csomagoló") névtelen függvény így azonnal meghívódik az `i` ciklusváltozóval, mint paraméterrel,
+és így mindig egy másolatot fog kapni az `i` változó **értékéről**, amit ő `e` néven emészt tovább.
 
-The anonymous function that gets passed to `setTimeout` now has a reference to 
-`e`, whose value does **not** get changed by the loop.
+Így a `setTimeout`ban lévő névtelen fgv. mindig az `e` nevű referenciára fog mutatni, aminek az értéke így már **nem** változik meg a ciklus futása során.
 
-There is another possible way of achieving this, which is to return a function 
-from the anonymous wrapper that will then have the same behavior as the code 
-above.
+Egy másik lehetséges út a megoldáshoz az, hogy egy "csomagoló" függvényt visszatérítünk a setTimeoutból, aminek ugyanaz lesz a hatása, mint a fentebbi példának.
 
     for(var i = 0; i < 10; i++) {
         setTimeout((function(e) {
@@ -95,4 +93,7 @@ above.
             }
         })(i), 1000)
     }
+
+
+
 
