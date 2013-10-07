@@ -1,35 +1,34 @@
-## The `arguments` Object
+﻿## Az `arguments` ojjektum
 
-Every function scope in JavaScript can access the special variable `arguments`.
-This variable holds a list of all the arguments that were passed to the function.
+Minden függvényhatókörben hozzáférhető az `arguments` nevű speciális változó,
+amely azon argumentumok listáját tartalmazza, amelyekkel a függvényt meghívták.
 
-> **Note:** In case `arguments` has already been defined inside the function's
-> scope either via a `var` statement or being the name of a formal parameter,
-> the `arguments` object will not be created.
+> **Megjegyzés:** Abban a trükkös esetben, hogyha a függvényhatókörön belül valahogy
+> definiáljuk az `arguments`-et mint nevet, akár változóként (`var`ral), vagy a függvény 
+> paramétereként, akkor ez a speciális `arguments` ojjektum nem lesz létrehozva.
 
-The `arguments` object is **not** an `Array`. While it has some of the 
-semantics of an array - namely the `length` property - it does not inherit from 
-`Array.prototype` and is in fact an `Object`.
+Lehet hogy úgy néz ki, de az `arguments` objektum **nem** egy `tömb`. Látszólag hasonlít rá,
+mivel van például egy `length` nevű mezője, de igazából nem az `Array.prototype`-ból "származik",
+hanem tisztán az `Object`-ből.
 
-Due to this, it is **not** possible to use standard array methods like `push`,
-`pop` or `slice` on `arguments`. While iteration with a plain `for` loop works 
-just fine, it is necessary to convert it to a real `Array` in order to use the 
-standard `Array` methods on it.
+Itt jön a trükk lényege, hogy ennek köszönhetően **nem** használhatóak rajta a standard
+tömb műveletek mint például a `push`, `pop` vagy a `slice`. Míg a sima `for` ciklusos iterálás
+működik itt is, ahhoz hogy az előbb említett műveleteket is tudjuk rajta használni, át kell
+konvertálni egy valódi `Array` objektummá.
 
-### Converting to an Array
+### Tömbbé konvertálás
 
-The code below will return a new `Array` containing all the elements of the 
-`arguments` object.
+Ez a kódrészlet egy új `Array` objektummá varázsolja az emlegetett `arguments` szamarat.
 
     Array.prototype.slice.call(arguments);
+	
+De, ez a konverzió meglehetősen **lassú** így egyáltalán **nem ajánlott** teljesítmény kirtikus
+alkalmazások írása esetén.
 
-Because this conversion is **slow**, it is **not recommended** to use it in
-performance-critical sections of code.
+### Argumentumok kezelése
 
-### Passing Arguments
-
-The following is the recommended way of passing arguments from one function to
-another.
+A következő módszer ajánlott arra az esetre hogyha az egyik függvény paramétereit egy-az-egyben
+át szeretnénk lökni egy másik függvény számára.
 
     function foo() {
         bar.apply(null, arguments);
@@ -38,8 +37,8 @@ another.
         // do stuff here
     }
 
-Another trick is to use both `call` and `apply` together to create fast, unbound
-wrappers.
+Egy másik trükk arra hogy teljesen független wrapper függvényeket gyártsunk, a `call`
+és `apply` együttes használata.
 
     function Foo() {}
 
@@ -54,15 +53,14 @@ wrappers.
         // Result: Foo.prototype.method.call(this, arg1, arg2... argN)
         Function.call.apply(Foo.prototype.method, arguments);
     };
+	
+### Paraméterek és argumentum indexek
 
+A háttérben az `arguments` objektum minden egyes indexére (elemére) egy *getter* és egy *setter*
+függvényt is kap, csak úgy ahogy a függvény paramétereit is felül tudjuk írni, illetve eltudjuk érni.
 
-### Formal Parameters and Arguments Indices
-
-The `arguments` object creates *getter* and *setter* functions for both its 
-properties, as well as the function's formal parameters.
-
-As a result, changing the value of a formal parameter will also change the value
-of the corresponding property on the `arguments` object, and the other way around.
+Ennek eredményeképp, az `arguments` objektumon véghezvitt változtatások szinkronban
+változtatják a függvény nevesített paramétereit is.
 
     function foo(a, b, c) {
         arguments[0] = 2;
@@ -76,43 +74,46 @@ of the corresponding property on the `arguments` object, and the other way aroun
         c; // 3
     }
     foo(1, 2, 3);
+	
+### Teljesítmény mítoszok és trükkök
 
-### Performance Myths and Truths
+Ahogy már azt korábban körvonalaztuk, az `arguments` objektum csak akkor nem jön létre,
+hogyha a függvényhatókörön belül definiálunk egy változót ezzel a névvel, vagy a függvényünk
+egyik paraméterének ezt a nevet választjuk.
 
-The only time  the `arguments` object is not created is where it is declared as
-a name inside of a function or one of its formal parameters. It does not matter
-whether it is used or not.
+Azonban a *getterek* és *setterek* mindig létrejönnek, de ez ne zavarjon meg minket, mert
+semmiféle befolyása nincs a teljesítményre, pláne olyan kódban ahol sokkal több mindennel
+is foglalkozunk mint az `arguments` objetkumhoz való hozzáférés.
 
-Both *getters* and *setters* are **always** created; thus, using it has nearly 
-no performance impact at all, especially not in real world code where there is 
-more than a simple access to the `arguments` object's properties.
+> **ES5 Megjegyzés:** Ezek a **getterek** és **setterek** nem jönnek létre strict módban.
 
-> **ES5 Note:** These *getters* and *setters* are not created in strict mode.
-
-However, there is one case which will drastically reduce the performance in
-modern JavaScript engines. That case is the use of `arguments.callee`.
+Habár, egyetlen eset van, amelynek komoly hatása lehet a kód teljesítményére a modern
+JavaScript motorokban. Ez pedig az `arguments.callee` használata.
 
     function foo() {
-        arguments.callee; // do something with this function object
-        arguments.callee.caller; // and the calling function object
+        arguments.callee; // csináljunk valamit ezzel a függvény objektummal
+        arguments.callee.caller; // és ennek a hívójával..
     }
 
     function bigLoop() {
         for(var i = 0; i < 100000; i++) {
-            foo(); // Would normally be inlined...
+            foo(); // Így viszont nem lehet behelyettesíteni ide...
         }
     }
 
-In the above code, `foo` can no longer be a subject to [inlining][1] since it 
-needs to know about both itself and its caller. This not only defeats possible 
-performance gains that would arise from inlining, but it also breaks encapsulation
-because the function may now be dependent on a specific calling context.
+A fenti kódban a `foo` helyére nem lehet egyszerűen behelyettesíteni a [függvény törzsét][1],
+mivel a függvény törzsének fogalma kell legyen mind magáról, mind az ő hívójáról. Ez nem csak
+hogy azt akadályozza meg, hogy a behelyettesítéssel nyerjünk egy kis többlet performanciát,
+de az egységbe zárás elvét is erősen keresztbevágja, hiszen a függvény így erősen támaszkodni
+fog a hívó környezetére (kontextusára).
 
-Making use of `arguments.callee` or any of its properties is **highly discouraged**.
+Emiatt is, az `arguments.callee`, vagy bármely mezőjének használata **erősen kerülendő**.
 
-> **ES5 Note:** In strict mode, `arguments.callee` will throw a `TypeError` since 
-> its use has been deprecated.
+> **ES5 Okoskodás:** Strict módban, az `arguments.callee` kifejezés egy `TypeError` hibát fog dobni,
+> mivel a használata elavult.
 
 [1]: http://en.wikipedia.org/wiki/Inlining
+
+
 
 
