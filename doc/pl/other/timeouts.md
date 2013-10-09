@@ -2,8 +2,6 @@
 
 Ponieważ JavaScript jest asynchroniczny, istnieje możliwość zaplanowania wykonania 
 funkcji przy użyciu funkcji `setTimeout` i `setInterval`.
-Since JavaScript is asynchronous, it is possible to schedule the execution of a 
-function by using the `setTimeout` and `setInterval` functions.
 
 > **Note:** Funkcje czasowe nie są częścią standardu ECMAScript. Jest to część 
 > standardu [DOM][1].
