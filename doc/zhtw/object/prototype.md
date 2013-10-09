@@ -1,6 +1,6 @@
 ## Prototype
  
-JavaScript 不包含原本繼承的模型。然而它使用的是 *prototypal* 原型。
+JavaScript 不包含原本繼承的模型。然而它使用的是*原型*模型*。
 
 然而常常有人提及 JavaScript 的缺點，就是基於原本繼承模型比類繼承更強大。
 現實傳統的類繼承模型是很簡單。但是在 JavaScript 中實現元繼承則要困難很多。
@@ -51,7 +51,7 @@ JavaScript 不包含原本繼承的模型。然而它使用的是 *prototypal* �
 
 當查詢一個物件的屬性時，JavaScript 會 **向上** 查詢，直到查到指定名稱的屬性為止。
 
-如果他查到原型鏈的頂部 - 也就是 `Object.prototype` - 但是仍然每有指定的屬定，就會返回 [undefined](#core.undefined)。
+如果他查到原型鏈的頂部 - 也就是 `Object.prototype` - 但是仍然沒有指定的屬定，就會返回 [undefined](#core.undefined)。
 
 ### 原型屬性
 
@@ -70,9 +70,9 @@ JavaScript 不包含原本繼承的模型。然而它使用的是 *prototypal* �
 
 ### 擴展 Native Prototype
 
-一個經常錯誤使用的特定，那就是擴展 `Object.prototype` 或者是其他內置類型的原型物件。
+一個經常發生的錯誤，那就是擴展 `Object.prototype` 或者是其他內建類型的原型物件。
 
-這種技術叫做 [monkey patching][1] 並且會破壞 *封裝*。雖然被廣泛的應用到一些 Javascript 的架構，但是我仍然認為內置類型添加是一個 *非標準* 的函式的好方法
+這種技術叫做 [monkey patching][1] 並且會破壞 *封裝*。雖然被廣泛的應用到一些 Javascript 的架構，像是 [Prototype](http://prototypejs.org) ， 但仍然沒有好的理由新增一個 *非標準* 的功能去搞亂內建型別
 
 擴展內置類型的 **唯一** 理由是為了和新的 JavaScript 保持一致，比如說 [`Array.forEach`][3]
 
