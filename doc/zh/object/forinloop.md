@@ -30,7 +30,7 @@
 如果不使用 `hasOwnProperty`，则这段代码在原生对象原型（比如 `Object.prototype`）被扩展时可能会出错。
 
 一个广泛使用的类库 [Prototype][1] 就扩展了原生的 JavaScript 对象。
-因此，但这个类库被包含在页面中时，不使用 `hasOwnProperty` 过滤的 `for in` 循环难免会出问题。
+因此，当这个类库被包含在页面中时，不使用 `hasOwnProperty` 过滤的 `for in` 循环难免会出问题。
 
 ###总结
 
