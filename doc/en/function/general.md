@@ -26,7 +26,7 @@ This example assigns the unnamed and *anonymous* function to the variable `foo`.
     var foo = function() {};
 
 Due to the fact that `var` is a declaration that hoists the variable name `foo` 
-before the actual execution of the code starts, `foo` is already defined when 
+before the actual execution of the code starts, `foo` is already declared when 
 the script gets executed.
 
 But since assignments only happen at runtime, the value of `foo` will default
