@@ -26,7 +26,7 @@ literales númericos actúen como objetos.
 ### Objetos como un tipo de datos
 
 Los objetos en JavaScript también pueden ser utilizados como una Tabla Hash o conocido como [*Hashmap*][1] en inglés, consisten
-principalmente en nombres de propiedades asignadoles valores a estos.
+principalmente en nombres de propiedades, y asignándoles valores a éstas.
 
 El uso de un objeto literal - con notación `{}` - puede crear un
 objeto plano. Este nuevo objeto [heredado](#object.prototype) desde `Object.prototype`
@@ -93,7 +93,7 @@ de `SyntaxError` antes de ECMAScript 5.
 
 Este error se debe al `eliminar` una *keyword*; por lo tanto, debe ser
 anotado como un *string literal* para asegurarse que será interpretado correctamente
-por diversos motorores de JavaScript.
+por diversos motores de JavaScript.
 
 [1]: http://en.wikipedia.org/wiki/Hashmap
 
