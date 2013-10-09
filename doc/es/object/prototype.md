@@ -4,12 +4,12 @@ JavaScript no posee en sus características un sistema clásico de herencia, sin
 utiliza un *prototipo* para esto. 
 
 Si bien a menudo se considera uno de los puntos débiles de JavaScript, el
-modelo de herecia prototipado es de hecho más poderoso que el modelo clásico.
-Por ejemplo, es bastante trivial construir un modelo clásico en la parte superior del mismo,
-mientras esto es una tarea mucho más difícil.
+modelo de herencia prototipado es de hecho más poderoso que el modelo clásico.
+Por ejemplo, es bastante trivial construir un modelo clásico a partir del modelo prototipado,
+mientras que al contrario es una tarea mucho más difícil.
 
 Debido al hecho que JavaScript es básicamente el único lenguaje que utiliza
-apliamente la herencia prototipada, se necesita algo de tiempo para adaptarse a
+ampliamente la herencia prototipada, se necesita algo de tiempo para adaptarse a
 las diferencias entre los dos modelos.
 
 La primera gran diferencia es que la herencia en JavaScript se realiza usando
@@ -83,30 +83,30 @@ la creación dinámica de cadena de prototipos.
 ### Rendimiento
 
 El tiempo tomado en la búsqueda de propiedades es alta y la cadena de prototipo puede
-presentar un impacto negativo critico en el rendimiento en partes del código. Además, 
-si ha tratado de acceder a propiedades que no existen este saltara a la cadena de prototipo.
+presentar un impacto negativo crítico en el rendimiento en partes del código. Además, 
+si ha tratado de acceder a propiedades que no existen, esto provoca que se recorra la cadena de prototipo completa.
 
 Además, al recorrer en [iteración](#object.forinloop) las propiedades de un objeto
-y **cada** propiedad será encontrada en la cadena de prototipo de manera ennumerada.
+, **cada** propiedad encontrada en la cadena de prototipo será enumerada.
  
 ### Extensión de prototipos nativos
 
 Una mala característica que se suele utilizar para extender `Object.prototype` o cualquier
 otro prototipo construido.
 
-Esta técnica es conocida en inglés como [monkey patching][1] ya que *encapsula* lo que se interrumpe en el código.
+Esta técnica es conocida en inglés como [monkey patching][1] y rompe la *encapsulación* del código.
 Si bien es utilizado en frameworks como [Prototype][2], todavía no existen buenas razones para adoptarlo o integrarlo
 como tipos de dato o como funcionalidad no estándar.
 
-La **única** buena razón para extender un prototipo es acondicionarlo a nuevas
-características en motores de JavaScript; por ejemplo, 
+La **única** razón coherente para extender un prototipo es para adaptarle nuevas
+características de los motores JavaScript más modernos; por ejemplo, 
 [`Array.forEach`][3].
 
 ### En conclusión
 
 Se **debe** entender por completo el módelo de herencia prototipado antes de 
-escribir código complejo que lo utlilice. Además, observe la longitud de la
-cadena de prototipo y modificala si es necesario para evitar posibles problemas de 
+escribir código complejo que lo utilice. Además, observe la longitud de la
+cadena de prototipo y modifíquela si es necesario para evitar posibles problemas de 
 rendimiento. Con relación a los prototipos nativos, estos **nunca** deben ser extendidos a 
 menos que sea para mantener la compatibilidad con nuevas características de JavaScript.
 
