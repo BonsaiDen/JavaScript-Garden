@@ -18,7 +18,7 @@ git reset --hard master
 echo "Starting build"
 node build.js
 echo "Build complete"
-rm -rf `ls -d * | grep -vP 'site|node_modules|favicon.ico' | xargs`
+rm -rf `ls -d * | grep -vP 'site|node_modules' | xargs`
 echo "Cleaned out directory"
 mv site/* .
 if [[ $BUILD_ONLY ]]; then
