@@ -21,6 +21,9 @@ echo "Build complete"
 rm -rf `ls -d * | grep -vP 'site|node_modules' | xargs`
 echo "Cleaned out directory"
 mv site/* .
+if [[ $BUILD_ONLY ]]; then
+  exit
+fi
 rm -rf site
 git add . -A
 git commit -m 'latest'
