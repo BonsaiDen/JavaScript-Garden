@@ -1,4 +1,12 @@
 set -e
+remote=mine
+if [[ $PRODUCTION ]]; then
+  echo "Deploy to production? (y/n)"
+  read ans
+  if [[ $ans == "y" ]]; then
+    remote="origin"
+  fi
+fi
 diffs=`git diff --name-status HEAD`
 if [[ "" != $diffs ]]; then
   echo "Can't deploy, unsaved changes:"
@@ -17,8 +25,6 @@ rm -rf site
 git add . -A
 git commit -m 'latest'
 echo "Commit created"
-git push --force mine gh-pages
-echo "Deployed to github"
+git push --force $remote gh-pages
+echo "Deployed to $remote"
 git checkout master
-	
-
