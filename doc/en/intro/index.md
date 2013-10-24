@@ -16,6 +16,8 @@ the excellent [guide][1] on the Mozilla Developer Network.
 This guide is the work of two lovely [Stack Overflow][2] users, [Ivo Wetzel][3]
 (Writing) and [Zhang Yi Jiang][4] (Design).
 
+It's currently maintained by [Tim Ruffles](http://truffles.me.uk).
+
 ## Contributors
 
 - [Too many to list - see Github](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
