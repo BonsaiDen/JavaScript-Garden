@@ -18,8 +18,7 @@ Esta guía es el trabajo de dos encantadores usuarios del foro Stack Overflow,
 
 ## Colaboradores
 
- - [Caio Romão][5] (Correciones ortográficas)
- - [Andreas Blixt][6] (Correciones de idioma)
+- [Colaboradores](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
 
 ## Hosting
 

@@ -16,8 +16,7 @@ JavaScript 庭院 並 **不是** 要教導你 Javascript 的語言。
 
 ## 貢獻者
 
- - [Caio Romão][5] (拼寫檢查)
- - [Andreas Blixt][6] (語言修正)
+- [貢獻者](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
 
 ## 繁體中文翻譯
 

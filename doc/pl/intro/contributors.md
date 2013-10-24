@@ -1,7 +1,4 @@
 ## Współtwórcy
 
- - [Caio Romão][1] (Poprawki pisowni)
- - [Andreas Blixt][2] (Poprawki językowe)
+- [Współtwórcy](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
 
-[1]: https://github.com/caio
-[2]: https://github.com/blixt

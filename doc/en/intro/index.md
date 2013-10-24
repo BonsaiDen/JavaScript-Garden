@@ -18,8 +18,8 @@ This guide is the work of two lovely [Stack Overflow][2] users, [Ivo Wetzel][3]
 
 ## Contributors
 
- - [Caio Romão][5] (Spelling corrections)
- - [Andreas Blixt][6] (Language corrections)
+- [Too many to list - see Github](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
+
 
 ## Hosting
 
