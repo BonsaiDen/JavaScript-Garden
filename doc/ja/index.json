@@ -6,7 +6,7 @@
         {
             "title": "前書き",
             "dir": "intro",
-            "articles": []
+            "articles": ["index"]
         },
         {
             "title": "オブジェクト",
