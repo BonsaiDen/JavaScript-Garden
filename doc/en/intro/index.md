@@ -20,7 +20,7 @@ It's currently maintained by [Tim Ruffles](http://truffles.me.uk).
 
 ## Contributors
 
-- [Too many to list - see Github](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
+- Too many to list here, [see all contributors](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors).
 
 
 ## Hosting
