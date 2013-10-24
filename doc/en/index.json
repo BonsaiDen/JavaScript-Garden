@@ -6,7 +6,7 @@
         {
             "title": "Intro",
             "dir": "intro",
-            "articles": []
+            "articles": ["index"]
         },
         {
             "title": "Objects",

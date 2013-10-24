@@ -6,7 +6,7 @@
         {
             "title": "Introducción",
             "dir": "intro",
-            "articles": []
+            "articles": ["index"]
         },
         {
             "title": "Objetos",
