@@ -19,6 +19,12 @@ This guide is the work of two lovely Stack Overflow users, [Ivo Wetzel][6]
 [many others](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
 who've worked hard to provide translations or fixes.
 
+It's currently maintained by [Tim Ruffles](http://twitter.com/timruffles).
+
+## Contributing
+
+Please submit fixes and translations as [pull requests](https://help.github.com/articles/using-pull-requests).
+
 ### License
 
 JavaScript Garden is published under the [MIT license][2] and hosted on
