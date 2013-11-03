@@ -51,3 +51,78 @@ A [`this`](#function.this) JavaScript beli működésének köszönhetően, még
 fut az előbbi kód, akkor a `this` helyére a *globális objektumot* képzeljük.
 
 ### Gyárak (Factoryk)
+
+Ahhoz, hogy teljesen eltudjuk hagyni a `new` kulcsszó használatát, a konstruktor
+függvény explicit értékkel kell visszatérjen.
+
+    function Bar() {
+        var value = 1;
+        return {
+            method: function() {
+                return value;
+            }
+        }
+    }
+    Bar.prototype = {
+        foo: function() {}
+    };
+
+    new Bar();
+    Bar();
+
+Mindkét `Bar`-ra történő hívásmód ugyanazt fogja eredményezni. Kapunk általuk 
+egy újonnan létrehozott objektumot, amelynek lesz egy `method` nevű mezője,
+ami egyébiránt egy [Closure](#function.closures).
+
+Azt is érdekes itt megjegyezni, hogy a `new Bar()` hívás **nem** befolyásolja a
+visszatérített objektum prototípusát. Mivel a prototípus csak az újonnan 
+létrehozott objektumon létezik, amit a `Bar` nem térít vissza (mivel egy explicit
+értéket ad vissza).
+
+A fenti példában nincs funkcionális különbség aközött hogy kiírjuk-e a `new`
+varázsszót avagy nem.
+
+### Új objektumok létrehozása gyárakon keresztül
+
+Gyakran bevett módszer egy projetkben, hogy a `new` varázsszó használatát 
+teljesen elhagyjuk, mert a kiírásának elfelejtése bugokhoz vezetne.
+
+Ennek érdekében egy új objektum létrehozásához inkább egy gyárat kell 
+implementálni, és annak a belsejében létrehozni az új objektumot. 
+
+
+    function Foo() {
+        var obj = {};
+        obj.value = 'blub';
+
+        var private = 2;
+        obj.someMethod = function(value) {
+            this.value = value;
+        }
+
+        obj.getPrivate = function() {
+            return private;
+        }
+        return obj;
+    }
+
+A fenti kód ugyan ellenálló a hiányzó `new` kulcsszó hibáját illetően és 
+megfelelően használ [privát változókat](#function.closures), érdemes 
+megemlíteni a dolgok kontra részét is.
+
+ 1. Több memóriát használ, mivel az így létrehozott objektumok **nem**
+	osztják meg a prototípusukat egymás között.
+ 2. A származtatás macerás, mivel a gyár kénytelen ilyenkor lemásolni
+	az összes származtatandó metódust egy másik objektumról, vagy ezt az objektumot
+	be kell állítsa a létrehozott új objektum prototípusának.
+ 3. Az a megközelítés miszerint egy kifelejtett `new` kulcsszó miatt eldobjuk
+	az objektum teljes prototípusát, ellenkezik a nyelv lelkével.
+
+### Összefoglaló
+
+A `new` varázsszó kihagyása ugyan bugokhoz vezethet, de ez **nem** megfelelő indok
+arra hogy ezért eldobjuk a prototípusok használatát. Végeredményben mindig
+az fog dönteni a különböző stílusok megválasztása között, hogy mire van
+szüksége éppen az aktuális programunknak. Egy dolog azért elengedhetetlenül
+fontos, hogy megválasszuk melyik stílust fogjuk használni objektum létrehozásra,
+és ezt **konzisztensen** használjuk a teljes megoldáson keresztül.
