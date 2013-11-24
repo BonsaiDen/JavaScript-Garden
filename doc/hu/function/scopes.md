@@ -1,29 +1,30 @@
-## Scopes and Namespaces
+﻿## Névterek és hatókörök
 
-Although JavaScript deals fine with the syntax of two matching curly
-braces for blocks, it does **not** support block scope; hence, all that is left 
-in the language is *function scope*.
+Habár a JavaScript látszólag jól értelmezi a kapcsos zárójelek használatát
+blokkon belüli utasítások definiálásához, fontos megjegyezni hogy **nincsen** blokk 
+szintű hatókör, csakis *függvény hatókörök* léteznek a nyelvben.
 
-    function test() { // a scope
-        for(var i = 0; i < 10; i++) { // not a scope
-            // count
+    function test() { // ez egy hatókör
+        for(var i = 0; i < 10; i++) { // ez meg nem
+            // utasítások...
         }
         console.log(i); // 10
     }
 
-> **Note:** When not used in an assignment, return statement or as a function 
-> argument, the `{...}` notation will get interpreted as a block statement and 
-> **not** as an object literal. This, in conjunction with 
-> [automatic insertion of semicolons](#core.semicolon), can lead to subtle errors.
+> **Megjegyzés**: Amikor a `{...}` jelölés nem értékadásban, return utasításban vagy
+> függvény argumentumként szerepel, akkor blokk utasításként lesz értelmezve és
+> nem objektum literálként. Ez a szép tulajdonság az [automatikus pontosvessző
+> generálással](#core.semicolon) karöltve nehezen észrevehető hibákhoz vezethet.
 
-There are also no distinct namespaces in JavaScript, which means that everything 
-gets defined in one *globally shared* namespace.
+A nyelvben nincsenek beépített névterek, ami azt jelenti hogy minden egyetlen,
+*globálisan megosztott* névtérben kerül deklarálásra.
 
-Each time a variable is referenced, JavaScript will traverse upwards through all 
-the scopes until it finds it. In the case that it reaches the global scope and 
-still has not found the requested name, it will raise a `ReferenceError`.
+Akárhányszor egy változóra hivatkozunk, a JavaScript elkezdi keresni a hatókörökben,
+a lokálistól kezdve, felfele egészen a legkülső, globális hatókörig. Hogyha elérjük
+a globális hatókört és még mindig nem találja a keresett változót, akkor egy
+`ReferenceError` hibával gazdagodik a futásidőnk.
 
-### The Bane of Global Variables
+### A globális változók csapása
 
     // script A
     foo = '42';
@@ -31,26 +32,26 @@ still has not found the requested name, it will raise a `ReferenceError`.
     // script B
     var foo = '42'
 
-The above two scripts do **not** have the same effect. Script A defines a 
-variable called `foo` in the *global* scope, and script B defines a `foo` in the
-*current* scope.
+Érdemes észrevenni, hogy a fenti két scriptnek **nem** ugyanaz a hatása. Az A script
+egy `foo` nevű változót vezet be a *globális* hatókörben, a B script pedig egy `foo`
+nevű változót deklarál az *ő hatókörében*.
 
-Again, that is **not** at all the *same effect*: not using `var` can have major 
-implications.
+Mégegyszer tehát, ez a kettő **nem** *ugyanazt jelenti*: a `var` elhagyásának jópár
+beláthatatlan következménye is lehet.
 
-    // global scope
+    // globális hatókör
     var foo = 42;
     function test() {
-        // local scope
+        // lokális hatókör
         foo = 21;
     }
     test();
     foo; // 21
-
-Leaving out the `var` statement inside the function `test` will override the 
-value of `foo`. While this might not seem like a big deal at first, having 
-thousands of lines of JavaScript and not using `var` will introduce horrible,
-hard-to-track-down bugs.
+	
+Itt, a `var` elhagyása azt eredményezi, hogy a `test` függvény mindig felülírja
+a globális hatókörben definiált `foo` változó értékét. Habár ez elsőre nem tűnik
+nagy dolognak, ha a `var`okat több száz sornyi JavaScript kódból hagyjuk el, az 
+olyan hibákhoz vezethet, amit még az anyósunknak se kívánnánk.
     
     // global scope
     var items = [/* some list */];
@@ -64,17 +65,16 @@ hard-to-track-down bugs.
             // do amazing stuff!
         }
     }
-    
-The outer loop will terminate after the first call to `subLoop`,  since `subLoop`
-overwrites the global value of `i`. Using a `var` for the second `for` loop would
-have easily avoided this error. The `var` statement should **never** be left out 
-unless the *desired effect* is to affect the outer scope.
+	
+Ennél a kódnál a külső ciklus az első `subLoop` hívás után megáll, mivel a `subLoop`
+felülírja az `i` változó globális értékét. Hogyha a második `for` ciklusban használtuk
+volna `var`-t azzal könnyen elkerülhettük volna ezt a hibát. **Sose** hagyjuk el a `var` utasítást, ha csak nem direkt az a *kívánt hatás*, hogy befolyásoljuk a 
+külső hatókört.
+
 
 ### Local Variables
 
-The only source for local variables in JavaScript are
-[function](#function.general) parameters and variables declared via the 
-`var` statement.
+Kétféleképp (és nem több módon) lehet lokális változókat JavaScriptben leírni; ez vagy a [függvény](#function.general) paraméter vagy a `var` utasítás.
 
     // global scope
     var foo = 1;
@@ -82,21 +82,21 @@ The only source for local variables in JavaScript are
     var i = 2;
 
     function test(i) {
-        // local scope of the function test
+        // a test függvény lokális hatóköre
         i = 5;
 
         var foo = 3;
         bar = 4;
     }
     test(10);
-
-While `foo` and `i` are local variables inside the scope of the function `test`,
-the assignment of `bar` will override the global variable with the same name.
+	
+Itt a `foo` és `i` lokális változók a `test` hatókörén belül, viszont a `bar`-os
+értékadás felül fogja írni a hasonló nevű globális változót.
 
 ### Hoisting
 
-JavaScript **hoists** declarations. This means that both `var` statements and
-`function` declarations will be moved to the top of their enclosing scope.
+A JS **hoistolja** (megemeli) a deklarációkat. Ez azt jelenti hogy minden `var`
+utasítás és `függvény` deklaráció az őt körülvevő hatókör tetejére kerül.
 
     bar();
     var bar = function() {};
@@ -115,16 +115,16 @@ JavaScript **hoists** declarations. This means that both `var` statements and
         }
     }
 
-The above code gets transformed before execution starts. JavaScript moves
-the `var` statements, as well as `function` declarations, to the top of the 
-nearest surrounding scope.
+A fenti kód átalakul egy másik formára mielőtt lefutna. A JavaScript felmozgatja
+a `var` utasításokat és a `függvény` deklarációkat, az őket körülvevő legközelebbi
+hatókör tetejébe.
 
-    // var statements got moved here
-    var bar, someValue; // default to 'undefined'
+    // a var utasítások felkerülnek ide
+    var bar, someValue; // alapból mindegyik 'undefined' értékű lesz
 
-    // the function declaration got moved up too
+    // a függvény deklaráció is felkerül ide
     function test(data) {
-        var goo, i, e; // missing block scope moves these here
+        var goo, i, e; // mivel nincs blokk hatókör, ezek is felkerülnek
         if (false) {
             goo = 1;
 
@@ -136,98 +136,99 @@ nearest surrounding scope.
         }
     }
 
-    bar(); // fails with a TypeError since bar is still 'undefined'
-    someValue = 42; // assignments are not affected by hoisting
+    bar(); // Ez TypeErrorral elszáll, mivel a bar még 'undefined'
+    someValue = 42; // az értékadásokat nem piszkálja a hoisting
     bar = function() {};
 
     test();
 
-Missing block scoping will not only move `var` statements out of loops and
-their bodies, it will also make the results of certain `if` constructs 
-non-intuitive.
+A hiányzó blokk hatókör ténye nem csak azt eredményezi, hogy a `var` utasítások
+kikerülnek a ciklusmagokból, hanem az `if` utasítások értéke is megjósolhatatlan
+lesz.
 
-In the original code, although the `if` statement seemed to modify the *global 
-variable* `goo`, it actually modifies the *local variable* - after hoisting 
-has been applied.
+Habár úgy látszik az eredeti kódban, hogy az `if` utasítás a `goo` *globális 
+változót* módosítja, a hoisting után látjuk hogy valójában a *lokális változóra*
+lesz befolyással. Trükkös.
 
-Without knowledge of *hoisting*, one might suspect the code below would raise a
-`ReferenceError`.
+A *hoisting* tudása nélkül valaki azt hihetné, hogy az alábbi kód egy `ReferenceError`
+-t fog eredményezni.
 
-    // check whether SomeImportantThing has been initialized
+    // nézzük meg hogy a SomeImportantThing inicializálva lett-e
     if (!SomeImportantThing) {
         var SomeImportantThing = {};
     }
 
-But of course, this works due to the fact that the `var` statement is being 
-moved to the top of the *global scope*.
+Persze ez működik, annak köszönhetően hogy a `var` utasítás a *globális hatókör*
+tetejére lett mozgatva.
 
     var SomeImportantThing;
 
-    // other code might initialize SomeImportantThing here, or not
+    // a SomeImportantThing inicializációs kódjai ide...
 
-    // make sure it's there
+    // ellenőrizzük hogy létezik-e
     if (!SomeImportantThing) {
         SomeImportantThing = {};
     }
 
-### Name Resolution Order
+### Névfeloldási sorrend
 
-All scopes in JavaScript, including the *global scope*, have the special name 
-[`this`](#function.this), defined in them, which refers to the *current object*. 
+JavaScriptben az összes hatókörnek -beleértve a *globálisat* is- megvan a maga
+[`this`](#function.this) változója, amelyik mindig az *aktuális objektumra* utal.
 
-Function scopes also have the name [`arguments`](#function.arguments), defined in
-them, which contains the arguments that were passed to the function.
+A függvény hatókörökben van még egy speciális [`arguments`](#function.arguments)
+változó is mindig definiálva, amely a függvénynek átadott argumentumokat
+tartalmazza.
 
-For example, when trying to access a variable named `foo` inside the scope of a 
-function, JavaScript will look up the name in the following order:
+Hogy hozzunk egy példát, amikor valaki a `foo` nevű változót próbálja elérni egy
+függvény hatókörön belül, a JavaScript az alábbi sorrendben fogja keresni az adott
+változó nevet.
+ 
+ 1. Abban az esetben ha találunk `var foo` utasítást, használjuk azt.
+ 2. Hogyha bármelyik függvény paraméter neve `foo`, használjuk azt.
+ 3. Hogyha magának a függvénynek a neve `foo, használjuk azt.
+ 4. Menjünk a külső hatókörre, és kezdjük újra **#1**-től.
+ 
+> **Megjegyzés**: Egy `arguments` nevű függvény paraméter **megakadályozza**
+> a bépített `arguments` objektum létrehozását.
 
- 1. In case there is a `var foo` statement in the current scope, use that.
- 2. If one of the function parameters is named `foo`, use that.
- 3. If the function itself is called `foo`, use that.
- 4. Go to the next outer scope, and start with **#1** again.
+### Névterek
 
-> **Note:** Having a parameter called `arguments` will **prevent** the creation 
-> of the default `arguments` object.
-
-### Namespaces
-
-A common problem associated with having only one global namespace is the
-likelihood of running into problems where variable names clash. In JavaScript,
-this problem can easily be avoided with the help of *anonymous wrappers*.
+Hogyha egyetlen globális névterünk van, akkor egy gyakori probléma lehet az,
+hogy névütközésekbe futunk. A JavaScriptben szerencsére ez a gond könnyen
+elkerülhető a *névtelen wrapper függvények* használatával.
 
     (function() {
-        // a self contained "namespace"
+        // egy 'öntartalmazó' névtér
         
         window.foo = function() {
-            // an exposed closure
+            // egy exportált closure
         };
 
-    })(); // execute the function immediately
+    })(); // a függvény azonnal végre is hajtjuk
 
+A névtelen függvények [kifejezésekként](#function.general) vannak értelmezve; így
+ahhoz hogy meghívhatóak legyenek, először ki kell értékelni őket.
 
-Unnamed functions are considered [expressions](#function.general); so in order to
-being callable, they must first be evaluated.
-
-    ( // evaluate the function inside the parentheses
+    ( // a függvény kiértékelése a zárójeleken belül
     function() {}
-    ) // and return the function object
-    () // call the result of the evaluation
+    ) // a függvény objektum visszatérítése
+    () // az eredmény meghívása
 
-There are other ways to evaluate and directly call the function expression
-which, while different in syntax, behave the same way.
+Persze más kifejezések is használhatóak arra hogy kiértékeljük és meghívjuk
+a függvény kifejezést, amelyek habár szintaxisukban eltérnek, ugyanazt eredményezik.
 
-    // A few other styles for directly invoking the 
+    // Még több stílus anonymus függvények azonnali hívásához...
     !function(){}()
     +function(){}()
     (function(){}());
-    // and so on...
+    // és a lista folytatódik...
 
-### In Conclusion
+### Összegzésül
 
-It is recommended to always use an *anonymous wrapper* to encapsulate code in 
-its own namespace. This does not only protect code against name clashes, but it 
-also allows for better modularization of programs.
+Az *anonym wrapper függvények* használata erősen ajánlott a kód egységbezárása 
+érdekében, saját névtér alkotásához. Ez nem csak hogy megvédi a kódunkat a 
+névütközésektől, de jobb modularizációhoz is vezethet.
 
-Additionally, the use of global variables is considered **bad practice**. **Any**
-use of them indicates badly written code that is prone to errors and hard to maintain.
-
+Emelett a globális változók használata **nem ajánlott**. **Bármilyen** fajta 
+használata rosszul megírt kódhoz vezethet, amelyik könnyen eltörik és nehezen
+karbantartható.
