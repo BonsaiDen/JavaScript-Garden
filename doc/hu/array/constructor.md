@@ -1,35 +1,34 @@
-## The `Array` Constructor
+﻿## Az `Array` konstruktor
 
-Since the `Array` constructor is ambiguous in how it deals with its parameters,
-it is highly recommended to always use the array literals - `[]` notation - 
-when creating new arrays.
+Mivel az `Array` konstruktora kétértelműen bánik a paraméterekkel, melegen
+ajánlott mindig a tömb literált - `[]` jelölés - használni új tömbök létrehozásakor.
 
-    [1, 2, 3]; // Result: [1, 2, 3]
-    new Array(1, 2, 3); // Result: [1, 2, 3]
+    [1, 2, 3]; // Eredmény: [1, 2, 3]
+    new Array(1, 2, 3); // Eredmény: [1, 2, 3]
 
-    [3]; // Result: [3]
-    new Array(3); // Result: []
-    new Array('3') // Result: ['3']
+    [3]; // Eredmény: [3]
+    new Array(3); // Eredmény: []
+    new Array('3') // Eredmény: ['3']
 
-In cases when there is only one argument passed to the `Array` constructor
-and when that argument is a `Number`, the constructor will return a new *sparse* 
-array with the `length` property set to the value of the argument. It should be 
-noted that **only** the `length` property of the new array will be set this way; 
-the actual indexes of the array will not be initialized. 
+Abban az esetben, hogyha ez a konstruktor csak egy `szám` paramétert kap, akkor
+visszatérési értékül egy olyan tömböt fog létrehozni amelynek a `length` mezője
+akkorára van beállítva, ahogy azt megadtuk az argumentumban. Megjegyzendő hogy
+**csak** a `length` tulajdonság lesz ekkor beállítva; az egyes indexek külön-külön
+nem lesznek inicializálva.
 
     var arr = new Array(3);
     arr[1]; // undefined
-    1 in arr; // false, the index was not set
+    1 in arr; // hamis, nincs ilyen index
 
-Being able to set the length of the array in advance is only useful in a few
-cases, like repeating a string, in which it avoids the use of a `for loop`
-code.
+A tömb hosszának közvetlen állítása amúgy is csak nagyon néhány esetben
+használható értelmesen, mint például alább, hogyha el akarjuk kerülni a 
+`for ciklus` használatát egy string ismétlésekor.
 
-    new Array(count + 1).join(stringToRepeat);
+    new Array(count + 1).join(ismetlendoString);
 
-### In Conclusion
+### Összegzésül
 
-The use of the `Array` constructor should be avoided. Literals are definitely
-preferred. They are shorter, have a clearer syntax, and increase code
-readability.
+Az `Array` konstruktor közvetlen használata erősen kerülendő. A literálok használata
+elfogadott inkább, mivel rövidebbek, tisztább a szintaxisuk és olvashatóbb kódot
+eredményeznek.
 

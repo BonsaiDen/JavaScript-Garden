@@ -1,44 +1,44 @@
-## Array Iteration and Properties
+﻿## Tömb iteráció és tulajdonságok
 
-Although arrays in JavaScript are objects, there are no good reasons to use
-the [`for in`](#object.forinloop) loop. In fact, there 
-are a number of good reasons **against** the use of `for in` on arrays.
+Habár a tömbök a JavaScriptben objektumok, nincsen jó kifogás arra, hogy miért
+kéne a [`for in`](#object.forinloop) ciklust használni velük kapcsolatban. 
+Valójában sokkal több jó ok van arra, hogy **miért ne** használjuk.
 
-> **Note:** JavaScript arrays are **not** *associative arrays*. JavaScript only 
-> has [objects](#object.general) for mapping keys to values. And while associative 
-> arrays **preserve** order, objects **do not**.
+> **Megjegyzés:** A JS tömbök **nem** *asszociatív tömbök*. A JavaScriptben egyedül
+> az [objektumokkal](#object.general) lehet kulcsokat értékekhez rendelni. Ráadásul
+> amíg az asszociatív tömbök **megőrzik** a sorrendjüket, az objektumok **nem**.
 
-Because the `for in` loop enumerates all the properties that are on the prototype 
-chain and because the only way to exclude those properties is to use 
-[`hasOwnProperty`](#object.hasownproperty), it is already up to **twenty times** 
-slower than a normal `for` loop.
+Mivel a `for in` ciklus a prototípus láncon levő összes tulajdonságon végigmegy,
+és mivel az egyetlen út ennek megkerülésére a [`hasOwnProperty`](#object.hasownproperty) használata, így majdnem **hússzor** 
+lassabb mint egy sima `for` ciklus.
 
-### Iteration
+### Iteráció
 
-In order to achieve the best performance when iterating over arrays, it is best
-to use the classic `for` loop.
+Annak érdekébern hogy a legjobb teljesítményt érjük el a tömbökön való iteráció során,
+a legjobb hogyha a klasszikus `for` ciklust használjuk.
 
     var list = [1, 2, 3, 4, 5, ...... 100000000];
     for(var i = 0, l = list.length; i < l; i++) {
         console.log(list[i]);
     }
 
-There is one extra catch in the above example, which is the caching of the 
-length of the array via `l = list.length`.
+Még egy érdekesség van a fenti példában, ami a tömb hosszának cachelését végzi
+a `l = list.length` kifejezés használatával.
 
-Although the `length` property is defined on the array itself, there is still an
-overhead for doing the lookup on each iteration of the loop. And while recent 
-JavaScript engines **may** apply optimization in this case, there is no way of
-telling whether the code will run on one of these newer engines or not. 
+Habár a `length` tulajdonság mindig magán a tömbön van definiálva, még mindig
+lehet egy kis teljesítmény kiesés amiatt hogy minden iterációban újra meg kell
+keresni ezt a tulajdonságot. Persze a legújabb JavaScript motorok **talán**
+használnak erre optimalizációt, de nem lehet biztosan megmondani hogy ahol a kódunk
+futni fog, az egy ilyen motor-e vagy sem.
 
-In fact, leaving out the caching may result in the loop being only **half as
-fast** as with the cached length.
+Valójában, a cachelés kihagyása azt eredményezheti, hogy a ciklusunk csak 
+**fele olyan gyors** lesz mintha a cachelős megoldást választottuk volna.
 
-### The `length` Property
+### A `length` mező
 
-While the *getter* of the `length` property simply returns the number of
-elements that are contained in the array, the *setter* can be used to 
-**truncate** the array.
+Míg a `length` mező *getter* függvénye egyszerűen csak visszaadja a tömbben
+levő elemek számát, addig a *setter* függvény használható arra (is), hogy
+**megcsonkítsuk** a tömbünket.
 
     var foo = [1, 2, 3, 4, 5, 6];
     foo.length = 3;
@@ -48,11 +48,13 @@ elements that are contained in the array, the *setter* can be used to
     foo.push(4);
     foo; // [1, 2, 3, undefined, undefined, undefined, 4]
 
-Assigning a smaller length truncates the array. Increasing it creates a sparse array.
+Egy rövidebb hossz alkalmazása csonkítja a tömböt. A nagyobb hossz megadása
+értelemszerűen növeli.
 
-### In Conclusion
+### Összegzésül
 
-For the best performance, it is recommended to always use the plain `for` loop
-and cache the `length` property. The use of `for in` on an array is a sign of
-badly written code that is prone to bugs and bad performance. 
+A megfelelő teljesítmény érdekében, a jó öreg `for` ciklus használata ajánlott,
+méghozzá előzetesen lecachelt `length` technikával. A `for in` ciklus használata
+a tömbökön a rosszul megírt kód jele, amely tele lehet hibákkal, és teljesítményben
+sem jeleskedik.
 
