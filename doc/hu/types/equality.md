@@ -1,71 +1,77 @@
-## Equality and Comparisons
+﻿## Egyenlőség vizsgálat
 
-JavaScript has two different ways of comparing the values of objects for equality. 
+A JavaScriptben két különböző megoldás létezik az objektumok egyenlőségének 
+vizsgálatára
 
-### The Equality Operator
+### Az egyenlőség operátor
 
-The equality operator consists of two equal signs: `==`
+Az egyenlőség vizsgálatot végző (egyik) operátort így jelöljük: `==`
 
-JavaScript features *weak typing*. This means that the equality operator 
-**coerces** types in order to compare them.
+A JavaScript egy *gyengén típusos* nyelv. Ez azt jelenti hogy az egyenlőség
+operátor **típuskényszerítést** alkalmaz ahhoz, hogy össze tudjon hasonlítani
+két értéket.
     
-    ""           ==   "0"           // false
-    0            ==   ""            // true
-    0            ==   "0"           // true
-    false        ==   "false"       // false
-    false        ==   "0"           // true
-    false        ==   undefined     // false
-    false        ==   null          // false
-    null         ==   undefined     // true
-    " \t\r\n"    ==   0             // true
+    ""           ==   "0"           // hamis
+    0            ==   ""            // igaz
+    0            ==   "0"           // igaz
+    false        ==   "false"       // hamis
+    false        ==   "0"           // igaz
+    false        ==   undefined     // hamis
+    false        ==   null          // hamis
+    null         ==   undefined     // igaz
+    " \t\r\n"    ==   0             // igaz
 
-The above table shows the results of the type coercion, and it is the main reason 
-why the use of `==` is widely regarded as bad practice. It introduces
-hard-to-track-down bugs due to its complicated conversion rules.
+A fenti táblázat szépen mutatja hogy mi a típuskényszerítés eredménye, és egyben
+azt is, hogy miért rossz szokás a `==` használata. Szokás szerint, ez megint
+olyan fícsör ami nehezen követhető hibákhoz vezethet a komplikált konverziós
+szabályai miatt.
 
-Additionally, there is also a performance impact when type coercion is in play;
-for example, a string has to be converted to a number before it can be compared
-to another number.
+Pláne, hogy a kényszerítés performancia problémákhoz is vezet; ugyanis, mielőtt
+egy stringet egy számhoz hasonlítanánk azelőtt a karakterláncot át kell konvertálni
+a megfelelő típusra.
 
-### The Strict Equality Operator
+### A szigorú(bb) egyenlőség operátor
 
-The strict equality operator consists of **three** equal signs: `===`.
+Ez az operátor már **három** egyenlőségjelből áll: `===`.
 
-It works like the normal equality operator, except that strict equality 
-operator does **not** perform type coercion between its operands.
+Ugyanúgy működik mint az előbbi, kivéve hogy ez a változat **nem** alkalmaz
+típuskényszerítést az operandusai között.
 
-    ""           ===   "0"           // false
-    0            ===   ""            // false
-    0            ===   "0"           // false
-    false        ===   "false"       // false
-    false        ===   "0"           // false
-    false        ===   undefined     // false
-    false        ===   null          // false
-    null         ===   undefined     // false
-    " \t\r\n"    ===   0             // false
+    ""           ===   "0"           // hamis
+    0            ===   ""            // hamis
+    0            ===   "0"           // hamis
+    false        ===   "false"       // hamis
+    false        ===   "0"           // hamis
+    false        ===   undefined     // hamis
+    false        ===   null          // hamis
+    null         ===   undefined     // hamis
+    " \t\r\n"    ===   0             // hamis
 
-The above results are a lot clearer and allow for early breakage of code. This
-hardens code to a certain degree and also gives performance improvements in case
-the operands are of different types.
+A felső eredmények sokkal egyértelműbbek és ennek köszönhetően sokkal hamarabb
+eltörik a kód egy-egy ellenőrzésen. Ettől sokkal hibatűrőbb lesz
+a kódunk, és ráadásul teljesítménybeli gondjaink sem lesznek.
 
-### Comparing Objects
+### Objektumok összehasonlítása
 
-While both `==` and `===` are called **equality** operators, they behave 
-differently when at least one of their operands is an `Object`.
-
-    {} === {};                   // false
-    new String('foo') === 'foo'; // false
-    new Number(10) === 10;       // false
+Habár mind a `==`-t és a `===`-t is egyenlőség operátornak hívjuk, eltérően
+viselkednek hogyha legalább az egyik operandusuk egy objektum.
+	
+	{} === {};                   // hamis
+    new String('foo') === 'foo'; // hamis
+    new Number(10) === 10;       // hamis
     var foo = {};
-    foo === foo;                 // true
+    foo === foo;                 // igaz
+	
+Ebben az esetben mindkét operátor **identitást** és **nem** egyenlőséget 
+ellenőriz; tehát azt fogják ellenőrizni hogy az operandus két oldalán
+ugyanaz az objektum referencia áll-e, mint az `is` operátor Pythonban
+vagy a pointerek összehasonlítása C-ben. (A ford.: Tehát nem azt, hogy a 
+két oldalon álló objektumnak például ugyanazok-e a mezői, hanem azt hogy ugyanazon
+a memóriacímen található-e a két operandus).
 
-Here, both operators compare for **identity** and **not** equality; that is, they
-will compare for the same **instance** of the object, much like `is` in Python 
-and pointer comparison in C.
+### Összegzésül
 
-### In Conclusion
-
-It is highly recommended to only use the **strict equality** operator. In cases
-where types need to be coerced, it should be done [explicitly](#types.casting) 
-and not left to the language's complicated coercion rules.
-
+Azt érdemes tehát megjegyezni, hogy a **szigorú egyenlőség vizsgálatot** érdemes
+mindig használni. Amikor szeretnék típuskényszerítést alkalmazni, akkor azt
+inkább tegyük meg [direkt módon](#types.casting), és ne a nyelv komplikált
+automatikus szabályaira bízzuk magunkat. 

@@ -1,38 +1,35 @@
-## The `instanceof` Operator
+﻿## Az `instanceof` operátor
 
-The `instanceof` operator compares the constructors of its two operands. It is 
-only useful when comparing custom made objects. Used on built-in types, it is
-nearly as useless as the [typeof operator](#types.typeof).
+Az `instanceof` operátor a két operandusának konstruktorait hasonlítja össze. 
+Csak akkor bizonyul hasznosnak, amikor saját készítésű objektumokon alkalmazzuk.
+Beépített típusokon ugyanolyan hasztalan alkalmazni mint a [typeof operátort](#types.typeof).
 
-### Comparing Custom Objects
+### Saját objektumok összehasonlítása
 
     function Foo() {}
     function Bar() {}
     Bar.prototype = new Foo();
 
-    new Bar() instanceof Bar; // true
-    new Bar() instanceof Foo; // true
+    new Bar() instanceof Bar; // igaz
+    new Bar() instanceof Foo; // igaz
 
-    // This just sets Bar.prototype to the function object Foo,
-    // but not to an actual instance of Foo
+    // Ez csak a Bar.prototypeot beállítja a Foo fv. objektumra,
+    // de nem egy kimondott Foo példányra
     Bar.prototype = Foo;
-    new Bar() instanceof Foo; // false
+    new Bar() instanceof Foo; // hamis
 
-### Using `instanceof` with Native Types
+### Az `instanceof` reakciója natív típusokra
 
-    new String('foo') instanceof String; // true
-    new String('foo') instanceof Object; // true
+    new String('foo') instanceof String; // igaz
+    new String('foo') instanceof Object; // igaz
 
-    'foo' instanceof String; // false
-    'foo' instanceof Object; // false
+    'foo' instanceof String; // hamis
+    'foo' instanceof Object; // hamis
 
-One important thing to note here is that `instanceof` does not work on objects 
-that originate from different JavaScript contexts (e.g. different documents
-in a web browser), since their constructors will not be the exact same object.
+Érdemes itt megjegyezni hogy az `instanceof` nem működik olyan objektumokon,
+amelyek különböző JavaScript kontextusokból származnak (pl. különböző dokumentumok
+a böngészőn belül), mivel a konstruktoruk nem pontosan ugyanaz az objektum lesz.
 
-### In Conclusion
+### Összegzésül
 
-The `instanceof` operator should **only** be used when dealing with custom made 
-objects that originate from the same JavaScript context. Just like the
-[`typeof`](#types.typeof) operator, every other use of it should be **avoided**.
-
+Az `instanceof`-ot tehát **csak** megegyező JS kontextusból származó, saját készítésű objektumoknál használjuk. Minden más felhasználása kerülendő, csak úgy mint a [`typeof`](#types.typeof) operátor esetén.

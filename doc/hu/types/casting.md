@@ -1,70 +1,72 @@
-## Type Casting
+﻿## Típus kasztolás
 
-JavaScript is a *weakly typed* language, so it will apply *type coercion*
-**wherever** possible.
+Előre kössük le, hogy a JavaScript egy *gyengén típusos* nyelv, így **ahol
+csak tud**, ott *típus kényszerítést* használ.
 
-    // These are true
-    new Number(10) == 10; // Number.toString() is converted
-                          // back to a number
+    // Ezek igazak
+    new Number(10) == 10; // A Number.toString() számmá lesz
+                          // visszaalakítva
 
-    10 == '10';           // Strings gets converted to Number
-    10 == '+10 ';         // More string madness
-    10 == '010';          // And more 
-    isNaN(null) == false; // null converts to 0
-                          // which of course is not NaN
+    10 == '10';           // A Stringek visszaalakulnak számmá
+    10 == '+10 ';         // Mégtöbb string varázslat
+    10 == '010';          // és mégtöbb
+    isNaN(null) == false; // a null varázslatosan 0-vá alakul
+                          // ami persze nem NaN
     
-    // These are false
+    // Ezek hamisak
     10 == 010;
     10 == '-10';
 
-> **ES5 Note:** Number literals that start with a `0` are interpreted as octal 
-> (Base 8). Octal support for these has been **removed** in ECMAScript 5 strict 
-> mode.
+> **ES5 Megjegyzés:** A `0`-val kezdődő számliterálok oktálok (8-as számrendszer).
+> Az oktál támogatást az ECMAScript 5 strict módból **eltávolították**
 
-To avoid the issues above, use of the [strict equal operator](#types.equality) 
-is **highly** recommended. Although this avoids a lot of common pitfalls, there 
-are still many further issues that arise from JavaScript's weak typing system.
+Hogy elkerüljük a fenti varázslatokat, a [szigorú egyenlőség ellenőrzés](#types.equality) **melegen** ajánlott. Habár ezzel elkerüljük
+a problémák farkasrészét, még mindig tartogat a JS gyengén típsuso rendszere
+meglepetéseket.
 
-### Constructors of Built-In Types
+### Natív típusok konstruktorai
 
-The constructors of the built in types like `Number` and `String` behave
-differently when being used with the `new` keyword and without it.
+A jó hír az, hogy a natív típusok mint a `Number` és a `String` különféle
+módon viselkednek hogyha a `new` kulcsszóval avagy anélkül vannak inicializálva.
 
-    new Number(10) === 10;     // False, Object and Number
-    Number(10) === 10;         // True, Number and Number
-    new Number(10) + 0 === 10; // True, due to implicit conversion
+    new Number(10) === 10;     // Hamis, Objektum vs. Szám
+    Number(10) === 10;         // Igaz, Szám vs. szám
+    new Number(10) + 0 === 10; // Igaz, az implicit konverziónak hála
 
 Using a built-in type like `Number` as a constructor will create a new `Number` 
 object, but leaving out the `new` keyword will make the `Number` function behave
 like a converter.
 
-In addition, passing literals or non-object values will result in even more
-type coercion.
+Ha egy natív típusát mint a `Number` konstruktorként kezeljük, akkor egy új
+`Number` objektumot kapunk. De ha kihagyjuk a `new` kulcsszót akkor a `Number`
+egy egyszerű konverter függvényként fog viselkedni.
 
-The best option is to cast to one of the three possible types **explicitly**.
+Ráadásul a literálok passzolgatásakor még több típuskonverzió üti fel a fejét.
 
-### Casting to a String
+A legjobb megoldás hogyha a három típus valamelyikére **expliciten** kasztolunk.
 
-    '' + 10 === '10'; // true
+### Stringre kasztolás
 
-By prepending an empty string, a value can easily be cast to a string.
+    '' + 10 === '10'; // igaz
 
-### Casting to a Number
+Egy üres string hozzáfűzésével könnyen tudunk egy értéket stringgé kasztolni.
 
-    +'10' === 10; // true
+### Számra kaszt
 
-Using the **unary** plus operator, it is possible to cast to a number.
+    +'10' === 10; // igaz
+	
+Az **unáris** plusz operátor használatával lehetséges egy értéket számra alakítani.
 
-### Casting to a Boolean
+### Booleanre kasztolás
 
-By using the **not** operator twice, a value can be converted a boolean.
+A **nem** operátor kétszeri alkalmazásával tudunk booleanné kasztolni.
 
-    !!'foo';   // true
-    !!'';      // false
-    !!'0';     // true
-    !!'1';     // true
-    !!'-1'     // true
-    !!{};      // true
-    !!true;    // true
+    !!'foo';   // igaz
+    !!'';      // hamis
+    !!'0';     // igaz
+    !!'1';     // igaz
+    !!'-1'     // igaz
+    !!{};      // igaz
+    !!true;    // igaz
 
 
