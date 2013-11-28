@@ -29,26 +29,26 @@ Itt van pár példa, hogy mikor is találkozhatunk az `undefined` értékkel:
 
 ### Handling Changes to the Value of `undefined`
 
-Since the global variable `undefined` only holds a copy of the actual *value* of 
-`undefined`, assigning a new value to it does **not** change the value of the 
-*type* `undefined`.
+Mivel az `undefined` nevű globális változó csak egy másolatot tárol az 
+`undefined` elnevezésű értékből, az értékének megváltoztatása **nem** írja
+felül az eredeti `undefined` *típus* értékét.
 
-Still, in order to compare something against the value of `undefined`, it is
-necessary to retrieve the value of `undefined` first.
+Ezért, ha valamilyen értékkel össze szeretnénk hasonlítani az `undefined` értéket,
+nem árt hogyha először magát az `undefined`-et el tudjuk érni.
 
-To protect code against a possible overwritten `undefined` variable, a common
-technique used is to add an additional parameter to an [anonymous
-wrapper](#function.scopes) that gets no argument passed to it.
+Egy gyakori technika annak érdekében hogy megvédjük a kódunkat az 
+`undefined` lehetséges felüldefiniálásaitól, hogy egy [névtelen (wrapper)](#function.scopes) függvénybe
+csomagoljuk az egész kódunkat, amelynek lesz egy direkt üres paramétere.
 
     var undefined = 123;
     (function(something, foo, undefined) {
-        // undefined in the local scope does 
-        // now again refer to the value `undefined`
+        // az undefined ebben a hatókörben 
+        // megint valóban az `undefined` értékre referáll.
 
     })('Hello World', 42);
 
-Another way to achieve the same effect would be to use a declaration inside the 
-wrapper.
+Egy másik módja ennek, hogy használunk egy "üres" deklarációt a wrapper függvényen
+belül.
 
     var undefined = 123;
     (function(something, foo) {
@@ -57,18 +57,21 @@ wrapper.
 
     })('Hello World', 42);
 
-The only difference here is that this version results in 4 more bytes being
-used in case it is minified, and there is no other `var` statement inside the
-anonymous wrapper.
+Az egyetlen különbség ebben a változatban, hogyha minifikáljuk ezt a kódot,
+és nem definiálunk további változókat ezen a részen belül, akkor extra 4 byte
+"veszteséget" szenvedünk el.
 
-### Uses of `null`
+### Mikor használjunk `null`-t
 
-While `undefined` in the context of the JavaScript language is mostly used in
-the sense of a traditional *null*, the actual `null` (both a literal and a type)
-is more or less just another data type.
+Miközben az `undefined` a natív JavaScript megvalósításokban inkább a (más 
+nyelvekben levő) tradícionális *null* helyett használandó, azalatt maga a `null` 
+inkább csak egy különböző adattípusnak számít, mindenféle különös jelentés nélkül.
 
-It is used in some JavaScript internals (like declaring the end of the
-prototype chain by setting `Foo.prototype = null`), but in almost all cases, it
-can be replaced by `undefined`.
+Egy pár belső JavaScriptes megoldásban ugyan használják (ahol pl. a prototípus lánc végét a `Foo.prototype = null` beállítással jelölik), de a legtöbb esetben ez
+felcserélhető az `undefined`-el.
 
+(A ford.: A `null` használata kimondottan abban az esetben használható, amikor
+egy referencia típusú változót deklarálunk, de még nem adunk neki értéket. Pl. a 
+`var ezObjektumLesz = null` kifejezés ezt jelöli. Tehát a null leginkább
+kezdeti értékként állja meg a helyét, minden másra ott a MasterC.. az `undefined`)
 
