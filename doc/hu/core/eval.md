@@ -1,6 +1,7 @@
-## Why Not to Use `eval`
+﻿## Miért Ne Használjuk az `eval`-t
 
-The `eval` function will execute a string of JavaScript code in the local scope.
+Az `eval` (evil) funkció egy stringbe ágyazott JavaScript kódot futtat a 
+lokális scopeon belül.
 
     var foo = 1;
     function test() {
@@ -10,9 +11,9 @@ The `eval` function will execute a string of JavaScript code in the local scope.
     }
     test(); // 3
     foo; // 1
-
-However, `eval` only executes in the local scope when it is being called
-directly *and* when the name of the called function is actually `eval`.
+	
+Viszont az `eval` csak akkor viselkedik így, hogyha expliciten hívjuk meg
+*és* a meghívott funkció neve valóban `eval`.
 
     var foo = 1;
     function test() {
@@ -24,24 +25,29 @@ directly *and* when the name of the called function is actually `eval`.
     test(); // 2
     foo; // 3
 
-The use of `eval` should be avoided. 99.9% of its "uses" can be achieved
-**without** it.
+Az `eval` használata kerülendő. A "felhasználása" az esetek 99.9%-ban 
+**mellőzhető**.
     
-### `eval` in Disguise
+### Az `eval` ezer arca
 
 The [timeout functions](#other.timeouts) `setTimeout` and `setInterval` can both 
 take a string as their first argument. This string will **always** get executed 
 in the global scope since `eval` is not being called directly in that case.
 
-### Security Issues
+A `setTimeout` és `setInterval` nevű [timeout függvények](#other.timeouts) is
+tudnak úgy működni, hogy első paraméterükre egy stringbe ágyazott kódot várnak.
+Ez a string **mindig** a globális hatókörben lesz végrehajtva, mivel az `eval`-t
+így nem direktben hívjuk meg.
 
-`eval` also is a security problem, because it executes **any** code given to it.
-It should **never** be used with strings of unknown or untrusted origins.
+### Biztonsági problémák
 
-### In Conclusion
+Az `eval` azért is veszélyes, mert **bármilyen** JS kódot végrehajt, amit odaadunk
+neki. Éppen ezért **sose** használjuk olyan kódok végrehajtására amiknek az eredete
+nem megbízható/ismeretlen.
 
-`eval` should never be used. Any code that makes use of it should be questioned
-in its workings, performance and security. If something requires `eval` in
-order to work, it should **not** be used in the first place.  A *better design*
-should be used, that does not require the use of `eval`.
+### Összegzésül
 
+Soha ne használjunk `eval`-t. Bármilyen kód működése, teljesítménye, ill. biztonsága
+megkérdőjelezhető amely használja ezt a nyelvi elemet. Semmilyen megoldás
+használata **nem ajánlott** amely első sorban `eval`ra épül. Ekkor egy *jobb
+megoldás* szükségeltetik, amely nem függ az `eval`tól.

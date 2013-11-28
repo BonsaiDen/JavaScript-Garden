@@ -1,31 +1,31 @@
-## `undefined` and `null`
+﻿## Az `undefined` és a `null`
 
-JavaScript has two distinct values for nothing, `null` and `undefined`, with
-the latter being more useful.
+A JavaScript két értéket is tartogat a semmi kifejezésére, ezek a `null` és az
+`undefined` és ezek közül az utóbbi a hasznosabb.
 
-### The Value `undefined`
+### Az `undefined`
 
-`undefined` is a type with exactly one value: `undefined`.
+Ha az előbbi bevezetőtől nem zavarodtál volna össze; az 
+`undefined` egy típus amelynek pontosan egy értéke van, az `undefined`.
 
-The language also defines a global variable that has the value of `undefined`;
-this variable is also called `undefined`. However, this variable is **neither** a constant
-nor a keyword of the language. This means that its *value* can be easily 
-overwritten.
+A nyelvben szintén van egy `undefined` nevű globális változó amelynek az értékét
+hogy-hogy nem `undefined`-nek hívják. Viszont ez a változó **nem** konstans vagy
+kulcsszó a nyelvben. Ez azt jeletni hogy az *értéke* könnyedén felülírható.
 
-> **ES5 Note:** `undefined` in ECMAScript 5 is **no longer** *writable* in strict
-> mode, but its name can still be shadowed by for example a function with the name 
-> `undefined`.
+> **ES5 Megjegyzés:** Az `undefined` ECMAScript 5-ben **többé** *nem felülírható* 
+> strict módban, bár a neve továbbra is eltakarható, például egy saját függvénnyel
+> aminek a neve éppen `undefined`.
 
-Here are some examples of when the value `undefined` is returned:
-
- - Accessing the (unmodified) global variable `undefined`.
- - Accessing a declared *but not* yet initialized variable.
- - Implicit returns of functions due to missing `return` statements.
- - `return` statements that do not explicitly return anything.
- - Lookups of non-existent properties.
- - Function parameters that do not have any explicit value passed.
- - Anything that has been set to the value of `undefined`.
- - Any expression in the form of `void(expression)`
+Itt van pár példa, hogy mikor is találkozhatunk az `undefined` értékkel:
+ 
+ - Az `undefined` globális változó elérésekor
+ - Egy deklarált, de nem inicializált változó elérésekor.
+ - Egy függvény hívásakor ez a visszatérési érték, `return` utasítás híján.
+ - Egy olyan `return` utasítás lefutásakor, amely nem térít vissza értéket.
+ - Nem létező mezők lekérésekor.
+ - Olyan függvény paraméterek elérésekor amelyeknek a hívó oldalon nem kaptak értéket.
+ - Bármikor amikor az `undefined` érték van valaminek beállítva.
+ - Bármelyik `void(kifejezés)` utasítás futtatásakor.
 
 ### Handling Changes to the Value of `undefined`
 
