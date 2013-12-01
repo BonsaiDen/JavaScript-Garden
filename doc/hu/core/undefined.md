@@ -27,7 +27,7 @@ Itt van pár példa, hogy mikor is találkozhatunk az `undefined` értékkel:
  - Bármikor amikor az `undefined` érték van valaminek beállítva.
  - Bármelyik `void(kifejezés)` utasítás futtatásakor.
 
-### Handling Changes to the Value of `undefined`
+###  `undefined` megőrzési trükkök
 
 Mivel az `undefined` nevű globális változó csak egy másolatot tárol az 
 `undefined` elnevezésű értékből, az értékének megváltoztatása **nem** írja

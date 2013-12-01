@@ -1,30 +1,32 @@
-## Automatic Semicolon Insertion
+﻿## Automatic Semicolon Insertion
 
-Although JavaScript has C style syntax, it does **not** enforce the use of
-semicolons in the source code, so it is possible to omit them.
+Bár a JavaScriptnek látszólag C-s szintaxisa van, **mégsem** kötelező benne
+kirakni a ponotsvesszőket, így (helyenként) kihagyhatóak a forrásból.
+(A ford.: Hiszen interpretált nyelv lévén nincsenek fordítási hibák, így 
+nyelvi elemek meglétét sem tudja erőltetni a nyelv)
 
-JavaScript is not a semicolon-less language. In fact, it needs the 
-semicolons in order to understand the source code. Therefore, the JavaScript
-parser **automatically** inserts them whenever it encounters a parse
-error due to a missing semicolon.
-
-    var foo = function() {
-    } // parse error, semicolon expected
-    test()
-
-Insertion happens, and the parser tries again.
+Itt jön a csel, hogy ennek ellenére a JavaScript csak pontosvesszőkkel
+értelmezi megfelelően a beírt kódot. Következésképp, a JS **automatikusan**
+illeszti be a pontosvesszőket (megpróbálja kitalálni a gondolataink) 
+azokra a helyekre, ahol amúgy emiatt értelmezési hibába futna.
 
     var foo = function() {
-    }; // no error, parser continues
+    } // értelmezési hiba, pontosvessző kéne
     test()
 
-The automatic insertion of semicolon is considered to be one of **biggest**
-design flaws in the language because it *can* change the behavior of code.
+Az automatikus beillesztés megtörténik, ezután így értelmeződik a kód
 
-### How it Works
+    var foo = function() {
+    }; // nincs hiba, mindenki örül
+    test()
 
-The code below has no semicolons in it, so it is up to the parser to decide where
-to insert them.
+Az automatikus beillesztés (ASI) a JavaScript (egyik) **legnagyobb** design
+hibája, mivel igen... *meg tudja* változtatni a kód értelmezését
+
+### Hogyan Működik
+
+Az alábi kódban nincsen pontosvessző, így a parser (értelmező) feladata kitalálni,
+hogy hova is illessze be őket.
 
     (function(window, undefined) {
         function test(options) {
@@ -35,8 +37,8 @@ to insert them.
             })
 
             options.value.test(
-                'long string to pass here',
-                'and another long string to pass'
+                'hosszú string az argumentumban',
+                'még még még még még hossszabbbbbbb'
             )
 
             return
@@ -53,62 +55,66 @@ to insert them.
 
     })(window)
 
-Below is the result of the parser's "guessing" game.
+Alább mutatjuk a "kitalálós" játék eredményét.
 
     (function(window, undefined) {
         function test(options) {
 
-            // Not inserted, lines got merged
+            // Nincs beillesztés, a sorok össze lettek vonva
             log('testing!')(options.list || []).forEach(function(i) {
 
-            }); // <- inserted
+            }); // <- beillesztés
 
             options.value.test(
-                'long string to pass here',
-                'and another long string to pass'
-            ); // <- inserted
+                'hosszú string az argumentumban',
+                'még még még még még hossszabbbbbbb'
+            ); // <- beillesztés
 
-            return; // <- inserted, breaks the return statement
-            { // treated as a block
+            return; // <- beillesztés, eltörik a return kifejezésünk
+            { // blokként értelemződik
 
-                // a label and a single expression statement
+                // név: kifejezés formátumban értelmeződik
                 foo: function() {} 
-            }; // <- inserted
+            }; // <- beillesztés
         }
-        window.test = test; // <- inserted
+        window.test = test; // <- beillesztés
 
     // The lines got merged again
     })(window)(function(window) {
-        window.someLibrary = {}; // <- inserted
+        window.someLibrary = {}; // <- beillesztés
 
-    })(window); //<- inserted
+    })(window); //<- beillesztés
 
-> **Note:** The JavaScript parser does not "correctly" handle return statements 
-> that are followed by a new line. While this is not neccessarily the fault of 
-> the automatic semicolon insertion, it can still be an unwanted side-effect. 
+> **Megjegyzés:** A JavaScript értelmező nem tudja "korrektül" kezelni azokat
+> a return kifejezéseket, amelyek után közvetlen új sor áll. Ez pedig egy
+> nem túl kellemes mellékhatás, habár ez nem biztos hogy mindig
+> az ASI hibájából történik.
 
-The parser drastically changed the behavior of the code above. In certain cases,
-it does the **wrong thing**.
+Az értelmező drasztikusan megváltoztatta a fenti kódot. A legtöbb esetben a 
+beillesztő **rosszul** tippel.
 
-### Leading Parenthesis
+(A ford.: Semmilyen nyelvben sem jó, hogyha hagyjuk hogy a gép találja ki mit
+szerettünk volna írni. Néma gyereknek az anyja sem érti a kódját ugye)
 
-In case of a leading parenthesis, the parser will **not** insert a semicolon.
+### Kezdő Zárójelek
+
+Az értelmező **nem** rak be új pontosvesszőt, hogyha a sor eleje (nyitó) zárójellel kezdődik.
 
     log('testing!')
     (options.list || []).forEach(function(i) {})
 
-This code gets transformed into one line.
+Ez a kód egy sorként értelmeződik
 
     log('testing!')(options.list || []).forEach(function(i) {})
 
-Chances are **very** high that `log` does **not** return a function; therefore,
-the above will yield a `TypeError` stating that `undefined is not a function`.
+Az esélyek arra **elég** magasak, hogy a `log` **nem** egy függvényt fog visszatéríteni; így a fenti kód egy `TypeError` típusú hibát fog dobni 
+`undefined is not a function` üzenettel.
 
-### In Conclusion
+### Összefoglalásképp
 
-It is highly recommended to **never** omit semicolons. It is also recommended
-that braces be kept on the same line as their corresponding statements and to
-never omit them for single-line `if` / `else` statements. These measures will
-not only improve the consistency of the code, but they will also prevent the
-JavaScript parser from changing code behavior.
-
+Szükségszerűen **soha** ne hagyjuk ki a pontoszvesszőket. Nem árt a kapcsos
+zárójeleket is ugyanazon a soron tartani, mint amelyiken az utasítást elkezdtük,
+így nem ajánlott az egysoros `if` / `else` kifejezések kedvéért elhagyni
+őket. Ezek a szempontok nem csak a kódot (és annak olvashatóságát) tartják
+konzisztensen, de megelőzik azt is hogy a JavaScript értelmező valamit rosszul
+"találjon ki".

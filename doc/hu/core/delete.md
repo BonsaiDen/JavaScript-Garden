@@ -1,85 +1,91 @@
-## The `delete` Operator
+﻿## A `delete` Operátor
 
-In short, it's *impossible* to delete global variables, functions and some other
-stuff in JavaScript which have a `DontDelete` attribute set.
+Röviden, *lehetetlen* globális változókat, függvényeket és olyan dolgokat törölni
+JavaScriptben amelyeknek a `DontDelete` attribútuma be van állítva.
 
-### Global code and Function code
+### Globális kód és Funkció kód
 
-When a variable or a function is defined in a global or a [function
-scope](#function.scopes) it is a property of either the Activation object or
-the Global object. Such properties have a set of attributes, one of which is
-`DontDelete`. Variable and function declarations in global and function code
-always create properties with `DontDelete`, and therefore cannot be deleted.
+Amikor egy változó vagy függvény, globális vagy 
+[függvény hatókörben](#function.scopes) van definiálva, 
+akkor az Activation (Aktivációs) vagy a Global (Globális) objektum egyik mezőjeként
+értelmeződik.  Az ilyen mezőknek van egy halom attribútuma, amelyek közül az egyik 
+a `DontDelete`. A változó és függvény deklarációk a globális vagy függvény kódon
+belül mindig `DontDelete` tulajdonságú mezőket hoznak létre, így nem lehet őket
+törölni.
 
-    // global variable:
-    var a = 1; // DontDelete is set
-    delete a; // false
+    // globális változó
+    var a = 1; // A DontDelete be lett állítva
+    delete a; // hamis
     a; // 1
 
-    // normal function:
-    function f() {} // DontDelete is set
-    delete f; // false
+    // függvény:
+    function f() {} // A DontDelete be lett állítva
+    delete f; // hamis
     typeof f; // "function"
 
-    // reassigning doesn't help:
+    // új értékadással sem megy
     f = 1;
-    delete f; // false
+    delete f; // hamis
     f; // 1
 
-### Explicit properties
+### Explicit mezők
 
-Explicitly set properties can be deleted normally.
+Az expliciten beállított mezőket persze normálisan lehet törölni.
 
-    // explicitly set property:
+    // expliciten beállított mező
     var obj = {x: 1};
     obj.y = 2;
-    delete obj.x; // true
-    delete obj.y; // true
+    delete obj.x; // igaz
+    delete obj.y; // igaz
     obj.x; // undefined
     obj.y; // undefined
+	
 
-In the example above, `obj.x` and `obj.y` can be deleted because they have no 
-`DontDelete` atribute. That's why the example below works too.
+A fenti példábna az `obj.x` és `obj.y` törölhető, mivel nincs `DontDelete`
+attribútuma egyik mezőnek sem. Ezért működik az alábbi példa is.
 
-    // this works fine, except for IE:
+    // működik, kivéve IE-ben
     var GLOBAL_OBJECT = this;
     GLOBAL_OBJECT.a = 1;
-    a === GLOBAL_OBJECT.a; // true - just a global var
-    delete GLOBAL_OBJECT.a; // true
+    a === GLOBAL_OBJECT.a; // igaz - egy globális változó
+    delete GLOBAL_OBJECT.a; // igaz
     GLOBAL_OBJECT.a; // undefined
 
-Here we use a trick to delete `a`. [`this`](#function.this) here refers 
-to the Global object and we explicitly declare variable `a` as its property 
-which allows us to delete it.
+Itt egy trükköt használunk az `a` törlésére. A [`this`](#function.this) itt 
+a Globális objektumra mutat, és expliciten bezetjük rajta az `a` változót, mint
+egy mezőjét, így törölni is tudjuk.
 
-IE (at least 6-8) has some bugs, so the code above doesn't work.
+Mint az szokás, a fenti kód egy kicsit bugos IE-ben (legalábbis 6-8-ig).
 
-### Function arguments and built-ins
+### Függvény argumentumok és beépített dolgaik
 
-Functions' normal arguments, [`arguments` objects](#function.arguments) 
-and built-in properties also have `DontDelete` set.
+A függvény argumentumok, az [`arguments` objektum](#function.arguments)
+és a beépített mezők szintén `DontDelete` tulajdonságúak.
 
-    // function arguments and properties:
+    // függvény argumentumok és mezők
     (function (x) {
     
-      delete arguments; // false
+      delete arguments; // hamis
       typeof arguments; // "object"
       
-      delete x; // false
+      delete x; // hamis
       x; // 1
       
       function f(){}
-      delete f.length; // false
+      delete f.length; // hamis
       typeof f.length; // "number"
       
     })(1);
 
-### Host objects
-    
-The behaviour of `delete` operator can be unpredictable for hosted objects. Due
-to the specification, host objects are allowed to implement any kind of behavior. 
+### Vendég (host) objektumok
 
-### In conclusion
+A `delete` operátor működése megjósolhatatlan a vendég objektumokra. A specifikáció
+szerint ezek az objektumok szükség szerint bármilyen viselkedést implementálhatnak.
 
-The `delete` operator often has unexpected behaviour and can only be safely
-used to delete explicitly set properties on normal objects.
+(A ford.: Vendég objektumok azok az objektumok, amelyek nincsenek konrkétan
+meghatározva az ES aktuális verziójú specifikációjában, pl. a window)
+
+### Összegzésképp
+
+A `delete` működése helyenként megjósolhatatlan, így biztonsággal csak olyan
+objektumok mezőin használhatjuk amelyeket expliciten mi állítottunk be.

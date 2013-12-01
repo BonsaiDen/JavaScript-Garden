@@ -1,43 +1,43 @@
-### `setTimeout` and `setInterval`
+﻿### A varázslatos `setTimeout` és `setInterval`
 
-Since JavaScript is asynchronous, it is possible to schedule the execution of a 
-function using the `setTimeout` and `setInterval` functions.
+Mivel a JavaScript aszinkron, a `setTimeout` és `setInterval` használatával
+lehetséges késleltetni a kódok lefutási idejét.
 
-> **Note:** Timeouts are **not** part of the ECMAScript Standard. They are
-> implemented as part of the [DOM][1].
+> **Megjegyzés:** A timeout fv.-ek **nem** részei az ECMAScript Standard-nek.
+> Mivel a [DOM][1] részeként lettek implementálva.
 
     function foo() {}
-    var id = setTimeout(foo, 1000); // returns a Number > 0
+    var id = setTimeout(foo, 1000); // Egy számmal (> 0) tér vissza
 
-When `setTimeout` is called, it returns the ID of the timeout and schedule
-`foo` to run **approximately** one thousand milliseconds in the future. 
-`foo` will then be executed **once**.
+Amikor a `setTimeout` függvényt meghívjuk, a timeout IDjával tér vissza és
+beütemezi a `foo` futtatását, hogy **körülbelül** 1000 miliszekundum múlva
+fusson le a jövőben. A `foo` **egyszer** lesz végrehajtva.
 
-Depending on the timer resolution of the JavaScript engine running the code, as
-well as the fact that JavaScript is single threaded and other code that gets
-executed might block the thread, it is by **no means** a safe bet that one will
-get the exact delay specified in the `setTimeout` call.
+Az aktuális JavaScript motor időzítésétől függően, és annak figyelembe vételével
+hogy a JavaScript mindig egyszálú, tehát a megelőző kódok blokkolhatják a szálat,
+**soha** nem lehet biztonságosan meghatározni hogy valóban a kért időzítéssel 
+fog lefutni a kód amit megadtunk a `setTimeout`-ban. Erre semmilyen biztosíték nincs.
 
-The function that was passed as the first parameter will get called by the
-*global object*, which means that [`this`](#function.this) inside the called function 
-refers to the global object.
+Az első helyen bepasszolt függvény a *globális objektum* által lesz meghívva, ami
+azt jelenti hogy a [`this`](#function.this) a függvényen belül a globális objektumra
+utal.
 
     function Foo() {
         this.value = 42;
         this.method = function() {
-            // this refers to the global object
-            console.log(this.value); // will log undefined
+            // a this egy globális objektumra utal, nem a Foo-ra
+            console.log(this.value); // undefined-et logol ki
         };
         setTimeout(this.method, 500);
     }
     new Foo();
 
 
-> **Note:** As `setTimeout` takes a **function object** as its first parameter, an
-> common mistake is to use `setTimeout(foo(), 1000)`, which will use the 
-> **return value** of the call `foo` and **not** `foo`. This is, most of the time, 
-> a silent error, since when the function returns `undefined` `setTimeout` will 
-> **not** raise any error.
+> **Note:** Mivel a `setTimeout` egy **függvény objektumot** vár első paramétereként
+> egy gyakori hiba a `setTimeout(foo(), 1000)` módon való használata, amely a 
+> `foo` **visszatérési értékét** fogja használni és **nem** a `foo`-t mint függvényt. 
+> Ez a legtöbb esetben egy észrevétlen hibát okoz, mivel a függvény `undefined`-t
+> térít vissza amire a `setTimeout` **nem** fog hibát dobni.
 
 ### Stacking Calls with `setInterval`
 
