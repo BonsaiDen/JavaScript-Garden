@@ -19,7 +19,7 @@
             ]
         },
         {
-            "title": "Functions",
+            "title": "F\u00FCggv\u00E9nyek",
             "dir": "function",
             "articles": [
                 "general",
@@ -31,7 +31,7 @@
             ]
         },
         {
-            "title": "Arrays",
+            "title": "T\u00F6mb\u00F6k",
             "dir": "array",
             "articles": [
                 "general",
@@ -49,7 +49,7 @@
             ]
         },
         {
-            "title": "Core",
+            "title": "L\u00E9nyeg",
             "dir": "core",
             "articles": [
                 "eval",
@@ -59,7 +59,7 @@
             ]
         },
         {
-            "title": "Other",
+            "title": "Egy\u00E9b",
             "dir": "other",
             "articles": [
                 "timeouts"
