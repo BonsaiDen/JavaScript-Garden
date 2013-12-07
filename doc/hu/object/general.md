@@ -2,16 +2,18 @@
 
 A JavaSciprtben minden objektumként működik, a [`null`](#core.undefined) és az [`undefined`](#core.undefined) kivételével.
 
-    false.toString(); // 'false'
+    false.toString(); // 'hamis'
     [1, 2, 3].toString(); // '1,2,3'
     
     function Foo(){}
     Foo.bar = 1;
     Foo.bar; // 1
 
-Gyakori tévhitként terjed, hogy a JavaScript számok nem használhatóak objektumként. Ez látszólag igaz, mivel a JavaScript értelmező a pont utáni részt úgy próbálja beolvasni, mintha lebegőpontos számot látna. Így hibát kaphatunk.  
+Gyakori tévhitként terjed, hogy a JavaScriptben a számok nem használhatóak objektumként. 
+Ez csak látszólag igaz, mivel a JavaScript a pont utáni részt úgy próbálja értelmezni,
+mintha lebegőpontos számot látna. Így hibát kaphatunk.  
 
-    2.toString(); // SyntaxError-t vált ki
+    2.toString(); // SyntaxErrort vált ki
 
 Azonban számos kifejezés létezik megoldásként, amelyekkel megkerülhető ez a probléma.
 
@@ -21,9 +23,9 @@ Azonban számos kifejezés létezik megoldásként, amelyekkel megkerülhető ez
 
 ### Objektumok mint adattípusok
 
-A JS-beli objektumok [*Hashmaps*][1];-ekként is használhatóak; mivel természetszerűleg kulcs-érték párokat tartalmaznak.
+Az objektumok JavaScriptben [*Hash táblaként*][1] is használhatóak, mivel természetszerűleg kulcs-érték párokat tartalmaznak.
 
-Az objektum literál leírásával - `{}` jelöléssel - lehet létrehozni egy új objektumot. Ez az új objektum az `Object.prototype`-ból [származtat](#object.prototype) és nincsenek [saját mezői](#object.hasownproperty) definiálva.
+Az objektum literál leírásával - `{}` jelöléssel - lehet létrehozni egy új objektumot. Ez az új objektum az `Object.prototype`-ból [származik](#object.prototype) és nincsenek [saját mezői](#object.hasownproperty) definiálva.
 
     var foo = {}; // egy új, üres objektum
 
@@ -35,17 +37,17 @@ Az objektum literál leírásával - `{}` jelöléssel - lehet létrehozni egy �
 Egy objektum mezői kétféle módon érhetőek el, vagy az 'objektum.mezőnév' jelöléssel,
 (Ford.: amit "dot notationként" emlegetünk) vagy a szögletes zárójelek kirakásával.
     
-    var foo = {name: 'kitten'}
-    foo.name; // kitten
-    foo['name']; // kitten
+    var foo = {name: 'macska'}
+    foo.name; // macska
+    foo['name']; // macska
     
     var get = 'name';
-    foo[get]; // kitten
+    foo[get]; // macska
     
     foo.1234; // SyntaxError
     foo['1234']; // működik
 
-A két jelölés majdnem egyenértékűen használható, kivéve, hogy a szögletes zárójelekkel dinamkusan állíthatunk be mezőket és olyan mezőneveket is választhatunk, amik amúgy szintaxis hibához vezetnének (Fordító: mivel a neveket stringbe kell rakni, így nem érdekes hogy a JS által "lefoglalt" kulcsszavakat használunk, habár ennek kihasználása erősen kerülendő).
+A két jelölés majdnem egyenértékűen használható, kivéve, hogy a szögletes zárójelekkel dinamkusan állíthatunk be mezőket és olyan neveket is választhatunk, amik amúgy szintaxis hibához vezetnének (Fordító: mivel a neveket stringbe kell rakni, megadhatunk a JS által "lefoglalt" kulcsszavakat is mezőnévként, habár ennek használata erősen kerülendő).
 
 ### Mezők törlése
 
@@ -68,21 +70,21 @@ magára az értékre van kihatással, de a kulcs ugyanúgy megmarad az objektumb
         }
     }
 
-A fenti kód mind a `bar undefined` és `foo null` eredményeket fogja adni - 
+A fenti ciklus a `bar undefined` és a `foo null` eredményeket fogja kiírni - 
 egyedül a `baz` mező került törlésre, és emiatt hiányzik is az outputról.
 
 ### Kulcsok jelölése
 
     var test = {
         'case': 'Kulcsszó vagyok, ezért stringként kell leírnod',
-        delete: 'Én is az vagyok' // Szintaxis hiba (SyntaxError)
+        delete: 'Én is az vagyok' // SyntaxError
     };
 
 Az objektumok mezőnevei mind stringként, mind egyszerű szövegként (Ford.: aposztrófok nélkül)
-leírhatóak. A JavaScript értelmező hibája miatt, a fenti kód azonban `SyntaxError`-t eredményez ECMAScript 5 előtti verzió esetén.
+leírhatóak. A JavaScript értelmező hibája miatt, a fenti kód azonban `SyntaxErrort` eredményez ECMAScript 5 előtti verzió esetén.
 
 Ez a hiba onnan ered, hogy a `delete` egy *kulcsszó*, viszont érdemes *string literálként*
-leírni hogy helyesen megértsék az öregebb JavaScript motorok is.
+leírni hogy helyesen megértsék a régebbi JavaScript motorok is.
 
 [1]: http://en.wikipedia.org/wiki/Hashmap
 

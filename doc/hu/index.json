@@ -1,10 +1,10 @@
 {
     "title": "JavaScript Garden",
-    "description": "Bevezetés a JavaScript bugyraiba, hibáiba.",
+    "description": "Bevezet\u00E9s a JavaScript bugyraiba, hib\u00E1iba.",
     "langTitle": "A JavaScript Garden magyarul",
     "sections": [
         {
-            "title": "Bevezeto",
+            "title": "Bevezet\u0151",
             "dir": "intro",
             "articles": []
         },

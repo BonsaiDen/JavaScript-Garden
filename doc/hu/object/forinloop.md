@@ -34,18 +34,20 @@ lakó [`hasOwnProperty`](#object.hasownproperty) függvény használatával érh
 
 Ez az egyetlen helyes útja annak hogy az objektum saját mezőin iteráljunk csak végig.
 Mivel a `hasOwnProperty`-t használjuk, így csak a várt `moo`-t fogja kiírni. Tehén jó
-kódunk van! Hogyha a `hasOwnProperty`-t kihagynánk, nem csak a Milka gyár nem örülne,
-de a kódunk is ki lenne téve nem várt hibáknak, amik pl. abból fakadnak hogy valaki ocsmányul
-kiterjesztette az `Object.prototype`-t.
+kódunk van! Hogyha a `hasOwnProperty`-t kihagynánk, a kódunk ki lenne téve nem várt
+hibáknak, amik pl. abból fakadnak hogy valaki ocsmányul kiterjesztette az
+`Object.prototype`-t.
 
-Például, ha a [Prototype][1] frameworköt használjuk, és nem ilyen stílusban írjuk a ciklusainkat, a hibák szinte garantáltak, ugyanis ők saját szájízükre kiterjesztik az `Object.prototype`-t.
+Például, ha a [Prototype][1] frameworköt használjuk, és nem ilyen stílusban írjuk a
+ciklusainkat, a hibák szinte garantáltak, ugyanis ők saját szájízükre kiterjesztik az
+`Object.prototype`-t.
 
 ### Konklúzió
 
-Erősen javallott **mindig** használni a `hasOwnProperty`-t. Soha ne éljünk pozitív
+A `hasOwnProperty` használata erősen javasolt. Soha ne éljünk pozitív
 feltételezésekkel a futó kódot illetően, főleg olyan döntésekben nem érdemes
 orosz rulettezni, mint hogy kiterjeszti-e valaki a natív prototípusokat vagy nem.
-Mert általában de.
+Mert általában igen.
 
 [1]: http://www.prototypejs.org/
 
