@@ -1,6 +1,6 @@
 ﻿##数组遍历与属性
 
-虽然在 JavaScript 中数组是是对象，但是没有好的理由去使用 [`for in` 循环](#object.forinloop) 遍历数组。
+虽然在 JavaScript 中数组是对象，但是没有好的理由去使用 [`for in` 循环](#object.forinloop) 遍历数组。
 相反，有一些好的理由**不去**使用 `for in` 遍历数组。
 
 > **注意:** JavaScript 中数组**不是** *关联数组*。
