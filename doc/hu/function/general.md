@@ -1,8 +1,9 @@
 ﻿## Függvény deklarációk és kifejezések
 
-A függvények JavaScriptben csak úgy értékek mint bármelyik más primitív érték. 
-Ez azt jelenti hogy a függvények is átadhatóak például másik függvények paramétereként,
-vagy megadható egy *névtelen függvény* egy másik aszinkron callbackjeként.
+A függvények JavaScriptben egyben objektumok is. Ez azt jelenti, hogy
+ugyanúgy lehet őket passzolgatni mint bármelyik más értékeket. Ezt a featuret
+gyakran használják arra, hogy egy *névtelen (callback) függvényt* átadjunk 
+egy másik -aszinkron- függvény paramétereként.
 
 ### A `függvény` deklaráció
 
@@ -29,7 +30,7 @@ Habár ebben a példában a `var` deklaráció futás előtt a kód tetejére k�
 ettől függetlenül a foo mint függvény meghívásakor hibát fogunk kapni.
 
 Ugyanis a deklaráció felkúszott, azonban az értékadás csak futásidőben fog megtörténni,
-addig is a foo változó értéke [undefined](#core.undefined) marad. Az undefinedet pedig hiába hívjuk függvényként, TypeError-t kapunk végeredményül.
+addig is a foo változó értéke [undefined](#core.undefined) marad. Az undefinedet pedig hiába hívjuk függvényként, TypeErrort kapunk végeredményül.
 
 ### Névvel ellátott függvény kifejezés
 
@@ -40,8 +41,8 @@ Egy másik érdekes eset, amikor névvel ellátott függvényeket adunk érték�
     }
     bar(); // ReferenceError
 
-Ebben a példában a `bar`-t önmagában nem lehet elérni egy külső scopeból (utolsó sor), 
-mivel egyből értékül adtuk a `foo` változónak. Habár magán a `bar`-on belül elérhető
-a `bar` név, mivel a JavaScriptben található [névfeloldás](#function.scopes) miatt, a függvény önmagát mindig eléri a saját scopeján belül.
+Ebben a példában a `bar`t önmagában nem lehet elérni egy külső scopeból (utolsó sor), 
+mivel egyből értékül adtuk a `foo` változónak. Ennek ellenére a `bar`on belül elérhető
+a `bar` név. A tanulság az, hogy a függvény önmagát *mindig* eléri a saját scopeján belül, és ez a JavaScriptben található [névfeloldásnak](#function.scopes) köszönhető.
 
 

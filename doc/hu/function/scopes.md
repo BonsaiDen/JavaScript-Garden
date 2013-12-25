@@ -1,8 +1,8 @@
 ﻿## Névterek és hatókörök
 
-Habár a JavaScript látszólag jól értelmezi a kapcsos zárójelek használatát
-blokkon belüli utasítások definiálásához, fontos megjegyezni hogy **nincsen** blokk 
-szintű hatókör, csakis *függvény hatókörök* léteznek a nyelvben.
+Habár látszólag a kapcsos zárójelek jelentik a blokkok határait JavaScriptben, 
+fontos megjegyezni hogy **nincsen** blokk szintű hatókör, csakis *függvény hatókörök*
+léteznek.
 
     function test() { // ez egy hatókör
         for(var i = 0; i < 10; i++) { // ez meg nem
@@ -16,20 +16,20 @@ szintű hatókör, csakis *függvény hatókörök* léteznek a nyelvben.
 > nem objektum literálként. Ez a szép tulajdonság az [automatikus pontosvessző
 > generálással](#core.semicolon) karöltve nehezen észrevehető hibákhoz vezethet.
 
-A nyelvben nincsenek beépített névterek, ami azt jelenti hogy minden egyetlen,
+A nyelvben nincsenek beépített névterek, ami azt jelenti hogy minden, egyetlen
 *globálisan megosztott* névtérben kerül deklarálásra.
 
-Akárhányszor egy változóra hivatkozunk, a JavaScript elkezdi keresni a hatókörökben,
-a lokálistól kezdve, felfele egészen a legkülső, globális hatókörig. Hogyha elérjük
-a globális hatókört és még mindig nem találja a keresett változót, akkor egy
+Akárhányszor egy változóra hivatkozunk, a JavaScript elkezdi felfele utazva
+megkeresni hatókörökön, amíg csak meg nem találja. Hogyha elérjük
+a globális hatókört és még mindig nem találjuk a keresett változót, akkor egy
 `ReferenceError` hibával gazdagodik a futásidőnk.
 
 ### A globális változók csapása
 
-    // script A
+    // A script
     foo = '42';
 
-    // script B
+    // B script
     var foo = '42'
 
 Érdemes észrevenni, hogy a fenti két scriptnek **nem** ugyanaz a hatása. Az A script
@@ -53,16 +53,16 @@ a globális hatókörben definiált `foo` változó értékét. Habár ez elsőr
 nagy dolognak, ha a `var`okat több száz sornyi JavaScript kódból hagyjuk el, az 
 olyan hibákhoz vezethet, amit még az anyósunknak se kívánnánk.
     
-    // global scope
-    var items = [/* some list */];
+    // globális hatókör
+    var items = [/* random lista */];
     for(var i = 0; i < 10; i++) {
         subLoop();
     }
 
     function subLoop() {
-        // scope of subLoop
-        for(i = 0; i < 10; i++) { // missing var statement
-            // do amazing stuff!
+        // a subLoop hatóköre
+        for(i = 0; i < 10; i++) { // hiányzik a var
+            // elképesztő dolgokat művelünk itt
         }
     }
 	
@@ -72,11 +72,11 @@ volna `var`-t azzal könnyen elkerülhettük volna ezt a hibát. **Sose** hagyju
 külső hatókört.
 
 
-### Local Variables
+### Lokális változók
 
 Kétféleképp (és nem több módon) lehet lokális változókat JavaScriptben leírni; ez vagy a [függvény](#function.general) paraméter vagy a `var` utasítás.
 
-    // global scope
+    // globális hatókör
     var foo = 1;
     var bar = 2;
     var i = 2;
@@ -90,7 +90,7 @@ Kétféleképp (és nem több módon) lehet lokális változókat JavaScriptben 
     }
     test(10);
 	
-Itt a `foo` és `i` lokális változók a `test` hatókörén belül, viszont a `bar`-os
+Itt a `foo` és `i` lokális változók a `test` hatókörén belül, viszont a `bar`os
 értékadás felül fogja írni a hasonló nevű globális változót.
 
 ### Hoisting
@@ -143,7 +143,7 @@ hatókör tetejébe.
     test();
 
 A hiányzó blokk hatókör ténye nem csak azt eredményezi, hogy a `var` utasítások
-kikerülnek a ciklusmagokból, hanem az `if` utasítások értéke is megjósolhatatlan
+kikerülnek a ciklusmagokból, hanem az `if` utasítások kimenetele is megjósolhatatlan
 lesz.
 
 Habár úgy látszik az eredeti kódban, hogy az `if` utasítás a `goo` *globális 
@@ -163,7 +163,7 @@ tetejére lett mozgatva.
 
     var SomeImportantThing;
 
-    // a SomeImportantThing inicializációs kódjai ide...
+    // más kódok még inicializálhatják a SomeImportantThing változót itt...
 
     // ellenőrizzük hogy létezik-e
     if (!SomeImportantThing) {
@@ -204,7 +204,7 @@ elkerülhető a *névtelen wrapper függvények* használatával.
             // egy exportált closure
         };
 
-    })(); // a függvény azonnal végre is hajtjuk
+    })(); // a függvényt azonnal végre is hajtjuk
 
 A névtelen függvények [kifejezésekként](#function.general) vannak értelmezve; így
 ahhoz hogy meghívhatóak legyenek, először ki kell értékelni őket.
@@ -227,8 +227,8 @@ a függvény kifejezést, amelyek habár szintaxisukban eltérnek, ugyanazt ered
 
 Az *anonym wrapper függvények* használata erősen ajánlott a kód egységbezárása 
 érdekében, saját névtér alkotásához. Ez nem csak hogy megvédi a kódunkat a 
-névütközésektől, de jobb modularizációhoz is vezethet.
+névütközésektől, de jobb modularizációhoz is vezet.
 
 Emelett a globális változók használata **nem ajánlott**. **Bármilyen** fajta 
-használata rosszul megírt kódhoz vezethet, amelyik könnyen eltörik és nehezen
+használata rosszul megírt kódról árulkodik, amelyik könnyen eltörik és nehezen
 karbantartható.

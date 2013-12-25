@@ -1,8 +1,8 @@
 ﻿## Konstruktorok
 
-Csak úgy mint minden más, a konstruktorok működése szintén különbözik JavaScriptben
-a megszokottól. Itt minden függvényhívás amelyet a `new` kulcsszó előz meg, konstruktor
-hívásnak számít.
+Csak úgy mint minden más, a konstruktorok működése szintén különbözik 
+a megszokottól. Itt minden függvényhívás amelyet a `new` kulcsszó előz meg, 
+konstruktor hívásnak számít.
 
 A `this` értéke a konstruktoron - hívott függvényen - belül az újonnan létrehozott objektumra
 mutat. Az **új** objektum [prototípusa](#object.prototype) a konstruktor függvény `prototípusával` fog megegyezni.
@@ -24,7 +24,7 @@ egy új objektumot fog eredményezni. Ennek az objektumnak a `prototípusa` a Fo
 
 Trükkös ugyan, de ha mégis van `return` utasítás az éppen konstruált függvényben, akkor
 a függvény hívása az annak megfelelő értékkel fog visszatérni, de **csak** akkor, ha a 
-visszatérített érték egy `Object` típusú.
+visszatérített érték `Objektum` típusú.
 
     function Bar() {
         return 2;
@@ -50,7 +50,7 @@ Hogyha kihagyjuk a `new` kulcsszó használatát, a függvény **nem** egy új o
 A [`this`](#function.this) JavaScript beli működésének köszönhetően, mégha le is
 fut az előbbi kód, akkor a `this` helyére a *globális objektumot* képzeljük.
 
-### Gyárak (Factoryk)
+### Gyárak (Factory-k)
 
 Ahhoz, hogy teljesen eltudjuk hagyni a `new` kulcsszó használatát, a konstruktor
 függvény explicit értékkel kell visszatérjen.
@@ -116,7 +116,7 @@ megemlíteni a dolgok kontra részét is.
 	az összes származtatandó metódust egy másik objektumról, vagy ezt az objektumot
 	be kell állítsa a létrehozott új objektum prototípusának.
  3. Az a megközelítés miszerint egy kifelejtett `new` kulcsszó miatt eldobjuk
-	az objektum teljes prototípusát, ellenkezik a nyelv lelkével.
+	az objektum teljes prototípusát, ellenkezik a nyelv szellemiségével.
 
 ### Összefoglaló
 
@@ -124,5 +124,5 @@ A `new` varázsszó kihagyása ugyan bugokhoz vezethet, de ez **nem** megfelelő
 arra hogy ezért eldobjuk a prototípusok használatát. Végeredményben mindig
 az fog dönteni a különböző stílusok megválasztása között, hogy mire van
 szüksége éppen az aktuális programunknak. Egy dolog azért elengedhetetlenül
-fontos, hogy megválasszuk melyik stílust fogjuk használni objektum létrehozásra,
-és ezt **konzisztensen** használjuk a teljes megoldáson keresztül.
+fontos, ez pedig hogy megválasszuk melyik stílust fogjuk használni objektumok
+létrehozásra, és ezt **konzisztensen** használjuk a teljes megoldáson keresztül.

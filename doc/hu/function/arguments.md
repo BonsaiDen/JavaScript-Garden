@@ -1,11 +1,11 @@
-﻿## Az `arguments` ojjektum
+﻿## Az `arguments` objektum
 
 Minden függvényhatókörben hozzáférhető az `arguments` nevű speciális változó,
 amely azon argumentumok listáját tartalmazza, amelyekkel a függvényt meghívták.
 
 > **Megjegyzés:** Abban a trükkös esetben, hogyha a függvényhatókörön belül valahogy
 > definiáljuk az `arguments`-et mint nevet, akár változóként (`var`ral), vagy a függvény 
-> paramétereként, akkor ez a speciális `arguments` ojjektum nem lesz létrehozva.
+> paramétereként, akkor ez a speciális `arguments` objektum nem lesz létrehozva.
 
 Lehet hogy úgy néz ki, de az `arguments` objektum **nem** egy `tömb`. Látszólag hasonlít rá,
 mivel van például egy `length` nevű mezője, de igazából nem az `Array.prototype`-ból "származik",
@@ -23,18 +23,18 @@ Ez a kódrészlet egy új `Array` objektummá varázsolja az emlegetett `argumen
     Array.prototype.slice.call(arguments);
 	
 De, ez a konverzió meglehetősen **lassú** így egyáltalán **nem ajánlott** teljesítmény kirtikus
-alkalmazások írása esetén.
+alkalmazások írásakor.
 
 ### Argumentumok kezelése
 
 A következő módszer ajánlott arra az esetre hogyha az egyik függvény paramétereit egy-az-egyben
-át szeretnénk lökni egy másik függvény számára.
+át szeretnénk adni egy másik függvény számára.
 
     function foo() {
         bar.apply(null, arguments);
     }
     function bar(a, b, c) {
-        // do stuff here
+        // sok okos kód ide
     }
 
 Egy másik trükk arra hogy teljesen független wrapper függvényeket gyártsunk, a `call`
@@ -46,11 +46,11 @@ Egy másik trükk arra hogy teljesen független wrapper függvényeket gyártsun
         console.log(this, a, b, c);
     };
 
-    // Create an unbound version of "method" 
-    // It takes the parameters: this, arg1, arg2...argN
+    // Elkészíti a "method" (this) független verzióját
+    // Ezeket kapja paraméterül: this, arg1, arg2...argN
     Foo.method = function() {
 
-        // Result: Foo.prototype.method.call(this, arg1, arg2... argN)
+        // Eredmény: Foo.prototype.method.call(this, arg1, arg2... argN)
         Function.call.apply(Foo.prototype.method, arguments);
     };
 	
@@ -60,7 +60,7 @@ A háttérben az `arguments` objektum minden egyes indexére (elemére) egy *get
 függvényt is kap, csak úgy ahogy a függvény paramétereit is felül tudjuk írni, illetve eltudjuk érni.
 
 Ennek eredményeképp, az `arguments` objektumon véghezvitt változtatások szinkronban
-változtatják a függvény nevesített paramétereit is.
+változtatják a függvény névvel ellátott paramétereit is.
 
     function foo(a, b, c) {
         arguments[0] = 2;
