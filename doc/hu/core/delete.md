@@ -3,12 +3,12 @@
 Röviden, *lehetetlen* globális változókat, függvényeket és olyan dolgokat törölni
 JavaScriptben amelyeknek a `DontDelete` attribútuma be van állítva.
 
-### Globális kód és Funkció kód
+### Globális kód és Függvény kód
 
-Amikor egy változó vagy függvény, globális vagy 
+Amikor egy változó/függvény, globális vagy 
 [függvény hatókörben](#function.scopes) van definiálva, 
-akkor az Activation (Aktivációs) vagy a Global (Globális) objektum egyik mezőjeként
-értelmeződik.  Az ilyen mezőknek van egy halom attribútuma, amelyek közül az egyik 
+akkor az vagy az Aktivációs (Activation) vagy a Globális (Global) objektum egyik mezőjeként
+jön létre.  Az ilyen mezőknek van egy halom attribútuma, amelyek közül az egyik 
 a `DontDelete`. A változó és függvény deklarációk a globális vagy függvény kódon
 belül mindig `DontDelete` tulajdonságú mezőket hoznak létre, így nem lehet őket
 törölni.
@@ -82,7 +82,7 @@ A függvény argumentumok, az [`arguments` objektum](#function.arguments)
 A `delete` operátor működése megjósolhatatlan a vendég objektumokra. A specifikáció
 szerint ezek az objektumok szükség szerint bármilyen viselkedést implementálhatnak.
 
-(A ford.: Vendég objektumok azok az objektumok, amelyek nincsenek konrkétan
+(A ford.: Vendég objektumok azok az objektumok, amelyek nincsenek konkrétan
 meghatározva az ES aktuális verziójú specifikációjában, pl. a window)
 
 ### Összegzésképp

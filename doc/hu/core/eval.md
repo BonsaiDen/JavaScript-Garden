@@ -30,13 +30,9 @@ Az `eval` használata kerülendő. A "felhasználása" az esetek 99.9%-ban
     
 ### Az `eval` ezer arca
 
-The [timeout functions](#other.timeouts) `setTimeout` and `setInterval` can both 
-take a string as their first argument. This string will **always** get executed 
-in the global scope since `eval` is not being called directly in that case.
-
 A `setTimeout` és `setInterval` nevű [timeout függvények](#other.timeouts) is
-tudnak úgy működni, hogy első paraméterükre egy stringbe ágyazott kódot várnak.
-Ez a string **mindig** a globális hatókörben lesz végrehajtva, mivel az `eval`-t
+tudnak úgy működni, hogy első paraméterükként egy stringbe ágyazott kódot várnak.
+Ez a string **mindig** a globális hatókörben lesz végrehajtva, mivel az `eval`t
 így nem direktben hívjuk meg.
 
 ### Biztonsági problémák
@@ -47,7 +43,7 @@ nem megbízható/ismeretlen.
 
 ### Összegzésül
 
-Soha ne használjunk `eval`-t. Bármilyen kód működése, teljesítménye, ill. biztonsága
+Soha ne használjunk `eval`t. Bármilyen kód működése, teljesítménye, ill. biztonsága
 megkérdőjelezhető amely használja ezt a nyelvi elemet. Semmilyen megoldás
 használata **nem ajánlott** amely első sorban `eval`ra épül. Ekkor egy *jobb
 megoldás* szükségeltetik, amely nem függ az `eval`tól.

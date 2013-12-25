@@ -3,20 +3,19 @@
 Mivel a JavaScript aszinkron, a `setTimeout` és `setInterval` használatával
 lehetséges késleltetni a kódok lefutási idejét.
 
-> **Megjegyzés:** A timeout fv.-ek **nem** részei az ECMAScript Standard-nek.
+> **Megjegyzés:** A timeout fv.-ek **nem** részei az ECMAScript Standardnek.
 > Mivel a [DOM][1] részeként lettek implementálva.
 
     function foo() {}
     var id = setTimeout(foo, 1000); // Egy számmal (> 0) tér vissza
 
-Amikor a `setTimeout` függvényt meghívjuk, a timeout IDjával tér vissza és
-beütemezi a `foo` futtatását, hogy **körülbelül** 1000 miliszekundum múlva
-fusson le a jövőben. A `foo` **egyszer** lesz végrehajtva.
+Amikor a `setTimeout` függvényt meghívjuk, válaszul egy timeout ID-t kapunk
+valamint be lesz ütemezve a `foo` függvényhívás, hogy **körülbelül** 1000 miliszekundum múlva fusson le a jövőben. A `foo` **egyszer** lesz végrehajtva.
 
 Az aktuális JavaScript motor időzítésétől függően, és annak figyelembe vételével
 hogy a JavaScript mindig egyszálú, tehát a megelőző kódok blokkolhatják a szálat,
 **soha** nem lehet biztonságosan meghatározni hogy valóban a kért időzítéssel 
-fog lefutni a kód amit megadtunk a `setTimeout`-ban. Erre semmilyen biztosíték nincs.
+fog lefutni a kód amit megadtunk a `setTimeout`ban. Erre semmilyen biztosíték nincs.
 
 Az első helyen bepasszolt függvény a *globális objektum* által lesz meghívva, ami
 azt jelenti hogy a [`this`](#function.this) a függvényen belül a globális objektumra
@@ -26,7 +25,7 @@ utal.
         this.value = 42;
         this.method = function() {
             // a this egy globális objektumra utal, nem a Foo-ra
-            console.log(this.value); // undefined-et logol ki
+            console.log(this.value); // undefined-ot logol ki
         };
         setTimeout(this.method, 500);
     }
@@ -35,17 +34,17 @@ utal.
 
 > **Note:** Mivel a `setTimeout` egy **függvény objektumot** vár első paramétereként
 > egy gyakori hiba a `setTimeout(foo(), 1000)` módon való használata, amely a 
-> `foo` **visszatérési értékét** fogja használni és **nem** a `foo`-t mint függvényt. 
+> `foo` **visszatérési értékét** fogja használni és **nem** a `foo`t mint függvényt. 
 > Ez a legtöbb esetben egy észrevétlen hibát okoz, mivel a függvény `undefined`-t
 > térít vissza amire a `setTimeout` **nem** fog hibát dobni.
 
-### Híváshalmozás a `setInterval`-lal
+### Híváshalmozás a `setInterval`al
 
 Míg a `setTimeout` csak egyszer futtatja le a megadott függvényt, a `setInterval`
 - ahogy a neve is mutatja - **minden** `X` miliszekundumban végrehajtja a 
 neki átadott kódot, használata pedig erősen kerülendő.
 
-A másik hátulütője, hogy a `setInterval` még akkor ütemezi az újabb és újabb
+Nagy hátulütője, hogy még akkor is ütemezi az újabb és újabb
 hívásokat, hogyha az aktuálisan futattot kód a megadott időintervallumon
 felül blokkolja a további kód futtatást. Ez, hogyha megfelelően rövid
 intervallumokat állítunk be, felhalmozza a függvényhívásokat a call stacken.
@@ -87,9 +86,8 @@ hogy melyik `set` függvénnyel indítottuk útjára a timeoutunkat.
 
 ### Az Összes Timeout Megszüntetése
 
-Bruteforce módszerhez kell folyamodjunk ennek a problémakörnek a megoldása
-kapcsán, hiszen nincsen beépített metódus az összes timeout és/vagy interval
-hívás megszüntetésére.
+Mivel nincsen beépített megoldás az összes timeout és/vagy interval
+hívás törlésére, ezért bruteforce módszerekhez kell folyamodjunk.
 
     // az "összes" timeout kitörlése
     for(var i = 1; i < 1000; i++) {
@@ -97,9 +95,9 @@ hívás megszüntetésére.
     }
 
 Persze ez csak véletlenszerű lövöldözés, semmi sem garantálja hogy a fenti 
-módszerrel nem marad timeout a rendszerben (A ford.: például 1000 id-val vagy
-afelett). Szóval egy másik módszer ennek megoldásaképp, hogy azt tudjuk, hogy
-az ID-k mindig egyel növekednek minden egyes `setTimeout` hívással. 
+módszerrel nem marad timeout a rendszerben (A ford.: például az ezredik timeout vagy
+afelett). Szóval egy másik módszer ennek megoldására, hogy feltételezzük hogy
+minden `setTimeout` hívással az azonosítók száma egyel növekszik.
 
     // az "összes" timeout kiírtása
     var legnagyobbTimeoutId = window.setTimeout(function(){}, 1),
@@ -108,20 +106,18 @@ az ID-k mindig egyel növekednek minden egyes `setTimeout` hívással.
         clearTimeout(i);
     }
 
-Habár ez a megoldás minden böngészőben megy, ez az IDkról született mondás 
-nincs specifikációban leírva, és ennek megfelelően változhat. Az ajánlott
-módszer továbbra is az, hogy kövessük nyomon az összes timeout ID-t amit
-generáltunk, és így ki is lehet őket rendesen törölni.
+Habár ez a megoldás minden böngészőben megy (egyenlőre), ez az azonosítókról született mondás nincs specifikációban rögzítve, és ennek megfelelően változhat. 
+Az ajánlott módszer továbbra is az, hogy kövessük nyomon az összes timeout azonosítót amit generáltunk, és így ki is tudjuk őket rendesen törölni.
 
 ### `eval` A Színfalak Mögött
 
 Habár a `setTimeout` és a `setInterval` (kód) stringet is tud első paramétereként
 fogdani, ezt a fajta formáját használni kimondottan **tilos**, mivel a függöny
-mögött ő is csak `eval`-t használ.
+mögött ő is csak `eval`t használ.
 
 > **Megjegyzés:** Mivel az ECMAScript Standard nem specifikálja a timeout
 > függvények működését, az eltérő JavaScript implementációkban eltérő módon
-> működhet. Például a Microsoft JScript-je a `Function` konstruktort használja
+> működhetnek. Például a Microsoft JScript-je a `Function` konstruktort használja
 > az `eval` helyett.
 
     function foo() {
@@ -136,8 +132,8 @@ mögött ő is csak `eval`-t használ.
     }
     bar();
 
-Mivel az `eval`-t nem [direkt](#core.eval) módon hívjuk meg a fenti esetben,
-a `setTimeout`-nak passzolt string a *globális hatókörben* fog lefutni; így
+Mivel az `eval`t nem [direkt](#core.eval) módon hívjuk meg a fenti esetben,
+a `setTimeout`nak passzolt string a *globális hatókörben* fog lefutni; így
 a lokális `foo` függvényt sosem használjuk a `bar` hatóköréből.
 
 Továbbá **nem** ajánlott argumentumokat átadni annak a függvénynek amelyik
@@ -159,15 +155,10 @@ a timeout függvények által meg lesz hívva a későbbiekben.
 
 ### Összegzésképp
 
-A string should **never** be used as the parameter of `setTimeout` or 
-`setInterval`. It is a clear sign of **really** bad code, when arguments need 
-to be supplied to the function that gets called. An *anonymous function* should
-be passed that then takes care of the actual call.
-
 **Soha** ne használjunk stringeket a `setTimeout` vagy `setInterval` első
 paramétereiként. Ha argumentumokat kell átadni a meghívandó függvénynek, az 
-egyértelmű jele az igazán **rossz** kódnak. Ekkor a függvényhívás 
-lebonyolításához egy *anoním* függvény használata célszerű.
+egyértelműen **rossz** kódra utal. Ebben az esetben a függvényhívás 
+lebonyolításához egy *anoním* függvény használata ajánlott.
 
 Továbbá, mivel az ütemező kódja nem blokkolódik a JavaScript futás által, a 
 `setInterval` használata úgy általában kerülendő.

@@ -23,10 +23,10 @@ két értéket.
 
 A fenti táblázat szépen mutatja hogy mi a típuskényszerítés eredménye, és egyben
 azt is, hogy miért rossz szokás a `==` használata. Szokás szerint, ez megint
-olyan fícsör ami nehezen követhető hibákhoz vezethet a komplikált konverziós
+olyan fícsör ami nehezen követhető kódhoz vezethet a komplikált konverziós
 szabályai miatt.
 
-Pláne, hogy a kényszerítés performancia problémákhoz is vezet; ugyanis, mielőtt
+Pláne, hogy a kényszerítés teljesítmény problémákhoz is vezet; ugyanis, mielőtt
 egy stringet egy számhoz hasonlítanánk azelőtt a karakterláncot át kell konvertálni
 a megfelelő típusra.
 
@@ -49,7 +49,7 @@ típuskényszerítést az operandusai között.
 
 A felső eredmények sokkal egyértelműbbek és ennek köszönhetően sokkal hamarabb
 eltörik a kód egy-egy ellenőrzésen. Ettől sokkal hibatűrőbb lesz
-a kódunk, és ráadásul teljesítménybeli gondjaink sem lesznek.
+a produktumunk, és ráadásul teljesítménybeli gondjaink sem lesznek.
 
 ### Objektumok összehasonlítása
 

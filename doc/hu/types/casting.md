@@ -21,7 +21,7 @@ csak tud**, ott *típus kényszerítést* használ.
 > Az oktál támogatást az ECMAScript 5 strict módból **eltávolították**
 
 Hogy elkerüljük a fenti varázslatokat, a [szigorú egyenlőség ellenőrzés](#types.equality) **melegen** ajánlott. Habár ezzel elkerüljük
-a problémák farkasrészét, még mindig tartogat a JS gyengén típsuso rendszere
+a problémák farkasrészét, még mindig tartogat a JS gyengén típusos rendszere
 meglepetéseket.
 
 ### Natív típusok konstruktorai
@@ -33,11 +33,7 @@ módon viselkednek hogyha a `new` kulcsszóval avagy anélkül vannak inicializ�
     Number(10) === 10;         // Igaz, Szám vs. szám
     new Number(10) + 0 === 10; // Igaz, az implicit konverziónak hála
 
-Using a built-in type like `Number` as a constructor will create a new `Number` 
-object, but leaving out the `new` keyword will make the `Number` function behave
-like a converter.
-
-Ha egy natív típusát mint a `Number` konstruktorként kezeljük, akkor egy új
+Ha egy natív típust mint a `Number` konstruktorként kezelünk, akkor egy új
 `Number` objektumot kapunk. De ha kihagyjuk a `new` kulcsszót akkor a `Number`
 egy egyszerű konverter függvényként fog viselkedni.
 

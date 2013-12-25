@@ -1,8 +1,8 @@
 ﻿## Automatic Semicolon Insertion
 
 Bár a JavaScriptnek látszólag C-s szintaxisa van, **mégsem** kötelező benne
-kirakni a ponotsvesszőket, így (helyenként) kihagyhatóak a forrásból.
-(A ford.: Hiszen interpretált nyelv lévén nincsenek fordítási hibák, így 
+kirakni a pontosvesszőket, így (helyenként) kihagyhatóak a forrásból.
+(A ford.: hiszen interpretált nyelv lévén nincsenek fordítási hibák, így 
 nyelvi elemek meglétét sem tudja erőltetni a nyelv)
 
 Itt jön a csel, hogy ennek ellenére a JavaScript csak pontosvesszőkkel
@@ -25,7 +25,7 @@ hibája, mivel igen... *meg tudja* változtatni a kód értelmezését
 
 ### Hogyan Működik
 
-Az alábi kódban nincsen pontosvessző, így a parser (értelmező) feladata kitalálni,
+Az alábi kódban nincsen pontosvessző, így az értelmező (parser) feladata kitalálni,
 hogy hova is illessze be őket.
 
     (function(window, undefined) {
@@ -79,16 +79,15 @@ Alább mutatjuk a "kitalálós" játék eredményét.
         }
         window.test = test; // <- beillesztés
 
-    // The lines got merged again
+    // Ezeket a sorokat összeilleszti
     })(window)(function(window) {
         window.someLibrary = {}; // <- beillesztés
 
     })(window); //<- beillesztés
 
 > **Megjegyzés:** A JavaScript értelmező nem tudja "korrektül" kezelni azokat
-> a return kifejezéseket, amelyek után közvetlen új sor áll. Ez pedig egy
-> nem túl kellemes mellékhatás, habár ez nem biztos hogy mindig
-> az ASI hibájából történik.
+> a return kifejezéseket, amelyek után közvetlen új sor áll. Habár ez nem biztos hogy 
+> szükségszerűen az ASI hibájából történik, azért nem egy túl kellemes mellékhatás.
 
 Az értelmező drasztikusan megváltoztatta a fenti kódot. A legtöbb esetben a 
 beillesztő **rosszul** tippel.

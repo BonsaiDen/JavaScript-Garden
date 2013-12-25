@@ -9,7 +9,7 @@ Ha az előbbi bevezetőtől nem zavarodtál volna össze; az
 `undefined` egy típus amelynek pontosan egy értéke van, az `undefined`.
 
 A nyelvben szintén van egy `undefined` nevű globális változó amelynek az értékét
-hogy-hogy nem `undefined`-nek hívják. Viszont ez a változó **nem** konstans vagy
+hogy-hogy nem `undefined`-nak hívják. Viszont ez a változó **nem** konstans vagy
 kulcsszó a nyelvben. Ez azt jeletni hogy az *értéke* könnyedén felülírható.
 
 > **ES5 Megjegyzés:** Az `undefined` ECMAScript 5-ben **többé** *nem felülírható* 
@@ -34,7 +34,7 @@ Mivel az `undefined` nevű globális változó csak egy másolatot tárol az
 felül az eredeti `undefined` *típus* értékét.
 
 Ezért, ha valamilyen értékkel össze szeretnénk hasonlítani az `undefined` értéket,
-nem árt hogyha először magát az `undefined`-et el tudjuk érni.
+nem árt hogyha először magát az `undefined`-ot el tudjuk érni.
 
 Egy gyakori technika annak érdekében hogy megvédjük a kódunkat az 
 `undefined` lehetséges felüldefiniálásaitól, hogy egy [névtelen (wrapper)](#function.scopes) függvénybe
@@ -58,20 +58,20 @@ belül.
     })('Hello World', 42);
 
 Az egyetlen különbség ebben a változatban, hogyha minifikáljuk ezt a kódot,
-és nem definiálunk további változókat ezen a részen belül, akkor extra 4 byte
-"veszteséget" szenvedünk el.
+és nem definiálunk további változókat ezen a részen belül, akkor ezzel a
+változattal extra 4 byte "veszteséget" szenvedünk el.
 
-### Mikor használjunk `null`-t
+### Mikor használjunk `null`t
 
 Miközben az `undefined` a natív JavaScript megvalósításokban inkább a (más 
 nyelvekben levő) tradícionális *null* helyett használandó, azalatt maga a `null` 
 inkább csak egy különböző adattípusnak számít, mindenféle különös jelentés nélkül.
 
 Egy pár belső JavaScriptes megoldásban ugyan használják (ahol pl. a prototípus lánc végét a `Foo.prototype = null` beállítással jelölik), de a legtöbb esetben ez
-felcserélhető az `undefined`-el.
+felcserélhető az `undefined`-al.
 
-(A ford.: A `null` használata kimondottan abban az esetben használható, amikor
+(A ford.: A `null` annak az esetnek a jelölésére hasznos, amikor
 egy referencia típusú változót deklarálunk, de még nem adunk neki értéket. Pl. a 
 `var ezObjektumLesz = null` kifejezés ezt jelöli. Tehát a null leginkább
-kezdeti értékként állja meg a helyét, minden másra ott a MasterC.. az `undefined`)
+kezdeti értékként állja meg a helyét, minden másra ott az `undefined`)
 
