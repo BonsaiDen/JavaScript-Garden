@@ -20,7 +20,7 @@ nem lesznek inicializálva.
     arr[1]; // undefined
     1 in arr; // hamis, nincs ilyen index
 
-A tömb hosszának közvetlen állítása amúgy is csak nagyon néhány esetben
+A tömb hosszának közvetlen állítása amúgy is csak elég kevés esetben
 használható értelmesen, mint például alább, hogyha el akarjuk kerülni a 
 `for ciklus` használatát egy string ismétlésekor.
 

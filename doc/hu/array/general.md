@@ -1,8 +1,7 @@
 ﻿## Tömb iteráció és tulajdonságok
 
-Habár a tömbök a JavaScriptben objektumok, nincsen jó kifogás arra, hogy miért
-kéne a [`for in`](#object.forinloop) ciklust használni velük kapcsolatban. 
-Valójában sokkal több jó ok van arra, hogy **miért ne** használjuk.
+Habár a tömbök a JavaScriptben objektumok, nincsen jó ok arra, hogy a [`for in`](#object.forinloop) ciklussal járjuk be őket. 
+Valójában sokkal több jó ok van arra, hogy **miért ne** így tegyünk.
 
 > **Megjegyzés:** A JS tömbök **nem** *asszociatív tömbök*. A JavaScriptben egyedül
 > az [objektumokkal](#object.general) lehet kulcsokat értékekhez rendelni. Ráadásul
@@ -53,8 +52,7 @@ Egy rövidebb hossz alkalmazása csonkítja a tömböt. A nagyobb hossz megadás
 
 ### Összegzésül
 
-A megfelelő teljesítmény érdekében, a jó öreg `for` ciklus használata ajánlott,
-méghozzá előzetesen lecachelt `length` technikával. A `for in` ciklus használata
-a tömbökön a rosszul megírt kód jele, amely tele lehet hibákkal, és teljesítményben
-sem jeleskedik.
+A megfelelő teljesítmény érdekében, a `for` ciklus használata és a length cachelése
+ajánlott. A `for in` ciklus használata a tömbökön a rosszul megírt kód jele, amely
+tele lehet hibákkal, és teljesítményben sem jeleskedik.
 
