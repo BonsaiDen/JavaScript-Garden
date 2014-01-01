@@ -44,7 +44,7 @@ hiçbir [baz özelliğe](#object.hasownproperty) sahip olmayacaktır.
 Bir nesnenin özelliklerine iki yolla erişilebilir, ya nokta notasyonu ile veya
 köşeli parantez notasyonu ile.
     
-    var foo = {name: 'Kitten'}
+    var foo = {name: 'kitten'}
     foo.name; // kitten
     foo['name']; // kitten
     
