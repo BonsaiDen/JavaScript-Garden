@@ -60,7 +60,7 @@ the number `10` ten times.
 
 The *anonymous* function keeps a **reference** to `i`. At the time 
 `console.log` gets called, the `for loop` has already finished, and the value of 
-`i` as been set to `10`.
+`i` has been set to `10`.
 
 In order to get the desired behavior, it is necessary to create a **copy** of 
 the value of `i`.
