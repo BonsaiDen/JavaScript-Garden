@@ -42,7 +42,7 @@ no posee [propiedades propias](#object.hasownproperty) definidas.
 Se puede acceder a las propiedades de un objeto de dos maneras, ya sea a través de la
 notación de punto o desde la notación de corchetes.
 
-    var foo = {name: 'Kitten'}
+    var foo = {name: 'kitten'}
     foo.name; // kitten
     foo['name']; // kitten
 

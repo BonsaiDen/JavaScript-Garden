@@ -44,7 +44,7 @@ nie bedzie posiadał żadnych [własnych właściwości](#object.hasownproperty)
 Właściwości obiektu można uzyskać na dwa sposoby - poprzez notację z kropką
 lub z nawiasami kwadratowymi.
     
-    var foo = {name: 'Kitten'}
+    var foo = {name: 'kitten'}
     foo.name; // kitten
     foo['name']; // kitten
     
