@@ -33,7 +33,7 @@ refers to the global object.
     new Foo();
 
 
-> **Note:** As `setTimeout` takes a **function object** as its first parameter, an
+> **Note:** As `setTimeout` takes a **function object** as its first parameter, a
 > common mistake is to use `setTimeout(foo(), 1000)`, which will use the 
 > **return value** of the call `foo` and **not** `foo`. This is, most of the time, 
 > a silent error, since when the function returns `undefined` `setTimeout` will 
