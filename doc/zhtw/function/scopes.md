@@ -86,7 +86,7 @@ JavaScript 中沒有寫示的命名空間定義，這代表著它所有定義的
 JavaScript 會 **提昇** 變數宣告， 這代表著 `var` 和 `function` 的圈告都會被提升到當前作用域的頂端。
 
     bar();
-    var bar = function() {};
+    function bar() {}
     var someValue = 42;
 
     test();

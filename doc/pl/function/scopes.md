@@ -100,7 +100,7 @@ kluczowym `var` jak i deklaracje funkcji `function` zostaną przeniesione na
 początek otaczającego zasięgu.
 
     bar();
-    var bar = function() {};
+    function bar() {}
     var someValue = 42;
 
     test();
