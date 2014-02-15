@@ -1,0 +1,69 @@
+{
+    "title": "JavaScript Garden",
+    "langTitle": "JavaScript Garden in italiano",
+    "description": "Guida alle peculiarità e i difetti del JavaScript.",
+    "sections": [
+        {
+            "title": "Introduzione",
+            "dir": "intro",
+            "articles": ["index"]
+        },
+        {
+            "title": "Oggetti",
+            "dir": "object",
+            "articles": [
+                "general",
+                "prototype",
+                "hasownproperty",
+                "forinloop"
+            ]
+        },
+        {
+            "title": "Funzioni",
+            "dir": "function",
+            "articles": [
+                "general",
+                "this",
+                "closures",
+                "arguments",
+                "constructors",
+                "scopes"
+            ]
+        },
+        {
+            "title": "Array",
+            "dir": "array",
+            "articles": [
+                "general",
+                "constructor"
+            ]
+        },
+        {
+            "title": "Tipi di dati",
+            "dir": "types",
+            "articles": [
+                "equality",
+                "typeof",
+                "instanceof",
+                "casting"
+            ]
+        },
+        {
+            "title": "Base",
+            "dir": "core",
+            "articles": [
+                "eval",
+                "undefined",
+                "semicolon",
+                "delete"
+            ]
+        },
+        {
+            "title": "Varie",
+            "dir": "other",
+            "articles": [
+                "timeouts"
+            ]
+        }
+    ]
+}
