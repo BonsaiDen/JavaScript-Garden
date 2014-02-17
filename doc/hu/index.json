@@ -1,0 +1,69 @@
+{
+    "title": "JavaScript Garden",
+    "description": "Bevezet\u00E9s a JavaScript bugyraiba, hib\u00E1iba.",
+    "langTitle": "A JavaScript Garden magyarul",
+    "sections": [
+        {
+            "title": "Bevezet\u0151",
+            "dir": "intro",
+            "articles": []
+        },
+        {
+            "title": "Objektumok",
+            "dir": "object",
+            "articles": [
+                "general",
+                "prototype",
+                "hasownproperty",
+                "forinloop"
+            ]
+        },
+        {
+            "title": "F\u00FCggv\u00E9nyek",
+            "dir": "function",
+            "articles": [
+                "general",
+                "this",
+                "closures",
+                "arguments",
+                "constructors",
+                "scopes"
+            ]
+        },
+        {
+            "title": "T\u00F6mb\u00F6k",
+            "dir": "array",
+            "articles": [
+                "general",
+                "constructor"
+            ]
+        },
+        {
+            "title": "T\u00EDpusok",
+            "dir": "types",
+            "articles": [
+                "equality",
+                "typeof",
+                "instanceof",
+                "casting"
+            ]
+        },
+        {
+            "title": "L\u00E9nyeg",
+            "dir": "core",
+            "articles": [
+                "eval",
+                "undefined",
+                "semicolon",
+                "delete"
+            ]
+        },
+        {
+            "title": "Egy\u00E9b",
+            "dir": "other",
+            "articles": [
+                "timeouts"
+            ]
+        }
+    ]
+}
