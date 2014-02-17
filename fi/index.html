@@ -1,0 +1,1019 @@
+<!DOCTYPE html><html lang="fi"><head><title>JavaScript-puutarha</title><meta charset="utf-8"><meta name="description" content="Opas JavaScriptin outouksiin ja vikoihin "><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" href="/JavaScript-Garden/favicon.ico?v=2"><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
+<script src="javascript/html5.js"></script>
+<![endif]--></head><body><!-- Navigation--><nav id="nav_main"><div><ul> <li><a href="/JavaScript-Garden/" title="JavaScript Garden">en</a></li><li><a href="/JavaScript-Garden/es" title="Jardín de JavaScript">es</a></li><li class="active"><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha">fi</a></li><li><a href="/JavaScript-Garden/hu" title="JavaScript Garden">hu</a></li><li><a href="/JavaScript-Garden/it" title="JavaScript Garden">it</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript 秘密花园">zh</a></li><li><a href="/JavaScript-Garden/zhtw" title="JavaScript 庭院">zhtw</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">Johdanto</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">Oliot</a></h1><ul><li><a href="#object.general">Olioiden käyttö ja ominaisuudet</a></li><li><a href="#object.prototype">Prototyyppi</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop"><code>for in</code>-luuppi</a></li></ul></li><li class="nav_function"><h1><a href="#function">Funktiot</a></h1><ul><li><a href="#function.general">Funktiomääreet ja lausekkeet</a></li><li><a href="#function.this">Kuinka <code>this</code> toimii</a></li><li><a href="#function.closures">Sulkeumat ja viitteet</a></li><li><a href="#function.arguments"><code>arguments</code>-olio</a></li><li><a href="#function.constructors">Konstruktorit</a></li><li><a href="#function.scopes">Näkyvyysalueet ja nimiavaruudet</a></li></ul></li><li class="nav_array"><h1><a href="#array">Taulukot</a></h1><ul><li><a href="#array.general">Taulukon iterointi ja attribuutit</a></li><li><a href="#array.constructor"><code>Array</code>-konstruktori</a></li></ul></li><li class="nav_types"><h1><a href="#types">Tyypit</a></h1><ul><li><a href="#types.equality">Yhtäsuuruus ja vertailut</a></li><li><a href="#types.typeof"><code>typeof</code>-operaattori</a></li><li><a href="#types.instanceof"><code>instanceof</code>-operaattori</a></li><li><a href="#types.casting">Tyyppimuunnokset</a></li></ul></li><li class="nav_core"><h1><a href="#core">Ydin</a></h1><ul><li><a href="#core.eval">Miksi <code>eval</code>-funktiota tulee välttää</a></li><li><a href="#core.undefined"><code>undefined</code> ja <code>null</code></a></li><li><a href="#core.semicolon">Automaattiset puolipisteet</a></li></ul></li><li class="nav_other"><h1><a href="#other">Muuta</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> ja <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>Johdanto</h1></header><!-- Articles--><article id="intro.authors"><h2>Tekijät</h2><div><p>Tämä opas pohjautuu kahden mukavan <a href="http://stackoverflow.com/">Stack Overflow</a> käyttäjän työhön. He ovat <a href="http://stackoverflow.com/users/170224/ivo-wetzel">Ivo Wetzel</a> (kirjoittaminen) sekä <a href="http://stackoverflow.com/users/313758/yi-jiang">Zhang Yi Jiang</a> (ulkoasu).</p>
+</div></article><article id="intro.contributors"><h2>Osallistujat</h2><div><ul>
+<li><a href="https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors">Osallistujat</a></li>
+</ul>
+</div></article><article id="intro.translators"><h2>Kääntäjät</h2><div><ul>
+<li><a href="https://github.com/bebraw">Juho Vepsäläinen</a></li>
+</ul>
+</div></article><article id="intro.license"><h2>Lisenssi</h2><div><p>JavaScript-puutarha on julkaistu <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT-lisenssin</a>-alaisena ja se on saatavilla <a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHubissa</a>. Mikäli löydät virheitä, lisää se <a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">seurantajärjestelmään</a> tai tee <code>pull</code>-pyyntö. Löydät meidät myös <a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript huoneesta</a> Stack Overflown chatista.</p>
+</div></article></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>Oliot</h1></header><!-- Articles--><article id="object.general"><h2>Olioiden käyttö ja ominaisuudet</h2><div><p>Kaikki muuttujat, kahta poikkeusta lukuunottamatta, käyttäytyvät JavaScriptissä oliomaisesti. Nämä poikkeukset ovat <a href="#core.undefined"><code>null</code></a> sekä <a href="#core.undefined"><code>undefined</code></a>.</p>
+<pre><code>false.toString(); // epätosi
+[1, 2, 3].toString(); // &#39;1,2,3&#39;
+
+function Foo(){}
+Foo.bar = 1;
+Foo.bar; // 1</code></pre>
+<p>Yleisesti luullaan ettei numeroliteraaleja voida käyttää olioina. Tämä johtuu viasta JavaScriptin parserissa. Se yrittää parsia numeron <em>pistenotaatiota</em> liukulukuliteraalina.</p>
+<pre><code>2.toString(); // palauttaa SyntaxError-virheen</code></pre>
+<p>Tämä voidaan välttää esimerkiksi seuraavasti.</p>
+<pre><code>2..toString(); // toinen piste tunnistuu oikein
+2 .toString(); // huomaa pisteen vasemmalla puolen oleva väli
+(2).toString(); // 2 arvioidaan ensi</code></pre>
+</div><div><h3>Oliot tietotyyppinä</h3>
+<p>JavaScriptin olioita voidaan käyttää myös <a href="http://en.wikipedia.org/wiki/Hashmap"><em>hajautustauluna</em></a>, koska ne muodostavat pääasiassa avaimien ja niihin liittyvien arvojen välisen mappauksen.</p>
+<p>Olioliteraalinotaatiota - <code>{}</code> - käyttäen voidaan luoda tyhjä olio. Tämä olio <a href="#object.prototype">perii</a> <code>Object.prototype</code>-olion eikä sille ole määritelty <a href="#object.hasownproperty">omia ominaisuuksia</a>.</p>
+<pre><code>var foo = {}; // uusi, tyhjä olio
+
+// uusi, tyhjä olio, joka sisältää ominaisuuden &#39;test&#39; arvolla 12
+var bar = {test: 12}; </code></pre>
+</div><div><h3>Pääsy ominaisuuksiin</h3>
+<p>Olion ominaisuuksiin voidaan päästä käsiksi kahta eri tapaa käyttäen. Siihen voidaan käyttää joko piste- tai hakasulkunotaatiota.</p>
+<pre><code>var foo = {name: &#39;kitten&#39;}
+foo.name; // kitten
+foo[&#39;name&#39;]; // kitten
+
+var get = &#39;name&#39;;
+foo[get]; // kitten
+
+foo.1234; // SyntaxError
+foo[&#39;1234&#39;]; // toimii</code></pre>
+<p>Kumpikin notaatio toimii samalla tavoin. Ainut ero liittyy siihen, että hakasulkunotaation avulla ominaisuuksien arvoja voidaan asettaa dynaamisesti. Se sallii myös muuten hankalien, virheeseen johtavien nimien käyttämisen.</p>
+</div><div><h3>Ominaisuuksien poistaminen</h3>
+<p>Ainut tapa poistaa olion ominaisuus on käyttää <code>delete</code>-operaattoria. Ominaisuuden asettaminen joko arvoon <code>undefined</code> tai <code>null</code> poistaa vain siihen liittyneen arvon muttei itse <em>avainta</em>.</p>
+<pre><code>var obj = {
+    bar: 1,
+    foo: 2,
+    baz: 3
+};
+obj.bar = undefined;
+obj.foo = null;
+delete obj.baz;
+
+for(var i in obj) {
+    if (obj.hasOwnProperty(i)) {
+        console.log(i, &#39;&#39; + obj[i]);
+    }
+}</code></pre>
+<p>Yllä oleva koodi tulostaa sekä <code>both undefined</code> että <code>foo null</code>. Ainoastaan <code>baz</code> on poistettu. Täten sitä ei myöskään näy tulosteessa.</p>
+</div><div><h3>Avainnotaatio</h3>
+<pre><code>var test = {
+    &#39;case&#39;: &#39;Olen avainsana, joten minun tulee olla merkkijono&#39;,
+    delete: &#39;Myös minä olen avainsana&#39; // palauttaa SyntaxError-virheen
+};</code></pre>
+<p>Olioiden ominaisuuksia voidaan notatoida käyttäen joko pelkkiä merkkejä tai merkkijonoja. Toisesta JavaScriptin suunnitteluvirheestä johtuen yllä oleva koodi palauttaa <code>SyntaxError</code>-virheen ECMAScript 5:ttä edeltävissä versioissa.</p>
+<p>Tämä virhe johtuu siitä, että <code>delete</code> on <em>avainsana</em>. Täten se tulee notatoida <em>merkkijonona</em>. Tällöin myös vanhemmat JavaScript-tulkit ymmärtävät sen oikein.</p>
+</div></article><article id="object.prototype"><h2>Prototyyppi</h2><div><p>JavaScript ei sisällä klassista perintämallia. Sen sijaan se käyttää <em>prototyyppeihin</em> pohjautuvaa ratkaisua.</p>
+<p>Usein tätä pidetään JavaScriptin eräänä suurimmista heikkouksista. Itse asiassa prototyyppipohjainen perintämalli on voimakkaampi kuin klassinen malli. Sen avulla voidaan mallintaa klassinen malli melko helposti. Toisin päin mallintaminen on huomattavasti vaikeampaa.</p>
+<p>JavaScript on käytännössä ainut laajasti käytetty kieli, joka tarjoaa tuen prototyyppipohjaiselle perinnälle. Tästä johtuen mallien väliseen eroon tottuminen voi viedä jonkin akaa.</p>
+<p>Ensimmäinen suuri ero liittyy siihen, kuinka perintä toimii. JavaScriptissä se pohjautuu erityisiin <em>prototyyppiketjuihin</em>.</p>
+<aside>
+<p><strong>Huomio:</strong> Ainoastaan <code>Bar.prototype = Foo.prototype</code> johtaa siihen, että molemmat oliot jakavat <strong>saman</strong> prototyypin. Tällöin olioiden prototyyppeihin tehdyt muutokset heijastuvat siis molempiin. Usein tämä ei ole itse tarkoitus.</p>
+</aside>
+<pre><code>function Foo() {
+    this.value = 42;
+}
+Foo.prototype = {
+    method: function() {}
+};
+
+function Bar() {}
+
+// Aseta Barin prototyypin uuteen Foo-olioon
+Bar.prototype = new Foo();
+Bar.prototype.foo = &#39;Terve maailma&#39;;
+
+// Huolehdi siitä, että Bar on todellinen konstruktori
+Bar.prototype.constructor = Bar;
+
+var test = new Bar() // luo uusi bar
+
+// Prototyyppiketju
+test [Bar-olio]
+    Bar.prototype [Foo-olio] 
+        { foo: &#39;Terve maailma&#39; }
+        Foo.prototype
+            { method: ... }
+            Object.prototype
+                { toString: ... /* jne. */ }</code></pre>
+<p>Yllä olio <code>test</code> perii sekä <code>Bar.prototype</code>- että <code>Foo.prototype</code>-olion. Tällöin se pääsee käsiksi <code>Foo</code>:ssa määriteltyy funktioon <code>method</code>. Se pääsee käsiksi myös ominaisuuteen <code>value</code>, jonka luotu <code>Foo</code>-olio sisältää prototyypissään. On tärkeää huomata, että <code>new Bar()</code> <strong>ei</strong> luo uutta <code>Foo</code>-oliota vaan käyttää uudelleen sen prototyyppiin asetettua. Tässä tapauksessa kaikki <code>Bar</code>-oliot jakavat siis <strong>saman</strong> <code>value</code>-ominaisuuden.</p>
+<aside>
+<p><strong>Huomio:</strong> <strong>Älä</strong> käytä <code>Bar.prototype = Foo</code>-notaatiota. Tässä tapauksessa se ei osoita <code>Foo</code>n prototyyppiin vaan funktio-olioon <code>Foo</code>. Tällöin prototyyppiketju osoittaa itse asiassa <code>Function.prototype</code>-olioon eikä <code>Foo.prototype</code>-olioon, kuten oli tarkoitus. <code>method</code> ei siis tällöin olisi mukana prototyyppiketjussa.</p>
+</aside>
+</div><div><h3>Ominaisuushaut</h3>
+<p>Kun olion ominaisuuksien arvoa haetaan, JavaScript käy prototyyppiketjua läpi <strong>ylöspäin</strong>, kunnes se löytää ominaisuuden nimeä vastaavan arvon.</p>
+<p>Jos se saavuttaa ketjun huipun - <code>Object.prototype</code>-olion - eikä ole vieläkään löytänyt haettua ominaisuutta, se palauttaa <a href="#core.undefined">undefined</a> arvon sen sijaan.</p>
+</div><div><h3>Prototyyppi-ominaisuus</h3>
+<p>Vaikka Prototyyppi-ominaisuutta käytetään prototyyppiketjujen rakentamiseen, voidaan siihen asettaa <strong>mikä tahansa</strong> arvo. Mikäli arvo on primitiivi, se yksinkertaisesti jätetään huomiotta.</p>
+<pre><code>function Foo() {}
+Foo.prototype = 1; // ei vaikutusta</code></pre>
+<p>Kuten esimerkissä yllä, prototyyppiin on mahdollista asettaa olioita. Tällä tavoin prototyyppiketjuja voidaan koostaa dynaamisesti.</p>
+</div><div><h3>Suorituskyky</h3>
+<p>Prototyyppiketjussa korkealla olevien ominaisuuksien hakeminen voi hidastaa koodin kriittisiä osia. Tämän lisäksi olemattomien ominaisuuksien hakeminen käy koko ketjun läpi.</p>
+<p>Ominaisuuksia <a href="#object.forinloop">iteroidessa</a> prototyyppiketjun <strong>jokainen</strong> ominaisuus käydään läpi.</p>
+</div><div><h3>Natiivien prototyyppien laajentaminen</h3>
+<p>JavaScript mahdollistaa <code>Object.prototype</code>-olion sekä muiden natiivityyppien laajentamisen.</p>
+<p>Tätä tekniikkaa kutsutaan nimellä <a href="http://en.wikipedia.org/wiki/Monkey_patch">apinapätsäämiseksi</a>. Se rikkoo <em>kapseloinnin. Vaikka yleisesti käytetyt alustat, kuten <a href="http://prototypejs.org/">Prototype</a>, käyttävätkin sitä, ei ole olemassa yhtään hyvää syytä, minkä takia natiivityyppejä tulisi laajentaa </em>epästandardilla* toiminnallisuudella.</p>
+<p><strong>Ainut</strong> hyvä syy on uudempien JavaScript-tulkkien sisältämien ominaisuuksien siirtäminen vanhemmille alustoille. Eräs esimerkki tästä on <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach</code></a>.</p>
+</div><div><h3>Yhteenveto</h3>
+<p>Ennen kuin kirjoitat monimutkaista prototyyppiperintää hyödyntävää koodia, on <strong>olennaista</strong>, että ymmärrät täysin kuinka se toimii. Ota huomioon myös prototyyppiketjujen pituus ja riko niitä tarpeen mukaan välttääksesi suorituskykyongelmia. Huomioi myös, että natiiveja prototyyppejä ei tule laajentaa <strong>milloinkaan</strong> ellei kyse ole vain yhteensopivuudesta uudempien JavaScript-ominaisuuksien kanssa.</p>
+</div></article><article id="object.hasownproperty"><h2><code>hasOwnProperty</code></h2><div><p>Jotta voimme tarkistaa onko olion ominaisuus määritelty siinä <em>itsessään</em>, tulee käyttää erityistä <code>Object.prototype</code>-oliosta periytyvää <code>hasOwnProperty</code>-metodia. Tällä tavoin vältämme <a href="#object.prototype">prototyyppiketjun</a> sisältämät ominaisuudet.</p>
+<aside>
+<p><strong>Huomio:</strong> <strong>Ei</strong> riitä tarkistaa vain että ominaisuuden arvo on <code>undefined</code>. Ominaisuus voi hyvinkin olla olemassa. Sen arvoksi on vain satuttu asettamaan <code>undefined</code>.</p>
+</aside>
+<p><code>hasOwnProperty</code> on ainut JavaScriptin sisältämä metodi, joka käsittelee ominaisuuksia <strong>eikä</strong> käy prototyyppiketjun sisältöä läpi.</p>
+<pre><code>// Object.prototypen myrkyttäminen
+Object.prototype.bar = 1; 
+var foo = {goo: undefined};
+
+foo.bar; // 1
+&#39;bar&#39; in foo; // tosi
+
+foo.hasOwnProperty(&#39;bar&#39;); // epätosi
+foo.hasOwnProperty(&#39;goo&#39;); // tosi</code></pre>
+<p>Ainoastaan <code>hasOwnProperty</code> palauttaa oikean ja odotetun tuloksen. Sen tietäminen on olennaista minkä tahansa olion ominaisuuksia iteroidessa. Tämä on <strong>ainut</strong> tapa löytää olion itsensä ominaisuudet prototyyppiketjusta riippumatta.</p>
+</div><div><h3><code>hasOwnProperty</code> ominaisuutena</h3>
+<p>JavaScript <strong>ei</strong> suojele <code>hasOwnProperty</code>-metodin nimeä. Täten on mahdollista, että olio voi sisältää samannimisen ominaisuuden. Jotta voimme saada oikeita tuloksia, tulee sen sijaan käyttää <em>ulkoista</em> <code>hasOwnProperty</code>-metodia.</p>
+<pre><code>var foo = {
+    hasOwnProperty: function() {
+        return false;
+    },
+    bar: &#39;Olkoon vaikka lohikäärmeitä&#39;
+};
+
+foo.hasOwnProperty(&#39;bar&#39;); // palauttaa aina epätoden
+
+// Käytä toisen olion hasOwnProperty-metodia ja kutsu sitä asettamalla
+// &#39;this&#39; foohon
+({}).hasOwnProperty.call(foo, &#39;bar&#39;); // tosi</code></pre>
+</div><div><h3>Yhteenveto</h3>
+<p>Mikäli pitää selvittää kuuluuko ominaisuus olioon vai ei, <strong>ainoastaan</strong> <code>hasOwnProperty</code> voi kertoa sen. Tämän lisäksi on suositeltavaa käyttää <code>hasOwnProperty</code>-metodia osana <strong>jokaista</strong> <a href="#object.forinloop"><code>for in</code>-luuppia</a>. Tällä tavoin voidaan välttää natiivien <a href="#object.prototype">prototyyppien</a> laajentamiseen liittyviä ongelmia.</p>
+</div></article><article id="object.forinloop"><h2><code>for in</code>-luuppi</h2><div><p>Aivan kuten <code>in</code>-operaattori, myös <code>for in</code>-luuppi käy olion prototyyppiketjun läpi iteroidessaan sen ominaisuuksia.</p>
+<aside>
+<p><strong>Huomio:</strong> <code>for in</code>-luuppi <strong>ei</strong> iteroi ominaisuuksia, joiden <code>enumerable</code>-attribuutti on asetettu arvoon <code>false</code>. Eräs esimerkki tästä on taulukon <code>length</code>-ominaisuus.</p>
+</aside>
+<pre><code>// Object.prototypen myrkyttäminen
+Object.prototype.bar = 1;
+
+var foo = {moo: 2};
+for(var i in foo) {
+    console.log(i); // tulostaa sekä bar että moo
+}</code></pre>
+<p>Koska <code>for in</code>-luupin käytöstapaa ei voida muokata suoraan, tulee ei-halutut ominaisuudet karsia itse luupin sisällä. Tämä on mahdollista käyttäen <code>Object.prototype</code>-olion <a href="#object.hasownproperty"><code>hasOwnProperty</code></a>-metodia.</p>
+<aside>
+<p><strong>Huomio:</strong> <code>for in</code>-luupin suorittaminen hidastuu sitä enemmän, mitä pidempi olion prototyyppiketju on. Tämä johtuu siitä, että se joutuu käymään koko ketjun sisällön läpi.</p>
+</aside>
+</div><div><h3><code>hasOwnProperty</code>-metodin käyttäminen karsimiseen</h3>
+<pre><code>// foo kuten yllä
+for(var i in foo) {
+    if (foo.hasOwnProperty(i)) {
+        console.log(i);
+    }
+}</code></pre>
+<p>Tämä versio on ainut oikea. Se tulostaa <strong>ainoastaan</strong> <code>moo</code>, koska se käyttää <code>hasOwnProperty</code>-metodia oikein. Kun se jätetään pois, on koodi altis virheille tapauksissa, joissa prototyyppejä, kuten <code>Object.prototype</code>, on laajennettu.</p>
+<p><a href="http://www.prototypejs.org/">Prototype</a> on eräs yleisesti käytetty ohjelmointialusta, joka tekee näin. Kun kyseistä alustaa käytetään, <code>for in</code>-luupit, jotka eivät käytä <code>hasOwnProperty</code>-metodia, menevät varmasti rikki.</p>
+</div><div><h3>Yhteenveto</h3>
+<p>On suositeltavaa käyttää <strong>aina</strong> <code>hasOwnProperty</code>-metodia. Ei ole kannattavaa tehdä ajoympäristöön tai prototyyppeihin liittyviä oletuksia.</p>
+</div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>Funktiot</h1></header><!-- Articles--><article id="function.general"><h2>Funktiomääreet ja lausekkeet</h2><div><p>JavaScriptissä funktiot ovat ensimmäisen luokan olioita. Tämä tarkoittaa sitä, että niitä voidaan välittää kuten muitakin arvoja. Usein tätä käytetään takaisinkutsuissa käyttämällä <em>nimettömiä, mahdollisesti asynkronisia funktioita</em>. </p>
+</div><div><h3><code>function</code>-määre</h3>
+<pre><code>function foo() {}</code></pre>
+<p>Yllä oleva funktio <a href="#function.scopes">hilataan</a> ennen ohjelman suorituksen alkua. Se näkyy <em>kaikkialle</em> näkyvyysalueessaan, jossa se on <em>määritelty</em>. Tämä on totta jopa silloin, jos sitä kutsutaan ennen määrittelyään.</p>
+<pre><code>foo(); // Toimii, koska foo on luotu ennen kuin koodi suoritetaan
+function foo() {}</code></pre>
+</div><div><h3><code>function</code>-lauseke</h3>
+<pre><code>var foo = function() {};</code></pre>
+<p>Tämä esimerkki asettaa nimeämättömän ja <em>nimettömän</em> funktion muuttujan <code>foo</code> arvoksi.</p>
+<pre><code>foo; // &#39;undefined&#39;
+foo(); // tämä palauttaa TypeError-virheen
+var foo = function() {};</code></pre>
+<p><code>var</code> on määre. Tästä johtuen se hilaa muuttujanimen <code>foo</code> ennen kuin itse koodia ryhdytään suorittamaan.</p>
+<p>Sijoituslauseet suoritetaan <em>vasta</em> kun niihin saavutaan. Tästä johtuen <code>foo</code> saa arvokseen <a href="#core.undefined">undefined</a> ennen kuin varsinaista sijoitusta päästään suorittamaan.</p>
+</div><div><h3>Nimetty funktiolauseke</h3>
+<p>Nimettyjen funktioiden sijoitus tarjoaa toisen erikoistapauksen.</p>
+<pre><code>var foo = function bar() {
+    bar(); // Toimii
+}
+bar(); // ReferenceError</code></pre>
+<p>Tässä tapauksessa <code>bar</code> ei ole saatavilla ulommalla näkyvyysalueessa. Tämä johtuu siitä, että se on sidottu <code>foo</code>:n sisälle. Tämä johtuu siitä, kuinka näkyvyysalueet ja niihin kuuluvat jäsenet <a href="#function.scopes">tulkitaan</a>. Funktion nimi on <em>aina</em> saatavilla sen paikallisessa näkyvyysalueessa itsessään.</p>
+</div></article><article id="function.this"><h2>Kuinka <code>this</code> toimii</h2><div><p>JavaScripting <code>this</code> toimii eri tavoin kuin useimmissa kielissä. Tarkalleen ottaen on olemassa <strong>viisi</strong> eri tapaa, joiden mukaan sen arvo voi määrittyä.</p>
+</div><div><h3>Globaali näkyvyysalue</h3>
+<pre><code>this;</code></pre>
+<p>Kun <code>this</code>-muuttujaa käytetään globaalissa näkyvyysalueessa, viittaa se <em>globaaliin</em> olioon.</p>
+</div><div><h3>Funktiokutsu</h3>
+<pre><code>foo();</code></pre>
+<p>Tässä tapauksessa <code>this</code> viittaa jälleen <em>globaaliin</em> olioon.</p>
+<aside class="es5"><p><strong>ES5 Huomio:</strong> Globaalia tapausta ei ole <strong>enää</strong> olemassa, kun käytetään tiukkaa moodia. Sen sijaan <code>this</code> saa arvon <code>undefined</code>.</p>
+</aside>
+</div><div><h3>Metodikutsu</h3>
+<pre><code>test.foo(); </code></pre>
+<p>Tässä esimerkissä <code>this</code> viittaa <code>test</code>-olioon.</p>
+</div><div><h3>Konstruktorikutsu</h3>
+<pre><code>new foo(); </code></pre>
+<p>Funktiokutsu, jota edeltää <code>new</code>-avainsana toimii <a href="#function.constructors">konstruktorina</a>. Funktion sisällä <code>this</code> viittaa <em>juuri luotuun</em> <code>Object</code>-olioon.</p>
+</div><div><h3><code>this</code>-arvon asettaminen</h3>
+<pre><code>function foo(a, b, c) {}
+
+var bar = {};
+foo.apply(bar, [1, 2, 3]); // taulukko laajenee alla olevaksi
+foo.call(bar, 1, 2, 3); // tuloksena a = 1, b = 2, c = 3</code></pre>
+<p><code>Function.prototype</code>-olion <code>call</code>- ja <code>apply</code>-metodeita käytettäessä <code>this</code>-ominaisuuden arvo määrittyy ensimmäisen annetun argumentin perusteella.</p>
+<p>Seurauksena <code>foo</code>-funktion sisältämä <code>this</code> asettuu <code>bar</code>-olioon toisin kuin perustapauksessa.</p>
+<aside>
+<p><strong>Huomio:</strong> <code>this</code> <strong>ei voi</strong> viitata <code>Object</code>-literaalin sisältämään olioon. Tästä seuraa, että <code>var obj = {me: this}</code> tapauksessa <code>me</code> <strong>ei</strong> viittaa <code>obj</code>-olioon. <code>this</code>-arvo määrittyy ainoastaan listatuissa viidessä tapauksessa.</p>
+</aside>
+</div><div><h3>Yleisiä ongelmakohtia</h3>
+<p>Useimmat näistä tapauksista ovat järkeviä. Ensimmäistä niistä tosin voidaan pitää suunnitteluvirheenä, jolle ei ole mitään järkevää käyttöä <strong>ikinä</strong>.</p>
+<pre><code>Foo.method = function() {
+    function test() {
+        // this asettuu globaaliin olioon
+    }
+    test();
+}</code></pre>
+<p>Yleisesti luullaan, että test-funktion sisältämä <code>this</code> viittaa tässä tapauksessa <code>Foo</code>-olioon. Todellisuudessa se <strong>ei</strong> kuitenkaan tee näin.</p>
+<p>Jotta <code>Foo</code>-olioon voidaan päästä käsiksi <code>test</code>-funktion sisällä, tulee metodin sisälle luoda paikallinen muuttuja, joka viittaa <code>Foo</code>-olioon.</p>
+<pre><code>Foo.method = function() {
+    var that = this;
+    function test() {
+        // Käytä thatia thissin sijasta
+    }
+    test();
+}</code></pre>
+<p><code>that</code> on normaali nimi, jota käytetään yleisesti viittaamaan ulompaan <code>this</code>-muuttujaan. <a href="#function.closures">Sulkeumia</a> käytettäessä <code>this</code>-arvoa voidaan myös välittää edelleen.</p>
+</div><div><h3>Metodien sijoittaminen</h3>
+<p>JavaScriptissä funktioita <strong>ei</strong> voida nimetä uudelleen eli siis sijoittaa <strong>edelleen</strong>.</p>
+<pre><code>var test = someObject.methodTest;
+test();</code></pre>
+<p>Ensimmäisestä tapauksesta johtuen <code>test</code> toimii kuten normaali funktiokutsu; tällöin sen sisältämä <code>this</code> ei enää osoita <code>someObject</code>-olioon.</p>
+<p>Vaikka <code>this</code>-arvon myöhäinen sidonta saattaa vaikuttaa huonolta idealta, se mahdollistaa <a href="#object.prototype">prototyyppeihin pohjautuvan perinnän</a>.</p>
+<pre><code>function Foo() {}
+Foo.prototype.method = function() {};
+
+function Bar() {}
+Bar.prototype = Foo.prototype;
+
+new Bar().method();</code></pre>
+<p>Kun <code>method</code>-metodia kutsutaan <code>Bar</code>-oliossa, sen <code>this</code> viittaa juurikin tuohon olioon.</p>
+</div></article><article id="function.closures"><h2>Sulkeumat ja viitteet</h2><div><p><em>Sulkeumat</em> ovat eräs JavaScriptin voimakkaimmista ominaisuuksista. Näkyvyysalueilla on siis <strong>aina</strong> pääsy ulompaan näkyvyysalueeseensa. Koska JavaScriptissä ainut tapa määritellä näkyvyyttä pohjautuu <a href="#function.scopes">funktionäkyvyyteen</a>, kaikki funktiot käyttäytyvät oletuksena sulkeumina.</p>
+</div><div><h3>Paikallisten muuttujien emulointi</h3>
+<pre><code>function Counter(start) {
+    var count = start;
+    return {
+        increment: function() {
+            count++;
+        },
+
+        get: function() {
+            return count;
+        }
+    }
+}
+
+var foo = Counter(4);
+foo.increment();
+foo.get(); // 5</code></pre>
+<p>Tässä tapauksessa <code>Counter</code> palauttaa <strong>kaksi</strong> sulkeumaa. Funktion <code>increment</code> lisäksi palautetaan myös funktio <code>get</code>. Kumpikin funktio <strong>viittaa</strong> <code>Counter</code>-näkyvyysalueeseen ja pääsee siten käsiksi <code>count</code>-muuttujan arvoon.</p>
+</div><div><h3>Miksi paikalliset muuttujat toimivat</h3>
+<p>JavaScriptissä ei voida viitata näkyvyysalueisiin. Tästä seuraa <strong>ettei</strong> <code>count</code>-muuttujan arvoon voida päästä käsiksi funktion ulkopuolelta. Ainoastaan nämä kaksi sulkeumaa mahdollistavat sen.</p>
+<pre><code>var foo = new Counter(4);
+foo.hack = function() {
+    count = 1337;
+};</code></pre>
+<p>Yllä oleva koodi <strong>ei</strong> muuta muuttujan <code>count</code> arvoa <code>Counter</code>-näkyvyysalueessa. Tämä johtuu siitä, että <code>foo.hack</code>-ominaisuutta ei ole määritelty <strong>kyseisessä</strong> näkyvyysalueessa. Sen sijaan se luo - tai ylikirjoittaa - <em>globaalin</em> muuttujan <code>count</code>.</p>
+</div><div><h3>Sulkeumat luupeissa</h3>
+<p>Usein sulkeumia käytetään väärin luuppien sisällä indeksimuuttujien arvon kopiointiin.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout(function() {
+        console.log(i);  
+    }, 1000);
+}</code></pre>
+<p>Yllä oleva koodi <strong>ei</strong> tulosta numeroita <code>nollasta</code> <code>yhdeksään</code>. Sen sijaan se tulostaa numeron <code>10</code> kymmenen kertaa.</p>
+<p><em>Nimetön</em> funktio saa <strong>viitteen</strong> <code>i</code>-muuttujaan <code>console.log</code>-kutsuhetkellä. Tällöin luuppi on jo suoritettu ja <code>i</code>:n arvoksi on asetettu <code>10</code>.</p>
+<p>Päästäksemme haluttuun lopputulokseen on tarpeen luoda <strong>kopio</strong> <code>i</code>:n arvosta.</p>
+</div><div><h3>Viiteongelman välttäminen</h3>
+<p>Voimme välttää ongelman käyttämällä <a href="#function.scopes">nimetöntä käärettä</a>.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    (function(e) {
+        setTimeout(function() {
+            console.log(e);  
+        }, 1000);
+    })(i);
+}</code></pre>
+<p>Nimetöntä ulkofunktiota kutsutaan heti käyttäen <code>i</code>:tä se ensimmäisenä argumenttina. Tällöin se saa kopion <code>i</code>:n <strong>arvosta</strong> parametrina <code>e</code>.</p>
+<p>Nimetön funktio, jolle annetaan <code>setTimeout</code> sisältää nyt viitteen <code>e</code>:hen, jonka arvoa luuppi <strong>ei</strong> muuta.</p>
+<p>Samaan lopputulokseen voidaan päästä myös palauttamalla funktio nimettömästä kääreestä. Tällöin se käyttäytyy samoin kuten yllä.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout((function(e) {
+        return function() {
+            console.log(e);
+        }
+    })(i), 1000)
+}</code></pre>
+</div></article><article id="function.arguments"><h2><code>arguments</code>-olio</h2><div><p>Jokainen JavaScriptin näkyvyysalue pääsee käsiksi erikoismuuttujaan nimeltään <code>arguments</code>. Tämä muuttuja sisältää listan kaikista funktiolle annetuista argumenteista.</p>
+<aside>
+<p><strong>Huomio:</strong> Mikäli <code>arguments</code> on jo määritelty funktion sisällä joko näkyvyysalueen, <code>var</code>-lauseen tai parametrin kautta, <code>arguments</code>-oliota ei luoda.</p>
+</aside>
+<p><code>arguments</code>-olio <strong>ei</strong> ole <code>Array</code>. Sen semantiikka, erityisesti <code>length</code>-ominaisuus, muistuttaa taulukkoa. Tästä huolimatta se ei peri <code>Array.prototype</code>:stä ja on itse asiassa <code>Object</code>.</p>
+<p>Tästä johtuen <code>arguments</code>-olioon <strong>ei</strong> voida soveltaa normaaleja taulukkometodeja, kuten <code>push</code>, <code>pop</code> tai <code>slice</code>. Vaikka iterointi onnistuukin <code>for</code>-luuppeja käyttäen, tulee se muuttaa aidoksi <code>Array</code>-olioksi ennen kuin siihen voidaan soveltaa näitä metodeja.</p>
+</div><div><h3>Array-olioksi muuttaminen</h3>
+<p>Alla oleva koodi palauttaa uuden <code>Array</code>-olion, joka sisältää <code>arguments</code>-olion kaikki jäsenet.</p>
+<pre><code>Array.prototype.slice.call(arguments);</code></pre>
+<p>Tämä muutos on luonteeltaan <strong>hidas</strong> eikä sitä suositella käytettävän suorituskykyä vaativissa osissa koodia.</p>
+</div><div><h3>Argumenttien antaminen</h3>
+<p>Funktiosta toiselle voidaan antaa argumentteja seuraavasti.</p>
+<pre><code>function foo() {
+    bar.apply(null, arguments);
+}
+function bar(a, b, c) {
+    // tee jotain
+}</code></pre>
+<p>Toinen keino on käyttää sekä <code>call</code>- että <code>apply</code>-funktioita yhdessä ja luoda nopeita, sitomattomia kääreitä.</p>
+<pre><code>function Foo() {}
+
+Foo.prototype.method = function(a, b, c) {
+    console.log(this, a, b, c);
+};
+
+// Luo &quot;metodin&quot; sitomaton versio 
+// Se ottaa seuraavat parametrit: this, arg1, arg2...argN
+Foo.method = function() {
+
+    // Tulos: Foo.prototype.method.call(this, arg1, arg2... argN)
+    Function.call.apply(Foo.prototype.method, arguments);
+};</code></pre>
+</div><div><h3>Muodolliset parametrit ja argumenttien indeksit</h3>
+<p><code>arguments</code>-olio luo sekä <em>getter</em>- että <em>setter</em>-funktiot sekä sen ominaisuuksille että myös funktion muodollisille parametreille.</p>
+<p>Tästä seuraa, että muodollisen parametrin arvon muuttaminen muuttaa myös <code>arguments</code>-olion vastaavan ominaisuuden arvoa ja toisin päin.</p>
+<pre><code>function foo(a, b, c) {
+    arguments[0] = 2;
+    a; // 2
+
+    b = 4;
+    arguments[1]; // 4
+
+    var d = c;
+    d = 9;
+    c; // 3
+}
+foo(1, 2, 3);</code></pre>
+</div><div><h3>Suorituskykyyn liittyviä myyttejä ja totuuksia</h3>
+<p><code>arguments</code>-olio luodaan aina paitsi jos se on jo julistettu nimenä funktiossa tai sen muodollisena parametrina. Tämä siitä huolimatta käytetäänkö sitä vai ei.</p>
+<p>Sekä <em>getter</em>- ja <em>setter</em>-funktiot luodaan <strong>aina</strong>. Tästä seuraa, että niiden käytöllä ei ole juurikaan merkitystä suorituskyvyn kannalta.</p>
+<aside class="es5"><p><strong>ES5 Huomio:</strong> Näitä <em>getter</em>- ja <em>setter</em>-funktioita ei luoda tiukassa moodissa.</p>
+</aside>
+<p>On kuitenkin eräs tapaus, jossa suorituskyky kärsii. Tämä liittyy <code>arguments.callee</code>-ominaisuuden käyttöön.</p>
+<pre><code>function foo() {
+    arguments.callee; // tee jotain tällä funktio-oliolla
+    arguments.callee.caller; // ja kutsuvalla funktio-oliolla
+}
+
+function bigLoop() {
+    for(var i = 0; i &lt; 100000; i++) {
+        foo(); // normaalisti tämä olisi inline-optimoitu
+    }
+}</code></pre>
+<p>Yllä olevassa koodissa <code>foo</code>-kutsua ei voida <a href="http://en.wikipedia.org/wiki/Inlining">käsitellä avoimesti</a>, koska sen tulee tietää sekä itsestään että kutsujasta. Sen lisäksi, että se haittaa suorituskykyä, rikkoo se myös kapseloinnin. Tässä tapauksessa funktio voi olla riippuvainen tietystä kutsuympäristöstä.</p>
+<p>On <strong>erittäin suositeltavaa</strong> ettei <code>arguments.callee</code>-ominaisuutta tai sen ominaisuuksia käytetä <strong>ikinä</strong>.</p>
+<aside class="es5"><p><strong>ES5 Huomio:</strong> Tiukassa moodissa <code>arguments.callee</code> palauttaa <code>TypeError</code>-virheen, koska se käyttö on vanhennettu.</p>
+</aside>
+</div></article><article id="function.constructors"><h2>Konstruktorit</h2><div><p>JavaScriptin konstruktorit eroavat monista muista kielistä selvästi. Jokainen funktiokutsu, joka sisältää avainsanan <code>new</code> toimii konstruktorina.</p>
+<p>Konstruktorin - kutsutun funktion - <code>this</code>-muuttujan arvo viittaa luotuun <code>Object</code>-olioon. Tämän <strong>uuden</strong> olion <a href="#object.prototype"><code>prototyyppi</code></a> asetetaan osoittamaan konstruktorin kutsuman funktio-olion prototyyppiin.</p>
+<p>Mikäli kutsuttu funktio ei sisällä selvää <code>return</code>-lausetta, tällöin se palauttaa <code>this</code>-muuttujan arvon eli uuden olion.</p>
+<pre><code>function Foo() {
+    this.bla = 1;
+}
+
+Foo.prototype.test = function() {
+    console.log(this.bla);
+};
+
+var test = new Foo();</code></pre>
+<p>Yllä <code>Foo</code>:ta kutsutaan konstruktorina. Juuri luodun olion <code>prototyyppi</code> asetetaan osoittamaan ominaisuuteen <code>Foo.prototype</code>.</p>
+<p>Selvän <code>return</code>-lausekkeen tapauksessa funktio palauttaa ainoastaan määritellyn lausekkeen arvon. Tämä pätee tosin <strong>vain jos</strong> palautettava arvo on tyypiltään <code>Object</code>.</p>
+<pre><code>function Bar() {
+    return 2;
+}
+new Bar(); // uusi olio
+
+function Test() {
+    this.value = 2;
+
+    return {
+        foo: 1
+    };
+}
+new Test(); // palautettu olio</code></pre>
+<p>Mikäli <code>new</code>-avainsanaa ei käytetä, funktio <strong>ei</strong> palauta uutta oliota.</p>
+<pre><code>function Foo() {
+    this.bla = 1; // asetetaan globaalisti
+}
+Foo(); // undefined</code></pre>
+<p>Vaikka yllä oleva esimerkki saattaa näyttää toimivan joissain tapauksissa, viittaa <a href="#function.this"><code>this</code></a> globaalin olion <code>this</code>-ominaisuuteen.</p>
+</div><div><h3>Tehtaat</h3>
+<p>Mikäli <code>new</code>-avainsanan käyttöä halutaan välttää, voidaan konstruktori pakottaa palauttamaan arvo.</p>
+<pre><code>function Bar() {
+    var value = 1;
+    return {
+        method: function() {
+            return value;
+        }
+    }
+}
+Bar.prototype = {
+    foo: function() {}
+};
+
+new Bar();
+Bar();</code></pre>
+<p>Tässä tapauksessa molemmat <code>Bar</code>-funktion kutsut käyttäytyvät samoin. Kumpikin kutsu palauttaa olion, joka sisältää <code>method</code>-ominaisuuden. Kyseinen ominaisuus on <a href="#function.closures">sulkeuma</a>.</p>
+<p>On myös tärkeää huomata, että kutsu <code>new Bar()</code> <strong>ei</strong> vaikuta palautetun olion prototyyppiin. Vaikka luodun olion prototyyppi onkin asetettu, <code>Bar</code> ei palauta ikinä kyseistä prototyyppioliota.</p>
+<p>Yllä olevassa esimerkissä <code>new</code>-avainsanan käytöllä tai käyttämällä jättämisellä ei ole toiminnan kannalta mitään merkitystä.</p>
+</div><div><h3>Tehtaiden käyttö uusien olioiden luomiseen</h3>
+<p>Usein suositellaan <code>new</code>-avainsanan käytön <strong>välttämistä</strong>. Tämä johtuu siitä, että sen käyttämättä jättäminen voi johtaa bugeihin.</p>
+<p>Sen sijaan suositellaan käytettävän tehdasta, jonka sisällä varsinainen olio konstruoidaan.</p>
+<pre><code>function Foo() {
+    var obj = {};
+    obj.value = &#39;blub&#39;;
+
+    var private = 2;
+    obj.someMethod = function(value) {
+        this.value = value;
+    }
+
+    obj.getPrivate = function() {
+        return private;
+    }
+    return obj;
+}</code></pre>
+<p>Vaikka yllä oleva esimerkki välttää <code>new</code>-avainsanan käyttöä ja tekee <a href="#function.closures">paikallisten muuttujien</a> käytön helpommaksi, sisältää se joitain huonoja puolia. </p>
+<ol>
+<li>Se käyttää enemmän muistia. Tämä johtuu siitä, että luodut oliot <strong>eivät</strong> jaa prototyypin metodeja.</li>
+<li>Perinnän tapauksessa tehtaan tulee kopioida toisen olion kaikki metodit tai vaihtoehtoisesti asettaa kyseinen olio toisen prototyypiksi.</li>
+<li>Prototyyppiketjun käsitteen unohtaminen on vain välttääksemme <code>new</code>-avainsanan käyttöä on vastoin kielen filosofista perustaa.</li>
+</ol>
+</div><div><h3>Yhteenveto</h3>
+<p>Vaikka <code>new</code>-avainsanan käyttö voi johtaa bugeihin, prototyyppien käyttöä <strong>ei</strong> kannata unohtaa kokonaan. Loppujen lopuksi kyse on siitä, kumpi tapa sopii sovelluksen tarpeisiin paremmin. On erityisen tärkeää valita jokin tietty tapa ja <strong>pitäytyä</strong> sen käytössä.</p>
+</div></article><article id="function.scopes"><h2>Näkyvyysalueet ja nimiavaruudet</h2><div><p>Vaikka JavaScript-käyttääkin aaltosulkeita blokkien ilmaisuun, se <strong>ei</strong> tue blokkinäkyvyyttä. Tämä tarkoittaa sitä, että kieli tukee ainoastaan *funktionäkyvyyttä.</p>
+<pre><code>function test() { // näkyvyysalue
+    for(var i = 0; i &lt; 10; i++) { // tämä ei ole näkyvyysalue
+        // count
+    }
+    console.log(i); // 10
+}</code></pre>
+<aside>
+<p><strong>Huomio:</strong> Mikäli <code>return</code>-lausetta ei käytetä sijoitukseen, <code>{...}</code>-notaatio tulkitaan blokkina <strong>eikä</strong> olioliteraalina. Tästä ja [puolipisteiden automaattisesta lisäämisestä](#core.semicolon] seuraa yllättäviä virheitä.</p>
+</aside>
+<p>JavaScript ei myöskään sisällä erityistä tukea nimiavaruuksille. Tämä tarkoittaa sitä, että kaikki määritellään oletuksena <em>globaalissa</em> nimiavaruudessa.</p>
+<p>Joka kerta kun muuttujaan viitataan, JavaScript käy kaikki näkyvyysalueet läpi alhaalta lähtien. Mikäli se saavuttaa globaalin näkyvyystalueen, eikä löydä haettua nimeä, se palauttaa <code>ReferenceError</code>-virheen.</p>
+</div><div><h3>Riesa nimeltä globaalit muuttujat</h3>
+<pre><code>// skripti A
+foo = &#39;42&#39;;
+
+// skripti B
+var foo = &#39;42&#39;</code></pre>
+<p>Yllä olevat skriptit käyttäytyvät <strong>eri</strong> tavoin. Skripti A määrittelee muuttujan nimeltä <code>foo</code> <em>globaalissa</em> näkyvyysalueessa. Skripti B määrittelee <code>foo</code>-muuttujan <em>vallitsevassa</em> näkyvyysalueessa.</p>
+<p>Tämä <strong>ei</strong> ole <strong>sama asia</strong>. <code>var</code>-avainsanan käyttämättä jättäminen voi johtaa vakaviin seurauksiin.</p>
+<pre><code>// globaali näkyvyysalue
+var foo = 42;
+function test() {
+    // paikallinen näkyvyysalue
+    foo = 21;
+}
+test();
+foo; // 21</code></pre>
+<p><code>var</code>-avainsanan pois jättäminen johtaa siihen, että funktio <code>test</code> ylikirjoittaa <code>foo</code>:n arvon. Vaikka tämä ei välttämättä vaikutakaan suurelta asialta, tuhansien rivien tapauksessa <code>var</code>-avainsanan käyttämättömyys voi johtaa vaikeasti löydettäviin bugeihin.</p>
+<pre><code>// globaali näkyvyysalue
+var items = [/* joku lista */];
+for(var i = 0; i &lt; 10; i++) {
+    subLoop();
+}
+
+function subLoop() {
+    // aliluupin näkyvyysalue
+    for(i = 0; i &lt; 10; i++) { // hups, var jäi pois
+        // jotain makeaa ja hienoa
+    }
+}</code></pre>
+<p>Tässä tapauksessa ulomman luupin suoritus lopetetaan ensimmäisen <code>subLoop</code>-kutsun jälkeen. Tämä johtuu siitä, että se ylikirjoittaa <code>i</code>:n globaalin arvon. Mikäli jälkimmäisessä luupissa olisi käytetty <code>var</code>-avainsanaa, olisi ikävyyksiltä vältytty. <code>var</code>-avainsanaa ei siis tule <strong>ikinä</strong> jättää pois ellei siihen ole <em>hyvää syytä</em>.</p>
+</div><div><h3>Paikalliset muuttujat</h3>
+<p>Ainoastaan <a href="#function.general">funktion</a> parametrit ja muuttujat, jotka sisältävät <code>var</code>-määreen ovat paikallisia.</p>
+<pre><code>// globaali näkyvyysalue
+var foo = 1;
+var bar = 2;
+var i = 2;
+
+function test(i) {
+    // paikallinen näkyvyysalue
+    i = 5;
+
+    var foo = 3;
+    bar = 4;
+}
+test(10);</code></pre>
+<p><code>foo</code> ja <code>i</code> ovatkin <code>test</code>-funktiolle paikallisia. <code>bar</code> sijoitus muuttaa globaalin muuttujan arvoa.</p>
+</div><div><h3>Hilaaminen</h3>
+<p>JavaScript <strong>hilaa</strong> määreitä. Tämä tarkoittaa sitä, että sekä <code>var</code>-lausekkeet että <code>function</code>-määreet siirretään ne sisältävän näkyvyysalueen huipulle.</p>
+<pre><code>bar();
+var bar = function() {};
+var someValue = 42;
+
+test();
+function test(data) {
+    if (false) {
+        goo = 1;
+
+    } else {
+        var goo = 2;
+    }
+    for(var i = 0; i &lt; 100; i++) {
+        var e = data[i];
+    }
+}</code></pre>
+<p>Yllä olevaa koodia muutetaan ennen suoritusta. JavaScript siirtää <code>var</code>-lausekkeet ja <code>function</code>-määreet lähimmän näkyvyysalueen huipulle.</p>
+<pre><code>// var-lausekkeet siirrettiin tänne
+var bar, someValue; // oletuksena &#39;undefined&#39;
+
+// myös funktio-määre siirtyi tänne
+function test(data) {
+    var goo, i, e; // ei blokkinäkyvyyttä, siirretään siis tänne
+    if (false) {
+        goo = 1;
+
+    } else {
+        goo = 2;
+    }
+    for(i = 0; i &lt; 100; i++) {
+        e = data[i];
+    }
+}
+
+bar(); // TypeError-virhe, baria ei ole vielä määritelty
+someValue = 42; // hilaus ei koske sijoituksia
+bar = function() {};
+
+test();</code></pre>
+<p>Sen lisäksi, että puuttuva blokkinäkyvyys siirtää <code>var</code>-lausekkeet luuppien ulkopuolelle, tekee se myös eräistä <code>if</code>-rakenteista vaikeita käsittää.</p>
+<p>Alkuperäisessä koodissa <code>if</code>-lause näytti muokkaavan <em>globaalia muuttujaa</em> <code>goo</code>. Todellisuudessa se muokkaa <em>paikallista muuttujaa</em> varsinaisen hilauksen jälkeen.</p>
+<p>Seuraava koodi saattaisi ensi näkemältä aiheuttaa <code>ReferenceError</code>-virheen. Näin ei kuitenkaan tapahdu <em>hilauksen</em> ansiosta.</p>
+<pre><code>// onko SomeImportantThing alustettu
+if (!SomeImportantThing) {
+    var SomeImportantThing = {};
+}</code></pre>
+<p>Tämä toimii, koska <code>var</code>-lauseke on hilattu <em>globaalin näkyvyysalueen</em> huipulle.</p>
+<pre><code>var SomeImportantThing;
+
+// mahdollista alustuskoodia
+
+// onhan se alustettu
+if (!SomeImportantThing) {
+    SomeImportantThing = {};
+}</code></pre>
+</div><div><h3>Nimienerottelujärjestys</h3>
+<p>Kaikki JavaScriptin näkyvyysalueet, <em>globaalin näkyvyysalue</em> mukaanlukien, sisältävät erikoismuuttujan <a href="#function.this"><code>this</code></a>. <code>this</code> viittaa <em>tämänhetkiseen olioon</em>.</p>
+<p>Funktioiden näkyvyysalueet sisältävät myös <a href="#function.arguments"><code>arguments</code></a>-olion. Se sisältää funktiolle annetut argumentit.</p>
+<p>Mikäli näkyvyysalueen sisällä pyritään pääsemään käsiksi esimerkiksi <code>foo</code>:n arvoon JavaScript käyttäytyy seuraavasti:</p>
+<ol>
+<li>Mikäli <code>var foo</code>-lauseke löytyy tämänhetkisestä näkyvyysalueesta, käytä sen arvoa.</li>
+<li>Mikäli eräs funktion parametreista on <code>foo</code>, käytä sitä.</li>
+<li>Mikäli funktion nimi itsessään on <code>foo</code>, käytä sitä.</li>
+<li>Siirry ulompaan näkyvyysalueeseen ja suorita <strong>#1</strong> uudelleen.</li>
+</ol>
+<aside>
+<p><strong>Huomio:</strong> Mikäli funktio sisältää <code>arguments</code>-nimisen parametrin, estää se <code>arguments</code>-olion luonnin kokonaan.</p>
+</aside>
+</div><div><h3>Nimiavaruudet</h3>
+<p>Globaalin nimiavaruuden ongelmana voidaan pitää nimitörmäyksiä. JavaScriptissä tätä ongelmaa voidaan kiertää käyttämällä <em>nimettömiä kääreitä</em>.</p>
+<pre><code>(function() {
+    // &quot;nimiavaruus&quot; itsessään
+
+    window.foo = function() {
+        // paljastettu sulkeuma
+    };
+
+})(); // suorita funktio heti</code></pre>
+<p>Nimettömiä funktioita pidetään <a href="#function.general">lauseina</a>. Jotta niitä voidaan kutsua, tulee ne suorittaa ensin.</p>
+<pre><code>( // suorita sulkeiden sisältämä funktio
+function() {}
+) // ja palauta funktio-olio
+() // kutsu suorituksen tulosta</code></pre>
+<p>Samaan lopputulokseen voidaan päästä myös hieman eri syntaksia käyttäen.</p>
+<pre><code>// Kaksi muuta tapaa
++function(){}();
+(function(){}());</code></pre>
+</div><div><h3>Yhteenveto</h3>
+<p>On suositeltavaa käyttää <em>nimettömiä kääreitä</em> nimiavaruuksina. Sen lisäksi, että se suojelee koodia nimitörmäyksiltä, se tarjoaa keinon jaotella ohjelma paremmin.</p>
+<p>Globaalien muuttujien käyttöä pidetään yleisesti <strong>huonona tapana</strong>. <strong>Mikä tahansa</strong> niiden käyttö viittaa huonosti kirjoitettuun, virheille alttiiseen ja hankalasti ylläpidettävään koodiin.</p>
+</div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>Taulukot</h1></header><!-- Articles--><article id="array.general"><h2>Taulukon iterointi ja attribuutit</h2><div><p>Vaikka taulukot ovatkin JavaScript-olioita, niiden tapauksessa ei välttämättä kannata käyttää <a href="#object.forinloop"><code>for in loop</code></a>-luuppia. Pikemminkin tätä tapaa tulee <strong>välttää</strong>.</p>
+<aside>
+<p><strong>Huomio:</strong> JavaScript-taulukot <strong>eivät ole</strong> <em>assosiatiivisia</em>. JavaScriptissa ainoastaan <a href="#object.general">oliot</a> ovat avain-arvo-mappauksia. On huomattavaa, että toisin kuin assosiatiiviset taulukot, oliot <strong>eivät</strong> säilytä järjestystään.</p>
+</aside>
+<p><code>for in</code>-luuppi iteroi kaikki prototyyppiketjun sisältämät ominaisuudet. Tämän vuoksi tulee käyttää erityistä  <a href="#object.hasownproperty"><code>hasOwnProperty</code></a>-metodia, jonka avulla voidaan taata, että käsitellään oikeita ominaisuuksia. Tästä johtuen iteroint on jo lähtökohtaisesti jopa <strong>kaksikymmentä</strong> kertaa hitaampaa kuin normaalin <code>for</code>-luupin tapauksessa.</p>
+</div><div><h3>Iterointi</h3>
+<p>Taulukkojen tapauksessa paras suorituskyky voidaan saavuttaa käyttämällä klassista <code>for</code>-luuppia.</p>
+<pre><code>var list = [1, 2, 3, 4, 5, ...... 100000000];
+for(var i = 0, l = list.length; i &lt; l; i++) {
+    console.log(list[i]);
+}</code></pre>
+<p>Edelliseen esimerkkiin liittyy yksi mutta. Listan pituus on tallennettu välimuistiin erikseen käyttämällä <code>l = list.length</code>-lauseketta.</p>
+<p>Vaikka <code>length</code>-ominaisuus määritelläänkin taulukossa itsessään, arvon hakeminen sisältää ylimääräisen operaation. Uudehkot JavaScript-ympäristöt <strong>saattavat</strong> optimoida tämän tapauksen. Tästä ei kuitenkaan ole mitään takeita.</p>
+<p>Todellisuudessa välimuistin käytön pois jättäminen voi hidastaa luuppia jopa puolella.</p>
+</div><div><h3><code>length</code>-ominaisuus</h3>
+<p><code>length</code>-ominaisuuden <em>getteri</em> palauttaa yksinkertaisesti taulukon sisältämien alkioiden määrän. Sen <em>setteriä</em> voidaan käyttää taulukon <strong>typistämiseen</strong>.</p>
+<pre><code>var foo = [1, 2, 3, 4, 5, 6];
+foo.length = 3;
+foo; // [1, 2, 3]
+
+foo.length = 6;
+foo; // [1, 2, 3]</code></pre>
+<p>Pituuden pienemmäksi asettaminen typistää taulukkoa. Sen kasvattaminen ei kuitenkaan vaikuta mitenkään.</p>
+</div><div><h3>Yhteenveto</h3>
+<p>Parhaan suorituskyvyn kannalta on parhainta käyttää tavallista <code>for</code>-luuppia ja tallentaa <code>length</code>-ominaisuus välimuistiin. <code>for in</code>-luupin käyttö taulukon tapauksessa on merkki huonosti kirjoitetusta koodista, joka on altis bugeille ja heikolle suorituskyvylle.</p>
+</div></article><article id="array.constructor"><h2><code>Array</code>-konstruktori</h2><div><p><code>Array</code>-oletuskonstruktorin käytös ei ole lainkaan yksiselitteistä. Tämän vuoksi suositellaankin, että konstruktorin sijasta käytetään literaalinotaatiota <code>[]</code>.</p>
+<pre><code>[1, 2, 3]; // Tulos: [1, 2, 3]
+new Array(1, 2, 3); // Tulos: [1, 2, 3]
+
+[3]; // Tulos: [3]
+new Array(3); // Tulos: []
+new Array(&#39;3&#39;) // Tulos: [&#39;3&#39;]</code></pre>
+<p>Mikäli <code>Array</code>-konstruktorille annetaan vain yksi argumentti ja se on tyypiltään <code>Number</code>, konstruktori palauttaa uuden <em>harvan</em> taulukon, jonka <code>length</code>-attribuutti on asetettu annetun numeron mukaisesti. On tärkeää huomata, että <strong>ainoastaan</strong> <code>length</code> asetetaan tällä tavoin, todellisia taulukon indeksejä ei alusteta.</p>
+<pre><code>var arr = new Array(3);
+arr[1]; // undefined
+1 in arr; // false, indeksiä ei ole alustettu</code></pre>
+<p>Tämä on käytännöllistä vain harvoin, kuten merkkijonon toiston tapauksessa. Tällöin voidaan välttää <code>for-luupin</code> käyttämistä.</p>
+<pre><code>new Array(count + 1).join(stringToRepeat);</code></pre>
+</div><div><h3>Yhteenveto</h3>
+<p><code>Array</code>-konstruktorin käyttöä tulee käyttää niin paljon kuin suinkin mahdollista. Sen sijaan on suositeltavaa käyttää literaalinotaatiota. Literaalit ovat lyhyempiä ja niiden syntaksi on selkeämpi. Tämän lisäksi ne tekevät koodista luettavampaa.</p>
+</div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>Tyypit</h1></header><!-- Articles--><article id="types.equality"><h2>Yhtäsuuruus ja vertailut</h2><div><p>JavaScript sisältää kaksi erilaista tapaa, joiden avulla olioiden arvoa voidaan verrata toisiinsa.</p>
+</div><div><h3>Yhtäsuuruusoperaattori</h3>
+<p>Yhtäsuuruusoperaattori koostuu kahdesta yhtäsuuruusmerkistä: <code>==</code></p>
+<p>JavaScript tyypittyy <em>heikosti</em>. Tämä tarkoittaa sitä, että yhtäsuuruusoperaattori <strong>muuttaa</strong> tyyppejä verratakseen niitä keskenään.</p>
+<pre><code>&quot;&quot;           ==   &quot;0&quot;           // epätosi
+0            ==   &quot;&quot;            // tosi
+0            ==   &quot;0&quot;           // tosi
+false        ==   &quot;false&quot;       // epätosi
+false        ==   &quot;0&quot;           // tosi
+false        ==   undefined     // epätosi
+false        ==   null          // epätosi
+null         ==   undefined     // tosi
+&quot; \t\r\n&quot;    ==   0             // tosi</code></pre>
+<p>Yllä oleva taulukko näyttää tyyppimuunnoksen tulokset. Tämä onkin eräs pääsyistä, minkä vuoksi <code>==</code>-operaattorin käyttöä pidetään huonona asiana. Sen käyttö johtaa hankalasti löydettäviin bugeihin monimutkaisista muunnossäännöistä johtuen.</p>
+<p>Tämän lisäksi tyyppimuunnos vaikuttaa suorituskykyyn. Esimerkiksi merkkijono tulee muuttaa numeroksi ennen kuin sitä voidaan verrata toiseen numeroon.</p>
+</div><div><h3>Tiukka yhtäsuuruusoperaattori</h3>
+<p>Tiukka yhtäsuuruusoperaattori koostuu <strong>kolmesta</strong> yhtäsuuruusmerkistä: <code>===</code></p>
+<p>Se toimii aivan kuten normaali yhtäsuuruusoperaattori. Se <strong>ei</strong> tosin tee minkäänlaista tyyppimuunnosta ennen vertailua.</p>
+<pre><code>&quot;&quot;           ===   &quot;0&quot;           // epätosi
+0            ===   &quot;&quot;            // epätosi
+0            ===   &quot;0&quot;           // epätosi
+false        ===   &quot;false&quot;       // epätosi
+false        ===   &quot;0&quot;           // epätosi
+false        ===   undefined     // epätosi
+false        ===   null          // epätosi
+null         ===   undefined     // epätosi
+&quot; \t\r\n&quot;    ===   0             // epätosi</code></pre>
+<p>Yllä olevat tulokset ovat huomattavasti selkeämpiä ja mahdollistavat koodin menemisen rikki ajoissa. Tämä kovettaa koodia ja tarjoaa myös parempaa suorituskykyä siinä tapauksessa, että operandit ovat erityyppisiä.</p>
+</div><div><h3>Olioiden vertailu</h3>
+<p>Vaikka sekä <code>==</code> ja <code>===</code> ovat <strong>yhtäsuuruusoperaattoreita</strong>, ne toimivat eri tavoin, kun ainakin yksi operandeista sattuu olemaan <code>Object</code>.</p>
+<pre><code>{} === {};                   // epätosi
+new String(&#39;foo&#39;) === &#39;foo&#39;; // epätosi
+new Number(10) === 10;       // epätosi
+var foo = {};
+foo === foo;                 // tosi</code></pre>
+<p>Tässä tapauksessa molemmat operaattorit vertaavat olion <strong>identiteettiä</strong> <strong>eikä</strong> sen arvoa. Tämä tarkoittaa sitä, että vertailu tehdään olion <strong>instanssin</strong> tasolla aivan, kuten Pythonin <code>is</code>-operaattorin tai C:n osoitinvertailun tapauksessa.</p>
+</div><div><h3>Yhteenveto</h3>
+<p>On erittäin suositeltavaa, että ainoastaan <strong>tiukkaa yhtäsuuruusoperaattoria</strong> käytetään. Mikäli tyyppejä tulee muuttaa, tämä kannattaa tehdä <a href="#types.casting">selvästi</a> sen sijaan että luottaisi kielen monimutkaisiin muunnossääntöihin.</p>
+</div></article><article id="types.typeof"><h2><code>typeof</code>-operaattori</h2><div><p><code>typeof</code>-operaattori, kuten myös <a href="#types.instanceof"><code>instanceof</code></a>, on kenties JavaScriptin suurin suunnitteluvirhe. Tämä johtuu siitä, että nämä ominaisuudet ovat liki kokonaan käyttökelvottomia.</p>
+<p>Vaikka <code>instanceof</code>-operaattorilla onkin tiettyjä rajattuja käyttötarkoituksia, <code>typeof</code>-operaattorille on olemassa vain yksi käytännöllinen käyttötapaus, joka <strong>ei</strong> tapahdu olion tyyppiä tarkasteltaessa.</p>
+<aside>
+<p><strong>Huomio:</strong> Vaikka <code>typeof</code>-operaattoria voidaankin kutsua funktiomaisesti (<code>typeof(obj)</code>), ei tämä ole todellinen funktiokutsu. Sulut käyttäytyvät normaalisti ja niiden palauttamaa arvoa käytetään <code>typeof</code>-operaattorin operandina. <code>typeof</code>-funktiota <strong>ei</strong> ole olemassa.</p>
+</aside>
+</div><div><h3>JavaScriptin tyyppitaulukko</h3>
+<pre><code>Arvo                Luokka     Tyyppi
+-------------------------------------
+&quot;foo&quot;               String     string
+new String(&quot;foo&quot;)   String     object
+1.2                 Number     number
+new Number(1.2)     Number     object
+true                Boolean    boolean
+new Boolean(true)   Boolean    object
+new Date()          Date       object
+new Error()         Error      object
+[1,2,3]             Array      object
+new Array(1, 2, 3)  Array      object
+new Function(&quot;&quot;)    Function   function
+/abc/g              RegExp     object (Nitro/V8-funktio)
+new RegExp(&quot;meow&quot;)  RegExp     object (Nitro/V8-funktio)
+{}                  Object     object
+new Object()        Object     object</code></pre>
+<p>Yllä olevassa taulukossa <em>Tyyppi</em> viittaa arvoon, jonka <code>typeof</code>-operaattori palauttaa. Kuten voidaan havaita, tämä arvo voi olla varsin ristiriitainen.</p>
+<p><em>Luokka</em> viittaa olion sisäisen <code>[[Luokka]]</code>-ominaisuuden arvoon.</p>
+<aside>
+<p><strong>Määritelmää lainaten:</strong> <code>[[Luokka]]</code>-arvon tulee olla jokin seuraavista merkkijonoista. <code>Arguments</code>, <code>Array</code>, <code>Boolean</code>, <code>Date</code>, <code>Error</code>, <code>Function</code>, <code>JSON</code>, <code>Math</code>, <code>Number</code>, <code>Object</code>, <code>RegExp</code>, <code>String</code>.</p>
+</aside>
+<p>Jotta kyseiseen arvoon päästään käsiksi, tulee soveltaa <code>Object.prototype</code>-ominaisuuden <code>toString</code>-metodia.</p>
+</div><div><h3>Olion luokka</h3>
+<p>Määritelmä antaa tarkalleen yhden keinon, jonka avulla <code>[[Luokka]]</code> arvoon voidaan päästä käsiksi. Tämä on mahdollista <code>Object.prototype.toString</code>-metodia käyttäen. </p>
+<pre><code>function is(type, obj) {
+    var clas = Object.prototype.toString.call(obj).slice(8, -1);
+    return obj !== undefined &amp;&amp; obj !== null &amp;&amp; clas === type;
+}
+
+is(&#39;String&#39;, &#39;test&#39;); // tosi
+is(&#39;String&#39;, new String(&#39;test&#39;)); // tosi</code></pre>
+<p>Yllä olevassa esimerkissä <code>Object.prototype.toString</code>-metodia kutsutaan arvolla <a href="#function.this">this</a>, jonka arvo on asetettu olion <code>[[Luokka]]</code> arvoon.</p>
+<aside class="es5"><p><strong>ES5 Huomio:</strong> Käytännöllisyyden vuoksi <code>Object.prototype.toString</code> palautusarvo <strong>muutettiin</strong> <code>Object</code>-arvosta <code>Null</code>- ja <code>Undefined</code>-arvoiksi ECMAScript 5:ssä.</p>
+</aside>
+</div><div><h3>Määrittelemättömien muuttujien testaaminen</h3>
+<pre><code>typeof foo !== &#39;undefined&#39;</code></pre>
+<p>Yllä oleva testi kertoo onko <code>foo</code> määritelty. Pelkästään siihen viittaaminen palauttaisi <code>ReferenceError</code>-virheen. Tämä on ainut asia, johon <code>typeof</code>-operaattoria kannattaa käyttää.</p>
+</div><div><h3>Yhteenveto</h3>
+<p>Ainut tapa, jonka avulla olion tyyppi voidaan tarkistaa luotettavasti, on <code>Object.prototype.toString</code>-metodin käyttö, kuten yllä. Kuten yllä oleva tyyppitaulu näyttää, osa <code>typeof</code>-operaattorin palautusarvoista on huonosti määritelty. Tästä johtuen ne voivat erota toteutuksesta riippuen.</p>
+<p>Muuttujan määrittelemättömyyden testaaminen on ainut tapaus, jossa <code>typeof</code>-operaattoria kannattaa käyttää. Muutoin sen käyttöä kannattaa välttää <strong>hinnalla milla hyvänsä</strong>.</p>
+</div></article><article id="types.instanceof"><h2><code>instanceof</code>-operaattori</h2><div><p><code>instanceof</code>-operaattori vertaa kahden operandinsa konstruktoreita keskenään. Se on hyödyllinen ainoastaan, kun vertaillaan itsetehtyjä olioita. Natiivien tyyppien tapauksessa se on lähes yhtä hyödytön kuin <a href="#types.typeof">typeof-operaattori</a>.</p>
+</div><div><h3>Itsetehtyjen olioiden vertailu</h3>
+<pre><code>function Foo() {}
+function Bar() {}
+Bar.prototype = new Foo();
+
+new Bar() instanceof Bar; // tosi
+new Bar() instanceof Foo; // tosi
+
+// Tämä asettaa vain Bar.prototype-ominaisuudeksi
+// funktio-olion Foo
+// Se ei kuitenkaan ole Foon todellinen instanssi
+Bar.prototype = Foo;
+new Bar() instanceof Foo; // epätosi</code></pre>
+</div><div><h3><code>instanceof</code> ja natiivit tyypit</h3>
+<pre><code>new String(&#39;foo&#39;) instanceof String; // tosi
+new String(&#39;foo&#39;) instanceof Object; // tosi
+
+&#39;foo&#39; instanceof String; // epätosi
+&#39;foo&#39; instanceof Object; // epätosi</code></pre>
+<p>On tärkeää huomata, että <code>instanceof</code> ei toimi olioilla, jotka tulevat muista JavaScript-konteksteista (esim. selaimen eri dokumenteista). Tässä tapauksessa niiden konstruktorit viittaavat eri olioon.</p>
+</div><div><h3>Yhteenveto</h3>
+<p><code>instanceof</code>-operaattoria tulee käyttää <strong>ainoastaan</strong>, mikäli käsitellään itsetehtyjä olioita saman JavaScript-kontekstin sisällä. Kuten <a href="#types.typeof"><code>typeof</code></a>-operaattorikin, myös muita sen käyttöjä tulee <strong>välttää</strong>.</p>
+</div></article><article id="types.casting"><h2>Tyyppimuunnokset</h2><div><p>JavaScript on tyypitetty <em>heikosti</em>. Tämä tarkoittaa sitä, että se pyrkii <em>pakottamaan tyyppejä</em> <em>aina</em> kun se on mahdollista.</p>
+<pre><code>// Nämä ovat totta
+new Number(10) == 10; // Number.toString() muutetaan
+                      // takaisin numeroksi
+
+10 == &#39;10&#39;;           // Merkkijonot muutetaan Number-tyyppiin
+10 == &#39;+10 &#39;;         // Lisää merkkijonohauskuutta
+10 == &#39;010&#39;;          // Ja lisää
+isNaN(null) == false; // null muuttuu nollaksi,
+                      // joka ei ole NaN
+
+// Nämä ovat epätosia
+10 == 010;
+10 == &#39;-10&#39;;</code></pre>
+<aside class="es5"><p><strong>ES5 Huomio:</strong> Nollalla alkavat numeroliteraalit tulkitaan oktaaleina (kantaluku 8). Tuki oktaaleille on <strong>poistettu</strong> ECMAScript 5:den tiukassa moodissa.</p>
+</aside>
+<p>Yllä havaittu käytös voidaan välttää käyttämällä <a href="#types.equality">tiukkaa vertailuoperaattoria</a>. Sen käyttöä suositellaan <strong>lämpimästi</strong>. Vaikka se välttääkin useita yleisiä ongelma, sisältää se omat ongelmansa, jotka johtavat juurensa JavaScriptin heikkoon tyypitykseen.</p>
+</div><div><h3>Natiivien tyyppien konstruktorit</h3>
+<p>Natiivien tyyppien, kuten <code>Number</code> tai <code>String</code>, konstruktorit käyttäytyvät eri tavoin <code>new</code>-avainsanan kanssa ja ilman.</p>
+<pre><code>new Number(10) === 10;     // Epätosi, Object ja Number
+Number(10) === 10;         // Tosi, Number ja Number
+new Number(10) + 0 === 10; // Tosi, johtuu tyyppimuunnoksesta</code></pre>
+<p><code>Number</code>-tyypin kaltaisen natiivityypin käyttäminen luo uuden <code>Number</code>-olion. <code>new</code>-avainsanan pois jättäminen tekee <code>Number</code>-funktiosta pikemminkin muuntimen.</p>
+<p>Tämän lisäksi literaalit tai ei-oliomaiset arvot johtavat edelleen uusiin tyyppimuunnoksiin.</p>
+<p>Paras tapa suorittaa tyyppimuunnoksia on tehdä niitä <strong>selvästi</strong>.</p>
+</div><div><h3>Muunnos merkkijonoksi</h3>
+<pre><code>&#39;&#39; + 10 === &#39;10&#39;; // tosi</code></pre>
+<p>Arvo voidaan muuttaa merkkijonoksi helposti lisäämällä sen eteen tyhjä merkkijono.</p>
+</div><div><h3>Muunnos numeroksi</h3>
+<pre><code>+&#39;10&#39; === 10; // tosi</code></pre>
+<p><strong>Unaarinen</strong> plus-operaattori mahdollistaa numeroksi muuttamisen.</p>
+</div><div><h3>Muunnos totuusarvoksi</h3>
+<p>Arvo voidaan muuttaa totuusarvoksi käyttämällä <strong>not</strong>-operaattoria kahdesti.</p>
+<pre><code>!!&#39;foo&#39;;   // tosi
+!!&#39;&#39;;      // epätosi
+!!&#39;0&#39;;     // tosi
+!!&#39;1&#39;;     // tosi
+!!&#39;-1&#39;     // tosi
+!!{};      // tosi
+!!true;    // tosi</code></pre>
+</div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>Ydin</h1></header><!-- Articles--><article id="core.eval"><h2>Miksi <code>eval</code>-funktiota tulee välttää</h2><div><p><code>eval</code> suorittaa JavaScript-koodia sisältävän merkkijonon paikallisessa näkyvyysalueessa.</p>
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    eval(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 3
+foo; // 1</code></pre>
+<p><code>eval</code> suoritetaan paikallisessa näkyvyysalueessa ainoastaan kun sitä kutsutaan <strong>suorasti</strong> <em>ja</em> kutsutun funktion nimi on todellisuudessa <code>eval</code>.</p>
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    var bar = eval;
+    bar(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 2
+foo; // 3</code></pre>
+<p><code>eval</code>-funktion käyttöä tulee välttää <strong>ehdottomasti</strong>. 99.9% sen &quot;käyttötapauksista&quot; voidaan toteuttaa <strong>ilman</strong> sitä.</p>
+</div><div><h3>Piilotettu <code>eval</code></h3>
+<p><a href="#other.timeouts">Aikakatkaisufunktiot</a> <code>setTimeout</code> and <code>setInterval</code> voivat kumpikin ottaa merkkijonon ensimmäisenä argumenttinaan. Kyseinen merkkijono suoritetaan <strong>aina</strong> globaalissa näkyvyysalueessa, koska tuolloin <code>eval</code>-funktiota kutsutaan epäsuorasti.</p>
+</div><div><h3>Turvallisuusongelmat</h3>
+<p><code>eval</code> on myös turvallisuusongelma. Se suorittaa <strong>minkä tahansa</strong> sille annetun koodin. Tämän vuoksi sitä ei tule <strong>ikinä</strong> käyttää tuntemattomasta tai epäluotttavasta lähteestä tulevien merkkijonojen kanssa.</p>
+</div><div><h3>Yhteenveto</h3>
+<p><code>eval</code>-funktiota ei pitäisi käyttää koskaan. Mikä tahansa sitä käyttävä koodi on kyseenalaista sekä suorituskyvyn että turvallisuuden suhteen. Mikäli jokin tarvitsee <code>eval</code>-funktiota toimiakseen, tulee sen suunnittelutapa kyseenalaistaa. Tässä tapauksessa on parempi suunnitella toisin ja välttää <code>eval</code>-funktion käyttöä.</p>
+</div></article><article id="core.undefined"><h2><code>undefined</code> ja <code>null</code></h2><div><p>JavaScript sisältää kaksi erillistä arvoa <code>ei millekään</code>. Näistä hyödyllisempti on <code>undefined</code>.</p>
+</div><div><h3><code>undefined</code> ja sen arvo</h3>
+<p><code>undefined</code> on tyyppi, jolla on vain yksi arvo: <code>undefined</code>.</p>
+<p>Kieli määrittelee myös globaalin muuttujan, jonka arvo on <code>undefined</code>. Myös tätä arvoa kutsutaan nimellä <code>undefined</code>. Tämä muuttuja <strong>ei</strong> kuitenkaan ole vakio eikä kielen avainsana. Tämä tarkoittaa siis sitä, että sen <em>arvo</em> voidaan ylikirjoittaa.</p>
+<aside class="es5"><p><strong>ES5 Huomio:</strong> ECMAScript 5:ssä <code>undefined</code>-tyyppiä ei voida <em>kirjoittaa</em> <strong>enää</strong> tiukassa moodissa. Sen nimi voidaan kuitenkin jättää katveeseen määrittelemällä esimerkiksi funktio, jonka nimi on <code>undefined</code>.</p>
+</aside>
+<p>Seuraavat tapaukset palauttavat <code>undefined</code>-arvon:</p>
+<ul>
+<li>Globaalin (muokkaamattoman) muuttujan <code>undefined</code> arvon haku.</li>
+<li>Puuttuvista <code>return</code>-lauseista seuraavat epäsuorat palautusarvot.</li>
+<li><code>return</code>-lauseet, jotka eivät palauta selvästi mitään.</li>
+<li>Olemattomien ominaisuuksien haut.</li>
+<li>Funktioparametrit, joiden arvoa ei ole asetettu.</li>
+<li>Mikä tahansa, joka on asetettu arvoon <code>undefined</code>.</li>
+</ul>
+</div><div><h3>Arvon <code>undefined</code> muutosten hallinta</h3>
+<p>Koska globaali muuttuja <code>undefined</code> sisältää ainoastaan todellisen <code>undefined</code>-tyypin arvon kopion, <strong>ei</strong> sen asettamienn uudelleen muuta <em>tyypin</em> <code>undefined</code> arvoa.</p>
+<p>Kuitenkin, jotta <code>undefined</code>-tyypin arvoa voidaan verrata, tulee sen arvo voida hakea jotenkin ensin.</p>
+<p>Tätä varten käytetään yleisesti seuraavaa tekniikkaa. Ajatuksena on antaa itse arvo käyttäen <a href="#function.scopes">nimetöntä käärettä</a>.</p>
+<pre><code>var undefined = 123;
+(function(something, foo, undefined) {
+    // paikallisen näkyvyysalueen undefined 
+    // voi viitata jälleen todelliseen arvoon
+
+})(&#39;Hello World&#39;, 42);</code></pre>
+<p>Samaan lopputuloksen voidaan päästä myös käyttämällä esittelyä kääreen sisällä.</p>
+<pre><code>var undefined = 123;
+(function(something, foo) {
+    var undefined;
+    ...
+
+})(&#39;Hello World&#39;, 42);</code></pre>
+<p>Tässä tapauksessa ainut ero on se, että pakattu versio vie 4 tavua enemmän tilaa &#39;var&#39;-lauseen vuoksi.</p>
+</div><div><h3><code>null</code> ja sen käyttötapaukset</h3>
+<p>Vaikka <code>undefined</code>-arvoa käytetäänkin usein perinteisen <em>null</em>-arvon sijasta, todellinen <code>null</code> (sekä literaali että tyyppi) on enemmän tai vähemmän vain tietotyyppi.</p>
+<p>Sitä käytetään joissain JavaScriptin sisäisissä toiminnoissa, kuten prototyyppiketjun pään toteamisessa (<code>Foo.prototype = null</code>). Useimmissa tapauksissa se voidaan korvata <code>undefined</code>-arvoa käyttäen.</p>
+</div></article><article id="core.semicolon"><h2>Automaattiset puolipisteet</h2><div><p>Vaikka JavaScript käyttääkin C:n tapaista syntaksia, se <strong>ei</strong> pakota käyttämään puolipisteitä. Niiden käyttöä voidaan halutessa välttää.</p>
+<p>Tästä huolimatta JavaScript ei kuitenkaan ole puolipisteetön kieli. Se tarvitsee niitä ymmärtääkseen lähdekoodia. Tämän vuoksi JavaScript-parseri lisää niitä tarpeen mukaan <strong>automaattisesti</strong>.</p>
+<pre><code>var foo = function() {
+} // parsimisvirhe, lisätään puolipiste
+test()</code></pre>
+<p>Lisäys tapahtuu ja parseri yrittää uudelleen.</p>
+<pre><code>var foo = function() {
+}; // ei virhettä, parsiminen jatkuu
+test()</code></pre>
+<p>Automaattista puolipisteiden lisäämistä pidetään eräänä JavaScriptin <strong>suurimmista</strong> suunnitteluvirheistä. Tämä johtuu siitä, että se voi muuttaa tapaa, jolla koodi käyttäytyy.</p>
+</div><div><h3>Kuinka se toimii</h3>
+<p>Alla oleva koodi ei sisällä puolipisteitä. Täten niiden lisääminen jää parserin tehtäväksi.</p>
+<pre><code>(function(window, undefined) {
+    function test(options) {
+        log(&#39;testing!&#39;)
+
+        (options.list || []).forEach(function(i) {
+
+        })
+
+        options.value.test(
+            &#39;long string to pass here&#39;,
+            &#39;and another long string to pass&#39;
+        )
+
+        return
+        {
+            foo: function() {}
+        }
+    }
+    window.test = test
+
+})(window)
+
+(function(window) {
+    window.someLibrary = {}
+
+})(window)</code></pre>
+<p>Alla parserin arvaus.</p>
+<pre><code>(function(window, undefined) {
+    function test(options) {
+
+        // Not inserted, lines got merged
+        log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {
+
+        }); // &lt;- lisätty
+
+        options.value.test(
+            &#39;long string to pass here&#39;,
+            &#39;and another long string to pass&#39;
+        ); // &lt;- lisätty
+
+        return; // &lt;- lisätty, rikkoo return-lauseen
+        { // kohdellaan lohkona
+
+            // nimike ja yhden lausekkeen lause
+            foo: function() {} 
+        }; // &lt;- lisätty
+    }
+    window.test = test; // &lt;- lisätty
+
+// Rivit yhdistettiin jälleen
+})(window)(function(window) {
+    window.someLibrary = {}; // &lt;- lisätty
+
+})(window); //&lt;- lisätty</code></pre>
+<aside>
+<p><strong>Huomio:</strong> JavaScript-parseri ei käsittele return-lauseita ja rivivaihtoja &quot;kunnolla&quot;. Vaikka tämä ei välttämättä olekaan parserin vika, voi siitä seurata epämiellyttäviä sivuvaikutuksia.</p>
+</aside>
+<p>Yllä olevassa tapauksessa parseri muutti huomattavasti koodin käytöstä. Joissain tapauksissa se tekee kokonaan <strong>väärän asian</strong>.</p>
+</div><div><h3>Johtavat sulkeet</h3>
+<p>Parseri <strong>ei</strong> lisää puolipistettä johtavien sulkeiden tapauksessa.</p>
+<pre><code>log(&#39;testing!&#39;)
+(options.list || []).forEach(function(i) {})</code></pre>
+<p>Koodi muuttuu seuraavaksi.</p>
+<pre><code>log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {})</code></pre>
+<p>On <strong>hyvin</strong> mahdollista, että <code>log</code> <strong>ei</strong> palauta funktiota. Tästä johtuen yllä oleva palauttanee <code>TypeError</code>-virheen, joka toteaa että <code>undefined ei ole funktio</code>.</p>
+</div><div><h3>Yhteenveto</h3>
+<p>On suositeltavaa ettei puolipisteitä jätetä pois <strong>milloinkaan</strong>. Tämän lisäksi sulut kannattaa pitää niitä vastaavien lausekkeiden kanssa samalla rivillään. <code>if</code> ja <code>else</code>-lauseiden tapauksessa sulkuja kannattaa käyttää aina. Sen lisäksi että edellä mainitut suositukset tekevät koodista johdonmukaisempaa, estävät ne myös JavaScript-parseria muuttamasta sen käytöstapaa.</p>
+</div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>Muuta</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> ja <code>setInterval</code></h2><div><p>Koska JavaScript on luonteeltaan asynkroninen, voidaan funktioiden suoritusta ajastaa käyttäen <code>setTimeout</code> sekä <code>setInterval</code>-funktioita.</p>
+<aside>
+<p><strong>Huomio:</strong> Aikakatkaisufunktiot <strong>eivät</strong> ole osa ECMAScript-standardia. Ne on toteutettu osana <a href="http://en.wikipedia.org/wiki/Document_Object_Model" title="Document Object Model">DOM</a>ia.</p>
+</aside>
+<pre><code>function foo() {}
+var id = setTimeout(foo, 1000); // palauttaa Numeron &gt; 0</code></pre>
+<p>Kun <code>setTimeout</code>-funktiota kutsutaan, se palauttaa aikakatkaisun tunnisteen ja ajastaa <code>foo</code>-funktion suoritettavaksi <strong>suunnilleen</strong> tuhannen millisekunnin päästä. <code>foo</code> suoritetaan tarkalleen <strong>kerran</strong>.</p>
+<p>Käytössä olevan JavaScript-tulkin ajastimen tarkkuudesta, JavaScriptin yksisäikeisyydestä sekä muusta koodista riippuen ei ole <strong>lainkaan</strong> taattua, että viive on tarkalleen sama kuin määritelty.</p>
+<p>Ensimmäisenä annettu funktio suoritetaan <em>globaalisti</em>. Tämä tarkoittaa sitä, että sen <a href="#function.this"><code>this</code></a> on asetettu osoittamaan globaaliin olioon.</p>
+<pre><code>function Foo() {
+    this.value = 42;
+    this.method = function() {
+        // this viittaa globaaliin olioon
+        console.log(this.value); // tulostaa undefined
+    };
+    setTimeout(this.method, 500);
+}
+new Foo();</code></pre>
+<aside>
+<p><strong>Huomio:</strong> Koska <code>setTimeout</code> ottaa <strong>funktio-olion</strong> ensimmäisenä parametrinaan, usein sitä kutsutaan seuraavasti: <code>setTimeout(foo(), 1000)</code>. Tässä tapauksessa se käyttää <code>foo</code>:n <strong>palauttamaa arvoa</strong> <code>foo</code>:n sijaan. Tämä on hiljainen virhe, koska jos funktio palauttaa arvon <code>undefined</code>, <code>setTimeout</code> <em>ei</em> palauta virhettä. </p>
+</aside>
+</div><div><h3>Kutsujen pinoaminen <code>setInterval</code>-funktion avulla</h3>
+<p><code>setTimeout</code> suoritetaan vain kerran. <code>setInterval</code> sen sijaan, kuten nimestä voi päätellä, suoritetaan <strong>aina</strong> <code>X</code> millisekunnin välein. Sen käyttöä ei kuitenkaan suositella.</p>
+<p>Mikäli suoritettava koodi blokkaa katkaisufunktion kutsun, <code>setInterval</code> lisää kutsuja pinoon. Tämä voi olla ongelmallista erityisesti, mikäli käytetään pieniä intervalliarvoja.</p>
+<pre><code>function foo(){
+    // jotain joka blokkaa sekunnin ajaksi
+}
+setInterval(foo, 1000);</code></pre>
+<p>Yllä olevassa koodissa <code>foo</code>-funktiota kutsutaan, jonka jälleen se blokkaa sekunnin ajan.</p>
+<p>Tämän ajan aikana <code>setInterval</code> kasvattaa kutsupinon sisältöä. Kun <code>foo</code> on valmis, kutsupinoon on ilmestynyt jo <strong>kymmenen</strong> uutta kutsua suoritettavaksi.</p>
+</div><div><h3>Mahdollisesti blokkaavan koodin kanssa pärjääminen</h3>
+<p>Helpoin ja joustavin tapa on käyttää <code>setTimeout</code>-funktiota funktiossa itsessään.</p>
+<pre><code>function foo(){
+    // jotain joka blokkaa sekunnin ajaksi
+    setTimeout(foo, 1000);
+}
+foo();</code></pre>
+<p>Sen lisäksi että tämä ratkaisu kapseloi <code>setTimeout</code>-kutsun, se myös estää kutsujen pinoutumisen ja tarjoaa joustavuutta. <code>foo</code> voi päättää halutaanko se suorittaa uudelleen vai ei.</p>
+</div><div><h3>Katkaisujen poistaminen käsin</h3>
+<p>Katkaisuja ja intervalleja voidaan poistaa antamalla sopiva tunniste joko <code>clearTimeout</code>- tai <code>clearInterval</code>-funktiolle. Se kumpaa käytetään riippuu käytetystä <code>set</code>-funktiosta.</p>
+<pre><code>var id = setTimeout(foo, 1000);
+clearTimeout(id);</code></pre>
+</div><div><h3>Kaikkien katkaisujen poistaminen</h3>
+<p>JavaScript ei sisällä erityistä funktiota kaikkien katkaisujen ja/tai intervallien poistamiseen. Sen sijaan tämä voidaan toteuttaa raakaa voimaa käyttäen.</p>
+<pre><code>// poista &quot;kaikki&quot; katkaisut
+for(var i = 1; i &lt; 1000; i++) {
+    clearTimeout(i);
+}</code></pre>
+<p>On mahdollista, että jopa tämän jälkeen on olemassa katkaisuja, jotka ovat käynnissä. Onkin siis suositeltavaa tallentaa katkaisujen tunnisteet jotenkin. Tällä tavoin ne voidaan poistaa käsin.</p>
+</div><div><h3>Piilotettu <code>eval</code></h3>
+<p><code>setTimeout</code> ja <code>setInterval</code> voivat ottaa myös merkkijonon ensimmäisenä parametrinaan. Tätä ominaisuutta ei tule käyttää <strong>ikinä</strong>, koska se käyttää sisäisesti <code>eval</code>-funktiota.</p>
+<aside>
+<p><strong>Huomio:</strong> Koska ECMAScript-standardi <strong>ei</strong> määrittele, kuinka katkaisujen tulee toimia, tapa jolla ne toimivat tässä tapauksessa voi vaihdella JavaScript-toteutuksesta riippuen. Esimerkiksi Microsoftin JScript käyttää <code>Function</code>-konstruktoria <code>eval</code>-funktion sijaan.</p>
+</aside>
+<pre><code>function foo() {
+    // kutsutaan
+}
+
+function bar() {
+    function foo() {
+        // ei kutsuta ikinä
+    }
+    setTimeout(&#39;foo()&#39;, 1000);
+}
+bar();</code></pre>
+<p>Koska <code>eval</code>-funktiota ei kutsuta <a href="#core.eval">suoraan</a>, <code>setTimeout</code>-funktiolle annettu merkkijono suoritetaan <em>globaalissa näkyvyysalueessa</em>. Tässä tapauksessa se ei siis käytä paikallista <code>bar</code>-funktion näkyvyysalueessa olevaa <code>foo</code>-funktiota.</p>
+<p>Tämän lisäksi on suositeltavaa olla <strong>käyttämättä</strong> merkkijonoja parametrien antamiseen.</p>
+<pre><code>function foo(a, b, c) {}
+
+// Älä käytä tätä IKINÄ
+setTimeout(&#39;foo(1,2, 3)&#39;, 1000)
+
+// Käytä nimetöntä funktiota sen sijaan
+setTimeout(function() {
+    foo(a, b, c);
+}, 1000)</code></pre>
+<aside>
+<p><strong>Huomio:</strong> Vaikka syntaksi <code>setTimeout(foo, 1000, a, b, c)</code> onkin mahdollinen, ei sen käyttöä suositella. Tämä johtuu siitä, että sen käyttö voi johtaa virheisiin erityisesti <a href="#function.this">metodien</a> kanssa.</p>
+</aside>
+</div><div><h3>Yhteenveto</h3>
+<p>Merkkijonoa ei tule antaa <code>setTimeout</code>- tai <code>setInterval</code>-funktiolle <strong>koskaan</strong>. Tämä on selvä merkki <strong>erittäin</strong> huonosta koodista erityisesti mikäli sitä käytetään parametrien välittämiseen. Sen sijaan kannattaa käyttää <em>nimetöntä funktiota</em>, joka huolehtii varsinaisesta kutsusta.</p>
+<p>Tämän lisäksi <code>setInterval</code>-funktion käyttöä tulee välttää. Tämä johtuu siitä, että sen JavaScript ei blokkaa sen vuorottajaa.</p>
+</div></article></section><!-- Footer--><footer><p>Copyright &copy; 2011. Built with
+ <a href="http://nodejs.org/">Node.js </a>using a<a href="https://github.com/visionmedia/jade/">jade </a>template. 
+Hosted by <a href="http://cramerdev.com">Cramer Development</a>.</p></footer><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script><script src="../javascript/prettify.js"></script><script src="../javascript/plugin.js"></script><script src="../javascript/garden.js"></script></body></html>

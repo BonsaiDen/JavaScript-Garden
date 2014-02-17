@@ -1,0 +1,1253 @@
+<!DOCTYPE html><html lang="zh"><head><title>JavaScript 秘密花园</title><meta charset="utf-8"><meta name="description" content="JavaScript 语言最古怪用法的文档集合"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" href="/JavaScript-Garden/favicon.ico?v=2"><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
+<script src="javascript/html5.js"></script>
+<![endif]--></head><body><!-- Navigation--><nav id="nav_main"><div><ul> <li><a href="/JavaScript-Garden/" title="JavaScript Garden">en</a></li><li><a href="/JavaScript-Garden/es" title="Jardín de JavaScript">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha">fi</a></li><li><a href="/JavaScript-Garden/hu" title="JavaScript Garden">hu</a></li><li><a href="/JavaScript-Garden/it" title="JavaScript Garden">it</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden">tr</a></li><li class="active"><a href="/JavaScript-Garden/zh" title="JavaScript 秘密花园">zh</a></li><li><a href="/JavaScript-Garden/zhtw" title="JavaScript 庭院">zhtw</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">简介</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">对象</a></h1><ul><li><a href="#object.general">对象使用和属性</a></li><li><a href="#object.prototype">原型</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code> 函数</a></li><li><a href="#object.forinloop"><code>for in</code> 循环</a></li></ul></li><li class="nav_function"><h1><a href="#function">函数</a></h1><ul><li><a href="#function.general">函数声明与表达式</a></li><li><a href="#function.this"><code>this</code> 的工作原理</a></li><li><a href="#function.closures">闭包和引用</a></li><li><a href="#function.arguments"><code>arguments</code> 对象</a></li><li><a href="#function.constructors">构造函数</a></li><li><a href="#function.scopes">作用域与命名空间</a></li></ul></li><li class="nav_array"><h1><a href="#array">数组</a></h1><ul><li><a href="#array.general">数组遍历与属性</a></li><li><a href="#array.constructor"><code>Array</code> 构造函数</a></li></ul></li><li class="nav_types"><h1><a href="#types">类型</a></h1><ul><li><a href="#types.equality">相等与比较</a></li><li><a href="#types.typeof"><code>typeof</code> 操作符</a></li><li><a href="#types.instanceof"><code>instanceof</code> 操作符</a></li><li><a href="#types.casting">类型转换</a></li></ul></li><li class="nav_core"><h1><a href="#core">核心</a></h1><ul><li><a href="#core.eval">为什么不要使用 <code>eval</code></a></li><li><a href="#core.undefined"><code>undefined</code> 和 <code>null</code></a></li><li><a href="#core.semicolon">自动分号插入</a></li></ul></li><li class="nav_other"><h1><a href="#other">其它</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> 和 <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>简介</h1></header><!-- Articles--><article id="intro.authors"><h2>关于作者</h2><div><p>这篇文章的作者是两位 <a href="http://stackoverflow.com/">Stack Overflow</a> 用户, <a href="http://stackoverflow.com/users/170224/ivo-wetzel">伊沃·韦特泽尔 Ivo Wetzel</a>（写作） 和 <a href="http://stackoverflow.com/users/313758/yi-jiang">张易江 Zhang Yi Jiang</a>（设计）。</p>
+</div></article><article id="intro.contributors"><h2>贡献者</h2><div><ul>
+<li><a href="https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors">贡献者</a></li>
+</ul>
+<h2>中文翻译</h2>
+<ul>
+<li><a href="http://sanshi.me/">三生石上</a></li>
+</ul>
+<p>此中文翻译由<a href="http://sanshi.me/">三生石上</a>独立完成，<a href="http://cnblogs.com/sanshi/">博客园</a>首发，转载请注明出处。</p>
+</div></article><article id="intro.license"><h2>许可</h2><div><p>JavaScript 秘密花园在 <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a> 许可协议下发布，并存放在 <a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a> 开源社区。
+如果你发现错误或者打字错误，请<a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">新建一个任务单</a>或者发一个抓取请求。
+你也可以在 Stack Overflow 的 <a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript 聊天室</a>找到我们。</p>
+</div></article></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>对象</h1></header><!-- Articles--><article id="object.general"><h2>对象使用和属性</h2><div><p>JavaScript 中所有变量都是对象，除了两个例外 <a href="#core.undefined"><code>null</code></a> 和 <a href="#core.undefined"><code>undefined</code></a>。</p>
+<pre><code>false.toString(); // &#39;false&#39;
+[1, 2, 3].toString(); // &#39;1,2,3&#39;
+
+function Foo(){}
+Foo.bar = 1;
+Foo.bar; // 1</code></pre>
+<p>一个常见的误解是数字的字面值（literal）不是对象。这是因为 JavaScript 解析器的一个错误，
+它试图将<em>点操作符</em>解析为浮点数字面值的一部分。</p>
+<pre><code>2.toString(); // 出错：SyntaxError</code></pre>
+<p>有很多变通方法可以让数字的字面值看起来像对象。</p>
+<pre><code>2..toString(); // 第二个点号可以正常解析
+2 .toString(); // 注意点号前面的空格
+(2).toString(); // 2先被计算</code></pre>
+</div><div><h3>对象作为数据类型</h3>
+<p>JavaScript 的对象可以作为<a href="http://en.wikipedia.org/wiki/Hashmap"><em>哈希表</em></a>使用，主要用来保存命名的键与值的对应关系。</p>
+<p>使用对象的字面语法 - <code>{}</code> - 可以创建一个简单对象。这个新创建的对象从 <code>Object.prototype</code>
+<a href="#object.prototype">继承</a>下面，没有任何<a href="#object.hasownproperty">自定义属性</a>。</p>
+<pre><code>var foo = {}; // 一个空对象
+
+// 一个新对象，拥有一个值为12的自定义属性&#39;test&#39;
+var bar = {test: 12}; </code></pre>
+</div><div><h3>访问属性</h3>
+<p>有两种方式来访问对象的属性，点操作符或者中括号操作符。</p>
+<pre><code>var foo = {name: &#39;kitten&#39;}
+foo.name; // kitten
+foo[&#39;name&#39;]; // kitten
+
+var get = &#39;name&#39;;
+foo[get]; // kitten
+
+foo.1234; // SyntaxError
+foo[&#39;1234&#39;]; // works</code></pre>
+<p>两种语法是等价的，但是中括号操作符在下面两种情况下依然有效
+ - 动态设置属性
+ - 属性名不是一个有效的变量名（<strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>比如属性名中包含空格，或者属性名是 JS 的关键词）</p>
+<aside>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>在 <a href="http://www.jslint.com/">JSLint</a> 语法检测工具中，点操作符是推荐做法。</p>
+</aside>
+</div><div><h3>删除属性</h3>
+<p>删除属性的唯一方法是使用 <code>delete</code> 操作符；设置属性为 <code>undefined</code> 或者 <code>null</code> 并不能真正的删除属性，
+而<strong>仅仅</strong>是移除了属性和值的关联。</p>
+<pre><code>var obj = {
+    bar: 1,
+    foo: 2,
+    baz: 3
+};
+obj.bar = undefined;
+obj.foo = null;
+delete obj.baz;
+
+for(var i in obj) {
+    if (obj.hasOwnProperty(i)) {
+        console.log(i, &#39;&#39; + obj[i]);
+    }
+}</code></pre>
+<p>上面的输出结果有 <code>bar undefined</code> 和 <code>foo null</code> - 只有 <code>baz</code> 被真正的删除了，所以从输出结果中消失。</p>
+</div><div><h3>属性名的语法</h3>
+<pre><code>var test = {
+    &#39;case&#39;: &#39;I am a keyword so I must be notated as a string&#39;,
+    delete: &#39;I am a keyword too so me&#39; // 出错：SyntaxError
+};</code></pre>
+<p>对象的属性名可以使用字符串或者普通字符声明。但是由于 JavaScript 解析器的另一个错误设计，
+上面的第二种声明方式在 ECMAScript 5 之前会抛出 <code>SyntaxError</code> 的错误。</p>
+<p>这个错误的原因是 <code>delete</code> 是 JavaScript 语言的一个<em>关键词</em>；因此为了在更低版本的 JavaScript 引擎下也能正常运行，
+必须使用<em>字符串字面值</em>声明方式。</p>
+</div></article><article id="object.prototype"><h2>原型</h2><div><p>JavaScript 不包含传统的类继承模型，而是使用 <em>prototypal</em> 原型模型。</p>
+<p>虽然这经常被当作是 JavaScript 的缺点被提及，其实基于原型的继承模型比传统的类继承还要强大。
+实现传统的类继承模型是很简单，但是实现 JavaScript 中的原型继承则要困难的多。
+(It is for example fairly trivial to build a classic model on top of it, while the
+other way around is a far more difficult task.)</p>
+<p>由于 JavaScript 是唯一一个被广泛使用的基于原型继承的语言，所以理解两种继承模式的差异是需要一定时间的。</p>
+<p>第一个不同之处在于 JavaScript 使用<em>原型链</em>的继承方式。</p>
+<aside>
+<p><strong>注意:</strong> 简单的使用 <code>Bar.prototype = Foo.prototype</code> 将会导致两个对象共享<strong>相同</strong>的原型。
+因此，改变任意一个对象的原型都会影响到另一个对象的原型，在大多数情况下这不是希望的结果。</p>
+</aside>
+<pre><code>function Foo() {
+    this.value = 42;
+}
+Foo.prototype = {
+    method: function() {}
+};
+
+function Bar() {}
+
+// 设置Bar的prototype属性为Foo的实例对象
+Bar.prototype = new Foo();
+Bar.prototype.foo = &#39;Hello World&#39;;
+
+// 修正Bar.prototype.constructor为Bar本身
+Bar.prototype.constructor = Bar;
+
+var test = new Bar() // 创建Bar的一个新实例
+
+// 原型链
+test [Bar的实例]
+    Bar.prototype [Foo的实例] 
+        { foo: &#39;Hello World&#39; }
+        Foo.prototype
+            {method: ...};
+            Object.prototype
+                {toString: ... /* etc. */};</code></pre>
+<p>上面的例子中，<code>test</code> 对象从 <code>Bar.prototype</code> 和 <code>Foo.prototype</code> 继承下来；因此，
+它能访问 <code>Foo</code> 的原型方法 <code>method</code>。同时，它也能够访问<strong>那个</strong>定义在原型上的 <code>Foo</code> 实例属性 <code>value</code>。
+需要注意的是 <code>new Bar()</code> <strong>不会</strong>创造出一个新的 <code>Foo</code> 实例，而是
+重复使用它原型上的那个实例；因此，所有的 <code>Bar</code> 实例都会共享<strong>相同</strong>的 <code>value</code> 属性。</p>
+<aside>
+<p><strong>注意:</strong> <strong>不要</strong>使用 <code>Bar.prototype = Foo</code>，因为这不会执行 <code>Foo</code> 的原型，而是指向函数 <code>Foo</code>。
+因此原型链将会回溯到 <code>Function.prototype</code> 而不是 <code>Foo.prototype</code>，因此 <code>method</code> 将不会在 Bar 的原型链上。</p>
+</aside>
+</div><div><h3>属性查找</h3>
+<p>当查找一个对象的属性时，JavaScript 会<strong>向上</strong>遍历原型链，直到找到给定名称的属性为止。</p>
+<p>到查找到达原型链的顶部 - 也就是 <code>Object.prototype</code> - 但是仍然没有找到指定的属性，就会返回 <a href="#core.undefined">undefined</a>。</p>
+</div><div><h3>原型属性</h3>
+<p>当原型属性用来创建原型链时，可以把<strong>任何</strong>类型的值赋给它（prototype）。
+然而将原子类型赋给 prototype 的操作将会被忽略。</p>
+<pre><code>function Foo() {}
+Foo.prototype = 1; // 无效</code></pre>
+<p>而将对象赋值给 prototype，正如上面的例子所示，将会动态的创建原型链。</p>
+</div><div><h3>性能</h3>
+<p>如果一个属性在原型链的上端，则对于查找时间将带来不利影响。特别的，试图获取一个不存在的属性将会遍历整个原型链。</p>
+<p>并且，当使用 <a href="#object.forinloop"><code>for in</code></a> 循环遍历对象的属性时，原型链上的<strong>所有</strong>属性都将被访问。</p>
+</div><div><h3>扩展内置类型的原型</h3>
+<p>一个错误特性被经常使用，那就是扩展 <code>Object.prototype</code> 或者其他内置类型的原型对象。</p>
+<p>这种技术被称之为 <a href="http://en.wikipedia.org/wiki/Monkey_patch">monkey patching</a> 并且会破坏<em>封装</em>。虽然它被广泛的应用到一些 JavaScript 类库中比如 <a href="http://prototypejs.org/">Prototype</a>,
+但是我仍然不认为为内置类型添加一些<em>非标准</em>的函数是个好主意。</p>
+<p>扩展内置类型的<strong>唯一</strong>理由是为了和新的 JavaScript 保持一致，比如 <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach</code></a>。</p>
+<aside>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>这是编程领域常用的一种方式，称之为 <a href="http://en.wikipedia.org/wiki/Backport">Backport</a>，也就是将新的补丁添加到老版本中。</p>
+</aside>
+</div><div><h3>总结</h3>
+<p>在写复杂的 JavaScript 应用之前，充分理解原型链继承的工作方式是每个 JavaScript 程序员<strong>必修</strong>的功课。
+要提防原型链过长带来的性能问题，并知道如何通过缩短原型链来提高性能。
+更进一步，绝对<strong>不要</strong>扩展内置类型的原型，除非是为了和新的 JavaScript 引擎兼容。</p>
+</div></article><article id="object.hasownproperty"><h2><code>hasOwnProperty</code> 函数</h2><div><p>为了判断一个对象是否包含<em>自定义</em>属性而<em>不是</em><a href="#object.prototype">原型链</a>上的属性，
+我们需要使用继承自 <code>Object.prototype</code> 的 <code>hasOwnProperty</code> 方法。</p>
+<aside>
+<p><strong>注意:</strong> 通过判断一个属性是否 <code>undefined</code> 是<strong>不够</strong>的。
+因为一个属性可能确实存在，只不过它的值被设置为 <code>undefined</code>。</p>
+</aside>
+<p><code>hasOwnProperty</code> 是 JavaScript 中唯一一个处理属性但是<strong>不</strong>查找原型链的函数。</p>
+<pre><code>// 修改Object.prototype
+Object.prototype.bar = 1; 
+var foo = {goo: undefined};
+
+foo.bar; // 1
+&#39;bar&#39; in foo; // true
+
+foo.hasOwnProperty(&#39;bar&#39;); // false
+foo.hasOwnProperty(&#39;goo&#39;); // true</code></pre>
+<p>只有 <code>hasOwnProperty</code> 可以给出正确和期望的结果，这在遍历对象的属性时会很有用。
+<strong>没有</strong>其它方法可以用来排除原型链上的属性，而不是定义在对象<em>自身</em>上的属性。</p>
+</div><div><h3><code>hasOwnProperty</code> 作为属性</h3>
+<p>JavaScript <strong>不会</strong>保护 <code>hasOwnProperty</code> 被非法占用，因此如果一个对象碰巧存在这个属性，
+就需要使用<em>外部</em>的 <code>hasOwnProperty</code> 函数来获取正确的结果。</p>
+<pre><code>var foo = {
+    hasOwnProperty: function() {
+        return false;
+    },
+    bar: &#39;Here be dragons&#39;
+};
+
+foo.hasOwnProperty(&#39;bar&#39;); // 总是返回 false
+
+// 使用其它对象的 hasOwnProperty，并将其上下文设置为foo
+({}).hasOwnProperty.call(foo, &#39;bar&#39;); // true</code></pre>
+</div><div><h3>结论</h3>
+<p>当检查对象上某个属性是否存在时，<code>hasOwnProperty</code> 是<strong>唯一</strong>可用的方法。
+同时在使用 <a href="#object.forinloop"><code>for in</code> loop</a> 遍历对象时，推荐<strong>总是</strong>使用 <code>hasOwnProperty</code> 方法，
+这将会避免<a href="#object.prototype">原型</a>对象扩展带来的干扰。</p>
+</div></article><article id="object.forinloop"><h2><code>for in</code> 循环</h2><div><p>和 <code>in</code> 操作符一样，<code>for in</code> 循环同样在查找对象属性时遍历原型链上的所有属性。</p>
+<aside>
+<p><strong>注意:</strong> <code>for in</code> 循环<strong>不会</strong>遍历那些 <code>enumerable</code> 设置为 <code>false</code> 的属性；比如数组的 <code>length</code> 属性。</p>
+</aside>
+<pre><code>// 修改 Object.prototype
+Object.prototype.bar = 1;
+
+var foo = {moo: 2};
+for(var i in foo) {
+    console.log(i); // 输出两个属性：bar 和 moo
+}</code></pre>
+<p>由于不可能改变 <code>for in</code> 自身的行为，因此有必要过滤出那些不希望出现在循环体中的属性，
+这可以通过 <code>Object.prototype</code> 原型上的 <a href="#object.hasownproperty"><code>hasOwnProperty</code></a> 函数来完成。</p>
+<aside>
+<p><strong>注意:</strong> 由于 <code>for in</code> 总是要遍历整个原型链，因此如果一个对象的继承层次太深的话会影响性能。</p>
+</aside>
+</div><div><h3>使用 <code>hasOwnProperty</code> 过滤</h3>
+<pre><code>// foo 变量是上例中的
+for(var i in foo) {
+    if (foo.hasOwnProperty(i)) {
+        console.log(i);
+    }
+}</code></pre>
+<p>这个版本的代码是唯一正确的写法。由于我们使用了 <code>hasOwnProperty</code>，所以这次<strong>只</strong>输出 <code>moo</code>。
+如果不使用 <code>hasOwnProperty</code>，则这段代码在原生对象原型（比如 <code>Object.prototype</code>）被扩展时可能会出错。</p>
+<p>一个广泛使用的类库 <a href="http://www.prototypejs.org/">Prototype</a> 就扩展了原生的 JavaScript 对象。
+因此，当这个类库被包含在页面中时，不使用 <code>hasOwnProperty</code> 过滤的 <code>for in</code> 循环难免会出问题。</p>
+</div><div><h3>总结</h3>
+<p>推荐<strong>总是</strong>使用 <code>hasOwnProperty</code>。不要对代码运行的环境做任何假设，不要假设原生对象是否已经被扩展了。</p>
+</div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>函数</h1></header><!-- Articles--><article id="function.general"><h2>函数声明与表达式</h2><div><p>函数是JavaScript中的一等对象，这意味着可以把函数像其它值一样传递。
+一个常见的用法是把<em>匿名函数</em>作为回调函数传递到异步函数中。</p>
+</div><div><h3>函数声明</h3>
+<pre><code>function foo() {}</code></pre>
+<p>上面的方法会在执行前被 <a href="#function.scopes">解析(hoisted)</a>，因此它存在于当前上下文的<em>任意</em>一个地方，
+即使在函数定义体的上面被调用也是对的。 </p>
+<pre><code>foo(); // 正常运行，因为foo在代码运行前已经被创建
+function foo() {}</code></pre>
+</div><div><h3>函数赋值表达式</h3>
+<pre><code>var foo = function() {};</code></pre>
+<p>这个例子把一个<em>匿名</em>的函数赋值给变量 <code>foo</code>。</p>
+<pre><code>foo; // &#39;undefined&#39;
+foo(); // 出错：TypeError
+var foo = function() {};</code></pre>
+<p>由于 <code>var</code> 定义了一个声明语句，对变量 <code>foo</code> 的解析是在代码运行之前，因此 <code>foo</code> 变量在代码运行时已经被定义过了。</p>
+<p>但是由于赋值语句只在运行时执行，因此在相应代码执行之前， <code>foo</code> 的值缺省为 <a href="#core.undefined">undefined</a>。</p>
+</div><div><h3>命名函数的赋值表达式</h3>
+<p>另外一个特殊的情况是将命名函数赋值给一个变量。</p>
+<pre><code>var foo = function bar() {
+    bar(); // 正常运行
+}
+bar(); // 出错：ReferenceError</code></pre>
+<p><code>bar</code> 函数声明外是不可见的，这是因为我们已经把函数赋值给了 <code>foo</code>；
+然而在 <code>bar</code> 内部依然可见。这是由于 JavaScript 的 <a href="#function.scopes">命名处理</a> 所致，
+函数名在函数内<em>总是</em>可见的。</p>
+</div></article><article id="function.this"><h2><code>this</code> 的工作原理</h2><div><p>JavaScript 有一套完全不同于其它语言的对 <code>this</code> 的处理机制。
+在<strong>五</strong>种不同的情况下 ，<code>this</code> 指向的各不相同。</p>
+</div><div><h3>全局范围内</h3>
+<pre><code>this;</code></pre>
+<p>当在全部范围内使用 <code>this</code>，它将会指向<em>全局</em>对象。</p>
+<aside>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>浏览器中运行的 JavaScript 脚本，这个全局对象是 <code>window</code>。</p>
+</aside>
+</div><div><h3>函数调用</h3>
+<pre><code>foo();</code></pre>
+<p>这里 <code>this</code> 也会指向<em>全局</em>对象。</p>
+<aside class="es5"><p><strong>ES5 注意:</strong> 在严格模式下（strict mode），不存在全局变量。
+这种情况下 <code>this</code> 将会是 <code>undefined</code>。</p>
+</aside>
+</div><div><h3>方法调用</h3>
+<pre><code>test.foo(); </code></pre>
+<p>这个例子中，<code>this</code> 指向 <code>test</code> 对象。</p>
+</div><div><h3>调用构造函数</h3>
+<pre><code>new foo(); </code></pre>
+<p>如果函数倾向于和 <code>new</code> 关键词一块使用，则我们称这个函数是 <a href="#function.constructors">构造函数</a>。
+在函数内部，<code>this</code> 指向<em>新创建</em>的对象。</p>
+</div><div><h3>显式的设置 <code>this</code></h3>
+<pre><code>function foo(a, b, c) {}
+
+var bar = {};
+foo.apply(bar, [1, 2, 3]); // 数组将会被扩展，如下所示
+foo.call(bar, 1, 2, 3); // 传递到foo的参数是：a = 1, b = 2, c = 3</code></pre>
+<p>当使用 <code>Function.prototype</code> 上的 <code>call</code> 或者 <code>apply</code> 方法时，函数内的 <code>this</code> 将会被
+<strong>显式设置</strong>为函数调用的第一个参数。</p>
+<p>因此<em>函数调用</em>的规则在上例中已经不适用了，在<code>foo</code> 函数内 <code>this</code> 被设置成了 <code>bar</code>。</p>
+<aside>
+<p><strong>注意:</strong> 在对象的字面声明语法中，<code>this</code> <strong>不能</strong>用来指向对象本身。
+因此 <code>var obj = {me: this}</code> 中的 <code>me</code> 不会指向 <code>obj</code>，因为 <code>this</code> 只可能出现在上述的五种情况中。
+<strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>这个例子中，如果是在浏览器中运行，<code>obj.me</code> 等于 <code>window</code> 对象。</p>
+</aside>
+</div><div><h3>常见误解</h3>
+<p>尽管大部分的情况都说的过去，不过第一个规则（<strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>这里指的应该是第二个规则，也就是直接调用函数时，<code>this</code> 指向全局对象）
+被认为是JavaScript语言另一个错误设计的地方，因为它<strong>从来</strong>就没有实际的用途。</p>
+<pre><code>Foo.method = function() {
+    function test() {
+        // this 将会被设置为全局对象（译者注：浏览器环境中也就是 window 对象）
+    }
+    test();
+}</code></pre>
+<p>一个常见的误解是 <code>test</code> 中的 <code>this</code> 将会指向 <code>Foo</code> 对象，实际上<strong>不是</strong>这样子的。</p>
+<p>为了在 <code>test</code> 中获取对 <code>Foo</code> 对象的引用，我们需要在 <code>method</code> 函数内部创建一个局部变量指向 <code>Foo</code> 对象。</p>
+<pre><code>Foo.method = function() {
+    var that = this;
+    function test() {
+        // 使用 that 来指向 Foo 对象
+    }
+    test();
+}</code></pre>
+<p><code>that</code> 只是我们随意起的名字，不过这个名字被广泛的用来指向外部的 <code>this</code> 对象。
+在 <a href="#function.closures">闭包</a> 一节，我们可以看到 <code>that</code> 可以作为参数传递。</p>
+</div><div><h3>方法的赋值表达式</h3>
+<p>另一个看起来奇怪的地方是函数别名，也就是将一个方法<strong>赋值</strong>给一个变量。</p>
+<pre><code>var test = someObject.methodTest;
+test();</code></pre>
+<p>上例中，<code>test</code> 就像一个普通的函数被调用；因此，函数内的 <code>this</code> 将不再被指向到 <code>someObject</code> 对象。</p>
+<p>虽然 <code>this</code> 的晚绑定特性似乎并不友好，但是这确实<a href="#object.prototype">基于原型继承</a>赖以生存的土壤。</p>
+<pre><code>function Foo() {}
+Foo.prototype.method = function() {};
+
+function Bar() {}
+Bar.prototype = Foo.prototype;
+
+new Bar().method();</code></pre>
+<p>当 <code>method</code> 被调用时，<code>this</code> 将会指向 <code>Bar</code> 的实例对象。</p>
+</div></article><article id="function.closures"><h2>闭包和引用</h2><div><p>闭包是 JavaScript 一个非常重要的特性，这意味着当前作用域<strong>总是</strong>能够访问外部作用域中的变量。
+因为 <a href="#function.scopes">函数</a> 是 JavaScript 中唯一拥有自身作用域的结构，因此闭包的创建依赖于函数。</p>
+</div><div><h3>模拟私有变量</h3>
+<pre><code>function Counter(start) {
+    var count = start;
+    return {
+        increment: function() {
+            count++;
+        },
+
+        get: function() {
+            return count;
+        }
+    }
+}
+
+var foo = Counter(4);
+foo.increment();
+foo.get(); // 5</code></pre>
+<p>这里，<code>Counter</code> 函数返回两个闭包，函数 <code>increment</code> 和函数 <code>get</code>。 这两个函数都维持着
+对外部作用域 <code>Counter</code> 的引用，因此总可以访问此作用域内定义的变量 <code>count</code>.</p>
+</div><div><h3>为什么不可以在外部访问私有变量</h3>
+<p>因为 JavaScript 中不可以对作用域进行引用或赋值，因此没有办法在外部访问 <code>count</code> 变量。
+唯一的途径就是通过那两个闭包。</p>
+<pre><code>var foo = new Counter(4);
+foo.hack = function() {
+    count = 1337;
+};</code></pre>
+<p>上面的代码<strong>不会</strong>改变定义在 <code>Counter</code> 作用域中的 <code>count</code> 变量的值，因为 <code>foo.hack</code> 没有
+定义在那个<strong>作用域</strong>内。它将会创建或者覆盖<em>全局</em>变量 <code>count</code>。</p>
+</div><div><h3>循环中的闭包</h3>
+<p>一个常见的错误出现在循环中使用闭包，假设我们需要在每次循环中调用循环序号</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout(function() {
+        console.log(i);  
+    }, 1000);
+}</code></pre>
+<p>上面的代码不会输出数字 <code>0</code> 到 <code>9</code>，而是会输出数字 <code>10</code> 十次。</p>
+<p>当 <code>console.log</code> 被调用的时候，<em>匿名</em>函数保持对外部变量 <code>i</code> 的引用，此时 <code>for</code>循环已经结束， <code>i</code> 的值被修改成了 <code>10</code>. </p>
+<p>为了得到想要的结果，需要在每次循环中创建变量 <code>i</code> 的<strong>拷贝</strong>。</p>
+</div><div><h3>避免引用错误</h3>
+<p>为了正确的获得循环序号，最好使用 <a href="#function.scopes">匿名包裹器</a>（<strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>其实就是我们通常说的自执行匿名函数）。</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    (function(e) {
+        setTimeout(function() {
+            console.log(e);  
+        }, 1000);
+    })(i);
+}</code></pre>
+<p>外部的匿名函数会立即执行，并把 <code>i</code> 作为它的参数，此时函数内 <code>e</code> 变量就拥有了 <code>i</code> 的一个拷贝。</p>
+<p>当传递给 <code>setTimeout</code> 的匿名函数执行时，它就拥有了对 <code>e</code> 的引用，而这个值是<strong>不会</strong>被循环改变的。</p>
+<p>有另一个方法完成同样的工作；那就是从匿名包装器中返回一个函数。这和上面的代码效果一样。</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout((function(e) {
+        return function() {
+            console.log(e);
+        }
+    })(i), 1000)
+}</code></pre>
+</div></article><article id="function.arguments"><h2><code>arguments</code> 对象</h2><div><p>JavaScript 中每个函数内都能访问一个特别变量 <code>arguments</code>。这个变量维护着所有传递到这个函数中的参数列表。</p>
+<aside>
+<p><strong>注意:</strong> 由于 <code>arguments</code> 已经被定义为函数内的一个变量。
+因此通过 <code>var</code> 关键字定义 <code>arguments</code> 或者将 <code>arguments</code> 声明为一个形式参数，
+都将导致原生的 <code>arguments</code> 不会被创建。</p>
+</aside>
+<p><code>arguments</code> 变量<strong>不是</strong>一个数组（<code>Array</code>）。
+尽管在语法上它有数组相关的属性 <code>length</code>，但它不从 <code>Array.prototype</code> 继承，实际上它是一个对象（<code>Object</code>）。</p>
+<p>因此，无法对 <code>arguments</code> 变量使用标准的数组方法，比如 <code>push</code>, <code>pop</code> 或者 <code>slice</code>。
+虽然使用 <code>for</code> 循环遍历也是可以的，但是为了更好的使用数组方法，最好把它转化为一个真正的数组。</p>
+</div><div><h3>转化为数组</h3>
+<p>下面的代码将会创建一个新的数组，包含所有 <code>arguments</code> 对象中的元素。</p>
+<pre><code>Array.prototype.slice.call(arguments);</code></pre>
+<p>这个转化比较<strong>慢</strong>，在性能不好的代码中<strong>不推荐</strong>这种做法。</p>
+</div><div><h3>传递参数</h3>
+<p>下面将参数从一个函数传递到另一个函数，是推荐的做法。</p>
+<pre><code>function foo() {
+    bar.apply(null, arguments);
+}
+function bar(a, b, c) {
+    // do stuff here
+}</code></pre>
+<p>另一个技巧是同时使用 <code>call</code> 和 <code>apply</code>，创建一个快速的解绑定包装器。</p>
+<pre><code>function Foo() {}
+
+Foo.prototype.method = function(a, b, c) {
+    console.log(this, a, b, c);
+};
+
+// Create an unbound version of &quot;method&quot; 
+// 输入参数为: this, arg1, arg2...argN
+Foo.method = function() {
+
+    // 结果: Foo.prototype.method.call(this, arg1, arg2... argN)
+    Function.call.apply(Foo.prototype.method, arguments);
+};</code></pre>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a></strong>：上面的 <code>Foo.method</code> 函数和下面代码的效果是一样的:</p>
+<pre><code>Foo.method = function() {
+    var args = Array.prototype.slice.call(arguments);
+    Foo.prototype.method.apply(args[0], args.slice(1));
+};</code></pre>
+</div><div><h3>自动更新</h3>
+<p><code>arguments</code> 对象为其内部属性以及函数形式参数创建 <em>getter</em> 和 <em>setter</em> 方法。</p>
+<p>因此，改变形参的值会影响到 <code>arguments</code> 对象的值，反之亦然。</p>
+<pre><code>function foo(a, b, c) {
+    arguments[0] = 2;
+    a; // 2                                                           
+
+    b = 4;
+    arguments[1]; // 4
+
+    var d = c;
+    d = 9;
+    c; // 3
+}
+foo(1, 2, 3);</code></pre>
+</div><div><h3>性能真相</h3>
+<p><code>arguments</code> 对象总会被创建，除了两个特殊情况 - 作为局部变量声明和作为形式参数。
+而不管它是否有被使用。</p>
+<p><code>arguments</code> 的 <em>getters</em> 和 <em>setters</em> 方法总会被创建；因此使用 <code>arguments</code> 对性能不会有什么影响。
+除非是需要对 <code>arguments</code> 对象的属性进行多次访问。</p>
+<aside class="es5"><p><strong>ES5 提示:</strong> 这些 <em>getters</em> 和 <em>setters</em> 在严格模式下（strict mode）不会被创建。</p>
+</aside>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>在 <a href="https://developer.mozilla.org/en/JavaScript/Strict_mode">MDC</a> 中对 <code>strict mode</code> 模式下 <code>arguments</code> 的描述有助于我们的理解，请看下面代码：</p>
+<pre><code>// 阐述在 ES5 的严格模式下 `arguments` 的特性
+function f(a) {
+  &quot;use strict&quot;;
+  a = 42;
+  return [a, arguments[0]];
+}
+var pair = f(17);
+assert(pair[0] === 42);
+assert(pair[1] === 17);</code></pre>
+<p>然而，的确有一种情况会显著的影响现代 JavaScript 引擎的性能。这就是使用 <code>arguments.callee</code>。</p>
+<pre><code>function foo() {
+    arguments.callee; // do something with this function object
+    arguments.callee.caller; // and the calling function object
+}
+
+function bigLoop() {
+    for(var i = 0; i &lt; 100000; i++) {
+        foo(); // Would normally be inlined...
+    }
+}</code></pre>
+<p>上面代码中，<code>foo</code> 不再是一个单纯的内联函数 <a href="http://en.wikipedia.org/wiki/Inlining">inlining</a>（<strong><a href="http://cnblogs.com/sanshi/">译者注</a></strong>：这里指的是解析器可以做内联处理），
+因为它需要知道它自己和它的调用者。
+这不仅抵消了内联函数带来的性能提升，而且破坏了封装，因此现在函数可能要依赖于特定的上下文。</p>
+<p>因此<strong>强烈</strong>建议大家<strong>不要</strong>使用 <code>arguments.callee</code> 和它的属性。</p>
+<aside class="es5"><p><strong>ES5 提示:</strong> 在严格模式下，<code>arguments.callee</code> 会报错 <code>TypeError</code>，因为它已经被废除了。</p>
+</aside>
+</div></article><article id="function.constructors"><h2>构造函数</h2><div><p>JavaScript 中的构造函数和其它语言中的构造函数是不同的。
+通过 <code>new</code> 关键字方式调用的函数都被认为是构造函数。</p>
+<p>在构造函数内部 - 也就是被调用的函数内 - <code>this</code> 指向新创建的对象 <code>Object</code>。
+这个<strong>新创建</strong>的对象的 <a href="#object.prototype"><code>prototype</code></a> 被指向到构造函数的 <code>prototype</code>。</p>
+<p>如果被调用的函数没有显式的 <code>return</code> 表达式，则隐式的会返回 <code>this</code> 对象 - 也就是新创建的对象。</p>
+<pre><code>function Foo() {
+    this.bla = 1;
+}
+
+Foo.prototype.test = function() {
+    console.log(this.bla);
+};
+
+var test = new Foo();</code></pre>
+<p>上面代码把 <code>Foo</code> 作为构造函数调用，并设置新创建对象的 <code>prototype</code> 为 <code>Foo.prototype</code>。</p>
+<p>显式的 <code>return</code> 表达式将会影响返回结果，但<strong>仅限</strong>于返回的是一个对象。                                 </p>
+<pre><code>function Bar() {
+    return 2;
+}
+new Bar(); // 返回新创建的对象
+
+function Test() {
+    this.value = 2;
+
+    return {
+        foo: 1
+    };
+}
+new Test(); // 返回的对象</code></pre>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong><code>new Bar()</code> 返回的是新创建的对象，而不是数字的字面值 2。
+因此 <code>new Bar().constructor === Bar</code>，但是如果返回的是数字对象，结果就不同了，如下所示</p>
+<pre><code>function Bar() {
+    return new Number(2);
+}
+new Bar().constructor === Number</code></pre>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>这里得到的 <code>new Test()</code>是函数返回的对象，而不是通过<code>new</code>关键字新创建的对象，因此：</p>
+<pre><code>(new Test()).value === undefined
+(new Test()).foo === 1</code></pre>
+<p>如果 <code>new</code> 被遗漏了，则函数<strong>不会</strong>返回新创建的对象。</p>
+<pre><code>function Foo() {
+    this.bla = 1; // 获取设置全局参数
+}
+Foo(); // undefined</code></pre>
+<p>虽然上例在有些情况下也能正常运行，但是由于 JavaScript 中 <a href="#function.this"><code>this</code></a> 的工作原理，
+这里的 <code>this</code> 指向<em>全局对象</em>。</p>
+</div><div><h3>工厂模式</h3>
+<p>为了不使用 <code>new</code> 关键字，构造函数必须显式的返回一个值。</p>
+<pre><code>function Bar() {
+    var value = 1;
+    return {
+        method: function() {
+            return value;
+        }
+    }
+}
+Bar.prototype = {
+    foo: function() {}
+};
+
+new Bar();
+Bar();</code></pre>
+<p>上面两种对 <code>Bar</code> 函数的调用返回的值完全相同，一个新创建的拥有 <code>method</code> 属性的对象被返回，
+其实这里创建了一个<a href="#function.closures">闭包</a>。</p>
+<p>还需要注意， <code>new Bar()</code> 并<strong>不会</strong>改变返回对象的原型（<strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>也就是返回对象的原型不会指向 <code>Bar.prototype</code>）。
+因为构造函数的原型会被指向到刚刚创建的新对象，而这里的 <code>Bar</code> 没有把这个新对象返回（<a href="http://cnblogs.com/sanshi/">译者注</a>：而是返回了一个包含 <code>method</code> 属性的自定义对象）。 </p>
+<p>在上面的例子中，使用或者不使用 <code>new</code> 关键字没有功能性的区别。</p>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>上面两种方式创建的对象不能访问 <code>Bar</code> 原型链上的属性，如下所示：</p>
+<pre><code>var bar1 = new Bar();
+typeof(bar1.method); // &quot;function&quot;
+typeof(bar1.foo); // &quot;undefined&quot;
+
+var bar2 = Bar();
+typeof(bar2.method); // &quot;function&quot;
+typeof(bar2.foo); // &quot;undefined&quot;</code></pre>
+</div><div><h3>通过工厂模式创建新对象</h3>
+<p>我们常听到的一条忠告是<strong>不要</strong>使用 <code>new</code> 关键字来调用函数，因为如果忘记使用它就会导致错误。</p>
+<p>为了创建新对象，我们可以创建一个工厂方法，并且在方法内构造一个新对象。</p>
+<pre><code>function Foo() {
+    var obj = {};
+    obj.value = &#39;blub&#39;;
+
+    var private = 2;
+    obj.someMethod = function(value) {
+        this.value = value;
+    }
+
+    obj.getPrivate = function() {
+        return private;
+    }
+    return obj;
+}</code></pre>
+<p>虽然上面的方式比起 <code>new</code> 的调用方式不容易出错，并且可以充分利用<a href="#function.closures">私有变量</a>带来的便利，
+但是随之而来的是一些不好的地方。</p>
+<ol>
+<li>会占用更多的内存，因为新创建的对象<strong>不能</strong>共享原型上的方法。</li>
+<li>为了实现继承，工厂方法需要从另外一个对象拷贝所有属性，或者把一个对象作为新创建对象的原型。</li>
+<li>放弃原型链仅仅是因为防止遗漏 <code>new</code> 带来的问题，这似乎和语言本身的思想相违背。</li>
+</ol>
+</div><div><h3>总结</h3>
+<p>虽然遗漏 <code>new</code> 关键字可能会导致问题，但这并<strong>不是</strong>放弃使用原型链的借口。
+最终使用哪种方式取决于应用程序的需求，选择一种代码书写风格并<strong>坚持</strong>下去才是最重要的。</p>
+</div></article><article id="function.scopes"><h2>作用域与命名空间</h2><div><p>尽管 JavaScript 支持一对花括号创建的代码段，但是并不支持块级作用域；
+而仅仅支持 <em>函数作用域</em>。</p>
+<pre><code>function test() { // 一个作用域
+    for(var i = 0; i &lt; 10; i++) { // 不是一个作用域
+        // count
+    }
+    console.log(i); // 10
+}</code></pre>
+<aside>
+<p><strong>注意:</strong> 如果不是在赋值语句中，而是在 return 表达式或者函数参数中，<code>{...}</code> 将会作为代码段解析，
+而不是作为对象的字面语法解析。如果考虑到 <a href="#core.semicolon">自动分号插入</a>，这可能会导致一些不易察觉的错误。</p>
+</aside>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>如果 <code>return</code> 对象的左括号和 <code>return</code> 不在一行上就会出错。</p>
+<pre><code>// 译者注：下面输出 undefined
+function add(a, b) {
+    return 
+        a + b;
+}
+console.log(add(1, 2));</code></pre>
+<p>JavaScript 中没有显式的命名空间定义，这就意味着所有对象都定义在一个<em>全局共享</em>的命名空间下面。</p>
+<p>每次引用一个变量，JavaScript 会向上遍历整个作用域直到找到这个变量为止。
+如果到达全局作用域但是这个变量仍未找到，则会抛出 <code>ReferenceError</code> 异常。</p>
+</div><div><h3>隐式的全局变量</h3>
+<pre><code>// 脚本 A
+foo = &#39;42&#39;;
+
+// 脚本 B
+var foo = &#39;42&#39;</code></pre>
+<p>上面两段脚本效果<strong>不同</strong>。脚本 A 在<em>全局</em>作用域内定义了变量 <code>foo</code>，而脚本 B 在<em>当前</em>作用域内定义变量 <code>foo</code>。</p>
+<p>再次强调，上面的效果<strong>完全不同</strong>，不使用 <code>var</code> 声明变量将会导致隐式的全局变量产生。</p>
+<pre><code>// 全局作用域
+var foo = 42;
+function test() {
+    // 局部作用域
+    foo = 21;
+}
+test();
+foo; // 21</code></pre>
+<p>在函数 <code>test</code> 内不使用 <code>var</code> 关键字声明 <code>foo</code> 变量将会覆盖外部的同名变量。
+起初这看起来并不是大问题，但是当有成千上万行代码时，不使用 <code>var</code> 声明变量将会带来难以跟踪的 BUG。</p>
+<pre><code>// 全局作用域
+var items = [/* 数组 */];
+for(var i = 0; i &lt; 10; i++) {
+    subLoop();
+}
+
+function subLoop() {
+    // subLoop 函数作用域
+    for(i = 0; i &lt; 10; i++) { // 没有使用 var 声明变量
+        // 干活
+    }
+}</code></pre>
+<p>外部循环在第一次调用 <code>subLoop</code> 之后就会终止，因为 <code>subLoop</code> 覆盖了全局变量 <code>i</code>。
+在第二个 <code>for</code> 循环中使用 <code>var</code> 声明变量可以避免这种错误。
+声明变量时<strong>绝对不要</strong>遗漏 <code>var</code> 关键字，除非这就是<em>期望</em>的影响外部作用域的行为。 </p>
+</div><div><h3>局部变量</h3>
+<p>JavaScript 中局部变量只可能通过两种方式声明，一个是作为<a href="#function">函数</a>参数，另一个是通过 <code>var</code> 关键字声明。</p>
+<pre><code>// 全局变量
+var foo = 1;
+var bar = 2;
+var i = 2;
+
+function test(i) {
+    // 函数 test 内的局部作用域
+    i = 5;
+
+    var foo = 3;
+    bar = 4;
+}
+test(10);</code></pre>
+<p><code>foo</code> 和 <code>i</code> 是函数 <code>test</code> 内的局部变量，而对 <code>bar</code> 的赋值将会覆盖全局作用域内的同名变量。</p>
+</div><div><h3>变量声明提升（Hoisting）</h3>
+<p>JavaScript 会<strong>提升</strong>变量声明。这意味着 <code>var</code> 表达式和 <code>function</code> 声明都将会被提升到当前作用域的顶部。</p>
+<pre><code>bar();
+var bar = function() {};
+var someValue = 42;
+
+test();
+function test(data) {
+    if (false) {
+        goo = 1;
+
+    } else {
+        var goo = 2;
+    }
+    for(var i = 0; i &lt; 100; i++) {
+        var e = data[i];
+    }
+}</code></pre>
+<p>上面代码在运行之前将会被转化。JavaScript 将会把 <code>var</code> 表达式和 <code>function</code> 声明提升到当前作用域的顶部。</p>
+<pre><code>// var 表达式被移动到这里
+var bar, someValue; // 缺省值是 &#39;undefined&#39;
+
+// 函数声明也会提升
+function test(data) {
+    var goo, i, e; // 没有块级作用域，这些变量被移动到函数顶部
+    if (false) {
+        goo = 1;
+
+    } else {
+        goo = 2;
+    }
+    for(i = 0; i &lt; 100; i++) {
+        e = data[i];
+    }
+}
+
+bar(); // 出错：TypeError，因为 bar 依然是 &#39;undefined&#39;
+someValue = 42; // 赋值语句不会被提升规则（hoisting）影响
+bar = function() {};
+
+test();</code></pre>
+<p>没有块级作用域不仅导致 <code>var</code> 表达式被从循环内移到外部，而且使一些 <code>if</code> 表达式更难看懂。</p>
+<p>在原来代码中，<code>if</code> 表达式看起来修改了<em>全部变量</em> <code>goo</code>，实际上在提升规则被应用后，却是在修改<em>局部变量</em>。</p>
+<p>如果没有提升规则（hoisting）的知识，下面的代码看起来会抛出异常 <code>ReferenceError</code>。</p>
+<pre><code>// 检查 SomeImportantThing 是否已经被初始化
+if (!SomeImportantThing) {
+    var SomeImportantThing = {};
+}</code></pre>
+<p>实际上，上面的代码正常运行，因为 <code>var</code> 表达式会被提升到<em>全局作用域</em>的顶部。</p>
+<pre><code>var SomeImportantThing;
+
+// 其它一些代码，可能会初始化 SomeImportantThing，也可能不会
+
+// 检查是否已经被初始化
+if (!SomeImportantThing) {
+    SomeImportantThing = {};
+}</code></pre>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>在 Nettuts+ 网站有一篇介绍 hoisting 的<a href="http://net.tutsplus.com/tutorials/javascript-ajax/quick-tip-javascript-hoisting-explained/">文章</a>，其中的代码很有启发性。</p>
+<pre><code>// 译者注：来自 Nettuts+ 的一段代码，生动的阐述了 JavaScript 中变量声明提升规则
+var myvar = &#39;my value&#39;;  
+
+(function() {  
+    alert(myvar); // undefined  
+    var myvar = &#39;local value&#39;;  
+})();  </code></pre>
+</div><div><h3>名称解析顺序</h3>
+<p>JavaScript 中的所有作用域，包括<em>全局作用域</em>，都有一个特别的名称 <a href="#function.this"><code>this</code></a> 指向当前对象。</p>
+<p>函数作用域内也有默认的变量 <a href="#function.arguments"><code>arguments</code></a>，其中包含了传递到函数中的参数。</p>
+<p>比如，当访问函数内的 <code>foo</code> 变量时，JavaScript 会按照下面顺序查找：</p>
+<ol>
+<li>当前作用域内是否有 <code>var foo</code> 的定义。</li>
+<li>函数形式参数是否有使用 <code>foo</code> 名称的。</li>
+<li>函数自身是否叫做 <code>foo</code>。</li>
+<li>回溯到上一级作用域，然后从 <strong>#1</strong> 重新开始。</li>
+</ol>
+<aside>
+<p><strong>注意:</strong> 自定义 <code>arguments</code> 参数将会阻止原生的 <code>arguments</code> 对象的创建。</p>
+</aside>
+</div><div><h3>命名空间</h3>
+<p>只有一个全局作用域导致的常见错误是命名冲突。在 JavaScript中，这可以通过 <em>匿名包装器</em> 轻松解决。</p>
+<pre><code>(function() {
+    // 函数创建一个命名空间
+
+    window.foo = function() {
+        // 对外公开的函数，创建了闭包
+    };
+
+})(); // 立即执行此匿名函数</code></pre>
+<p>匿名函数被认为是 <a href="#function">表达式</a>；因此为了可调用性，它们首先会被执行。</p>
+<pre><code>( // 小括号内的函数首先被执行
+function() {}
+) // 并且返回函数对象
+() // 调用上面的执行结果，也就是函数对象</code></pre>
+<p>有一些其他的调用函数表达式的方法，比如下面的两种方式语法不同，但是效果一模一样。</p>
+<pre><code>// 另外两种方式
++function(){}();
+(function(){}());</code></pre>
+</div><div><h3>结论</h3>
+<p>推荐使用<em>匿名包装器</em>（<strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>也就是自执行的匿名函数）来创建命名空间。这样不仅可以防止命名冲突，
+而且有利于程序的模块化。</p>
+<p>另外，使用全局变量被认为是<strong>不好的习惯</strong>。这样的代码倾向于产生错误和带来高的维护成本。</p>
+</div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>数组</h1></header><!-- Articles--><article id="array.general"><h2>数组遍历与属性</h2><div><p>虽然在 JavaScript 中数组是对象，但是没有好的理由去使用 <a href="#object.forinloop"><code>for in</code> 循环</a> 遍历数组。
+相反，有一些好的理由<strong>不去</strong>使用 <code>for in</code> 遍历数组。</p>
+<aside>
+<p><strong>注意:</strong> JavaScript 中数组<strong>不是</strong> <em>关联数组</em>。
+JavaScript 中只有<a href="#object.general">对象</a> 来管理键值的对应关系。但是关联数组是<strong>保持</strong>顺序的，而对象<strong>不是</strong>。</p>
+</aside>
+<p>由于 <code>for in</code> 循环会枚举原型链上的所有属性，唯一过滤这些属性的方式是使用 <a href="#object.hasownproperty"><code>hasOwnProperty</code></a> 函数，
+因此会比普通的 <code>for</code> 循环慢上好多倍。</p>
+</div><div><h3>遍历</h3>
+<p>为了达到遍历数组的最佳性能，推荐使用经典的 <code>for</code> 循环。</p>
+<pre><code>var list = [1, 2, 3, 4, 5, ...... 100000000];
+for(var i = 0, l = list.length; i &lt; l; i++) {
+    console.log(list[i]);
+}</code></pre>
+<p>上面代码有一个处理，就是通过 <code>l = list.length</code> 来缓存数组的长度。</p>
+<p>虽然 <code>length</code> 是数组的一个属性，但是在每次循环中访问它还是有性能开销。
+<strong>可能</strong>最新的 JavaScript 引擎在这点上做了优化，但是我们没法保证自己的代码是否运行在这些最近的引擎之上。</p>
+<p>实际上，不使用缓存数组长度的方式比缓存版本要慢很多。</p>
+</div><div><h3><code>length</code> 属性</h3>
+<p><code>length</code> 属性的 <em>getter</em> 方式会简单的返回数组的长度，而 <em>setter</em> 方式会<strong>截断</strong>数组。</p>
+<pre><code>var foo = [1, 2, 3, 4, 5, 6];
+foo.length = 3;
+foo; // [1, 2, 3]
+
+foo.length = 6;
+foo; // [1, 2, 3]</code></pre>
+<p><strong>译者注：</strong>
+在 Firebug 中查看此时 <code>foo</code> 的值是： <code>[1, 2, 3, undefined, undefined, undefined]</code>
+但是这个结果并不准确，如果你在 Chrome 的控制台查看 <code>foo</code> 的结果，你会发现是这样的： <code>[1, 2, 3]</code>
+因为在 JavaScript 中 <code>undefined</code> 是一个变量，注意是变量不是关键字，因此上面两个结果的意义是完全不相同的。</p>
+<pre><code>// 译者注：为了验证，我们来执行下面代码，看序号 5 是否存在于 foo 中。
+5 in foo; // 不管在 Firebug 或者 Chrome 都返回 false
+foo[5] = undefined;
+5 in foo; // 不管在 Firebug 或者 Chrome 都返回 true</code></pre>
+<p>为 <code>length</code> 设置一个更小的值会截断数组，但是增大 <code>length</code> 属性值不会对数组产生影响。</p>
+</div><div><h3>结论</h3>
+<p>为了更好的性能，推荐使用普通的 <code>for</code> 循环并缓存数组的 <code>length</code> 属性。
+使用 <code>for in</code> 遍历数组被认为是不好的代码习惯并倾向于产生错误和导致性能问题。</p>
+</div></article><article id="array.constructor"><h2><code>Array</code> 构造函数</h2><div><p>由于 <code>Array</code> 的构造函数在如何处理参数时有点模棱两可，因此总是推荐使用数组的字面语法 - <code>[]</code> - 来创建数组。</p>
+<pre><code>[1, 2, 3]; // 结果: [1, 2, 3]
+new Array(1, 2, 3); // 结果: [1, 2, 3]
+
+[3]; // 结果: [3]
+new Array(3); // 结果: [] 
+new Array(&#39;3&#39;) // 结果: [&#39;3&#39;]
+
+// 译者注：因此下面的代码将会使人很迷惑
+new Array(3, 4, 5); // 结果: [3, 4, 5] 
+new Array(3) // 结果: []，此数组长度为 3</code></pre>
+<aside>
+<p><strong>译者注：</strong>这里的模棱两可指的是数组的<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array">两种构造函数语法</a> </p>
+</aside>
+<p>由于只有一个参数传递到构造函数中（译者注：指的是 <code>new Array(3);</code> 这种调用方式），并且这个参数是数字，构造函数会返回一个 <code>length</code> 属性被设置为此参数的空数组。
+需要特别注意的是，此时只有 <code>length</code> 属性被设置，真正的数组并没有生成。</p>
+<aside>
+<p><strong>译者注：</strong>在 Firebug 中，你会看到 <code>[undefined, undefined, undefined]</code>，这其实是不对的。在上一节有详细的分析。</p>
+</aside>
+<pre><code>var arr = new Array(3);
+arr[1]; // undefined
+1 in arr; // false, 数组还没有生成</code></pre>
+<p>这种优先于设置数组长度属性的做法只在少数几种情况下有用，比如需要循环字符串，可以避免 <code>for</code> 循环的麻烦。</p>
+<pre><code>new Array(count + 1).join(stringToRepeat);</code></pre>
+<aside>
+<p><strong>译者注：</strong> <code>new Array(3).join(&#39;#&#39;)</code> 将会返回 <code>##</code></p>
+</aside>
+</div><div><h3>结论</h3>
+<p>应该尽量避免使用数组构造函数创建新数组。推荐使用数组的字面语法。它们更加短小和简洁，因此增加了代码的可读性。</p>
+</div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>类型</h1></header><!-- Articles--><article id="types.equality"><h2>相等与比较</h2><div><p>JavaScript 有两种方式判断两个值是否相等。</p>
+</div><div><h3>等于操作符</h3>
+<p>等于操作符由两个等号组成：<code>==</code></p>
+<p>JavaScript 是<em>弱类型</em>语言，这就意味着，等于操作符会为了比较两个值而进行<strong>强制类型转换</strong>。</p>
+<pre><code>&quot;&quot;           ==   &quot;0&quot;           // false
+0            ==   &quot;&quot;            // true
+0            ==   &quot;0&quot;           // true
+false        ==   &quot;false&quot;       // false
+false        ==   &quot;0&quot;           // true
+false        ==   undefined     // false
+false        ==   null          // false
+null         ==   undefined     // true
+&quot; \t\r\n&quot;    ==   0             // true</code></pre>
+<p>上面的表格展示了强制类型转换，这也是使用 <code>==</code> 被广泛认为是不好编程习惯的主要原因，
+由于它的复杂转换规则，会导致难以跟踪的问题。</p>
+<p>此外，强制类型转换也会带来性能消耗，比如一个字符串为了和一个数字进行比较，必须事先被强制转换为数字。</p>
+</div><div><h3>严格等于操作符</h3>
+<p>严格等于操作符由<strong>三</strong>个等号组成：<code>===</code></p>
+<p>不像普通的等于操作符，严格等于操作符<strong>不会</strong>进行强制类型转换。</p>
+<pre><code>&quot;&quot;           ===   &quot;0&quot;           // false
+0            ===   &quot;&quot;            // false
+0            ===   &quot;0&quot;           // false
+false        ===   &quot;false&quot;       // false
+false        ===   &quot;0&quot;           // false
+false        ===   undefined     // false
+false        ===   null          // false
+null         ===   undefined     // false
+&quot; \t\r\n&quot;    ===   0             // false</code></pre>
+<p>上面的结果更加清晰并有利于代码的分析。如果两个操作数类型不同就肯定不相等也有助于性能的提升。</p>
+</div><div><h3>比较对象</h3>
+<p>虽然 <code>==</code> 和 <code>===</code> 操作符都是等于操作符，但是当其中有一个操作数为对象时，行为就不同了。</p>
+<pre><code>{} === {};                   // false
+new String(&#39;foo&#39;) === &#39;foo&#39;; // false
+new Number(10) === 10;       // false
+var foo = {};
+foo === foo;                 // true</code></pre>
+<p>这里等于操作符比较的<strong>不是</strong>值是否相等，而是是否属于同一个<strong>身份</strong>；也就是说，只有对象的同一个实例才被认为是相等的。
+这有点像 Python 中的 <code>is</code> 和 C 中的指针比较。</p>
+</div><div><h3>结论</h3>
+<p>强烈推荐使用<strong>严格等于操作符</strong>。如果类型需要转换，应该在比较之前<a href="#types.casting">显式</a>的转换，
+而不是使用语言本身复杂的强制转换规则。</p>
+</div></article><article id="types.typeof"><h2><code>typeof</code> 操作符</h2><div><p><code>typeof</code> 操作符（和 <a href="#types.instanceof"><code>instanceof</code></a> 一起）或许是 JavaScript 中最大的设计缺陷，
+因为几乎不可能从它们那里得到想要的结果。</p>
+<p>尽管 <code>instanceof</code> 还有一些极少数的应用场景，<code>typeof</code> 只有一个实际的应用（<strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>这个实际应用是用来检测一个对象是否已经定义或者是否已经赋值），
+而这个应用却<strong>不是</strong>用来检查对象的类型。</p>
+<aside>
+<p><strong>注意:</strong> 由于 <code>typeof</code> 也可以像函数的语法被调用，比如 <code>typeof(obj)</code>，但这并是一个函数调用。
+那两个小括号只是用来计算一个表达式的值，这个返回值会作为 <code>typeof</code> 操作符的一个操作数。
+实际上<strong>不存在</strong>名为 <code>typeof</code> 的函数。</p>
+</aside>
+</div><div><h3>JavaScript 类型表格</h3>
+<pre><code>Value               Class      Type
+-------------------------------------
+&quot;foo&quot;               String     string
+new String(&quot;foo&quot;)   String     object
+1.2                 Number     number
+new Number(1.2)     Number     object
+true                Boolean    boolean
+new Boolean(true)   Boolean    object
+new Date()          Date       object
+new Error()         Error      object
+[1,2,3]             Array      object
+new Array(1, 2, 3)  Array      object
+new Function(&quot;&quot;)    Function   function
+/abc/g              RegExp     object (function in Nitro/V8)
+new RegExp(&quot;meow&quot;)  RegExp     object (function in Nitro/V8)
+{}                  Object     object
+new Object()        Object     object</code></pre>
+<p>上面表格中，<em>Type</em> 一列表示 <code>typeof</code> 操作符的运算结果。可以看到，这个值在大多数情况下都返回 &quot;object&quot;。</p>
+<p><em>Class</em> 一列表示对象的内部属性 <code>[[Class]]</code> 的值。</p>
+<aside>
+<p><strong>JavaScript 标准文档中定义:</strong> <code>[[Class]]</code> 的值只可能是下面字符串中的一个：
+<code>Arguments</code>, <code>Array</code>, <code>Boolean</code>, <code>Date</code>, <code>Error</code>, 
+<code>Function</code>, <code>JSON</code>, <code>Math</code>, <code>Number</code>, <code>Object</code>, <code>RegExp</code>, <code>String</code>.</p>
+</aside>
+<p>为了获取对象的 <code>[[Class]]</code>，我们需要使用定义在 <code>Object.prototype</code> 上的方法 <code>toString</code>。</p>
+</div><div><h3>对象的类定义</h3>
+<p>JavaScript 标准文档只给出了一种获取 <code>[[Class]]</code> 值的方法，那就是使用 <code>Object.prototype.toString</code>。</p>
+<pre><code>function is(type, obj) {
+    var clas = Object.prototype.toString.call(obj).slice(8, -1);
+    return obj !== undefined &amp;&amp; obj !== null &amp;&amp; clas === type;
+}
+
+is(&#39;String&#39;, &#39;test&#39;); // true
+is(&#39;String&#39;, new String(&#39;test&#39;)); // true</code></pre>
+<p>上面例子中，<code>Object.prototype.toString</code> 方法被调用，<a href="#function.this">this</a> 被设置为了需要获取 <code>[[Class]]</code> 值的对象。</p>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong><code>Object.prototype.toString</code> 返回一种标准格式字符串，所以上例可以通过 <code>slice</code> 截取指定位置的字符串，如下所示：</p>
+<pre><code>Object.prototype.toString.call([])    // &quot;[object Array]&quot;
+Object.prototype.toString.call({})    // &quot;[object Object]&quot;
+Object.prototype.toString.call(2)    // &quot;[object Number]&quot;</code></pre>
+<aside class="es5"><p><strong>ES5 提示:</strong> 在 ECMAScript 5 中，为了方便，对 <code>null</code> 和 <code>undefined</code> 调用 <code>Object.prototype.toString</code> 方法，
+其返回值由 <code>Object</code> 变成了 <code>Null</code> 和 <code>Undefined</code>。</p>
+</aside>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>这种变化可以从 IE8 和 Firefox 4 中看出区别，如下所示：</p>
+<pre><code>// IE8
+Object.prototype.toString.call(null)    // &quot;[object Object]&quot;
+Object.prototype.toString.call(undefined)    // &quot;[object Object]&quot;
+
+// Firefox 4
+Object.prototype.toString.call(null)    // &quot;[object Null]&quot;
+Object.prototype.toString.call(undefined)    // &quot;[object Undefined]&quot;</code></pre>
+</div><div><h3>测试为定义变量</h3>
+<pre><code>typeof foo !== &#39;undefined&#39;</code></pre>
+<p>上面代码会检测 <code>foo</code> 是否已经定义；如果没有定义而直接使用会导致 <code>ReferenceError</code> 的异常。
+这是 <code>typeof</code> 唯一有用的地方。</p>
+</div><div><h3>结论</h3>
+<p>为了检测一个对象的类型，强烈推荐使用 <code>Object.prototype.toString</code> 方法；
+因为这是唯一一个可依赖的方式。正如上面表格所示，<code>typeof</code> 的一些返回值在标准文档中并未定义，
+因此不同的引擎实现可能不同。</p>
+<p>除非为了检测一个变量是否已经定义，我们应尽量避免使用 <code>typeof</code> 操作符。</p>
+</div></article><article id="types.instanceof"><h2><code>instanceof</code> 操作符</h2><div><p><code>instanceof</code> 操作符用来比较两个操作数的构造函数。只有在比较自定义的对象时才有意义。
+如果用来比较内置类型，将会和 <a href="#types.typeof"><code>typeof</code> 操作符</a> 一样用处不大。</p>
+</div><div><h3>比较自定义对象</h3>
+<pre><code>function Foo() {}
+function Bar() {}
+Bar.prototype = new Foo();
+
+new Bar() instanceof Bar; // true
+new Bar() instanceof Foo; // true
+
+// 如果仅仅设置 Bar.prototype 为函数 Foo 本身，而不是 Foo 构造函数的一个实例
+Bar.prototype = Foo;
+new Bar() instanceof Foo; // false</code></pre>
+</div><div><h3><code>instanceof</code> 比较内置类型</h3>
+<pre><code>new String(&#39;foo&#39;) instanceof String; // true
+new String(&#39;foo&#39;) instanceof Object; // true
+
+&#39;foo&#39; instanceof String; // false
+&#39;foo&#39; instanceof Object; // false</code></pre>
+<p>有一点需要注意，<code>instanceof</code> 用来比较属于不同 JavaScript 上下文的对象（比如，浏览器中不同的文档结构）时将会出错，
+因为它们的构造函数不会是同一个对象。</p>
+</div><div><h3>结论</h3>
+<p><code>instanceof</code> 操作符应该<strong>仅仅</strong>用来比较来自同一个 JavaScript 上下文的自定义对象。
+正如 <a href="#types.typeof"><code>typeof</code></a> 操作符一样，任何其它的用法都应该是避免的。</p>
+</div></article><article id="types.casting"><h2>类型转换</h2><div><p>JavaScript 是<em>弱类型</em>语言，所以会在<strong>任何</strong>可能的情况下应用<em>强制类型转换</em>。</p>
+<pre><code>// 下面的比较结果是：true
+new Number(10) == 10; // Number.toString() 返回的字符串被再次转换为数字
+
+10 == &#39;10&#39;;           // 字符串被转换为数字
+10 == &#39;+10 &#39;;         // 同上
+10 == &#39;010&#39;;          // 同上 
+isNaN(null) == false; // null 被转换为数字 0
+                      // 0 当然不是一个 NaN（译者注：否定之否定）
+
+// 下面的比较结果是：false
+10 == 010;
+10 == &#39;-10&#39;;</code></pre>
+<aside class="es5"><p><strong>ES5 提示:</strong> 以 <code>0</code> 开头的数字字面值会被作为八进制数字解析。
+而在 ECMAScript 5 严格模式下，这个特性被<strong>移除</strong>了。</p>
+</aside>
+<p>为了避免上面复杂的强制类型转换，<strong>强烈</strong>推荐使用<a href="#types.equality">严格的等于操作符</a>。
+虽然这可以避免大部分的问题，但 JavaScript 的弱类型系统仍然会导致一些其它问题。</p>
+</div><div><h3>内置类型的构造函数</h3>
+<p>内置类型（比如 <code>Number</code> 和 <code>String</code>）的构造函数在被调用时，使用或者不使用 <code>new</code> 的结果完全不同。</p>
+<pre><code>new Number(10) === 10;     // False, 对象与数字的比较
+Number(10) === 10;         // True, 数字与数字的比较
+new Number(10) + 0 === 10; // True, 由于隐式的类型转换</code></pre>
+<p>使用内置类型 <code>Number</code> 作为构造函数将会创建一个新的 <code>Number</code> 对象，
+而在不使用 <code>new</code> 关键字的 <code>Number</code> 函数更像是一个数字转换器。</p>
+<p>另外，在比较中引入对象的字面值将会导致更加复杂的强制类型转换。</p>
+<p>最好的选择是把要比较的值<strong>显式</strong>的转换为三种可能的类型之一。</p>
+</div><div><h3>转换为字符串</h3>
+<pre><code>&#39;&#39; + 10 === &#39;10&#39;; // true</code></pre>
+<p>将一个值加上空字符串可以轻松转换为字符串类型。</p>
+</div><div><h3>转换为数字</h3>
+<pre><code>+&#39;10&#39; === 10; // true</code></pre>
+<p>使用<strong>一元</strong>的加号操作符，可以把字符串转换为数字。</p>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>字符串转换为数字的常用方法：</p>
+<pre><code>+&#39;010&#39; === 10
+Number(&#39;010&#39;) === 10
+parseInt(&#39;010&#39;, 10) === 10  // 用来转换为整数
+
++&#39;010.2&#39; === 10.2
+Number(&#39;010.2&#39;) === 10.2
+parseInt(&#39;010.2&#39;, 10) === 10</code></pre>
+</div><div><h3>转换为布尔型</h3>
+<p>通过使用 <strong>否</strong> 操作符两次，可以把一个值转换为布尔型。</p>
+<pre><code>!!&#39;foo&#39;;   // true
+!!&#39;&#39;;      // false
+!!&#39;0&#39;;     // true
+!!&#39;1&#39;;     // true
+!!&#39;-1&#39;     // true
+!!{};      // true
+!!true;    // true</code></pre>
+</div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>核心</h1></header><!-- Articles--><article id="core.eval"><h2>为什么不要使用 <code>eval</code></h2><div><p><code>eval</code> 函数会在当前作用域中执行一段 JavaScript 代码字符串。</p>
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    eval(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 3
+foo; // 1</code></pre>
+<p>但是 <code>eval</code> 只在被<strong>直接</strong>调用并且调用函数就是 <code>eval</code> 本身时，才在当前作用域中执行。</p>
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    var bar = eval;
+    bar(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 2
+foo; // 3</code></pre>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>上面的代码等价于在全局作用域中调用 <code>eval</code>，和下面两种写法效果一样：</p>
+<pre><code>// 写法一：直接调用全局作用域下的 foo 变量
+var foo = 1;
+function test() {
+    var foo = 2;
+    window.foo = 3;
+    return foo;
+}
+test(); // 2
+foo; // 3
+
+// 写法二：使用 call 函数修改 eval 执行的上下文为全局作用域
+var foo = 1;
+function test() {
+    var foo = 2;
+    eval.call(window, &#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 2
+foo; // 3</code></pre>
+<p>在<strong>任何情况下</strong>我们都应该避免使用 <code>eval</code> 函数。99.9% 使用 <code>eval</code> 的场景都有<strong>不使用</strong> <code>eval</code> 的解决方案。</p>
+</div><div><h3>伪装的 <code>eval</code></h3>
+<p><a href="#other.timeouts">定时函数</a> <code>setTimeout</code> 和 <code>setInterval</code> 都可以接受字符串作为它们的第一个参数。
+这个字符串<strong>总是</strong>在全局作用域中执行，因此 <code>eval</code> 在这种情况下没有被直接调用。</p>
+</div><div><h3>安全问题</h3>
+<p><code>eval</code> 也存在安全问题，因为它会执行<strong>任意</strong>传给它的代码，
+在代码字符串未知或者是来自一个不信任的源时，绝对不要使用 <code>eval</code> 函数。</p>
+</div><div><h3>结论</h3>
+<p>绝对不要使用 <code>eval</code>，任何使用它的代码都会在它的工作方式，性能和安全性方面受到质疑。
+如果一些情况必须使用到 <code>eval</code> 才能正常工作，首先它的设计会受到质疑，这<strong>不应该</strong>是首选的解决方案，
+一个更好的不使用 <code>eval</code> 的解决方案应该得到充分考虑并优先采用。</p>
+</div></article><article id="core.undefined"><h2><code>undefined</code> 和 <code>null</code></h2><div><p>JavaScript 有两个表示‘空’的值，其中比较有用的是 <code>undefined</code>。</p>
+</div><div><h3><code>undefined</code> 的值</h3>
+<p><code>undefined</code> 是一个值为 <code>undefined</code> 的类型。</p>
+<p>这个语言也定义了一个全局变量，它的值是 <code>undefined</code>，这个变量也被称为 <code>undefined</code>。
+但是这个变量<strong>不是</strong>一个常量，也不是一个关键字。这意味着它的<em>值</em>可以轻易被覆盖。</p>
+<aside class="es5"><p><strong>ES5 提示:</strong> 在 ECMAScript 5 的严格模式下，<code>undefined</code> <strong>不再是</strong> <em>可写</em>的了。
+但是它的名称仍然可以被隐藏，比如定义一个函数名为 <code>undefined</code>。</p>
+</aside>
+<p>下面的情况会返回 <code>undefined</code> 值：</p>
+<ul>
+<li>访问未修改的全局变量 <code>undefined</code>。</li>
+<li>由于没有定义 <code>return</code> 表达式的函数隐式返回。</li>
+<li><code>return</code> 表达式没有显式的返回任何内容。</li>
+<li>访问不存在的属性。</li>
+<li>函数参数没有被显式的传递值。</li>
+<li>任何被设置为 <code>undefined</code> 值的变量。</li>
+</ul>
+</div><div><h3>处理 <code>undefined</code> 值的改变</h3>
+<p>由于全局变量 <code>undefined</code> 只是保存了 <code>undefined</code> 类型实际<em>值</em>的副本，
+因此对它赋新值<strong>不会</strong>改变类型 <code>undefined</code> 的值。</p>
+<p>然而，为了方便其它变量和 <code>undefined</code> 做比较，我们需要事先获取类型 <code>undefined</code> 的值。</p>
+<p>为了避免可能对 <code>undefined</code> 值的改变，一个常用的技巧是使用一个传递到<a href="#function.scopes">匿名包装器</a>的额外参数。
+在调用时，这个参数不会获取任何值。</p>
+<pre><code>var undefined = 123;
+(function(something, foo, undefined) {
+    // 局部作用域里的 undefined 变量重新获得了 `undefined` 值
+
+})(&#39;Hello World&#39;, 42);</code></pre>
+<p>另外一种达到相同目的方法是在函数内使用变量声明。</p>
+<pre><code>var undefined = 123;
+(function(something, foo) {
+    var undefined;
+    ...
+
+})(&#39;Hello World&#39;, 42);</code></pre>
+<p>这里唯一的区别是，在压缩后并且函数内没有其它需要使用 <code>var</code> 声明变量的情况下，这个版本的代码会多出 4 个字节的代码。</p>
+<aside>
+<p><strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>这里有点绕口，其实很简单。如果此函数内没有其它需要声明的变量，那么 <code>var</code> 总共 4 个字符（包含一个空白字符）
+就是专门为 <code>undefined</code> 变量准备的，相比上个例子多出了 4 个字节。</p>
+</aside>
+</div><div><h3><code>null</code> 的用处</h3>
+<p>JavaScript 中的 <code>undefined</code> 的使用场景类似于其它语言中的 <em>null</em>，实际上 JavaScript 中的 <code>null</code> 是另外一种数据类型。</p>
+<p>它在 JavaScript 内部有一些使用场景（比如声明原型链的终结 <code>Foo.prototype = null</code>），但是大多数情况下都可以使用 <code>undefined</code> 来代替。</p>
+</div></article><article id="core.semicolon"><h2>自动分号插入</h2><div><p>尽管 JavaScript 有 C 的代码风格，但是它<strong>不</strong>强制要求在代码中使用分号，实际上可以省略它们。</p>
+<p>JavaScript 不是一个没有分号的语言，恰恰相反上它需要分号来就解析源代码。
+因此 JavaScript 解析器在遇到由于缺少分号导致的解析错误时，会<strong>自动</strong>在源代码中插入分号。</p>
+<pre><code>var foo = function() {
+} // 解析错误，分号丢失
+test()</code></pre>
+<p>自动插入分号，解析器重新解析。</p>
+<pre><code>var foo = function() {
+}; // 没有错误，解析继续
+test()</code></pre>
+<p>自动的分号插入被认为是 JavaScript 语言<strong>最大</strong>的设计缺陷之一，因为它<em>能</em>改变代码的行为。</p>
+</div><div><h3>工作原理</h3>
+<p>下面的代码没有分号，因此解析器需要自己判断需要在哪些地方插入分号。</p>
+<pre><code>(function(window, undefined) {
+    function test(options) {
+        log(&#39;testing!&#39;)
+
+        (options.list || []).forEach(function(i) {
+
+        })
+
+        options.value.test(
+            &#39;long string to pass here&#39;,
+            &#39;and another long string to pass&#39;
+        )
+
+        return
+        {
+            foo: function() {}
+        }
+    }
+    window.test = test
+
+})(window)
+
+(function(window) {
+    window.someLibrary = {}
+})(window)</code></pre>
+<p>下面是解析器&quot;猜测&quot;的结果。</p>
+<pre><code>(function(window, undefined) {
+    function test(options) {
+
+        // 没有插入分号，两行被合并为一行
+        log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {
+
+        }); // &lt;- 插入分号
+
+        options.value.test(
+            &#39;long string to pass here&#39;,
+            &#39;and another long string to pass&#39;
+        ); // &lt;- 插入分号
+
+        return; // &lt;- 插入分号, 改变了 return 表达式的行为
+        { // 作为一个代码段处理
+            foo: function() {} 
+        }; // &lt;- 插入分号
+    }
+    window.test = test; // &lt;- 插入分号
+
+// 两行又被合并了
+})(window)(function(window) {
+    window.someLibrary = {}; // &lt;- 插入分号
+})(window); //&lt;- 插入分号</code></pre>
+<aside>
+<p><strong>注意:</strong> JavaScript 不能正确的处理 <code>return</code> 表达式紧跟换行符的情况，
+虽然这不能算是自动分号插入的错误，但这确实是一种不希望的副作用。</p>
+</aside>
+<p>解析器显著改变了上面代码的行为，在另外一些情况下也会做出<strong>错误的处理</strong>。</p>
+</div><div><h3>前置括号</h3>
+<p>在前置括号的情况下，解析器<strong>不会</strong>自动插入分号。</p>
+<pre><code>log(&#39;testing!&#39;)
+(options.list || []).forEach(function(i) {})</code></pre>
+<p>上面代码被解析器转换为一行。</p>
+<pre><code>log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {})</code></pre>
+<p><code>log</code> 函数的执行结果<strong>极大</strong>可能<strong>不是</strong>函数；这种情况下就会出现 <code>TypeError</code> 的错误，详细错误信息可能是 <code>undefined is not a function</code>。</p>
+</div><div><h3>结论</h3>
+<p>建议<strong>绝对</strong>不要省略分号，同时也提倡将花括号和相应的表达式放在一行，
+对于只有一行代码的 <code>if</code> 或者 <code>else</code> 表达式，也不应该省略花括号。
+这些良好的编程习惯不仅可以提到代码的一致性，而且可以防止解析器改变代码行为的错误处理。</p>
+</div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>其它</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> 和 <code>setInterval</code></h2><div><p>由于 JavaScript 是异步的，可以使用 <code>setTimeout</code> 和 <code>setInterval</code> 来计划执行函数。</p>
+<aside>
+<p><strong>注意:</strong> 定时处理<strong>不是</strong> ECMAScript 的标准，它们在 <a href="http://en.wikipedia.org/wiki/Document_Object_Model">DOM (文档对象模型)</a> 被实现。</p>
+</aside>
+<pre><code>function foo() {}
+var id = setTimeout(foo, 1000); // 返回一个大于零的数字</code></pre>
+<p>当 <code>setTimeout</code> 被调用时，它会返回一个 ID 标识并且计划在将来<strong>大约</strong> 1000 毫秒后调用 <code>foo</code> 函数。
+<code>foo</code> 函数只会被执行<strong>一次</strong>。</p>
+<p>基于 JavaScript 引擎的计时策略，以及本质上的单线程运行方式，所以其它代码的运行可能会阻塞此线程。
+因此<strong>没法确保</strong>函数会在 <code>setTimeout</code> 指定的时刻被调用。</p>
+<p>作为第一个参数的函数将会在<em>全局作用域</em>中执行，因此函数内的 <a href="#function.this"><code>this</code></a> 将会指向这个全局对象。</p>
+<pre><code>function Foo() {
+    this.value = 42;
+    this.method = function() {
+        // this 指向全局对象
+        console.log(this.value); // 输出：undefined
+    };
+    setTimeout(this.method, 500);
+}
+new Foo();</code></pre>
+<aside>
+<p><strong>注意:</strong> <code>setTimeout</code> 的第一个参数是<strong>函数对象</strong>，一个常犯的错误是这样的 <code>setTimeout(foo(), 1000)</code>，
+这里回调函数是 <code>foo</code> 的<strong>返回值</strong>，而<strong>不是</strong><code>foo</code>本身。
+大部分情况下，这是一个潜在的错误，因为如果函数返回 <code>undefined</code>，<code>setTimeout</code> 也<strong>不会</strong>报错。</p>
+</aside>
+</div><div><h3><code>setInterval</code> 的堆调用</h3>
+<p><code>setTimeout</code> 只会执行回调函数一次，不过 <code>setInterval</code> - 正如名字建议的 - 会每隔 <code>X</code> 毫秒执行函数一次。
+但是却不鼓励使用这个函数。</p>
+<p>当回调函数的执行被阻塞时，<code>setInterval</code> 仍然会发布更多的回调指令。在很小的定时间隔情况下，这会导致回调函数被堆积起来。</p>
+<pre><code>function foo(){
+    // 阻塞执行 1 秒
+}
+setInterval(foo, 1000);</code></pre>
+<p>上面代码中，<code>foo</code> 会执行一次随后被阻塞了一分钟。</p>
+<p>在 <code>foo</code> 被阻塞的时候，<code>setInterval</code> 仍然在组织将来对回调函数的调用。
+因此，当第一次 <code>foo</code> 函数调用结束时，已经有 <strong>10</strong> 次函数调用在等待执行。</p>
+</div><div><h3>处理可能的阻塞调用</h3>
+<p>最简单也是最容易控制的方案，是在回调函数内部使用 <code>setTimeout</code> 函数。</p>
+<pre><code>function foo(){
+    // 阻塞执行 1 秒
+    setTimeout(foo, 1000);
+}
+foo();</code></pre>
+<p>这样不仅封装了 <code>setTimeout</code> 回调函数，而且阻止了调用指令的堆积，可以有更多的控制。
+<code>foo</code> 函数现在可以控制是否继续执行还是终止执行。</p>
+</div><div><h3>手工清空定时器</h3>
+<p>可以通过将定时时产生的 ID 标识传递给 <code>clearTimeout</code> 或者 <code>clearInterval</code> 函数来清除定时，
+至于使用哪个函数取决于调用的时候使用的是 <code>setTimeout</code> 还是 <code>setInterval</code>。</p>
+<pre><code>var id = setTimeout(foo, 1000);
+clearTimeout(id);</code></pre>
+</div><div><h3>清除所有定时器</h3>
+<p>由于没有内置的清除所有定时器的方法，可以采用一种暴力的方式来达到这一目的。</p>
+<pre><code>// 清空&quot;所有&quot;的定时器
+for(var i = 1; i &lt; 1000; i++) {
+    clearTimeout(i);
+}</code></pre>
+<p>可能还有些定时器不会在上面代码中被清除（<strong><a href="http://cnblogs.com/sanshi/">译者注</a>：</strong>如果定时器调用时返回的 ID 值大于 1000），
+因此我们可以事先保存所有的定时器 ID，然后一把清除。</p>
+</div><div><h3>隐藏使用 <code>eval</code></h3>
+<p><code>setTimeout</code> 和 <code>setInterval</code> 也接受第一个参数为字符串的情况。
+这个特性<strong>绝对</strong>不要使用，因为它在内部使用了 <code>eval</code>。</p>
+<aside>
+<p><strong>注意:</strong> 由于定时器函数不是 ECMAScript 的标准，如何解析字符串参数在不同的 JavaScript 引擎实现中可能不同。
+事实上，微软的 JScript 会使用 <code>Function</code> 构造函数来代替 <code>eval</code> 的使用。</p>
+</aside>
+<pre><code>function foo() {
+    // 将会被调用
+}
+
+function bar() {
+    function foo() {
+        // 不会被调用
+    }
+    setTimeout(&#39;foo()&#39;, 1000);
+}
+bar();</code></pre>
+<p>由于 <code>eval</code> 在这种情况下不是被<a href="#core.eval">直接</a>调用，因此传递到 <code>setTimeout</code> 的字符串会自<em>全局作用域</em>中执行；
+因此，上面的回调函数使用的不是定义在 <code>bar</code> 作用域中的局部变量 <code>foo</code>。</p>
+<p>建议<strong>不要</strong>在调用定时器函数时，为了向回调函数传递参数而使用字符串的形式。</p>
+<pre><code>function foo(a, b, c) {}
+
+// 不要这样做
+setTimeout(&#39;foo(1,2, 3)&#39;, 1000)
+
+// 可以使用匿名函数完成相同功能
+setTimeout(function() {
+    foo(a, b, c);
+}, 1000)</code></pre>
+<aside>
+<p><strong>注意:</strong> 虽然也可以使用这样的语法 <code>setTimeout(foo, 1000, a, b, c)</code>，
+但是不推荐这么做，因为在使用对象的<a href="#function.this">属性方法</a>时可能会出错。
+（<strong>译者注：</strong>这里说的是属性方法内，<code>this</code> 的指向错误）</p>
+</aside>
+</div><div><h3>结论</h3>
+<p><strong>绝对不要</strong>使用字符串作为 <code>setTimeout</code> 或者 <code>setInterval</code> 的第一个参数，
+这么写的代码明显质量很差。当需要向回调函数传递参数时，可以创建一个<em>匿名函数</em>，在函数内执行真实的回调函数。</p>
+<p>另外，应该避免使用 <code>setInterval</code>，因为它的定时执行不会被 JavaScript 阻塞。</p>
+</div></article></section><!-- Footer--><footer><p>Copyright &copy; 2011. Built with
+ <a href="http://nodejs.org/">Node.js </a>using a<a href="https://github.com/visionmedia/jade/">jade </a>template. 
+Hosted by <a href="http://cramerdev.com">Cramer Development</a>.</p></footer><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script><script src="../javascript/prettify.js"></script><script src="../javascript/plugin.js"></script><script src="../javascript/garden.js"></script></body></html>

@@ -1,0 +1,1432 @@
+<!DOCTYPE html><html lang="hu"><head><title>JavaScript Garden</title><meta charset="utf-8"><meta name="description" content="Bevezetés a JavaScript bugyraiba, hibáiba."><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" href="/JavaScript-Garden/favicon.ico?v=2"><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
+<script src="javascript/html5.js"></script>
+<![endif]--></head><body><!-- Navigation--><nav id="nav_main"><div><ul> <li><a href="/JavaScript-Garden/" title="JavaScript Garden">en</a></li><li><a href="/JavaScript-Garden/es" title="Jardín de JavaScript">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha">fi</a></li><li class="active"><a href="/JavaScript-Garden/hu" title="JavaScript Garden">hu</a></li><li><a href="/JavaScript-Garden/it" title="JavaScript Garden">it</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript 秘密花园">zh</a></li><li><a href="/JavaScript-Garden/zhtw" title="JavaScript 庭院">zhtw</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">Bevezető</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">Objektumok</a></h1><ul><li><a href="#object.general">Objektumok és mezők használata</a></li><li><a href="#object.prototype">A Prototípus</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">A <code>for in</code> ciklus</a></li></ul></li><li class="nav_function"><h1><a href="#function">Függvények</a></h1><ul><li><a href="#function.general">Függvény deklarációk és kifejezések</a></li><li><a href="#function.this">A <code>this</code> mágikus működése</a></li><li><a href="#function.closures">Closure-ök és referenciák</a></li><li><a href="#function.arguments">Az <code>arguments</code> objektum</a></li><li><a href="#function.constructors">Konstruktorok</a></li><li><a href="#function.scopes">Névterek és hatókörök</a></li></ul></li><li class="nav_array"><h1><a href="#array">Tömbök</a></h1><ul><li><a href="#array.general">Tömb iteráció és tulajdonságok</a></li><li><a href="#array.constructor">Az <code>Array</code> konstruktor</a></li></ul></li><li class="nav_types"><h1><a href="#types">Típusok</a></h1><ul><li><a href="#types.equality">Egyenlőség vizsgálat</a></li><li><a href="#types.typeof">A <code>typeof</code> vizsgálat</a></li><li><a href="#types.instanceof">Az <code>instanceof</code> operátor</a></li><li><a href="#types.casting">Típus kasztolás</a></li></ul></li><li class="nav_core"><h1><a href="#core">Lényeg</a></h1><ul><li><a href="#core.eval">Miért Ne Használjuk az <code>eval</code>-t</a></li><li><a href="#core.undefined">Az <code>undefined</code> és a <code>null</code></a></li><li><a href="#core.semicolon">Automatic Semicolon Insertion</a></li><li><a href="#core.delete">A <code>delete</code> Operátor</a></li></ul></li><li class="nav_other"><h1><a href="#other">Egyéb</a></h1><ul><li><a href="#other.timeouts">A varázslatos <code>setTimeout</code> és <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>Bevezető</h1></header><!-- Articles--></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>Objektumok</h1></header><!-- Articles--><article id="object.general"><h2>Objektumok és mezők használata</h2><div><p>A JavaSciprtben minden objektumként működik, a <a href="#core.undefined"><code>null</code></a> és az <a href="#core.undefined"><code>undefined</code></a> kivételével.</p>
+<pre><code>false.toString(); // &#39;hamis&#39;
+[1, 2, 3].toString(); // &#39;1,2,3&#39;
+
+function Foo(){}
+Foo.bar = 1;
+Foo.bar; // 1</code></pre>
+<p>Gyakori tévhitként terjed, hogy a JavaScriptben a számok nem használhatóak objektumként. 
+Ez csak látszólag igaz, mivel a JavaScript a pont utáni részt úgy próbálja értelmezni,
+mintha lebegőpontos számot látna. Így hibát kaphatunk.  </p>
+<pre><code>2.toString(); // SyntaxErrort vált ki</code></pre>
+<p>Azonban számos kifejezés létezik megoldásként, amelyekkel megkerülhető ez a probléma.</p>
+<pre><code>2..toString(); // így a második pont már az objektumra utal
+2 .toString(); // fontos a space-t észrevenni itt a pont előtt
+(2).toString(); // a 2 értékelődik ki hamarabb</code></pre>
+</div><div><h3>Objektumok mint adattípusok</h3>
+<p>Az objektumok JavaScriptben <a href="http://en.wikipedia.org/wiki/Hashmap"><em>Hash táblaként</em></a> is használhatóak, mivel természetszerűleg kulcs-érték párokat tartalmaznak.</p>
+<p>Az objektum literál leírásával - <code>{}</code> jelöléssel - lehet létrehozni egy új objektumot. Ez az új objektum az <code>Object.prototype</code>-ból <a href="#object.prototype">származik</a> és nincsenek <a href="#object.hasownproperty">saját mezői</a> definiálva.</p>
+<pre><code>var foo = {}; // egy új, üres objektum
+
+// egy új objektum egy &#39;test&#39; nevű mezővel, aminek 12 az értéke
+var bar = {test: 12}; </code></pre>
+</div><div><h3>Mezők elérése</h3>
+<p>Egy objektum mezői kétféle módon érhetőek el, vagy az &#39;objektum.mezőnév&#39; jelöléssel,
+(Ford.: amit &quot;dot notationként&quot; emlegetünk) vagy a szögletes zárójelek kirakásával.</p>
+<pre><code>var foo = {name: &#39;macska&#39;}
+foo.name; // macska
+foo[&#39;name&#39;]; // macska
+
+var get = &#39;name&#39;;
+foo[get]; // macska
+
+foo.1234; // SyntaxError
+foo[&#39;1234&#39;]; // működik</code></pre>
+<p>A két jelölés majdnem egyenértékűen használható, kivéve, hogy a szögletes zárójelekkel dinamkusan állíthatunk be mezőket és olyan neveket is választhatunk, amik amúgy szintaxis hibához vezetnének (Fordító: mivel a neveket stringbe kell rakni, megadhatunk a JS által &quot;lefoglalt&quot; kulcsszavakat is mezőnévként, habár ennek használata erősen kerülendő).</p>
+</div><div><h3>Mezők törlése</h3>
+<p>Egyetlen módon lehet mezőt törölni egy objektumból ez pedig a <code>delete</code> operátor
+használata; a mező értékének <code>undefined</code>-ra vagy <code>null</code>-ra való állítása csak
+magára az értékre van kihatással, de a kulcs ugyanúgy megmarad az objektumban.</p>
+<pre><code>var obj = {
+    bar: 1,
+    foo: 2,
+    baz: 3
+};
+obj.bar = undefined;
+obj.foo = null;
+delete obj.baz;
+
+for(var i in obj) {
+    if (obj.hasOwnProperty(i)) {
+        console.log(i, &#39;&#39; + obj[i]);
+    }
+}</code></pre>
+<p>A fenti ciklus a <code>bar undefined</code> és a <code>foo null</code> eredményeket fogja kiírni - 
+egyedül a <code>baz</code> mező került törlésre, és emiatt hiányzik is az outputról.</p>
+</div><div><h3>Kulcsok jelölése</h3>
+<pre><code>var test = {
+    &#39;case&#39;: &#39;Kulcsszó vagyok, ezért stringként kell leírnod&#39;,
+    delete: &#39;Én is az vagyok&#39; // SyntaxError
+};</code></pre>
+<p>Az objektumok mezőnevei mind stringként, mind egyszerű szövegként (Ford.: aposztrófok nélkül)
+leírhatóak. A JavaScript értelmező hibája miatt, a fenti kód azonban <code>SyntaxErrort</code> eredményez ECMAScript 5 előtti verzió esetén.</p>
+<p>Ez a hiba onnan ered, hogy a <code>delete</code> egy <em>kulcsszó</em>, viszont érdemes <em>string literálként</em>
+leírni hogy helyesen megértsék a régebbi JavaScript motorok is.</p>
+</div></article><article id="object.prototype"><h2>A Prototípus</h2><div><p>A JavaScript nem a klasszikus öröklődést használja, hanem egy ún. <em>prototípusos</em>
+származtatást használ.</p>
+<p>Míg ezt gyakran a JavaScript legnagyobb hibái között tartják számon, valójában
+ez a származtatási modell jóval kifejezőbb mint klasszikus barátja.
+Ezt jelzi, hogy például sokkal könnyebb megépíteni a klasszikus modellt, alapul véve
+a prototípusos modellt, míg a fordított irány kivitelezése igencsak nehézkes lenne.</p>
+<p>A JavaScript az egyetlen széles körben elterjedt nyelv, amely ezt a származtatást
+használja, így mindenképp időt kell szánni a két modell közti különbség megértésére.</p>
+<p>Az első feltűnő különbség, hogy ez a fajta származtatás <em>prototípus láncokat</em> 
+használ.</p>
+<aside>
+<p><strong>Megj.:</strong> Egyszerűen a <code>Bar.prototype = Foo.prototype</code> utasítást használva, mind a 
+két objektum <strong>ugyanazon</strong> a prototípus objektumon fog osztozni. Így aztán ha bárki közülük
+megváltoztatja ezt a prototípust, az a változás a másik objektum működését is befolyásolja,
+ami általában nem egyezik meg a kívánt működéssel.</p>
+</aside>
+<pre><code>function Foo() {
+    this.value = 42;
+}
+Foo.prototype = {
+    method: function() {}
+};
+
+function Bar() {}
+
+// Beállítjuk a Bar prototípusát a Foo egy új példányára
+Bar.prototype = new Foo(); // !
+Bar.prototype.foo = &#39;Hello World&#39;;
+
+// Beállítjuk a Bar konstruktorát
+Bar.prototype.constructor = Bar;
+
+var test = new Bar(); // új Bar példány létrehozása
+
+// A kapott prototípus lánc
+test [instance of Bar]
+    Bar.prototype [instance of Foo]
+        { foo: &#39;Hello World&#39; }
+        Foo.prototype
+            { method: ... }
+            Object.prototype
+                { toString: ... /* stb. */ }</code></pre>
+<p>A fenti kódban a <code>test</code> objektum mind a <code>Bar.prototype</code> és <code>Foo.prototype</code>
+prototípusokból származik, így lesz hozzáférése a <code>method</code> nevű függvényhez amely
+a <code>Foo</code> prototípusában lett definiálva. A <code>value</code> mezőhöz szintén lesz hozzáférése,
+amely akkor jött létre, amikor (szám szerint) <strong>egy</strong> új <code>Foo</code> példányt hoztunk létre.
+Érdemes észrevenni hogy a <code>new Bar()</code> kifejezés <strong>nem</strong> hoz létre egy új <code>Foo</code> példányt
+minden alkalommal, azonban újrahasználja azt az egyetlen (//!) inicilalizált <code>Foo</code> pédlányunkat. Így az összes <code>Bar</code> példány <em>egy és ugyanazt</em> a <code>value</code> mezőt (és
+értéket) fogja használni.</p>
+<aside>
+<p><strong>Megj.:</strong> <strong>Ne</strong> használd a <code>Bar.prototype = Foo</code> kifejezést, mivel ez nem
+a <code>Foo</code> prototípusára fog mutatni, hanem magára a <code>Foo</code> függvényre, mint objektumra.
+Így a prototípus lánc a <code>Function.prototype</code>-ra fog futni a <code>Foo.prototype</code> helyett.
+Ekkor, a <code>method</code> függvény nem lesz benne a prototípus láncban.</p>
+</aside>
+</div><div><h3>Mezők keresése</h3>
+<p>Amikor olyan utasítást adunk ki, amellyel egy objektum mezőjét keressük, a
+JavaScript <strong>felfele</strong> bejárja az egész prototípus láncot, amíg meg nem találja
+a kért mezőt.</p>
+<p>Hogyha eléri a lánc legtetejét - nevezetesen az <code>Object.prototype</code>-t és még
+ekkor sem találja a kért mezőt, akkor az <a href="#core.undefined">undefined-dal</a> fog
+visszatérni.</p>
+</div><div><h3>A Prototype mező</h3>
+<p>Alapjáraton, a JavaScript a prototype nevű mezőt használja a prototípus láncok
+kialakításához, de ettől függetlenül ez is ugyanolyan mező mint a többi, és 
+<strong>bármilyen</strong> értéket belehet neki állítani. Viszont a primitív típusokat egyszerűen
+figyelmen kívül fogja hagyni a feldolgozó.</p>
+<pre><code>function Foo() {}
+Foo.prototype = 1; // nincs hatása</code></pre>
+<p>Az objektumok megadása, mint azt a fentebbi példában láthattuk, hatással van a prototype
+mezőkre és ezeknek az átállításával bele lehet szólni a prototípus láncok kialakításába.</p>
+</div><div><h3>Teljesítmény</h3>
+<p>Értelemszerűen, minnél nagyobb a prototípus lánc, annál tovább tart egy-egy mező
+felkeresése, és ez rossz hatással lehet a kód teljesítményére. Emellett, ha egy
+olyan mezőt próbálunk elérni amely nincs az adott objektum példányban, az mindig
+a teljes lánc bejárását fogja eredményezni.</p>
+<p>Vigyázat! Akkor is bejárjuk a teljes láncot, amikor egy objektum mezőin próbálunk <a href="#object.forinloop">iterálni</a>.</p>
+</div><div><h3>Natív prototípusok bővítése</h3>
+<p>Egy gyakran elkövetett hiba, hogy az <code>Object.prototype</code> prototípust vagy egy másik előre
+definiált prototípust próbálunk kiegészíteni új kóddal.</p>
+<p>Ezt <a href="http://en.wikipedia.org/wiki/Monkey_patch">monkey patching</a>-nek is hívják, és aktívan kerülendő, mivel megtöri 
+az <em>egységbe zárás</em> elvét. Habár ezt a technikát olyan népszerű framework-ök
+is használják mint a <a href="http://prototypejs.org/">Prototype</a>, ettől függetlenül ne hagyjuk magunkat csőbe húzni;
+nincs ésszerű indok arra, hogy összezavarjuk a beépített típusokat, további 
+<em>nem standard</em> saját funkcionalitással.</p>
+<p>Az <strong>egyetlen</strong> ésszerű használati indok a natív prototípusokba nyúlásra az lehet, 
+hogy megpróbáljuk szimulálni az új JavaScript motorok szolgáltatásait régebbi társaikon, például az <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach</code></a> implementálásával.</p>
+</div><div><h3>Zárásként</h3>
+<p><strong>Nagyon fontos</strong> megérteni a prototípusos származtatási modellt, mielőtt olyan
+kódot próbálnánk írni, amely megpróbálja kihasználni a sajátosságait. Nagyon
+oda kell figyelni a prototípuslánc hosszára - osszuk fel több kis láncra ha
+szükséges - hogy elkerüljük a teljesítmény problémákat. Továbbá, a natív
+prototípusokat <strong>soha</strong> ne egészítsük ki, egészen addig amíg nem akarunk
+JavaScript motorok közötti kompatibilitási problémákat áthidalni.</p>
+</div></article><article id="object.hasownproperty"><h2><code>hasOwnProperty</code></h2><div><p>Hogy megtudjuk nézni egy adott objektum saját mezőit - azokat a mezőket amelyek
+az objektumon <em>közvetlenül</em> vannak definiálva, és nem valahol a 
+<a href="#object.prototype">prototípus láncon</a> -, a <code>hasOwnProperty</code> függvényt használata 
+ajánlott, amelyet az összes objektum amúgy is örököl az <code>Object.prototype</code>-ból.</p>
+<aside>
+<p><strong>Megj.:</strong> Vicces programozók miatt, <strong>nem</strong> biztos hogy elég lesz megnézni hogy 
+egy adott mező <code>undefined</code>-e. Mivel lehet hogy ekkor maga a mező létezik, csak valaki
+konkrétan az értékét <code>undefined</code>-ra állította.</p>
+</aside>
+<p>A <code>hasOwnProperty</code> függvény az egyetlen olyan dolog amelyik anélkül tudja ellenőrizni
+az objektum mezőit, hogy megpróbálná bejárni a prototípus láncot.</p>
+<pre><code>// Az Object.prototype beszennyezése
+Object.prototype.bar = 1;
+var foo = {goo: undefined};
+
+foo.bar; // 1
+&#39;bar&#39; in foo; // igaz
+
+foo.hasOwnProperty(&#39;bar&#39;); // hamis
+foo.hasOwnProperty(&#39;goo&#39;); // igaz</code></pre>
+<p>Hogy megértsük a fontosságát, egyedül a <code>hasOwnProperty</code> tudja hozni a korrekt
+és elvárt eredményeket mezőellenőrzés szempontjából. Egyszerűen <strong>nincs más</strong> 
+módja annak, hogy kizárjuk a szűrésünkből azokat a mezőket amelyek nem az objektumon, 
+hanem valahol feljebb, a prototípus láncon lettek definiálva.</p>
+</div><div><h3>A <code>hasOwnProperty</code> mint mező</h3>
+<p>A JavaScript persze nem védi magát a <code>hasOwnProperty</code> nevet, így egy jókedvű
+programozóban mindig megvan a lehetőség, hogy így nevezze el a saját függvényét.
+Ennek kikerülése érdekében ajánlott mindig a <code>hasOwnProperty</code>-re <em>kívülről</em> hivatkozni
+(Értsd: A hackelt -saját hasOwnPropertyvel ellátott- objektum kontextusán kívüli objektum hasOwnPropertyjét hívjuk meg).</p>
+<pre><code>var foo = {
+    hasOwnProperty: function() {
+        return false;
+    },
+    bar: &#39;Mordor itt kezdődik&#39;
+};
+
+foo.hasOwnProperty(&#39;bar&#39;); // mindig hamissal tér vissza
+
+// Használhatjuk egy másik objektum hasOwnPropertyjét, 
+// hogy meghívjuk a foo-n.
+({}).hasOwnProperty.call(foo, &#39;bar&#39;); // ez már igaz
+
+// Szintén jó megoldás lehet közvetlenül az 
+// Object prototypejából hívni ezt a függvényt.
+Object.prototype.hasOwnProperty.call(foo, &#39;bar&#39;); // ez is igaz</code></pre>
+</div><div><h3>Konklúzió</h3>
+<p>A <code>hasOwnProperty</code> használata az <strong>egyetlen</strong> megbízható módszer annak eldöntésére,
+hogy egy mező közvetlenül az objektumon lett-e létrehozva. Melegen ajánlott a 
+<code>hasOwnProperty</code>-t <strong>minden</strong> <a href="#object.forinloop"><code>for in</code> ciklusban</a> használni.
+Használatával ugyanis elkerülhetjük a kontár módon kiegészített natív prototípusokból
+fakadó esetleges hibákat, amire példát az imént láttunk.</p>
+</div></article><article id="object.forinloop"><h2>A <code>for in</code> ciklus</h2><div><p>Csak úgy mint a jó öreg <code>in</code> operátor, a <code>for in</code> is bejárja az egész
+prototípus láncot, amikor egy objektum mezőin próbálnánk iterálni.</p>
+<aside>
+<p><strong>Megjegyzés:</strong> A <code>for in</code> ciklus <strong>nem</strong> fog iterálni azokon a mezőkön,
+amelyeknek az <code>enumerable</code> tulajdonsága <code>false</code>-ra van állítva. Például a 
+<code>length</code> mező nem kerül az iterációba amikor egy tömbön iterálnánk végig.</p>
+</aside>
+<pre><code>// Mérgezzük Object.prototypeot!
+Object.prototype.bar = 1;
+
+var foo = {moo: 2};
+for(var i in foo) {
+    console.log(i); // mind a moo és bar is kiírásra kerül
+}</code></pre>
+<p>Mivel -hála égnek- magának a <code>for in</code> ciklusnak a működését nem lehet befolyásolni,
+így más módszert kell találnunk ahhoz hogy száműzzük a váratlan mezőket a ciklus magból.
+(Értsd: Azokat amelyek a prototípus láncon csücsülnek csak). Ezt pedig az <code>Object.prototype</code>-ban
+lakó <a href="#object.hasownproperty"><code>hasOwnProperty</code></a> függvény használatával érhetjük el.</p>
+<aside>
+<p><strong>Fontoljuk meg:</strong> Mivel a <code>for in</code> mindig bejárja a teljes prototípus láncot,
+így minnél több elemet adunk a származtatási láncunkba, annál lassabban fog tekerni.</p>
+</aside>
+</div><div><h3>Szűrés használata a <code>hasOwnProperty</code>-vel</h3>
+<pre><code>// még mindig a fenti foo-nál tartunk
+for(var i in foo) {
+    if (foo.hasOwnProperty(i)) {
+        console.log(i);
+    }
+}</code></pre>
+<p>Ez az egyetlen helyes útja annak hogy az objektum saját mezőin iteráljunk csak végig.
+Mivel a <code>hasOwnProperty</code>-t használjuk, így csak a várt <code>moo</code>-t fogja kiírni. Tehén jó
+kódunk van! Hogyha a <code>hasOwnProperty</code>-t kihagynánk, a kódunk ki lenne téve nem várt
+hibáknak, amik pl. abból fakadnak hogy valaki ocsmányul kiterjesztette az
+<code>Object.prototype</code>-t.</p>
+<p>Például, ha a <a href="http://www.prototypejs.org/">Prototype</a> frameworköt használjuk, és nem ilyen stílusban írjuk a
+ciklusainkat, a hibák szinte garantáltak, ugyanis ők saját szájízükre kiterjesztik az
+<code>Object.prototype</code>-t.</p>
+</div><div><h3>Konklúzió</h3>
+<p>A <code>hasOwnProperty</code> használata erősen javasolt. Soha ne éljünk pozitív
+feltételezésekkel a futó kódot illetően, főleg olyan döntésekben nem érdemes
+orosz rulettezni, mint hogy kiterjeszti-e valaki a natív prototípusokat vagy nem.
+Mert általában igen.</p>
+</div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>Függvények</h1></header><!-- Articles--><article id="function.general"><h2>Függvény deklarációk és kifejezések</h2><div><p>A függvények JavaScriptben egyben objektumok is. Ez azt jelenti, hogy
+ugyanúgy lehet őket passzolgatni mint bármelyik más értékeket. Ezt a featuret
+gyakran használják arra, hogy egy <em>névtelen (callback) függvényt</em> átadjunk 
+egy másik -aszinkron- függvény paramétereként.</p>
+</div><div><h3>A <code>függvény</code> deklaráció</h3>
+<pre><code>function foo() {}</code></pre>
+<p>Ez a függvény felkerül a scope tetejére (<a href="#function.scopes">hoisting</a>), mielőtt a kód végrehajtása megtörténne. Így abban a scopeban ahol <em>definiálták</em>, <em>mindenhol</em> elérhető, 
+még abban a trükkös esetben is, hogyha a kód azon pontján hívjuk ezt a függvényt, mielőtt
+definiáltuk volna (látszólag).</p>
+<pre><code>foo(); // Így is működik, mivel a foo fgv. létrejön mielőtt meghívnánk.
+function foo() {}</code></pre>
+</div><div><h3>A <code>függvény</code> kifejezés (expression)</h3>
+<pre><code>var foo = function() {};</code></pre>
+<p>A fentebbi példában egy <em>névtelen</em> függvényt adunk értékül a foo változónak. </p>
+<pre><code>foo; // &#39;undefined&#39;
+foo(); // TypeError hiba
+var foo = function() {};</code></pre>
+<p>Habár ebben a példában a <code>var</code> deklaráció futás előtt a kód tetejére kúszik,
+ettől függetlenül a foo mint függvény meghívásakor hibát fogunk kapni.</p>
+<p>Ugyanis a deklaráció felkúszott, azonban az értékadás csak futásidőben fog megtörténni,
+addig is a foo változó értéke <a href="#core.undefined">undefined</a> marad. Az undefinedet pedig hiába hívjuk függvényként, TypeErrort kapunk végeredményül.</p>
+</div><div><h3>Névvel ellátott függvény kifejezés</h3>
+<p>Egy másik érdekes eset, amikor névvel ellátott függvényeket adunk értékül változóknak.</p>
+<pre><code>var foo = function bar() {
+    bar(); // Működik
+}
+bar(); // ReferenceError</code></pre>
+<p>Ebben a példában a <code>bar</code>t önmagában nem lehet elérni egy külső scopeból (utolsó sor), 
+mivel egyből értékül adtuk a <code>foo</code> változónak. Ennek ellenére a <code>bar</code>on belül elérhető
+a <code>bar</code> név. A tanulság az, hogy a függvény önmagát <em>mindig</em> eléri a saját scopeján belül, és ez a JavaScriptben található <a href="#function.scopes">névfeloldásnak</a> köszönhető.</p>
+</div></article><article id="function.this"><h2>A <code>this</code> mágikus működése</h2><div><p>A <code>this</code> kicsit másképp működik a JavaScriptben mint ahogy azt megszokhattuk
+más nyelvekben. Ugyanis pontosan <strong>ötféle</strong> módja lehet annak hogy a <code>this</code> 
+éppen mire utal a nyelvben.</p>
+</div><div><h3>A Globális hatókör</h3>
+<pre><code>this;</code></pre>
+<p>Amikor globális hatókörben van használva a this, akkor pontosan a <em>globális</em> objektumra utal.</p>
+</div><div><h3>Függvény híváskor</h3>
+<pre><code>foo();</code></pre>
+<p>Itt, a <code>this</code> megint a <em>globális</em> objektumra fog utalni.</p>
+<aside class="es5"><p><strong>ES5 Megjegyzés:</strong> Strict módban a globális eset <strong>nem létezik</strong> többé.
+Ezekben az esetekben a <code>this</code> értéke undefined lesz.</p>
+</aside>
+</div><div><h3>Eljárás hívásakor</h3>
+<pre><code>test.foo(); </code></pre>
+<p>Ebben a példában a <code>this</code> a <code>test</code> objektumra fog hivatkozni.</p>
+</div><div><h3>Konstuktor hívásakor</h3>
+<pre><code>new foo(); </code></pre>
+<p>Ha a függvény hívását a <code>new</code> kulcsszóval előzzük meg, akkor a függvény  <a href="#function.constructors">konstruktorként</a> fog viselkedni. A függvényen belül, a <code>this</code>
+az <em>újonnan létrehozott</em> <code>Objektumra</code> fog hivatkozni.</p>
+</div><div><h3>A <code>this</code> explicit beállítása</h3>
+<pre><code>function foo(a, b, c) {}
+
+var bar = {};
+foo.apply(bar, [1, 2, 3]); // ugyanaz mint egy sorral lejjebb
+foo.call(bar, 1, 2, 3); // argumentumok: a = 1, b = 2, c = 3</code></pre>
+<p>A <code>Function.prototype</code>-ban levő <code>call</code> vagy <code>apply</code> használatakor aztán elszabadul a pokol :).
+Ezekben az esetekben ugyanis a this a foo hívásakor <strong>egzaktan</strong> be lesz állítva az apply/call
+első argumentumára. </p>
+<p>Ennek eredményképp az előzőekben említett <em>Eljárás hívásakor</em> rész <strong>nem</strong> érvényes,
+a <code>foo</code> fentebbi meghívásakor a <code>this</code> értéke a <code>bar</code> objektumra lesz beállítva.</p>
+<aside>
+<p><strong>Megj.:</strong> A <code>this</code> kulcsszót <strong>nem lehet</strong> <code>Objektum</code> literál létrehozásakor arra használni,
+hogy magára az objektumra hivatkozzon.
+Így a <code>var obj = {me: this}</code> kódban a <code>me</code> <strong>nem fog</strong> a <code>this</code>-re hivatkozni, ugyanis
+ez az eset nem tartozik egyikhez sem a fent megtalálható öt közül.</p>
+</aside>
+</div><div><h3>Gyakori buktatók</h3>
+<p>Míg a fent megtalálható eseteknek van gyakorlatban vett értelme, az első
+a nyelv rossz designjára utal, ugyanis ennek <strong>soha</strong> nem lesz semmilyen 
+praktikus felhasználási módja.</p>
+<pre><code>Foo.method = function() {
+    function test() {
+        // A this itt a globális ojjektum.
+    }
+    test();
+}</code></pre>
+<p>Gyakori hiba, hogy úgy gondolják a fenti példában az emberek, hogy a <code>this</code> a <code>test</code> függvényen
+belül az őt körülvevő <code>Foo</code>-ra fog mutatni, pedig <strong>nem</strong>.</p>
+<p>Megoldásképp, hogy a <code>Foo</code>-hoz hozzáférhessük a <code>test</code>-en belül, szükségszerű egy változót
+lokálisan elhelyezni a <code>method</code>-on belül, ami már valóban a kívánt <code>this</code>-re (<code>Foo</code>-ra) mutat.</p>
+<pre><code>Foo.method = function() {
+    var that = this;
+    function test() {
+        // Használjuk a that-et a this helyett
+    }
+    test();
+}</code></pre>
+<p>A <code>that</code> tuladjonképpen egy mezei változónév (nem kulcsszó), de sokszor használják arra,
+hogy egy másik <code>this</code>-re hivatkozzanak vele. A <a href="#function.closures">colsureökkel</a> kombinálva
+ez a módszer arra is használható hogy <code>this</code>-eket passzolgassunk a vakvilágban és mégtovább.</p>
+</div><div><h3>Eljárások értékül adása</h3>
+<p>Egy másik koncepció ami <strong>nem</strong> fog a JavaScriptben működni, az az alias függvények létrehozása, ami tulajdonképpen egy függvény másik névhez való <strong>kötését</strong> jelentené.</p>
+<pre><code>var test = someObject.methodTest;
+test();</code></pre>
+<p>Az első eset miatt a <code>test</code> egy sima függvényhívásként működik, azonban a <code>this</code> értéke
+a függvényen belül a továbbiakban <strong>nem</strong> a <code>someObject</code> lesz.    </p>
+<p>Elsőre a <code>this</code> alábbi módon való utánkötése (late binding) nem tűnik jó ötletnek.
+Azonban ez az, amitől a <a href="#object.prototype">prototípusos öröklődés</a> is működni tud, 
+ami a nyelv egyik fő erőssége.</p>
+<pre><code>function Foo() {}
+Foo.prototype.method = function() {};
+
+function Bar() {}
+Bar.prototype = Foo.prototype;
+
+new Bar().method();</code></pre>
+<p>Amikor a <code>method</code> meghívódik a <code>Bar</code> példányaként, a <code>this</code> pontosan a <code>Bar</code>
+megfelelő példányára fog mutatni.</p>
+</div></article><article id="function.closures"><h2>Closure-ök és referenciák</h2><div><p>A JavaScript nyelv egyik legerőteljesebb tulajdonsága a <em>closure</em>-ök használatában rejlik.
+Ezek használatával a hatókörök egymásba ágyazhatóak, és egy belső hatókör mindig hozzáfér
+az őt körülvevő, külső hatókör változóihoz. Miután JavaScriptben egyetlen dologgal lehet
+hatóköröket kifejezni, és ez a <a href="#function.scopes">funkció</a> (bizony az if, try/catch és hasonló blokkok <strong>nem</strong> jelentenek új hatókört, mint pl. a Javaban), az összes funkció closure-ként szerepel.</p>
+</div><div><h3>Privát változók emulálása</h3>
+<pre><code>function Counter(start) {
+    var count = start;
+    return {
+        increment: function() {
+            count++;
+        },
+
+        get: function() {
+            return count;
+        }
+    }
+}
+
+var foo = Counter(4);
+foo.increment();
+foo.get(); // 5</code></pre>
+<p>Ebben a példában a <code>Counter</code> <strong>két</strong> closure-rel tér vissza: az <code>increment</code> és
+a <code>get</code> funkcióval. Mind a két funkció <strong>referenciát</strong> tárol a <code>Counter</code> hatókörre,
+és így mindketten hozzáférnek a <code>count</code> változóhoz, ami ebben a hatókörben lett
+definiálva.</p>
+</div><div><h3>Miért működnek a privát változók?</h3>
+<p>Mivel a JavaScriptben egyszerűen <strong>nem</strong> lehet hatókörre referálni, vagy hatókört
+értékül adni, így ezért szintén lehetetlen elérni az iménti <code>count</code> változót a külvilág számára.
+Egyetlen mód van a megszólítására, ezt pedig láttuk a fentebbi két closure-ön belül.</p>
+<pre><code>var foo = new Counter(4);
+foo.hack = function() {
+    count = 1337;
+};</code></pre>
+<p>A fentebbi kód <strong>nem</strong> fogja megváltoztatni a <code>Counter</code> hatókör <code>count</code> változóját,
+mivel a <code>foo.hack</code> mező <strong>nem abban</strong> a hatókörben lett létrehozva. Ehelyett, okosan,
+létre fogja hozni, vagy felül fogja írni a <em>globális</em> <code>count</code> változót (window.count).</p>
+</div><div><h3>Closure-ök használata ciklusokban</h3>
+<p>Az egyik leggyakoribb hiba amit el lehet követni, az a closure-ök ciklusokban való használata.
+Annak is azon speciális esete amikor a ciklus indexváltozóját szeretnénk lemásolni a closure-ön belül.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout(function() {
+        console.log(i);  
+    }, 1000);
+}</code></pre>
+<p>A fenti kódrészlet marhára <strong>nem</strong> a számokat fogja kiírni <code>0</code>-tól <code>9</code>-ig, de inkább
+a <code>10</code>-et fogja tízszer kiírni.</p>
+<p>Ugyanis a belső <em>névtelen</em> függvény egy <strong>referenciát</strong> fog tárolni a külső <code>i</code> változóra, és
+akkor, amikor végül a <code>console.log</code> sor lefut, a <code>for loop</code> már végzett az egész ciklussal,
+így az <code>i</code> értéke <code>10</code>-re lesz beállítva.</p>
+<p>Ahhoz, hogy a várt működést kapjuk (tehát a számokat 0-tól 9-ig), szükségszerű az <code>i</code> változó
+értékét <strong>lemásolni</strong>.</p>
+</div><div><h3>A referencia probléma elkerülése</h3>
+<p>Az előző problémára megoldást úgy lehet jól adni, hogy az utasításoknak megfelelően 
+lemásoljuk a ciklusváltozót, úgy hogy a jelenlegi ciklusmagöt körbevesszük egy <a href="#function.scopes">névtelen
+függvénnyel</a>.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    (function(e) {
+        setTimeout(function() {
+            console.log(e);  
+        }, 1000);
+    })(i);
+}</code></pre>
+<p>A külső (wrapper) névtelen függvény így azonnal meghívódik az <code>i</code> ciklusváltozóval, mint paraméterrel,
+és így mindig egy másolatot fog kapni az <code>i</code> változó <strong>értékéről</strong>, amit ő <code>e</code> néven emészt tovább.</p>
+<p>Így a <code>setTimeout</code>ban lévő névtelen fgv. mindig az <code>e</code> nevű referenciára fog mutatni, aminek az értéke így már <strong>nem</strong> változik meg a ciklus futása során.</p>
+<p>Egy másik lehetséges út a megoldáshoz az, hogy egy wrapper függvényt visszatérítünk a setTimeoutból, aminek ugyanaz lesz a hatása, mint a fentebbi példának.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout((function(e) {
+        return function() {
+            console.log(e);
+        }
+    })(i), 1000)
+}</code></pre>
+</div></article><article id="function.arguments"><h2>Az <code>arguments</code> objektum</h2><div><p>Minden függvényhatókörben hozzáférhető az <code>arguments</code> nevű speciális változó,
+amely azon argumentumok listáját tartalmazza, amelyekkel a függvényt meghívták.</p>
+<aside>
+<p><strong>Megjegyzés:</strong> Abban a trükkös esetben, hogyha a függvényhatókörön belül valahogy
+definiáljuk az <code>arguments</code>-et mint nevet, akár változóként (<code>var</code>ral), vagy a függvény 
+paramétereként, akkor ez a speciális <code>arguments</code> objektum nem lesz létrehozva.</p>
+</aside>
+<p>Lehet hogy úgy néz ki, de az <code>arguments</code> objektum <strong>nem</strong> egy <code>tömb</code>. Látszólag hasonlít rá,
+mivel van például egy <code>length</code> nevű mezője, de igazából nem az <code>Array.prototype</code>-ból &quot;származik&quot;,
+hanem tisztán az <code>Object</code>-ből.</p>
+<p>Itt jön a trükk lényege, hogy ennek köszönhetően <strong>nem</strong> használhatóak rajta a standard
+tömb műveletek mint például a <code>push</code>, <code>pop</code> vagy a <code>slice</code>. Míg a sima <code>for</code> ciklusos iterálás
+működik itt is, ahhoz hogy az előbb említett műveleteket is tudjuk rajta használni, át kell
+konvertálni egy valódi <code>Array</code> objektummá.</p>
+</div><div><h3>Tömbbé konvertálás</h3>
+<p>Ez a kódrészlet egy új <code>Array</code> objektummá varázsolja az emlegetett <code>arguments</code> szamarat.</p>
+<pre><code>Array.prototype.slice.call(arguments);</code></pre>
+<p>De, ez a konverzió meglehetősen <strong>lassú</strong> így egyáltalán <strong>nem ajánlott</strong> teljesítmény kirtikus
+alkalmazások írásakor.</p>
+</div><div><h3>Argumentumok kezelése</h3>
+<p>A következő módszer ajánlott arra az esetre hogyha az egyik függvény paramétereit egy-az-egyben
+át szeretnénk adni egy másik függvény számára.</p>
+<pre><code>function foo() {
+    bar.apply(null, arguments);
+}
+function bar(a, b, c) {
+    // sok okos kód ide
+}</code></pre>
+<p>Egy másik trükk arra hogy teljesen független wrapper függvényeket gyártsunk, a <code>call</code>
+és <code>apply</code> együttes használata.</p>
+<pre><code>function Foo() {}
+
+Foo.prototype.method = function(a, b, c) {
+    console.log(this, a, b, c);
+};
+
+// Elkészíti a &quot;method&quot; (this) független verzióját
+// Ezeket kapja paraméterül: this, arg1, arg2...argN
+Foo.method = function() {
+
+    // Eredmény: Foo.prototype.method.call(this, arg1, arg2... argN)
+    Function.call.apply(Foo.prototype.method, arguments);
+};</code></pre>
+</div><div><h3>Paraméterek és argumentum indexek</h3>
+<p>A háttérben az <code>arguments</code> objektum minden egyes indexére (elemére) egy <em>getter</em> és egy <em>setter</em>
+függvényt is kap, csak úgy ahogy a függvény paramétereit is felül tudjuk írni, illetve eltudjuk érni.</p>
+<p>Ennek eredményeképp, az <code>arguments</code> objektumon véghezvitt változtatások szinkronban
+változtatják a függvény névvel ellátott paramétereit is.</p>
+<pre><code>function foo(a, b, c) {
+    arguments[0] = 2;
+    a; // 2
+
+    b = 4;
+    arguments[1]; // 4
+
+    var d = c;
+    d = 9;
+    c; // 3
+}
+foo(1, 2, 3);</code></pre>
+</div><div><h3>Teljesítmény mítoszok és trükkök</h3>
+<p>Ahogy már azt korábban körvonalaztuk, az <code>arguments</code> objektum csak akkor nem jön létre,
+hogyha a függvényhatókörön belül definiálunk egy változót ezzel a névvel, vagy a függvényünk
+egyik paraméterének ezt a nevet választjuk.</p>
+<p>Azonban a <em>getterek</em> és <em>setterek</em> mindig létrejönnek, de ez ne zavarjon meg minket, mert
+semmiféle befolyása nincs a teljesítményre, pláne olyan kódban ahol sokkal több mindennel
+is foglalkozunk mint az <code>arguments</code> objetkumhoz való hozzáférés.</p>
+<aside class="es5"><p><strong>ES5 Megjegyzés:</strong> Ezek a <strong>getterek</strong> és <strong>setterek</strong> nem jönnek létre strict módban.</p>
+</aside>
+<p>Habár, egyetlen eset van, amelynek komoly hatása lehet a kód teljesítményére a modern
+JavaScript motorokban. Ez pedig az <code>arguments.callee</code> használata.</p>
+<pre><code>function foo() {
+    arguments.callee; // csináljunk valamit ezzel a függvény objektummal
+    arguments.callee.caller; // és ennek a hívójával..
+}
+
+function bigLoop() {
+    for(var i = 0; i &lt; 100000; i++) {
+        foo(); // Így viszont nem lehet behelyettesíteni ide...
+    }
+}</code></pre>
+<p>A fenti kódban a <code>foo</code> helyére nem lehet egyszerűen behelyettesíteni a <a href="http://en.wikipedia.org/wiki/Inlining">függvény törzsét</a>,
+mivel a függvény törzsének fogalma kell legyen mind magáról, mind az ő hívójáról. Ez nem csak
+hogy azt akadályozza meg, hogy a behelyettesítéssel nyerjünk egy kis többlet performanciát,
+de az egységbe zárás elvét is erősen keresztbevágja, hiszen a függvény így erősen támaszkodni
+fog a hívó környezetére (kontextusára).</p>
+<p>Emiatt is, az <code>arguments.callee</code>, vagy bármely mezőjének használata <strong>erősen kerülendő</strong>.</p>
+<aside class="es5"><p><strong>ES5 Okoskodás:</strong> Strict módban, az <code>arguments.callee</code> kifejezés egy <code>TypeError</code> hibát fog dobni,
+mivel a használata elavult.</p>
+</aside>
+</div></article><article id="function.constructors"><h2>Konstruktorok</h2><div><p>Csak úgy mint minden más, a konstruktorok működése szintén különbözik 
+a megszokottól. Itt minden függvényhívás amelyet a <code>new</code> kulcsszó előz meg, 
+konstruktor hívásnak számít.</p>
+<p>A <code>this</code> értéke a konstruktoron - hívott függvényen - belül az újonnan létrehozott objektumra
+mutat. Az <strong>új</strong> objektum <a href="#object.prototype">prototípusa</a> a konstruktor függvény <code>prototípusával</code> fog megegyezni.</p>
+<p>Ha a konstruktor függvényben nincs <code>return</code> utasítás, akkor automatikusan a <code>this</code> értékével tér vissza - a létrehozott objektummal.</p>
+<pre><code>function Foo() {
+    this.bla = 1;
+}
+
+Foo.prototype.test = function() {
+    console.log(this.bla);
+};
+
+var test = new Foo();</code></pre>
+<p>A fenti kódban a <code>Foo</code> függvényt mint konstruktort hívjuk meg, ami a test változóban
+egy új objektumot fog eredményezni. Ennek az objektumnak a <code>prototípusa</code> a Foo prototípusa lesz.</p>
+<p>Trükkös ugyan, de ha mégis van <code>return</code> utasítás az éppen konstruált függvényben, akkor
+a függvény hívása az annak megfelelő értékkel fog visszatérni, de <strong>csak</strong> akkor, ha a 
+visszatérített érték <code>Objektum</code> típusú.</p>
+<pre><code>function Bar() {
+    return 2;
+}
+new Bar(); // ez egy új üres objektum lesz: {}, a 2 helyett
+
+function Test() {
+    this.value = 2;
+
+    return {
+        foo: 1
+    };
+}
+new Test(); // ez a returnben található objektumot fogja eredményezni</code></pre>
+<p>Hogyha kihagyjuk a <code>new</code> kulcsszó használatát, a függvény <strong>nem</strong> egy új objektummal fog visszatérni.</p>
+<pre><code>function Foo() {
+    this.bla = 1; // ez a globális objektumon állítja be a bla értékét 1-re
+}
+Foo(); // undefined</code></pre>
+<p>A <a href="#function.this"><code>this</code></a> JavaScript beli működésének köszönhetően, mégha le is
+fut az előbbi kód, akkor a <code>this</code> helyére a <em>globális objektumot</em> képzeljük.</p>
+</div><div><h3>Gyárak (Factory-k)</h3>
+<p>Ahhoz, hogy teljesen eltudjuk hagyni a <code>new</code> kulcsszó használatát, a konstruktor
+függvény explicit értékkel kell visszatérjen.</p>
+<pre><code>function Bar() {
+    var value = 1;
+    return {
+        method: function() {
+            return value;
+        }
+    }
+}
+Bar.prototype = {
+    foo: function() {}
+};
+
+new Bar();
+Bar();</code></pre>
+<p>Mindkét <code>Bar</code>-ra történő hívásmód ugyanazt fogja eredményezni. Kapunk általuk 
+egy újonnan létrehozott objektumot, amelynek lesz egy <code>method</code> nevű mezője,
+ami egyébiránt egy <a href="#function.closures">Closure</a>.</p>
+<p>Azt is érdekes itt megjegyezni, hogy a <code>new Bar()</code> hívás <strong>nem</strong> befolyásolja a
+visszatérített objektum prototípusát. Mivel a prototípus csak az újonnan 
+létrehozott objektumon létezik, amit a <code>Bar</code> nem térít vissza (mivel egy explicit
+értéket ad vissza).</p>
+<p>A fenti példában nincs funkcionális különbség aközött hogy kiírjuk-e a <code>new</code>
+varázsszót avagy nem.</p>
+</div><div><h3>Új objektumok létrehozása gyárakon keresztül</h3>
+<p>Gyakran bevett módszer egy projetkben, hogy a <code>new</code> varázsszó használatát 
+teljesen elhagyjuk, mert a kiírásának elfelejtése bugokhoz vezetne.</p>
+<p>Ennek érdekében egy új objektum létrehozásához inkább egy gyárat kell 
+implementálni, és annak a belsejében létrehozni az új objektumot. </p>
+<pre><code>function Foo() {
+    var obj = {};
+    obj.value = &#39;blub&#39;;
+
+    var private = 2;
+    obj.someMethod = function(value) {
+        this.value = value;
+    }
+
+    obj.getPrivate = function() {
+        return private;
+    }
+    return obj;
+}</code></pre>
+<p>A fenti kód ugyan ellenálló a hiányzó <code>new</code> kulcsszó hibáját illetően és 
+megfelelően használ <a href="#function.closures">privát változókat</a>, érdemes 
+megemlíteni a dolgok kontra részét is.</p>
+<ol>
+<li>Több memóriát használ, mivel az így létrehozott objektumok <strong>nem</strong>
+osztják meg a prototípusukat egymás között.</li>
+<li>A származtatás macerás, mivel a gyár kénytelen ilyenkor lemásolni
+az összes származtatandó metódust egy másik objektumról, vagy ezt az objektumot
+be kell állítsa a létrehozott új objektum prototípusának.</li>
+<li>Az a megközelítés miszerint egy kifelejtett <code>new</code> kulcsszó miatt eldobjuk
+az objektum teljes prototípusát, ellenkezik a nyelv szellemiségével.</li>
+</ol>
+</div><div><h3>Összefoglaló</h3>
+<p>A <code>new</code> varázsszó kihagyása ugyan bugokhoz vezethet, de ez <strong>nem</strong> megfelelő indok
+arra hogy ezért eldobjuk a prototípusok használatát. Végeredményben mindig
+az fog dönteni a különböző stílusok megválasztása között, hogy mire van
+szüksége éppen az aktuális programunknak. Egy dolog azért elengedhetetlenül
+fontos, ez pedig hogy megválasszuk melyik stílust fogjuk használni objektumok
+létrehozásra, és ezt <strong>konzisztensen</strong> használjuk a teljes megoldáson keresztül.</p>
+</div></article><article id="function.scopes"><h2>Névterek és hatókörök</h2><div><p>Habár látszólag a kapcsos zárójelek jelentik a blokkok határait JavaScriptben, 
+fontos megjegyezni hogy <strong>nincsen</strong> blokk szintű hatókör, csakis <em>függvény hatókörök</em>
+léteznek.</p>
+<pre><code>function test() { // ez egy hatókör
+    for(var i = 0; i &lt; 10; i++) { // ez meg nem
+        // utasítások...
+    }
+    console.log(i); // 10
+}</code></pre>
+<aside>
+<p><strong>Megjegyzés</strong>: Amikor a <code>{...}</code> jelölés nem értékadásban, return utasításban vagy
+függvény argumentumként szerepel, akkor blokk utasításként lesz értelmezve és
+nem objektum literálként. Ez a szép tulajdonság az <a href="#core.semicolon">automatikus pontosvessző
+generálással</a> karöltve nehezen észrevehető hibákhoz vezethet.</p>
+</aside>
+<p>A nyelvben nincsenek beépített névterek, ami azt jelenti hogy minden, egyetlen
+<em>globálisan megosztott</em> névtérben kerül deklarálásra.</p>
+<p>Akárhányszor egy változóra hivatkozunk, a JavaScript elkezdi felfele utazva
+megkeresni hatókörökön, amíg csak meg nem találja. Hogyha elérjük
+a globális hatókört és még mindig nem találjuk a keresett változót, akkor egy
+<code>ReferenceError</code> hibával gazdagodik a futásidőnk.</p>
+</div><div><h3>A globális változók csapása</h3>
+<pre><code>// A script
+foo = &#39;42&#39;;
+
+// B script
+var foo = &#39;42&#39;</code></pre>
+<p>Érdemes észrevenni, hogy a fenti két scriptnek <strong>nem</strong> ugyanaz a hatása. Az A script
+egy <code>foo</code> nevű változót vezet be a <em>globális</em> hatókörben, a B script pedig egy <code>foo</code>
+nevű változót deklarál az <em>ő hatókörében</em>.</p>
+<p>Mégegyszer tehát, ez a kettő <strong>nem</strong> <em>ugyanazt jelenti</em>: a <code>var</code> elhagyásának jópár
+beláthatatlan következménye is lehet.</p>
+<pre><code>// globális hatókör
+var foo = 42;
+function test() {
+    // lokális hatókör
+    foo = 21;
+}
+test();
+foo; // 21</code></pre>
+<p>Itt, a <code>var</code> elhagyása azt eredményezi, hogy a <code>test</code> függvény mindig felülírja
+a globális hatókörben definiált <code>foo</code> változó értékét. Habár ez elsőre nem tűnik
+nagy dolognak, ha a <code>var</code>okat több száz sornyi JavaScript kódból hagyjuk el, az 
+olyan hibákhoz vezethet, amit még az anyósunknak se kívánnánk.</p>
+<pre><code>// globális hatókör
+var items = [/* random lista */];
+for(var i = 0; i &lt; 10; i++) {
+    subLoop();
+}
+
+function subLoop() {
+    // a subLoop hatóköre
+    for(i = 0; i &lt; 10; i++) { // hiányzik a var
+        // elképesztő dolgokat művelünk itt
+    }
+}</code></pre>
+<p>Ennél a kódnál a külső ciklus az első <code>subLoop</code> hívás után megáll, mivel a <code>subLoop</code>
+felülírja az <code>i</code> változó globális értékét. Hogyha a második <code>for</code> ciklusban használtuk
+volna <code>var</code>-t azzal könnyen elkerülhettük volna ezt a hibát. <strong>Sose</strong> hagyjuk el a <code>var</code> utasítást, ha csak nem direkt az a <em>kívánt hatás</em>, hogy befolyásoljuk a 
+külső hatókört.</p>
+</div><div><h3>Lokális változók</h3>
+<p>Kétféleképp (és nem több módon) lehet lokális változókat JavaScriptben leírni; ez vagy a <a href="#function.general">függvény</a> paraméter vagy a <code>var</code> utasítás.</p>
+<pre><code>// globális hatókör
+var foo = 1;
+var bar = 2;
+var i = 2;
+
+function test(i) {
+    // a test függvény lokális hatóköre
+    i = 5;
+
+    var foo = 3;
+    bar = 4;
+}
+test(10);</code></pre>
+<p>Itt a <code>foo</code> és <code>i</code> lokális változók a <code>test</code> hatókörén belül, viszont a <code>bar</code>os
+értékadás felül fogja írni a hasonló nevű globális változót.</p>
+</div><div><h3>Hoisting</h3>
+<p>A JS <strong>hoistolja</strong> (megemeli) a deklarációkat. Ez azt jelenti hogy minden <code>var</code>
+utasítás és <code>függvény</code> deklaráció az őt körülvevő hatókör tetejére kerül.</p>
+<pre><code>bar();
+var bar = function() {};
+var someValue = 42;
+
+test();
+function test(data) {
+    if (false) {
+        goo = 1;
+
+    } else {
+        var goo = 2;
+    }
+    for(var i = 0; i &lt; 100; i++) {
+        var e = data[i];
+    }
+}</code></pre>
+<p>A fenti kód átalakul egy másik formára mielőtt lefutna. A JavaScript felmozgatja
+a <code>var</code> utasításokat és a <code>függvény</code> deklarációkat, az őket körülvevő legközelebbi
+hatókör tetejébe.</p>
+<pre><code>// a var utasítások felkerülnek ide
+var bar, someValue; // alapból mindegyik &#39;undefined&#39; értékű lesz
+
+// a függvény deklaráció is felkerül ide
+function test(data) {
+    var goo, i, e; // mivel nincs blokk hatókör, ezek is felkerülnek
+    if (false) {
+        goo = 1;
+
+    } else {
+        goo = 2;
+    }
+    for(i = 0; i &lt; 100; i++) {
+        e = data[i];
+    }
+}
+
+bar(); // Ez TypeErrorral elszáll, mivel a bar még &#39;undefined&#39;
+someValue = 42; // az értékadásokat nem piszkálja a hoisting
+bar = function() {};
+
+test();</code></pre>
+<p>A hiányzó blokk hatókör ténye nem csak azt eredményezi, hogy a <code>var</code> utasítások
+kikerülnek a ciklusmagokból, hanem az <code>if</code> utasítások kimenetele is megjósolhatatlan
+lesz.</p>
+<p>Habár úgy látszik az eredeti kódban, hogy az <code>if</code> utasítás a <code>goo</code> <em>globális 
+változót</em> módosítja, a hoisting után látjuk hogy valójában a <em>lokális változóra</em>
+lesz befolyással. Trükkös.</p>
+<p>A <em>hoisting</em> tudása nélkül valaki azt hihetné, hogy az alábbi kód egy <code>ReferenceError</code>
+-t fog eredményezni.</p>
+<pre><code>// nézzük meg hogy a SomeImportantThing inicializálva lett-e
+if (!SomeImportantThing) {
+    var SomeImportantThing = {};
+}</code></pre>
+<p>Persze ez működik, annak köszönhetően hogy a <code>var</code> utasítás a <em>globális hatókör</em>
+tetejére lett mozgatva.</p>
+<pre><code>var SomeImportantThing;
+
+// más kódok még inicializálhatják a SomeImportantThing változót itt...
+
+// ellenőrizzük hogy létezik-e
+if (!SomeImportantThing) {
+    SomeImportantThing = {};
+}</code></pre>
+</div><div><h3>Névfeloldási sorrend</h3>
+<p>JavaScriptben az összes hatókörnek -beleértve a <em>globálisat</em> is- megvan a maga
+<a href="#function.this"><code>this</code></a> változója, amelyik mindig az <em>aktuális objektumra</em> utal.</p>
+<p>A függvény hatókörökben van még egy speciális <a href="#function.arguments"><code>arguments</code></a>
+változó is mindig definiálva, amely a függvénynek átadott argumentumokat
+tartalmazza.</p>
+<p>Hogy hozzunk egy példát, amikor valaki a <code>foo</code> nevű változót próbálja elérni egy
+függvény hatókörön belül, a JavaScript az alábbi sorrendben fogja keresni az adott
+változó nevet.</p>
+<ol>
+<li>Abban az esetben ha találunk <code>var foo</code> utasítást, használjuk azt.</li>
+<li>Hogyha bármelyik függvény paraméter neve <code>foo</code>, használjuk azt.</li>
+<li>Hogyha magának a függvénynek a neve `foo, használjuk azt.</li>
+<li>Menjünk a külső hatókörre, és kezdjük újra <strong>#1</strong>-től.</li>
+</ol>
+<aside>
+<p><strong>Megjegyzés</strong>: Egy <code>arguments</code> nevű függvény paraméter <strong>megakadályozza</strong>
+a bépített <code>arguments</code> objektum létrehozását.</p>
+</aside>
+</div><div><h3>Névterek</h3>
+<p>Hogyha egyetlen globális névterünk van, akkor egy gyakori probléma lehet az,
+hogy névütközésekbe futunk. A JavaScriptben szerencsére ez a gond könnyen
+elkerülhető a <em>névtelen wrapper függvények</em> használatával.</p>
+<pre><code>(function() {
+    // egy &#39;öntartalmazó&#39; névtér
+
+    window.foo = function() {
+        // egy exportált closure
+    };
+
+})(); // a függvényt azonnal végre is hajtjuk</code></pre>
+<p>A névtelen függvények <a href="#function.general">kifejezésekként</a> vannak értelmezve; így
+ahhoz hogy meghívhatóak legyenek, először ki kell értékelni őket.</p>
+<pre><code>( // a függvény kiértékelése a zárójeleken belül
+function() {}
+) // a függvény objektum visszatérítése
+() // az eredmény meghívása</code></pre>
+<p>Persze más kifejezések is használhatóak arra hogy kiértékeljük és meghívjuk
+a függvény kifejezést, amelyek habár szintaxisukban eltérnek, ugyanazt eredményezik.</p>
+<pre><code>// Még több stílus anonymus függvények azonnali hívásához...
+!function(){}()
++function(){}()
+(function(){}());
+// és a lista folytatódik...</code></pre>
+</div><div><h3>Összegzésül</h3>
+<p>Az <em>anonym wrapper függvények</em> használata erősen ajánlott a kód egységbezárása 
+érdekében, saját névtér alkotásához. Ez nem csak hogy megvédi a kódunkat a 
+névütközésektől, de jobb modularizációhoz is vezet.</p>
+<p>Emelett a globális változók használata <strong>nem ajánlott</strong>. <strong>Bármilyen</strong> fajta 
+használata rosszul megírt kódról árulkodik, amelyik könnyen eltörik és nehezen
+karbantartható.</p>
+</div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>Tömbök</h1></header><!-- Articles--><article id="array.general"><h2>Tömb iteráció és tulajdonságok</h2><div><p>Habár a tömbök a JavaScriptben objektumok, nincsen jó ok arra, hogy a <a href="#object.forinloop"><code>for in</code></a> ciklussal járjuk be őket. 
+Valójában sokkal több jó ok van arra, hogy <strong>miért ne</strong> így tegyünk.</p>
+<aside>
+<p><strong>Megjegyzés:</strong> A JS tömbök <strong>nem</strong> <em>asszociatív tömbök</em>. A JavaScriptben egyedül
+az <a href="#object.general">objektumokkal</a> lehet kulcsokat értékekhez rendelni. Ráadásul
+amíg az asszociatív tömbök <strong>megőrzik</strong> a sorrendjüket, az objektumok <strong>nem</strong>.</p>
+</aside>
+<p>Mivel a <code>for in</code> ciklus a prototípus láncon levő összes tulajdonságon végigmegy,
+és mivel az egyetlen út ennek megkerülésére a <a href="#object.hasownproperty"><code>hasOwnProperty</code></a> használata, így majdnem <strong>hússzor</strong> 
+lassabb mint egy sima <code>for</code> ciklus.</p>
+</div><div><h3>Iteráció</h3>
+<p>Annak érdekébern hogy a legjobb teljesítményt érjük el a tömbökön való iteráció során,
+a legjobb hogyha a klasszikus <code>for</code> ciklust használjuk.</p>
+<pre><code>var list = [1, 2, 3, 4, 5, ...... 100000000];
+for(var i = 0, l = list.length; i &lt; l; i++) {
+    console.log(list[i]);
+}</code></pre>
+<p>Még egy érdekesség van a fenti példában, ami a tömb hosszának cachelését végzi
+a <code>l = list.length</code> kifejezés használatával.</p>
+<p>Habár a <code>length</code> tulajdonság mindig magán a tömbön van definiálva, még mindig
+lehet egy kis teljesítmény kiesés amiatt hogy minden iterációban újra meg kell
+keresni ezt a tulajdonságot. Persze a legújabb JavaScript motorok <strong>talán</strong>
+használnak erre optimalizációt, de nem lehet biztosan megmondani hogy ahol a kódunk
+futni fog, az egy ilyen motor-e vagy sem.</p>
+<p>Valójában, a cachelés kihagyása azt eredményezheti, hogy a ciklusunk csak 
+<strong>fele olyan gyors</strong> lesz mintha a cachelős megoldást választottuk volna.</p>
+</div><div><h3>A <code>length</code> mező</h3>
+<p>Míg a <code>length</code> mező <em>getter</em> függvénye egyszerűen csak visszaadja a tömbben
+levő elemek számát, addig a <em>setter</em> függvény használható arra (is), hogy
+<strong>megcsonkítsuk</strong> a tömbünket.</p>
+<pre><code>var foo = [1, 2, 3, 4, 5, 6];
+foo.length = 3;
+foo; // [1, 2, 3]
+
+foo.length = 6;
+foo.push(4);
+foo; // [1, 2, 3, undefined, undefined, undefined, 4]</code></pre>
+<p>Egy rövidebb hossz alkalmazása csonkítja a tömböt. A nagyobb hossz megadása
+értelemszerűen növeli.</p>
+</div><div><h3>Összegzésül</h3>
+<p>A megfelelő teljesítmény érdekében, a <code>for</code> ciklus használata és a length cachelése
+ajánlott. A <code>for in</code> ciklus használata a tömbökön a rosszul megírt kód jele, amely
+tele lehet hibákkal, és teljesítményben sem jeleskedik.</p>
+</div></article><article id="array.constructor"><h2>Az <code>Array</code> konstruktor</h2><div><p>Mivel az <code>Array</code> konstruktora kétértelműen bánik a paraméterekkel, melegen
+ajánlott mindig a tömb literált - <code>[]</code> jelölés - használni új tömbök létrehozásakor.</p>
+<pre><code>[1, 2, 3]; // Eredmény: [1, 2, 3]
+new Array(1, 2, 3); // Eredmény: [1, 2, 3]
+
+[3]; // Eredmény: [3]
+new Array(3); // Eredmény: []
+new Array(&#39;3&#39;) // Eredmény: [&#39;3&#39;]</code></pre>
+<p>Abban az esetben, hogyha ez a konstruktor csak egy <code>szám</code> paramétert kap, akkor
+visszatérési értékül egy olyan tömböt fog létrehozni amelynek a <code>length</code> mezője
+akkorára van beállítva, ahogy azt megadtuk az argumentumban. Megjegyzendő hogy
+<strong>csak</strong> a <code>length</code> tulajdonság lesz ekkor beállítva; az egyes indexek külön-külön
+nem lesznek inicializálva.</p>
+<pre><code>var arr = new Array(3);
+arr[1]; // undefined
+1 in arr; // hamis, nincs ilyen index</code></pre>
+<p>A tömb hosszának közvetlen állítása amúgy is csak elég kevés esetben
+használható értelmesen, mint például alább, hogyha el akarjuk kerülni a 
+<code>for ciklus</code> használatát egy string ismétlésekor.</p>
+<pre><code>new Array(count + 1).join(ismetlendoString);</code></pre>
+</div><div><h3>Összegzésül</h3>
+<p>Az <code>Array</code> konstruktor közvetlen használata erősen kerülendő. A literálok használata
+elfogadott inkább, mivel rövidebbek, tisztább a szintaxisuk és olvashatóbb kódot
+eredményeznek.</p>
+</div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>Típusok</h1></header><!-- Articles--><article id="types.equality"><h2>Egyenlőség vizsgálat</h2><div><p>A JavaScriptben két különböző megoldás létezik az objektumok egyenlőségének 
+vizsgálatára</p>
+</div><div><h3>Az egyenlőség operátor</h3>
+<p>Az egyenlőség vizsgálatot végző (egyik) operátort így jelöljük: <code>==</code></p>
+<p>A JavaScript egy <em>gyengén típusos</em> nyelv. Ez azt jelenti hogy az egyenlőség
+operátor <strong>típuskényszerítést</strong> alkalmaz ahhoz, hogy össze tudjon hasonlítani
+két értéket.</p>
+<pre><code>&quot;&quot;           ==   &quot;0&quot;           // hamis
+0            ==   &quot;&quot;            // igaz
+0            ==   &quot;0&quot;           // igaz
+false        ==   &quot;false&quot;       // hamis
+false        ==   &quot;0&quot;           // igaz
+false        ==   undefined     // hamis
+false        ==   null          // hamis
+null         ==   undefined     // igaz
+&quot; \t\r\n&quot;    ==   0             // igaz</code></pre>
+<p>A fenti táblázat szépen mutatja hogy mi a típuskényszerítés eredménye, és egyben
+azt is, hogy miért rossz szokás a <code>==</code> használata. Szokás szerint, ez megint
+olyan fícsör ami nehezen követhető kódhoz vezethet a komplikált konverziós
+szabályai miatt.</p>
+<p>Pláne, hogy a kényszerítés teljesítmény problémákhoz is vezet; ugyanis, mielőtt
+egy stringet egy számhoz hasonlítanánk azelőtt a karakterláncot át kell konvertálni
+a megfelelő típusra.</p>
+</div><div><h3>A szigorú(bb) egyenlőség operátor</h3>
+<p>Ez az operátor már <strong>három</strong> egyenlőségjelből áll: <code>===</code>.</p>
+<p>Ugyanúgy működik mint az előbbi, kivéve hogy ez a változat <strong>nem</strong> alkalmaz
+típuskényszerítést az operandusai között.</p>
+<pre><code>&quot;&quot;           ===   &quot;0&quot;           // hamis
+0            ===   &quot;&quot;            // hamis
+0            ===   &quot;0&quot;           // hamis
+false        ===   &quot;false&quot;       // hamis
+false        ===   &quot;0&quot;           // hamis
+false        ===   undefined     // hamis
+false        ===   null          // hamis
+null         ===   undefined     // hamis
+&quot; \t\r\n&quot;    ===   0             // hamis</code></pre>
+<p>A felső eredmények sokkal egyértelműbbek és ennek köszönhetően sokkal hamarabb
+eltörik a kód egy-egy ellenőrzésen. Ettől sokkal hibatűrőbb lesz
+a produktumunk, és ráadásul teljesítménybeli gondjaink sem lesznek.</p>
+</div><div><h3>Objektumok összehasonlítása</h3>
+<p>Habár mind a <code>==</code>-t és a <code>===</code>-t is egyenlőség operátornak hívjuk, eltérően
+viselkednek hogyha legalább az egyik operandusuk egy objektum.</p>
+<pre><code>{} === {};                   // hamis
+new String(&#39;foo&#39;) === &#39;foo&#39;; // hamis
+new Number(10) === 10;       // hamis
+var foo = {};
+foo === foo;                 // igaz</code></pre>
+<p>Ebben az esetben mindkét operátor <strong>identitást</strong> és <strong>nem</strong> egyenlőséget 
+ellenőriz; tehát azt fogják ellenőrizni hogy az operandus két oldalán
+ugyanaz az objektum referencia áll-e, mint az <code>is</code> operátor Pythonban
+vagy a pointerek összehasonlítása C-ben. (A ford.: Tehát nem azt, hogy a 
+két oldalon álló objektumnak például ugyanazok-e a mezői, hanem azt hogy ugyanazon
+a memóriacímen található-e a két operandus).</p>
+</div><div><h3>Összegzésül</h3>
+<p>Azt érdemes tehát megjegyezni, hogy a <strong>szigorú egyenlőség vizsgálatot</strong> érdemes
+mindig használni. Amikor szeretnék típuskényszerítést alkalmazni, akkor azt
+inkább tegyük meg <a href="#types.casting">direkt módon</a>, és ne a nyelv komplikált
+automatikus szabályaira bízzuk magunkat. </p>
+</div></article><article id="types.typeof"><h2>A <code>typeof</code> vizsgálat</h2><div><p>A <code>typeof</code> operátor (az <a href="#types.instanceof"><code>instanceof</code></a>-al karöltve) 
+lehetőség szerint a JavaScript nyelv egyik legnagyobb buktatója, mivel majdnem
+teljesen <strong>rosszul működik</strong>.</p>
+<p>Habár az <code>instanceof</code>-nak korlátozottan még lehet értelme, a <code>typeof</code> operátor
+tényleg csak egyetlen praktikus use case-zel rendelkezik és ez <strong>nem</strong> az hogy egy
+objektum típusvizsgálatát elvégezzük.</p>
+<aside>
+<p><strong>Megjegyzés:</strong> Mivel a <code>typeof</code> vizsgálatot ravaszul úgy is le lehet írni,
+mintha egy függvény lenne; <code>typeof(obj)</code>, itt jegyezzük meg hogy ez nem
+egy függvényhívás. A zárójelek ebben a kifejezésben úgy működnek mint általában,
+kiértékelik az obj változót és visszaadják az értékét. Ez pedig bekerül a 
+<code>typeof</code> operandusaként. <strong>Nincsen</strong> <code>typeof</code> függvény.</p>
+</aside>
+</div></article><article id="types.instanceof"><h2>Az <code>instanceof</code> operátor</h2><div><p>Az <code>instanceof</code> operátor a két operandusának konstruktorait hasonlítja össze. 
+Csak akkor bizonyul hasznosnak, amikor saját készítésű objektumokon alkalmazzuk.
+Beépített típusokon ugyanolyan hasztalan alkalmazni mint a <a href="#types.typeof">typeof operátort</a>.</p>
+</div><div><h3>Saját objektumok összehasonlítása</h3>
+<pre><code>function Foo() {}
+function Bar() {}
+Bar.prototype = new Foo();
+
+new Bar() instanceof Bar; // igaz
+new Bar() instanceof Foo; // igaz
+
+// Ez csak a Bar.prototypeot beállítja a Foo fv. objektumra,
+// de nem egy kimondott Foo példányra
+Bar.prototype = Foo;
+new Bar() instanceof Foo; // hamis</code></pre>
+</div><div><h3>Az <code>instanceof</code> reakciója natív típusokra</h3>
+<pre><code>new String(&#39;foo&#39;) instanceof String; // igaz
+new String(&#39;foo&#39;) instanceof Object; // igaz
+
+&#39;foo&#39; instanceof String; // hamis
+&#39;foo&#39; instanceof Object; // hamis</code></pre>
+<p>Érdemes itt megjegyezni hogy az <code>instanceof</code> nem működik olyan objektumokon,
+amelyek különböző JavaScript kontextusokból származnak (pl. különböző dokumentumok
+a böngészőn belül), mivel a konstruktoruk nem pontosan ugyanaz az objektum lesz.</p>
+</div><div><h3>Összegzésül</h3>
+<p>Az <code>instanceof</code>-ot tehát <strong>csak</strong> megegyező JS kontextusból származó, saját készítésű objektumoknál használjuk. Minden más felhasználása kerülendő, csak úgy mint a <a href="#types.typeof"><code>typeof</code></a> operátor esetén.</p>
+</div></article><article id="types.casting"><h2>Típus kasztolás</h2><div><p>Előre kössük le, hogy a JavaScript egy <em>gyengén típusos</em> nyelv, így <strong>ahol
+csak tud</strong>, ott <em>típus kényszerítést</em> használ.</p>
+<pre><code>// Ezek igazak
+new Number(10) == 10; // A Number.toString() számmá lesz
+                      // visszaalakítva
+
+10 == &#39;10&#39;;           // A Stringek visszaalakulnak számmá
+10 == &#39;+10 &#39;;         // Mégtöbb string varázslat
+10 == &#39;010&#39;;          // és mégtöbb
+isNaN(null) == false; // a null varázslatosan 0-vá alakul
+                      // ami persze nem NaN
+
+// Ezek hamisak
+10 == 010;
+10 == &#39;-10&#39;;</code></pre>
+<aside class="es5"><p><strong>ES5 Megjegyzés:</strong> A <code>0</code>-val kezdődő számliterálok oktálok (8-as számrendszer).
+Az oktál támogatást az ECMAScript 5 strict módból <strong>eltávolították</strong></p>
+</aside>
+<p>Hogy elkerüljük a fenti varázslatokat, a <a href="#types.equality">szigorú egyenlőség ellenőrzés</a> <strong>melegen</strong> ajánlott. Habár ezzel elkerüljük
+a problémák farkasrészét, még mindig tartogat a JS gyengén típusos rendszere
+meglepetéseket.</p>
+</div><div><h3>Natív típusok konstruktorai</h3>
+<p>A jó hír az, hogy a natív típusok mint a <code>Number</code> és a <code>String</code> különféle
+módon viselkednek hogyha a <code>new</code> kulcsszóval avagy anélkül vannak inicializálva.</p>
+<pre><code>new Number(10) === 10;     // Hamis, Objektum vs. Szám
+Number(10) === 10;         // Igaz, Szám vs. szám
+new Number(10) + 0 === 10; // Igaz, az implicit konverziónak hála</code></pre>
+<p>Ha egy natív típust mint a <code>Number</code> konstruktorként kezelünk, akkor egy új
+<code>Number</code> objektumot kapunk. De ha kihagyjuk a <code>new</code> kulcsszót akkor a <code>Number</code>
+egy egyszerű konverter függvényként fog viselkedni.</p>
+<p>Ráadásul a literálok passzolgatásakor még több típuskonverzió üti fel a fejét.</p>
+<p>A legjobb megoldás hogyha a három típus valamelyikére <strong>expliciten</strong> kasztolunk.</p>
+</div><div><h3>Stringre kasztolás</h3>
+<pre><code>&#39;&#39; + 10 === &#39;10&#39;; // igaz</code></pre>
+<p>Egy üres string hozzáfűzésével könnyen tudunk egy értéket stringgé kasztolni.</p>
+</div><div><h3>Számra kaszt</h3>
+<pre><code>+&#39;10&#39; === 10; // igaz</code></pre>
+<p>Az <strong>unáris</strong> plusz operátor használatával lehetséges egy értéket számra alakítani.</p>
+</div><div><h3>Booleanre kasztolás</h3>
+<p>A <strong>nem</strong> operátor kétszeri alkalmazásával tudunk booleanné kasztolni.</p>
+<pre><code>!!&#39;foo&#39;;   // igaz
+!!&#39;&#39;;      // hamis
+!!&#39;0&#39;;     // igaz
+!!&#39;1&#39;;     // igaz
+!!&#39;-1&#39;     // igaz
+!!{};      // igaz
+!!true;    // igaz</code></pre>
+</div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>Lényeg</h1></header><!-- Articles--><article id="core.eval"><h2>Miért Ne Használjuk az <code>eval</code>-t</h2><div><p>Az <code>eval</code> (evil) funkció egy stringbe ágyazott JavaScript kódot futtat a 
+lokális scopeon belül.</p>
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    eval(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 3
+foo; // 1</code></pre>
+<p>Viszont az <code>eval</code> csak akkor viselkedik így, hogyha expliciten hívjuk meg
+<em>és</em> a meghívott funkció neve valóban <code>eval</code>.</p>
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    var bar = eval;
+    bar(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 2
+foo; // 3</code></pre>
+<p>Az <code>eval</code> használata kerülendő. A &quot;felhasználása&quot; az esetek 99.9%-ban 
+<strong>mellőzhető</strong>.</p>
+</div><div><h3>Az <code>eval</code> ezer arca</h3>
+<p>A <code>setTimeout</code> és <code>setInterval</code> nevű <a href="#other.timeouts">timeout függvények</a> is
+tudnak úgy működni, hogy első paraméterükként egy stringbe ágyazott kódot várnak.
+Ez a string <strong>mindig</strong> a globális hatókörben lesz végrehajtva, mivel az <code>eval</code>t
+így nem direktben hívjuk meg.</p>
+</div><div><h3>Biztonsági problémák</h3>
+<p>Az <code>eval</code> azért is veszélyes, mert <strong>bármilyen</strong> JS kódot végrehajt, amit odaadunk
+neki. Éppen ezért <strong>sose</strong> használjuk olyan kódok végrehajtására amiknek az eredete
+nem megbízható/ismeretlen.</p>
+</div><div><h3>Összegzésül</h3>
+<p>Soha ne használjunk <code>eval</code>t. Bármilyen kód működése, teljesítménye, ill. biztonsága
+megkérdőjelezhető amely használja ezt a nyelvi elemet. Semmilyen megoldás
+használata <strong>nem ajánlott</strong> amely első sorban <code>eval</code>ra épül. Ekkor egy <em>jobb
+megoldás</em> szükségeltetik, amely nem függ az <code>eval</code>tól.</p>
+</div></article><article id="core.undefined"><h2>Az <code>undefined</code> és a <code>null</code></h2><div><p>A JavaScript két értéket is tartogat a semmi kifejezésére, ezek a <code>null</code> és az
+<code>undefined</code> és ezek közül az utóbbi a hasznosabb.</p>
+</div><div><h3>Az <code>undefined</code></h3>
+<p>Ha az előbbi bevezetőtől nem zavarodtál volna össze; az 
+<code>undefined</code> egy típus amelynek pontosan egy értéke van, az <code>undefined</code>.</p>
+<p>A nyelvben szintén van egy <code>undefined</code> nevű globális változó amelynek az értékét
+hogy-hogy nem <code>undefined</code>-nak hívják. Viszont ez a változó <strong>nem</strong> konstans vagy
+kulcsszó a nyelvben. Ez azt jeletni hogy az <em>értéke</em> könnyedén felülírható.</p>
+<aside class="es5"><p><strong>ES5 Megjegyzés:</strong> Az <code>undefined</code> ECMAScript 5-ben <strong>többé</strong> <em>nem felülírható</em> 
+strict módban, bár a neve továbbra is eltakarható, például egy saját függvénnyel
+aminek a neve éppen <code>undefined</code>.</p>
+</aside>
+<p>Itt van pár példa, hogy mikor is találkozhatunk az <code>undefined</code> értékkel:</p>
+<ul>
+<li>Az <code>undefined</code> globális változó elérésekor</li>
+<li>Egy deklarált, de nem inicializált változó elérésekor.</li>
+<li>Egy függvény hívásakor ez a visszatérési érték, <code>return</code> utasítás híján.</li>
+<li>Egy olyan <code>return</code> utasítás lefutásakor, amely nem térít vissza értéket.</li>
+<li>Nem létező mezők lekérésekor.</li>
+<li>Olyan függvény paraméterek elérésekor amelyeknek a hívó oldalon nem kaptak értéket.</li>
+<li>Bármikor amikor az <code>undefined</code> érték van valaminek beállítva.</li>
+<li>Bármelyik <code>void(kifejezés)</code> utasítás futtatásakor.</li>
+</ul>
+</div><div><h3><code>undefined</code> megőrzési trükkök</h3>
+<p>Mivel az <code>undefined</code> nevű globális változó csak egy másolatot tárol az 
+<code>undefined</code> elnevezésű értékből, az értékének megváltoztatása <strong>nem</strong> írja
+felül az eredeti <code>undefined</code> <em>típus</em> értékét.</p>
+<p>Ezért, ha valamilyen értékkel össze szeretnénk hasonlítani az <code>undefined</code> értéket,
+nem árt hogyha először magát az <code>undefined</code>-ot el tudjuk érni.</p>
+<p>Egy gyakori technika annak érdekében hogy megvédjük a kódunkat az 
+<code>undefined</code> lehetséges felüldefiniálásaitól, hogy egy <a href="#function.scopes">névtelen (wrapper)</a> függvénybe
+csomagoljuk az egész kódunkat, amelynek lesz egy direkt üres paramétere.</p>
+<pre><code>var undefined = 123;
+(function(something, foo, undefined) {
+    // az undefined ebben a hatókörben 
+    // megint valóban az `undefined` értékre referáll.
+
+})(&#39;Hello World&#39;, 42);</code></pre>
+<p>Egy másik módja ennek, hogy használunk egy &quot;üres&quot; deklarációt a wrapper függvényen
+belül.</p>
+<pre><code>var undefined = 123;
+(function(something, foo) {
+    var undefined;
+    ...
+
+})(&#39;Hello World&#39;, 42);</code></pre>
+<p>Az egyetlen különbség ebben a változatban, hogyha minifikáljuk ezt a kódot,
+és nem definiálunk további változókat ezen a részen belül, akkor ezzel a
+változattal extra 4 byte &quot;veszteséget&quot; szenvedünk el.</p>
+</div><div><h3>Mikor használjunk <code>null</code>t</h3>
+<p>Miközben az <code>undefined</code> a natív JavaScript megvalósításokban inkább a (más 
+nyelvekben levő) tradícionális <em>null</em> helyett használandó, azalatt maga a <code>null</code> 
+inkább csak egy különböző adattípusnak számít, mindenféle különös jelentés nélkül.</p>
+<p>Egy pár belső JavaScriptes megoldásban ugyan használják (ahol pl. a prototípus lánc végét a <code>Foo.prototype = null</code> beállítással jelölik), de a legtöbb esetben ez
+felcserélhető az <code>undefined</code>-al.</p>
+<p>(A ford.: A <code>null</code> annak az esetnek a jelölésére hasznos, amikor
+egy referencia típusú változót deklarálunk, de még nem adunk neki értéket. Pl. a 
+<code>var ezObjektumLesz = null</code> kifejezés ezt jelöli. Tehát a null leginkább
+kezdeti értékként állja meg a helyét, minden másra ott az <code>undefined</code>)</p>
+</div></article><article id="core.semicolon"><h2>Automatic Semicolon Insertion</h2><div><p>Bár a JavaScriptnek látszólag C-s szintaxisa van, <strong>mégsem</strong> kötelező benne
+kirakni a pontosvesszőket, így (helyenként) kihagyhatóak a forrásból.
+(A ford.: hiszen interpretált nyelv lévén nincsenek fordítási hibák, így 
+nyelvi elemek meglétét sem tudja erőltetni a nyelv)</p>
+<p>Itt jön a csel, hogy ennek ellenére a JavaScript csak pontosvesszőkkel
+értelmezi megfelelően a beírt kódot. Következésképp, a JS <strong>automatikusan</strong>
+illeszti be a pontosvesszőket (megpróbálja kitalálni a gondolataink) 
+azokra a helyekre, ahol amúgy emiatt értelmezési hibába futna.</p>
+<pre><code>var foo = function() {
+} // értelmezési hiba, pontosvessző kéne
+test()</code></pre>
+<p>Az automatikus beillesztés megtörténik, ezután így értelmeződik a kód</p>
+<pre><code>var foo = function() {
+}; // nincs hiba, mindenki örül
+test()</code></pre>
+<p>Az automatikus beillesztés (ASI) a JavaScript (egyik) <strong>legnagyobb</strong> design
+hibája, mivel igen... <em>meg tudja</em> változtatni a kód értelmezését</p>
+</div><div><h3>Hogyan Működik</h3>
+<p>Az alábi kódban nincsen pontosvessző, így az értelmező (parser) feladata kitalálni,
+hogy hova is illessze be őket.</p>
+<pre><code>(function(window, undefined) {
+    function test(options) {
+        log(&#39;testing!&#39;)
+
+        (options.list || []).forEach(function(i) {
+
+        })
+
+        options.value.test(
+            &#39;hosszú string az argumentumban&#39;,
+            &#39;még még még még még hossszabbbbbbb&#39;
+        )
+
+        return
+        {
+            foo: function() {}
+        }
+    }
+    window.test = test
+
+})(window)
+
+(function(window) {
+    window.someLibrary = {}
+
+})(window)</code></pre>
+<p>Alább mutatjuk a &quot;kitalálós&quot; játék eredményét.</p>
+<pre><code>(function(window, undefined) {
+    function test(options) {
+
+        // Nincs beillesztés, a sorok össze lettek vonva
+        log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {
+
+        }); // &lt;- beillesztés
+
+        options.value.test(
+            &#39;hosszú string az argumentumban&#39;,
+            &#39;még még még még még hossszabbbbbbb&#39;
+        ); // &lt;- beillesztés
+
+        return; // &lt;- beillesztés, eltörik a return kifejezésünk
+        { // blokként értelemződik
+
+            // név: kifejezés formátumban értelmeződik
+            foo: function() {} 
+        }; // &lt;- beillesztés
+    }
+    window.test = test; // &lt;- beillesztés
+
+// Ezeket a sorokat összeilleszti
+})(window)(function(window) {
+    window.someLibrary = {}; // &lt;- beillesztés
+
+})(window); //&lt;- beillesztés</code></pre>
+<aside>
+<p><strong>Megjegyzés:</strong> A JavaScript értelmező nem tudja &quot;korrektül&quot; kezelni azokat
+a return kifejezéseket, amelyek után közvetlen új sor áll. Habár ez nem biztos hogy 
+szükségszerűen az ASI hibájából történik, azért nem egy túl kellemes mellékhatás.</p>
+</aside>
+<p>Az értelmező drasztikusan megváltoztatta a fenti kódot. A legtöbb esetben a 
+beillesztő <strong>rosszul</strong> tippel.</p>
+<p>(A ford.: Semmilyen nyelvben sem jó, hogyha hagyjuk hogy a gép találja ki mit
+szerettünk volna írni. Néma gyereknek az anyja sem érti a kódját ugye)</p>
+</div><div><h3>Kezdő Zárójelek</h3>
+<p>Az értelmező <strong>nem</strong> rak be új pontosvesszőt, hogyha a sor eleje (nyitó) zárójellel kezdődik.</p>
+<pre><code>log(&#39;testing!&#39;)
+(options.list || []).forEach(function(i) {})</code></pre>
+<p>Ez a kód egy sorként értelmeződik</p>
+<pre><code>log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {})</code></pre>
+<p>Az esélyek arra <strong>elég</strong> magasak, hogy a <code>log</code> <strong>nem</strong> egy függvényt fog visszatéríteni; így a fenti kód egy <code>TypeError</code> típusú hibát fog dobni 
+<code>undefined is not a function</code> üzenettel.</p>
+</div><div><h3>Összefoglalásképp</h3>
+<p>Szükségszerűen <strong>soha</strong> ne hagyjuk ki a pontoszvesszőket. Nem árt a kapcsos
+zárójeleket is ugyanazon a soron tartani, mint amelyiken az utasítást elkezdtük,
+így nem ajánlott az egysoros <code>if</code> / <code>else</code> kifejezések kedvéért elhagyni
+őket. Ezek a szempontok nem csak a kódot (és annak olvashatóságát) tartják
+konzisztensen, de megelőzik azt is hogy a JavaScript értelmező valamit rosszul
+&quot;találjon ki&quot;.</p>
+</div></article><article id="core.delete"><h2>A <code>delete</code> Operátor</h2><div><p>Röviden, <em>lehetetlen</em> globális változókat, függvényeket és olyan dolgokat törölni
+JavaScriptben amelyeknek a <code>DontDelete</code> attribútuma be van állítva.</p>
+</div><div><h3>Globális kód és Függvény kód</h3>
+<p>Amikor egy változó/függvény, globális vagy 
+<a href="#function.scopes">függvény hatókörben</a> van definiálva, 
+akkor az vagy az Aktivációs (Activation) vagy a Globális (Global) objektum egyik mezőjeként
+jön létre.  Az ilyen mezőknek van egy halom attribútuma, amelyek közül az egyik 
+a <code>DontDelete</code>. A változó és függvény deklarációk a globális vagy függvény kódon
+belül mindig <code>DontDelete</code> tulajdonságú mezőket hoznak létre, így nem lehet őket
+törölni.</p>
+<pre><code>// globális változó
+var a = 1; // A DontDelete be lett állítva
+delete a; // hamis
+a; // 1
+
+// függvény:
+function f() {} // A DontDelete be lett állítva
+delete f; // hamis
+typeof f; // &quot;function&quot;
+
+// új értékadással sem megy
+f = 1;
+delete f; // hamis
+f; // 1</code></pre>
+</div><div><h3>Explicit mezők</h3>
+<p>Az expliciten beállított mezőket persze normálisan lehet törölni.</p>
+<pre><code>// expliciten beállított mező
+var obj = {x: 1};
+obj.y = 2;
+delete obj.x; // igaz
+delete obj.y; // igaz
+obj.x; // undefined
+obj.y; // undefined</code></pre>
+<p>A fenti példábna az <code>obj.x</code> és <code>obj.y</code> törölhető, mivel nincs <code>DontDelete</code>
+attribútuma egyik mezőnek sem. Ezért működik az alábbi példa is.</p>
+<pre><code>// működik, kivéve IE-ben
+var GLOBAL_OBJECT = this;
+GLOBAL_OBJECT.a = 1;
+a === GLOBAL_OBJECT.a; // igaz - egy globális változó
+delete GLOBAL_OBJECT.a; // igaz
+GLOBAL_OBJECT.a; // undefined</code></pre>
+<p>Itt egy trükköt használunk az <code>a</code> törlésére. A <a href="#function.this"><code>this</code></a> itt 
+a Globális objektumra mutat, és expliciten bezetjük rajta az <code>a</code> változót, mint
+egy mezőjét, így törölni is tudjuk.</p>
+<p>Mint az szokás, a fenti kód egy kicsit bugos IE-ben (legalábbis 6-8-ig).</p>
+</div><div><h3>Függvény argumentumok és beépített dolgaik</h3>
+<p>A függvény argumentumok, az <a href="#function.arguments"><code>arguments</code> objektum</a>
+és a beépített mezők szintén <code>DontDelete</code> tulajdonságúak.</p>
+<pre><code>// függvény argumentumok és mezők
+(function (x) {
+
+  delete arguments; // hamis
+  typeof arguments; // &quot;object&quot;
+
+  delete x; // hamis
+  x; // 1
+
+  function f(){}
+  delete f.length; // hamis
+  typeof f.length; // &quot;number&quot;
+
+})(1);</code></pre>
+</div><div><h3>Vendég (host) objektumok</h3>
+<p>A <code>delete</code> operátor működése megjósolhatatlan a vendég objektumokra. A specifikáció
+szerint ezek az objektumok szükség szerint bármilyen viselkedést implementálhatnak.</p>
+<p>(A ford.: Vendég objektumok azok az objektumok, amelyek nincsenek konkrétan
+meghatározva az ES aktuális verziójú specifikációjában, pl. a window)</p>
+</div><div><h3>Összegzésképp</h3>
+<p>A <code>delete</code> működése helyenként megjósolhatatlan, így biztonsággal csak olyan
+objektumok mezőin használhatjuk amelyeket expliciten mi állítottunk be.</p>
+</div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>Egyéb</h1></header><!-- Articles--><article id="other.timeouts"><h2>A varázslatos <code>setTimeout</code> és <code>setInterval</code></h2><div><p>Mivel a JavaScript aszinkron, a <code>setTimeout</code> és <code>setInterval</code> használatával
+lehetséges késleltetni a kódok lefutási idejét.</p>
+<aside>
+<p><strong>Megjegyzés:</strong> A timeout fv.-ek <strong>nem</strong> részei az ECMAScript Standardnek.
+Mivel a <a href="http://en.wikipedia.org/wiki/Document_Object_Model" title="Document Object Model">DOM</a> részeként lettek implementálva.</p>
+</aside>
+<pre><code>function foo() {}
+var id = setTimeout(foo, 1000); // Egy számmal (&gt; 0) tér vissza</code></pre>
+<p>Amikor a <code>setTimeout</code> függvényt meghívjuk, válaszul egy timeout ID-t kapunk
+valamint be lesz ütemezve a <code>foo</code> függvényhívás, hogy <strong>körülbelül</strong> 1000 miliszekundum múlva fusson le a jövőben. A <code>foo</code> <strong>egyszer</strong> lesz végrehajtva.</p>
+<p>Az aktuális JavaScript motor időzítésétől függően, és annak figyelembe vételével
+hogy a JavaScript mindig egyszálú, tehát a megelőző kódok blokkolhatják a szálat,
+<strong>soha</strong> nem lehet biztonságosan meghatározni hogy valóban a kért időzítéssel 
+fog lefutni a kód amit megadtunk a <code>setTimeout</code>ban. Erre semmilyen biztosíték nincs.</p>
+<p>Az első helyen bepasszolt függvény a <em>globális objektum</em> által lesz meghívva, ami
+azt jelenti hogy a <a href="#function.this"><code>this</code></a> a függvényen belül a globális objektumra
+utal.</p>
+<pre><code>function Foo() {
+    this.value = 42;
+    this.method = function() {
+        // a this egy globális objektumra utal, nem a Foo-ra
+        console.log(this.value); // undefined-ot logol ki
+    };
+    setTimeout(this.method, 500);
+}
+new Foo();</code></pre>
+<aside>
+<p><strong>Note:</strong> Mivel a <code>setTimeout</code> egy <strong>függvény objektumot</strong> vár első paramétereként
+egy gyakori hiba a <code>setTimeout(foo(), 1000)</code> módon való használata, amely a 
+<code>foo</code> <strong>visszatérési értékét</strong> fogja használni és <strong>nem</strong> a <code>foo</code>t mint függvényt. 
+Ez a legtöbb esetben egy észrevétlen hibát okoz, mivel a függvény <code>undefined</code>-t
+térít vissza amire a <code>setTimeout</code> <strong>nem</strong> fog hibát dobni.</p>
+</aside>
+</div><div><h3>Híváshalmozás a <code>setInterval</code>al</h3>
+<p>Míg a <code>setTimeout</code> csak egyszer futtatja le a megadott függvényt, a <code>setInterval</code>
+- ahogy a neve is mutatja - <strong>minden</strong> <code>X</code> miliszekundumban végrehajtja a 
+neki átadott kódot, használata pedig erősen kerülendő.</p>
+<p>Nagy hátulütője, hogy még akkor is ütemezi az újabb és újabb
+hívásokat, hogyha az aktuálisan futattot kód a megadott időintervallumon
+felül blokkolja a további kód futtatást. Ez, hogyha megfelelően rövid
+intervallumokat állítunk be, felhalmozza a függvényhívásokat a call stacken.</p>
+<pre><code>function foo(){
+    // kód ami 1 másodpercig feltartja a futtatást
+}
+setInterval(foo, 100);</code></pre>
+<p>A fenti kódban amikor a <code>foo</code> meghívódik, 1 másodpercig feltartja a további futtatást.</p>
+<p>A <code>setInterval</code> persze ütemezni fogja a jövőbeli <code>foo</code> hívásokat továbbra is, amíg
+blokkolódik a futtatás. Így <strong>tíz</strong> további hívás fog várakozni, miután a <code>foo</code>
+futtatása először végzett.</p>
+</div><div><h3>Hogyan Bánjunk El a Blokkolással</h3>
+<p>A legkönnyebb és kontrollálhatóbb megoldásnak az bizonyul, hogyha a <code>setTimeout</code>
+függvényt a rögtön a foo-n belül használjuk.</p>
+<pre><code>function foo(){
+    // 1 másodpercig blokkoló kód
+    setTimeout(foo, 100);
+}
+foo();</code></pre>
+<p>Ez nem csak egységbe zárja a <code>setTimeout</code> hívást, de meggátolja a felesleges hívások
+felhalmozását, és több irányítást ad a kezünkbe. A <code>foo</code> így magától eltudja
+dönteni, hogy akarja-e újra futtatni önmagát vagy sem.</p>
+</div><div><h3>Timeout Tisztogatás Kézzel</h3>
+<p>A <code>clearTimeout</code> vagy <code>clearInterval</code> hívással tudjuk a timeoutjainkat 
+megszüntetni, természetesen attól függ hogy melyiket használjuk,
+hogy melyik <code>set</code> függvénnyel indítottuk útjára a timeoutunkat.</p>
+<pre><code>var id = setTimeout(foo, 1000);
+clearTimeout(id);</code></pre>
+</div><div><h3>Az Összes Timeout Megszüntetése</h3>
+<p>Mivel nincsen beépített megoldás az összes timeout és/vagy interval
+hívás törlésére, ezért bruteforce módszerekhez kell folyamodjunk.</p>
+<pre><code>// az &quot;összes&quot; timeout kitörlése
+for(var i = 1; i &lt; 1000; i++) {
+    clearTimeout(i);
+}</code></pre>
+<p>Persze ez csak véletlenszerű lövöldözés, semmi sem garantálja hogy a fenti 
+módszerrel nem marad timeout a rendszerben (A ford.: például az ezredik timeout vagy
+afelett). Szóval egy másik módszer ennek megoldására, hogy feltételezzük hogy
+minden <code>setTimeout</code> hívással az azonosítók száma egyel növekszik.</p>
+<pre><code>// az &quot;összes&quot; timeout kiírtása
+var legnagyobbTimeoutId = window.setTimeout(function(){}, 1),
+i;
+for(i = 1; i &lt;= legnagyobbTimeoutId; i++) {
+    clearTimeout(i);
+}</code></pre>
+<p>Habár ez a megoldás minden böngészőben megy (egyenlőre), ez az azonosítókról született mondás nincs specifikációban rögzítve, és ennek megfelelően változhat. 
+Az ajánlott módszer továbbra is az, hogy kövessük nyomon az összes timeout azonosítót amit generáltunk, és így ki is tudjuk őket rendesen törölni.</p>
+</div><div><h3><code>eval</code> A Színfalak Mögött</h3>
+<p>Habár a <code>setTimeout</code> és a <code>setInterval</code> (kód) stringet is tud első paramétereként
+fogdani, ezt a fajta formáját használni kimondottan <strong>tilos</strong>, mivel a függöny
+mögött ő is csak <code>eval</code>t használ.</p>
+<aside>
+<p><strong>Megjegyzés:</strong> Mivel az ECMAScript Standard nem specifikálja a timeout
+függvények működését, az eltérő JavaScript implementációkban eltérő módon
+működhetnek. Például a Microsoft JScript-je a <code>Function</code> konstruktort használja
+az <code>eval</code> helyett.</p>
+</aside>
+<pre><code>function foo() {
+    // meg lesz hívva
+}
+
+function bar() {
+    function foo() {
+        // soha nem hívódik meg
+    }
+    setTimeout(&#39;foo()&#39;, 1000);
+}
+bar();</code></pre>
+<p>Mivel az <code>eval</code>t nem <a href="#core.eval">direkt</a> módon hívjuk meg a fenti esetben,
+a <code>setTimeout</code>nak passzolt string a <em>globális hatókörben</em> fog lefutni; így
+a lokális <code>foo</code> függvényt sosem használjuk a <code>bar</code> hatóköréből.</p>
+<p>Továbbá <strong>nem</strong> ajánlott argumentumokat átadni annak a függvénynek amelyik
+a timeout függvények által meg lesz hívva a későbbiekben.</p>
+<pre><code>function foo(a, b, c) {}
+
+// SOHA ne használd így!
+setTimeout(&#39;foo(1, 2, 3)&#39;, 1000)
+
+// Ehelyett csomagoljuk névtelen függvénybe
+setTimeout(function() {
+    foo(a, b, c);
+}, 1000)</code></pre>
+<aside>
+<p><strong>Megjegyzés:</strong> Habár lehetséges a <code>setTimeout(foo, 1000, a, b, c)</code> szintaxist
+használni, mégsem ajánlott, mivel <a href="#function.this">metódusok</a>  használatakor
+észrevehetetlen hibákhoz vezethet.</p>
+</aside>
+</div><div><h3>Összegzésképp</h3>
+<p><strong>Soha</strong> ne használjunk stringeket a <code>setTimeout</code> vagy <code>setInterval</code> első
+paramétereiként. Ha argumentumokat kell átadni a meghívandó függvénynek, az 
+egyértelműen <strong>rossz</strong> kódra utal. Ebben az esetben a függvényhívás 
+lebonyolításához egy <em>anoním</em> függvény használata ajánlott.</p>
+<p>Továbbá, mivel az ütemező kódja nem blokkolódik a JavaScript futás által, a 
+<code>setInterval</code> használata úgy általában kerülendő.</p>
+</div></article></section><!-- Footer--><footer><p>Copyright &copy; 2011. Built with
+ <a href="http://nodejs.org/">Node.js </a>using a<a href="https://github.com/visionmedia/jade/">jade </a>template. 
+Hosted by <a href="http://cramerdev.com">Cramer Development</a>.</p></footer><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script><script src="../javascript/prettify.js"></script><script src="../javascript/plugin.js"></script><script src="../javascript/garden.js"></script></body></html>

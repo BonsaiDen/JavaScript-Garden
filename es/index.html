@@ -1,0 +1,1411 @@
+<!DOCTYPE html><html lang="es"><head><title>Jardín de JavaScript</title><meta charset="utf-8"><meta name="description" content="Una guía sobre lo peculiar y defectos de JavaScript."><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" href="/JavaScript-Garden/favicon.ico?v=2"><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
+<script src="javascript/html5.js"></script>
+<![endif]--></head><body><!-- Navigation--><nav id="nav_main"><div><ul> <li><a href="/JavaScript-Garden/" title="JavaScript Garden">en</a></li><li class="active"><a href="/JavaScript-Garden/es" title="Jardín de JavaScript">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha">fi</a></li><li><a href="/JavaScript-Garden/hu" title="JavaScript Garden">hu</a></li><li><a href="/JavaScript-Garden/it" title="JavaScript Garden">it</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript 秘密花园">zh</a></li><li><a href="/JavaScript-Garden/zhtw" title="JavaScript 庭院">zhtw</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">Introducción</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">Objetos</a></h1><ul><li><a href="#object.general">Uso de objetos y propiedades</a></li><li><a href="#object.prototype">Prototipo</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop">El bucle <code>for in</code></a></li></ul></li><li class="nav_function"><h1><a href="#function">Funciones</a></h1><ul><li><a href="#function.general">La declaración de funciones y expresiones</a></li><li><a href="#function.this">Cómo trabaja <code>this</code></a></li><li><a href="#function.closures">Closures y referencias</a></li><li><a href="#function.arguments">El objeto <code>arguments</code></a></li><li><a href="#function.constructors">Constructores</a></li><li><a href="#function.scopes">Ámbitos y Namespaces</a></li></ul></li><li class="nav_array"><h1><a href="#array">Arrays</a></h1><ul><li><a href="#array.general">Iteración de un Array y sus propiedades</a></li><li><a href="#array.constructor">El constructor <code>Array</code></a></li></ul></li><li class="nav_types"><h1><a href="#types">Types</a></h1><ul><li><a href="#types.equality">Equality and Comparisons</a></li><li><a href="#types.typeof">The <code>typeof</code> Operator</a></li><li><a href="#types.instanceof">The <code>instanceof</code> Operator</a></li><li><a href="#types.casting">Type Casting</a></li></ul></li><li class="nav_core"><h1><a href="#core">Núcleo</a></h1><ul><li><a href="#core.eval">¿Por qué no usar <code>eval</code>?</a></li><li><a href="#core.undefined"><code>undefined</code> y <code>null</code></a></li><li><a href="#core.semicolon">Automatic Semicolon Insertion</a></li></ul></li><li class="nav_other"><h1><a href="#other">Otros</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> and <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>Introducción</h1></header><!-- Articles--><article id="intro.index"><h2>Introducción</h2><div><p><strong>El Jardín de JavaScript</strong> es una guía de documentación acerca de las
+partes más peculiares de este lenguaje de programación. Brinda consejos para evitar
+los errores más comunes y sutiles, así como problemas de rendimiento y de malas 
+prácticas que los programadores menos experimentados en JavaScript pueden resolver 
+en sus esfuerzos por profundizar en el lenguaje.</p>
+<p>El Jardín de JavaScript <strong>no</strong> prentende enseñar JavaScript.
+Se recomienda un conocimiento sobre el lenguaje para entender los temas tratados en
+esta guía. Con el fin de aprender los conceptos básicos del lenguaje, por favor 
+diríjase a la excelente <a href="https://developer.mozilla.org/en/JavaScript/Guide">guía</a> de los desarrolladores de Mozilla.</p>
+<h2>Los autores</h2>
+<p>Esta guía es el trabajo de dos encantadores usuarios del foro Stack Overflow, 
+<a href="http://stackoverflow.com/users/170224/ivo-wetzel">Ivo Wetzel</a> (Escrito) y <a href="http://stackoverflow.com/users/313758/yi-jiang">Zhang Yi Jiang</a> (Diseño).</p>
+<h2>Colaboradores</h2>
+<ul>
+<li><a href="https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors">Colaboradores</a></li>
+</ul>
+<h2>Hosting</h2>
+<p>JavaScript Garden es hospedado en GitHub, además <a href="http://cramerdev.com/">Cramer Development</a> nos apoya
+con un sitio espejo en <a href="http://javascriptgarden.info/">JavaScriptGarden.info</a>.</p>
+<h2>Licencia</h2>
+<p>El Jardín de JavaScript es publicado bajo la <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">licencia MIT</a> y es hospedado en
+<a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>. Si encuentra algún error o errata por favor publique <a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">una incidencia</a> o 
+envie un pull request a nuestro repositorio. También nos puede encontrar en la 
+<a href="http://chat.stackoverflow.com/rooms/17/javascript">sala de chat de JavaScript</a> en Stack Overflow.</p>
+</div></article></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>Objetos</h1></header><!-- Articles--><article id="object.general"><h2>Uso de objetos y propiedades</h2><div><p>Todo en JavaScript actúa como un objeto, con las dos únicas excepciones de
+<a href="#core.undefined"><code>null</code></a> y <a href="#core.undefined"><code>undefined</code></a>.</p>
+<pre><code>false.toString(); // &#39;false&#39;
+[1, 2, 3].toString(); // &#39;1,2,3&#39;
+
+function Foo(){}
+Foo.bar = 1;
+Foo.bar; // 1</code></pre>
+<p>Un error muy común es el uso de literales númericos como objetos.
+Esto se debe a un error en el parser de JavaScript que intenta analizar la
+<em>notación de puntos</em> como un literal de punto flotante.</p>
+<pre><code>2.toString(); // lanza SyntaxError</code></pre>
+<p>Existe un par de soluciones que pueden utilizarse para hacer que los
+literales númericos actúen como objetos.</p>
+<pre><code>2..toString(); // el segundo punto es reconocido correctamente
+2 .toString(); // observe el espacio a la izquierda del punto
+(2).toString(); // el número 2 se evalúa primero</code></pre>
+</div><div><h3>Objetos como un tipo de datos</h3>
+<p>Los objetos en JavaScript también pueden ser utilizados como una Tabla Hash o conocido como <a href="http://en.wikipedia.org/wiki/Hashmap"><em>Hashmap</em></a> en inglés, consisten
+principalmente en nombres de propiedades, y asignándoles valores a éstas.</p>
+<p>El uso de un objeto literal - con notación <code>{}</code> - puede crear un
+objeto plano. Este nuevo objeto <a href="#object.prototype">heredado</a> desde <code>Object.prototype</code>
+no posee <a href="#object.hasownproperty">propiedades propias</a> definidas.</p>
+<pre><code>var foo = {}; // un nuevo objeto vacío
+
+// un nuevo objeto con la propiedad llamada &#39;test&#39; con el valor 12
+var bar = {test: 12};</code></pre>
+</div><div><h3>Acceso a las propiedades</h3>
+<p>Se puede acceder a las propiedades de un objeto de dos maneras, ya sea a través de la
+notación de punto o desde la notación de corchetes.</p>
+<pre><code>var foo = {name: &#39;kitten&#39;}
+foo.name; // kitten
+foo[&#39;name&#39;]; // kitten
+
+var get = &#39;name&#39;;
+foo[get]; // kitten
+
+foo.1234; // SyntaxError
+foo[&#39;1234&#39;]; // ¡funciona!</code></pre>
+<p>Ambas notaciones son idénticas en su funcionamiento, la única diferencia es la
+notación de corchetes permite el ajuste dinámico de las propiedades, así como
+el uso de propiedades que de otro modo daría lugar a error de sintaxis.</p>
+</div><div><h3>Eliminando propiedades</h3>
+<p>La única manera de eliminar una propiedad desde un objeto es usando el
+operador <code>delete</code>; establecer la propiedad a <code>undefined</code> o <code>null</code> solamente
+elimina el <em>valor</em> asociado a la propiedad, pero no la <em>key</em> (valor clave).</p>
+<pre><code>var obj = {
+    bar: 1,
+    foo: 2,
+    baz: 3
+};
+obj.bar = undefined;
+obj.foo = null;
+delete obj.baz;
+
+for(var i in obj) {
+    if (obj.hasOwnProperty(i)) {
+        console.log(i, &#39;&#39; + obj[i]);
+    }
+}</code></pre>
+<p>Los resultados de la salida son <code>bar undefined</code> y <code>foo null</code> - sólo <code>baz</code> ha
+sido removido y por lo tanto no aparece en la salida.</p>
+</div><div><h3>Notación de Keys</h3>
+<pre><code>var test = {
+    &#39;case&#39;: &#39;Soy una palabra clave y debo ser anotado como string&#39;,
+    delete: &#39;Soy una palabra clave también&#39; // lanza SyntaxError
+};</code></pre>
+<p>Las propiedades de los objetos puede ser simbolizados como caracteres planos y como strings. Debido
+a otro mal diseño del parser de JavaScript, lo anterior es una excepción
+de <code>SyntaxError</code> antes de ECMAScript 5.</p>
+<p>Este error se debe al <code>eliminar</code> una <em>keyword</em>; por lo tanto, debe ser
+anotado como un <em>string literal</em> para asegurarse que será interpretado correctamente
+por diversos motores de JavaScript.</p>
+</div></article><article id="object.prototype"><h2>Prototipo</h2><div><p>JavaScript no posee en sus características un sistema clásico de herencia, sino que 
+utiliza un <em>prototipo</em> para esto. </p>
+<p>Si bien a menudo se considera uno de los puntos débiles de JavaScript, el
+modelo de herencia prototipado es de hecho más poderoso que el modelo clásico.
+Por ejemplo, es bastante trivial construir un modelo clásico a partir del modelo prototipado,
+mientras que al contrario es una tarea mucho más difícil.</p>
+<p>Debido al hecho que JavaScript es básicamente el único lenguaje que utiliza
+ampliamente la herencia prototipada, se necesita algo de tiempo para adaptarse a
+las diferencias entre los dos modelos.</p>
+<p>La primera gran diferencia es que la herencia en JavaScript se realiza usando
+llamadas de <em>cadenas de prototipo</em> (<em>prototype chains</em>).</p>
+<aside>
+<p><strong>Nota:</strong> Simplemente usando <code>Bar.prototype = Foo.prototype</code> dará lugar a dos objetos 
+que comparten el <strong>mismo</strong> prototipo. Por lo tanto, los cambios que se realicen en un 
+objeto afectará al otro objeto, así, en la mayoría de los casos no es el efecto 
+deseado.</p>
+</aside>
+<pre><code>function Foo() {
+    this.value = 42;
+}
+Foo.prototype = {
+    method: function() {}
+};
+
+function Bar() {}
+
+// Asigna el prototipo de Bar como una nueva instancia de Foo
+Bar.prototype = new Foo();
+Bar.prototype.foo = &#39;Hello World&#39;;
+
+// Asegura que el constructor sea Bar
+Bar.prototype.constructor = Bar;
+
+var test = new Bar() // crea una nueva instancia de Bar
+
+// Resultado de cadena de prototipos (prototype chain)
+test [instance of Bar]
+    Bar.prototype [instance of Foo] 
+        { foo: &#39;Hello World&#39; }
+        Foo.prototype
+            { method: ... }
+            Object.prototype
+                { toString: ... /* etc. */ }</code></pre>
+<p>En el código anterior, el objeto <code>test</code> hereda de <code>Bar.prototype</code> y <code>Foo.prototype</code>; 
+por lo tanto, tendrá acceso a la función <code>method</code> que se ha definido en <code>Foo</code>. 
+También se tendrá acceso a a la propiedad <code>value</code> de la <strong>única</strong> instancia de <code>Foo</code> 
+que compone su prototipo. Es importante tomar en cuenta que <code>new Bar()</code> <strong>no</strong> creará una nueva 
+instancia de <code>Foo</code>, pero retornará lo asignado en su prototipo; de este modo, todas las instancias 
+de <code>Bar</code> tendrán que compartir el <strong>mismo</strong> <code>valor</code> de la propiedad.</p>
+<aside>
+<p><strong>Nota:</strong> <strong>No</strong> utilice <code>Bar.prototype = Foo</code>, ya que no apunta al prototipo
+de <code>Foo</code>, sino al objeto de la función <code>Foo</code>. Así la cadena de prototipo
+cambiará a <code>Function.prototype</code> y no a <code>Foo.prototype</code>;
+Por lo tanto, el <code>método</code> no estará disponible en la cadena de prototipo.</p>
+</aside>
+</div><div><h3>Búsqueda de propiedades</h3>
+<p>Cuando se accede a las propiedades de un objeto, JavaScript recorre la cadena de
+prototipo hacia <strong>arriba</strong> hasta encontrar la propiedad con el nombre solicitado.</p>
+<p>Cuando se llega al final de la cadena - concretamente <code>Object.prototype</code> - y aún
+no se ha encontrado la propiedad especificada, se retornará un valor
+<a href="#core.undefined">undefined</a> en su lugar.</p>
+</div><div><h3>La propiedad prototype</h3>
+<p>Aunque la propiedad prototype es usada por el lenguaje para construir la cadena
+de prototipos, es posible asignar <strong>cualquier</strong> valor. Aunque los tipos primitivos 
+serán ignorados cuando se asigne en prototype.</p>
+<pre><code>function Foo() {}
+Foo.prototype = 1; // no tendrá efecto</code></pre>
+<p>La asignación de objetos, como se muestra en el ejemplo anterior, funcionará, y permitirá
+la creación dinámica de cadena de prototipos.</p>
+</div><div><h3>Rendimiento</h3>
+<p>El tiempo tomado en la búsqueda de propiedades es alta y la cadena de prototipo puede
+presentar un impacto negativo crítico en el rendimiento en partes del código. Además, 
+si ha tratado de acceder a propiedades que no existen, esto provoca que se recorra la cadena de prototipo completa.</p>
+<p>Además, al recorrer en <a href="#object.forinloop">iteración</a> las propiedades de un objeto
+, <strong>cada</strong> propiedad encontrada en la cadena de prototipo será enumerada.</p>
+</div><div><h3>Extensión de prototipos nativos</h3>
+<p>Una mala característica que se suele utilizar para extender <code>Object.prototype</code> o cualquier
+otro prototipo construido.</p>
+<p>Esta técnica es conocida en inglés como <a href="http://en.wikipedia.org/wiki/Monkey_patch">monkey patching</a> y rompe la <em>encapsulación</em> del código.
+Si bien es utilizado en frameworks como <a href="http://prototypejs.org/">Prototype</a>, todavía no existen buenas razones para adoptarlo o integrarlo
+como tipos de dato o como funcionalidad no estándar.</p>
+<p>La <strong>única</strong> razón coherente para extender un prototipo es para adaptarle nuevas
+características de los motores JavaScript más modernos; por ejemplo, 
+<a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach</code></a>.</p>
+</div><div><h3>En conclusión</h3>
+<p>Se <strong>debe</strong> entender por completo el módelo de herencia prototipado antes de 
+escribir código complejo que lo utilice. Además, observe la longitud de la
+cadena de prototipo y modifíquela si es necesario para evitar posibles problemas de 
+rendimiento. Con relación a los prototipos nativos, estos <strong>nunca</strong> deben ser extendidos a 
+menos que sea para mantener la compatibilidad con nuevas características de JavaScript.</p>
+</div></article><article id="object.hasownproperty"><h2><code>hasOwnProperty</code></h2><div><p>Con el fin de comprobar si un objeto posee una propiedad definida <em>en sí</em> mismo y <strong>no</strong>
+en algún lugar de su <a href="#object.prototype">cadena de prototipo</a>, es necesario utilizar
+el método <code>hasOwnProperty</code> ya que todos los objetos herendan de <code>Object.prototype</code>.</p>
+<aside>
+<p><strong>Nota:</strong> <strong>No</strong> es suficiente con comprobar si una propiedad está <code>definida</code>.
+La propiedad bien podría existir, pero su valor sólo pasa a ser definido como 
+<code>undefined</code>.</p>
+</aside>
+<p><code>hasOwnProperty</code> es la única utilidad en JavaScript que se ocupa de las propiedades
+y <strong>no</strong> las salta en la cadena de prototipo.</p>
+<pre><code>// Envenenamiento en Object.prototype
+Object.prototype.bar = 1; 
+var foo = {goo: undefined};
+
+foo.bar; // 1
+&#39;bar&#39; in foo; // true
+
+foo.hasOwnProperty(&#39;bar&#39;); // false
+foo.hasOwnProperty(&#39;goo&#39;); // true</code></pre>
+<p>Sólo <code>hasOwnProperty</code> retornará el resultado correcto y esperado, esto es
+ensencial cuando se repite una iteración en las propiedades de cualquier objeto. No hay
+otra maner de excluir las propiedades que no están definidas en el mismo objeto, pero 
+en alguna parte de su cadena de prototipo si.</p>
+</div><div><h3><code>hasOwnProperty</code> como propiedad</h3>
+<p>JavaScript <strong>no</strong> protege el nombre de la propiedad <code>hasOwnProperty</code>; de este modo, si existe
+la posibilidad de que un objeto tenga una propiedad con el mismo nombre, es necesario utilizar
+<code>hasOwnProperty</code> como propiedad <em>externa</em> con el fin de obtener resultados correctos.</p>
+<pre><code>var foo = {
+    hasOwnProperty: function() {
+        return false;
+    },
+    bar: &#39;Here be dragons&#39;
+};
+
+foo.hasOwnProperty(&#39;bar&#39;); // siempre devolverá false
+
+// Utilice otro objeto con hasOwnProperty y llamelo con &#39;this&#39; para asignarlo a foo
+({}).hasOwnProperty.call(foo, &#39;bar&#39;); // true</code></pre>
+</div><div><h3>En conclusión</h3>
+<p>Cuando se necesite comprobar la existencia de una propiedad en un objeto, <code>hasOwnProperty</code> es
+el <strong>único</strong> método para hacerlo. También se recomienda el uso de <code>hasOwnProperty</code> como
+parte de un <a href="#object.forinloop">bucle <code>for in</code></a>, esto evitará errores desde
+extenciones de <a href="#object.prototype">prototipos</a> nativos.</p>
+</div></article><article id="object.forinloop"><h2>El bucle <code>for in</code></h2><div><p>Al igual que el operador <code>in</code>, el bucle <code>for in</code> también recorre sobre la 
+cadena de prototipo cuando este se repite en una iteración en las propiedades de un objeto.</p>
+<aside>
+<p><strong>Nota:</strong> El bucle <code>for in</code> <strong>no</strong> se repetirá en cualquier propiedad que 
+tenga atributos <code>enumerables</code> asignados a <code>false</code>; por ejemplo, la propiedad 
+<code>length</code> de un array.</p>
+</aside>
+<pre><code>// Envenenamiento en Object.prototype
+Object.prototype.bar = 1;
+
+var foo = {moo: 2};
+for(var i in foo) {
+    console.log(i); // Imprime ambos bar y moo
+}</code></pre>
+<p>Dado que no es posible cambiar el comportamiento del bucle <code>for in</code> en sí mismo, es
+necesario filtrar las propiedades internas no deseadas dentro del bucle, 
+esto se hace mediante el uso del método <a href="#object.hasownproperty"><code>hasOwnProperty</code></a> del 
+<code>Object.prototype</code>.</p>
+<aside>
+<p><strong>Nota:</strong> Dado que <code>for in</code> siempre recorre por completo la cadena de prototipo, 
+este se pondrá más lento con cada capa adicional que un objeto herede.</p>
+</aside>
+</div><div><h3>Usando <code>hasOwnProperty</code> para filtrado</h3>
+<pre><code>// Aún es el foo del código de arriba
+for(var i in foo) {
+    if (foo.hasOwnProperty(i)) {
+        console.log(i);
+    }
+}</code></pre>
+<p>Está versión es la única forma correcta de uso. Esto se debe <strong>sólo</strong> al uso de 
+<code>hasOwnProperty</code> que imprimirá <code>moo</code>. Cuando <code>hasOwnProperty</code> se omita, el código es 
+propenso a errores  en los casos de prototipos nativos - ej. <code>Object.prototype</code> - 
+se ha extendedido.</p>
+<p>Uno de los frameworks más usado que implementa estas funcionalidades es <a href="http://www.prototypejs.org/">Prototype</a>. Cuando el 
+framework es incluido, el bucle <code>for in</code> que no utilicen <code>hasOwnProperty</code> no podrá garantizar que 
+se interrumpa.</p>
+</div><div><h3>En conclusión</h3>
+<p>Se recomienda utilizar <strong>siempre</strong> el uso de <code>hasOwnProperty</code>. Nunca debe suponer<br>ningún entorno donde el código se ejecute, o si los prototipos
+nativos han sido extendidos o no. </p>
+</div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>Funciones</h1></header><!-- Articles--><article id="function.general"><h2>La declaración de funciones y expresiones</h2><div><p>Las funciones en JavaScript son las primeras clases de objetos. Esto significa que se
+puede pasar como cualquier otro valor. Un uso común de está característica es pasar de
+una <em>función anónima</em> a otra, posiblemente una función asíncrona. Esto se conoce como <code>callback</code>.</p>
+</div><div><h3>La declaración <code>function</code></h3>
+<pre><code>function foo() {}</code></pre>
+<p>La función anterior se <a href="#function.scopes">carga</a> así mismo antes de iniciar la ejecución del
+programa; por lo tanto, está disponible en <em>todo</em> el scope (ámbito) de la aplicación
+donde se ha <em>definido</em>, aunque hubiera sido llamado antes de definirse en el código.</p>
+<pre><code>foo(); // Funciona porque foo ha sido creado antes que este código se ejecute
+function foo() {}</code></pre>
+</div><div><h3>La expresión <code>function</code></h3>
+<pre><code>var foo = function() {};</code></pre>
+<p>Este ejemplo asigna una función sin nombre y anónima a la variable <code>foo</code>. </p>
+<pre><code>foo; // &#39;undefined&#39;
+foo(); // Lanza TypeError
+var foo = function() {};</code></pre>
+<p>Debido a la declaración de <code>var</code>, que carga el nombre de la variable <code>foo</code> antes
+de la ejecución real del inicio del código, <code>foo</code> ya estará definidido cuando se
+ejecute el script.</p>
+<p>Pero se asigna sólo si ocurre en tiempo de ejecución, el valor de <code>foo</code> de forma 
+predetermina es <a href="#core.undefined">undefined</a> antes de que el código se ejecute.</p>
+</div><div><h3>Expresión nombre de función</h3>
+<p>Otro caso especial de asignación de nombre de funciones.</p>
+<pre><code>var foo = function bar() {
+    bar(); // Funciona
+}
+bar(); // ReferenceError</code></pre>
+<p>Aquí <code>bar</code> no está disponible en el ámbito externo (scope), ya que la función sólo es 
+asignada a <code>foo</code>; Sin embargo, dentro de <code>bar</code> si está disponible. Esto se debe a la forma
+en como trabaja la <a href="#function.scopes">resolución de nombres</a> en JavaScript, el nombre de 
+la función esta <em>siempre</em> disponible en el ámbito local de la propia función.</p>
+</div></article><article id="function.this"><h2>Cómo trabaja <code>this</code></h2><div><p>JavaScript tiene un concepto diferente sobre el nombre especial <code>this</code> referido a la 
+mayoría de lenguajes de programación. Hay exactamente <strong>cinco</strong> formas distintas en donde 
+es posible ver el valor de <code>this</code> dentro de lo posible en el lenguaje.</p>
+</div><div><h3>El ámbito global (Global Scope)</h3>
+<pre><code>this;</code></pre>
+<p>Cuando se utiliza <code>this</code> en el ámbito global, simplemente se refiere al objeto <em>global</em>.</p>
+</div><div><h3>Llamar a una función</h3>
+<pre><code>foo();</code></pre>
+<p>Aquí <code>this</code> se refiere al objeto <em>global</em>.</p>
+<aside>
+<p><strong>Nota ES5:</strong> En modo estricto (strict mode), global <strong>ya no</strong> existe.
+<code>this</code> tendrá el valor de <code>undefined</code> en este caso.</p>
+</aside>
+</div><div><h3>Llamar a un método</h3>
+<pre><code>test.foo(); </code></pre>
+<p>En este ejemplo <code>this</code> se referiere a <code>test</code>.</p>
+</div><div><h3>Llamar a un constructor</h3>
+<pre><code>new foo(); </code></pre>
+<p>Llamar a una función que esta precedida por la palabra clave <code>new</code> actúa como
+un <a href="#function.constructors">constructor</a>. Dentro de la función, <code>this</code> se refiere 
+al <code>Objeto</code> <em>recién creado</em>.</p>
+</div><div><h3>Ajuste explícito de <code>this</code></h3>
+<pre><code>function foo(a, b, c) {}
+
+var bar = {};
+foo.apply(bar, [1, 2, 3]); // array que se apilará
+foo.call(bar, 1, 2, 3); // resultados a = 1, b = 2, c = 3</code></pre>
+<p>Cuando se utiliza los métodos <code>call</code> o <code>apply</code> en <code>Function.prototype</code>, el valor de
+<code>this</code> dentro de la función llamada se ajustará <strong>explícitamente</strong> al primer argumento
+correspondiente a la llamada de la función.</p>
+<p>Como resultado, el ejemplo anterior sobre los <em>casos de métodos</em> estos <strong>no</strong> se aplican, y <code>this</code> 
+dentro de <code>foo</code> puede establecerse en <code>bar</code>.</p>
+<aside>
+<p><strong>Nota:</strong> <code>this</code> <strong>no puede</strong> ser usado para referirse a un objeto dentro de un <code>Objeto</code>
+literal. Así <code>var obj = {me: this}</code> <strong>no</strong>  dará ninǵun resultado en <code>me</code> refiriendose a
+<code>obj</code>, ya que <code>this</code> sólo será obtenido por uno de los cincos casos enumerados.</p>
+</aside>
+</div><div><h3>Errores comunes</h3>
+<p>Si bien en la mayoría de los casos esto tiene sentido, el primero puede cosiderarse como otro
+mal diseño del lenguaje, ya que <strong>nunca</strong> tiene un uso práctico.</p>
+<pre><code>Foo.method = function() {
+    function test() {
+        // this es establecido como un objeto global
+    }
+    test();
+}</code></pre>
+<p>Un error común es que <code>this</code> dentro de <code>test</code> haga referencia a <code>Foo</code>, mientras que en
+realidad esto <strong>no es así</strong>.</p>
+<p>Con el fin de acceder a <code>Foo</code> desde dentro de <code>test</code> es necesario crear una variable local
+dentro del <code>método</code> para referirse a <code>Foo</code>.</p>
+<pre><code>Foo.method = function() {
+    var that = this;
+    function test() {
+        // Use that instead of this here
+    }
+    test();
+}</code></pre>
+<p><code>that</code> es justo un nombre normal, pero es comúnmente usado para referenciar a <code>this</code>
+de forma externa. En combinación con <a href="#function.closures">closures</a>, esto puede ser
+también usado para pasar <code>this</code> como valor.</p>
+</div><div><h3>Asignación de métodos</h3>
+<p>Otra cosa que <strong>no</strong> funciona en JavaScript son los alias en las funciones, es decir,
+<strong>asignar</strong> un método a una variable.</p>
+<pre><code>var test = someObject.methodTest;
+test();</code></pre>
+<p>Debido al primer caso, <code>test</code> actúa como una función de llamada; por lo que 
+<code>this</code> dentro de este no estará referido a <code>someObject</code>.</p>
+<p>Mientras que la unión de <code>this</code> puede parecer una mala idea en un principio, esto es en
+realidad lo que hace trabajar a la <a href="#object.prototype">herencia de prototipo</a>. </p>
+<pre><code>function Foo() {}
+Foo.prototype.method = function() {};
+
+function Bar() {}
+Bar.prototype = Foo.prototype;
+
+new Bar().method();</code></pre>
+<p>Cuando los <code>métodos</code> son llamados desde una instancia de <code>Bar</code>, <code>this</code> se referirá a una
+instancia.</p>
+</div></article><article id="function.closures"><h2>Closures y referencias</h2><div><p>Una de las características más poderosas de JavaScript es la disponibilidad de <em>closures</em> (cerraduras),
+esto significa que los ámbitos <strong>siempre</strong> podrán ser accedidos por ámbitos externos donde
+fueron definidos. Dado que sólo el alcance es único en JavaScript en el 
+<a href="#function.scopes">ámbito de la función</a>, todas las funciones, por omisión, actúan como closures.</p>
+</div><div><h3>Emulando variables privadas</h3>
+<pre><code>function Counter(start) {
+    var count = start;
+    return {
+        increment: function() {
+            count++;
+        },
+
+        get: function() {
+            return count;
+        }
+    }
+}
+
+var foo = Counter(4);
+foo.increment();
+foo.get(); // 5</code></pre>
+<p>En este caso, <code>Counter</code> retorna <strong>dos</strong> closures. La función <code>increment</code> y la
+función <code>get</code>. Ambas funciones mantienen el ámbito de la <strong>referencia</strong> de<br><code>Counter</code> y, por lo tanto, siempre accede a la variable <code>count</code> que fue definido
+en el ámbito.</p>
+</div><div><h3>¿Por qué las variables privadas trabajan?</h3>
+<p>Dado que no es posible referenciar o asignar ámbitos en JavaScript, <strong>no</strong> hay
+manera de acceder a la variable <code>count</code> desde fuera. Sólo existe una forma para
+interactuar con estos vía los dos closures.</p>
+<pre><code>var foo = new Counter(4);
+foo.hack = function() {
+    count = 1337;
+};</code></pre>
+<p>El código anterior <strong>no</strong> ha cambiado la variable <code>count</code> en el ámbito de <code>Counter</code>, 
+desde <code>foo.hack</code> no es definido en <strong>ese</strong> ámbito. En su lugar se creará - o 
+se anulará - la variable <em>global</em> <code>count</code>.</p>
+</div><div><h3>Closures dentro de bucles</h3>
+<p>Un error frecuente en el uso de closures dentro de bucles, es como si se tratará
+de copiar el valor del índice de la variable del bucle.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout(function() {
+        console.log(i);  
+    }, 1000);
+}</code></pre>
+<p>El código anterior <strong>no</strong> tendrá como salida los números del <code>0</code> al <code>9</code>, sino 
+simplementemente se imprimirá el número <code>10</code> diez veces.</p>
+<p>La función <em>anónima</em> hace <strong>referencia</strong> a <code>i</code> y se llama a
+<code>console.log</code>, el <code>bucle for</code> ya ha terminado y finalizo el valor de 
+<code>i</code> a <code>10</code>.</p>
+<p>Con el fin de obtener el comportamiento deseado, es necesario crear una <strong>copia</strong>
+del valor de <code>i</code>.</p>
+</div><div><h3>Evitando el problema de referencia</h3>
+<p>Con el fin de copiar el valor de la variable índice del bucle, lo mejor es utilizar
+un <a href="#function.scopes">contenedor anónimo</a>.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    (function(e) {
+        setTimeout(function() {
+            console.log(e);  
+        }, 1000);
+    })(i);
+}</code></pre>
+<p>La función anónima externa llamará inmediatamente a <code>i</code> como su primer 
+argumento y recibirá la copia del <strong>valor</strong> de <code>i</code> como parámetro de <code>e</code>.</p>
+<p>La función anónima que se pasa a <code>setTimeout</code> ahora es una referencia a 
+<code>e</code>, cuyo valor <strong>no</strong> han sido cambiados por el bucle.</p>
+<p>No hay otra manera de lograr esto; se debe retornar una función desde
+el contenedor anónimo, que tendrá el mismo comportamiento que el código 
+anterior.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout((function(e) {
+        return function() {
+            console.log(e);
+        }
+    })(i), 1000)
+}</code></pre>
+</div></article><article id="function.arguments"><h2>El objeto <code>arguments</code></h2><div><p>Cada ámbito de la función de JavaScript puede acceder a la variable especial <code>arguments</code>.
+Está variable contiene una lista de todos los argumentos que se pasan a la función.</p>
+<aside>
+<p><strong>Nota:</strong> En este caso <code>arguments</code> ya se ha definido dentro del ámbito de la
+función ya sea através de la sentencia <code>var</code> o como un parámetro formal,
+el objeto <code>arguments</code> no se creará.</p>
+</aside>
+<p>El objeto <code>arguments</code> <strong>no</strong> es un <code>Array</code>. Si bien cuenta con la semántica
+de un array - concretamente la propiedad <code>length</code> - no hereda de 
+<code>Array.prototype</code> y es de hecho un <code>Objeto</code>.</p>
+<p>Debido a esto, <strong>no</strong> es posible usar los métodos estándar de los arrays como <code>push</code>,
+<code>pop</code> o <code>slice</code> en <code>arguments</code>. Mientras que la iteración es un simple bucle <code>for</code> que 
+funciona muy bien, esto se convierte necesariamente en un <code>Array</code> real con el
+fin de utilizar los métodos de un <code>Array</code>.</p>
+</div><div><h3>Conversión de un Array</h3>
+<p>El siguiente código devuelve un nuevo <code>Array</code> que contiene todos los elementos del
+objeto <code>arguments</code>.</p>
+<pre><code>Array.prototype.slice.call(arguments);</code></pre>
+<p>Esta conversión es <strong>lenta</strong>, <strong>no es recomendable</strong> usarlo en puntos criticos que
+afecten el rendimiento del código.</p>
+</div><div><h3>Pasar Argumentos</h3>
+<p>El siguiente método es recomendado para pasar argumentos desde una función a 
+otra.</p>
+<pre><code>function foo() {
+    bar.apply(null, arguments);
+}
+function bar(a, b, c) {
+    // do stuff here
+}</code></pre>
+<p>Otro truco es utilizar tanto <code>call</code> y <code>apply</code> juntos para crear contenedores rápidos y
+consolidados.</p>
+<pre><code>function Foo() {}
+
+Foo.prototype.method = function(a, b, c) {
+    console.log(this, a, b, c);
+};
+
+// Crea una versión sin consolidar de &quot;method&quot; 
+// Se toma los parámetros: this, arg1, arg2...argN
+Foo.method = function() {
+
+    // Resultado: Foo.prototype.method.call(this, arg1, arg2... argN)
+    Function.call.apply(Foo.prototype.method, arguments);
+};</code></pre>
+</div><div><h3>Los parámetros formales y argumentos de índices</h3>
+<p>El objeto <code>arguments</code> crea las funciones de <em>getter</em> y <em>setter</em> para sus
+propiedades, así como parámetros formales de la función.</p>
+<p>Como resultado, se ha cambiado el valor formal del parámetro también se cambio el 
+valor de la propiedad correspondiente del objeto <code>arguments</code>, y al revés.</p>
+<pre><code>function foo(a, b, c) {
+    arguments[0] = 2;
+    a; // 2                                                           
+
+    b = 4;
+    arguments[1]; // 4
+
+    var d = c;
+    d = 9;
+    c; // 3
+}
+foo(1, 2, 3);</code></pre>
+</div><div><h3>Mitos y verdades sobre el rendimiento</h3>
+<p>El objeto <code>arguments</code> es siempre creado con las dos únicas excepciones cuando es
+el caso en que declarado como un nombre dentro de la función o uno de los 
+parámetros formales. No importa si se utiliza o no.</p>
+<p>Ambos <em>getters</em> y <em>setters</em> son <strong>siempre</strong> creados; por lo tanto, con que casi no se
+tiene un impacto en el rendimiento en todo, especialemente no en el código real donde no 
+es más que un simple acceso a las propiedades del objeto <code>arguments</code>.</p>
+<aside>
+<p><strong>Nota ES5:</strong> Estos <em>getters</em> y <em>setters</em> no son creados en modo estricto.</p>
+</aside>
+<p>Sin embargo, hay casos en que se reducirá drásticamente el rendimiento en los motores
+modernos de JavaScript. Este es el caso del uso de <code>arguments.callee</code>.</p>
+<pre><code>function foo() {
+    arguments.callee; // realiza algo con la función del objeto
+    arguments.callee.caller; // y llama a la función del objeto
+}
+
+function bigLoop() {
+    for(var i = 0; i &lt; 100000; i++) {
+        foo(); // Debería ser normalmente entre líneas...
+    }
+}</code></pre>
+<p>El código anterior, <code>foo</code> no puede estar sujeto a la <a href="http://en.wikipedia.org/wiki/Inlining">expansión en línea</a> ya que se 
+necesita saber acerca de sí mismo y la llamada. Esto no sólo denota los posibles beneficios
+de rendimiento que surgen con la expansión en línea, ya que también interrumpe la encapsulación
+ya que la función ahora puede ser dependiente de un contexto específico de llamada.</p>
+<p>Es <strong>muy recomendable</strong>  <strong>nunca</strong> hacer uso de <code>arguments.callee</code> o de cualquier
+de sus propiedades.</p>
+<aside>
+<p><strong>Nota ES5:</strong> En modo estricto, <code>arguments.callee</code> generará una excepción de <code>TypeError</code> ya que 
+su uso ha quedado obsoleto.</p>
+</aside>
+</div></article><article id="function.constructors"><h2>Constructores</h2><div><p>Los constructores en JavaScript todavía son diferentes a los de otros lenguajes.
+Cualquier llamada que es precedida por la palabra <code>new</code> actua como un constructor.</p>
+<p>Dentro del constructor - la función llama - el valor de <code>this</code> se refiere a un
+<code>Objeto</code> recién creado. El <a href="#object.prototype"><code>prototipo</code></a> de este <strong>nuevo</strong> 
+objeto se establece en el <code>prototipo</code> de la funcióno que es invocado como el
+constructor.</p>
+<p>Si la función que se llama no tiene una sentencia <code>return</code> explícita, entonces
+implícitamente devuelve el valor de <code>this</code> - el nuevo objeto.  </p>
+<pre><code>function Foo() {
+    this.bla = 1;
+}
+
+Foo.prototype.test = function() {
+    console.log(this.bla);
+};
+
+var test = new Foo();</code></pre>
+<p>La llamada de <code>Foo</code> por encima del constructor y establece el <code>prototipo</code> del objeto
+recién creado a <code>Foo.prototype</code>.</p>
+<p>En caso explícito de la sentencia <code>return</code> de la función devuelva el valor especificado
+que la declaración, <strong>pero sólo</strong> si el valor devuelto es un <code>Object</code>.                                     </p>
+<pre><code>function Bar() {
+    return 2;
+}
+new Bar(); // a new object
+
+function Test() {
+    this.value = 2;
+
+    return {
+        foo: 1
+    };
+}
+new Test(); // the returned object</code></pre>
+<p>Cuando una <code>nueva</code> keyword es omitidad, la función <strong>no</strong> devuelve un nuevo objeto. </p>
+<pre><code>function Foo() {
+    this.bla = 1; // se establece en el objeto global
+}
+Foo(); // undefined</code></pre>
+<p>Auqnue el ejemplo anterior puede parecer que trabaja en algunos casos, debido
+a los trabajos de <a href="#function.this"><code>this</code></a> en JavaScript, que usará el
+<em>objeto global</em> como valor de <code>this</code>.</p>
+</div><div><h3>Fábricas</h3>
+<p>Con el fin de ser capaz de omitir un <code>nuevo</code> keyword, la función del tiene 
+explícitamente devolver un valor.</p>
+<pre><code>function Bar() {
+    var value = 1;
+    return {
+        method: function() {
+            return value;
+        }
+    }
+}
+Bar.prototype = {
+    foo: function() {}
+};
+
+new Bar();
+Bar();</code></pre>
+<p>Ambos llamadas a <code>Bar</code> devuelven exactamente lo mismo, un reciente objeto creado que
+tiene como propiedad llamada el <code>method</code>, esto es un 
+<a href="#function.closures">Closure</a>.</p>
+<p>También hay que notar que la llamada <code>new Bar()</code> <strong>no</strong> afecta al prototipo
+del objeto devuelto. Mientras que el prototipo se establece en el objeto recién creado,
+ <code>Bar</code> nunca devuelve un nuevo objeto.</p>
+<p>En el ejemplo anterior, no hay diferencia funcional entre usar y no usar
+el keyword <code>new</code>.</p>
+</div><div><h3>Creación de nuevos objetos vía Factorias</h3>
+<p>Una recomendación a menudo es <strong>no</strong> utilizar <code>new</code> ya que su uso puede
+conducir a errores.</p>
+<p>Con el fin de crear un nuevo objeto, uno bien debe utilizar una fábrica y un 
+constructor para crear un nuevo objeto dentro de la fábrica.</p>
+<pre><code>function Foo() {
+    var obj = {};
+    obj.value = &#39;blub&#39;;
+
+    var private = 2;
+    obj.someMethod = function(value) {
+        this.value = value;
+    }
+
+    obj.getPrivate = function() {
+        return private;
+    }
+    return obj;
+}</code></pre>
+<p>Aunque lo anterior es robuesto frente a la keyword <code>new</code> y, ciertamente hace
+que el uso de <a href="#function.closures">variables privadas</a> sea fácil, esto viene con
+algunas desventajas.</p>
+<ol>
+<li>Se utiliza más memoria, ya que los objetos creados <strong>no</strong> comparten los métodos de
+un prototipo.</li>
+<li>Con el fin de heredar de una fábrica se necesita copiar todos los métodos a otro
+objeto o poner todo en un prototipo de nuevo objeto.</li>
+<li>La eliminación de una cadena de prototipo sólo por dejar la keyword <code>new</code> de
+alguna manera va en contra del espíritu del lenguaje.</li>
+</ol>
+</div><div><h3>En conclusión</h3>
+<p>Mientras que se omite el keyword <code>new</code> podría dar a errores,  <strong>no</strong> es ciertamente 
+una razón para abandonar el uso de prototipos por completo. Al final todo se reduce a 
+la solución que se adapta mejor a las necesidades de la aplicación, especialmente si es 
+importante elegir un estilo específico en la creación de objetos 
+<strong>y resistirse</strong>.</p>
+</div></article><article id="function.scopes"><h2>Ámbitos y Namespaces</h2><div><p>A pesar que JavaScript tiene una muy buena sintaxis de dos llaves para los bloques,
+está <strong>no</strong> es compatible con el soporte de ámbito de bloques; por lo que todo se deja
+al lenguaje con el <em>ámbito de la función</em>.</p>
+<pre><code>function test() { // un ámbito
+    for(var i = 0; i &lt; 10; i++) { // no es un ámbito
+        // cuenta
+    }
+    console.log(i); // 10
+}</code></pre>
+<aside>
+<p><strong>Nota:</strong> Cuando no use una instrucción, de retorno o una función como
+argumento, la notación de <code>{...}</code> serán interpretadas como una declaración de bloques y
+<strong>no</strong> como un objeto literal. Esto, en conjunto con la
+<a href="#core.semicolon">inserción automática de punto y coma</a>, puede conducir a errores sutiles.</p>
+</aside>
+<p>Tampoco hay distintos namespaces en JavaScript, lo que significa que todo se define
+en un namespace <em>global y compartido</em>.</p>
+<p>Cada vez que una variable es referenciada, JavaScript recorre hacia arriba a través de todos
+los ámbitos hasta encontrarlo. En este caso que llegue al ámbito global y todavía no ha
+encontrado el nombre solicitado, se generará un error <code>ReferenceError</code>.</p>
+</div><div><h3>El terror de las variables globales</h3>
+<pre><code>// script A
+foo = &#39;42&#39;;
+
+// script B
+var foo = &#39;42&#39;</code></pre>
+<p>Estos dos scripts <strong>no</strong> tienen el mismo efecto. El script A define una variable
+llamada <code>foo</code> en el ámbito <em>global</em> y el script B define <code>foo</code> en el 
+<em>actual</em> ámbito.</p>
+<p>Una vez más, esto <strong>no</strong> tiene el <em>mismo efecto</em> para todo, no usar <code>var</code> puede tener
+mayor implicación.</p>
+<pre><code>// ámbito global
+var foo = 42;
+function test() {
+    // ámbito local
+    foo = 21;
+}
+test();
+foo; // 21</code></pre>
+<p>Dejando de lador la sentencia <code>var</code> dentro de la función <code>test</code> sobre escribiría el
+valor de <code>foo</code>. Si bien al principio puede parecer un gran cambio, se tiene
+miles de líneas de código en JavaScript y no se usaría <code>var</code> introduciendose en un
+horrible y difícil detección de errores.</p>
+<pre><code>// ámbito global
+var items = [/* some list */];
+for(var i = 0; i &lt; 10; i++) {
+    subLoop();
+}
+
+function subLoop() {
+    // ámbito de subLoop
+    for(i = 0; i &lt; 10; i++) { // falta la sentencia var
+        // ¡realizar cosas asombrosas!
+    }
+}</code></pre>
+<p>El bucle externo terminará después de la primera llamada a <code>subLoop</code>,  desde <code>subLoop</code>
+sobreescribe el valor global de <code>i</code>. Usando <code>var</code> para el segundo bucle <code>for</code> se hace
+fácil evitar este error. La sentencia <code>var</code> no debe <strong>nunca</strong> dejarse a menos que
+el <em>efecto deseado</em> es afectado por el ámbito exteriror.</p>
+</div><div><h3>Variables locales</h3>
+<p>La única fuente para las variables locales en JavaScript son los parámetros de la
+<a href="#function.general">función</a> y variables que fueron declaradas vía la sentencia
+<code>var</code>.</p>
+<pre><code>// ámbito global
+var foo = 1;
+var bar = 2;
+var i = 2;
+
+function test(i) {
+    // ámbito local de la función test
+    i = 5;
+
+    var foo = 3;
+    bar = 4;
+}
+test(10);</code></pre>
+<p>Mientras <code>foo</code> y <code>i</code> son variables locales dentro del ámbitor de la función <code>test</code>,
+ela asignación de <code>bar</code> sobreescribe la variable global con el mismo nombre.</p>
+</div><div><h3>Hoisting</h3>
+<p>La declaración de <strong>hoists</strong> en JavaScript. Esto significa que tanto la declaración de <code>var</code> y
+la <code>función</code> declarada se translada a la parte superior de su ámbito que lo contiene.</p>
+<pre><code>bar();
+var bar = function() {};
+var someValue = 42;
+
+test();
+function test(data) {
+    if (false) {
+        goo = 1;
+
+    } else {
+        var goo = 2;
+    }
+    for(var i = 0; i &lt; 100; i++) {
+        var e = data[i];
+    }
+}</code></pre>
+<p>El código anterior transforma antes de ejecutarse. JavaScript mueve
+la declaracione <code>var</code> aspi como las declaraciones de la <code>función</code> a la parte superior a
+lo más cercano del ámbito circundante.</p>
+<pre><code>// declaraciones var movidas aquí
+var bar, someValue; // por omisión &#39;undefined&#39;
+
+// la función declarada es movida aquí también
+function test(data) {
+    var goo, i, e; // se pierde el ámbito del bloque movido aquí
+    if (false) {
+        goo = 1;
+
+    } else {
+        goo = 2;
+    }
+    for(i = 0; i &lt; 100; i++) {
+        e = data[i];
+    }
+}
+
+bar(); // falla con TypeError desde bar sigue en &#39;undefined&#39;
+someValue = 42; // las asignaciones no se ven afectadas por hoisting
+bar = function() {};
+
+test();</code></pre>
+<p>La falta de alcance del bloque no sólo moverá la declaración <code>var</code> fuera de los bucles y
+su contenido, sino también hará que los resultados de ciertos constructores <code>if</code>
+no sean intuitivas.</p>
+<p>En el código original la declaración de <code>if</code> si parecía modificar la <em>variable 
+global</em> <code>goo</code>, mientras actualmente este modifica la <em>variable local</em> - después hoisting 
+ha sido aplicado.</p>
+<p>Sin el conocimiento acerca de <em>hoisting</em>, a continuación el código puede parecer
+un <code>ReferenceError</code>.</p>
+<pre><code>// comprueba si SomeImportantThing ha iniciado
+if (!SomeImportantThing) {
+    var SomeImportantThing = {};
+}</code></pre>
+<p>Pero, por supuesto, lo anterior funciona debido a que la declaración <code>var</code> es movida
+a la parte superior del <em>ámbito global</em>.</p>
+<pre><code>var SomeImportantThing;
+
+// otro código podría iniciar SomeImportantThing aqui, o no
+
+// asegúrese de que está ahí
+if (!SomeImportantThing) {
+    SomeImportantThing = {};
+}</code></pre>
+</div><div><h3>Name Resolution Order</h3>
+<p>All scopes in JavaScript, including the <em>global scope</em>, have the special name 
+<a href="#function.this"><code>this</code></a>, defined in them, which refers to the <em>current object</em>. </p>
+<p>Function scopes also have the name <a href="#function.arguments"><code>arguments</code></a>, defined in
+them, which contains the arguments that were passed to a function.</p>
+<p>For example, when trying to access a variable named <code>foo</code> inside the scope of a 
+function, JavaScript will lookup the name in the following order:</p>
+<ol>
+<li>In case there is a <code>var foo</code> statement in the current scope, use that.</li>
+<li>If one of the function parameters is named <code>foo</code>, use that.</li>
+<li>If the function itself is called <code>foo</code>, use that.</li>
+<li>Go to the next outer scope, and start with <strong>#1</strong> again.</li>
+</ol>
+<aside>
+<p><strong>Note:</strong> Having a parameter called <code>arguments</code> will <strong>prevent</strong> the creation 
+of the default <code>arguments</code> object.</p>
+</aside>
+</div><div><h3>Namespaces</h3>
+<p>A common problem of having only one global namespace is the likeliness of running
+into problems where variable names clash. In JavaScript, this problem can
+easily be avoided with the help of <em>anonymous wrappers</em>.</p>
+<pre><code>(function() {
+    // a self contained &quot;namespace&quot;
+
+    window.foo = function() {
+        // an exposed closure
+    };
+
+})(); // execute the function immediately</code></pre>
+<p>Unnamed functions are considered <a href="#function.general">expressions</a>; so in order to
+being callable, they must first be evaluated.</p>
+<pre><code>( // evaluate the function inside the paranthesis
+function() {}
+) // and return the function object
+() // call the result of the evaluation</code></pre>
+<p>There are other ways for evaluating and calling the function expression; which, 
+while different in syntax, do behave the exact same way.</p>
+<pre><code>// Two other ways
++function(){}();
+(function(){}());</code></pre>
+</div><div><h3>In Conclusion</h3>
+<p>It is recommended to always use an <em>anonymous wrapper</em> for encapsulating code in 
+its own namespace. This does not only protect code against name clashes, but it 
+also allows for better modularization of programs.</p>
+<p>Additionally, the use of global variables is considered <strong>bad practice</strong>. <strong>Any</strong>
+use of them indicates badly written code that is prone to errors and hard to maintain.</p>
+</div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>Arrays</h1></header><!-- Articles--><article id="array.general"><h2>Iteración de un Array y sus propiedades</h2><div><p>A pesar que los arrays en JavaScript son objetos, no existe un buena razón para
+usarlo en un <a href="#object.forinloop"><code>bucle for</code></a> para una interación de este. De 
+hecho, hay un número de buenas razones <strong>contra</strong> el uso de <code>for in</code> en arrays.</p>
+<aside>
+<p><strong>Nota:</strong> Los arrays de JavaScript <strong>no</strong> son <em>arrays asociativos</em>. JavaScript sólo 
+tiene <a href="#object.general">objetos</a> para el mapeo de keys a valores. Y mientras
+que los arrays asociativos <strong>preservan</strong> el orden, los objetos <strong>no</strong>.</p>
+</aside>
+<p>Dado que el bucle <code>for in</code> enumera todas las propiedades que están en una cadena
+de prototipo y la única manera para excluir estas propiedades es el uso de
+<a href="#object.hasownproperty"><code>hasOwnProperty</code></a>, ya que es <strong>veinte veces</strong> más
+lento que un bucle <code>for</code> normal.</p>
+</div><div><h3>Iteración</h3>
+<p>Con el fin de obtener el mejor rendimiento cuando se repite la interación de arrays, 
+es lo mejor hacer uso del clásico bucle <code>for</code>.</p>
+<pre><code>var list = [1, 2, 3, 4, 5, ...... 100000000];
+for(var i = 0, l = list.length; i &lt; l; i++) {
+    console.log(list[i]);
+}</code></pre>
+<p>Hay una captura adicional en el ejemplo anterior, que es el almacenamiento de la
+caché de longitud del array vía <code>l = list.length</code>.</p>
+<p>Aunque la propiedad <code>length</code> es definida en el mismo array, todavía posee una sobrecarga
+para realizar la búsqueda en cada interación del bucle. Y mientras que los últimos 
+motores de JavaScript <strong>pueden</strong> aplicar optimizaciones en este caso, no hay manera 
+de saber si el ćodigo se ejecutará en uno de estos nuevos motores nuevos o no.</p>
+<p>De hecho, dejando de lado el almacenamiento en caché puede resultar que el bucle
+inicie sólo la <strong>mitad de rápido</strong> que con la longitud de la caché.</p>
+</div><div><h3>La propiedad <code>length</code></h3>
+<p>Mientras que <em>getter</em> de la propiedad <code>length</code> simplemente retorne el número de
+elementos son contenidos en un array, el <em>setter</em> puede ser usado para 
+<strong>truncar</strong> el array.</p>
+<pre><code>var foo = [1, 2, 3, 4, 5, 6];
+foo.length = 3;
+foo; // [1, 2, 3]
+
+foo.length = 6;
+foo; // [1, 2, 3]</code></pre>
+<p>La asignación de un menor número de longitud trunca al array, pero incrementando la
+longitud no tiene ningún efecto sobre el array.</p>
+</div><div><h3>En conclusión</h3>
+<p>Para obtener el mejor rendimiento es recomendable siempre usar el bucle <code>for</code>
+y alamacenar en caché la propiedad <code>length</code>. El uso del bucle <code>for in</code> en un array 
+es señal de un código mal escrito propenso a errores y un mal desempeño. </p>
+</div></article><article id="array.constructor"><h2>El constructor <code>Array</code></h2><div><p>Desde el constructor <code>Array</code> es ambiguo en la forma en que ocupa sus párametros,
+es recomendable siempre el uso de arrays literales - la notación <code>[]</code> - 
+cuando se crean nuevos arrays.</p>
+<pre><code>[1, 2, 3]; // Resultado: [1, 2, 3]
+new Array(1, 2, 3); // Resultado: [1, 2, 3]
+
+[3]; // Resultado: [3]
+new Array(3); // Resultado: []
+new Array(&#39;3&#39;) // Resultado: [&#39;3&#39;]</code></pre>
+<p>En casos cuando sólo hay un argumento pasado al constructor del <code>Array</code>,
+y que el argumento es un <code>Número</code>, el contructor devolverá un array <em>disperso</em> 
+con la propiedad <code>length</code> establecida al valor del argumento. Esto debe señalarse
+que la propiedad <code>length</code> <strong>sólo</strong> del nuevo array se establecerá de esa manera, 
+los índices reales de la matriz no se iniciará. </p>
+<pre><code>var arr = new Array(3);
+arr[1]; // undefined
+1 in arr; // falso, el índice no se ha establecido</code></pre>
+<p>El comportamiento de poder establecer la longitud de un array inicial sólo es útil
+en algunos casos array, como la repetición de una cadena, en la que se evita el uso 
+del código de <code>bucle for</code>.</p>
+<pre><code>new Array(count + 1).join(stringToRepeat);</code></pre>
+</div><div><h3>En conclusión</h3>
+<p>El uso de un constructor <code>Array</code> debe ser devuelto como sea posible. 
+Los literales son definitivamente preferidos. Estos son más cortos y tienen una
+sintaxis más limpia; por lo tanto, también se incrementa la legibilidad del código.</p>
+</div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>Types</h1></header><!-- Articles--><article id="types.equality"><h2>Equality and Comparisons</h2><div><p>JavaScript has two different ways of comparing the values of objects for equality. </p>
+</div><div><h3>The Equality Operator</h3>
+<p>The equality operator consists of two equal signs: <code>==</code></p>
+<p>JavaScript features <em>weak typing</em>. This means that the equality operator 
+<strong>coerces</strong> types in order to compare them.</p>
+<pre><code>&quot;&quot;           ==   &quot;0&quot;           // false
+0            ==   &quot;&quot;            // true
+0            ==   &quot;0&quot;           // true
+false        ==   &quot;false&quot;       // false
+false        ==   &quot;0&quot;           // true
+false        ==   undefined     // false
+false        ==   null          // false
+null         ==   undefined     // true
+&quot; \t\r\n&quot;    ==   0             // true</code></pre>
+<p>The above table shows the results of the type coercion, and it is the main reason 
+why the use of <code>==</code> is widely regarded as bad practice. It introduces
+hard-to-track-down bugs due to its complicated conversion rules.</p>
+<p>Additionally, there is also a performance impact when type coercion is in play;
+for example, a string has to be converted to a number before it can be compared
+to another number.</p>
+</div><div><h3>The Strict Equality Operator</h3>
+<p>The strict equality operator consists of <strong>three</strong> equal signs: <code>===</code>.</p>
+<p>It works exactly like the normal equality operator, except that strict equality 
+operator does <strong>not</strong> perform type coercion between its operands.</p>
+<pre><code>&quot;&quot;           ===   &quot;0&quot;           // false
+0            ===   &quot;&quot;            // false
+0            ===   &quot;0&quot;           // false
+false        ===   &quot;false&quot;       // false
+false        ===   &quot;0&quot;           // false
+false        ===   undefined     // false
+false        ===   null          // false
+null         ===   undefined     // false
+&quot; \t\r\n&quot;    ===   0             // false</code></pre>
+<p>The above results are a lot clearer and allow for early breakage of code. This
+hardens code to a certain degree and also gives performance improvements in case
+the operands are of different types.</p>
+</div><div><h3>Comparing Objects</h3>
+<p>While both <code>==</code> and <code>===</code> are stated as <strong>equality</strong> operators, they behave 
+differently when at least one of their operands happens to be an <code>Object</code>.</p>
+<pre><code>{} === {};                   // false
+new String(&#39;foo&#39;) === &#39;foo&#39;; // false
+new Number(10) === 10;       // false
+var foo = {};
+foo === foo;                 // true</code></pre>
+<p>Here, both operators compare for <strong>identity</strong> and <strong>not</strong> equality; that is, they
+will compare for the same <strong>instance</strong> of the object, much like <code>is</code> in Python 
+and pointer comparison in C.</p>
+</div><div><h3>In Conclusion</h3>
+<p>It is highly recommended to only use the <strong>strict equality</strong> operator. In cases
+where types need to be coerced, it should be done <a href="#types.casting">explicitly</a> 
+and not left to the language&#39;s complicated coercion rules.</p>
+</div></article><article id="types.typeof"><h2>The <code>typeof</code> Operator</h2><div><p>The <code>typeof</code> operator (together with 
+<a href="#types.instanceof"><code>instanceof</code></a>) is probably the biggest 
+design flaw of JavaScript, as it is near of being <strong>completely broken</strong>.</p>
+<p>Although <code>instanceof</code> still has its limited uses, <code>typeof</code> really has only one
+practical use case, which does <strong>not</strong> happen to be checking the type of an 
+object. </p>
+<aside>
+<p><strong>Note:</strong> While <code>typeof</code> can also be called with a function like syntax
+i.e. <code>typeof(obj)</code>, this is not a function call. The two parenthesis will
+behave like normal and the return value will be used as the operand of the
+<code>typeof</code> operator. There is <strong>no</strong> <code>typeof</code> function.</p>
+</aside>
+</div><div><h3>The JavaScript Type Table</h3>
+<pre><code>Value               Class      Type
+-------------------------------------
+&quot;foo&quot;               String     string
+new String(&quot;foo&quot;)   String     object
+1.2                 Number     number
+new Number(1.2)     Number     object
+true                Boolean    boolean
+new Boolean(true)   Boolean    object
+new Date()          Date       object
+new Error()         Error      object
+[1,2,3]             Array      object
+new Array(1, 2, 3)  Array      object
+new Function(&quot;&quot;)    Function   function
+/abc/g              RegExp     object (function in Nitro/V8)
+new RegExp(&quot;meow&quot;)  RegExp     object (function in Nitro/V8)
+{}                  Object     object
+new Object()        Object     object</code></pre>
+<p>In the above table, <em>Type</em> refers to the value that the <code>typeof</code> operator returns.
+As can be clearly seen, this value is anything but consistent.</p>
+<p>The <em>Class</em> refers to the value of the internal <code>[[Class]]</code> property of an object.</p>
+<aside>
+<p><strong>From the Specification:</strong> The value of <code>[[Class]]</code> can be one of the
+following strings. <code>Arguments</code>, <code>Array</code>, <code>Boolean</code>, <code>Date</code>, <code>Error</code>, 
+<code>Function</code>, <code>JSON</code>, <code>Math</code>, <code>Number</code>, <code>Object</code>, <code>RegExp</code>, <code>String</code>.</p>
+</aside>
+<p>In order to retrieve the value of <code>[[Class]]</code>, one has to make use of the
+<code>toString</code> method of <code>Object.prototype</code>.</p>
+</div><div><h3>The Class of an Object</h3>
+<p>The specification gives exactly one way of accessing the <code>[[Class]]</code> value,
+with the use of <code>Object.prototype.toString</code>. </p>
+<pre><code>function is(type, obj) {
+    var clas = Object.prototype.toString.call(obj).slice(8, -1);
+    return obj !== undefined &amp;&amp; obj !== null &amp;&amp; clas === type;
+}
+
+is(&#39;String&#39;, &#39;test&#39;); // true
+is(&#39;String&#39;, new String(&#39;test&#39;)); // true</code></pre>
+<p>In the above example, <code>Object.prototype.toString</code> gets called with the value of
+<a href="#function.this">this</a> being set to the object whose <code>[[Class]]</code> value should be 
+retrieved.</p>
+<aside class="es5"><p><strong>ES5 Note:</strong> For convenience the return value of <code>Object.prototype.toString</code> 
+for both <code>null</code> and <code>undefined</code> was <strong>changed</strong> from <code>Object</code> to <code>Null</code> and 
+<code>Undefined</code> in ECMAScript 5.</p>
+</aside>
+</div><div><h3>Testing for Undefined Variables</h3>
+<pre><code>typeof foo !== &#39;undefined&#39;</code></pre>
+<p>The above will check whether <code>foo</code> was actually declared or not; just 
+referencing it would result in a <code>ReferenceError</code>. This is the only thing
+<code>typeof</code> is actually useful for.</p>
+</div><div><h3>In Conclusion</h3>
+<p>In order to check the type of an object, it is highly recommended to use 
+<code>Object.prototype.toString</code> because this is the only reliable way of doing so. 
+As shown in the above type table, some return values of <code>typeof</code> are not defined 
+in the specification; thus, they can differ across various implementations.</p>
+<p>Unless checking whether a variable is defined, <code>typeof</code> should be avoided at
+<strong>all costs</strong>.</p>
+</div></article><article id="types.instanceof"><h2>The <code>instanceof</code> Operator</h2><div><p>The <code>instanceof</code> operator compares the constructors of its two operands. It is 
+only useful when comparing custom made objects. Used on built-in types, it is
+nearly as useless as the <a href="#types.typeof">typeof operator</a>.</p>
+</div><div><h3>Comparing Custom Objects</h3>
+<pre><code>function Foo() {}
+function Bar() {}
+Bar.prototype = new Foo();
+
+new Bar() instanceof Bar; // true
+new Bar() instanceof Foo; // true
+
+// This just sets Bar.prototype to the function object Foo
+// But not to an actual instance of Foo
+Bar.prototype = Foo;
+new Bar() instanceof Foo; // false</code></pre>
+</div><div><h3>Using <code>instanceof</code> with Native Types</h3>
+<pre><code>new String(&#39;foo&#39;) instanceof String; // true
+new String(&#39;foo&#39;) instanceof Object; // true
+
+&#39;foo&#39; instanceof String; // false
+&#39;foo&#39; instanceof Object; // false</code></pre>
+<p>One important thing to note here is that <code>instanceof</code> does not work on objects 
+that originate from different JavaScript contexts (e.g. different documents
+in a web browser), since their constructors will not be the exact same object.</p>
+</div><div><h3>In Conclusion</h3>
+<p>The <code>instanceof</code> operator should <strong>only</strong> be used when dealing with custom made 
+objects that originate from the same JavaScript context. Just like the
+<a href="#types.typeof"><code>typeof</code></a> operator, every other use of it should be <strong>avoided</strong>.</p>
+</div></article><article id="types.casting"><h2>Type Casting</h2><div><p>JavaScript is a <em>weakly typed</em> language, so it will apply <em>type coercion</em>
+<strong>wherever</strong> possible.</p>
+<pre><code>// These are true
+new Number(10) == 10; // Number.toString() is converted
+                      // back to a number
+
+10 == &#39;10&#39;;           // Strings gets converted to Number
+10 == &#39;+10 &#39;;         // More string madness
+10 == &#39;010&#39;;          // And more 
+isNaN(null) == false; // null converts to 0
+                      // which of course is not NaN
+
+// These are false
+10 == 010;
+10 == &#39;-10&#39;;</code></pre>
+<aside class="es5"><p><strong>ES5 Note:</strong> Number literals that start with a <code>0</code> are interpreted as octal 
+(Base 8). Octal support for these has been <strong>removed</strong> in ECMAScript 5 strict 
+mode.</p>
+</aside>
+<p>In order to avoid the above, use of the <a href="#types.equality">strict equal operator</a> 
+is <strong>highly</strong> recommended. Although this avoids a lot of common pitfalls, there 
+are still many further issues that arise from JavaScript&#39;s weak typing system.</p>
+</div><div><h3>Constructors of Built-In Types</h3>
+<p>The constructors of the built in types like <code>Number</code> and <code>String</code> behave
+differently when being used with the <code>new</code> keyword and without it.</p>
+<pre><code>new Number(10) === 10;     // False, Object and Number
+Number(10) === 10;         // True, Number and Number
+new Number(10) + 0 === 10; // True, due to implicit conversion</code></pre>
+<p>Using a built-in type like <code>Number</code> as a constructor will create a new <code>Number</code> 
+object, but leaving out the <code>new</code> keyword will make the <code>Number</code> function behave
+like a converter.</p>
+<p>In addition, having literals or non-object values in there will result in even
+more type coercion.</p>
+<p>The best option is to cast to one of the three possible types <strong>explicitly</strong>.</p>
+</div><div><h3>Casting to a String</h3>
+<pre><code>&#39;&#39; + 10 === &#39;10&#39;; // true</code></pre>
+<p>By prepending an empty string, a value can easily be casted to a string.</p>
+</div><div><h3>Casting to a Number</h3>
+<pre><code>+&#39;10&#39; === 10; // true</code></pre>
+<p>Using the <strong>unary</strong> plus operator, it is possible to cast to a number.</p>
+</div><div><h3>Casting to a Boolean</h3>
+<p>By using the <strong>not</strong> operator twice, a value can be converted a boolean.</p>
+<pre><code>!!&#39;foo&#39;;   // true
+!!&#39;&#39;;      // false
+!!&#39;0&#39;;     // true
+!!&#39;1&#39;;     // true
+!!&#39;-1&#39;     // true
+!!{};      // true
+!!true;    // true</code></pre>
+</div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>Núcleo</h1></header><!-- Articles--><article id="core.eval"><h2>¿Por qué no usar <code>eval</code>?</h2><div><p>La función <code>eval</code> ejecuta un string como código JavaScript en el ámbito local.</p>
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    eval(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 3
+foo; // 1</code></pre>
+<p>Pero <code>eval</code> sólo ejecutará en ámbito local cuando es llamado <strong>directamente</strong> <em>y</em> 
+el nombre de la función llamada es <code>eval</code>.</p>
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    var bar = eval;
+    bar(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 2
+foo; // 3</code></pre>
+<p>El uso de <code>eval</code> debe evitarse <strong>a toda costa</strong>. El 99.9% de su &quot;uso&quot; puede 
+lograrse <strong>sin</strong> su uso..</p>
+</div><div><h3><code>eval</code> disfrazado</h3>
+<p>Las funciones de <a href="#other.timeouts">tiempo de espera</a> <code>setTimeout</code> y <code>setInterval</code> pueden
+tomar un string como primer argumento. En este caso, el string <strong>siempre</strong> se ejecutará en
+el ámbito global ya que <code>eval</code> no ha sido llamado directamente.</p>
+</div><div><h3>Problemas de seguridad</h3>
+<p><code>eval</code> es también un problema de seguridad ya que ejecuta <strong>cualquier</strong> código enviado,
+y <strong>nunca</strong> debe usarse con strings que no se conozcan o tengan un origen no confiable.</p>
+</div><div><h3>En conclusión</h3>
+<p><code>eval</code> nunca debe ser usado, cualquier código que haga uso del mismo debe ser cuestionado
+en su funcionamiento, rendimiento y seguridad. En caso de que se necesite trabajar con
+<code>eval</code>, el diseño ha de ser cuestionado y <strong>no</strong> debe  utilizarse en primer lugar, se
+debe usar un <em>mejor diseño</em>, que no requiera el uso de <code>eval</code>. </p>
+</div></article><article id="core.undefined"><h2><code>undefined</code> y <code>null</code></h2><div><p>JavaScript tiene dos valores distintos para <code>nothing</code>, el más útil de estos dos
+es <code>undefined</code>.</p>
+</div><div><h3>El valor <code>undefined</code></h3>
+<p><code>undefined</code> es un tipo de dato con exactamente el mismo valor: <code>undefined</code>.</p>
+<p>El lenguaje también define una variable global que tiene el valor de <code>undefined</code>,
+Esta variable es también llamada <code>undefined</code>. Sin embargo, esta variable <strong>no</strong> es una 
+constante, ni es una palabra reservada del lenguaje. Esto significa que el <em>valor</em> 
+puede ser sobreescrito fácilmente.</p>
+<aside>
+<p><strong>Nota ES5:</strong> <code>undefined</code> en ECMAScript 5 <strong>ya no es</strong> <em>modificable</em> en modo esstricto,
+pero su nombre todavía puede por ejemplo establecer una función con el nombre
+<code>undefined</code>.</p>
+</aside>
+<p>Algunos ejemplos cuando el valor retorna <code>undefined</code>:</p>
+<ul>
+<li>Acceso a la variable global (sin modificar) <code>undefined</code>.</li>
+<li>Retorna implícitamente las funciones que no posean la sentencia <code>return</code>.</li>
+<li>Sentencia <code>return</code> que no retorna nada de forma explicíta.</li>
+<li>Búsquedas de propiedades inexistentes.</li>
+<li>Párametros de la función que no tienen ningún valor explicíto pasado.</li>
+<li>Cualquier valor que se estable en <code>undefined</code>.</li>
+</ul>
+</div><div><h3>Manejar los cambios en el valor deChanges <code>undefined</code></h3>
+<p>Dado que la variable <code>undefined</code> sólo tiene una copia del <em>value</em> de<br><code>undefined</code>, assigna un nuevo valor que <strong>no</strong> cambie el valor del 
+<em>tipo</em> <code>undefined</code>.</p>
+<p>Aún con el fin de comparar con el valor de <code>undefined</code> es necesario
+recuperar el valor de <code>undefined</code> primero.</p>
+<p>Con el fin de proteger una posible sobreescritura en la variable <code>undefined</code>,
+una técnica común es agregar un párametro adicional a un 
+<a href="#function.scopes">wrapper anónimo</a>, que consiga ningún párametro que se le pase.</p>
+<pre><code>var undefined = 123;
+(function(something, foo, undefined) {
+    // undefined en el ámbito local
+    // ahora hace referencia al valor
+
+})(&#39;Hello World&#39;, 42);</code></pre>
+<p>Otra forma de lograrlo un mismo efecto es declarar dentro un
+wrapper.</p>
+<pre><code>var undefined = 123;
+(function(something, foo) {
+    var undefined;
+    ...
+
+})(&#39;Hello World&#39;, 42);</code></pre>
+<p>La única diferencia, es que está versión es de 4 bytes más que utiliza, y en
+caso se comprima y no hay otra declaración de &#39;var&#39; dentro del
+wrapper anónimo.</p>
+</div><div><h3>Uso de <code>null</code></h3>
+<p>Mientras que <code>undefined</code> en el contexto del lenguaje JavaScript es muy usado
+en el sentido tradicional como <em>null</em>, el actual <code>null</code> (ambos literal y de un tipo)
+es más o menos que otro tipo de datos.</p>
+<p>Es utilizado en algunos detalles internos de JavaScript (como declarar al final de un
+cadena de prototipo estableciendo <code>Foo.prototype = null</code>), pero en casi todos los
+casos, puede ser reemplazado por <code>undefined</code>.</p>
+</div></article><article id="core.semicolon"><h2>Automatic Semicolon Insertion</h2><div><p>Although JavaScript has C style syntax, it does <strong>not</strong> enforce the use of
+semicolons in the source code, so it is possible to omit them.</p>
+<p>JavaScript is not a semicolon-less language. In fact, it needs the 
+semicolons in order to understand the source code. Therefore, the JavaScript
+parser <strong>automatically</strong> inserts them whenever it encounters a parse
+error due to a missing semicolon.</p>
+<pre><code>var foo = function() {
+} // parse error, semicolon expected
+test()</code></pre>
+<p>Insertion happens, and the parser tries again.</p>
+<pre><code>var foo = function() {
+}; // no error, parser continues
+test()</code></pre>
+<p>The automatic insertion of semicolon is considered to be one of <strong>biggest</strong>
+design flaws in the language because it <em>can</em> change the behavior of code.</p>
+</div><div><h3>How it Works</h3>
+<p>The code below has no semicolons in it, so it is up to the parser to decide where
+to insert them.</p>
+<pre><code>(function(window, undefined) {
+    function test(options) {
+        log(&#39;testing!&#39;)
+
+        (options.list || []).forEach(function(i) {
+
+        })
+
+        options.value.test(
+            &#39;long string to pass here&#39;,
+            &#39;and another long string to pass&#39;
+        )
+
+        return
+        {
+            foo: function() {}
+        }
+    }
+    window.test = test
+
+})(window)
+
+(function(window) {
+    window.someLibrary = {}
+
+})(window)</code></pre>
+<p>Below is the result of the parser&#39;s &quot;guessing&quot; game.</p>
+<pre><code>(function(window, undefined) {
+    function test(options) {
+
+        // Not inserted, lines got merged
+        log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {
+
+        }); // &lt;- inserted
+
+        options.value.test(
+            &#39;long string to pass here&#39;,
+            &#39;and another long string to pass&#39;
+        ); // &lt;- inserted
+
+        return; // &lt;- inserted, breaks the return statement
+        { // treated as a block
+
+            // a label and a single expression statement
+            foo: function() {} 
+        }; // &lt;- inserted
+    }
+    window.test = test; // &lt;- inserted
+
+// The lines got merged again
+})(window)(function(window) {
+    window.someLibrary = {}; // &lt;- inserted
+
+})(window); //&lt;- inserted</code></pre>
+<aside>
+<p><strong>Note:</strong> The JavaScript parser does not &quot;correctly&quot; handle return statements 
+which are followed by a new line, while this is not neccessarily the fault of 
+the automatic semicolon insertion, it can still be an unwanted side-effect. </p>
+</aside>
+<p>The parser drastically changed the behavior of the code above. In certain cases,
+it does the <strong>wrong thing</strong>.</p>
+</div><div><h3>Leading Parenthesis</h3>
+<p>In case of a leading parenthesis, the parser will <strong>not</strong> insert a semicolon.</p>
+<pre><code>log(&#39;testing!&#39;)
+(options.list || []).forEach(function(i) {})</code></pre>
+<p>This code gets transformed into one line.</p>
+<pre><code>log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {})</code></pre>
+<p>Chances are <strong>very</strong> high that <code>log</code> does <strong>not</strong> return a function; therefore,
+the above will yield a <code>TypeError</code> stating that <code>undefined is not a function</code>.</p>
+</div><div><h3>In Conclusion</h3>
+<p>It is highly recommended to <strong>never</strong> omit semicolons; it is also advocated to 
+keep braces on the same line with their corresponding statements and to never omit 
+them for one single-line <code>if</code> / <code>else</code> statements. Both of these measures will 
+not only improve the consistency of the code, but they will also prevent the 
+JavaScript parser from changing its behavior.</p>
+</div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>Otros</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> and <code>setInterval</code></h2><div><p>Since JavaScript is asynchronous, it is possible to schedule the execution of a 
+function by using the <code>setTimeout</code> and <code>setInterval</code> functions.</p>
+<aside>
+<p><strong>Note:</strong> Timeouts are <strong>not</strong> part of the ECMAScript Standard. They are
+implemented as part of the <a href="http://en.wikipedia.org/wiki/Document_Object_Model" title="Document Object Model">DOM</a>.</p>
+</aside>
+<pre><code>function foo() {}
+var id = setTimeout(foo, 1000); // returns a Number &gt; 0</code></pre>
+<p>When <code>setTimeout</code> gets called, it will return the ID of the timeout and schedule
+<code>foo</code> to run in <strong>approximately</strong> one thousand milliseconds in the future. 
+<code>foo</code> will then get executed exactly <strong>once</strong>.</p>
+<p>Depending on the timer resolution of the JavaScript engine that is running the 
+code, as well as the fact that JavaScript is single threaded and other code that 
+gets executed might block the thread, it is by <strong>no means</strong> a safe bet that one 
+will get the exact delay that was specified in the <code>setTimeout</code> call.</p>
+<p>The function that was passed as the first parameter will get called by the
+<em>global object</em>, which means that <a href="#function.this"><code>this</code></a> inside the called function 
+refers to that very object.</p>
+<pre><code>function Foo() {
+    this.value = 42;
+    this.method = function() {
+        // this refers to the global object
+        console.log(this.value); // will log undefined
+    };
+    setTimeout(this.method, 500);
+}
+new Foo();</code></pre>
+<aside>
+<p><strong>Note:</strong> As <code>setTimeout</code> takes a <strong>function object</strong> as its first parameter, an
+often made mistake is to use <code>setTimeout(foo(), 1000)</code>, which will use the 
+<strong>return value</strong> of the call <code>foo</code> and <strong>not</strong> <code>foo</code>. This is, most of the time, 
+a silent error, since when the function returns <code>undefined</code> <code>setTimeout</code> will 
+<strong>not</strong> raise any error.</p>
+</aside>
+</div><div><h3>Stacking Calls with <code>setInterval</code></h3>
+<p>While <code>setTimeout</code> only runs the function once, <code>setInterval</code> - as the name 
+suggests - will execute the function <strong>every</strong> <code>X</code> milliseconds, but its use is 
+discouraged. </p>
+<p>When code that is being executed blocks the timeout call, <code>setInterval</code> will 
+still issue more calls to the specified function. This can, especially with small
+intervals, result in function calls stacking up.</p>
+<pre><code>function foo(){
+    // something that blocks for 1 second
+}
+setInterval(foo, 100);</code></pre>
+<p>In the above code, <code>foo</code> will get called once and will then block for one second.</p>
+<p>While <code>foo</code> blocks the code, <code>setInterval</code> will still schedule further calls to
+it. Now, when <code>foo</code> has finished, there will already be <strong>ten</strong> further calls to
+it waiting for execution.</p>
+</div><div><h3>Dealing with Possible Blocking Code</h3>
+<p>The easiest solution, as well as most controllable solution, is to use <code>setTimeout</code> within
+the function itself.</p>
+<pre><code>function foo(){
+    // something that blocks for 1 second
+    setTimeout(foo, 100);
+}
+foo();</code></pre>
+<p>Not only does this encapsulate the <code>setTimeout</code> call, but it also prevents the
+stacking of calls and it gives additional control. <code>foo</code> itself can now decide 
+whether it wants to run again or not.</p>
+</div><div><h3>Manually Clearing Timeouts</h3>
+<p>Clearing timeouts and intervals works by passing the respective ID to
+<code>clearTimeout</code> or <code>clearInterval</code>, depending which <code>set</code> function was used in
+the first place.</p>
+<pre><code>var id = setTimeout(foo, 1000);
+clearTimeout(id);</code></pre>
+</div><div><h3>Clearing all timeouts</h3>
+<p>Because there is no built-in method for clearing all timeouts and/or intervals, 
+it is necessary to use brute force in order to achieve this functionality.</p>
+<pre><code>// clear &quot;all&quot; timeouts
+for(var i = 1; i &lt; 1000; i++) {
+    clearTimeout(i);
+}</code></pre>
+<p>There might still be timeouts that are unaffected by this arbitrary number;
+therefore, is is instead recommended to keep track of all the timeout IDs, so
+they can be cleared specifically.</p>
+</div><div><h3>Hidden use of <code>eval</code></h3>
+<p><code>setTimeout</code> and <code>setInterval</code> can also take a string as their first parameter.
+This feature should <strong>never</strong> be used because it internally makes use of <code>eval</code>.</p>
+<aside>
+<p><strong>Note:</strong> Since the timeout functions are <strong>not</strong> specified by the ECMAScript
+standard, the exact workings when a string is passed to them might differ in
+various JavaScript implementations. For example, Microsoft&#39;s JScript makes use of
+the <code>Function</code> constructor in place of <code>eval</code>.</p>
+</aside>
+<pre><code>function foo() {
+    // will get called
+}
+
+function bar() {
+    function foo() {
+        // never gets called
+    }
+    setTimeout(&#39;foo()&#39;, 1000);
+}
+bar();</code></pre>
+<p>Since <code>eval</code> is not getting called <a href="#core.eval">directly</a> in this case, the string 
+passed to <code>setTimeout</code> will get executed in the <em>global scope</em>; thus, it will 
+not use the local variable <code>foo</code> from the scope of <code>bar</code>.</p>
+<p>It is further recommended to <strong>not</strong> use a string for passing arguments to the
+function that will get called by either of the timeout functions. </p>
+<pre><code>function foo(a, b, c) {}
+
+// NEVER use this
+setTimeout(&#39;foo(1,2, 3)&#39;, 1000)
+
+// Instead use an anonymous function
+setTimeout(function() {
+    foo(a, b, c);
+}, 1000)</code></pre>
+<aside>
+<p><strong>Note:</strong> While it is also possible to use the syntax 
+<code>setTimeout(foo, 1000, a, b, c)</code>, it is not recommended, as its use may lead
+to subtle errors when used with <a href="#function.this">methods</a>. </p>
+</aside>
+</div><div><h3>In Conclusion</h3>
+<p><strong>Never</strong> should a string be used as the parameter of <code>setTimeout</code> or 
+<code>setInterval</code>. It is a clear sign of <strong>really</strong> bad code, when arguments need 
+to be supplied to the function that gets called. An <em>anonymous function</em> should
+be passed that then takes care of the actual call.</p>
+<p>Furthermore, the use of <code>setInterval</code> should be avoided because its scheduler is not
+blocked by executing JavaScript.</p>
+</div></article></section><!-- Footer--><footer><p>Copyright &copy; 2011. Built with
+ <a href="http://nodejs.org/">Node.js </a>using a<a href="https://github.com/visionmedia/jade/">jade </a>template. 
+Hosted by <a href="http://cramerdev.com">Cramer Development</a>.</p></footer><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script><script src="../javascript/prettify.js"></script><script src="../javascript/plugin.js"></script><script src="../javascript/garden.js"></script></body></html>

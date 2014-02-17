@@ -1,0 +1,1103 @@
+<!DOCTYPE html><html lang="ko"><head><title>JavaScript Garden</title><meta charset="utf-8"><meta name="description" content="A Guide to JavaScript's Quirks and Flaws."><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" href="/JavaScript-Garden/favicon.ico?v=2"><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
+<script src="javascript/html5.js"></script>
+<![endif]--></head><body><!-- Navigation--><nav id="nav_main"><div><ul> <li><a href="/JavaScript-Garden/" title="JavaScript Garden">en</a></li><li><a href="/JavaScript-Garden/es" title="Jardín de JavaScript">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha">fi</a></li><li><a href="/JavaScript-Garden/hu" title="JavaScript Garden">hu</a></li><li><a href="/JavaScript-Garden/it" title="JavaScript Garden">it</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden">ja</a></li><li class="active"><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден">ru</a></li><li><a href="/JavaScript-Garden/tr" title="JavaScript Garden">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript 秘密花园">zh</a></li><li><a href="/JavaScript-Garden/zhtw" title="JavaScript 庭院">zhtw</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">소개</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">객체</a></h1><ul><li><a href="#object.general">객체와 프로퍼티</a></li><li><a href="#object.prototype">Prototype</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop"><code>for in</code> Loop</a></li></ul></li><li class="nav_function"><h1><a href="#function">함수</a></h1><ul><li><a href="#function.general">함수 선언과 함수 표현식</a></li><li><a href="#function.this"><code>this</code>의 동작 원리</a></li><li><a href="#function.closures">클로져(Closure)와 참조(Reference)</a></li><li><a href="#function.arguments"><code>arguments</code> 객체</a></li><li><a href="#function.constructors">생성자</a></li><li><a href="#function.scopes">스코프와 네임스페이스</a></li></ul></li><li class="nav_array"><h1><a href="#array">Array</a></h1><ul><li><a href="#array.general">배열 순회와 프로퍼티</a></li><li><a href="#array.constructor"><code>배열</code> 생성자</a></li></ul></li><li class="nav_types"><h1><a href="#types">타입</a></h1><ul><li><a href="#types.equality">객체 비교하기</a></li><li><a href="#types.typeof"><code>typeof</code> 연산자</a></li><li><a href="#types.instanceof"><code>instanceof</code> 연산자</a></li><li><a href="#types.casting">타입 캐스팅</a></li></ul></li><li class="nav_core"><h1><a href="#core">핵심</a></h1><ul><li><a href="#core.eval">왜 <code>eval</code>을 사용하면 안 될까?</a></li><li><a href="#core.undefined"><code>undefined</code>와 <code>null</code></a></li><li><a href="#core.semicolon">자동으로 삽입되는 쎄미콜론</a></li><li><a href="#core.delete"><code>delete</code> 연산자</a></li></ul></li><li class="nav_other"><h1><a href="#other">기타</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code>과 <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>소개</h1></header><!-- Articles--><article id="intro.index"><h2>Intro</h2><div><p>JavaScript 언어의 핵심에 대한 내용을 모아 <strong>JavaScript Garden</strong>을 만들어 었다. 이 글이 초보자가 JavaScript 익히면서 자주 겪는 실수, 미묘한 버그, 성능 이슈, 나쁜 습관들 줄일 수 있도록 도와줄 것이다.</p>
+<p>JavaScript Garden은 단순히 JavaScript 언어 자체를 설명하려 만들지 않았다. 그래서 이 글에서 설명하는 주제들을 이해하려면 반드시 언어에 대한 기본 지식이 필요하다. 먼저 Mozilla Developer Network에 있는 <a href="https://developer.mozilla.org/en/JavaScript/Guide">문서</a>로 JavaScript 언어를 공부하기 바란다.</p>
+<h2>저자들</h2>
+<p>이 글은 <a href="http://stackoverflow.com/">Stack Overflow</a>에서 사랑받는 두 사람 <a href="http://stackoverflow.com/users/170224/ivo-wetzel">Ivo Wetzel</a>과 <a href="http://stackoverflow.com/users/313758/yi-jiang">Zhang Yi Jiang</a>의 작품이다. Ivo Wetzel이 글을 썼고 Zhang Yi jiang이 디자인을 맡았다.</p>
+<h2>기여자들</h2>
+<ul>
+<li><a href="https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors">기여자들</a></li>
+</ul>
+<h2>번역</h2>
+<ul>
+<li><a href="https://github.com/pismute">박창우</a></li>
+<li><a href="https://github.com/miconblog">손병대</a></li>
+</ul>
+<h2>호스팅</h2>
+<p>JavaScript Garden은 Github에서 호스팅하고 있고 <a href="http://cramerdev.com/">Cramer Development</a>가 <a href="http://javascriptgarden.info/">JavaScriptGarden.info</a>에서 미러링해주고 있다.</p>
+<h2>저작권</h2>
+<p>JavaScript Garden은 <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT license</a>를 따르고 <a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>에서 호스팅하고 있다. 문제를 발견하면 <a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">이슈를 보고</a>하거나 수정해서 Pull Request를 하라. 아니면 Stack Overflow 채팅 사이트의 <a href="http://chat.stackoverflow.com/rooms/17/javascript">Javascript room</a>에서 우리를 찾으라.</p>
+</div></article></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>객체</h1></header><!-- Articles--><article id="object.general"><h2>객체와 프로퍼티</h2><div><p>JavaScript에서 <a href="#core.undefined"><code>null</code></a>과 <a href="#core.undefined"><code>undefined</code></a>를 제외한 모든 것들은 객체처럼 동작한다.</p>
+<pre><code>false.toString(); // &#39;false&#39;
+[1, 2, 3].toString(); // &#39;1,2,3&#39;
+
+function Foo(){}
+Foo.bar = 1;
+Foo.bar; // 1</code></pre>
+<p>숫자 리터럴은 객체처럼 사용되지 못할꺼라는 오해가 있는데 이것은 단지 JavaScript 파서의 문제일 뿐이다. JavaScript 파서는 숫자에 <em>Dot Notation</em>이 들어가면 오류라고 생각한다.</p>
+<pre><code>2.toString(); // SyntaxError가 난다.</code></pre>
+<p>하지만, 숫자를 객체처럼 사용할수 있는 꼼수가 몇 가지 있다.</p>
+<pre><code>2..toString(); // 두 번째 점은 잘 된다.
+2 .toString(); // 왼쪽 공백이 있으면 잘 된다.
+(2).toString(); // 2를 먼저 해석한다.</code></pre>
+</div><div><h3>Object 타입</h3>
+<p>JavaScript 객체는 name/value 쌍으로 된 프로퍼티로 구성되기 때문에 <a href="http://en.wikipedia.org/wiki/Hashmap"><em>Hashmap</em></a>처럼 사용될 수도 있다. </p>
+<p>객체 리터럴인 Object Notation으로 객체를 만들면 <code>Object.prototype</code>을 상속받고 <a href="#object.hasownproperty">프로퍼티를 하나도 가지지 않은</a> 객체가 만들어진다.</p>
+<pre><code>var foo = {}; // 깨끗한 새 객체를 만든다.
+
+// 값이 12인 &#39;test&#39; 프로퍼티가 있는 객체를 만든다.
+var bar = {test: 12}; </code></pre>
+</div><div><h3>프로퍼티 접근</h3>
+<p>객체의 프로퍼티는 객체이름 다음에 점을 찍어(Dot Notation) 접근하거나 각괄호를 이용해(Square Bracket Notation) 접근할 수 있다.</p>
+<pre><code>var foo = {name: &#39;kitten&#39;}
+foo.name; // kitten
+foo[&#39;name&#39;]; // kitten
+
+var get = &#39;name&#39;;
+foo[get]; // kitten
+
+foo.1234; // SyntaxError
+foo[&#39;1234&#39;]; // works</code></pre>
+<p>두 방식 모두 거의 동일하게 동작한다. 다만 차이가 있다면 각괄호 방식은 프로퍼티 이름을 동적으로 할당해서 값에 접근 할수 있지만 점을 이용한 방식은 구문 오류를 발생시킨다.</p>
+</div><div><h3>프로퍼티 삭제</h3>
+<p>객체의 프로퍼티를 삭제하려면 <code>delete</code>를 사용해야만 한다. 프로퍼티에 <code>undefined</code>나 <code>null</code>을 할당하는 것은 프로퍼티를 삭제하는 것이 아니라 프로퍼티에 할당된 <em>value</em>만 지우고 <em>key</em>는 그대로 두는 것이다.</p>
+<pre><code>var obj = {
+    bar: 1,
+    foo: 2,
+    baz: 3
+};
+obj.bar = undefined;
+obj.foo = null;
+delete obj.baz;
+
+for(var i in obj) {
+    if (obj.hasOwnProperty(i)) {
+        console.log(i, &#39;&#39; + obj[i]);
+    }
+}</code></pre>
+<p>위 코드의 출력 결과는 <code>baz</code>만 제거했기 때문에 <code>bar undefined</code>와 <code>foo null</code>은 출력되고 <code>baz</code>와 관련된 것은 출력되지 않는다.</p>
+</div><div><h3>Notation of Keys</h3>
+<pre><code>var test = {
+    &#39;case&#39;: &#39;I am a keyword, so I must be notated as a string&#39;,
+    delete: &#39;I am a keyword, so me too&#39; // SyntaxError가 난다.
+};</code></pre>
+<p>프로퍼티는 따옴표 없는 문자열(plain characters)과 따옴표로 감싼 문자열(strings)을 모두 Key 값으로 사용할 수 있다. 하지만 위와 같은 코드는 JavaScript 파서의 잘못된 설계 때문에 구버전(ECMAScript 5 이전 버전)에서는 <code>SystaxError</code>가 발생할 것이다.</p>
+<p>위 코드에서 문제가 되는 <code>delete</code> 키워드를 따옴표로 감싸면 구버전의 JavaScript 엔진에서도 제대로 해석될 것이다.</p>
+</div></article><article id="object.prototype"><h2>Prototype</h2><div><p>Javascript는 클래스 스타일의 상속 모델을 사용하지 않고 <em>프로토타입</em> 스타일의 상속 모델을 사용한다.</p>
+<p>&#39;이 점이 JavaScript의 약점이다.&#39;라고 말하는 사람들도 있지만 실제로는 prototypal inheritance 모델이 훨씬 더 강력하다. 그 이유는 프로토타입 모델에서 클래스 모델을 흉내 내기는 매우 쉽지만, 반대로 클래스 모델에서 프로토타입 모델을 흉내 내기란 매우 어렵기 때문이다.</p>
+<p>실제로 Prototypal Inheritance 모델을 채용한 언어 중에서 JavaScript만큼 널리 사용된 언어가 없었기 때문에 두 모델의 차이점이 다소 늦게 정리된 감이 있다.</p>
+<p>먼저 가장 큰 차이점은 <em>프로토타입 체인</em>이라는 것을 이용해 상속을 구현한다는 점이다.</p>
+<aside>
+<p><strong>Note:</strong> 간단히 말해서 <code>Bar.prototype = Foo.prototype</code>은 두 객체가 <strong>하나의 프로토타입</strong>을 공유하는 것이다. 그래서 한 객체의 프로토타입을 변경하면 그 프로토타입 객체를 사용하는 다른 객체도 영향을 받는다. 따라서 대부분의 경우 프로토타입을 변경하지는 않는다.</p>
+</aside>
+<pre><code>function Foo() {
+    this.value = 42;
+}
+Foo.prototype = {
+    method: function() {}
+};
+
+function Bar() {}
+
+// Foo의 인스턴스를 만들어 Bar의 prototype에 할당한다.
+Bar.prototype = new Foo();
+Bar.prototype.foo = &#39;Hello World&#39;;
+
+// Bar 함수를 생성자로 만들고
+Bar.prototype.constructor = Bar;
+
+var test = new Bar() // bar 인스턴스를 만든다.
+
+// 결과적으로 만들어진 프로토타입 체인은 다음과 같다. 
+test [instance of Bar]
+    Bar.prototype [instance of Foo] 
+        { foo: &#39;Hello World&#39; }
+        Foo.prototype
+            { method: ... }
+            Object.prototype
+                { toString: ... /* etc. */ }</code></pre>
+<p>위 코드에서 <code>test</code> 객체는 <code>Bar.prototype</code>과 <code>Foo.prototype</code>을 둘 다 상속받았기 때문에 Foo에 정의한 <code>method</code> 함수에 접근할 수 있다. 그리고 프로토타입 체인에 있는 <code>Foo</code> 인스턴스의 <code>value</code> 프로퍼티도 사용할 수 있다. <code>new Bar()</code>를 해도 <code>Foo</code> 인스턴스는 새로 만들어지지 않고 Bar의 prototype에 있는 것을 재사용한다. 그래서 모든 Bar 인스턴스는 <strong>같은</strong> <code>value</code> 프로퍼티를 공유한다.</p>
+<aside>
+<p><strong>Note:</strong> <code>Bar.prototype = Foo</code>라고 하는 것은 <code>Foo</code>의 prototype을 가리키는 것이 아니라 Foo라는 Function의 prototype을 가리키는 것이다. 그래서 프로토타입 체인에 <code>Foo.prototype</code> 대신 <code>Function.prototype</code>이 들어가 있기 때문에 <code>method</code> 프로퍼티는 찾지 못한다.</p>
+</aside>
+</div><div><h3>프로토타입 탐색</h3>
+<p>객체의 프로퍼티에 접근하려고 하면 JavaScript는 해당 이름의 프로퍼티를 찾을 때까지 프로토타입 체인을 거슬러 올라가면서 탐색하게 된다.</p>
+<p>프로토타입 체인을 끝까지 탐색했음에도(보통은 <code>Object.prototype</code>임) 불구하고 원하는 프로퍼티를 찾지 못하면 <a href="#core.undefined">undefined</a>를 반환한다.</p>
+</div><div><h3>prototype 프로퍼티</h3>
+<p>prototype 프로퍼티는 프로토타입 체인을 만드는 데 사용하고 어떤 값이든 할당할 수 있지만, primitive 값을 할당되면 무시한다.</p>
+<pre><code>function Foo() {}
+Foo.prototype = 1; // 무시됨</code></pre>
+<p>반면에 위 예제처럼 객체를 할당하면 프로토타입 체인이 동적으로 잘 만들어진다.</p>
+</div><div><h3>성능</h3>
+<p>프로토타입 체인을 탐색하는 시간이 오래걸릴수록 성능에 부정적인 영향을 줄수있다. 특히 성능이 중요한 코드에서 프로퍼티 탐색시간은 치명적인 문제가 될수있다. 가령, 없는 프로퍼티에 접근하려고 하면 항상 프로토타입 체인 전체를 탐색하게 된다.</p>
+<p>뿐만아니라 객체를 <a href="#object.forinloop">순회(Iterate)</a>할때도 프로토타입 체인에 있는 <strong>모든</strong> 프로퍼티를 탐색하게 된다.</p>
+</div><div><h3>네이티브 프로토타입의 확장</h3>
+<p>종종 <code>Object.prototype</code>을 이용해 내장 객체를 확장하는 경우가 있는데, 이것도 역시 잘못 설계된 것중에 하나다.</p>
+<p>위와 같이 확장하는 것을 <a href="http://en.wikipedia.org/wiki/Monkey_patch">Monkey Patching</a>라고 부르는데 <em>캡슐화</em>를 망친다. 물론 <a href="http://prototypejs.org/">Prototype</a>같은 유명한 프레임워크들도 이런 확장을 사용하지만, 기본 타입에 표준도 아닌 기능들을 너저분하게 추가하는 이유를 여전히 설명하지 못하고 있다.</p>
+<p>기본 타입을 확장해야하는 유일한 이유는 <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach</code></a>같이 새로운 JavaScript 엔진에 추가된 기능을 대비해 미리 만들어 놓는 경우 말고는 없다.</p>
+</div><div><h3>결론</h3>
+<p>프로토타입을 이용해 복잡한 코드를 작성하기 전에 반드시 프로토타입 상속 (Prototypal Inheritance) 모델을 완벽하게 이해하고 있어야 한다. 뿐만아니라 프로토타입 체인과 관련된 성능 문제로 고생하지 않으려면 프로토타입 체인이 너무 길지 않도록 항상 주의하고 적당히 끊어줘야 한다. 마지막으로 새로운 JavaScript 기능에 대한 호환성 유지 목적이 아니라면 절대로 네이티브 프로토타입을 확장하지마라.</p>
+</div></article><article id="object.hasownproperty"><h2><code>hasOwnProperty</code></h2><div><p>어떤 객체의 프로퍼티가 자기 자신의 프로퍼티인지 아니면 <a href="#object.prototype">프로토타입 체인</a>에 있는 것인지 확인하려면 <code>hasOwnProperty</code> 메소드를 사용한다. 그리고 이 메소드는 <code>Object.prototype</code>으로 부터 상속받아 모든 객체가 가지고 있다.</p>
+<aside>
+<p><strong>Note:</strong> hasOwnProperty 메소드로는 어떤 프로퍼티가 존재하는지 확인하는 용도로는 사용할수 있지만, 그 값이 <code>undefined</code>일 수 있기 때문에 어떤 프로퍼티의 값이 <code>undefined</code>인지 확인하는 용도로 사용하긴 어렵다.</p>
+</aside>
+<p><code>hasOwnProperty</code>메소드는 프로토타입 체인을 탐색하지 않고, 프로퍼티를 다룰수있는 유일한 방법이다.</p>
+<pre><code>// Object.prototype을 오염시킨다.
+Object.prototype.bar = 1; 
+var foo = {goo: undefined};
+
+foo.bar; // 1
+&#39;bar&#39; in foo; // true
+
+foo.hasOwnProperty(&#39;bar&#39;); // false
+foo.hasOwnProperty(&#39;goo&#39;); // true</code></pre>
+<p><code>hasOwnProperty</code> 메소드는 어떤 프로퍼티가 자기 자신의 프로퍼티인지 아닌지 정확하게 알려주기 때문에 객체의 프로퍼티를 순회할때 꼭 필요하다. 그리고 프로토타입 체인 어딘가에 정의된 프로퍼티만을 제외하는 방법은 없다.  </p>
+</div><div><h3><code>hasOwnProperty</code> 메소드도 프로퍼티다</h3>
+<p>JavaScript는 <code>hasOwnProperty</code>라는 이름으로 프로퍼티를 덮어 쓸수도 있다. 그래서 객체 안에 같은 이름으로 정의된 <code>hasOwnProperty</code>가 있을 경우, 본래 <code>hasOwnProperty</code>의 값을 정확하게 얻고 싶다면 다른 객체의 <code>hasOwnProperty</code> 메소드를 빌려써야 한다.</p>
+<pre><code>var foo = {
+    hasOwnProperty: function() {
+        return false;
+    },
+    bar: &#39;Here be dragons&#39;
+};
+
+foo.hasOwnProperty(&#39;bar&#39;); // 항상 false를 반환한다.
+
+// 다른 객체의 hasOwnProperty를 사용하여 foo 객체의 프로퍼티 유무를 확인한다.
+({}).hasOwnProperty.call(foo, &#39;bar&#39;); // true
+
+// Object에 있는 hasOwnProperty를 사용해도 된다.
+Object.prototype.hasOwnProperty.call(obj, &#39;bar&#39;); // true</code></pre>
+</div><div><h3>결론</h3>
+<p>어떤 객체에 원하는 프로퍼티가 있는지 확인하는 가장 확실한 방법은 <code>hasOwnProperty</code>를 사용하는 것이다. <a href="#object.forinloop"><code>for in</code> loop</a>에서 네이티브 객체에서 확장된 프로퍼티를 제외하고 순회하려면 <code>hasOwnProperty</code>와 함께 사용하길 권한다. </p>
+</div></article><article id="object.forinloop"><h2><code>for in</code> Loop</h2><div><p>객체의 프로퍼티를 탐색할때 <code>in</code> 연산자와 마찬가지로 <code>for in</code> 문도 프로토타입 체인까지 탐색한다.</p>
+<aside>
+<p><strong>Note:</strong> <code>for in</code>문은 배열의 <code>length</code>프로퍼티처럼 <code>enumerable</code> 속성이 <code>false</code>인 프로퍼티는 탐색하지 않는다. </p>
+</aside>
+<pre><code>// Object.prototype을 오염시킨다.
+Object.prototype.bar = 1;
+
+var foo = {moo: 2};
+for(var i in foo) {
+    console.log(i); // bar와 moo 둘 다 출력한다.
+}</code></pre>
+<p><code>for in</code>문에 정의된 기본 동작을 바꿀순 없기 때문에 루프 안에서 불필요한 프로퍼티를 필터링 해야한다. 그래서 <code>Object.prototype</code>의 <a href="#object.hasownproperty"><code>hasOwnProperty</code></a>메소드를 이용해 본래 객체의 프로퍼티만 골라낸다.</p>
+<aside>
+<p><strong>Note:</strong> <code>for in</code>은 프로토타입 체인을 모두 탐색하기 때문에 상속할 때마다 더 느려진다.</p>
+</aside>
+</div><div><h3><code>hasOwnProperty</code>로 필터링 하기</h3>
+<pre><code>// 위의 예제에 이어서 
+for(var i in foo) {
+    if (foo.hasOwnProperty(i)) {
+        console.log(i);
+    }
+}</code></pre>
+<p>위와 같이 사용해야 올바른 사용법이다. <code>hasOwnProperty</code> 때문에 <strong>오직</strong> <code>moo</code>만 출력된다. <code>hasOwnProperty</code>가 없으면 이 코드는 <code>Object.prototype</code>으로 네이티브 객체가 확장될 때 에러가 발생할 수 있다.</p>
+<p>따라서 <a href="http://www.prototypejs.org/">Proptotype 라이브러리</a>처럼 네이티브 객체를 프로토타입으로 확장한 프레임워크를 사용할 경우 <code>for in</code> 문에 <code>hasOwnProperty</code>를 사용하지 않을 경우 문제가 발생할 수 있다.</p>
+</div><div><h3>결론</h3>
+<p><code>hasOwnProperty</code>를 항상 사용하길 권한다. 실제 코드가 동작하는 환경에서는 절대로 네이티브 객체가 프로토타입으로 확장됐다 혹은 확장되지 않았다를 가정하면 안된다.</p>
+</div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>함수</h1></header><!-- Articles--><article id="function.general"><h2>함수 선언과 함수 표현식</h2><div><p>JavaScript에서 함수는 First Class Object다. 즉, 함수 자체가 또 다른 함수의 인자될 수 있다는 말이다. 그래서 익명 함수를 비동기 함수의 콜백으로 넘기는 것도 이런 특징을 이용한 일반적인 사용법이다.</p>
+</div><div><h3><code>함수</code> 선언</h3>
+<pre><code>function foo() {}</code></pre>
+<p>위와 같이 선언한 함수는 프로그램이 실행하기 전에 먼저 <a href="#function.scopes">호이스트(Hoist)</a> (스코프가 생성)되기 때문에 정의된 스코프(Scope) 안에서는 어디서든 이 함수를 사용할 수 있다. 심지어 함수를 정의하기 전에 호출해도 된다.</p>
+<pre><code>foo(); // 이 코드가 실행되기 전에 foo가 만들어지므로 잘 동작한다.
+function foo() {}</code></pre>
+</div><div><h3><code>함수</code> 표현식</h3>
+<pre><code>var foo = function() {};</code></pre>
+<p>위 예제는 <code>foo</code> 변수에 <em>익명</em> 함수를 할당한다.</p>
+<pre><code>foo; // &#39;undefined&#39;
+foo(); // TypeError가 난다.
+var foo = function() {};</code></pre>
+<p>&#39;var&#39;문을 이용해 선언하는 경우, 코드가 실행되기 전에 &#39;foo&#39; 라는 이름의 변수를 스코프의 맨 위로 올리게 된다.(호이스트 된다) 이때 foo 값은 undefiend로 정의된다. </p>
+<p>하지만 변수에 값을 할당하는 일은 런타임 상황에서 이루어지게 되므로 실제 코드가 실행되는 순간의 <code>foo</code>변수는 기본 값인 <a href="#core.undefined">undefined</a>이 된다.</p>
+</div><div><h3>이름있는 함수 표현식</h3>
+<p>이름있는 함수를 할당할때도 특이한 경우가 있다.</p>
+<pre><code>var foo = function bar() {
+    bar(); // 이 경우는 동작 하지만, 
+}
+bar(); // 이 경우는 참조에러를 발생시킨다. </code></pre>
+<p>foo 함수 스코프 밖에서는 foo 변수 외에는 다른 값이 없기 때문에 <code>bar</code>는 함수 밖에서 사용할 수 없지만 함수 안에서는 사용할 수 있다. <a href="#function.scopes">이와 같은 방법</a>으로 자바스크립트에서 어떤 함수의 이름은 항상 그 함수의 지역 스코프 안에서 사용할수있다. </p>
+</div></article><article id="function.this"><h2><code>this</code>의 동작 원리</h2><div><p>다른 프로그래밍 언어에서 <code>this</code>가 가리키는 것과 JavaScript에서 <code>this</code>가 가리키는 것과는 좀 다르다. <code>this</code>가 가리킬 수 있는 객체는 정확히 5종류나 된다.</p>
+</div><div><h3>Global Scope에서</h3>
+<pre><code>this;</code></pre>
+<p>Global Scope에서도 this가 사용될 수 있고 이때에는 <em>Global</em> 객체를 가리킨다.</p>
+</div><div><h3>함수를 호출할 때</h3>
+<pre><code>foo();</code></pre>
+<p>이때에도 <code>this</code>는 <em>Global</em> 객체를 가리킨다.</p>
+<aside class="es5"><p><strong>ES5 Note:</strong> strict 모드에서 더는 Global 객체를 가리키지 않고 대신 <code>undefined</code>를 가리킨다.</p>
+</aside>
+</div><div><h3>메소드로 호출할 때</h3>
+<pre><code>test.foo(); </code></pre>
+<p>이 경우에는 <code>this</code>가 <code>test</code>를 가리킨다.</p>
+</div><div><h3>생성자를 호출할 때</h3>
+<pre><code>new foo(); </code></pre>
+<p><code>new</code> 키워드로 <a href="#function.constructors">생성자</a>를 실행시키는 경우에 이 생성자 안에서 <code>this</code>는 새로 만들어진 객체를 가리킨다.</p>
+</div><div><h3><code>this</code>가 가리키는 객체 정해주기.</h3>
+<pre><code>function foo(a, b, c) {}
+
+var bar = {};
+foo.apply(bar, [1, 2, 3]); // a = 1, b = 2, c = 3으로 넘어간다.
+foo.call(bar, 1, 2, 3); // 이것도... </code></pre>
+<p><code>Function.prototype</code>의 <code>call</code>이나 <code>apply</code> 메소드를 호출하면 <code>this</code>가 무엇을 가리킬지 <em>정해줄 수 있다</em>. 호출할 때 첫 번째 인자로 <code>this</code>가 가리켜야 할 객체를 넘겨준다.</p>
+<p>그래서 <code>foo</code> Function 안에서 <code>this</code>는 위에서 설명했던 객체 중 하나를 가리키는 것이 아니라 <code>bar</code>를 가리킨다.</p>
+<aside>
+<p><strong>Note:</strong> 객체 리터럴에서 this는 그 객체를 가리키지 않는다. 예를 들어 <code>var obj= {me:this}</code>에서 <code>me</code>가 <code>obj</code>를 가리키는 것이 아니라 위에 설명한 5가지 객체 중 하나를 가리킨다.</p>
+</aside>
+</div><div><h3>대표적인 함정</h3>
+<p><code>this</code>가 Global 객체를 가리키는 것도 잘못 설계된 부분 중 하나다. 괜찮아 보이지만 실제로는 전혀 사용하지 않는다.</p>
+<pre><code>Foo.method = function() {
+    function test() {
+        // 여기에서 this는 Global 객체를 가리킨다.
+    }
+    test();
+}</code></pre>
+<p><code>test</code> 에서 <code>this</code>가 <code>Foo</code>를 가리킬 것으로 생각할 테지만 틀렸다. 실제로는 그렇지 않다.</p>
+<p><code>test</code>에서 <code>Foo</code>에 접근하려면 method에 Local 변수를 하나 만들고 <code>Foo</code>를 가리키게 하여야 한다.</p>
+<pre><code>Foo.method = function() {
+    var that = this;
+    function test() {
+        // 여기에서 this 대신에 that을 사용하여 Foo에 접근한다.
+    }
+    test();
+}</code></pre>
+<p><code>that</code>은 this에 접근하기 위해 만든 변수다. <a href="#function.closures">closures</a>와 함께 <code>this</code>의 값을 넘기는 데 사용할 수 있다.</p>
+</div><div><h3>Method할당 하기</h3>
+<p>JavaScript의 또다른 함정은 바로 함수의 별칭을 만들수 없다는 점이다. 별칭을 만들기 위해 메소드를 변수에 넣으면 자바스크립트는 별칭을 만들지 않고 바로 <em>할당</em>해 버린다.  </p>
+<pre><code>var test = someObject.methodTest;
+test();</code></pre>
+<p>첫번째 코드로 인해 이제 <code>test</code>는 다른 함수와 똑같이 동작한다. 그래서 test 함수 내부의 <code>this</code>도 더이상 someObject를 가리키지 않는다. (역주: test가 methodTest의 별칭이라면 methodTest 함수 내부의 this도 someObject를 똑같이 가리켜야 하지만 test의 this는 더이상 someObject가 아니다.)</p>
+<p>이렇게 <code>this</code>를 늦게 바인딩해서 나타나는 약점때문에 늦은 바인딩이 나쁜 거라고 생각할수도 있지만, 사실 이런 특징으로 인해 <a href="#object.prototype">프로토타입 상속(prototypal inheritance)</a>도 가능해진다.</p>
+<pre><code>function Foo() {}
+Foo.prototype.method = function() {};
+
+function Bar() {}
+Bar.prototype = Foo.prototype;
+
+new Bar().method();</code></pre>
+<p><code>Bar</code> 인스턴스에서 <code>method</code>를 호출하면 <code>method</code>에서 <code>this</code>는 바로 그 인스턴스를 가리킨다.</p>
+</div></article><article id="function.closures"><h2>클로져(Closure)와 참조(Reference)</h2><div><p><em>클로져</em>는 JavaScript의 특장점 중 하나다. 클로저를 만들면 클로저 스코프 안에서 클로저를 만든 외부 스코프(Scope)에 항상 접근할 있다. JavaScript에서 스코프는 <a href="#function.scopes">함수 스코프</a>밖에 없기 때문에 기본적으로 모든 함수는 클로저가 될수있다.</p>
+</div><div><h3>private 변수 만들기</h3>
+<pre><code>function Counter(start) {
+    var count = start;
+    return {
+        increment: function() {
+            count++;
+        },
+
+        get: function() {
+            return count;
+        }
+    }
+}
+
+var foo = Counter(4);
+foo.increment();
+foo.get(); // 5</code></pre>
+<p>여기서 <code>Counter</code>는 <code>increment</code> 클로저와 <code>get</code> 클로저 두 개를 반환한다. 이 두 클로저는 <code>Counter</code> 함수 스코프에 대한 <strong>참조</strong>를 유지하고 있기 때문에 이 함수 스코프에 있는 count 변수에 계속 접근할 수 있다.</p>
+</div><div><h3>Private 변수의 동작 원리</h3>
+<p>JavaScript에서는 스코프(Scope)를 어딘가에 할당해두거나 참조할수 없기 때문에 스코프 밖에서는 count 변수에 직접 접근할 수 없다. 접근할수 있는 유일한 방법은 스코프 안에 정의한 두 클로저를 이용하는 방법밖에 없다. </p>
+<pre><code>var foo = new Counter(4);
+foo.hack = function() {
+    count = 1337;
+};</code></pre>
+<p>위 코드에서 <code>foo.hack</code> 함수는 Counter 함수 안에서 정의되지 않았기 때문에 이 함수가 실행되더라도 <code>Counter</code> 함수 스코프 안에 있는 count 값은 변하지 않는다. 대신 foo.hack 함수의 <code>count</code>는 <em>Global</em> 스코프에 생성되거나 이미 만들어진 변수를 덮어쓴다.</p>
+</div><div><h3>반복문에서 클로저 사용하기</h3>
+<p>사람들이 반복문에서 클로저를 사용할 때 자주 실수를 하는 부분이 있는데 바로 인덱스 변수를 복사할때 발생한다.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout(function() {
+        console.log(i);  
+    }, 1000);
+}</code></pre>
+<p>이 코드는 <code>0</code>부터 <code>9</code>까지의 수를 출력하지 않고 <code>10</code>만 열 번 출력한다.</p>
+<p>타이머에 설정된 <em>익명</em> 함수는 변수 <code>i</code>에 대한 참조를 들고 있다가 <code>console.log</code>가 호출되는 시점에 <code>i</code>의 값을 사용한다. <code>console.log</code>가 호출되는 시점에서 <code>for loop</code>는 이미 끝난 상태기 때문에 <code>i</code> 값은 10이 된다.</p>
+<p>기대한 결과를 얻으려면 <code>i</code> 값을 복사해 두어야 한다.</p>
+</div><div><h3>앞의 참조 문제 해결하기</h3>
+<p>반복문의 index 값을 복사하는 가장 좋은 방법은 익명함수로 랩핑<a href="#function.scopes">Anonymous Wrapper</a>하는 방법이다.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    (function(e) {
+        setTimeout(function() {
+            console.log(e);  
+        }, 1000);
+    })(i);
+}</code></pre>
+<p>이 익명 함수에 <code>i</code>를 인자로 넘기면 이 함수의 파라미터 e에 i의 <strong>값</strong>이 복사되어 넘어갈 것이다.</p>
+<p>그리고 <code>setTimeout</code>는 익명 함수의 파라미터인 <code>e</code>에 대한 참조를 갖게 되고 <code>e</code>값은 복사되어 넘어왔으므로 loop의 상태에 따라 변하지 않는다.</p>
+<p>또다른 방법으로 랩핑한 익명 함수에서 출력 함수를 반환하는 방법도 있다. 아래 코드는 위 코드와 동일하게 동작한다.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout((function(e) {
+        return function() {
+            console.log(e);
+        }
+    })(i), 1000)
+}</code></pre>
+</div></article><article id="function.arguments"><h2><code>arguments</code> 객체</h2><div><p>JavaScript의 모든 함수 스코프에는 <code>arguments</code>라는 특별한 변수가 있다. 이 변수는 함수에 넘겨진 모든 인자에 대한 정보가 담겨 있다.</p>
+<aside>
+<p><strong>Note:</strong> <code>arguments</code> 변수는 Function 안에서 다시 정의할 수 없다. <code>var</code> 구문이나 파라미터에 <code>arguments</code>라는 이름으로 변수를 정의해도 변수가 재정의되지 않는다.</p>
+</aside>
+<p><code>arguments</code> 객체는 <code>Array</code>가 아니다. 물론 <code>length</code> 프로퍼티도 있고 여러모로 Array와 비슷하게 생겼지만 Array.prototype을 상속받지는 않았다.</p>
+<p>그래서 <code>arguments</code>에는 <code>push</code>, <code>pop</code>, <code>slice</code> 같은 표준 메소드가 없다. 일반 <code>for</code>문을 이용해 순회는 할수 있지만, <code>Array</code>의 메소드를 이용하려면 <code>arguments</code>를 Array로 변환해야 한다.</p>
+</div><div><h3>Array로 변환하기</h3>
+<p>다음 코드는 arguments에 있는 객체를 새로운 Array에 담아 반환한다.</p>
+<pre><code>Array.prototype.slice.call(arguments);</code></pre>
+<p>이 변환 과정은 <strong>느리기</strong> 때문에 성능이 중요한 부분에 사용하는 것은 <strong>별로 바람직하지</strong> 못 하다.</p>
+</div><div><h3>arguemnts 객체 넘기기</h3>
+<p>어떤 함수에서 다른 함수로 arguments 객체를 넘길 때에는 다음과 같은 방법을 권한다. (역주: foo 함수는 bar 함수 한번 랩핑한 함수다. )</p>
+<pre><code>function foo() {
+    bar.apply(null, arguments);
+}
+function bar(a, b, c) {
+    // 내곡동에 땅이라도 산다.
+}</code></pre>
+<p>또 다른 방법으로는 함수를 랩핑하지 않고, 풀어서 <code>call</code>과 <code>apply</code>를 함께 사용하는 방법이 있다. (역주: 프로토타입에 있는 method를 호출하기 전에 Foo 객체 안에 있는 method로 한번더 필터링하는 효과가 있다. )</p>
+<pre><code>function Foo() {}
+
+Foo.prototype.method = function(a, b, c) {
+    console.log(this, a, b, c);
+};
+
+// &quot;method&quot;를 풀어 쓴(unbound) 버전
+// 이 Function의 인자: this, arg1, arg2...argN
+Foo.method = function() {
+
+    // 결과: Foo.prototype.method.call(this, arg1, arg2... argN)
+    Function.call.apply(Foo.prototype.method, arguments);
+};</code></pre>
+</div><div><h3>일반 파라미터와 arguments 객체의 인덱스</h3>
+<p>일반 파라미터와 <code>arguments</code> 객체의 프로퍼티는 모두 <em>getter</em>와 <em>setter</em>를 가진다.</p>
+<p>그래서 파라미터나 <code>arguments</code> 객체의 프로퍼티의 값을 바꾸면 둘 다 바뀐다.</p>
+<pre><code>function foo(a, b, c) {
+    arguments[0] = 2;
+    a; // 2
+
+    b = 4;
+    arguments[1]; // 4
+
+    var d = c;
+    d = 9;
+    c; // 3
+}
+foo(1, 2, 3);</code></pre>
+</div><div><h3>성능에 대한 오해와 진실.</h3>
+<p><code>arguments</code> 객체는 항상 만들어지지만 두가지 예외사항이 있다. <code>arguments</code>라는 이름으로 변수를 함수 안에 정의하거나 arguments 객체로 넘겨받는 인자중 하나라도 정식 인자로 받아서 사용하면 <code>arguemnts</code> 객체는 만들어지지 않는다. 하지만 뭐 이런 경우들은 어차피 arguments 객체를 안쓰겠다는 의미니까 상관 없다.</p>
+<p>그리고 <em>getter</em>와 <em>setter</em>는 항상 생성되기 때문에 getter/setter를 사용하는 것은 성능에 별 영향을 끼치지 않는다. 예제처럼 단순한 코드가 아니라 <code>arguments</code> 객체를 다방면으로 활용하는 실제 코드에서도 마찬가지다.</p>
+<aside class="es5"><p><strong>ES5 Note:</strong> strict 모드에서는 <em>getter</em>와 <em>setter</em>가 생성되지 않는다.</p>
+</aside>
+<p>그러나 예외도 있다. 최신 JavaScript 엔진에서 <code>arguments.callee</code>를 사용하면 성능이 확 떨어진다.</p>
+<pre><code>function foo() {
+    arguments.callee; // 이 함수를 가리킨다.
+    arguments.callee.caller; // 이 함수를 호출한 부모함수를 가리킨다.
+}
+
+function bigLoop() {
+    for(var i = 0; i &lt; 100000; i++) {
+        foo(); // 원래 인라인 돼야 하는디...
+    }
+}</code></pre>
+<p>위 코드에서 &#39;foo&#39; 함수는 자기 자신과 자신을 호출한 함수를 알아야 하기 때문에 더이상 <a href="http://en.wikipedia.org/wiki/Inlining">인라인</a>되지 않는다. 이렇게 쓰면 인라인이 주는 성능상 장점을 포기해야 하는데다가 이 함수가 호출되는 상황(calling context)에 의존하게 돼 버려서 캡슐화(Encapsulation)도 해친다. 
+(역주: 보통 코드가 컴파일 될때 코드를 인라인 시키면서 최적화 하는데, 위와 같이 arguments.callee나 caller를 사용하게 되면 런타임시에 해당 함수가 결정되므로 인라인 최적화를 할수가 없다.)</p>
+<p><code>arguments.callee</code>와 arguments.callee의 프로퍼티들은 <strong>절대</strong> 사용하지 말자!.</p>
+<aside class="es5"><p><strong>ES5 Note:</strong> strict 모드에서 <code>arguments.callee</code>는 deprecated됐기 때문에 사용하면 <code>TypeError</code>가 난다.</p>
+</aside>
+</div></article><article id="function.constructors"><h2>생성자</h2><div><p>JavaScript의 생성자는 다른 언어들과 다르게 <code>new</code> 키워드로 호출되는 함수가 생성자가 된다.</p>
+<p>생성자로 호출된 함수의 this 객체는 새로 생성된 객체를 가리키고, <strong>새로 만든</strong> 객체의 <a href="#object.prototype">prototype</a>에는 생성자의 prototype이 할당된다.</p>
+<p>그리고 생성자에 명시적인 <code>return</code> 구문이 없으면 this가 가리키는 객체를 반환한다.</p>
+<pre><code>function Foo() {
+    this.bla = 1;
+}
+
+Foo.prototype.test = function() {
+    console.log(this.bla);
+};
+
+var test = new Foo();</code></pre>
+<p>위 코드는 <code>new</code> 키워드가 실행되는 시점에 <code>Foo</code>를 생성자로 호출하고 <code>Foo.prototype</code>을 새 객체의 prototype에 할당한다.</p>
+<p>아래 코드와 같이 생성자에 명시적인 <code>return</code> 문이 있는 경우에는 반환하는 값이 객체인 경우에만 그 값을 반환한다.</p>
+<pre><code>function Bar() {
+    return 2;
+}
+new Bar(); // 새 객체를 만들어 반환
+
+function Test() {
+    this.value = 2;
+
+    return {
+        foo: 1
+    };
+}
+new Test(); // 명시한 객체를 반환</code></pre>
+<p>new 키워드가 없으면 그 함수는 객체를 반환하지 않는다.</p>
+<pre><code>function Foo() {
+    this.bla = 1; // 전역객체에 할당된다.
+}
+Foo(); // undefined</code></pre>
+<p>위 예제는 그때그때 다르게 동작한다. 그리고 <a href="#function.this"><code>this</code></a> 객체의 동작 원리에 따라서 Foo 함수안의 <code>this</code>의 값은 <em>Global 객체</em>를 가리키게된다. 
+(역주: 결국 new 키워드를 빼고, 코드를 작성할 경우 원치 않은 this 참조 오류가 발생할 수 있다.)</p>
+</div><div><h3>팩토리</h3>
+<p>생성자가 객체를 반환하면 <code>new</code> 키워드를 생략할 수 있다.</p>
+<pre><code>function Bar() {
+    var value = 1;
+    return {
+        method: function() {
+            return value;
+        }
+    }
+}
+Bar.prototype = {
+    foo: function() {}
+};
+
+new Bar();
+Bar();</code></pre>
+<p>new 키워드의 유무과 관계없이 <code>Bar</code> 생성자의 동작은 동일한다. 즉 <a href="#function.closures">클로저</a>가 할당된 method 프로퍼티가 있는 새로운 객체를 만들어 반환한다.</p>
+<p><code>new Bar()</code>로 호출되는 생성자는 반환되는 객체의 prototype 프로퍼티에 아무런 영향을 주지 않는다. 객체를 반환하지 않는 생성자로 만들어지는 경우에만 객체의 prototype이 생성자의 것으로 할당된다.</p>
+<p>그러니까 이 예제에서 <code>new</code> 키워드의 유무는 아무런 차이가 없다.
+(역주: 생성자에 객체를 만들어 명시적으로 반환하면 new 키워드에 관계없이 잘 동작하는 생성자를 만들수있다. 즉, new 키워드가 빠졌을때 발생하는 this 참조 오류를 방어해준다.)</p>
+</div><div><h3>팩토리로 객체 만들기</h3>
+<p><code>new</code> 키워드를 빼먹었을 때 버그가 생긴다는 이유로 <strong>아예 new를 사용하지 말 것</strong>을 권하기도 한다.</p>
+<p>객체를 만들고 반환해주는 팩토리를 사용하여 <code>new</code> 키워드 문제를 회피할 수 있다.</p>
+<pre><code>function Foo() {
+    var obj = {};
+    obj.value = &#39;blub&#39;;
+
+    var private = 2;
+    obj.someMethod = function(value) {
+        this.value = value;
+    }
+
+    obj.getPrivate = function() {
+        return private;
+    }
+    return obj;
+}</code></pre>
+<p><code>new</code> 키워드가 없어도 잘 동작하고 <a href="#function.closures">private 변수</a>를 사용하기도 쉽다. 그렇지만, 단점도 있다.</p>
+<ol>
+<li>prototype으로 메소드를 공유하지 않으므로 메모리를 좀 더 사용한다.</li>
+<li>팩토리를 상속하려면 모든 메소드를 복사하거나 객체의 prototype에 객체를 할당해 주어야 한다.</li>
+<li><code>new</code> 키워드를 누락시켜서 prototype chain을 끊어버리는 것은 아무래도 언어의 의도에 어긋난다.</li>
+</ol>
+</div><div><h3>결론</h3>
+<p><code>new</code> 키워드가 생략되면 버그가 생길 수 있지만 그렇다고 prototype을 사용하지 않을 이유가 되지 않는다. 애플리케이션에 맞는 방법을 선택하는 것이 나을 거고 어떤 방법이든 <em>*엄격하고 한결같이</em> 지켜야 한다.</p>
+</div></article><article id="function.scopes"><h2>스코프와 네임스페이스</h2><div><p>JavaScript는 &#39;{}&#39; Block이 배배 꼬여 있어도 문법적으로는 잘 처리하지만, Block Scope은 지원하지 않는다. 그래서 JavaScript에서는 항상 <em>함수 스코프</em>를 사용한다.</p>
+<pre><code>function test() { // Scope
+    for(var i = 0; i &lt; 10; i++) { // Scope이 아님
+        // count
+    }
+    console.log(i); // 10
+}</code></pre>
+<aside>
+<p><strong>Note:</strong> 할당할 때, 반환할 때, Function 인자에서 사용되는 것을 제외하면 <code>{...}</code>는 모두 객체 리터럴이 아니라 Block 구문으로 해석된다. 그래서 <a href="#core.semicolon">세미콜론을 자동으로 넣어주면</a> 에러가 생길 수 있다.</p>
+</aside>
+<p>그리고 JavaScript에는 Namepspace 개념이 없기 때문에 모든 값이 하나의 <em>전역</em> 스코프에 정의된다.</p>
+<p>변수를 참조 할 때마다 JavaScript는 해당 변수를 찾을 때까지 상위 방향으로 스코프를 탐색한다. 변수 탐색하다가 전역 스코프에서도 찾지 못하면 <code>ReferenceError</code>를 발생시킨다.</p>
+</div><div><h3>전역 변수 문제.</h3>
+<pre><code>// script A
+foo = &#39;42&#39;;
+
+// script B
+var foo = &#39;42&#39;</code></pre>
+<p>이 두 스크립트는 전혀 다르다. Script A는 <em>전역</em> 스코프에 <code>foo</code>라는 변수를 정의하는 것이고 Script B는 <em>현</em> 스코프에 변수 <code>foo</code>를 정의하는 것이다.</p>
+<p>다시 말하지만, 이 둘은 전혀 다르고 <code>var</code>가 없을 때 특별한 의미가 있다.</p>
+<pre><code>// Global Scope
+var foo = 42;
+function test() {
+    // local Scope
+    foo = 21;
+}
+test();
+foo; // 21</code></pre>
+<p>test 함수 안에 있는 &#39;foo&#39; 변수에 <code>var</code> 구문을 빼버리면 Global Scope의 <code>foo</code>의 값을 바꿔버린다. &#39;뭐 이게 뭐가 문제야&#39;라고 생각될 수 있지만 수천 줄인 JavaScript 코드에서 <code>var</code>를 빼먹어서 생긴 버그를 해결하는 것은 정말 어렵다.</p>
+<pre><code>// Global Scope
+var items = [/* some list */];
+for(var i = 0; i &lt; 10; i++) {
+    subLoop();
+}
+
+function subLoop() {
+    // Scope of subLoop
+    for(i = 0; i &lt; 10; i++) { // var가 없다.
+        // 내가 for문도 해봐서 아는데...
+    }
+}</code></pre>
+<p>subLoop 함수는 전역 변수 <code>i</code>의 값을 변경해버리기 때문에 외부에 있는 for문은 <code>subLoop</code>을 한번 호출하고 나면 종료된다. 두 번째 <code>for</code>문에 <code>var</code>를 사용하여 <code>i</code>를 정의하면 이 문제는 생기지 않는다. 즉, 의도적으로 외부 스코프의 변수를 사용하는 것이 아니라면 <code>var</code>를 꼭 넣어야 한다.</p>
+</div><div><h3>지역 변수</h3>
+<p>JavaScript에서 지역 변수는 <a href="#function.general">함수의 파라미터</a>와 <code>var</code>로 정의한 변수밖에 없다.</p>
+<p>   // 전역 공간
+    var foo = 1;
+    var bar = 2;
+    var i = 2;</p>
+<pre><code>function test(i) {
+    // test 함수의 지역 공간
+    i = 5;
+
+    var foo = 3;
+    bar = 4;
+}
+test(10);</code></pre>
+<p><code>foo</code> 변수와 <code>i</code> 변수는 <code>test</code>함수 스코프에 있는 지역 변수라서 전역 공간에 있는 <code>foo</code>, <code>i</code> 값은 바뀌지 않는다. 하지만 <code>bar</code>는 전역 변수이기 때문에 전역 공간에 있는 <code>bar</code>의 값이 변경된다.</p>
+</div><div><h3>호이스팅(Hoisting)</h3>
+<p>JavaScript는 선언문을 모두 <strong>호이스트(Hoist)</strong>한다. 호이스트란 <code>var</code> 구문이나 <code>function</code> 선언문을 해당 스코프의 맨 위로 옮기는 것을 말한다.</p>
+<pre><code>bar();
+var bar = function() {};
+var someValue = 42;
+
+test();
+function test(data) {
+    if (false) {
+        goo = 1;
+
+    } else {
+        var goo = 2;
+    }
+    for(var i = 0; i &lt; 100; i++) {
+        var e = data[i];
+    }
+}</code></pre>
+<p>코드를 본격적으로 실행하기 전에 JavaScript는 <code>var</code> 구문과 <code>function</code> 선언문을 해당 스코프의 맨위로 옮긴다.</p>
+<pre><code>// var 구문이 여기로 옮겨짐.
+var bar, someValue; // default to &#39;undefined&#39;
+
+// function 선언문도 여기로 옮겨짐
+function test(data) {
+    var goo, i, e; // Block Scope은 없으므로 local 변수들은 여기로 옮겨짐
+    if (false) {
+        goo = 1;
+
+    } else {
+        goo = 2;
+    }
+    for(i = 0; i &lt; 100; i++) {
+        e = data[i];
+    }
+}
+
+bar(); // bar()가 아직 &#39;undefined&#39;이기 때문에 TypeError가 남
+someValue = 42; // Hoisting은 할당문은 옮기지 않는다.
+bar = function() {};
+
+test();</code></pre>
+<p>블록 스코프(Block Scope)는 없으므로 for문과 if문 안에 있는 <code>var</code> 구문들까지도 모두 함수 스코프 앞쪽으로 옮겨진다. 그래서 <code>if</code> Block의 결과는 좀 이상해진다.</p>
+<p>원래 코드에서 <code>if</code> Block은 <em>전역 변수</em> <code>goo</code>를 바꾸는 것처럼 보였지만 호이스팅(Hoisting) 후에는 <em>지역 변수</em>를 바꾼다.</p>
+<p><em>호이스팅</em>을 모르면 다음과 같은 코드는 <code>ReferenceError</code>를 낼 것으로 생각할 것이다.</p>
+<pre><code>// SomeImportantThing이 초기화됐는지 검사한다.
+if (!SomeImportantThing) {
+    var SomeImportantThing = {};
+}</code></pre>
+<p><code>var</code> 구문은 <em>전역 스코프</em>의 맨위로 옮겨지기 때문에 이 코드는 잘 동작한다.</p>
+<pre><code>var SomeImportantThing;
+
+// SomeImportantThing을 여기서 초기화하거나 말거나...
+
+// SomeImportantThing는 선언돼 있다.
+if (!SomeImportantThing) {
+    SomeImportantThing = {};
+}</code></pre>
+</div><div><h3>이름 찾는 순서</h3>
+<p>JavaScript의 모든 Scope은 <em>현 객체</em>를 가리키는 <a href="#function.this"><code>this</code></a>를 가지고 있다. <em>전역 스코프</em>에도 this가 있다.</p>
+<p>함수 스코프에는 <a href="#function.arguments"><code>arguments</code></a>라는 변수가 하나 더 있다. 이 변수는 함수에 인자로 넘겨진 값들이 담겨 있다.</p>
+<p>예를 들어 함수 스코프에서 <code>foo</code>라는 변수에 접근할 때 JavaScript는 다음과 같은 순서로 찾는다.</p>
+<ol>
+<li>해당 Scope에서 <code>var foo</code> 구문으로 선언된 것을 찾는다.</li>
+<li>Function 파라미터에서 <code>foo</code>라는 것을 찾는다.</li>
+<li>해당 Function 이름이 <code>foo</code>인지 찾는다.</li>
+<li>상위 Scope으로 있는지 확인하고 있으면 <strong>#1</strong>부터 다시 한다.</li>
+</ol>
+<aside>
+<p><strong>Note:</strong> <code>arguments</code>라는 파라미터가 있으면 Function의 기본 객체인 <code>arguments</code>가 생성되지 않는다.</p>
+</aside>
+</div><div><h3>네임스페이스</h3>
+<p>JavaScript에서는 전역 공간(Namepspace) 하나밖에 없어서 변수 이름이 중복되기 쉽다. 하지만 <em>이름없는 랩퍼(Anonymous Wrappers)</em>를 통해 쉽게 피해갈 수 있다.</p>
+<pre><code>(function() {
+    // 일종의 네임스페이스라고 할 수 있다.
+
+    window.foo = function() {
+        // 이 클로저는 전역 스코프에 노출된다.
+    };
+
+})(); // 함수를 정의하자마자 실행한다.</code></pre>
+<p>이름없는 함수는 <a href="#function.general">표현식(expressions)</a>이기 때문에 호출되려면 먼저 평가(Evaluate)돼야 한다.</p>
+<pre><code>( // 소괄호 안에 있는 것을 먼저 평가한다.
+function() {}
+) // 그리고 함수 객체를 반환한다.
+() // 평가된 결과를 호출한다.</code></pre>
+<p>함수를 평가하고 바로 호출하는 방법이 몇가지 더 있다. 문법은 다르지만 똑같다.</p>
+<pre><code>// 함수를 평가하자마자 호출하는 방법들...
+!function(){}();
++function(){}();
+(function(){}());
+// 등등...</code></pre>
+</div><div><h3>결론</h3>
+<p>코드를 캡슐화할 때는 항상 <em>이름없는 랩퍼(Anonymous Wrapper)</em>로 네임스페이스를 만들어 사용할 것을 추천한다. 이 래퍼(Wrapper)는 이름이 중복되는 것을 막아 주고 더 쉽게 모듈화할 수 있도록 해준다.</p>
+<p>그리고 전역 변수를 사용하는 것은 좋지 못한 습관이다. 이유야 어쨌든 에러 나기 쉽고 관리하기도 어렵다.</p>
+</div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>Array</h1></header><!-- Articles--><article id="array.general"><h2>배열 순회와 프로퍼티</h2><div><p>JavaScript에서는 배열(Array)도 객체(Object)지만 객체 순회(Iterate)를 할 때 <a href="#object.forinloop"><code>for in</code></a>을 사용해서 좋을 게 없다. 실제로 배열을 탐색할때 <code>for in</code>문 사용하지 말아야 할 이유가 매우 많다.</p>
+<aside>
+<p><strong>Note:</strong> JavaScript의 배열은 <em>연관 배열(Associative Array)</em>이 <strong>아니다</strong>. JavaScript는 오직 key/value를 맵핑한 <a href="#object.general">객체</a>만 있을 뿐이다. 연관 배열은 순서를 보장해주지만 객체는 순서를 보장하지 않는다.</p>
+</aside>
+<p><code>for in</code>은 프로토타입 체인에 있는 프로퍼티를 모두 훑는(enumerate) 데다가 객체 자신의 프로퍼티만 훑으려면 <a href="#object.hasownproperty"><code>hasOwnProperty</code></a>를 사용해야 하기 때문에 <code>for</code>보다 20배 느리다.</p>
+</div><div><h3>배열 순회</h3>
+<p>배열을 순회 할때는 일반적인 <code>for</code>문을 사용하는 것이 가장 빠르다.</p>
+<pre><code>var list = [1, 2, 3, 4, 5, ...... 100000000];
+for(var i = 0, l = list.length; i &lt; l; i++) {
+    console.log(list[i]);
+}</code></pre>
+<p>이 예제에서 <code>l = list.length</code>로 배열의 length 값을 캐시해야 한다는 것을 꼭 기억해야 한다.</p>
+<p>매번 반복할때마다 배열에 있는 <code>length</code> 프로퍼티에 접근하는 것은 좀 부담스럽다. 최신 JavaScript 엔진은 이 일을 알아서 처리해주기도 하지만 코드가 늘 새 엔진에서 실행되도록 보장할 방법이 없다.</p>
+<p>실제로 캐시 하지 않으면 성능이 반으로 줄어든다.</p>
+</div><div><h3><code>length</code> 프로퍼티</h3>
+<p><code>length</code> 프로퍼티의 <em>getter</em>는 단순히 Array 안에 있는 엘리먼트의 개수를 반환하고 <em>setter</em>는 배열을 할당한 수만큼 잘라 버린다.</p>
+<pre><code>var foo = [1, 2, 3, 4, 5, 6];
+foo.length = 3;
+foo; // [1, 2, 3]
+
+foo.length = 6;
+foo; // [1, 2, 3]</code></pre>
+<p>현재 크기보다 더 작은 값을 할당하면 배열을 자르지만, 현재 크기보다 더 큰 값을 할당한다고 해서 배열을 늘리진 않는다.</p>
+</div><div><h3>결론</h3>
+<p>최적의 성능을 위해서는 <code>for</code>문을 사용하고 <code>length</code> 프로퍼티 값을 캐시해야 한다. 배열에 <code>for in</code>을 사용하면 성능도 떨어지고 버그 나기도 쉽다.</p>
+</div></article><article id="array.constructor"><h2><code>배열</code> 생성자</h2><div><p>배열을 만들때 <code>배열</code> 생성자에 파라미터를 넣어 만드는 방법은 헷갈릴수있다. 그래서 항상 각 괄호(<code>[]</code>) 노테이션을 이용해 배열을 만들 것을 권한다</p>
+<pre><code>[1, 2, 3]; // Result: [1, 2, 3]
+new Array(1, 2, 3); // Result: [1, 2, 3]
+
+[3]; // Result: [3]
+new Array(3); // Result: []
+new Array(&#39;3&#39;) // Result: [&#39;3&#39;]</code></pre>
+<p><code>배열</code> 생성자에 숫자를 인자로 넣으면 그 숫자 크기 만큼의 빈 <code>배열</code>을 반환한다. 즉 배열의 <code>length</code>는 그 숫자가 된다. 이때 생성자는 <strong>단지</strong> <code>length</code> 프로퍼티에 그 숫자를 할당하기만 하고 <code>배열</code>은 실제로 초기화 하지도 않는다.</p>
+<pre><code>var arr = new Array(3);
+arr[1]; // undefined
+1 in arr; // false, 이 인덱스는 초기화되지 않음.</code></pre>
+<p><code>for</code>문을 사용하지 않고 문자열을 더하는 경우에는 length 프로퍼티에 숫자를 할당해주는 기능이 유용할 때도 있다. </p>
+<pre><code>new Array(count + 1).join(stringToRepeat);</code></pre>
+</div><div><h3>결론</h3>
+<p><code>배열</code> 생성자는 가능하면 사용하지 말고, 각 괄호 (<code>[]</code>) 노테이션이을 사용하자. 후자가 더 간략하고 명확할 뿐만 아니라 보기도 좋다.</p>
+</div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>타입</h1></header><!-- Articles--><article id="types.equality"><h2>객체 비교하기</h2><div><p>JavaScript에서 객체를 비교하는 방법은 두 가지가 있다. </p>
+</div><div><h3>이중 등호 연산자</h3>
+<p>이중 등호 연산자는 <code>==</code>을 말한다.</p>
+<p>JavaScript는 Weak Typing을 따르기 때문에 이중 등호를 이용해 비교할 때 두 객체의 자료형을 <strong>강제로</strong> 변환한다.</p>
+<pre><code>&quot;&quot;           ==   &quot;0&quot;           // false
+0            ==   &quot;&quot;            // true
+0            ==   &quot;0&quot;           // true
+false        ==   &quot;false&quot;       // false
+false        ==   &quot;0&quot;           // true
+false        ==   undefined     // false
+false        ==   null          // false
+null         ==   undefined     // true
+&quot; \t\r\n&quot;    ==   0             // true</code></pre>
+<p>이 표는 이중 등호를 사용하면 왜 안되는지를 보여준다. 이 복잡한 변환 규칙은 실제로 골치 아픈 버그를 만들어 낸다.</p>
+<p>게다가 강제로 타입을 변환하게 되면 성능에도 영향을 준다. 예를 들어 문자와 숫자를 비교하려면 반드시 먼저 문자를 숫자로 변환해야 한다.</p>
+</div><div><h3>삼중 등호 연산자</h3>
+<p>삼중 등호 연산자는 <code>===</code>을 말한다.</p>
+<p>삼중 등호는 강제로 타입을 변환하지 않는다는 사실을 제외하면 이중 등호와 동일하다. </p>
+<pre><code>&quot;&quot;           ===   &quot;0&quot;           // false
+0            ===   &quot;&quot;            // false
+0            ===   &quot;0&quot;           // false
+false        ===   &quot;false&quot;       // false
+false        ===   &quot;0&quot;           // false
+false        ===   undefined     // false
+false        ===   null          // false
+null         ===   undefined     // false
+&quot; \t\r\n&quot;    ===   0             // false</code></pre>
+<p>위 결과가 훨씬 더 명확하고 문제가 쉽게 드러난다. 삼중 등호를 사용하면 코드를 좀 더 튼튼하게 만들수 있고, 비교하는 두 객체의 타입이 다르면 더 좋은 성능을 얻을 수도 있다.</p>
+</div><div><h3>객체 비교하기</h3>
+<p>이중 등호와(<code>==</code>)와 삼중 등호(<code>===</code>)는 둘 다 <strong>값을 비교하는</strong> 연산이지만 피연산자중에 Object 타입이 하나라도 있으면 다르게 동작한다.</p>
+<pre><code>{} === {};                   // false
+new String(&#39;foo&#39;) === &#39;foo&#39;; // false
+new Number(10) === 10;       // false
+var foo = {};
+foo === foo;                 // true</code></pre>
+<p>두 연산자 모두 두 객체의 값이 같은지를 비교하지 않고, 두 객체가 <strong>같은 객체(identity)</strong>인지를 비교한다. C에서 포인터를 비교하거나 Python의 is처럼 같은 인스턴스인지 비교하는 것이다.</p>
+</div><div><h3>결론</h3>
+<p><strong>삼중 등호 연산자</strong>를 사용할 것을 강력하게 권한다. 비교하기 위해서 타입 변환이 필요하면 언어의 복잡한 변환 규칙에 맡기지 말고 꼭 명시적으로 변환한 후에 비교해야 한다.</p>
+</div></article><article id="types.typeof"><h2><code>typeof</code> 연산자</h2><div><p><code>typeof</code> 연산자도 <a href="#types.instanceof"><code>instanceof</code></a> 연산자와 함께 JavaScript에서 치명적으로 잘못 설계된 부분이다. 이건 정말이지 아무짝에도 쓸모가 없다.</p>
+<p><code>instanceof</code> 연산자는 그래도 여전히 쓸만한 데가 좀 있는데 <code>typeof</code> 연산자는 객체의 타입을 검사하는 것 외에는 쓸만한데가 없고, 이마저도 거의 쓸일이 없다.</p>
+<aside>
+<p><strong>Note:</strong> <code>typeof</code> 연산자는 함수처럼 <code>typeof(obj)</code>로 사용할수 있지만 함수 호출은 아니다. 괄호 안의 값은 <code>typeof</code>의 피연산자로 적용되고 그 결과가 반환된다. <code>typeof</code>라는 함수는 <strong>없다</strong>.</p>
+</aside>
+</div><div><h3>JavaScript 타입 표</h3>
+<pre><code>Value               Class      Type
+-------------------------------------
+&quot;foo&quot;               String     string
+new String(&quot;foo&quot;)   String     object
+1.2                 Number     number
+new Number(1.2)     Number     object
+true                Boolean    boolean
+new Boolean(true)   Boolean    object
+new Date()          Date       object
+new Error()         Error      object
+[1,2,3]             Array      object
+new Array(1, 2, 3)  Array      object
+new Function(&quot;&quot;)    Function   function
+/abc/g              RegExp     object (function in Nitro/V8)
+new RegExp(&quot;meow&quot;)  RegExp     object (function in Nitro/V8)
+{}                  Object     object
+new Object()        Object     object</code></pre>
+<p>위 표에서 <em>Type</em>은 <code>typeof</code>가 반환하는 값이다. 위 표에서처럼 일치되는 값이 거의 없다.</p>
+<p>위 표에서 <em>Class</em>는 객체 내부에 있는 <code>[[Class]]</code> 프로퍼티의 값을 말한다.</p>
+<aside>
+<p><strong>표준</strong>에는 <code>[[Class]]</code>의 값은 <code>Arguments</code>, <code>Array</code>, <code>Boolean</code>, <code>Date</code>, <code>Error</code>, <code>Function</code>, <code>JSON</code>, <code>Math</code>, <code>Number</code>, <code>Object</code>, <code>RegExp</code>, <code>String</code>중 하나라고 나와있다.</p>
+</aside>
+<p><code>[[Class]]</code> 프로퍼티의 값을 가져다 쓰려면 <code>Object.prototype</code>의 <code>toString</code> 메소드를 사용한다.</p>
+</div><div><h3>객체의 클래스</h3>
+<p>표준에 의하면 <code>[[Class]]</code> 값을 얻는 방법은 <code>Object.prototype.toString</code> 하나뿐이다.</p>
+<pre><code>function is(type, obj) {
+    var clas = Object.prototype.toString.call(obj).slice(8, -1);
+    return obj !== undefined &amp;&amp; obj !== null &amp;&amp; clas === type;
+}
+
+is(&#39;String&#39;, &#39;test&#39;); // true
+is(&#39;String&#39;, new String(&#39;test&#39;)); // true</code></pre>
+<p><code>Object.prototype.toString</code>은 <a href="#function.this">this</a>의 <code>[[Class]]</code> 값을 가져오는 것이니까 this를 obj로 바꾸어 사용한다.</p>
+<aside class="es5"><p><strong>ES5 Note:</strong> ECMAScript 5에서 <code>Object.prototype.toString</code>의 컨텍스트가 <code>null</code>과 <code>undefined</code>일 때 <code>Object</code>가 아니라 각각 <code>Null</code>과 <code>Undefined</code>를 반환하도록 수정됐다.</p>
+</aside>
+</div><div><h3>변수가 Undefined인지 확인하기</h3>
+<pre><code>typeof foo !== &#39;undefined&#39;</code></pre>
+<p>위 코드는 <code>foo</code>가 정의됐는지 아닌지를 확인해준다. 정의되지 않은 변수에 접근하면 <code>ReferenceError</code> 나는데 이것을 방지할 수 있다. <code>typeof</code>가 유용한 건 이때뿐이다.</p>
+</div><div><h3>결론</h3>
+<p>객체의 타입을 검사하려면 <code>Object.prototype.toString</code>를 사용해야 한다. 다른 방법은 신뢰할 수 없다. 위 표에서 보여준 것처럼 typeof가 반환하는 값은 표준에 나와 있지 않기 때문에 구현방법도 제각각이다.</p>
+<p>변수가 정의됐는지 확인할 때를 제외하고 <strong>가급적</strong> <code>typeof</code>는 피해야한다.</p>
+</div></article><article id="types.instanceof"><h2><code>instanceof</code> 연산자</h2><div><p><code>instanceof</code>연산자는 두 피연산자의 생성자를 비교할때 사용하고 직접 만든 객체를 비교할 때 매우 유용하다. 내장 타입에 쓰는 경우에는 <a href="#types.typeof">typeof</a>처럼 거의 쓸모가 없다.</p>
+</div><div><h3>커스텀 객체를 <code>intanceof</code>로 비교하기</h3>
+<pre><code>function Foo() {}
+function Bar() {}
+Bar.prototype = new Foo();
+
+new Bar() instanceof Bar; // true
+new Bar() instanceof Foo; // true
+
+// Bar.prototype에 함수 객체인 Foo를 할당하면
+// Bar의 인스턴스는 Foo의 인스턴스가 아니다.
+Bar.prototype = Foo;
+new Bar() instanceof Foo; // false</code></pre>
+</div><div><h3>기본 내장 객체 타입을 <code>intanceof</code>로 비교하기</h3>
+<pre><code>new String(&#39;foo&#39;) instanceof String; // true
+new String(&#39;foo&#39;) instanceof Object; // true
+
+&#39;foo&#39; instanceof String; // false
+&#39;foo&#39; instanceof Object; // false</code></pre>
+<p>JavaScript 컨텍스트마다(웹 브라우저의 도큐먼트 같은) 객체의 생성자는 다를 수밖에 없어서 <code>instanceof</code>는 다른 JavaScript 컨텍스트에 있는(웹 브라우저의 다른 도큐먼트에 있는) 객체와는 비교할 수 없다.</p>
+</div><div><h3>결론</h3>
+<p><code>instanceof</code>는 한 JavaScript 컨텍스트 내에서 사용자가 만든 타입의 객체를 비교할 때에만 유용하다. <a href="#types.typeof"><code>typeof</code></a>처럼 다른 목적으로는 사용하지 않는 것이 좋다.</p>
+</div></article><article id="types.casting"><h2>타입 캐스팅</h2><div><p>JavaScript는 Weak Typing 언어이기 때문에 필요할 때마다 알아서 타입을 변환한다.</p>
+<pre><code>// 다음은 모두 true
+new Number(10) == 10; // Number.toString()이 호출되고 
+                      // 다시 Number로 변환된다.
+
+10 == &#39;10&#39;;           // 스트링은 Number로 변환된다.
+10 == &#39;+10 &#39;;         // 이상한 스트링
+10 == &#39;010&#39;;          // 엉뚱한 스트링
+isNaN(null) == false; // null은 NaN이 아녀서 0으로 변환된다.
+
+// 다음은 모두 false
+10 == 010;
+10 == &#39;-10&#39;;</code></pre>
+<aside class="es5"><p><strong>ES5 Note:</strong> <code>0</code>으로 시작하는 숫자 리터럴은 8진수다. 하지만, ECMAScript 5의 strict 모드에서는 8진수로 더이상 해석하지 않는다.</p>
+</aside>
+<p>위와 같은 문제들은 <strong>*반드시</strong> <a href="#types.equality">삼중 등호 연산자</a>를 이용해 해결하길 권한다. 물론 삼중 등호로 많은 결점을 보완할 수 있지만, 여전히 weak typing 시스템 때문에 생기는 많은 문제가 남아있다.</p>
+</div><div><h3>기본 타입 생성자</h3>
+<p><code>Number</code>나 <code>String</code> 같은 기본 타입들의 생성자는 <code>new</code> 키워드가 있을 때와 없을 때 다르게 동작한다.</p>
+<pre><code>new Number(10) === 10;     // False, Object와 Number
+Number(10) === 10;         // True, Number와 Number
+new Number(10) + 0 === 10; // True, 타입을 자동으로 변환해주기 때문에 </code></pre>
+<p><code>new</code> 키워드와 함께 <code>Number</code> 같은 기본 타입의 생성자를 호출하면 객체를 생성하지만 <code>new</code> 없이 호출하면 형 변환만 시킨다.</p>
+<p>그리고 객체가 아니라 단순히 값이나 리터럴을 사용하면 타입 변환이 더 많이 일어난다.</p>
+<p>가능한 정확하게 타입을 변환해주는 것이 최선이다.</p>
+</div><div><h3>스트링으로 변환하기</h3>
+<pre><code>&#39;&#39; + 10 === &#39;10&#39;; // true</code></pre>
+<p>숫자를 빈 스트링과 더하면 쉽게 스트링으로 변환할 수 있다.</p>
+</div><div><h3>숫자로 변환하기</h3>
+<pre><code>+&#39;10&#39; === 10; // true</code></pre>
+<p><code>+</code> 연산자만 앞에 붙여주면 스트링을 쉽게 숫자로 변환할 수 있다.</p>
+</div><div><h3>Boolean으로 변환하기</h3>
+<p>&#39;!&#39; 연산자를 두 번 사용하면 쉽게 Boolean으로 변환할 수 있다.</p>
+<pre><code>!!&#39;foo&#39;;   // true
+!!&#39;&#39;;      // false
+!!&#39;0&#39;;     // true
+!!&#39;1&#39;;     // true
+!!&#39;-1&#39;     // true
+!!{};      // true
+!!true;    // true</code></pre>
+</div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>핵심</h1></header><!-- Articles--><article id="core.eval"><h2>왜 <code>eval</code>을 사용하면 안 될까?</h2><div><p><code>eval</code> 함수는 JavaScript 문자열을 지역 스코프에서 실행한다.</p>
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    eval(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 3
+foo; // 1</code></pre>
+<p><code>eval</code>함수는 <code>eval</code>이라는 이름으로 <strong>직접</strong> 실행할 때에만 지역 스코프에서 실행된다. 그리고 <code>eval</code>이라는 이름에 걸맞게 악명또한 높다.</p>
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    var bar = eval;
+    bar(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 2
+foo; // 3</code></pre>
+<p>어쨌든 <code>eval</code>은 사용하지 말아야 한다. eval을 사용하는 99.9%는 사실 eval 없이도 만들수있다.</p>
+</div><div><h3>가짜 <code>eval</code></h3>
+<p><a href="#other.timeouts"><code>setTimeout</code>과 <code>setInterval</code></a>은 첫 번째 인자로 스트링을 입력받을 수 있다. 이 경우에는 <code>eval</code>을 직접 호출하는 것이 아니라서 항상 Global Scope에서 실행된다.</p>
+</div><div><h3>보안 이슈</h3>
+<p><code>eval</code>은 어떤 코드라도 <strong>무조건</strong> 실행하기 때문에 보안 문제도 있다. 따라서 신뢰하지 못하거나 모르는 코드가 포함되어 있을 경우 <strong>절대로</strong> 사용해서는 안된다.</p>
+</div><div><h3>결론</h3>
+<p><code>eval</code>은 사용하지 않는 게 좋다. <code>eval</code>을 사용하는 모든 코드는 성능, 보안, 버그 문제를 일으킬 수 있다. 만약 <code>eval</code>이 필요해지면 <em>설계를 변경</em>하여 <code>eval</code>이 필요 없게 만들어야 한다.</p>
+</div></article><article id="core.undefined"><h2><code>undefined</code>와 <code>null</code></h2><div><p>JavaScript는 <code>nothing</code>을 표현할때 <code>null</code>과 <code>undefined</code> 두 가지로 표현할 수 있고 그중 <code>undefined</code>가 더 유용하다.</p>
+</div><div><h3><code>undefined</code>도 변수</h3>
+<p><code>undefined</code>는 <code>undefined</code>라는 값을 가지는 데이터 형식이다.</p>
+<p><code>undefined</code>는 상수도 아니고 JavaScript의 키워드도 아니다. 그냥 <code>undefined</code>라는 이름의 Global 변수이고 이 변수에는 <code>undefined</code>라고 할당돼 있다. 그래서 이 Global 변수의 값을 쉽게 바꿀 수 있다.</p>
+<aside class="es5"><p><strong>ES5 Note:</strong> ECMAScript 5의 strict 모드에서는 <code>undefined</code>를 더는 바꿀 수 없도록 했다. 하지만 <code>undefined</code>라는 함수를 만들면 여전히 할당할 수 있다.</p>
+</aside>
+<p><code>undefined</code> 값이 반환될 때:</p>
+<ul>
+<li>global 변수 <code>undefined</code>에 접근할 때.</li>
+<li>선언은 했지만 아직 초기화하지 않은 변수에 접근할 때.</li>
+<li><code>return</code> 구문이 없는 함수는 암묵적으로 <code>undefined</code>를 반환함.</li>
+<li><code>return</code> 구문으로 아무것도 반환하지 않을 때.</li>
+<li>없는 프로퍼티를 찾을 때.</li>
+<li>함수 인자가 생략될 때.</li>
+<li><code>undefined</code>가 할당된 모든 것.</li>
+<li><code>void(expression)</code> 형식으로 된 표현</li>
+</ul>
+<aside>
+<p><strong>역주:</strong> 예를 들어 CoffeeScript Compliler는 CoffeeScript의 <code>undefined</code>를 JavaScript의 <code>void 0</code>로 컴파일한다.</p>
+</aside>
+</div><div><h3><code>undefined</code>가 바뀔 때를 대비하기</h3>
+<p>global 변수 <code>undefined</code>는 <code>undefined</code>라는 객체를 가리키는 것뿐이기 때문에 새로운 값을 할당한다고 해도 <code>undefined</code>의 값 자체가 바뀌는 것이 아니다.</p>
+<p>그래서 <code>undefined</code>와 비교하려면 먼저 <code>undefined</code>의 값을 찾아와야 한다.</p>
+<p><code>undefined</code> 변수가 바뀔 때를 대비해서 <code>undefined</code>라는 변수를 인자로 받는 <a href="#function.scopes">anonymous wrapper</a>로 감싸고 인자를 넘기지 않는 꼼수를 사용한다. </p>
+<pre><code>var undefined = 123;
+(function(something, foo, undefined) {
+    // Local Scope에 undefined를 만들어서
+    // 원래 값을 가리키도록 했다.
+
+})(&#39;Hello World&#39;, 42);</code></pre>
+<p>wrapper 안에 변수를 새로 정의하는 방법으로도 같은 효과를 볼 수 있다.</p>
+<pre><code>var undefined = 123;
+(function(something, foo) {
+    var undefined;
+    ...
+
+})(&#39;Hello World&#39;, 42);</code></pre>
+<p>이 두 방법의 차이는 minified했을 때 4바이트만큼 차이 난다는 것과 한쪽은 wrapper 안에 var 구문이 없다는 것밖에 없다. </p>
+</div><div><h3><code>Null</code> 객체의 용도</h3>
+<p>JavaScript 언어에서는 <code>undefined</code>를 다른 언어의 <em>null</em> 처럼 쓴다. 진짜 <code>null</code>은 그냥 데이터 타입 중 하나일 뿐이지 더도덜도 아니다.</p>
+<p>JavaScript를 깊숙히 건드리는 것이 아니면 null 대신 <code>undefined</code>를 사용해도 된다(<code>Foo.prototype = null</code>같이 프로토타입 체인을 끊을 때는 null을 사용한다).</p>
+</div></article><article id="core.semicolon"><h2>자동으로 삽입되는 쎄미콜론</h2><div><p>JavaScript는 C와 문법이 비슷하지만, 꼭 코드에 쎄미콜론을 사용하도록 강제하지는 않는다. 그래서 생략할 수 있다.</p>
+<p>사실 JavaScript는 쎄미콜론이 꼭 있어야 하고 없으면 이해하지 못한다. 그래서 JavaScript 파서는 쎄미콜론이 없으면 <strong>자동으로</strong> 쎄미콜론을 추가한다. </p>
+<pre><code>var foo = function() {
+} // 쎄미콜론이 없으니 에러 난다.
+test()</code></pre>
+<p>파서는 쎄미콜론을 삽입하고 다시 시도한다.</p>
+<pre><code>var foo = function() {
+}; // 에러가 없어짐.
+test()</code></pre>
+<p>쎄미콜론을 자동으로 삽입한 것이 <strong>대표적인</strong> JavaScript 설계 오류다. 쎄미콜론 유무에 따라 <em>전혀</em> 다른 코드가 될 수 있다.</p>
+</div><div><h3>어떻게 다를까?</h3>
+<p>코드에 쎄미콜론이 없으면 파서가 어디에 넣을지 결정한다.</p>
+<pre><code>(function(window, undefined) {
+    function test(options) {
+        log(&#39;testing!&#39;)
+
+        (options.list || []).forEach(function(i) {
+
+        })
+
+        options.value.test(
+            &#39;long string to pass here&#39;,
+            &#39;and another long string to pass&#39;
+        )
+
+        return
+        {
+            foo: function() {}
+        }
+    }
+    window.test = test
+
+})(window)
+
+(function(window) {
+    window.someLibrary = {}
+
+})(window)</code></pre>
+<p>파서는 이 코드에 쎄미콜론을 다음과 같이 삽입한다.</p>
+<pre><code>(function(window, undefined) {
+    function test(options) {
+
+        // 쎄미콜론을 넣는 것이 아니라 줄을 합친다.
+        log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {
+
+        }); // &lt;- 여기
+
+        options.value.test(
+            &#39;long string to pass here&#39;,
+            &#39;and another long string to pass&#39;
+        ); // &lt;- 여기
+
+        return; // &lt;- 여기에 넣어서 그냥 반환시킨다.
+        { // 파서는 단순 블럭이라고 생각하고
+
+            // 단순한 레이블과 함수
+            foo: function() {}
+        }; // &lt;- 여기
+    }
+    window.test = test; // &lt;- 여기
+
+// 이 줄도 합쳐진다.
+})(window)(function(window) {
+    window.someLibrary = {}; // &lt;- 여기
+
+})(window); //&lt;- 여기에 파서는 쎄미콜론을 넣는다.</code></pre>
+<aside>
+<p><strong>주의:</strong> JavaScript 파서는 new line 문자가 뒤따라 오는 return 구문을 제대로 처리하지 못한다. 자동으로 쎄미콜론을 넣는 것 자체의 문제는 아니지만 어쨌든 여전히 문제다.</p>
+</aside>
+<p>파서는 완전히 다른 코드로 만들어 버린다. 이것은 <strong>오류</strong>다.</p>
+</div><div><h3>괄호 해석</h3>
+<p>파서는 괄호에는 쎄미콜론을 넣지 않는다.</p>
+<pre><code>log(&#39;testing!&#39;)
+(options.list || []).forEach(function(i) {})</code></pre>
+<p>그래서 다음과 같이 한줄로 코드를 바꾼다.</p>
+<pre><code>log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {})</code></pre>
+<p>이렇게 한줄로 바뀌면 <code>log</code> 함수가 함수를 반환할 가능성이 거의 없으므로 <code>undefined is not a function</code>이라는 <code>TypeError</code>가 발생한다.</p>
+</div><div><h3>결론</h3>
+<p>쎄미콜론은 반드시 사용해야 한다. 그리고 <code>{}</code>도 생략하지 않고 꼭 사용하는 것이 좋다. 한 줄밖에 안 되는 <code>if</code> / <code>else</code> 블럭에서도 꼭 사용해야 한다. 이 두 가지 규칙을 잘 지키면 JavaScript 파서가 잘못 해석하는 일을 미리 방지하고 코드도 튼튼해진다.</p>
+</div></article><article id="core.delete"><h2><code>delete</code> 연산자</h2><div><p>간단히 말해서 전역 변수와 전역 함수 그리고 <code>DontDelete</code> 속성을 가진 자바스크립트 객체는 삭제할 수 없다.</p>
+</div><div><h3>Global 코드와 Function 코드</h3>
+<p>전역이나 함수 스코프에 정의한 함수나 변수는 모두 Activation 객체나 전역 객체의 프로퍼티다. 이 프로퍼티는 모두 <code>DontDelete</code> 속성을 가진다. 전역이나 함수 코드에 정의한 변수와 함수는 항상 <code>DontDelete</code> 프로퍼티로 만들어지기 때문에 삭제될 수 없다:</p>
+<pre><code>// Global 변수:
+var a = 1; // DontDelete가 설정된다.
+delete a; // false
+a; // 1
+
+// Function:
+function f() {} // DontDelete가 설정된다.
+delete f; // false
+typeof f; // &quot;function&quot;
+
+// 다시 할당해도 삭제할 수 없다:
+f = 1;
+delete f; // false
+f; // 1</code></pre>
+</div><div><h3>명시적인(Explicit) 프로퍼티</h3>
+<p>다음 예제에서 만드는 프로퍼티는 delete할 수 있다. 이런 걸 명시적인(Explicit) 프로퍼티라고 부른다:</p>
+<pre><code>// Explicit 프로퍼티를 만든다:
+var obj = {x: 1};
+obj.y = 2;
+delete obj.x; // true
+delete obj.y; // true
+obj.x; // undefined
+obj.y; // undefined</code></pre>
+<p><code>obj.x</code>와 <code>obj.y</code>는 <code>DontDelete</code> 속성이 아니라서 delete할 수 있다. 하지만 다음과 같은 코드도 잘 동작하기 때문에 헷갈린다:</p>
+<pre><code>// IE를 빼고 잘 동작한다:
+var GLOBAL_OBJECT = this;
+GLOBAL_OBJECT.a = 1;
+a === GLOBAL_OBJECT.a; // true - 진짜 Global 변수인지 확인하는 것
+delete GLOBAL_OBJECT.a; // true
+GLOBAL_OBJECT.a; // undefined</code></pre>
+<p><a href="#function.this"><code>this</code></a>가 전역 객체를 가리키는 것을 이용해서 명시적으로 프로퍼티 <code>a</code>를 선언하면 삭제할 수 있다. 이것은 꼼수다.</p>
+<p>IE (적어도 6-8)는 버그가 있어서 안 된다.</p>
+</div><div><h3>Argument들과 Function의 기본 프로퍼티</h3>
+<p>Function의 <a href="#function.arguments"><code>arguments</code> 객체</a>와 기본 프로퍼티도 <code>DontDelete</code> 속성이다.</p>
+<pre><code>// Function의 arguments와 프로퍼티:
+(function (x) {
+
+  delete arguments; // false
+  typeof arguments; // &quot;object&quot;
+
+  delete x; // false
+  x; // 1
+
+  function f(){}
+  delete f.length; // false
+  typeof f.length; // &quot;number&quot;
+
+})(1);</code></pre>
+</div><div><h3>Host 객체</h3>
+<aside>
+<p><strong>역주:</strong> Host 객체는 document같은 DOM 객체를 말한다.</p>
+</aside>
+<p>Host 객체를 delete하면 어떻게 될지 알 수 없다. 표준에는 어떻게 Host 객체를 delete해야 하는지 정의하지 않았다.</p>
+</div><div><h3>결론</h3>
+<p><code>delete</code> 연산자는 엉뚱하게 동작할 때가 많다. 명시적으로 정의한 일반 객체의 프로퍼티만 delete하는 것이 안전하다.</p>
+</div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>기타</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code>과 <code>setInterval</code></h2><div><p>JavaScript는 <code>setTimeout</code>과 <code>setInterval</code>함수를 이용해 비동기로 함수를 실행시킬수있다.</p>
+<aside>
+<p><strong>Note:</strong> Timeout은 ECMAScript 표준이 아니라 <a href="http://en.wikipedia.org/wiki/Document_Object_Model" title="Document Object Model">DOM</a>때문에 구현됐다.</p>
+</aside>
+<pre><code>function foo() {}
+var id = setTimeout(foo, 1000); // 0보다 큰 수를 반환한다.</code></pre>
+<p><code>setTimeout</code>을 호출하면 타이머의 ID를 반환하고 <strong>대략</strong> 1,000밀리 초 후에 <code>foo</code>를 실행시킨다. <code>foo</code>는 <strong>딱 한 번만</strong> 실행한다.</p>
+<p>JS엔진은 타이머에 설정한 시간(timer resolution)에 따라서 코드를 실행하지만 단일 쓰레드이기 때문에 특정 코드는 실행이 지연 될수도 있다. 따라서 <code>setTimeout</code>으로 코드가 실행돼야 할 시간을 정해줘도 <strong>정확하게 그 시간에 실행되지 않을수도 있다.</strong>.</p>
+<p>첫 번째 인자로 넘긴 함수는 전역 객체가 실행시킨다. 따라서 인자로 넘겨진 함수 내부의 <a href="#function.this"><code>this</code></a>는 <em>전역</em> 객체를 가리키게 된다.</p>
+<pre><code>function Foo() {
+    this.value = 42;
+    this.method = function() {
+        // this는 전역 객체를 가리키기 때문에 
+        console.log(this.value); // undefined를 출력한다.
+    };
+    setTimeout(this.method, 500);
+}
+new Foo();</code></pre>
+<aside>
+<p><strong>Note:</strong> <code>setTimeout</code>의 첫 번째 파라미터에 <strong>함수</strong> 객체를 넘겨야 하는 데 <code>setTimeout(foo(), 1000)</code>처럼 함수의 실행 결과를 넘기는 실수를 저지를 때가 잦다. 이럴 때 <code>setTimeout</code>은 그냥 <code>undefined</code>를 반환할 뿐이지 에러를 발생시키지 않는다.</p>
+</aside>
+</div><div><h3>함수 호출을 쌓는(Stacking) <code>setInterval</code>함수.</h3>
+<p><code>setTimeout</code>은 딱 한 번 함수를 호출하지만 <code>setInterval</code>은 이름처럼 <strong>지정한 시간마다</strong> 함수를 실행시켜준다. 하지만 이 함수의 사용은 좀 생각해봐야한다.</p>
+<p><code>setInterval</code>은 실행하는 코드가 일정시간 동안 블럭되도 계속해서 함수를 호출하기 때문에 주기가 짧은 경우 함수 호출이 쉽게 쌓여버린다.</p>
+<pre><code>function foo(){
+    // 1초 동안 블럭함.
+}
+setInterval(foo, 1000);</code></pre>
+<p>위 코드에서 <code>foo</code>함수는 호출될 때마다 1초씩 실행을 지연시킨다.</p>
+<p>하지만 <code>foo</code>함수가 블럭되더라도 <code>setInterval</code>함수는 계속해서 함수 호출을 쌓기 때문에 <code>foo</code>함수 호출이 끝나면 <em>10번</em> 이상의 함수 호출이 쌓여서 대기하고 있을수도 있다.
+(역주: 따라서 함수 호출이 쌓이게 되면 원래 기대했던 실행 주기를 보장받지 못한다.)</p>
+</div><div><h3>블럭되는 코드 해결법</h3>
+<p>앞에 문제를 해결하는 가장 쉽고 일반적인 방법은 <code>setTimeout</code> 함수에서 자기 자신을 다시 호출하는 방법이다.</p>
+<pre><code>function foo(){
+    // something that blocks for 1 second
+    setTimeout(foo, 1000);
+}
+foo();</code></pre>
+<p>이 방법은 함수 호출이 쌓이지도 않을 뿐만 아니라 <code>setTimeout</code> 호출을 해당 함수 안에서 관리하기 때문에 <code>foo</code> 함수에서 계속 실행할지 말지도 조절할 수 있다.</p>
+</div><div><h3>타이머 없애기</h3>
+<p><code>clearTimeout</code>과 <code>clearInterval</code> 함수로 setTimeout과 setInterval로 등록한 timeout과 interval을 삭제할 수 있다. <code>set</code> 함수들이 반환한 id를 저장했다가 <code>clear</code> 함수를 호출해서 삭제한다.</p>
+<pre><code>var id = setTimeout(foo, 1000);
+clearTimeout(id);</code></pre>
+</div><div><h3>모든 타이머 없애기</h3>
+<p>등록한 timeout과 interval을 한꺼번에 제거하는 내장 함수는 없다. 따라서 좀 무식하지만 직접 구현해야 한다.</p>
+<pre><code>// &quot;모든&quot; 타이머 지우기
+for(var i = 1; i &lt; 1000; i++) {
+    clearTimeout(i);
+}</code></pre>
+<p>위와 같은 방법은 숫자가 미치지 못하는 타이머는 여전히 남아있을수 있다는 단점이 있다. 또 다른 해결 방법은 타이머가 반환하는 값이 항상 전보다 1만큼 큰 수를 반환한다는 점을 착안한 방법이다.</p>
+<pre><code>// &quot;모든&quot; 타이머 지우기
+var biggestTimeoutId = window.setTimeout(function(){}, 1),
+i;
+for(i = 1; i &lt;= biggestTimeoutId; i++) {
+    clearTimeout(i);
+}</code></pre>
+<p>이 방법은 모든 주요 브라우저에서 문제없이 잘 동작하지만 ID가 항상 순차적이어야 한다고 표준에 명시된 것이 아니다. 그러므로 timeout ID를 모두 저장했다가 삭제하는 것이 가장 안전하다. 그러면 전부 깨끗하게 제거할 수 있다.</p>
+</div><div><h3>보이지 않게 사용되는 <code>eval</code>함수</h3>
+<p><code>setTimeout</code>과 <code>setInterval</code>의 첫 파라미터로 문자열을 넘길 수 있다. 하지만 내부적으로 <code>eval</code>을 사용하는 것이기 때문에 절대 사용해서는 안된다.</p>
+<aside>
+<p><strong>Note:</strong> timeout 함수는 ECMAScript 표준이 아니기 때문에 문자열로 넘어오는 첫번째 인자에 대한 해석은 구현체마다 다르다. 예를 들어, Microsoft의 JScript는 <code>eval</code>이 아니라 <code>Function</code> 생성자를 사용한다.</p>
+</aside>
+<pre><code>function foo() {
+    // 이게 호출됨
+}
+
+function bar() {
+    function foo() {
+        // 이것은 절대 호출 안 됨
+    }
+    setTimeout(&#39;foo()&#39;, 1000);
+}
+bar();</code></pre>
+<p>이 경우 <code>eval</code>이 <a href="#core.eval">그냥(directly)</a> 호출되는 것이 아니다. <code>setTimeout</code>에 인자로 넘어간 문자열은 <em>전역</em> 스코프에서 실행되기 때문에 <code>bar</code>함수 영역에 있는 지역 변수 <code>foo</code>가 실행되는 것이 아니라 <em>전역</em> 스코프에 있는 <code>foo</code>가 실행된다.</p>
+<p>함수에 파라미터를 넘겨야 하면 스트링을 사용하지 말아야 한다.</p>
+<pre><code>function foo(a, b, c) {}
+
+// 절대 사용하면 안 됨
+setTimeout(&#39;foo(1, 2, 3)&#39;, 1000)
+
+// 대신 익명 함수를 사용하는 게 좋다.
+setTimeout(function() {
+    foo(a, b, c);
+}, 1000)</code></pre>
+<aside>
+<p><strong>Note:</strong> <code>setTimeout(foo, 1000, a, b, c)</code>처럼 사용하는 것도 가능하지만, 이것도 권장하지 않는다. <a href="#function.this">메소드</a>를 사용할 때 잡아내기 어려운 에러가 날 수 있다.</p>
+</aside>
+</div><div><h3>결론</h3>
+<p><code>setTimeout</code>과 <code>setInterval</code>함수에 문자열 인자를 절대 사용해서는 안된다. 핸들러 함수에 인자를 넘기는 코드도 <strong>절대</strong> 좋은 코드가 아니다. <em>익명 함수</em>을 사용해서 호출해야 한다.</p>
+<p>그리고 <code>setInterval</code>은 해당 핸들러가 블럭되든 말든 상관하지 않기 때문에 되도록이면 쓰지말자.</p>
+</div></article></section><!-- Footer--><footer><p>Copyright &copy; 2011. Built with
+ <a href="http://nodejs.org/">Node.js </a>using a<a href="https://github.com/visionmedia/jade/">jade </a>template. 
+Hosted by <a href="http://cramerdev.com">Cramer Development</a>.</p></footer><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script><script src="../javascript/prettify.js"></script><script src="../javascript/plugin.js"></script><script src="../javascript/garden.js"></script></body></html>

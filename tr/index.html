@@ -1,0 +1,1508 @@
+<!DOCTYPE html><html lang="tr"><head><title>JavaScript Garden</title><meta charset="utf-8"><meta name="description" content="JavaScript'in Acayiplikleri ve Kusurları için bir Rehber."><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" href="/JavaScript-Garden/favicon.ico?v=2"><link rel="stylesheet" href="../style/garden.css" media="all"><link rel="stylesheet" href="../style/print.css" media="print"><!--[if lt IE 9]>
+<script src="javascript/html5.js"></script>
+<![endif]--></head><body><!-- Navigation--><nav id="nav_main"><div><ul> <li><a href="/JavaScript-Garden/" title="JavaScript Garden">en</a></li><li><a href="/JavaScript-Garden/es" title="Jardín de JavaScript">es</a></li><li><a href="/JavaScript-Garden/fi" title="JavaScript-puutarha">fi</a></li><li><a href="/JavaScript-Garden/hu" title="JavaScript Garden">hu</a></li><li><a href="/JavaScript-Garden/it" title="JavaScript Garden">it</a></li><li><a href="/JavaScript-Garden/ja" title="JavaScript Garden">ja</a></li><li><a href="/JavaScript-Garden/ko" title="JavaScript Garden">ko</a></li><li><a href="/JavaScript-Garden/pl" title="JavaScript Garden">pl</a></li><li><a href="/JavaScript-Garden/ru" title="JavaScript Гарден">ru</a></li><li class="active"><a href="/JavaScript-Garden/tr" title="JavaScript Garden">tr</a></li><li><a href="/JavaScript-Garden/zh" title="JavaScript 秘密花园">zh</a></li><li><a href="/JavaScript-Garden/zhtw" title="JavaScript 庭院">zhtw</a></li></ul><a id="top" href="#intro" title="Back to top">#top</a><a id="hide_menu" class="tablet">Hide Menu</a></div><ul><li class="nav_intro"><h1><a href="#intro">Giriş</a></h1><ul></ul></li><li class="nav_object"><h1><a href="#object">Nesneler</a></h1><ul><li><a href="#object.general">Nesne Kullanımı ve Özellikleri</a></li><li><a href="#object.prototype">Prototip</a></li><li><a href="#object.hasownproperty"><code>hasOwnProperty</code></a></li><li><a href="#object.forinloop"><code>for in</code> Döngüsü</a></li></ul></li><li class="nav_function"><h1><a href="#function">Fonksiyonlar</a></h1><ul><li><a href="#function.general">Fonksiyon Tanımlaması ve Fonksiyon İfadesi</a></li><li><a href="#function.this"><code>this</code> Nasıl Çalışır</a></li><li><a href="#function.closures">Closure ve Referanslar</a></li><li><a href="#function.arguments"><code>arguments</code> Nesnesi</a></li><li><a href="#function.constructors">Nesne Oluşturucular</a></li><li><a href="#function.scopes">Kapsamlar ve İsim Uzayları</a></li></ul></li><li class="nav_array"><h1><a href="#array">Diziler</a></h1><ul><li><a href="#array.general">Dizi İterasyonu ve Özellikleri</a></li><li><a href="#array.constructor"><code>Array</code> Oluşturucusu</a></li></ul></li><li class="nav_types"><h1><a href="#types">Nesne Tipleri</a></h1><ul><li><a href="#types.equality">Eşitlik ve Karşılaştırmalar</a></li><li><a href="#types.typeof"><code>typeof</code> Operatörü</a></li><li><a href="#types.instanceof"><code>instanceof</code> Operatörü</a></li><li><a href="#types.casting">Tip Dönüşümleri</a></li></ul></li><li class="nav_core"><h1><a href="#core">Temel</a></h1><ul><li><a href="#core.eval">Neden <code>eval</code> Kullanılmamalı</a></li><li><a href="#core.undefined"><code>undefined</code> ve <code>null</code></a></li><li><a href="#core.semicolon">Otomatik Noktalı Virgül İlavesi</a></li><li><a href="#core.delete"><code>delete</code> Operatörü</a></li></ul></li><li class="nav_other"><h1><a href="#other">Diğer</a></h1><ul><li><a href="#other.timeouts"><code>setTimeout</code> ve <code>setInterval</code></a></li></ul></li></ul></nav><!-- Mobile navigation--><nav id="nav_mobile"><a id="nav_prev_section" href="#">prev section<span class="nav_section_name">section name</span></a><a id="nav_next_section" href="#">next section<span class="nav_section_name">section name</span></a><a id="show_menu">show menu</a></nav><!-- Sections--><section id="intro"><!-- Introduction--><header id="intro.intro"><h1>Giriş</h1></header><!-- Articles--><article id="intro.index"><h2>Giriş</h2><div><p><strong>JavaScript Garden</strong> JavaScript programlama dilinin acayiplikleri üzerine
+derlenmiş bir döküman koleksiyonudur. Henüz ustalaşmamış JavaScript 
+programcılarının sıkça yaptığı yanlışlar, dile has incelikler ve performans
+sorunlarına karşı tavsiyeler içerir.</p>
+<p>JavaScript Garden&#39;ın amacı size JavaScript öğretmek <strong>değildir</strong>. Bu rehberde
+anlatılan konuları anlamak için JavaScript dilini önceden biliyor olmanız
+gerekir. Eğer JavaScript dilinin temellerini öğrenmek istiyorsanız, lütfen 
+Mozilla Programcı Ağı&#39;nda bulunan mükemmel <a href="https://developer.mozilla.org/en/JavaScript/Guide">rehbere</a> başvurun.</p>
+<h2>Yazarlar</h2>
+<p>Bu rehber, sevimli birer <a href="http://stackoverflow.com/">Stack Overflow</a> kullanıcısı olan <a href="http://stackoverflow.com/users/170224/ivo-wetzel">Ivo Wetzel</a> (Yazım)
+ve <a href="http://stackoverflow.com/users/313758/yi-jiang">Zhang Yi Jiang</a> (Tasarım) tarafından hazırlanmıştır.</p>
+<h2>Katkıda Bulunanlar</h2>
+<ul>
+<li><a href="https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors">Katkıda Bulunanlar</a></li>
+</ul>
+<h2>Sunum</h2>
+<p>JavaScript Garden GitHub üzerinden, ve ayrıca <a href="http://cramerdev.com/">Cramer Development</a> 
+tarafından desteklenen <a href="http://javascriptgarden.info/">JavaScriptGarden.info</a> adresinden sunulmaktadır.</p>
+<h2>Lisans</h2>
+<p>JavaScript Garden <a href="https://github.com/BonsaiDen/JavaScript-Garden/blob/next/LICENSE">MIT lisansı</a> altında yayınlanmıştır ve <a href="https://github.com/BonsaiDen/JavaScript-Garden">GitHub</a>
+üzerinde bulunmaktadır. Eğer rehberde yanlışlıklar veya yazım hatalarına
+rastlarsanız lütfen <a href="https://github.com/BonsaiDen/JavaScript-Garden/issues">sorunu bize bildirin</a> veya bir <code>pull request</code> gönderin.
+Bizi ayrıca Stack Overflow&#39;da <a href="http://chat.stackoverflow.com/rooms/17/javascript">JavaScript sohbet odasında</a> da 
+bulabilirsiniz.</p>
+</div></article></section><section id="object"><!-- Introduction--><header id="object.intro"><h1>Nesneler</h1></header><!-- Articles--><article id="object.general"><h2>Nesne Kullanımı ve Özellikleri</h2><div><p>JavaScript&#39;te iki istisna dışında her şey bir nesne olarak davranır;
+bu istisnalar da <a href="#core.undefined"><code>null</code></a> ve <a href="#core.undefined"><code>undefined</code></a> 
+&#39;dır.</p>
+<pre><code>false.toString(); // &#39;false&#39;
+[1, 2, 3].toString(); // &#39;1,2,3&#39;
+
+function Foo(){}
+Foo.bar = 1;
+Foo.bar; // 1</code></pre>
+<p>Sık düşülen bir yanılgı sayı sabitlerinin nesne olarak kullanılamayacağıdır. Bu
+yanılgının sebebi de JavaScript çözümleyicisinin <em>nokta notasyonu</em> ile girilen
+sayıları bir reel sayı olarak algılama hatasıdır.</p>
+<pre><code>2.toString(); // SyntaxError hatası verir</code></pre>
+<p>Bu hatayı aşıp sayı sabitlerinin de nesne olarak davranmasını sağlamak için 
+uygulanabilecek bazı çözümler vardır. </p>
+<pre><code>2..toString(); // ikinci nokta doğru şekilde algılanır
+2 .toString(); // noktanın solundaki boşluğa dikkat edin
+(2).toString(); // ilk önce 2 değerlendirilir</code></pre>
+</div><div><h3>Bir veri türü olarak nesneler</h3>
+<p>JavaScript nesneleri aynı zamanda bir <a href="http://en.wikipedia.org/wiki/Hashmap"><em>Hashmap</em></a> olarak da kullanılabilir,
+nesneler temelde isimli özellikler ve bunlara karşılık gelen değerlerden
+ibarettir.</p>
+<p>Nesne sabiti (<code>{}</code> notasyonu) ile düz bir nesne yaratmak mümkündür. Bu yeni
+nesne <a href="#object.prototype">kalıtım</a> ile <code>Object.prototype</code> &#39;dan türüyecektir ve
+hiçbir <a href="#object.hasownproperty">baz özelliğe</a> sahip olmayacaktır.</p>
+<pre><code>var foo = {}; // yeni bir boş nesne
+
+// adı &#39;test&#39; ve değeri 12 olan bir özelliği sahip yeni bir nesne
+var bar = {test: 12}; </code></pre>
+</div><div><h3>Özelliklere erişmek</h3>
+<p>Bir nesnenin özelliklerine iki yolla erişilebilir, ya nokta notasyonu ile veya
+köşeli parantez notasyonu ile.</p>
+<pre><code>var foo = {name: &#39;kitten&#39;}
+foo.name; // kitten
+foo[&#39;name&#39;]; // kitten
+
+var get = &#39;name&#39;;
+foo[get]; // kitten
+
+foo.1234; // SyntaxError
+foo[&#39;1234&#39;]; // çalışır</code></pre>
+<p>Her iki notasyon da aynı şekilde çalışır, tek fark köşeli parantez notasyonunun
+özelliklerin dinamik olarak oluşturulmasına ve normalde bir yazım hatasına yol
+açabilecek özellik isimlerinin kullanılmasına izin vermesidir.</p>
+</div><div><h3>Özellikleri silmek</h3>
+<p>Bir nesnenin özelliklerinden birini silmenin tek yolu <code>delete</code> operatörünü 
+kullanmaktır; özelliğe <code>undefined</code> veya <code>null</code> değerlerini atamak sadece
+özelliğin <em>değerini</em> kaldırır, <em>anahtarı</em> değil.</p>
+<pre><code>var obj = {
+    bar: 1,
+    foo: 2,
+    baz: 3
+};
+obj.bar = undefined;
+obj.foo = null;
+delete obj.baz;
+
+for(var i in obj) {
+    if (obj.hasOwnProperty(i)) {
+        console.log(i, &#39;&#39; + obj[i]);
+    }
+}</code></pre>
+<p>Yukarıdaki örnek sonuç olarak hem <code>bar undefined</code> hem de <code>foo null</code> yazacaktır.
+Sadece <code>baz</code> özelliği kaldırılmış olacak ve çıktıda görünmeyecektir.</p>
+</div><div><h3>Anahtar notasyonu</h3>
+<pre><code>var test = {
+    &#39;case&#39;: &#39;anahtar kelime olduğu için katar olarak girildi&#39;,
+    delete: &#39;yine bir anahtar kelime&#39; // SyntaxError hatası
+};</code></pre>
+<p>Nesne özellikleri düz karakterler olarak da katar notasyonu ile de
+tanımlanabilir. Fakat JavaScript çözümleyicisinin bir başka tasarım hatası
+yüzünden, yukarıdaki örnek ECMAScript 5 öncesinde bir <code>SyntaxError</code> hatası
+verecektir.</p>
+<p>Bu hata <code>delete</code> &#39;in bir <em>anahtar kelime</em> olmasından kaynaklanır, bu nedenle
+eski JavaScript motorlarının bu örneği doğru algılaması için <em>karakter katarı</em>
+notasyonu ile girilmelidir.</p>
+</div></article><article id="object.prototype"><h2>Prototip</h2><div><p>JavaScript klasik bir kalıtım modeli değil <em>prototip</em> modeli kullanır.</p>
+<p>Çoğu zaman bu modelin JavaScript&#39;in zayıf yönlerinden biri olduğu söylense de,
+aslında prototip model klasik modelden daha güçlüdür. Mesela prototip model
+temel alınarak klasik kalıtım modeli oluşturulabilir, fakat bunun tersini yapmak
+çok daha zordur.</p>
+<p>Prototip kalıtım modeli kullanan tek popüler dil JavaScript olduğu için iki
+model arasındaki farklılıklara alışmak biraz zaman alır.</p>
+<p>İlk büyük farklılık JavaScript&#39;te kalıtımın <em>prototip zincirleri</em> ile
+yapılmasıdır.</p>
+<aside>
+<p><strong>Not:</strong> <code>Bar.prototype = Foo.prototype</code> gibi basit bir atama yapmak her iki
+nesnenin de <strong>aynı</strong> prototipe sahip olmasına neden olacaktır. Bu yüzden bir
+nesnenin prototipinde yapılacak değişiklikler diğer nesnenin prototipini de
+etkileyecektir, ki çoğu zaman istenen etki bu değildir.</p>
+</aside>
+<pre><code>function Foo() {
+    this.value = 42;
+}
+Foo.prototype = {
+    method: function() {}
+};
+
+function Bar() {}
+
+// Bar nesnesinin prototipi olarak yeni bir Foo nesnesini ata
+Bar.prototype = new Foo();
+Bar.prototype.foo = &#39;Hello World&#39;;
+
+// Nesne oluşturucusunun Bar olmasını sağla
+Bar.prototype.constructor = Bar;
+
+var test = new Bar() // yeni bir Bar oluştur
+
+// Sonuçta ortaya çıkan prototip zinciri
+test [bir Bar sınıfı nesnesi]
+    Bar.prototype [bir Foo sınıfı nesnesi] 
+        { foo: &#39;Hello World&#39; }
+        Foo.prototype
+            { method: ... }
+            Object.prototype
+                { toString: ... /* vs. */ }</code></pre>
+<p>Yukarıda, <code>test</code> nesnesi hem <code>Bar.prototype</code> hem de <code>Foo.prototype</code> &#39;dan
+türeyecektir; bu nedenle <code>Foo</code> &#39;da tanımlanmış olan <code>method</code> fonksiyonuna
+da erişebilir. Ayrıca, prototipi olan <strong>tek</strong> <code>Foo</code> nesnesinin <code>value</code>
+özelliğine de erişebilir. Dikkat edilmesi gereken bir nokta, <code>new Bar()</code>
+ifadesinin yeni bir <code>Foo</code> nesnesi <strong>yaratmayıp</strong>, prototipine atanmış olan
+nesneyi kullanmasıdır; bu nedenle, tüm <code>Bar</code> nesneleri <strong>aynı</strong> <code>value</code>
+özelliğine sahip olacaktır.</p>
+<aside>
+<p><strong>Not:</strong> <code>Bar.prototype = Foo</code> gibi bir ifade <strong>kullanmayın</strong>, çünkü <code>Foo</code>
+&#39;nun prototipine değil fonksiyon nesnesine işaret edecektir. Yani
+prototip zinciri <code>Foo.prototype</code> değil <code>Function.prototype</code> üzerinden
+gidecektir; ve bu yüzden, <code>method</code> prototip zincirinde bulunmayacaktır.</p>
+</aside>
+</div><div><h3>Özelliklere bulmak</h3>
+<p>Bir nesnenin özelliklerine erişildiğinde, JavaScript, istenen isimdeki özelliği
+bulana kadar prototip zincirinde <strong>yukarı</strong> doğru dolaşır.</p>
+<p>Zincirin en üstüne ulaştığında (yani <code>Object.prototype</code>) ve hala istenen özelliği
+bulamamışsa sonuç olarak <a href="#core.undefined"><code>undefined</code></a> verecektir.</p>
+</div><div><h3>prototype özelliği</h3>
+<p><code>prototype</code> özelliği dil tarafından prototip zincirleri oluşturmak için
+kullanılsa da, bu özelliğe <strong>herhangi</strong> bir değer atamak mümkündür. Fakat
+prototip olarak atanan ilkel nesne türleri göz ardı edilecektir.</p>
+<pre><code>function Foo() {}
+Foo.prototype = 1; // hiç bir etkisi olmaz</code></pre>
+<p>Bir önceki örnekte gösterildiği gibi, prototip olarak nesneler atanabilir, bu da
+prototip zincirlerinin dinamik olarak oluşturulabilmesini sağlar.</p>
+</div><div><h3>Performans</h3>
+<p>Prototip zincirinin yukarısındaki özellikleri aramanın performansı kritik olan 
+programlarda olumsuz etkileri olabilir. Ek olarak, mevcut olmayan özelliklere
+erişmeye çalışmak da tüm prototip zincirinin baştan sona taranmasına neden
+olacaktır.</p>
+<p>Ayrıca, bir nesnenin özellikleri üzerinde <a href="#object.forinloop">iterasyon</a>
+yapıldığında da prototip zinciri üzerindeki <strong>tüm</strong> özelliklere bakılacaktır.</p>
+</div><div><h3>Temel prototiplerin genişletilmesi</h3>
+<p>Sıklıkla yapılan bir hata <code>Object.prototype</code> &#39;ı veya diğer baz prototipleri 
+genişletmektir.</p>
+<p>Bu tekniğe <a href="http://en.wikipedia.org/wiki/Monkey_patch"><em>monkey patching</em></a> denir ve <em>kapsüllemeyi</em> bozar. Bu teknik
+<a href="http://prototypejs.org/">Prototype</a> gibi bazı popüler sistemlerde kullanılsa bile, temel nesne
+türlerine <em>standart olmayan</em> özellikler eklenmesinin geçerli iyi bir nedeni
+yoktur.</p>
+<p>Temel prototipleri genişletmenin <strong>tek bir</strong> geçerli nedeni vardır, o da daha
+yeni JavaScript motorlarında bulunan özelliklerin eski motorlara getirilmesidir;
+mesela <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach"><code>Array.forEach</code></a>.</p>
+</div><div><h3>Sonuç</h3>
+<p>Prototip kalıtım modeli kullanan karmaşık programlar yazmadan önce bu modelin
+tamamen anlaşılması <strong>şarttır</strong>. Ayrıca, prototip zincirinin uzunluğuna dikkat
+edilmeli ve çok uzaması durumunda performans sorunları yaşamamak için parçalara
+bölünmelidir. Bundan başka, temel prototipler yeni JavaScript motorları ile
+uyumluluk sağlamak dışında bir nedenle <strong>asla</strong> genişletilmemelidir.</p>
+</div></article><article id="object.hasownproperty"><h2><code>hasOwnProperty</code></h2><div><p>Bir özelliğin nesnenin <a href="#object.prototype">prototip zinciri</a> üzerinde bir yerde
+<strong>değil</strong>, <em>kendisi</em> üzerinde tanımlandığını belirlemek için, <code>Object.prototype</code>
+kalıtımı ile tüm nesnelerin sahip olduğu <code>hasOwnProperty</code> metodunun kullanılması
+gerekir.</p>
+<aside>
+<p><strong>Not:</strong> Bir özelliğin <code>undefined</code> olduğunu kontrol etmek yeterli <strong>değildir</strong>.
+Bir özelliğin değeri <code>undefined</code> olarak atandığı halde özelliğin kendisi
+pekala mevcut olabilir.</p>
+</aside>
+<p><code>hasOwnProperty</code> JavaScript&#39;te nesne özellikleri üzerinde çalışıp prototip
+zincirinin tümünü <strong>dolaşmayan</strong> tek şeydir.</p>
+<pre><code>// Object.prototype&#39;a bar özelliğini ekle
+Object.prototype.bar = 1; 
+var foo = {goo: undefined};
+
+foo.bar; // 1
+&#39;bar&#39; in foo; // true
+
+foo.hasOwnProperty(&#39;bar&#39;); // false
+foo.hasOwnProperty(&#39;goo&#39;); // true</code></pre>
+<p>Sadece <code>hasOwnProperty</code> beklenen doğru sonucu verecektir, nesne özellikleri
+üzerinde iterasyon yaparken bu çok önemlidir. Bir nesnenin <em>kendisi</em> üzerinde
+değil de protip zinciri üzerinde bir yerde tanımlanmış olan özelliklerini
+çıkarmanın başka hiçbir yolu <strong>yoktur</strong>.</p>
+</div><div><h3><code>hasOwnProperty</code> özelliği</h3>
+<p>JavaScript <code>hasOwnProperty</code> adının bir özellik olarak kullanılmasını engellemez;
+bu nedenle bir nesnenin bu isimde bir özelliğe sahip olması ihtimali varsa,
+doğru sonuç alabilmek için <code>hasOwnProperty</code><em>haricen</em> kullanılmalıdır.</p>
+<pre><code>var foo = {
+    hasOwnProperty: function() {
+        return false;
+    },
+    bar: &#39;Here be dragons&#39;
+};
+
+foo.hasOwnProperty(&#39;bar&#39;); // her zaman false verir
+
+// hasOwnProperty başka bir nesne üzerinde
+// kullanıldığında &#39;this&#39; foo olur
+({}).hasOwnProperty.call(foo, &#39;bar&#39;); // true</code></pre>
+</div><div><h3>Sonuç</h3>
+<p>Bir nesnenin bir özelliği sahip olup olmadığını kontrol etmek için
+kullanılabilecek <strong>tek</strong> yöntem <code>hasOwnProperty</code> &#39;dir. Aynı zamanda, nesne
+<a href="#object.prototype">prototiplerinin</a> genişletilmesinden kaynaklanabilecek
+hataların önüne geçmek için, <strong>tüm</strong> <a href="#object.forinloop"><code>for in</code> döngüleri</a> ile
+<code>hasOwnProperty</code> kullanılması tavsiye olunur.</p>
+</div></article><article id="object.forinloop"><h2><code>for in</code> Döngüsü</h2><div><p>Tıpkı <code>in</code> operatörü gibi <code>for in</code> döngüsü de bir nesnenin özellikleri üzerinde
+iterasyon yaparken prototip zincirini dolaşır.</p>
+<aside>
+<p><strong>Not:</strong> <code>for in</code> döngüsü iterasyon yaparken <code>enumerable</code> niteliği <code>false</code>
+olan özelliklere uğramaz; mesela, bir dizinin <code>length</code> özelliğini atlar.</p>
+</aside>
+<pre><code>// Object.prototype&#39;a bar özelliğini ekle
+Object.prototype.bar = 1;
+
+var foo = {moo: 2};
+for(var i in foo) {
+    console.log(i); // hem bar hem de moo yazar
+}</code></pre>
+<p><code>for in</code> döngüsünün davranışını değiştirmek mümkün olmadığı için, istenmeyen
+özelliklerin döngünün içinde filtrelenmesi gerekir, bu da <code>Object.prototype</code>
+nesnesinin <a href="#object.hasownproperty"><code>hasOwnProperty</code></a> metodu ile yapılır.</p>
+<aside>
+<p><strong>Not:</strong> <code>for in</code> döngüsü tüm prototip zincirini dolaştığı için bir nesneye
+eklenen her yeni kalıtım katmanı döngüyü biraz daha yavaşlatacaktır.</p>
+</aside>
+</div><div><h3><code>hasOwnProperty</code> kullanarak filtrelemek</h3>
+<pre><code>// yukarıdaki örnekteki foo nesnesi
+for(var i in foo) {
+    if (foo.hasOwnProperty(i)) {
+        console.log(i);
+    }
+}</code></pre>
+<p>Doğru kullanım bu yeni versiyonda gösterildiği gibidir. <code>hasOwnProperty</code> kontrol
+edildiği için <strong>sadece</strong> <code>moo</code> yazacaktır. <code>hasOwnProperty</code> kullanılmaz ise ve
+<code>Object.prototype</code> &#39;ın baz özellikleri değiştirilmişse, program bazı hatalara
+yatkın olabilir.</p>
+<p>Bunu yapan ve yaygın olarak kullanılan bir JavaScript sistemi <a href="http://www.prototypejs.org/">Prototype</a>
+&#39;dır. Bu sistemde <code>hasOwnProperty</code> kullanmayan <code>for in</code> döngüleri kesinlikle
+hatalı sonuç verecektir.</p>
+</div><div><h3>Sonuç</h3>
+<p><code>hasOwnProperty</code> <strong>her zaman</strong> kontrol edilmelidir. Programın içinde çalıştığı
+ortam için, nesnelerin baz özelliklerinin değiştirilip değiştirilmediğine dair
+hiçbir kabul yapılmamalıdır.</p>
+</div></article></section><section id="function"><!-- Introduction--><header id="function.intro"><h1>Fonksiyonlar</h1></header><!-- Articles--><article id="function.general"><h2>Fonksiyon Tanımlaması ve Fonksiyon İfadesi</h2><div><p>Fonksiyonlar JavaScript&#39;te birinci sınıf nesnelerdir, yani sıradan bir değer
+gibi kullanılabilirler. Bu özellik sıklıkla bir <em>isimsiz fonksiyonu</em> başka bir
+fonksiyona - ki bu muhtemelen asenkron bir fonksiyondur - <code>callback</code> olarak
+geçirmekte kullanılır.</p>
+</div><div><h3><code>function</code> tanımlaması</h3>
+<pre><code>function foo() {}</code></pre>
+<p>Yukarıdaki fonksiyon tanımlaması program çalışmadan önce 
+<a href="#function.scopes">yukarı taşınır</a> ve böylece <em>tanımlandığı</em> kapsam içinde 
+<em>her yerde</em> (hatta tanımlanmadan önce bile) kullanılabilir.</p>
+<pre><code>foo(); // foo bu satır çalışmadan önce oluşturuldu
+function foo() {}</code></pre>
+</div><div><h3><code>function</code> ifadesi</h3>
+<pre><code>var foo = function() {};</code></pre>
+<p>Bu örnekte <em>isimsiz fonksiyon</em> <code>foo</code> değişkenine atanır.</p>
+<pre><code>foo; // &#39;undefined&#39;
+foo(); // Bu satır bir TypeError hatasına neden olur
+var foo = function() {};</code></pre>
+<p>Yukarıdaki <code>var</code> anahtar kelimesi bir bildirim olduğu için <code>foo</code> değişkeni
+program çalışmadan önce yukarı alınır, program çalıştığında <code>foo</code> tanımlanmştır.</p>
+<p>Fakat değer atamaları sadece program çalışırken gerçekleşeceği için, ilgili
+satır çalıştığında, <code>foo</code> değişkeninin değeri varsayılan olarak
+<a href="#core.undefined">undefined</a> olacaktır.</p>
+</div><div><h3>İsimli fonksiyon ifadesi</h3>
+<p>Bir başka özel durum isimli fonksiyon ifadesidir.</p>
+<pre><code>var foo = function bar() {
+    bar(); // Çalışır
+}
+bar(); // ReferenceError hatası verir</code></pre>
+<p>Burada <code>bar</code> fonksiyonuna dış kapsamdan ulaşılamaz, çünkü sadece <code>foo</code>
+değişkenine atanmıştır; fakat iç kapsamda <code>bar</code> fonksiyonuna erişilebilir.
+Bunun nedeni JavaScript&#39;te <a href="#function.scopes">isim çözümlemenin</a> çalışma
+şeklidir, fonksiyonun adına fonksiyonun içinden <em>her zaman</em> erişilebilir.</p>
+</div></article><article id="function.this"><h2><code>this</code> Nasıl Çalışır</h2><div><p>JavaScript&#39;te <code>this</code> özel kelimesinin anlamı diğer programlama dillerinden
+farklıdır. <code>this</code> kelimesinin birbirinden farklı anlamlar yüklendiği tam
+<strong>beş</strong> durum vardır.</p>
+</div><div><h3>Genel kapsam</h3>
+<pre><code>this;</code></pre>
+<p><code>this</code> kelimesi genel kapsamda kullanıldığında <em>global</em> nesneye işaret eder.</p>
+</div><div><h3>Bir fonksiyon çağırma</h3>
+<pre><code>foo();</code></pre>
+<p>Burada <code>this</code> yine <em>global</em> nesneye işaret eder.</p>
+<aside class="es5"><p><strong>ES5 Notu:</strong> Mutlak modda bu davranış <strong>kaldırılmıştır</strong>. Bu durumda <code>this</code>
+kelimesinin değeri <code>undefined</code> olacaktır.</p>
+</aside>
+</div><div><h3>Bir metod çağırma</h3>
+<pre><code>test.foo(); </code></pre>
+<p>Bu örnekte <code>this</code> kelimesi <code>test</code> &#39;e işaret edecektir.</p>
+</div><div><h3>Bir nesne oluşturucu çağırma</h3>
+<pre><code>new foo(); </code></pre>
+<p>Bir fonksiyon başında <code>new</code> anahtar kelimesi ile birlikte çağrılırsa bir
+<a href="#function.constructors">nesne oluşturucu</a> olarak davranır. Bu fonksiyonun
+içinde <code>this</code> kelimesi <em>yeni oluşturulan</em> <code>Object</code> &#39;e işaret eder.</p>
+</div><div><h3><code>this</code> kelimesinin atanması</h3>
+<pre><code>function foo(a, b, c) {}
+
+var bar = {};
+foo.apply(bar, [1, 2, 3]); // dizi aşağıdaki gibi açılır
+foo.call(bar, 1, 2, 3); // sonuç: a = 1, b = 2, c = 3</code></pre>
+<p><code>Function.prototype</code> &#39;ın <code>call</code> veya <code>apply</code> metodları kullanıldığında, çağrılan
+fonksiyonun içinde <code>this</code> &#39;in değeri ilk argümanın değeri olarak <strong>atanır</strong>.</p>
+<p>Sonuç olarak, yukarıdaki örnekte <em>metod çağırma</em> durumu geçerli <strong>olmayacak</strong>, 
+bunun yerine <code>foo</code> fonksiyonu içinde <code>this</code> &#39;in değeri <code>bar</code> olacaktır.</p>
+<aside>
+<p><strong>Not:</strong> <code>this</code> kelimesi bir <code>Object</code> sabiti içinde nesnenin kendisine
+işaret etmek için <strong>kullanılamaz</strong>. Yani <code>var obj = {me: this}</code> gibi bir
+ifadede <code>me</code>, <code>obj</code> nesnesine işaret <strong>etmeyecektir</strong>, <code>this</code> sadece yukarıda
+açıklanan beş durumdan biri ile kullanılabilir.</p>
+</aside>
+</div><div><h3>Sık düşülen yanılgılar</h3>
+<p>Yukarıdaki durumların çoğu mantıklı görünse bile, ilk durum dilin tasarım
+hatalarından biri olarak değerlendirilmelidir çünkü <strong>hiçbir</strong> pratik
+kullanılımı yoktur.</p>
+<pre><code>Foo.method = function() {
+    function test() {
+        // this genel nesneye işaret eder
+    }
+    test();
+}</code></pre>
+<p>Bir başka yanılgı <code>test</code> fonksiyonunun içinde <code>this</code> &#39;in <code>Foo</code> &#39;ya işaret
+edeceğinin sanılmasıdır, ama bu <strong>doğru değildir</strong>.</p>
+<p><code>test</code> fonksiyonu içinden <code>Foo</code> &#39;ya erişmenin yolu <code>method</code> içinde bir lokal
+değişken oluşturmaktır.</p>
+<pre><code>Foo.method = function() {
+    var that = this;
+    function test() {
+        // Burada this yerine that kullanın
+    }
+    test();
+}</code></pre>
+<p><code>that</code> kelimesinin dilde özel bir anlamı yoktur, ama sıklıkla dış kapsamdaki
+<code>this</code> &#39;e işaret etmek için kullanılır. Bu yöntem <a href="#function.closures"><code>closure</code></a>
+kavramı ile birlikte kullanıldığında <code>this</code> değerini program içinde taşımaya da
+yarar.</p>
+</div><div><h3>Metodları değişkenlere atamak</h3>
+<p>JavaScript&#39;te mevcut <strong>olmayan</strong> bir başka özellik de fonksiyon isimlendirmedir,
+başka bir deyişle bir metodu bir değişkene <strong>atamak</strong>.</p>
+<pre><code>var test = someObject.methodTest;
+test();</code></pre>
+<p>İlk durum nedeniyle <code>test</code> artık sıradan bir fonksiyon olarak davranacaktır; bu
+nedenle <code>test</code> fonksiyonu içinde <code>this</code> artık <code>someObject</code> &#39;e işaret
+etmeyecektir.</p>
+<p><code>this</code> kelimesinin geç bağlanması ilk bakışta yanlış görünse de, aslında
+<a href="#object.prototype">prototipsel kalıtımı</a> mümkün kılan şey budur.</p>
+<pre><code>function Foo() {}
+Foo.prototype.method = function() {};
+
+function Bar() {}
+Bar.prototype = Foo.prototype;
+
+new Bar().method();</code></pre>
+<p>Yukarıda <code>Bar</code> sınıfına ait bir nesnenin <code>method</code> &#39;u çağrıldığında <code>this</code> bu
+nesneye işaret edecektir.</p>
+</div></article><article id="function.closures"><h2>Closure ve Referanslar</h2><div><p>JavaScript&#39;in en güçlü özelliklerinden biri de <code>closure</code> &#39;lara sahip olmasıdır.
+Bunun anlamı her hangi bir kapsamın <strong>her zaman</strong> kendisini içeren kapsama
+erişebilmesidir. JavaScript&#39;te tek kapsam <a href="#function.scopes">fonksiyon kapsamı</a>
+olduğu için temelde tüm fonksiyonlar <code>closure</code> &#39;durlar.</p>
+</div><div><h3>Private değişkenler</h3>
+<pre><code>function Counter(start) {
+    var count = start;
+    return {
+        increment: function() {
+            count++;
+        },
+
+        get: function() {
+            return count;
+        }
+    }
+}
+
+var foo = Counter(4);
+foo.increment();
+foo.get(); // 5</code></pre>
+<p>Burada, <code>Counter</code> <strong>iki</strong> <code>closure</code> verir: <code>increment</code> fonksiyonu ve <code>get</code>
+fonksiyonu. Bu iki fonksiyon da <code>Counter</code> fonksiyonun kapsamına ait bir
+<strong>referans</strong> &#39;a sahiptir, ve bu nedenle söz konusu kapsamda tanımlanmış olan
+<code>count</code> değişkenine erişebilirler.</p>
+</div><div><h3>Private değişkenler nasıl işler</h3>
+<p>JavaScript&#39;te kapsam referanslarına erişmek yada atama yapmak mümkün olmadığı
+için, dış kapsamdan <code>count</code> değişkenine ulaşmak <strong>mümkün değildir</strong>. Bu
+değişkene ulaşmanın tek yolu yukarıdaki iki <code>closure</code> &#39;dur.</p>
+<pre><code>var foo = new Counter(4);
+foo.hack = function() {
+    count = 1337;
+};</code></pre>
+<p>Bu program parçası <code>Counter</code> fonksiyonun kapsamındaki <code>count</code> değişkeninin
+değerini <strong>değiştirmez</strong>, çünkü <code>foo.hack</code> <strong>bu kapsamda</strong> tanımlanmamıştır.
+Bunun yerine <em>global</em> kapsamda yeni bir değişen oluşturur (yada mevcut bir
+değişkeni değiştirir).</p>
+</div><div><h3>Döngü içinde closure</h3>
+<p>Sık yapılan bir hata, döngü içinde closure kullanıp döngünün indeks değişkeninin
+değerinin kopyalanacağını varsaymaktır.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout(function() {
+        console.log(i);  
+    }, 1000);
+}</code></pre>
+<p>Yukarıdaki örnek çıktı olarak <code>0</code> - <code>9</code> arası sayıları vermek yerine, <code>10</code>
+sayısını on kez yazacaktır.</p>
+<p>İçteki <em>isimsiz</em> fonksiyon <code>i</code> değişkeninin değerine değil referansına sahiptir
+ve <code>console.log</code> çağrıldığında, <code>for</code> döngüsü çoktan tamamlanmış ve <code>i</code>
+değişkeninin değeri <code>10</code> olmuştur.</p>
+<p>İstenen davranışı elde etmek için <code>i</code> değişkeninin değerinin <strong>kopyalanması</strong>
+gerekir.</p>
+</div><div><h3>Referans probleminin çözümü</h3>
+<p>Döngünün indeks değişkeninin değerini kopyalamanın en iyi yolu bir 
+<a href="#function.scopes">isimsiz fonksiyon</a> kullanmaktır.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    (function(e) {
+        setTimeout(function() {
+            console.log(e);  
+        }, 1000);
+    })(i);
+}</code></pre>
+<p>Dıştaki isimsiz fonksiyon her adımda çağrılacak ve <code>e</code> parametresi olarak
+<code>i</code> &#39;nin <strong>değerinin</strong> bir kopyası verilecektir.</p>
+<p><code>setTimeOut</code> fonksiyonuna verilen isimsiz fonksiyon artık <code>e</code> &#39;ye ait bir
+referansa sahip olacaktır, ve referansın değeri döngü tarafından
+<strong>değiştirilmeyecektir</strong>.</p>
+<p>Bu davranışı başka bir yolla da elde etmek mümkündür; isimsiz fonksiyondan başka
+bir fonksiyon döndürmek. Bu durumda yukarıdaki ile aynı davranış elde
+edilecektir.</p>
+<pre><code>for(var i = 0; i &lt; 10; i++) {
+    setTimeout((function(e) {
+        return function() {
+            console.log(e);
+        }
+    })(i), 1000)
+}</code></pre>
+</div></article><article id="function.arguments"><h2><code>arguments</code> Nesnesi</h2><div><p>JavaScript&#39;te her fonksiyon kapsamında <code>arguments</code> adlı özel bir nesne
+tanımlıdır. Bu nesne fonksiyon çağrılırken verilen argümanların listesini
+içerir.</p>
+<aside>
+<p><strong>Not:</strong> Eğer <code>arguments</code> adında bir değişken fonksiyon kapsamında bir <code>var</code>
+ifadesi ile veya tanımlı parametre olarak zaten mevcutsa, <code>arguments</code> nesnesi
+oluşturulmaz.</p>
+</aside>
+<p><code>arguments</code> nesnesi bir <code>Array</code> <em>değildir</em>. Bir dizinin özelliklerinin bir
+kısmına sahip olsa da (<code>length</code> özelliği) <code>Array.prototype</code> sınıfından
+türetilmemiştir, aslında bir <code>Object</code> bile değildir.</p>
+<p>Bu nedenle, <code>arguments</code> nesnesi üzerinde <code>push</code>, <code>pop</code> ve <code>slice</code> gibi standart
+dizi metotlarını kullanmak mümkün <strong>değildir</strong>. Klasik <code>for</code> döngüsü <code>arguments</code>
+nesnesi ile kullanılabilir, ancak standart dizi metotlarını kullanmak için
+gerçek bir diziye dönüştürmek gerekir.</p>
+</div><div><h3>Diziye dönüştürmek</h3>
+<p>Aşağıdaki program parçası <code>arguments</code> nesnesinin tüm elemanlarına sahip yeni bir
+dizi verecektir.</p>
+<pre><code>Array.prototype.slice.call(arguments);</code></pre>
+<p>Bu dönüşüm <strong>yavaştır</strong>, ve performansın belirleyici olduğu durumlarda
+kullanılması <strong>tavsiye olunmaz</strong>.</p>
+</div><div><h3>Argümanların geçirilmesi</h3>
+<p>Aşağıdaki örnekte, argümanların bir fonksiyondan diğerine geçirilmesi
+için önerilen yöntem gösterilmiştir.</p>
+<pre><code>function foo() {
+    bar.apply(null, arguments);
+}
+function bar(a, b, c) {
+    // do stuff here
+}</code></pre>
+<p>Bir başka püf noktası da <code>call</code> ve <code>apply</code> &#39;ı birlikte kullanarak hızlı, 
+ilişkisiz fonksiyonlar yaratmaktır.</p>
+<pre><code>function Foo() {}
+
+Foo.prototype.method = function(a, b, c) {
+    console.log(this, a, b, c);
+};
+
+// &quot;method&quot; &#39;un ilişkisiz bir versiyonunu yarat
+// Aldığı parametreler: this, arg1, arg2...argN
+Foo.method = function() {
+
+    // Sonuç: Foo.prototype.method.call(this, arg1, arg2... argN)
+    Function.call.apply(Foo.prototype.method, arguments);
+};</code></pre>
+</div><div><h3>Tanımlı parametreler ve argüman indisleri</h3>
+<p><code>arguments</code> nesnesi her iki özelliği ve fonksiyonun tanımlı parametreleri için
+<em>getter</em> ve <em>setter</em> fonksiyonlar oluşturur.</p>
+<p>Sonuç olarak, bir tanımlı parametrenin değerini değiştirmek <code>arguments</code>
+nesnesindeki karşılık gelen özelliğin değerini de değiştirecektir.</p>
+<pre><code>function foo(a, b, c) {
+    arguments[0] = 2;
+    a; // 2                                                           
+
+    b = 4;
+    arguments[1]; // 4
+
+    var d = c;
+    d = 9;
+    c; // 3
+}
+foo(1, 2, 3);</code></pre>
+</div><div><h3>Performans mitleri ve gerçekler</h3>
+<p><code>arguments</code> nesnesi fonksiyon kapsamında bir değişken veya tanımlı parametre
+olarak kullanılmış olması durumları dışında her zaman oluşturulur. Kullanılıp
+kullanılmaması fark etmez.</p>
+<p><em>getter</em> ve <em>setter</em> fonksiyonlar <strong>her zaman</strong> oluşturulur; dolayısıyla
+<code>arguments</code> nesnesini kullanmanın performans üzerinde olumsuz bir etkisi yoktur,
+özellikle de sadece <code>arguments</code> nesnesinin özelliklerine erişmekten ibaret
+olmayan <em>gerçek</em> programlarda.</p>
+<aside class="es5"><p><strong>ES5 Notu:</strong> Söz konusu <em>getter</em> ve <em>setter</em> fonksiyonlar mutlak modda
+oluşturulmaz.</p>
+</aside>
+<p>Fakat, modern JavaScript motorlarının performansını ciddi bir şekilde etkileyen
+bir durum vardır. Bu durum <code>arguments.callee</code> nesnesinin kullanılmasıdır.</p>
+<pre><code>function foo() {
+    arguments.callee; // içinde olduğumuz fonksiyon nesnesi
+    arguments.callee.caller; // ve çağıran fonksiyon nesnesi
+}
+
+function bigLoop() {
+    for(var i = 0; i &lt; 100000; i++) {
+        foo(); // Normalde inline edilirdi...
+    }
+}</code></pre>
+<p>Yukarıdaki program parçasında, <code>foo</code> fonksiyonuna <a href="http://en.wikipedia.org/wiki/Inlining">inlining</a> uygulanması
+mümkün değildir çünkü fonksiyonun hem kendisini ve kendisini çağıran fonksiyonu
+bilmesi gerekmektedir. Bu yüzden hem inlining yapılamadığı için bir performans
+artışı sağlanamamış hem de kapsüllenme bozulmuş olmaktadır, çünkü fonksiyon
+artık kendisini çağıran kapsama bağımlı hale gelmiş olabilir.</p>
+<p><code>arguments.callee</code> ve özelliklerinin <strong>asla</strong> kullanılmaması 
+<strong>şiddetle tavsiye olunur</strong>.</p>
+<aside class="es5"><p><strong>ES5 Notu:</strong> Mutlak modda <code>arguments.callee</code> kullanımı kaldırılmıştır ve
+kullanılması durumunda bir <code>TypeError</code> hatası oluşacaktır.</p>
+</aside>
+</div></article><article id="function.constructors"><h2>Nesne Oluşturucular</h2><div><p>JavaScript&#39;te oluşturucular diğer dillerden farklıdır. Başında <code>new</code> bulunan
+her fonksiyon çağrısı bir oluşturucudur.</p>
+<p>Oluşturucunun (çağrılan fonksiyonun) içinde <code>this</code> &#39;in değeri yeni yaratılan
+<code>Object</code> &#39;dir. Bu <strong>yeni</strong> nesnenin <a href="#object.prototype"><code>prototipi</code></a> oluşturucu
+olarak çağrılan fonksiyon nesnesinin prototipidir.</p>
+<p>Çağrılan fonksiyonda bir <code>return</code> ifadesi yoksa, <code>this</code> (yani yeni nesneyi)
+döndürür.</p>
+<pre><code>function Foo() {
+    this.bla = 1;
+}
+
+Foo.prototype.test = function() {
+    console.log(this.bla);
+};
+
+var test = new Foo();</code></pre>
+<p>Yukarıdaki program <code>Foo</code> oluşturucusunu çağırır ve yeni yaratılan nesnenin
+<code>prototipini</code> <code>Foo.prototype</code> olarak belirler.</p>
+<p>Oluşturucunun içinde bir <code>return</code> ifadesi bulunması durumunda,  <strong>ve sadece</strong>
+bu değer bir <code>Object</code> ise oluşturucu fonksiyon verilen değeri döndürür.</p>
+<pre><code>function Bar() {
+    return 2;
+}
+new Bar(); // yeni bir Bar nesnesi
+
+function Test() {
+    this.value = 2;
+
+    return {
+        foo: 1
+    };
+}
+new Test(); // döndürülen nesne</code></pre>
+<p><code>new</code> anahtar kelimesi ihmal edilirse, fonksiyon yeni bir nesne <strong>döndürmez</strong>.</p>
+<pre><code>function Foo() {
+    this.bla = 1; // global nesnenin özelliğini değiştirir
+}
+Foo(); // undefined</code></pre>
+<p>Yukarıdaki örnek bazı durumlarda doğru çalışıyor gibi görünebilir, ama
+JavaScript&#39;te  <a href="#function.this"><code>this</code></a> &#39;in çalışma şeklinden dolayı <code>this</code>
+&#39;in değeri <em>global nesne</em> olacaktır.</p>
+</div><div><h3>Nesne fabrikaları</h3>
+<p><code>new</code> anahtar kelimesini ihmal edebilmek için oluşturucu fonksiyonun bir değer
+döndürmesi gerekir.</p>
+<pre><code>function Bar() {
+    var value = 1;
+    return {
+        method: function() {
+            return value;
+        }
+    }
+}
+Bar.prototype = {
+    foo: function() {}
+};
+
+new Bar();
+Bar();</code></pre>
+<p>Yukarıda <code>Bar</code> fonksiyonunu çağıran her iki ifade de aynı şeyi döndürecektir:
+<code>method</code> adında bir <a href="#function.closures"><code>closure</code></a> özelliği olan yeni yaratılmış
+bir nesne.</p>
+<p>Başka bir nokta da <code>new Bar()</code> fonksiyonunun döndürülen nesnenin prototipini
+<strong>etkilememesidir</strong>. Yeni nesnenin prototipi oluşturulacaktır ancak <code>Bar</code> bu
+nesneyi döndürmez.</p>
+<p>Yukarıdaki örnekte <code>new</code> anahtar kelimesini kullanmakla kullanmamak arasında
+hiçbir bir fark yoktur.</p>
+</div><div><h3>Fabrikalar ile yeni nesneler oluşturmak</h3>
+<p><code>new</code> anahtar kelimesinin <strong>kullanılmaması</strong> tavsiye edilir, çünkü unutulması
+durumu hatalara sebep olabilir.</p>
+<p>Bunun yerine yeni bir nesne oluşturmak için bir fabrika kullanılmalıdır.</p>
+<pre><code>function Foo() {
+    var obj = {};
+    obj.value = &#39;blub&#39;;
+
+    var private = 2;
+    obj.someMethod = function(value) {
+        this.value = value;
+    }
+
+    obj.getPrivate = function() {
+        return private;
+    }
+    return obj;
+}</code></pre>
+<p>Yukarıdaki örnek hem <code>new</code> anahtar kelimesinin unutulmasından etkilenmez hem de
+<a href="#function.closures">private değikenlerin</a> kullanılmasını kolaylaştırır, ama
+bazı dezavantajları da vardır.</p>
+<ol>
+<li>Oluşturulan nesneler bir prototip üzerinde metotlarını <strong>paylaşmadıkları</strong>
+için daha fazla hafıza kullanılır.</li>
+<li>Başka bir sınıf türetmek için fabrikanın tüm metotları başka bir nesneden
+kopyalaması veya bu nesneyi yeni nesnenin prototipine yerleştirmesi gerekir.</li>
+<li>Sadece <code>new</code> anahtar kelimesinin ihmal edilmesinden kaynaklanacak sorunları
+gidermek için prototip zincirinden vazgeçmek dilin ruhuna aykırıdır.</li>
+</ol>
+</div><div><h3>Sonuç</h3>
+<p><code>new</code> anahtar kelimesini ihmal etmek hatalara neden olabilir, fakat bu
+kesinlikle prototip zincirinden vazgeçmek için bir neden <strong>olamaz</strong>. Hangi
+çözümün belirli bir programa uygun olduğu kararını verirken, en önemli nokta
+nesne oluşturmak için belirli bir yöntemi seçip bu çözüme <strong>bağlı kalmaktır</strong>.</p>
+</div></article><article id="function.scopes"><h2>Kapsamlar ve İsim Uzayları</h2><div><p>JavaScript&#39;te birbiri ile eşleşen ayraçlar kullanılmasına karşın blok
+kapsamı <strong>bulunmaz</strong>; bu nedenle, dilde sadece <em>fonksiyon kapsamı</em> mevcuttur.</p>
+<pre><code>function test() { // fonksiyon kapsamı
+    for(var i = 0; i &lt; 10; i++) { // kapsam değil
+        // sayaç
+    }
+    console.log(i); // 10
+}</code></pre>
+<aside>
+<p><strong>Not:</strong> Bir değer atama, <code>return</code> ifadesi veya fonksiyon argümanı olarak
+kullanıldığında <code>{...}</code> notasyonu bir nesne değişmezi olarak <strong>değil</strong>
+blok ifade olarak değerlendirilir. Bu özellik 
+<a href="#core.semicolon">otomatik noktalı virgül ilavesi</a> ile birleştiğinde fark
+edilmesi zor hatalara neden olabilir.</p>
+</aside>
+<p>JavaScript&#39;te isim uzayları kavramı da bulunmaz, tanımlanan herşey
+<em>genel olarak paylaşılmış</em> tek bir isim uzayının içindedir.</p>
+<p>Bir değişkene erişildiğinde, JavaScript değişkenin tanımını bulana dek yukarıya
+doğru tüm kapsamlara bakar. Genel kapsama ulaşıldığı halde hala değişkenin
+tanımı bulanamamışsa bir <code>ReferenceError</code> hatası oluşur.</p>
+</div><div><h3>Genel değişkenler felaketi</h3>
+<pre><code>// A programı
+foo = &#39;42&#39;;
+
+// B programı
+var foo = &#39;42&#39;</code></pre>
+<p>Yukarıdaki iki program birbirinden <strong>farklıdır</strong>. A programında <em>genel</em> kapsamda
+bir <code>foo</code> değişkeni tanımlanmıştır, B programındaki <code>foo</code> değişkeni ise <em>mevcut</em>
+kapsamda tanımlanmıştır.</p>
+<p>Bu iki tanımlamanın birbirinden <strong>farklı</strong> <em>etkileri</em> olacaktır, <code>var</code> anahtar
+kelimesini kullanmamanın önemli sonuçları olabilir.</p>
+<pre><code>// genel kapsam
+var foo = 42;
+function test() {
+    // lokal kapsam
+    foo = 21;
+}
+test();
+foo; // 21</code></pre>
+<p><code>test</code> fonksiyonun içinde <code>var</code> anahtar kelimesinin atlanması genel kapsamdaki
+<code>foo</code> değişkeninin değerini değiştirecektir. İlk bakışta bu önemsiz gibi görünse
+de, binlerce satırlık bir programda <code>var</code> kullanılmaması korkunç ve takibi güç
+hatalara neden olacaktır.</p>
+<pre><code>// genel kapsam
+var items = [/* bir dizi */];
+for(var i = 0; i &lt; 10; i++) {
+    subLoop();
+}
+
+function subLoop() {
+    // subLoop fonksiyonun kapsamı
+    for(i = 0; i &lt; 10; i++) { // var kullanılmamış
+        // do amazing stuff!
+    }
+}</code></pre>
+<p>Dışarıdaki döngüden <code>subLoop</code> fonksiyonu bir kez çağrıldıktan sonra çıkılacaktır,
+çünkü <code>subLoop</code> <code>i</code> değişkeninin dış kapsamdaki değerini değiştirir. İkinci
+<code>for</code> döngüsünde de <code>var</code> kullanılması bu hatayı kolayca engelleyecektir. 
+<em>Bilinçli olarak</em> dış kapsama erişilmek istenmiyorsa <code>var</code> ifadesi <strong>asla</strong>
+atlanmamalıdır.</p>
+</div><div><h3>Lokal değişkenler</h3>
+<p>JavaScript&#39;te lokal değişkenler sadece <a href="#function.general">fonksiyon</a>
+parametreleri ve <code>var</code> ifadesi ile tanımlanan değişkenlerdir.</p>
+<pre><code>// genel kapsam
+var foo = 1;
+var bar = 2;
+var i = 2;
+
+function test(i) {
+    // test fonksiyonunun lokal kapsamı
+    i = 5;
+
+    var foo = 3;
+    bar = 4;
+}
+test(10);</code></pre>
+<p><code>test</code> fonksiyonun içinde <code>foo</code> ve <code>i</code> lokal değişkenlerdir, <code>bar</code> değişkenine
+değer atanması ise genel kapsamdaki aynı isimdeki değişkenin değerini
+değiştirecektir.</p>
+</div><div><h3>Yukarı taşıma</h3>
+<p>JavaScript&#39;te tanımlamalar <strong>yukarı taşınır</strong>. Yani hem <code>var</code> ifadesi hem de
+<code>function</code> bildirimleri içindeki bulundukları kapsamın en üstüne taşınırlar.</p>
+<pre><code>bar();
+var bar = function() {};
+var someValue = 42;
+
+test();
+function test(data) {
+    if (false) {
+        goo = 1;
+
+    } else {
+        var goo = 2;
+    }
+    for(var i = 0; i &lt; 100; i++) {
+        var e = data[i];
+    }
+}</code></pre>
+<p>Program çalışmadan önce yukarıdaki kod dönüştürülür. JavaScript, <code>var</code>
+ifadelerini ve <code>function</code> bildirimlerini içinde bulundukları kapsamın en üstüne
+taşır.</p>
+<pre><code>// var ifadeleri buraya taşınır
+var bar, someValue; // varsayılan değerleri &#39;undefined&#39; olur
+
+// function bildirimi de yukarı taşınır
+function test(data) {
+    var goo, i, e; // blok kapsamı olmadığı için buraya taşınır
+    if (false) {
+        goo = 1;
+
+    } else {
+        goo = 2;
+    }
+    for(i = 0; i &lt; 100; i++) {
+        e = data[i];
+    }
+}
+
+bar(); // bir TypeError hatası oluşur çünkü bar hala &#39;undefined&#39;
+someValue = 42; // değer atamaları etkilenmez
+bar = function() {};
+
+test();</code></pre>
+<p>Blok kapsamının bulunmaması nedeniyle hem <code>var</code> ifadeleri döngülerin dışına
+taşınır hem de bazı <code>if</code> ifadeleri anlaşılmaz sonuçlar verebilir.</p>
+<p>Orijinal programda <code>if</code> ifadesi <code>goo</code> isimli <em>genel değişkeni</em> değiştiriyor gibi
+görünüyordu, fakat yukarı taşımadan sonra anlaşıldığı gini aslında 
+<em>lokal değişkeni</em> değiştiriyor.</p>
+<p><em>Yukarı taşıma</em> dikkate alınmadığında aşağıdaki programın bir <code>ReferenceError</code>
+oluşturacağı sanılabilir.</p>
+<pre><code>// SomeImportantThing değişkenine değer atanmış mı, kontrol et
+if (!SomeImportantThing) {
+    var SomeImportantThing = {};
+}</code></pre>
+<p>Fakat <code>var</code> değişkeni <em>genel kapsamın</em> en üstüne taşınacağı için bu program
+çalışacaktır.</p>
+<pre><code>var SomeImportantThing;
+
+// SomeImportantThing arada bir yerde atanmış olabilir
+
+// Değer atandığından emin ol
+if (!SomeImportantThing) {
+    SomeImportantThing = {};
+}</code></pre>
+</div><div><h3>İsim çözümleme</h3>
+<p>JavaScript&#39;te <em>genel kapsam</em> da dahil tüm kapsamlarda <a href="#function.this"><code>this</code></a>
+adında bir özel değişken tanımlanmıştır, bu değişken <em>geçerli nesneyi</em> gösterir.</p>
+<p>Fonksiyon kapsamlarında aynı zamanda <a href="#function.arguments"><code>arguments</code></a> adında
+bir değişken tanımlanmıştır ve fonksiyonun argümanlarını içerir.</p>
+<p>Örnek olarak bir fonksiyon kapsamında <code>foo</code> değişkenine eriğildiğinde JavaScript
+isim çözümlemeyi aşağıdaki sıra ile yapacaktır:</p>
+<ol>
+<li>Geçerli kapsamda bir <code>var foo</code> ifadesi mevcutsa bu kullanılır.</li>
+<li>Fonksiyonun parametrelerinden birinin adı <code>foo</code> ise bu kullanılır.</li>
+<li>Fonksiyonun kendisinin adı <code>foo</code> ise bu kullanılır.</li>
+<li>Bir dıştaki kapsama geçilir ve yeniden <strong>1</strong> adımına dönülür.</li>
+</ol>
+<aside>
+<p><strong>Not:</strong> <code>arguments</code> adında bir parametre bulunması durumunda varsayılan
+<code>arguments</code> nesnesi <strong>oluşturulmayacaktır</strong>.</p>
+</aside>
+</div><div><h3>İsim uzayları</h3>
+<p>Tek bir genel isim uzayının bulunmasının yol açtığı yaygın sonuç isim
+çakışmasıdır. JavaScript&#39;te bu sorun <em>isimsiz fonksiyonlar</em> ile kolayca
+önlenebilir.</p>
+<pre><code>(function() {
+    // bir &quot;isim uzayı&quot;
+
+    window.foo = function() {
+        // korunmasız bir closure
+    };
+
+})(); // fonksiyonu hemen çalıştır</code></pre>
+<p>İsimsiz fonksiyonlar <a href="#function.general">ifade</a> olarak değerlendirilir; 
+bu nedenle çağrılabilmeleri için önce değerlendirilmeleri gerekir.</p>
+<pre><code>( // parantezin içindeki fonksiyonu değerlendir
+function() {}
+) // ve fonksiyon nesnesini döndür
+() // değerlendirmenin sonucu fonksiyon nesnesini çağır</code></pre>
+<p>Bir fonksiyon ifadesini değerlendirip çağırmanın başka yolları da vardır ve
+yukarıdaki ile aynı sonucu verirler.</p>
+<pre><code>// İki farklı yöntem
++function(){}();
+(function(){}());</code></pre>
+</div><div><h3>Sonuç</h3>
+<p>Programı kendi isim uzayı ile kapsamak için her zaman <em>isimsiz fonksiyonların</em>
+kullanılması tavsiye edilir. Böylece hem isim çakışmalarından korunulmuş olunur,
+hem de programlar daha modüler halde yazılmış olur.</p>
+<p>Ayrıca, genel değişkenlerin kullanılması <strong>kötü bir uygulamadır</strong>. Genel
+değişkenlerin <em>herhangi bir şekilde</em> kullanılmış olması programın kötü yazılmış
+olduğuna, hatalara eğilimli olduğuna ve sürdürülmesinin zor olacağına işaret
+eder.</p>
+</div></article></section><section id="array"><!-- Introduction--><header id="array.intro"><h1>Diziler</h1></header><!-- Articles--><article id="array.general"><h2>Dizi İterasyonu ve Özellikleri</h2><div><p>Diziler JavaScript nesneleri olmalarına rağmen, iterasyon yapmak için
+<a href="#object.forinloop"><code>for in</code></a> döngüsü kullanmak için bir neden yoktur.
+Aslında dizilerde  <code>for in</code> kullanılmasına <strong>karşı</strong> bazı iyi nedenler
+vardır.</p>
+<aside>
+<p><strong>Not:</strong> JavaScript dizileri <em>associative</em> <strong>değildir</strong>. JavaScript ile sadece
+<a href="#object.general">nesneler</a> ile anahtar-değer ilişkilendirmesi mümkündür.
+Ve <em>associative</em> diziler eleman sıralamasını <strong>korurlar</strong> ama, nesneler
+<strong>korumazlar</strong>.</p>
+</aside>
+<p><code>for in</code> döngüsü prototip zincirindeki tüm özellikleri dolaştığı için ve bunu
+engellemenin tek yolu <a href="#object.hasownproperty"><code>hasOwnProperty</code></a> kullanmak
+olduğu için <code>for in</code> döngüsü sıradan bir <code>for</code> döngüsünden <strong>yirmi kata kadar</strong>
+daha yavaştır.</p>
+</div><div><h3>İterasyon</h3>
+<p>Dizilerde iterasyon yaparken en iyi performansı elde etmenin en iyi yolu klasik
+<code>for</code> döngüsünü kullanmaktır.</p>
+<pre><code>var list = [1, 2, 3, 4, 5, ...... 100000000];
+for(var i = 0, l = list.length; i &lt; l; i++) {
+    console.log(list[i]);
+}</code></pre>
+<p>Yukarıdaki örnekte bir optimizasyon var, o da dizinin uzunluğun iterasyonun
+başında <code>l = list.length</code> ile saklanmış olması.</p>
+<p><code>length</code> özelliği dizinin kendisinde tariflenmiş olmasına rağmen, her adımda
+bu özelliği okumanın yine de bir maliyeti vardır. Modern JavaScript motorları
+bu tür durumlar için <strong>muhtemelen</strong> optimizasyon yapıyor olsa bile, programın 
+her zaman modern bir motorda çalışacağından emin olmak mümkün değildir.</p>
+<p>Aslında, yukarıdaki örnekteki optimizasyonu uygulamamak döngünün 
+<strong>iki kat daha</strong> yavaş çalışmasına neden olabilir.</p>
+</div><div><h3><code>length</code> özelliği</h3>
+<p><code>length</code> özelliğine değer atanarak diziyi <strong>kısaltmak</strong> için kullanılabilir.</p>
+<pre><code>var foo = [1, 2, 3, 4, 5, 6];
+foo.length = 3;
+foo; // [1, 2, 3]
+
+foo.length = 6;
+foo; // [1, 2, 3]</code></pre>
+<p>Daha küçük bir uzunluk atanması diziyi kısaltır, fakat daha büyük bir uzunluk
+atanmasının dizi üzerinde bir etkisi yoktur.</p>
+</div><div><h3>Sonuç</h3>
+<p>En iyi performans için her zaman sıradan <code>for</code> döngüsü kullanılmalı ve 
+<code>length</code> özelliği saklanmalıdır. Dizilerde <code>for in</code> döngüsünün kullanılmış
+olması hatalara meyilli kötü yazılmış bir programa işaret eder.</p>
+</div></article><article id="array.constructor"><h2><code>Array</code> Oluşturucusu</h2><div><p><code>Array</code> oluşturucusunun parametrelerini nasıl değerlendirdiği belirsiz olduğu
+için, yeni diziler oluşturulurken her zaman dizi sabitlerinin (<code>[]</code> 
+notasyonu) kullanılması tavsiye olunur.</p>
+<pre><code>[1, 2, 3]; // Sonuç: [1, 2, 3]
+new Array(1, 2, 3); // Sonuç: [1, 2, 3]
+
+[3]; // Sonuç: [3]
+new Array(3); // Sonuç: []
+new Array(&#39;3&#39;) // Sonuç: [&#39;3&#39;]</code></pre>
+<p><code>Array</code> oluşturucusuna tek bir argüman verildiğinde, ve bu argümanın türü
+<code>Number</code> ise, oluşacak <em>boş</em> dizinin <code>length</code> özelliği argümanın
+değerine eşit olacaktır. Bu şekilde oluşturulan bir dizinin <strong>sadece</strong>
+<code>length</code> özelliği belirlenmiş olup dizi indisleri tanımsız olacaktır.</p>
+<pre><code>var arr = new Array(3);
+arr[1]; // undefined
+1 in arr; // false, indisler atanmadı</code></pre>
+<p>Dizinin uzunluğunu bu şekilde önceden belirlemek sadece bir iki durumda 
+kullanışlıdır. Bunlardan birisi bir döngüye gerek olmadan bir karakter
+katarını tekrarlamaktır.</p>
+<pre><code>new Array(count + 1).join(stringToRepeat);</code></pre>
+</div><div><h3>Sonuç</h3>
+<p><code>Array</code> oluşturucusunun kullanılmasından mümkün olduğu kadar kaçınılmalıdır.
+Bunun yerine her zaman dizi sabitleri tercih edilmelidir. Hem daha kısadırlar
+hem de daha anlaşılır bir sentaksa sahiptirler; bu nedenle programın
+okunabilirliğini de artırırlar.</p>
+</div></article></section><section id="types"><!-- Introduction--><header id="types.intro"><h1>Nesne Tipleri</h1></header><!-- Articles--><article id="types.equality"><h2>Eşitlik ve Karşılaştırmalar</h2><div><p>JavaScript&#39;de nesnelerin değerlerinin eşitliğini kontrol etmenin iki farklı yolu
+vardır. </p>
+</div><div><h3>Eşitlik operatörü</h3>
+<p>Eşitlik operatörü iki adet eşittir işaretinden oluşur: <code>==</code></p>
+<p>JavaScript <em>weakly typed</em> bir dildir. Bu nedenle, eşitlik operatörü ile
+değişkenleri karşılaştırırken <strong>tip dönüşümü</strong> yapar.</p>
+<pre><code>&quot;&quot;           ==   &quot;0&quot;           // false
+0            ==   &quot;&quot;            // true
+0            ==   &quot;0&quot;           // true
+false        ==   &quot;false&quot;       // false
+false        ==   &quot;0&quot;           // true
+false        ==   undefined     // false
+false        ==   null          // false
+null         ==   undefined     // true
+&quot; \t\r\n&quot;    ==   0             // true</code></pre>
+<p>Yukarıdaki tablo tip dönüşümünün sonuçlarını verir, ve <code>==</code> kullanımının kötü
+bir uygulama olarak değerlendirilmesinin başlıca sebebidir. Bu karmaşık dönüşüm
+kuralları tespit edilmesi zor hatalara neden olur.</p>
+<p>Ayrıca tip dönüşümü işin içine girdiğinde performans üzerinde de olumsuz etkisi
+olur; mesela, bir katarın bir sayı ile karşılaştırılabilmesi için önce bir
+sayıya dönüştürülmesi gerekir.</p>
+</div><div><h3>Kesin eşitlik operatörü</h3>
+<p>Kesin eşitlik operatörü <strong>üç adet</strong> eşittir işaretinden oluşur: <code>===</code></p>
+<p>Eşitlik operatörünün aksine, keşin eşitlik operatörü karşılaştırdığı değerler
+arasında tip dönüşümü <strong>yapmaz</strong>.</p>
+<pre><code>&quot;&quot;           ===   &quot;0&quot;           // false
+0            ===   &quot;&quot;            // false
+0            ===   &quot;0&quot;           // false
+false        ===   &quot;false&quot;       // false
+false        ===   &quot;0&quot;           // false
+false        ===   undefined     // false
+false        ===   null          // false
+null         ===   undefined     // false
+&quot; \t\r\n&quot;    ===   0             // false</code></pre>
+<p>Yukarıdaki sonuçlar hem daha anlaşılırdır, hem de progamdaki hataların erkenden
+ortaya çıkmasını sağlar. Bu programı bir miktar sağlamlaştırır ve ayrıca
+karşılaştırılan değerlerin farklı tiplerden olması durumunda performansı da
+artırır.</p>
+</div><div><h3>Nesneleri karşılaştırmak</h3>
+<p>Hem <code>==</code> hem de <code>===</code> operatörlerinin <strong>eşitlik</strong> operatörü olarak
+adlandırılmasına rağmen, değerlerden en azından birinin bir <code>Object</code> olması
+durumunda farklı davranış gösterirler.</p>
+<pre><code>{} === {};                   // false
+new String(&#39;foo&#39;) === &#39;foo&#39;; // false
+new Number(10) === 10;       // false
+var foo = {};
+foo === foo;                 // true</code></pre>
+<p>Bu durumda her iki operatör de eşitlik <strong>değil</strong> <strong>aynılık</strong> karşılaştırması
+yapar; yani, terimlerin aynı nesnenin <strong>örnekleri</strong> olup olmadığını kontrol
+ederler, tıpkı Python dilindeki <code>is</code> ve C dilindeki gösterici karşılaştırması
+gibi.</p>
+</div><div><h3>Sonuç</h3>
+<p>Sadece <strong>kesin eşitlik</strong> operatörünün kullanılması şiddetle tavsiye edilir. 
+Tip dönüşümü yapılmasının gerekli olduğu durumlarda, bu <a href="#types.casting">açıkça</a>
+yapılmalıdır ve dilin karmaşık dönüşüm kurallarına bırakılmamalıdır.</p>
+</div></article><article id="types.typeof"><h2><code>typeof</code> Operatörü</h2><div><p><code>typeof</code> operatörü (<a href="#types.instanceof"><code>instanceof</code></a> ile birlikte)
+herhalde JavaScript&#39;in en büyük tasarım hatalarından biridir, çünkü neredeyse
+<strong>tamamen arızalıdır</strong>.</p>
+<p><code>instanceof</code> operatörünün sınırlı kullanımı olsa da, <code>typeof</code> operatörünün
+gerçekte tek bir pratik kullanımı vardır, ve bunun da bir nesnenin tipini
+kontrol etmekle ilgili <strong>yoktur</strong>.</p>
+<aside>
+<p><strong>Not:</strong> <code>typeof</code> fonksiyon sentaksı (mesela <code>`typeof(obj)</code> gibi), ile de 
+çağrılabilse de bu gerçek bir fonksiyon çağrısı değildir. İki parantezin
+içindeki ifadenin döndürdüğü değer typeof operatörüne verilir. <code>typeof</code> diye
+bir fonksiyon yoktur.</p>
+</aside>
+</div><div><h3>JavaScript tip tablosu</h3>
+<pre><code>Değer               Sınıf      Tip
+-------------------------------------
+&quot;foo&quot;               String     string
+new String(&quot;foo&quot;)   String     object
+1.2                 Number     number
+new Number(1.2)     Number     object
+true                Boolean    boolean
+new Boolean(true)   Boolean    object
+new Date()          Date       object
+new Error()         Error      object
+[1,2,3]             Array      object
+new Array(1, 2, 3)  Array      object
+new Function(&quot;&quot;)    Function   function
+/abc/g              RegExp     object (function in Nitro/V8)
+new RegExp(&quot;meow&quot;)  RegExp     object (function in Nitro/V8)
+{}                  Object     object
+new Object()        Object     object</code></pre>
+<p>Yukarıdaki tabloda <em>Tip</em> sütunu <code>typeof</code> operatörünün verdiği sonucu gösterir.
+Açıkça görülebileceği gibi, bu sonuç tutarlı olmaktan çok uzaktır.</p>
+<p><em>Sınıf</em> sütunu bir nesnenin dahili <code>[[Class]]</code> özelliğini gösterir.</p>
+<aside>
+<p><strong>Spesifikasyondan:</strong> <code>[[Class]]</code> özelliğinin değeri şu katarlardan biri
+olabilir: <code>Arguments</code>, <code>Array</code>, <code>Boolean</code>, <code>Date</code>, <code>Error</code>, 
+<code>Function</code>, <code>JSON</code>, <code>Math</code>, <code>Number</code>, <code>Object</code>, <code>RegExp</code>, <code>String</code>.</p>
+</aside>
+<p><code>[[Class]]</code> özelliğinin değerini almak için <code>Object.prototype</code> &#39;ın <code>toString</code>
+metodu kullanılmalıdır.</p>
+</div><div><h3>Bir nesnenin sınıfı</h3>
+<p>Spesifikasyona göre <code>[[Class]]</code> değerine erişmenin tek yolu
+<code>Object.prototype.toString</code> kullanmaktır.</p>
+<pre><code>function is(type, obj) {
+    var clas = Object.prototype.toString.call(obj).slice(8, -1);
+    return obj !== undefined &amp;&amp; obj !== null &amp;&amp; clas === type;
+}
+
+is(&#39;String&#39;, &#39;test&#39;); // true
+is(&#39;String&#39;, new String(&#39;test&#39;)); // true</code></pre>
+<p>Yukarıdaki örnekte, <code>Object.prototype.toString</code> çağrıldığında
+<a href="#function.this">this</a> &#39;in değeri <code>[[Class]]</code> değeri aranan nesne olarak
+atanmış olmaktadır.</p>
+<aside class="es5"><p><strong>ES5 Notu:</strong> Kolaylık sağlamak için <code>Object.prototype.toString</code> &#39;in <code>null</code> 
+ve <code>undefined</code> için verdiği değerler <code>Object</code> &#39;ten <code>Null</code> ve <code>Undefined</code> &#39;a
+<strong>değiştirildi</strong>.</p>
+</aside>
+</div><div><h3>Bir değişkenin tanımlandığını kontrol etmek</h3>
+<pre><code>typeof foo !== &#39;undefined&#39;</code></pre>
+<p>Yukarıdaki satır <code>foo</code> değişkeninin tanımlanıp tanımlanmadığını belirler;
+tanımlanmamış bir değişkene erişmek bir <code>ReferenceError</code> hatası oluştur.
+<code>typeof</code> operatörünün tek kullanışlı olduğu şey işte budur.</p>
+</div><div><h3>Sonuç</h3>
+<p>Bir nesnenin tipini kontrol etmek için <code>Object.prototype.toString</code> &#39;in
+kullanılması şiddetle tavsiye edilir; çünkü bunu yapmanın tek güvenilir yoludur.
+Yukarıdaki tip tablosunda gösterildiği gibi, <code>typeof</code> operatörünün bazı
+sonuçları spesifikasyonda tanımlanmamıştır; bu nedenle, çeşitli platformlarda
+farklılık gösterebilirler.</p>
+<p>Bir değişkenin tanımlandığını kontrol etmek dışında, <code>typeof</code> operatörün 
+kullanımından <strong>her ne pahasına olursa olsun</strong> kaçınılmalıdır.</p>
+</div></article><article id="types.instanceof"><h2><code>instanceof</code> Operatörü</h2><div><p><code>instanceof</code> operatörü verilen iki terimin nesne oluşturucularını karşılaştırır.
+Kullanışlı olduğu tek durum özel nesnelerin karşılaştırılmasıdır. Temel nesneler
+üzerinde kullanıldığında neredeyse <a href="#types.typeof">typeof operatörü</a> kadar
+yararsızdır.</p>
+</div><div><h3>Özel nesneleri karşılaştırmak</h3>
+<pre><code>function Foo() {}
+function Bar() {}
+Bar.prototype = new Foo();
+
+new Bar() instanceof Bar; // true
+new Bar() instanceof Foo; // true
+
+// Bu satır sadece Bar.prototype&#39;a Foo fonksiyon nesnesinin atar
+// Bir Foo sınıfı nesnesine değil
+Bar.prototype = Foo;
+new Bar() instanceof Foo; // false</code></pre>
+</div><div><h3>Temel nesnelerle <code>instanceof</code> kullanımı</h3>
+<pre><code>new String(&#39;foo&#39;) instanceof String; // true
+new String(&#39;foo&#39;) instanceof Object; // true
+
+&#39;foo&#39; instanceof String; // false
+&#39;foo&#39; instanceof Object; // false</code></pre>
+<p>Dikkat edilmesi gereken ilginç bir nokta, <code>instanceof</code> operatörünün farklı
+JavaScript kaynaklarından gelen nesneler üzerinde çalışmamasıdır (mesela bir
+internet tarayıcısının farklı dökümanları), çünkü bu durumda nesne
+oluşturucuları aynı olmayacaktır.</p>
+</div><div><h3>Sonuç</h3>
+<p><code>instanceof</code> operatörü <strong>sadece</strong> aynı JavaScript kaynağından gelen özel 
+nesneler ile kullanılmalıdır. Tıpkı <a href="#types.typeof"><code>typeof</code></a> operatöründe
+olduğu gibi, bunun dışındaki tüm kullanımlarından <strong>kaçınılmalıdır</strong>.</p>
+</div></article><article id="types.casting"><h2>Tip Dönüşümleri</h2><div><p>JavaScript <em>weakly typed</em> bir dildir, bu yüzden <strong>mümkün olan yerlerde</strong>
+<em>tip dönüşümü</em> uygular.</p>
+<pre><code>// Bunlar true verir
+new Number(10) == 10; // Number.toString() tekrar sayıya
+                      // dönüştürülür
+
+10 == &#39;10&#39;;           // Katarlar sayıya dönüştürülür
+10 == &#39;+10 &#39;;         // Bir başka katar çılgınlığı
+10 == &#39;010&#39;;          // Ve bir tane daha 
+isNaN(null) == false; // null 0&#39;a dönüştürülür
+                      // tabii 0 NaN değildir
+
+// Bunlar false verir
+10 == 010;
+10 == &#39;-10&#39;;</code></pre>
+<aside class="es5"><p><strong>ES5 Notu:</strong> <code>0</code> ile başlayan sayı sabitleri oktal (sekizlik) sayı sisteminde
+değerlendirilir. Oktal sayı desteği ECMAScript 5 mutlak modda
+<strong>kaldırılmıştır</strong>.</p>
+</aside>
+<p>Yukarıdakilerden kaçınmak için, <a href="#types.equality">kesin eşitlik operatörünün</a>
+kullanılması <strong>şiddetle</strong> tavsiye edilir. Böylece yaygın hataların çoğundan
+kaçınılabilir, yine de JavaScript&#39;in <em>weak typing</em> sisteminden kaynaklanan başka
+sorunlar da vadır.</p>
+</div><div><h3>Temel tiplerin nesne oluşturucuları</h3>
+<p><code>Number</code> ve <code>String</code> gibi temel tiplerin nesne oluşturucuları <code>new</code> anahtar
+kelimesi ile kullanılıp kullanılmamalarına göre farklı davranış gösterir.</p>
+<pre><code>new Number(10) === 10;     // False, Object ve Number
+Number(10) === 10;         // True, Number ve Number
+new Number(10) + 0 === 10; // True, tip dönüşümü nedeniyle</code></pre>
+<p><code>Number</code> gibi bir temel tipin nesne oluşturucusunu kullanmak yeni bir <code>Number</code>
+nesnesi yaratacaktır, fakat <code>new</code> kelimesi kullanılmazsa <code>Number</code> fonksiyonu
+bir dönüştürücü olarak davranacaktır.</p>
+<p>Ayrıca, sabitler ve nesne olmayan değerler kullanılması durumunda başka tür
+dönüşümler de söz konusu olacaktır.</p>
+<p>En iyi seçenek üç olası tipten birine <strong>açıkça</strong> dönüşüm yapılmasıdır.</p>
+</div><div><h3>Karakter katarına dönüştürmek</h3>
+<pre><code>&#39;&#39; + 10 === &#39;10&#39;; // true</code></pre>
+<p>Bir değerin başına boş bir katar eklenerek kolayca katara dönüştürülebilir.</p>
+</div><div><h3>Sayıya dönüştürmek</h3>
+<pre><code>+&#39;10&#39; === 10; // true</code></pre>
+<p><strong>Tek terimli</strong> toplama operatörü kullanılarak bir değer sayıya dönüştürülebilir.</p>
+</div><div><h3>Mantıksal değişken tipine dönüştürmek</h3>
+<p><strong>Değil</strong> operatörü iki kez üst üste kullanılarak bir değer mantıksal değişken
+tipine dönüştürülebilir.</p>
+<pre><code>!!&#39;foo&#39;;   // true
+!!&#39;&#39;;      // false
+!!&#39;0&#39;;     // true
+!!&#39;1&#39;;     // true
+!!&#39;-1&#39;     // true
+!!{};      // true
+!!true;    // true</code></pre>
+</div></article></section><section id="core"><!-- Introduction--><header id="core.intro"><h1>Temel</h1></header><!-- Articles--><article id="core.eval"><h2>Neden <code>eval</code> Kullanılmamalı</h2><div><p><code>eval</code> fonksiyonu bir JavaScript kodunu lokal kapsamda yürütür.</p>
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    eval(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 3
+foo; // 1</code></pre>
+<p>Fakat <code>eval</code> sadece <strong>direkt olarak</strong> çağrıldığında <em>ve</em> çağrılan fonksiyonun
+adı <code>eval</code> ise lokal kapsamda çalışır.</p>
+<pre><code>var foo = 1;
+function test() {
+    var foo = 2;
+    var bar = eval;
+    bar(&#39;foo = 3&#39;);
+    return foo;
+}
+test(); // 2
+foo; // 3</code></pre>
+<p><code>eval</code> fonksiyonu <strong>asla</strong> kullanılmamalıdır. Kullanıldığı durumların %99.9&#39;unda
+<code>eval</code> <strong>kullanılmadan</strong> da istenen sonuç elde edilebilir.</p>
+</div><div><h3>Gizli <code>eval</code></h3>
+<p><a href="#other.timeouts">Zamanlama fonksiyonları</a> <code>setTimeout</code> ve <code>setInterval</code>&#39;ın her
+ikisinin de ilk argümanları bir karakter katarıdır. Bu durumda <code>eval</code> dolaylı
+olarak çağrıldığı için bu argüman <strong>her zaman</strong> genel kapsamda yürütülecektir.</p>
+</div><div><h3>Güvenlik sorunları</h3>
+<p><code>eval</code> kendisine verilen <strong>her</strong> kodu işlettiği için aynı zamanda bir güvenlik
+sorunudur ve <strong>asla</strong> kaynağı bilinmeyen yada güvenilir olmayan karakter
+katarları ile kullanılmamalıdır.</p>
+</div><div><h3>Sonuç</h3>
+<p><code>eval</code> asla kullanılmamalıdır, kullanan programlar ise doğruluk, performans ve
+güvenlik açılarından sorgulanmalıdır. <code>eval</code> kullanımı gerekli görülmüşse, 
+programın tasarımı sorgulanmalı ve <strong>kullanılmamalı</strong>, bunun yerine <code>eval</code>
+gerektirmeyen <em>daha iyi bir tasarım</em> kullanılmalıdır.</p>
+</div></article><article id="core.undefined"><h2><code>undefined</code> ve <code>null</code></h2><div><p>JavaScript&#39;te <code>tanımsız</code> anlamına gelen iki değer vardır, ve bunlardan
+<code>undefined</code> daha kullanışlıdır.</p>
+</div><div><h3><code>undefined</code> değeri</h3>
+<p><code>undefined</code> bir değişken türüdür ve tek bir değere sahip olabilir: <code>undefined</code>.</p>
+<p>JavaScript&#39;te ayrıca değeri <code>undefined</code> olan bir de genel kapsam değişkeni
+tanımlanmıştır ve bu değişkenin adı da <code>undefined</code>&#39;dır. Fakat bu değişken
+bir sabit yada dilin anahtar kelimelerinden biri <strong>değildir</strong>. Yani bu
+değişkenin <em>değeri</em> kolayca değiştirilebilir.</p>
+<aside class="es5"><p><strong>ES5 Notu:</strong> ECMAScript 5&#39;e göre mutlak modda <code>undefined</code>&#39;ın değeri
+<em>değiştirilemez</em>, fakat mesela adı <code>undefined</code> olan bir fonksiyon ile 
+<code>undefined</code> değişkeni gizlenebilir.</p>
+</aside>
+<p><code>undefined</code> değerinin verildiği durumlara bazı örnekler:</p>
+<ul>
+<li>Genel kapsamlı <code>undefined</code> değişkeninin (değiştirilmedi ise) değeri</li>
+<li><code>return</code> ifadesi içermeyen fonksiyonların verdiği değer</li>
+<li>Bir değer döndürmeyen <code>return</code> ifadeleri</li>
+<li>Mevcut olmayan nesne özellikleri</li>
+<li>Değer atanmamış fonksiyon parametreleri</li>
+<li>Değeri <code>undefined</code> olarak atanmış değişkenler</li>
+</ul>
+</div><div><h3><code>undefined</code> değerinin değiştirilmesi durumu</h3>
+<p>Genel kapsamdaki <code>undefined</code> değişkeni asıl <code>undefined</code> <em>değerinin</em> kopyasını
+tuttuğu için, bu değeri değiştirmek <code>undefined</code> <em>değişken türünün</em> değerini
+<strong>değiştirmez</strong>.</p>
+<p>Fakat, bir şeyi <code>undefined</code> ile karşılaştırmak için önce <code>undefined</code>&#39;ın değerini
+geri almak gerekir.</p>
+<p>Programı <code>undefined</code> değişkeninin değiştirilmesi olasılığına karşı korumak için
+uygulanan yaygın bir yöntem <a href="#function.scopes">isimsiz bir fonksiyona</a> 
+kullanılmayan bir parametre eklemektir.</p>
+<pre><code>var undefined = 123;
+(function(something, foo, undefined) {
+    // lokal kapsamda undefined değişkeni
+    // yine undefined değerine sahip
+
+})(&#39;Hello World&#39;, 42);</code></pre>
+<p>Benzer bir yöntem yine isimsiz fonksiyonun içinde değer atanmamış bir değişken
+deklare etmektir.</p>
+<pre><code>var undefined = 123;
+(function(something, foo) {
+    var undefined;
+    ...
+
+})(&#39;Hello World&#39;, 42);</code></pre>
+<p>Buradaki tek fark program sıkıştırılırsa ortaya çıkacaktır, eğer fonksiyonun 
+başka bir yerinde <code>var</code> ifadesi kullanılmıyorsa fazladan 4 bayt kullanılmış
+olacaktır.</p>
+</div><div><h3><code>null</code> kullanımı</h3>
+<p>JavaScript dilinde <code>undefined</code> geleneksel <em>null</em> yerine kullanılmaktadır, asıl
+<code>null</code> (hem <code>null</code> değişmezi hem de değişken türü) ise kabaca başka bir
+veri türüdür.</p>
+<p><code>null</code> JavaScript içinde kapalı olarak kullanılır (mesela prototip zincirinin
+sonuna gelindiği <code>Foo.prototype = null</code> ile belirtilir), fakat hemen her durumda
+bunun yerine <code>undefined</code> kullanılabilir.</p>
+</div></article><article id="core.semicolon"><h2>Otomatik Noktalı Virgül İlavesi</h2><div><p>JavaScript sentaksı C&#39;ye benzese de, noktalı virgül kullanılması
+zorunlu <strong>değildir</strong>.</p>
+<p>Fakat JavaScript noktalı virgül kullanmayan bir dil değildir, hatta
+programı anlayabilmek için noktalı virgüllere ihtiyaç duyar. Bu yüzden
+JavaScript gramer çözümleyicisi eksik bir noktalı virgül yüzünden bir
+hata ile karşılaştığında <strong>otomatik olarak</strong> eksik noktalı virgülleri
+ekler.</p>
+<pre><code>var foo = function() {
+} // hata, noktalı virgül gerekiyor
+test()</code></pre>
+<p>Eklemeden sonra çözümleme tekrarlanır.</p>
+<pre><code>var foo = function() {
+}; // hata ortadan kalktı, çözümleme devam edebilir
+test()</code></pre>
+<p>Noktalı virgüllerin bu şekilde otomatik olarak eklenmesi JavaScript&#39;in
+<strong>en büyük</strong> tasarım hatalarından biri olarak kabul edilir, çünkü programın
+davranışını değiştirmesi <em>mümkündür</em>.</p>
+</div><div><h3>Ekleme nasıl olur</h3>
+<p>Aşağıdaki örnekte hiç noktalı virgül yok, bu yüzden nereye noktalı virgül
+eklenmesi gerektiğini gramer çözümleyicinin karar vermesi gerekiyor.</p>
+<pre><code>(function(window, undefined) {
+    function test(options) {
+        log(&#39;testing!&#39;)
+
+        (options.list || []).forEach(function(i) {
+
+        })
+
+        options.value.test(
+            &#39;long string to pass here&#39;,
+            &#39;and another long string to pass&#39;
+        )
+
+        return
+        {
+            foo: function() {}
+        }
+    }
+    window.test = test
+
+})(window)
+
+(function(window) {
+    window.someLibrary = {}
+
+})(window)</code></pre>
+<p>Çözümleyicinin &quot;tahmin&quot; oyununun sonucu aşağıdadır.</p>
+<pre><code>(function(window, undefined) {
+    function test(options) {
+
+        // Eklenmedi, satırlar birleştirildi
+        log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {
+
+        }); // &lt;- eklendi
+
+        options.value.test(
+            &#39;long string to pass here&#39;,
+            &#39;and another long string to pass&#39;
+        ); // &lt;- eklendi
+
+        return; // &lt;- eklendi, return ifadesi bozuldu
+        { // bir blok olarak değerlendirildi
+
+            // bir yer etiketi ve bir ifade
+            foo: function() {} 
+        }; // &lt;- eklendi
+    }
+    window.test = test; // &lt;- eklendi
+
+// Burada da satırlar birleştirildi
+})(window)(function(window) {
+    window.someLibrary = {}; // &lt;- eklendi
+
+})(window); //&lt;- eklendi</code></pre>
+<aside>
+<p><strong>Not:</strong> JavaScript çözümleyicisi <code>return</code> ifadesinden hemen sonra satır sonu
+gelmesi durumunu &quot;doğru&quot; değerlendirmez. Bu durum otomatik noktalı virgül
+eklenmesinin istenmeyen bir yan etkisidir.</p>
+</aside>
+<p>Çözümleyici yukarıdaki program parçasının davranışını büyük ölçüde değiştirdi,
+belirli durumlarda da grameri değerlendirirken <strong>yanlış</strong> kararlar verdi.</p>
+</div><div><h3>Satır başındaki parantezler</h3>
+<p>Bir satırın parantez ile başlaması durumunda, çözümleyici noktalı virgül
+<strong>eklemez</strong>.</p>
+<pre><code>log(&#39;testing!&#39;)
+(options.list || []).forEach(function(i) {})</code></pre>
+<p>Yukarıdaki program parçası aşağıdaki tek satıra dönüşür.</p>
+<pre><code>log(&#39;testing!&#39;)(options.list || []).forEach(function(i) {})</code></pre>
+<p><strong>Büyük</strong> ihtimalle yukarıdaki <code>log</code> bir fonksiyon <strong>döndürmüyordur</strong>;
+bu nedenle, yukarıdaki satır <code>undefined is not a function</code> hata mesajı ile bir
+<code>TypeError</code> oluştumasına neden olacaktır.</p>
+</div><div><h3>Sonuç</h3>
+<p>Noktalı virgüllerin <strong>hiç bir zaman</strong> ihmal edilmemesi tavsiye edilir, ayrıca
+ayraçların kendilerinden önceki ifade ile aynı satırda tutulması ve tek satırlık
+<code>if</code> ve <code>else</code> ifadelerinde bile ayraçların ihmal edilmemesi önerilir. Her iki
+önlem de hem programın tutarlılığını artıracak, hem de JavaScript
+çözümleyicisinin programın davranışını değiştirmesini engelleyecektir.</p>
+</div></article><article id="core.delete"><h2><code>delete</code> Operatörü</h2><div><p>Kısacası, genel kapsamda tanımlanmış değişkenleri, fonksiyonları ve <code>DontDelete</code>
+niteliğine sahip bazı başka şeyleri silmek <em>imkansızdır</em>.</p>
+</div><div><h3>Genel kapsam ve fonksiyon kapsamı</h3>
+<p>Bir değişken veya fonksiyon genel kapsamda veya
+<a href="#function.scopes">fonksiyon kapsamında</a> tanımlandığında aktivasyon nesnesinin
+veya global nesnenin bir özelliği olacaktır. Bu tür özelliklerin bir takım
+nitelikleri vardır ve bunlardan biri <code>DontDelete</code> niteliğidir. Genel kapsamda ve
+fonksiyon kapsamında tanımlanan değişkenler ve fonksiyonlar yaratıldıklarında
+her zaman <code>DontDelete</code> niteliğine sahip olacaktır, ve bu nedenle silinemezler.</p>
+<pre><code>// genel kapsam değişkeni:
+var a = 1; // DontDelete niteliğine sahip
+delete a; // false
+a; // 1
+
+// normal bir fonksiyon:
+function f() {} // DontDelete niteliğine sahip
+delete f; // false
+typeof f; // &quot;function&quot;
+
+// başka bir değişkene atamak işe yaramaz:
+f = 1;
+delete f; // false
+f; // 1</code></pre>
+</div><div><h3>Açıkça tanımlanan özellikler</h3>
+<p>Açıkça tanımlanan özellikleri silmek mümkündür.</p>
+<pre><code>// tanımlanan özellik:
+var obj = {x: 1};
+obj.y = 2;
+delete obj.x; // true
+delete obj.y; // true
+obj.x; // undefined
+obj.y; // undefined</code></pre>
+<p>Yukarıdaki örnekte <code>obj.x</code> ve <code>obj.y</code> silinebilir çünkü <code>DontDelete</code> niteliğine
+sahip değillerdir. Aynı nedenle aşağıdakini yapmak da mümkündür:</p>
+<pre><code>// IE hariç çalışır:
+var GLOBAL_OBJECT = this;
+GLOBAL_OBJECT.a = 1;
+a === GLOBAL_OBJECT.a; // true - genel değişken
+delete GLOBAL_OBJECT.a; // true
+GLOBAL_OBJECT.a; // undefined</code></pre>
+<p>Burada <code>a</code>&#39;yı silmek için bir hile kullanıyoruz. <a href="#function.this"><code>this</code></a>
+burada genel nesneye işaret ediyor ve <code>a</code> değişkenini onun özelliği olarak
+atıyoruz, ve böylece onu silebiliyoruz.</p>
+<p>IE (en azından 6-8) bazı hatalar içerdiğinden yukarıdaki örnek çalışmayacaktır.</p>
+</div><div><h3>Fonksiyon argümanları ve önceden tanımlı özellikler</h3>
+<p>Fonksiyonlara verilen argümanlar, <a href="#function.arguments"><code>arguments</code> nesnesi</a>
+ve önceden tanımlı özellikler de <code>DontDelete</code> niteliğine sahiptir.</p>
+<pre><code>// fonksiyon argümanları ve özellikler:
+(function (x) {
+  delete arguments; // false
+  typeof arguments; // &quot;object&quot;
+
+  delete x; // false
+  x; // 1
+
+  function f(){}
+  delete f.length; // false
+  typeof f.length; // &quot;number&quot;
+})(1);</code></pre>
+</div><div><h3><em>Host</em> nesneler</h3>
+<p><code>Host</code> nesneler üzerinde kullanıldığında <code>delete</code> operatörünün davranışı belirsiz
+olabilir. Standarda göre <code>host</code> nesneler istedikleri davranışı uygulayabilirler.</p>
+</div><div><h3>Sonuç</h3>
+<p><code>delete</code> operatörünün davranışı genellikle belirsizdir ve güvenle kullanılabileceği
+tek yer sıradanan nesneler üzerinde açıkça tanımlanan özelliklerdir.</p>
+</div></article></section><section id="other"><!-- Introduction--><header id="other.intro"><h1>Diğer</h1></header><!-- Articles--><article id="other.timeouts"><h2><code>setTimeout</code> ve <code>setInterval</code></h2><div><p>JavaScript asenkron olduğu için <code>setTimeout</code> ve <code>setInterval</code> kullanarak bir
+fonksiyonun ileri bir zamanda çalışmasını sağlamak mümkündür.</p>
+<aside>
+<p><strong>Not:</strong> Zamanlama fonksiyonları ECMAScript Standartına dahil <strong>değildir</strong>,
+<a href="http://en.wikipedia.org/wiki/Document_Object_Model" title="Document Object Model">DOM</a> ile birlikte tanımlanırlar.</p>
+</aside>
+<pre><code>function foo() {}
+var id = setTimeout(foo, 1000); // 0&#39;dan büyük bir sayı verir</code></pre>
+<p>Yukarıdaki örnekte <code>setTimeout</code> fonksiyonu çağrıldığında, oluşturulan
+zamanlayıcı tanımlayan bir ID sayısı verir ve <code>foo</code> fonksiyonu <strong>yaklaşık</strong>
+bin milisaniye sonra çalıştırılmak üzere programlanır. <code>foo</code> fonksiyonu
+tam olarak <strong>bir</strong> kez çağrılacaktır.</p>
+<p>Kullanılan JavaScript motorunun zamanlayıcı hassasiyetine bağlı olarak, ve
+ayrıca JavaScript tek <code>thread</code> ile çalıştığı ve çalışan başka program
+parçaları bu tek <code>thread</code> &#39;i bloke edeceği için, <code>setTimeout</code> ile belirlenen
+erteleme süresinin tam olarak gerçekleşeceği <strong>hiçbir şekilde</strong> garanti
+edilemez.</p>
+<p>İlk argüman olarak verilen fonksiyon <em>global nesne</em> tarafından çağrılacaktır,
+yani çağrılan fonksiyonun içinde <a href="#function.this"><code>this</code></a> bu nesneye işaret
+edecektir.</p>
+<pre><code>function Foo() {
+    this.value = 42;
+    this.method = function() {
+        // this global nesneye işaret eder
+        console.log(this.value); // undefined yazar
+    };
+    setTimeout(this.method, 500);
+}
+new Foo();</code></pre>
+<aside>
+<p><strong>Not:</strong> <code>setTimeout</code> fonksiyonunun ilk parametresi bir <strong>fonksiyon nesnesi</strong>
+olduğu için, sık yapılan bir hata <code>setTimeout(foo(), 1000)</code> şeklindeki
+kullanımdır, fakat bu şekilde, <code>foo</code> fonksiyonu <strong>değil</strong> <code>foo</code> fonksiyonunun
+<strong>sonuç değeri</strong> parametre olarak kullanacaktır. Bu kullanım genellikle bir
+hata mesajı üretmez, çünkü fonksiyon <code>undefined</code> değerini verdiğinde 
+<code>setTimeout</code> bir hata <strong>oluşturmayacaktır</strong>.</p>
+</aside>
+</div><div><h3><code>setInterval</code> ile fonksiyon çağrılarının yığılması</h3>
+<p><code>setTimeout</code> verilen fonksiyonu bir kez çağırırken, <code>setInterval</code> (adından da
+anlaşılacağı gibi) verilen fonksiyonu <strong>her</strong> <code>X</code> milisaniyede bir çağırır.
+Fakat kullanılması önerilmez.</p>
+<p>Mevcut program parçası çalışırken zamanlama bloke olduğu halde, <code>setInterval</code>
+verilen fonksiyonu çağırmaya devam edecektir. Bu da, özellikle küçük aralıklarla
+kullanıldığında, fonksiyon çağrılarının istiflenmesine neden olur.</p>
+<pre><code>function foo(){
+    // 1 saniye süren bir işlem
+}
+setInterval(foo, 1000);</code></pre>
+<p>Yukarıdaki örnekte <code>foo</code> fonksiyonu bir kez çağrılıp bir saniye boyunca bloke
+edecektir.</p>
+<p><code>foo</code> programı bloke etmişken, <code>setInterval</code> fonksiyon çağrılarını zamanlamaya
+devam edecektir. <code>foo</code> tamamlandığında, çalıştırılmayı bekleyen <strong>on</strong> çağrı
+daha olacaktır.</p>
+</div><div><h3>Bloke eden programlarla başa çıkmak</h3>
+<p>En kolay ve kontrol edilebilir çözüm, <code>setTimeout</code> &#39;u fonksiyonun içinde
+kullanmaktır.</p>
+<pre><code>function foo(){
+    // 1 saniye süren bir işlem
+    setTimeout(foo, 1000);
+}
+foo();</code></pre>
+<p>Bu örnekte hem <code>setTimeout</code> çağrısı fonksiyonun kendisi içinde kapsanmış olmakta,
+hem de fonksiyon çağrılarının istiflenmesinin önüne geçilerek daha fazla kontrol
+sağlanmaktadır. Artık  <code>foo</code> fonksiyonunun kendisi tekrar çalışmak isteyip
+istemediğine karar verebilir.</p>
+</div><div><h3>Zamanlayıcıları iptal etmek</h3>
+<p>Zamanlayıcıları iptal etmek için ilgili ID sayıları ile kullanılan zamanlayıcı
+fonksiyonuna karşılık gelen <code>clearTimeout</code> ve <code>clearInterval</code> fonksiyonlarından
+biri kullanılır.</p>
+<pre><code>var id = setTimeout(foo, 1000);
+clearTimeout(id);</code></pre>
+</div><div><h3>Tüm zamanlayıcıları iptal etmek</h3>
+<p>Tüm zamanlayıcıları iptal etmenin dahili bir yolu olmadığı için, bu amaca
+ancak kaba kuvvetle ulaşılabilir.</p>
+<pre><code>// &quot;tüm&quot; zamanlayıcıları iptal et
+for(var i = 1; i &lt; 1000; i++) {
+    clearTimeout(i);
+}</code></pre>
+<p>Bu rastgele seçilmiş sayıdan etkilenmeyen zamanlayıcılar kalabilir; bu yüzden
+tüm zamanlayıcı ID&#39;lerinin saklanarak, teker teker iptal edilmeleri tavsiye
+edilir.</p>
+</div><div><h3><code>eval</code> fonksiyonun gizli kullanımı</h3>
+<p><code>setTimeout</code> ve <code>setInterval</code> fonksiyonları ilk parametreleri olarak bir katar
+da kabul eder. Bu özellik <strong>asla</strong> kullanılmamalıdır, çünkü bu durumda dahili
+olarak <code>eval</code> kullanılır.</p>
+<aside>
+<p><strong>Not:</strong> Zamanlama fonksiyonları ECMAScript Standartında bulunmadığı için,
+bir katar argümanı almaları durumundaki çalışma şekilleri JavaScript motorları
+arasında farklılık gösterebilir. Mesela, Microsoft&#39;un JScript motoru <code>eval</code>
+yerine <code>Function</code> oluşturucusunu kullanır.</p>
+</aside>
+<pre><code>function foo() {
+    // setTimeOut ile bu fonksiyon çağrılacaktır
+}
+
+function bar() {
+    function foo() {
+        // bu fonksiyon çağrılmayacaktır
+    }
+    setTimeout(&#39;foo()&#39;, 1000);
+}
+bar();</code></pre>
+<p>Bu durumda <code>eval</code> <a href="#core.eval">direkt olarak</a> çağrılmadığı için, <code>setTimeout</code>
+fonksiyonuna verilen katar <em>genel kapsamda</em> çalıştırılacaktır; bu nedenle,
+<code>bar</code> fonksiyonu kapsamındaki lokal <code>foo</code> değişkenini kullanmayacaktır.</p>
+<p>Zamanlama fonksiyonlarına verilen fonksiyona argüman sağlamak için de bir katar
+kullanılması tavsiye <strong>edilmez</strong>.</p>
+<pre><code>function foo(a, b, c) {}
+
+// ASLA bu şekilde kullanılmamalı
+setTimeout(&#39;foo(1, 2, 3)&#39;, 1000)
+
+// Bunu yerine isimsiz bir fonksiyon kullanın
+setTimeout(function() {
+    foo(a, b, c);
+}, 1000)</code></pre>
+<aside>
+<p><strong>Not:</strong> <code>setTimeout(foo, 1000, a, b, c)</code> sentaksının kullanılması da mümkün
+olmasına karşın tavsiye edilmez, çünkü bu kullanım <a href="#function.this">metodlarla</a>
+birlikte fark edilmesi zor hatalara neden olabilir.</p>
+</aside>
+</div><div><h3>Sonuç</h3>
+<p><code>setTimeout</code> veya <code>setInterval</code> fonksiyonlarına <strong>asla</strong> bir katar parametre
+verilmemelidir. Bu kullanım <strong>çok</strong> kötü bir programa işaret eder. Çağrılan
+fonksiyona argümanlar verilmesinin gerektiği durumlarda gerçek çağrıyı içinde
+bulunduran bir <em>isimsiz fonksiyon</em> kullanılmalıdır.</p>
+<p>Ayrıca, <code>setInterval</code> fonksiyonu çalışan JavaScript programı tarafından bloke
+olmadığı için tercih edilmemelidir.</p>
+</div></article></section><!-- Footer--><footer><p>Copyright &copy; 2011. Built with
+ <a href="http://nodejs.org/">Node.js </a>using a<a href="https://github.com/visionmedia/jade/">jade </a>template. 
+Hosted by <a href="http://cramerdev.com">Cramer Development</a>.</p></footer><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script><script src="../javascript/prettify.js"></script><script src="../javascript/plugin.js"></script><script src="../javascript/garden.js"></script></body></html>
