@@ -63,7 +63,7 @@ nesneyi kullanmasıdır; bu nedenle, tüm `Bar` nesneleri **aynı** `value`
 Bir nesnenin özelliklerine erişildiğinde, JavaScript, istenen isimdeki özelliği
 bulana kadar prototip zincirinde **yukarı** doğru dolaşır.
 
-Zincirin en üstüne ulaştığında (yani `Object.protype`) ve hala istenen özelliği
+Zincirin en üstüne ulaştığında (yani `Object.prototype`) ve hala istenen özelliği
 bulamamışsa sonuç olarak [`undefined`](#core.undefined) verecektir.
 
 ### prototype özelliği
@@ -90,7 +90,7 @@ yapıldığında da prototip zinciri üzerindeki **tüm** özelliklere bakılaca
 
 ### Temel prototiplerin genişletilmesi
 
-Sıklıkla yapılan bir hata `Object.protype` 'ı veya diğer baz prototipleri 
+Sıklıkla yapılan bir hata `Object.prototype` 'ı veya diğer baz prototipleri 
 genişletmektir.
 
 Bu tekniğe [*monkey patching*][1] denir ve *kapsüllemeyi* bozar. Bu teknik
