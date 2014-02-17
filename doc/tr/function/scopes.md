@@ -100,7 +100,7 @@ JavaScript'te tanımlamalar **yukarı taşınır**. Yani hem `var` ifadesi hem d
 `function` bildirimleri içindeki bulundukları kapsamın en üstüne taşınırlar.
 
     bar();
-    var bar = function() {};
+    function bar() {}
     var someValue = 42;
 
     test();

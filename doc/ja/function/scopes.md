@@ -80,7 +80,7 @@ JavaScriptのローカル変数の為の唯一の作成方法は[function](#func
 JavaScriptは宣言を**巻き上げ**ます。これは`var`ステートメントと`function`宣言が、それらを含むスコープの一番先頭に移動するという事を意味します。
 
     bar();
-    var bar = function() {};
+    function bar() {}
     var someValue = 42;
 
     test();

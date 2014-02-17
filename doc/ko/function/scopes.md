@@ -78,7 +78,7 @@ JavaScript에서 지역 변수는 [함수의 파라미터](#function.general)와
 JavaScript는 선언문을 모두 **호이스트(Hoist)**한다. 호이스트란 `var` 구문이나 `function` 선언문을 해당 스코프의 맨 위로 옮기는 것을 말한다.
 
     bar();
-    var bar = function() {};
+    function bar() {}
     var someValue = 42;
 
     test();

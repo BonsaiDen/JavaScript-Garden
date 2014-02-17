@@ -99,7 +99,7 @@ JavaScript **hoists** declarations. This means that both `var` statements and
 `function` declarations will be moved to the top of their enclosing scope.
 
     bar();
-    var bar = function() {};
+    function bar() {}
     var someValue = 42;
 
     test();

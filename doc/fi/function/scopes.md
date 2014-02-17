@@ -78,7 +78,7 @@ Ainoastaan [funktion](#function.general) parametrit ja muuttujat, jotka sisält�
 JavaScript **hilaa** määreitä. Tämä tarkoittaa sitä, että sekä `var`-lausekkeet että `function`-määreet siirretään ne sisältävän näkyvyysalueen huipulle.
 
     bar();
-    var bar = function() {};
+    function bar() {}
     var someValue = 42;
 
     test();

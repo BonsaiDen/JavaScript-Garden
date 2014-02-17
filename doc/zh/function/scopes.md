@@ -93,7 +93,7 @@ JavaScript 中局部变量只可能通过两种方式声明，一个是作为[�
 JavaScript 会**提升**变量声明。这意味着 `var` 表达式和 `function` 声明都将会被提升到当前作用域的顶部。
 
     bar();
-    var bar = function() {};
+    function bar() {}
     var someValue = 42;
 
     test();

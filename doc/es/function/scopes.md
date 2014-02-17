@@ -99,7 +99,7 @@ La declaración de **hoists** en JavaScript. Esto significa que tanto la declara
 la `función` declarada se translada a la parte superior de su ámbito que lo contiene.
 
     bar();
-    var bar = function() {};
+    function bar() {}
     var someValue = 42;
 
     test();
