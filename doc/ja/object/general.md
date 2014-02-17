@@ -35,7 +35,7 @@ JavaScriptのオブジェクトは[*ハッシュマップ*][1]としても使用
 
 オブジェクトのプロパティには2通りのアクセス方法があります。1つはドット記法によるアクセス、もう1つはブラケット記法です。
 
-    var foo = {name: 'Kitten'}
+    var foo = {name: 'kitten'}
     foo.name; // kitten
     foo['name']; // kitten
 
