@@ -63,6 +63,29 @@ Here, both operators compare for **identity** and **not** equality; that is, the
 will compare for the same **instance** of the object, much like `is` in Python 
 and pointer comparison in C.
 
+### Comparing Arrays
+
+Arrays behave like objects if two arrays are compared. But if you compare an array
+containing only one element with this element the operator `==` returns `true`.
+
+    [42]         ==   42             // true
+    [42, 42]     ==   42             // false
+    [42]         ==   23             // false
+    ["42"]       ==   42             // true
+    ["42"]       ==   23             // false
+    ["hello"]    ==   "hello"        // true
+    ["hello"]    ==   "world"        // false
+    
+Using the operator `===` everything behaves a lot clearer.
+
+    [42]         ===   42             // false
+    [42, 42]     ===   42             // false
+    [42]         ===   23             // false
+    ["42"]       ===   42             // false
+    ["42"]       ===   23             // false
+    ["hello"]    ===   "hello"        // false
+    ["hello"]    ===   "world"        // false
+
 ### In Conclusion
 
 It is highly recommended to only use the **strict equality** operator. In cases
