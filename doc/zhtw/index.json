@@ -6,7 +6,7 @@
         {
             "title": "簡介",
             "dir": "intro",
-            "articles": []
+            "articles": ["index"]
         },
         {
             "title": "物件",

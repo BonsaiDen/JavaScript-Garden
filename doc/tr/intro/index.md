@@ -17,8 +17,7 @@ ve [Zhang Yi Jiang][4] (Tasarım) tarafından hazırlanmıştır.
 
 ## Katkıda Bulunanlar
 
- - [Caio Romão][5] (Yazım düzeltmeleri)
- - [Andreas Blixt][6] (Dil düzeltmeleri)
+- [Katkıda Bulunanlar](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
 
 ## Sunum
 

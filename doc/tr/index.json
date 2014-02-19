@@ -6,7 +6,7 @@
         {
             "title": "Giriş",
             "dir": "intro",
-            "articles": []
+            "articles": ["index"]
         },
         {
             "title": "Nesneler",

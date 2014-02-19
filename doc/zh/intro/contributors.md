@@ -1,7 +1,6 @@
 ﻿##贡献者
 
- - [Caio Romão][1] （拼写检查）
- - [Andreas Blixt][2] （语言修正）
+- [贡献者](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
 
 ##中文翻译
  - [三生石上][29]

@@ -34,7 +34,7 @@ JavaScript 객체는 name/value 쌍으로 된 프로퍼티로 구성되기 때�
 
 객체의 프로퍼티는 객체이름 다음에 점을 찍어(Dot Notation) 접근하거나 각괄호를 이용해(Square Bracket Notation) 접근할 수 있다.
 
-    var foo = {name: 'Kitten'}
+    var foo = {name: 'kitten'}
     foo.name; // kitten
     foo['name']; // kitten
 

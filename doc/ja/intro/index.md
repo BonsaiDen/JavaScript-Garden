@@ -12,8 +12,7 @@ JavaScript GardenはJavaScriptを教える事を**目的にしていません**�
 
 ## 貢献者
 
- - [Caio Romão][5] (スペル校正)
- - [Andreas Blixt][6] (言語校正)
+- [貢献者](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
 
 ## ホスティング
 

@@ -34,7 +34,7 @@ Olioliteraalinotaatiota - `{}` - käyttäen voidaan luoda tyhjä olio. Tämä ol
 
 Olion ominaisuuksiin voidaan päästä käsiksi kahta eri tapaa käyttäen. Siihen voidaan käyttää joko piste- tai hakasulkunotaatiota.
 
-    var foo = {name: 'Kitten'}
+    var foo = {name: 'kitten'}
     foo.name; // kitten
     foo['name']; // kitten
     

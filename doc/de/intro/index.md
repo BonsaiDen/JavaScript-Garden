@@ -13,8 +13,7 @@ Dieses Dokument wurde von zwei liebenswerten [Stack Overflow][2] Benutzern gesch
 
 ## Beitragende
 
- - [Caio Romão][5] (Rechtschreibung)
- - [Andreas Blixt][6] (Sprachanpassungen)
+ - [Beitragende](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
 
 ## Hosting
 

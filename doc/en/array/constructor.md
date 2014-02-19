@@ -1,7 +1,7 @@
 ## The `Array` Constructor
 
 Since the `Array` constructor is ambiguous in how it deals with its parameters,
-it is highly recommended to always use the array literals - `[]` notation - 
+it is highly recommended to use the array literal - `[]` notation - 
 when creating new arrays.
 
     [1, 2, 3]; // Result: [1, 2, 3]
@@ -22,14 +22,12 @@ the actual indexes of the array will not be initialized.
     1 in arr; // false, the index was not set
 
 Being able to set the length of the array in advance is only useful in a few
-cases, like repeating a string, in which it avoids the use of a `for loop`
-code.
+cases, like repeating a string, in which it avoids the use of a loop.
 
     new Array(count + 1).join(stringToRepeat);
 
 ### In Conclusion
 
-The use of the `Array` constructor should be avoided. Literals are definitely
-preferred. They are shorter, have a clearer syntax, and increase code
+Literals are preferred to the Array constructor. They are shorter, have a clearer syntax, and increase code
 readability.
 

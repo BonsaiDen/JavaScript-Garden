@@ -32,7 +32,7 @@ nesnesinin [`hasOwnProperty`](#object.hasownproperty) metodu ile yapılır.
 
 Doğru kullanım bu yeni versiyonda gösterildiği gibidir. `hasOwnProperty` kontrol
 edildiği için **sadece** `moo` yazacaktır. `hasOwnProperty` kullanılmaz ise ve
-`Object.protype` 'ın baz özellikleri değiştirilmişse, program bazı hatalara
+`Object.prototype` 'ın baz özellikleri değiştirilmişse, program bazı hatalara
 yatkın olabilir.
 
 Bunu yapan ve yaygın olarak kullanılan bir JavaScript sistemi [Prototype][1]

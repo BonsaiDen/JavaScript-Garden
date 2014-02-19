@@ -1,12 +1,13 @@
 {
-    "name": "javascript-garden",
-    "description": "A collection of documentation about the most quirky parts of the JavaScript language.",
-    "version": "0.0.0",
-    "dependencies": {
-        "fomatto": "0.5.0",
-        "forever": ">=0.4.1",
-        "jade": "0.9.1",
-        "neko": "1.1.2",
-        "node-markdown": "0.1.0"
-    }
+  "name": "javascript-garden",
+  "description": "A collection of documentation about the most quirky parts of the JavaScript language.",
+  "version": "0.0.0",
+  "dependencies": {
+    "fomatto": "0.5.0",
+    "forever": "0.10.8",
+    "jade": "0.35.0",
+    "neko": "1.1.2",
+    "marked": "~0.2.9",
+    "lodash": "~2.2.1"
+  }
 }

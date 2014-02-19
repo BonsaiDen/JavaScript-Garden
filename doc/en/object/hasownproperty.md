@@ -44,7 +44,8 @@ necessary to use an *external* `hasOwnProperty` to get correct results.
     // Use another Object's hasOwnProperty and call it with 'this' set to foo
     ({}).hasOwnProperty.call(foo, 'bar'); // true
 
-    // It's also possible to use the hasOwnProperty property from the Object property for this purpose
+    // It's also possible to use hasOwnProperty from the Object
+    // prototype for this purpose
     Object.prototype.hasOwnProperty.call(foo, 'bar'); // true
 
 
