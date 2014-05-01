@@ -34,7 +34,7 @@ JS엔진은 타이머에 설정한 시간(timer resolution)에 따라서 코드�
     function foo(){
         // 1초 동안 블럭함.
     }
-    setInterval(foo, 1000);
+    setInterval(foo, 100);
 
 위 코드에서 `foo`함수는 호출될 때마다 1초씩 실행을 지연시킨다.
 
@@ -47,7 +47,7 @@ JS엔진은 타이머에 설정한 시간(timer resolution)에 따라서 코드�
 
     function foo(){
         // something that blocks for 1 second
-        setTimeout(foo, 1000);
+        setTimeout(foo, 100);
     }
     foo();
 

@@ -52,7 +52,7 @@ con intervalli molto brevi, tradursi in chiamate a funzione che si sovrappongono
     function foo(){
         // qualcosa che blocca per 1 secondo
     }
-    setInterval(foo, 1000);
+    setInterval(foo, 100);
 
 Nel codice precedente, `foo` verrà chiamato una volta e quindi bloccherà per
 un secondo.
@@ -68,7 +68,7 @@ La soluzione più semplice, come anche la più controllabile, è quella di usare
 
     function foo(){
         // qualcosa che blocca per 1 secondo
-        setTimeout(foo, 1000);
+        setTimeout(foo, 100);
     }
     foo();
 

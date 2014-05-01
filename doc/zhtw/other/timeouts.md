@@ -38,7 +38,7 @@
     function foo(){
         // 執行 1 秒
     }
-    setInterval(foo, 1000);
+    setInterval(foo, 100);
 
 上面的程式中， `foo` 會執行一次然後被阻塞了一分鐘
 
@@ -50,7 +50,7 @@
 
     function foo(){
         // something that blocks for 1 second
-        setTimeout(foo, 1000);
+        setTimeout(foo, 100);
     }
     foo();
 

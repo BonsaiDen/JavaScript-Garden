@@ -34,7 +34,7 @@ Mik채li suoritettava koodi blokkaa katkaisufunktion kutsun, `setInterval` lis채�
     function foo(){
         // jotain joka blokkaa sekunnin ajaksi
     }
-    setInterval(foo, 1000);
+    setInterval(foo, 100);
 
 Yll채 olevassa koodissa `foo`-funktiota kutsutaan, jonka j채lleen se blokkaa sekunnin ajan.
 
@@ -46,7 +46,7 @@ Helpoin ja joustavin tapa on k채ytt채채 `setTimeout`-funktiota funktiossa itsess
 
     function foo(){
         // jotain joka blokkaa sekunnin ajaksi
-        setTimeout(foo, 1000);
+        setTimeout(foo, 100);
     }
     foo();
 

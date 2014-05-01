@@ -53,7 +53,7 @@ szczególnie przy krótkim interwale.
     function foo(){
         // coś co blokuje wykonanie na 1 sekundę 
     }
-    setInterval(foo, 1000);
+    setInterval(foo, 100);
 
 W powyższym kodzie kod `foo` zostanie wywołany tylko raz i zablokuje wywołanie na 
 jedną sekundę.
@@ -69,7 +69,7 @@ wewnątrz wywoływanej funkcji.
 
     function foo(){
         // coś co blokuje wykonanie na 1 sekundę
-        setTimeout(foo, 1000);
+        setTimeout(foo, 100);
     }
     foo();
 
