@@ -140,10 +140,10 @@ kullanılması tavsiye **edilmez**.
 
     // Bunu yerine isimsiz bir fonksiyon kullanın
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
-> **Not:** `setTimeout(foo, 1000, a, b, c)` sentaksının kullanılması da mümkün
+> **Not:** `setTimeout(foo, 1000, 1, 2, 3)` sentaksının kullanılması da mümkün
 > olmasına karşın tavsiye edilmez, çünkü bu kullanım [metodlarla](#function.this)
 > birlikte fark edilmesi zor hatalara neden olabilir.
 

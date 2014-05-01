@@ -150,11 +150,11 @@ funzione che verrà chiamata da una delle funzioni di timeout.
 
     // Usare invece una funzione anonima
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
 > **Nota:** mentre è ancora possibile usare la sintassi
-> `setTimeout(foo, 1000, a, b, c)`, non la si raccomanda, dato che il suo
+> `setTimeout(foo, 1000, 1, 2, 3)`, non la si raccomanda, dato che il suo
 > utilizzo potrebbe portare ad errori subdoli quando usata con i
 > [metodi](#function.this).
 

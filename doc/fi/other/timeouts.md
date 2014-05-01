@@ -99,10 +99,10 @@ Tämän lisäksi on suositeltavaa olla **käyttämättä** merkkijonoja parametr
 
     // Käytä nimetöntä funktiota sen sijaan
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
-> **Huomio:** Vaikka syntaksi `setTimeout(foo, 1000, a, b, c)` onkin mahdollinen, ei sen käyttöä suositella. Tämä johtuu siitä, että sen käyttö voi johtaa virheisiin erityisesti [metodien](#function.this) kanssa.
+> **Huomio:** Vaikka syntaksi `setTimeout(foo, 1000, 1, 2, 3)` onkin mahdollinen, ei sen käyttöä suositella. Tämä johtuu siitä, että sen käyttö voi johtaa virheisiin erityisesti [metodien](#function.this) kanssa.
 
 ### Yhteenveto
 

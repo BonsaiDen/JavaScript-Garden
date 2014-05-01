@@ -137,11 +137,11 @@ do funkcji, która ma zostać wywołana przez budzik.
 
     // zamiast tego należy skorzystać z anonimowej funkcji
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
 >**Uwaga:** Mimo że możliwe jest wykorzystanie składni
-> `setTimeout(foo, 1000, a, b, c)`, nie zaleca się korzystania z niej, ponieważ 
+> `setTimeout(foo, 1000, 1, 2, 3)`, nie zaleca się korzystania z niej, ponieważ
 > może to prowadzić do subtelnych błędów podczas wykorzystania [metod](#function.this).
 
 ### Wnioski

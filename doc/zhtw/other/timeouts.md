@@ -119,11 +119,11 @@ function that will get called by either of the timeout functions.
 
     // Instead use an anonymous function
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
 > **Note:** While it is also possible to use the syntax
-> `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
+> `setTimeout(foo, 1000, 1, 2, 3)`, it is not recommended, as its use may lead
 > to subtle errors when used with [methods](#function.this).
 
 ### In Conclusion

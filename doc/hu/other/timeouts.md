@@ -146,10 +146,10 @@ a timeout függvények által meg lesz hívva a későbbiekben.
 
     // Ehelyett csomagoljuk névtelen függvénybe
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
-> **Megjegyzés:** Habár lehetséges a `setTimeout(foo, 1000, a, b, c)` szintaxist
+> **Megjegyzés:** Habár lehetséges a `setTimeout(foo, 1000, 1, 2, 3)` szintaxist
 > használni, mégsem ajánlott, mivel [metódusok](#function.this)  használatakor
 > észrevehetetlen hibákhoz vezethet.
 

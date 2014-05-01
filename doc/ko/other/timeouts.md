@@ -109,10 +109,10 @@ JS엔진은 타이머에 설정한 시간(timer resolution)에 따라서 코드�
 
     // 대신 익명 함수를 사용하는 게 좋다.
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
-> **Note:** `setTimeout(foo, 1000, a, b, c)`처럼 사용하는 것도 가능하지만, 이것도 권장하지 않는다. [메소드](#function.this)를 사용할 때 잡아내기 어려운 에러가 날 수 있다.
+> **Note:** `setTimeout(foo, 1000, 1, 2, 3)`처럼 사용하는 것도 가능하지만, 이것도 권장하지 않는다. [메소드](#function.this)를 사용할 때 잡아내기 어려운 에러가 날 수 있다.
 
 ### 결론
 
