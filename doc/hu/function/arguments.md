@@ -50,7 +50,7 @@ Egy másik trükk arra hogy teljesen független wrapper függvényeket gyártsun
     // Ezeket kapja paraméterül: this, arg1, arg2...argN
     Foo.method = function() {
 
-        // Eredmény: Foo.prototype.method.call(this, arg1, arg2... argN)
+        // Eredmény: Foo.prototype.method.call(this, arg1, ...argN)
         Function.call.apply(Foo.prototype.method, arguments);
     };
 	
@@ -91,7 +91,8 @@ Habár, egyetlen eset van, amelynek komoly hatása lehet a kód teljesítményé
 JavaScript motorokban. Ez pedig az `arguments.callee` használata.
 
     function foo() {
-        arguments.callee; // csináljunk valamit ezzel a függvény objektummal
+        // ..csinálunk valamit
+        arguments.callee; // ezzel a függvény objektummal
         arguments.callee.caller; // és ennek a hívójával..
     }
 

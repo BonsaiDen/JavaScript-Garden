@@ -124,7 +124,7 @@ hatókör tetejébe.
 
     // a függvény deklaráció is felkerül ide
     function test(data) {
-        var goo, i, e; // mivel nincs blokk hatókör, ezek is felkerülnek
+        var goo, i, e; // ezek is felkerülnek
         if (false) {
             goo = 1;
 
@@ -163,7 +163,7 @@ tetejére lett mozgatva.
 
     var SomeImportantThing;
 
-    // más kódok még inicializálhatják a SomeImportantThing változót itt...
+    // más kódok még inicializálhatják az előbbi változót itt...
 
     // ellenőrizzük hogy létezik-e
     if (!SomeImportantThing) {
