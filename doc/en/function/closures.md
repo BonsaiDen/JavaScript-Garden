@@ -97,7 +97,7 @@ above.
     }
 
 There's yet another way to accomplish this by using `.bind`, which can bind
-a `this` context and arguments to function. It behaves identially to the code
+a `this` context and arguments to function. It behaves identically to the code
 above
 
     for(var i = 0; i < 10; i++) {
