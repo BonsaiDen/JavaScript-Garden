@@ -43,7 +43,7 @@ JavaScript 中有兩個表示空值的方式， `null` 和 `undefined` ， `unde
 
     })('Hello World', 42);
 
-唯一的不同就是在下者會多 4 個多 bytes 用來壓縮檔案，而且函數內野沒有其他需要使用 `var`
+唯一的不同就是在下者會多 4 個多 bytes 用來壓縮檔案，而且函數內也沒有其他需要使用 `var`
 
 ### 使用 `null`
 
@@ -51,5 +51,3 @@ JavaScript 中所使用的 `undefined` 類似別的語言中的 *null* , 但實�
 
 它在 JavaScript 有些可以使用的地方 （例如說宣告一個原型的終結，例如 `Foo.prototype = null` ）。
 但是在大部分的時候可以用 `undefined`，來取代。
-
-
