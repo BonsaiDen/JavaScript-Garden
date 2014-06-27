@@ -1,6 +1,6 @@
 ## Prototype
 
-JavaScript 不包含原本繼承的模型。然而它使用的是*原型*模型*。
+JavaScript 不包含原本繼承的模型。然而它使用的是*原型*模型。
 
 然而常常有人提及 JavaScript 的缺點，就是基於原本繼承模型比類繼承更強大。
 現實傳統的類繼承模型是很簡單。但是在 JavaScript 中實現元繼承則要困難很多。
@@ -80,9 +80,8 @@ JavaScript 不包含原本繼承的模型。然而它使用的是*原型*模型*
 
 在寫複雜的程式碼的時候，要 **充分理解** 所有程式繼承的屬性還有原型鏈。
 還要堤防原型鏈過長帶來的性能問題，並知道如何通過縮短原型鏈來提高性能。
-絕對 **不要使用** native prototype` 除非是為了和新的 JavaScript 引擎作兼容。
+絕對 **不要使用** `native prototype` 除非是為了和新的 JavaScript 引擎作兼容。
 
 [1]: http://en.wikipedia.org/wiki/Monkey_patch
 [2]: http://prototypejs.org/
 [3]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach
-

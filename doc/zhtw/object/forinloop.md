@@ -2,8 +2,8 @@
 
 就像其他的 `in` 操作符一樣， `for in` 循環也進入所有在物件中的屬性
 
-> **注意: ** `for in` 迴圈 **不會** 進入那些 `enumerable` 屬性是 `false`，舉例來說， 陣列中 `length` 的屬性
-    
+> **注意: ** `for in` 迴圈 **不會** 進入那些 `enumerable` 屬性是 `false`，舉例來說，陣列中 `length` 的屬性
+
     // 修改 Object.prototype
     Object.prototype.bar = 1;
 
@@ -34,7 +34,7 @@
 
 ### 總結
 
-推薦 **總是** 使用 `hasOwnProperty`。不要對程式碼的環境做任何假設，不要假設原生的對象是否被擴張
+推薦 **總是** 使用 `hasOwnProperty`。不要對程式碼的環境做任何假設，不要假設原生的對象是否被擴張。
 
 [1]: http://www.prototypejs.org/
 
