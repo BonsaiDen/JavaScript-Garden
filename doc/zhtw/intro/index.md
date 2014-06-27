@@ -12,7 +12,9 @@ JavaScript Garden 並 **不是** 要教導你 Javascript 的語言。
 ## 作者
 
 這個使用手冊是來自於 [Stack Overflow][2] 的使用者, [Ivo Wetzel][3]
-(寫作) 和 [Zhang Yi Jiang][4] (設計).
+(寫作) 和 [Zhang Yi Jiang][4] (設計)。
+
+目前為 [Tim Ruffles](http://truffles.me.uk) 維護此專案。
 
 ## 貢獻者
 
