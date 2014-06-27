@@ -1,5 +1,5 @@
 ## Prototype
- 
+
 JavaScript 不包含原本繼承的模型。然而它使用的是*原型*模型*。
 
 然而常常有人提及 JavaScript 的缺點，就是基於原本繼承模型比類繼承更強大。
@@ -28,11 +28,11 @@ JavaScript 不包含原本繼承的模型。然而它使用的是*原型*模型*
     // 修正 Bar.prototype.constructor 為 Bar 本身
     Bar.prototype.constructor = Bar;
 
-    var test = new Bar() // 開啟一個新的實例
+    var test = new Bar(); // 開啟一個新的實例
 
     // 原型鏈
     test [instance of Bar]
-        Bar.prototype [instance of Foo] 
+        Bar.prototype [instance of Foo]
             { foo: 'Hello World' }
             Foo.prototype
                 { method: ... }
