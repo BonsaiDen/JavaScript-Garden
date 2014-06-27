@@ -1,10 +1,10 @@
 ## 簡介
 
-JavaScript 庭院 是一個不斷更新的文件，最主要是要去了解一些 Javascript 比較古怪的部份。
+JavaScript Garden 是一個不斷更新的文件，最主要是要去了解一些 Javascript 比較古怪的部份。
 給一些意見來防止遇到一些常見的錯誤和一些難以發現的問題，以及性能問題和不好的習慣。
 初學者也可以藉此去了解 Javascript 這項語言的特性。
 
-JavaScript 庭院 並 **不是** 要教導你 Javascript 的語言。
+JavaScript Garden 並 **不是** 要教導你 Javascript 的語言。
 如果要能夠理解這篇文章的內容，你需要事先學習 JavaScript 的基礎知識。
 在 Mozilla 開發者網路中有一系列非常棒的學習[guide][1]。
 
@@ -22,15 +22,17 @@ JavaScript 庭院 並 **不是** 要教導你 Javascript 的語言。
 
  - [紀力榮][29]
  - [張仲威][30]
+ - [Bo-Yi Wu][31]
 
-## 存在
+## 存放空間
 
-JavaScript 庭院 存在於 GitHub, 但是 [Cramer Development][7] 讓我們有一個存放地 [JavaScriptGarden.info][8].
+JavaScript Garden 目前存放於 GitHub，但是 [Cramer Development][7] 讓我們有另一個存放位置在 [JavaScriptGarden.info][8]。
 
 ## 許可
 
-JavaScript 庭院是在 [MIT license][9] 許可協議下發佈，並存在於
-[GitHub][10]. 如果你有發現錯誤或是打字上的錯誤 [新增一個任務][11] 或者發一個請求。 你也可以在 StackOverflow 的 [JavaScript room][12] 上面找到我們。
+JavaScript Garden 是在 [MIT license][9] 許可協議下發佈，並存在於
+[GitHub][10]，如果你有發現錯誤或是打字上的錯誤 [新增一個任務][11] 或者發一個請求。
+你也可以在 StackOverflow 的 [JavaScript room][12] 上面找到我們。
 
 [1]: https://developer.mozilla.org/en/JavaScript/Guide
 [2]: http://stackoverflow.com/
@@ -44,5 +46,6 @@ JavaScript 庭院是在 [MIT license][9] 許可協議下發佈，並存在於
 [10]: https://github.com/BonsaiDen/JavaScript-Garden
 [11]: https://github.com/BonsaiDen/JavaScript-Garden/issues
 [12]: http://chat.stackoverflow.com/rooms/17/javascript
-[29]: http://github.com/chilijung
-[30]: http://github.com/wwwy3y3
+[29]: https://github.com/chilijung
+[30]: https://github.com/wwwy3y3
+[31]: https://github.com/appleboy
