@@ -118,8 +118,7 @@ specifically.
 `setTimeout` and `setInterval` can also take a string as their first parameter.
 This feature should **never** be used because it internally makes use of `eval`.
 
-> **Note:** Since the timeout functions are **not** specified by the ECMAScript
-> standard, the exact workings when a string is passed to them might differ in
+> **Note:** The exact workings when a string is passed to them might differ in
 > various JavaScript implementations. For example, Microsoft's JScript uses
 > the `Function` constructor in place of `eval`.
 
