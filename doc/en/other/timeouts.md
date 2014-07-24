@@ -3,8 +3,11 @@
 Since JavaScript is asynchronous, it is possible to schedule the execution of a 
 function using the `setTimeout` and `setInterval` functions.
 
-> **Note:** Timeouts are **not** part of the ECMAScript Standard. They are
-> implemented as part of the [DOM][1].
+> **Note:** Timeouts are **not** part of the ECMAScript standard. They were
+> implemented in [BOM, or DOM Level 0][1], which are never defined nor
+> documented formally. No recommended specification has been published so far,
+> however, they are currently being standardized by [HTML5][2]. Due to this 
+> nature, the implementation may vary from browsers and engines.
 
     function foo() {}
     var id = setTimeout(foo, 1000); // returns a Number > 0
@@ -163,5 +166,5 @@ be passed that then takes care of the actual call.
 Furthermore, the use of `setInterval` should be avoided because its scheduler is not
 blocked by executing JavaScript.
 
-[1]: http://en.wikipedia.org/wiki/Document_Object_Model "Document Object Model"
-
+[1]: http://www.nczonline.net/blog/2009/09/29/web-definitions-dom-ajax-and-more/ "Web definitions: DOM, Ajax, and more"
+[2]: http://www.w3.org/TR/2014/WD-html5-20140617/webappapis.html#timers "6 Web application APIs - HTML5"
