@@ -151,9 +151,11 @@ function that will get called by either of the timeout functions.
         foo(a, b, c);
     }, 1000)
 
-> **Note:** While it is also possible to use the syntax 
-> `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
-> to subtle errors when used with [methods](#function.this). 
+> **Note:** While it is also possible to use `setTimeout(foo, 1000, a, b, c)`
+> syntax, it is not recommended, as its use may lead
+> to subtle errors when used with [methods](#function.this).
+> Furthermore, the syntax might not work in some JavaScript implementations.
+> For example, Microsoft's Internet Explorer [does **not** pass the arguments directly to the callback](3).
 
 ### In Conclusion
 
@@ -167,3 +169,4 @@ blocked by executing JavaScript.
 
 [1]: http://www.nczonline.net/blog/2009/09/29/web-definitions-dom-ajax-and-more/ "Web definitions: DOM, Ajax, and more"
 [2]: http://www.w3.org/TR/2014/WD-html5-20140617/webappapis.html#timers "6 Web application APIs - HTML5"
+[3]: http://msdn.microsoft.com/en-us/library/ie/ms536753(v=vs.85).aspx "setTimeout method (Internet Explorer)"
