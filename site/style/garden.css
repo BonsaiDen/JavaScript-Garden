@@ -601,7 +601,7 @@ screen and (-webkit-min-device-pixel-ratio: 2) {
 	}
 	
 	#nav_main > ul > li {
-		width: 25%;
+		width: 100%;
 	}
 	
 	#nav_mobile {
