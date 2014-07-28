@@ -38,13 +38,13 @@ JavaScript 有一個很重要的特徵就是 **closures**
 
 在上面的例子中 `count` **不會** 改變到 `Counter` 裡面的 `count` 的值。因為 `foo.hack` 沒有在 **那個** 作用域內被宣告。它只有會覆蓋或者建立在一個 **全域** 的變數 `count`
 
-### 在循環內的 Closures 
+### 在循環內的 Closures
 
 一個常見的錯誤就是在 Closures 中使用迴圈，假設我們要使用每次迴圈中所使用的進入變數
 
     for(var i = 0; i < 10; i++) {
         setTimeout(function() {
-            console.log(i);  
+            console.log(i);
         }, 1000);
     }
 
@@ -60,7 +60,7 @@ JavaScript 有一個很重要的特徵就是 **closures**
     for(var i = 0; i < 10; i++) {
         (function(e) {
             setTimeout(function() {
-                console.log(e);  
+                console.log(e);
             }, 1000);
         })(i);
     }
@@ -75,5 +75,11 @@ JavaScript 有一個很重要的特徵就是 **closures**
                 console.log(e);
             }
         })(i), 1000)
+    }
+
+另外也可以透過 `.bind` 完成此工作，它可以將 `this` 及參數傳入函數內，行為就如同上面程式碼一樣。
+
+    for(var i = 0; i < 10; i++) {
+        setTimeout(console.log.bind(console, i), 1000);
     }
 
