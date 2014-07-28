@@ -40,7 +40,7 @@
     function foo(){
         // 阻塞执行 1 秒
     }
-    setInterval(foo, 1000);
+    setInterval(foo, 100);
 
 上面代码中，`foo` 会执行一次随后被阻塞了一秒钟。
 
@@ -53,7 +53,7 @@
 
     function foo(){
         // 阻塞执行 1 秒
-        setTimeout(foo, 1000);
+        setTimeout(foo, 100);
     }
     foo();
 
@@ -113,10 +113,10 @@
 
     // 可以使用匿名函数完成相同功能
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
-> **注意:** 虽然也可以使用这样的语法 `setTimeout(foo, 1000, a, b, c)`，
+> **注意:** 虽然也可以使用这样的语法 `setTimeout(foo, 1000, 1, 2, 3)`，
 > 但是不推荐这么做，因为在使用对象的[属性方法](#function.this)时可能会出错。
 >（**译者注：**这里说的是属性方法内，`this` 的指向错误）
 

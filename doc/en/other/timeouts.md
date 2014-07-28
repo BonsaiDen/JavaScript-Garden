@@ -55,7 +55,7 @@ intervals, result in function calls stacking up.
     function foo(){
         // something that blocks for 1 second
     }
-    setInterval(foo, 1000);
+    setInterval(foo, 100);
 
 In the above code, `foo` will get called once and will then block for one second.
 
@@ -70,7 +70,7 @@ the function itself.
 
     function foo(){
         // something that blocks for 1 second
-        setTimeout(foo, 1000);
+        setTimeout(foo, 100);
     }
     foo();
 
@@ -148,10 +148,10 @@ function that will get called by either of the timeout functions.
 
     // Instead use an anonymous function
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
-> **Note:** While it is also possible to use `setTimeout(foo, 1000, a, b, c)`
+> **Note:** While it is also possible to use `setTimeout(foo, 1000, 1, 2, 3)`
 > syntax, it is not recommended, as its use may lead
 > to subtle errors when used with [methods](#function.this).
 > Furthermore, the syntax might not work in some JavaScript implementations.

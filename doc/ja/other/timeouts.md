@@ -40,7 +40,7 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
     function foo(){
         // 1秒おきにブロックの何かを実行
     }
-    setInterval(foo, 1000);
+    setInterval(foo, 100);
 
 上記のコードでは、`foo`が1回呼び出されて、1秒ブロックされます。
 
@@ -52,7 +52,7 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
 
     function foo(){
         // 1秒ブロックする何か
-        setTimeout(foo, 1000);
+        setTimeout(foo, 100);
     }
     foo();
 
@@ -108,10 +108,10 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
 
     // 匿名関数を代わりに使用する
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
-> **注意点:** `setTimeout(foo, 1000, a, b, c)`のようなシンタックスを使用する事も
+> **注意点:** `setTimeout(foo, 1000, 1, 2, 3)`のようなシンタックスを使用する事も
 > できますが、[メソッド](#function.this)を使用した際に、分かりにくいエラーが起りえるので
 > 使用はお勧めしません。
 

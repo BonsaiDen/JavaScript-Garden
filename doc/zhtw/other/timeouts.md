@@ -38,7 +38,7 @@
     function foo(){
         // 執行 1 秒
     }
-    setInterval(foo, 1000);
+    setInterval(foo, 100);
 
 上面的程式中， `foo` 會執行一次然後被阻塞了一分鐘
 
@@ -50,7 +50,7 @@
 
     function foo(){
         // something that blocks for 1 second
-        setTimeout(foo, 1000);
+        setTimeout(foo, 100);
     }
     foo();
 
@@ -119,11 +119,11 @@ function that will get called by either of the timeout functions.
 
     // Instead use an anonymous function
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
 > **Note:** While it is also possible to use the syntax
-> `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
+> `setTimeout(foo, 1000, 1, 2, 3)`, it is not recommended, as its use may lead
 > to subtle errors when used with [methods](#function.this).
 
 ### In Conclusion
