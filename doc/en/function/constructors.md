@@ -72,7 +72,7 @@ explicitly return a value.
     new Bar();
     Bar();
 
-Both calls to `Bar` return the same thing, a newly create object that
+Both calls to `Bar` return the same thing, a newly created object that
 has a property called `method`, which is a 
 [Closure](#function.closures).
 
