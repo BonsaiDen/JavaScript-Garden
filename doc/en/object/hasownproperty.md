@@ -21,10 +21,10 @@ does **not** traverse the prototype chain.
     foo.hasOwnProperty('bar'); // false
     foo.hasOwnProperty('goo'); // true
 
-Only `hasOwnProperty` will give the correct and expected result; this is
-essential when iterating over the properties of any object. There is **no** other
-way to exclude properties that are not defined on the object itself, but
-somewhere on its prototype chain.
+Only `hasOwnProperty` will give the correct and expected result. See the section
+on [`for in` loops](#object.forinloop) for more details on when to use
+`hasOwnProperty` when iterating over object
+properties.
 
 ### `hasOwnProperty` as a Property
 
@@ -53,6 +53,6 @@ necessary to use an *external* `hasOwnProperty` to get correct results.
 
 Using `hasOwnProperty` is the **only** reliable method to check for the
 existence of a property on an object. It is recommended that `hasOwnProperty`
-is used in **every** [`for in` loop](#object.forinloop) to avoid errors from
-extended native [prototypes](#object.prototype).
+be used in many cases when iterating over object properties as described
+in the section on [`for in` loops](#object.forinloop).
 
