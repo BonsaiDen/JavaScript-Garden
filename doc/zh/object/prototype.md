@@ -1,6 +1,6 @@
 ﻿##原型
 
-JavaScript 不包含传统的类继承模型，而是使用 *prototypal* 原型模型。
+JavaScript 不包含传统的类继承模型，而是使用 *prototype* 原型模型。
 
 虽然这经常被当作是 JavaScript 的缺点被提及，其实基于原型的继承模型比传统的类继承还要强大。
 实现传统的类继承模型是很简单，但是实现 JavaScript 中的原型继承则要困难的多。
