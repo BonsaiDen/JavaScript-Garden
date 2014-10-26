@@ -18,10 +18,10 @@ Sections.prototype = {
     },
 
     map: function() {
-        this.names = $('section [id]').map(function(idx, ele) {
+        this.names = $('section>[id]').map(function(idx, ele) {
             return {
                 id: this.id.replace('.intro', ''),
-                offset: $(this).offset().top - 20,
+                offset: $(this).offset().top - 100,
                 title: $(this).find(':header:first').html()
             };
 
@@ -33,7 +33,7 @@ Sections.prototype = {
             articleID = this.names[this.names.length - 1].id;
 
         for(var i = 0, l = this.names.length; i < l; i++) {
-            if (scroll > 0 && this.names[i].offset > scroll) {
+            if (scroll >= 0 && this.names[i].offset > scroll) {
                 articleID = this.names[i - 1].id;
                 break;
             }
