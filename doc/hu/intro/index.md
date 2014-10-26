@@ -1,18 +1,21 @@
 ## Bevezető
 
-A **JavaScript Garden** egy kódgyűjtemény amely azért született, hogy tisztázza a JavaScript nyelv legsötétebb mélységeit. Itt tippeket találhatsz a gyakori hibák elkerüléséhez,  teljesítmény javításhoz, rossz minták felismeréséhez, amelyeket a legtöbb kezdő JavaScript programozó már talán megtapasztalt, amikor a nyelv mélyére szeretett volna ásni.
+A **JavaScript Garden** egy folytonosan növekvő kódgyűjtemény amely a nyelv kihívást okozó részeit hivatott tisztázni. Itt tanácsokat kaphatsz afelől, hogyan kerüld el a leggyakoribb programozási- valamint nyelvi hibákat, hogyan írj gyorsabb kódot, és mik a legsűrűbben elkövetett *bad practice*k amelyekkel egy átlagos JavaScript programozó (nem) mindennapi útján találkozhat a nyelv megismerése közben. 
 
-A JavaScript Gardennek **nem** célja hogy megtanítsa a JavaScript nyelv használatát!
+A JavaScript Gardennek **nem** célja hogy megtanítsa a JavaScript nyelvet!
 Az itt felsorolt témák megértéséhez mindenképp szükséges némi tapasztalat. Ha a nyelv alapjait szeretnéd elsajátítani, először nézd át ezt a kiváló [tutorialt][1] a Mozilla Developer Networkön.
 
 ## Szerzők
 
 Ez a leírás két kiváló [Stack Overflow][2] felhasználó, [Ivo Wetzel][3] (szerző) és [Zhang Yi Jiang][4] (Design) tollából született.
 
+A dokumentumot jelenleg [Tim Ruffles](http://truffles.me.uk) gondozza.
+
 ## Hozzájárultak még
 
- - [Caio Romão][5] (Helyesírási javítások)
- - [Andreas Blixt][6] (Nyelvi javítások)
+ - Túl hosszú lenne itt mindenkit felsorolni, lásd a [közreműködők listáját](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors).
+
+ - A magyar fordítás [jozsefDevs](https://twitter.com/jozsefDevs) jóvoltából született.
 
 ## Hosting
 

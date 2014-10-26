@@ -38,12 +38,12 @@ visszatérített érték `Objektum` típusú.
             foo: 1
         };
     }
-    new Test(); // ez a returnben található objektumot fogja eredményezni
+    new Test(); // ez a { foo: 1 } objektumot fogja eredményezni
 	
 Hogyha kihagyjuk a `new` kulcsszó használatát, a függvény **nem** egy új objektummal fog visszatérni.
 
     function Foo() {
-        this.bla = 1; // ez a globális objektumon állítja be a bla értékét 1-re
+        this.bla = 1; // ez a globális objektumon állít
     }
     Foo(); // undefined
 

@@ -6,7 +6,7 @@
         {
             "title": "Bevezet\u0151",
             "dir": "intro",
-            "articles": []
+            "articles": [ "index" ]
         },
         {
             "title": "Objektumok",

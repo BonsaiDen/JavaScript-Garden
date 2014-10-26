@@ -13,7 +13,7 @@ Ez a függvény felkerül a scope tetejére ([hoisting](#function.scopes)), miel
 még abban a trükkös esetben is, hogyha a kód azon pontján hívjuk ezt a függvényt, mielőtt
 definiáltuk volna (látszólag).
 
-    foo(); // Így is működik, mivel a foo fgv. létrejön mielőtt meghívnánk.
+    foo(); // Így is működik
     function foo() {}
 
 ### A `függvény` kifejezés (expression)
