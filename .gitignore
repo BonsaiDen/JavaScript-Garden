@@ -15,6 +15,7 @@
 /site/es
 /site/zhtw
 /site/it
+/site/hu
 *.md~
 *.src.md
 *.DS_store
