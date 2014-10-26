@@ -214,7 +214,7 @@ JavaScript 中的所有作用域，包括*全局作用域*，都有一个特别�
 推荐使用*匿名包装器*（**[译者注][30]：**也就是自执行的匿名函数）来创建命名空间。这样不仅可以防止命名冲突，
 而且有利于程序的模块化。
 
-另外，使用全局变量被认为是**不好的习惯**。这样的代码倾向于产生错误和带来高的维护成本。
+另外，使用全局变量被认为是**不好的习惯**。这样的代码容易产生错误并且维护成本较高。
 
 [1]: http://net.tutsplus.com/tutorials/javascript-ajax/quick-tip-javascript-hoisting-explained/
 [30]: http://cnblogs.com/sanshi/

@@ -86,7 +86,7 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 
 上例中，`test` 就像一个普通的函数被调用；因此，函数内的 `this` 将不再被指向到 `someObject` 对象。
 
-虽然 `this` 的晚绑定特性似乎并不友好，但是这确实[基于原型继承](#object.prototype)赖以生存的土壤。
+虽然 `this` 的晚绑定特性似乎并不友好，但这确实是[基于原型继承](#object.prototype)赖以生存的土壤。
 
     function Foo() {}
     Foo.prototype.method = function() {};
