@@ -87,7 +87,7 @@ sido removido y por lo tanto no aparece en la salida.
         delete: 'Soy una palabra clave también' // lanza SyntaxError
     };
 
-Las propiedades de los objetos puede ser simbolizados como caracteres planos y como strings. Debido
+Las propiedades de los objetos puede ser simbolizados como caracteres planos y como *strings*. Debido
 a otro mal diseño del parser de JavaScript, lo anterior es una excepción
 de `SyntaxError` antes de ECMAScript 5.
 
