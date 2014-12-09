@@ -90,7 +90,7 @@ oraz zmienne zadeklarowane poprzez deklaracje `var` wewnątrz funkcji.
     }
     test(10);
 
-Zmienne `foo` oraz `i` są lokalnymi zmiennymi wewnątrz zasiegu funkcji `test`, 
+Zmienne `foo` oraz `i` są lokalnymi zmiennymi wewnątrz zasięgu funkcji `test`, 
 natomiast przypisanie wartości do `bar` nadpisze zmienną globalną o tej samej nazwie.
  
 ### "Hoisting" - wywindowanie, podnoszenie 
@@ -165,7 +165,7 @@ przeniesiona na początek *globalnego zasięgu*.
 
     // inny kod który może ale nie musi zainicjalizować SomeImportantThing
 
-    // upewnienie sie, że SomeImportantThing zostało zainicjalizowane
+    // upewnienie się, że SomeImportantThing zostało zainicjalizowane
     if (!SomeImportantThing) {
         SomeImportantThing = {};
     }

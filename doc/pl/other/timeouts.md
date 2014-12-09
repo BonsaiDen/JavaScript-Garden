@@ -47,7 +47,7 @@ milisekund. Jednakże korzystanie z tej funkcji jest odradzane.
 
 Kiedy wykonywany kod zablokuje możliwość uruchomienia zaplanowanej funkcji, 
 `setInterval` będzie próbować uruchamiać daną funkcję, co będzie powodować 
-kolejkowanie wykonania tej samej funkcji kilkukrotnie. Może się to zdażyć
+kolejkowanie wykonania tej samej funkcji kilkukrotnie. Może się to zdarzyć
 szczególnie przy krótkim interwale.
 
     function foo(){

@@ -9,7 +9,7 @@ modelu. Na przykład stworzenia klasycznego modelu na podstawie modelu prototypo
 jest dość proste, podczas gdy zrobienie odwrotnego przekształcenie to o wiele trudniejsze zadanie.
 
 Ze względu na fakt, że w JavaScript jest w zasadzie jedynym powszechnie stosowanym 
-językiem, któy posiada prototypowy model dziedziczenia, dostosowanie się do różnic pomiędzy
+językiem, który posiada prototypowy model dziedziczenia, dostosowanie się do różnic pomiędzy
 tymi dwoma modelami wymaga trochę czasu. 
 
 Pierwszą znaczącą różnicą jest to, że dziedziczenie w JavaScript odbywa się za pomocą
@@ -17,7 +17,7 @@ tak zwanych *łańcuchów prototypów*.
 
 > **Uwaga:** Używanie po prostu `Bar.prototype = Foo.prototype` spowoduje, że oba obiekty 
 > będą korzystały z **tego samego** prototypu. W związku z tym zmiany w prototypie jednego
-> obiektu będą również zmieniały prototyp drugiego obiektu, co jest ,w wiekszości przypadków, 
+> obiektu będą również zmieniały prototyp drugiego obiektu, co jest ,w większości przypadków, 
 > niepożądanym efektem.
 
     function Foo() {
@@ -50,14 +50,14 @@ tak zwanych *łańcuchów prototypów*.
 W powyższym przykładzie obiekt `test` będzie dziedziczył z obydwu, tj. 
 `Bar.prototyp` i `Foo.prototyp`, stąd będzie miał dostęp do funkcji `method`,
 która była zdefiniowana w `Foo`. Ponadto obiekt będzie miał dostęp do 
-właściwości `value`, która jest jednyną instancją `Foo` i stała się jego prototypem.
+właściwości `value`, która jest jedyną instancją `Foo` i stała się jego prototypem.
 Należy pamiętać, że `new Bar` **nie** tworzy nowej instancji `Foo`, 
 tylko wykorzystuje instancję, która jest przypisana do własności `prototype`. 
 Zatem Wszystkie instancje `Bar` będą dzieliły tą samą własność `value`.
 
 > **Uwaga:** **Nie** należy używać konstrukcji `Bar.prototype = Foo`, 
 > ponieważ nie spowoduje ona przypisania prototypu `Foo` tylko obiektu 
-> funckji `Foo`. Zatem łańcuch prototypów nie bedzie zawierał `Foo.prototype`,
+> funckji `Foo`. Zatem łańcuch prototypów nie będzie zawierał `Foo.prototype`,
 > tylko `Function.prototype`, więc metoda `method` nie będzie w łańcuchu prototypów. 
 
 ### Wyszukiwanie własności
@@ -102,11 +102,11 @@ Nie ma jednak dobrego powodu, aby zaśmiecać wbudowane typy poprzez wzbogacanie
 *niestandardowe* funkcjonalności.
 
 **Jedynym** dobrym powodem do rozszerzania wbudowanych prototypów jest portowanie  
-funkcjonalności znajdujących sie w nowszych silnikach JavaScript, np. [`Array.forEach`][3]
+funkcjonalności znajdujących się w nowszych silnikach JavaScript, np. [`Array.forEach`][3]
 
 ### Wnioski
 
-Zanim przystąpi się do pisania skomplikowanego kodu korzystającego z dziedziczania,  
+Zanim przystąpi się do pisania skomplikowanego kodu korzystającego z dziedziczenia,  
 należy **całkowicie** zrozumieć prototypowy model dziedziczenia. Ponadto trzeba uważać 
 na długość łańcucha prototypów i w razie potrzeby zmniejszać ilość dziedziczeń, 
 aby uniknąć problemów z wydajnością. Natywne prototypy **nigdy** nie powinny być 

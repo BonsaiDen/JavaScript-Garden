@@ -47,7 +47,7 @@ Zamiast tego funkcja utworzy lub nadpisze *globalną* zmienną `count`.
 
 ### Domknięcia wewnątrz pętli
 
-Jednym z częstrzych błędów jest wykorzystywanie domknięć wewnątrz pętli, 
+Jednym z częstszych błędów jest wykorzystywanie domknięć wewnątrz pętli, 
 aby wartość zmiennej po której odbywa się iteracja była kopiowana do 
 wewnętrznej funkcji.
 
