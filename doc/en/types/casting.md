@@ -4,8 +4,9 @@ JavaScript is a *weakly typed* language, so it will apply *type coercion*
 **wherever** possible.
 
     // These are true
-    new Number(10) == 10; // Number.toString() is converted
-                          // back to a number
+    new Number(10) == 10; // Number object is converted
+                          // to a number primitive via implicit call of
+                          // Number.prototype.valueOf method
 
     10 == '10';           // Strings gets converted to Number
     10 == '+10 ';         // More string madness
