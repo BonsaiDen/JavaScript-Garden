@@ -1,5 +1,4 @@
 {
     "default": "en",
-    "listed": ["en", "fi", "ru", "zhtw", "zh", "tr", "pl", "ko", "ja", "es", "it", "hu","pt"]
-}
-
+    "listed": ["en","es","fi","hu","it","ja","ko","pl","ptbr","ru","tr","zh","zhtw"]
+} 
