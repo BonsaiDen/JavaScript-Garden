@@ -58,7 +58,7 @@ Using the **unary** plus operator, it is possible to cast to a number.
 
 ### Casting to a Boolean
 
-By using the **not** operator twice, a value can be converted a boolean.
+By using the **not** operator twice, a value can be converted to a boolean.
 
     !!'foo';   // true
     !!'';      // false
