@@ -97,7 +97,7 @@ above.
     }
 
 The other popular way to acheive this is to add an additional argument to
-the setTimeout function, which behaves as a closure.
+the setTimeout function, which passes these arguments to the callback.
 
     for(var i = 0; i < 10; i++) {
         setTimeout(function(e) {
