@@ -99,7 +99,6 @@ above.
 The other popular way to acheive this is to add an additional argument to
 the setTimeout function, which behaves as a closure.
 
-
     for(var i = 0; i < 10; i++) {
         setTimeout(function(e) {
             console.log(e);  
