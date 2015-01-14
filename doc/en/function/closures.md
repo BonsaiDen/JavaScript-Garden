@@ -105,7 +105,7 @@ the setTimeout function, which passes these arguments to the callback.
         }, 1000, i);
     }
 
-Some legacy JS environments do not support this, however.
+Some legacy JS environments (Internet Explorer 9 & below) do not support this.
 
 There's yet another way to accomplish this by using `.bind`, which can bind
 a `this` context and arguments to function. It behaves identically to the code
