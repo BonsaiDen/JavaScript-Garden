@@ -96,6 +96,18 @@ above.
         })(i), 1000)
     }
 
+The other popular way to acheive this is to add an additional argument to
+the setTimeout function, which behaves as a closure.
+
+
+    for(var i = 0; i < 10; i++) {
+        setTimeout(function(e) {
+            console.log(e);  
+        }, 1000, i);
+    }
+
+Some legacy JS environments do not support this, however.
+
 There's yet another way to accomplish this by using `.bind`, which can bind
 a `this` context and arguments to function. It behaves identically to the code
 above
