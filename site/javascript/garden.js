@@ -184,7 +184,7 @@ Page.prototype = {
         
         $('#nav_main').click(function(){
             if(that.window.width() < 1000)
-                mainNav.slideUp(300);
+                mainNav.slideUp(300, function() {this.removeAttr('style');});
         });
     },
 
