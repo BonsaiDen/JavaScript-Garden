@@ -40,13 +40,13 @@ While the *getter* of the `length` property simply returns the number of
 elements that are contained in the array, the *setter* can be used to 
 **truncate** the array.
 
-    var foo = [1, 2, 3, 4, 5, 6];
-    foo.length = 3;
-    foo; // [1, 2, 3]
+    var arr = [1, 2, 3, 4, 5, 6];
+    arr.length = 3;
+    arr; // [1, 2, 3]
 
-    foo.length = 6;
-    foo.push(4);
-    foo; // [1, 2, 3, undefined, undefined, undefined, 4]
+    arr.length = 6;
+    arr.push(4);
+    arr; // [1, 2, 3, undefined, undefined, undefined, 4]
 
 Assigning a smaller length truncates the array. Increasing it creates a sparse array.
 

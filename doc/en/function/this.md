@@ -68,7 +68,7 @@ mis-design of the language because it **never** has any practical use.
 A common misconception is that `this` inside of `test` refers to `Foo`; while in
 fact, it **does not**.
 
-In order to gain access to `Foo` from within `test`, it is necessary to create a 
+In order to gain access to `Foo` from within `test`, you can create a
 local variable inside of `method` that refers to `Foo`.
 
     Foo.method = function() {
