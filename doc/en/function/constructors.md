@@ -92,19 +92,21 @@ lead to bugs.
 In order to create a new object, one should rather use a factory and construct a 
 new object inside of that factory.
 
-    function Foo() {
-        var obj = {};
-        obj.value = 'blub';
+    function CarFactory() {
+        var car = {};
+        car.owner = 'nobody';
 
-        var private = 2;
-        obj.someMethod = function(value) {
-            this.value = value;
+        var milesPerGallon = 2;
+
+        car.setOwner = function(newOwner) {
+            this.owner = newOwner;
         }
 
-        obj.getPrivate = function() {
-            return private;
+        car.getMPG = function() {
+            return milesPerGallon;
         }
-        return obj;
+
+        return car;
     }
 
 While the above is robust against a missing `new` keyword and certainly makes 
