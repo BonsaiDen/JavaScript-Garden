@@ -575,8 +575,7 @@ a abbr {
 
 /* "Smartphone" styles */
 
-@media screen and (max-width: 600px),
-screen and (-webkit-min-device-pixel-ratio: 2) {
+@media screen and (max-width: 600px) {
 	body {
 		max-width: 600px;
 	}
