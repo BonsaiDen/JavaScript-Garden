@@ -74,16 +74,16 @@ nav {
 	position: fixed;
 	margin-left: 750px;
 	top: 0;
-    padding-bottom: 20px;
+	padding-bottom: 20px;
 	height: 100%;
-	
+
 	text-shadow: none;
 	width: 240px;
 }
 
 nav > div li {
-    float: left;
-    margin-right: 1px;
+	float: left;
+	margin-right: 1px;
 }
 
 nav > div li a, #top, #hide_menu {
@@ -96,7 +96,7 @@ nav > div li a, #top, #hide_menu {
 nav > div li.active a {
 	border-top: 4px solid #0D2E4C;
 	padding-top: 4px;
-    color: #FFC76D;
+	color: #FFC76D;
 }
 
 #hide_menu {
@@ -119,8 +119,8 @@ nav > div li.active a {
 
 nav li {
 	font-size: 16px;
-    margin: 0px;
-    list-style: none;
+	margin: 0px;
+	list-style: none;
 }
 
 nav > ul li:last-child a {
@@ -182,10 +182,10 @@ nav li a.active:hover {
 nav a:hover, nav ul.active a:hover, nav a, nav li {
 	-moz-transition-property: background-color, color;
 	-moz-transition-duration: 0.3s;
-	
+
 	-webkit-transition-property: background-color, color;
 	-webkit-transition-duration: 0.3s;
-	
+
 	-o-transition-property: background-color, color;
 	-o-transition-duration: 0.3s;
 
@@ -243,9 +243,9 @@ code {
 section pre code {
 	font-size: 0.8125em;
 	line-height: 1.4em;
-    padding: 0px;
-    margin-top: 3px;
-    margin-bottom: 1px;
+	padding: 0px;
+	margin-top: 3px;
+	margin-bottom: 1px;
 	background: #0F192A;
 }
 
@@ -267,7 +267,7 @@ section h1 {
 }
 
 section header + section h1 {
-	
+
 }
 
 /* Adding 'icon' to the side of sections */
@@ -336,7 +336,7 @@ aside {
 	width: 180px;
 	right: -190px;
 	opacity: 0.7;
-	
+
 	-moz-transition: opacity 0.3s;
 	-webkit-transition: opacity 0.3s;
 	-o-transition: opacity 0.3s;
@@ -369,7 +369,7 @@ aside.es5:after {
 	font-style: italic;
 	top: -18px;
 	right: -3px;
-	
+
 	-ms-filter: “progid:DXImageTransform.Microsoft.Alpha(Opacity=25)”; /* Just kill me already... */
 	opacity: 0.25;
 }
@@ -377,7 +377,7 @@ aside.es5:after {
 /* Article elements */
 
 section ol {
-    margin-bottom: 2em;
+	margin-bottom: 2em;
 	list-style: decimal;
 }
 
@@ -463,7 +463,7 @@ a abbr {
 	nav > div li.active a {
 		padding-top: 8px;
 	}
-	
+
 	#nav_main {
 		display: none;
 		height: auto;
@@ -471,29 +471,29 @@ a abbr {
 		width: 100%;
 		z-index: 100;
 		padding: 0;
-		
+
 		-moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 		-webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 		box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 	}
-	
+
 	#nav_main ul ul {
 		display: none !important;
 	}
-	
+
 	#nav_main > ul > li {
 		float: left;
 		text-align: center;
 		width: 14.28%;
 		border-bottom: 0;
 	}
-	
+
 	#nav_main li h1 a {
 		background-image: none;
 		height: 5em;
 		padding: 1.5em 0 2em;
 	}
-	
+
 	#nav_main li h1 a:after {
 		display: block;
 		font-family: Georgia;
@@ -501,21 +501,21 @@ a abbr {
 		font-weight: normal;
 		margin-top: 10px;
 	}
-	
+
 	#nav_main > div ul {
 		height: auto;
 	}
-	
+
 	nav a:hover,
 	nav li.active,
 	nav li.active a {
 		background-color: #0D2E4C;
 	}
-		
+
 	#hide_menu {
 		display: block;
 	}
-	
+
 	#nav_mobile {
 		position: fixed;
 		width: 24%;
@@ -524,7 +524,7 @@ a abbr {
 		display: block;
 		z-index: 50;
 	}
-	
+
 	#nav_mobile a {
 		display: block;
 		background-color: #556C81;
@@ -532,12 +532,12 @@ a abbr {
 		margin-bottom: 1px;
 		text-align: right;
 	}
-	
+
 	#nav_next_section, #nav_prev_section {
 		font-size: 0.55em;
 		text-transform: uppercase;
 	}
-	
+
 	#nav_next_section .nav_section_name,
 	#nav_prev_section .nav_section_name {
 		display: block;
@@ -547,12 +547,12 @@ a abbr {
 		line-height: 1.3em;
 		text-transform: none;
 	}
-	
+
 	#show_menu {
 		font-weight: bold;
 		cursor: pointer;
 	}
-	
+
 	pre {
 		border-left: 0;
 		padding-left: 12px;
@@ -567,7 +567,7 @@ a abbr {
 		right: -33%;
 		width: 30%;
 	}
-	
+
 	section:after {
 		display: none;
 	}
@@ -580,12 +580,12 @@ screen and (-webkit-min-device-pixel-ratio: 2) {
 	body {
 		max-width: 600px;
 	}
-	
+
 	section {
 		margin-right: 30px;
 		width: auto;
 	}
-	
+
 	section:after {
 		right: 0;
 		font-size: 60px;
@@ -599,15 +599,15 @@ screen and (-webkit-min-device-pixel-ratio: 2) {
 		border-top: 1px solid #9eabb7;
 		opacity: 0.85;
 	}
-	
+
 	#nav_main > ul > li {
 		width: 100%;
 	}
-	
+
 	#nav_mobile {
 		width: 160px;
 	}
-	
+
 	aside.es5:after {
 		display: none;
 	}
