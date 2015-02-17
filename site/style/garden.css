@@ -600,7 +600,10 @@ a abbr {
 	}
 
 	#nav_main > ul > li {
-		width: 100%;
+		float: left;
+		text-align: center;
+		width: 25%;
+		border-bottom: 0;
 	}
 
 	#nav_mobile {
@@ -609,5 +612,16 @@ a abbr {
 
 	aside.es5:after {
 		display: none;
+	}
+}
+
+/* Small Screen "Smarphone" Vertical Mode */
+
+@media screen and (max-width: 360px) {
+	#nav_main > ul > li {
+		float: left;
+		text-align: center;
+		width: 33.33%;
+		border-bottom: 0;
 	}
 }
