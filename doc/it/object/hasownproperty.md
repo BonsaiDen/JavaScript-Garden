@@ -22,10 +22,9 @@ Per verificare se un oggetto ha (possiede) una proprietà definita dentro
     foo.hasOwnProperty('bar'); // false
     foo.hasOwnProperty('goo'); // true
 
-Solo `hasOwnProperty` darà il risultato atteso e corretto. Questo è essenziale
-quando si itera tra le proprietà di un qualsiasi oggetto. **Non** c'è altro
-modo per escludere proprietà che non sono definite all'interno dell'oggetto
-stesso, ma da qualche altra parte nella sua catena di prototipi.
+Solo `hasOwnProperty` darà il risultato atteso e corretto. Guarda la sezione
+[cicli `for in`][#object.forinloop] per maggiori dettagli riguardo a quando
+usare `hasOwnProperty` per iterare le proprietà di un oggetto.
 
 ### `hasOwnProperty` come proprietà
 
@@ -54,7 +53,6 @@ risultato corretto.
 ### In conclusione
 
 Usare `hasOwnProperty` è l'**unico** metodo affidabile per verificare
-l'esistenza di una proprietà in un oggetto. &Egrave; raccomandabile usare
-`hasOwnProperty` in **ogni** [ciclo `for in`](#object.forinloop) per
-evitare errori con i [prototipi](#object.prototype) nativi estesi.
-
+l'esistenza di una proprietà in un oggetto. &Egrave; raccomandabile che
+`hasOwnProperty` venga usata in molti casi in cui è necessario iterare le
+proprietà di un oggetto, come descritto nella sezione [cicli `for in`](#object.forinloop).
