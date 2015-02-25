@@ -11,9 +11,9 @@ przekazane do niego parametry.
     new Array(3); // Rezultat: []
     new Array('3') // Rezultat: ['3']
 
-W przypadku gdy tylko jeden argument zostanie przekazany do kostruktora `Array` i 
+W przypadku, gdy tylko jeden argument zostanie przekazany do kostruktora `Array` i 
 ten argument jest typu `Number`, konstruktor zwróci nową *dziwną* tablicę 
-z ustawioną właściwością `length` na wartość przekazaną jako argument. Należy 
+z właściwością `length` ustawioną na wartość przekazaną jako argument. Należy 
 zauważyć, że **tylko** właściwość `length` zostanie ustawiona w ten sposób.
 Rzeczywiste indeksy w tej tablicy nie zostaną zainicjalizowane.
 
