@@ -26,10 +26,10 @@ użyć klasycznej pętli `for`.
 W powyższym przykładzie jest jeszcze jeden dodatkowy haczyk. Jest to zbuforowanie 
 długości tablicy poprzez `l = list.length`.
 
-Mimo że właściwość `length` jest zdefiniowana wewnątrz tablicy, istnieje nadal 
-dodatkowy koszt na wyszukiwanie tej właściwości przy każdej iteracji w pętli. 
-Chociaż najnowsze silniki JavaScript **mogą** zastosować w tym 
-przypadku optymalizację. Nie ma jednak możliwość ustalenia czy kod będzie wykonywany w jednym 
+Mimo, że właściwość `length` jest zdefiniowana wewnątrz tablicy, istnieje nadal 
+dodatkowy koszt wyszukiwania tej właściwości przy każdej iteracji w pętli. 
+Najnowsze silniki JavaScript **mogą** zastosować w tym 
+przypadku optymalizację. Nie ma jednak możliwości ustalenia, czy kod będzie wykonywany w jednym 
 z tych nowych silników, czy też nie.
 
 W rzeczywistości pominięcie buforowania długości tablicy może spowodować, że pętla 
