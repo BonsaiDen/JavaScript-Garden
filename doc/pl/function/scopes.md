@@ -153,7 +153,7 @@ jak zostało zastosowane windowanie (hoisting).
 Analizując poniższy kod bez wiedzy na temat hoistingu możemy odnieść wrażenie,
 że zobaczymy błąd `ReferenceError`.
 
-    // sprawdz czy SomeImportantThing zostało zainicjalizowane
+    // sprawdź, czy SomeImportantThing zostało zainicjalizowane
     if (!SomeImportantThing) {
         var SomeImportantThing = {};
     }
@@ -163,9 +163,9 @@ przeniesiona na początek *globalnego zasięgu*.
 
     var SomeImportantThing;
 
-    // inny kod który może ale nie musi zainicjalizować SomeImportantThing
+    // inny kod, który może, ale nie musi zainicjalizować SomeImportantThing
 
-    // upewnienie się, że SomeImportantThing zostało zainicjalizowane
+    // upewnij się, że SomeImportantThing zostało zainicjalizowane
     if (!SomeImportantThing) {
         SomeImportantThing = {};
     }
