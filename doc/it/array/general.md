@@ -42,13 +42,13 @@ Mentre il *getter* della proprietà `length` ritorna semplicemente il numero di
 elementi che sono contenuti nell'array, il *setter* può essere usato per
 **troncare** l'array.
 
-    var foo = [1, 2, 3, 4, 5, 6];
-    foo.length = 3;
-    foo; // [1, 2, 3]
+    var arr = [1, 2, 3, 4, 5, 6];
+    arr.length = 3;
+    arr; // [1, 2, 3]
 
-    foo.length = 6;
-    foo.push(4);
-    foo; // [1, 2, 3, undefined, undefined, undefined, 4]
+    arr.length = 6;
+    arr.push(4);
+    arr; // [1, 2, 3, undefined, undefined, undefined, 4]
 
 Assegnando una lunghezza più piccola si tronca l'array. Incrementandola si
 crea un array frammentato.
@@ -59,4 +59,3 @@ Per la miglior performance, si raccomanda di usare sempre il ciclo `for`
 classico e fare il caching della proprietà `length`. L'uso di `for in` su di
 un array è segno di un codice scritto male che è suscettibile a bug e pessima
 performance.
-

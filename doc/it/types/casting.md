@@ -4,8 +4,9 @@ JavaScript è un linguaggio **debolmente tipizzato**, perciò esso applicherà
 una *conversione di tipo* **ovunque** sia possibile.
 
     // Queste sono vere
-    new Number(10) == 10; // Number.toString() viene convertito
-                          // nuovamente in un numero
+    new Number(10) == 10; // l'oggetto Number viene convertito
+                          // in una primitiva numero tramite chiamata implicita
+                          // al metodo Number.prototype.valueOf
 
     10 == '10';           // String viene convertita in Number
     10 == '+10 ';         // Stringa più assurda
@@ -72,5 +73,3 @@ booleano.
     !!'-1'     // true
     !!{};      // true
     !!true;    // true
-
-

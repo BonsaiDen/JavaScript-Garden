@@ -3,8 +3,12 @@
 Dato che JavaScript è asincrono, è possibile programmare l'esecuzione di una
 funzione usando le funzioni `setTimeout` e `setInterval`.
 
-> **Nota:** i timeout **non** sono parte dello standard ECMAScript. Essi
-> vengono implementati come parte del [DOM][1].
+> **Nota:** i timeout **non** sono parte dello standard ECMAScript. Erano stati
+> implementati in [BOM, o DOM Level 0][1], i quali non sono mai stati definiti
+> o documentati formalmente. Nessuna specifica raccomandazione è mai stata
+> pubblicata, tuttavia, la loro standardizzazione è in via di ultimazione con
+> [HTML5][2]. Per loro stessa natura, quindi, l'implementazione può essere
+> differente nei vari browser e motori di rendering.
 
     function foo() {}
     var id = setTimeout(foo, 1000); // ritorna un Number > 0
@@ -52,7 +56,7 @@ con intervalli molto brevi, tradursi in chiamate a funzione che si sovrappongono
     function foo(){
         // qualcosa che blocca per 1 secondo
     }
-    setInterval(foo, 100);
+    setInterval(foo, 1000);
 
 Nel codice precedente, `foo` verrà chiamato una volta e quindi bloccherà per
 un secondo.
@@ -68,7 +72,7 @@ La soluzione più semplice, come anche la più controllabile, è quella di usare
 
     function foo(){
         // qualcosa che blocca per 1 secondo
-        setTimeout(foo, 100);
+        setTimeout(foo, 1000);
     }
     foo();
 
@@ -119,8 +123,7 @@ gli ID dei timeout, così che possano essere puliti in modo specifico.
 primo parametro. Questa caratteristica non dovrebbe essere **mai** usata
 perché internamente fa uso di `eval`.
 
-> **Nota:** dato che le funzioni di timeout **non** sono specificate dallo
-> standard ECMAScript, l'esatto funzionamento quando viene passata una stringa
+> **Nota:** L'esatto funzionamento quando viene passata una stringa
 > potrebbe differire nelle varie implementazioni di JavaScript. Per esempio,
 > JScript di Microsoft usa il costruttore `Function` al posto di `eval`.
 
@@ -157,6 +160,9 @@ funzione che verrà chiamata da una delle funzioni di timeout.
 > `setTimeout(foo, 1000, 1, 2, 3)`, non la si raccomanda, dato che il suo
 > utilizzo potrebbe portare ad errori subdoli quando usata con i
 > [metodi](#function.this).
+> Inoltre, la sintassi potrebbe non funzionare in alcune implementazioni di
+> JavaScript.
+> Ad esempio, Internet Explorer di Microsoft [**non** passa direttamente gli argomenti al callback](3).
 
 ### In conclusione
 
@@ -169,5 +175,6 @@ di gestire l'effettiva chiamata.
 Inoltre, l'uso di `setInterval` dovrebbe essere evitato perché il suo schedulatore
 non viene bloccato dall'esecuzione di JavaScript.
 
-[1]: http://en.wikipedia.org/wiki/Document_Object_Model "Document Object Model"
-
+[1]: http://www.nczonline.net/blog/2009/09/29/web-definitions-dom-ajax-and-more/ "Web definitions: DOM, Ajax, and more"
+[2]: http://www.w3.org/TR/2014/WD-html5-20140617/webappapis.html#timers "6 Web application APIs - HTML5"
+[3]: http://msdn.microsoft.com/en-us/library/ie/ms536753(v=vs.85).aspx "setTimeout method (Internet Explorer)"

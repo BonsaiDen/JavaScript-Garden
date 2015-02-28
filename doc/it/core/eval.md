@@ -2,27 +2,27 @@
 
 La funzione `eval` eseguirà una stringa di codice JavaScript nello scope locale.
 
-    var foo = 1;
+    var number = 1;
     function test() {
-        var foo = 2;
-        eval('foo = 3');
-        return foo;
+        var number = 2;
+        eval('number = 3');
+        return number;
     }
     test(); // 3
-    foo; // 1
+    number; // 1
 
 Comunque, `eval` esegue solo nello scope locale quando viene chiamata
 direttamente *e* quando il nome della funzione chiamata è `eval`.
 
-    var foo = 1;
+    var number = 1;
     function test() {
-        var foo = 2;
-        var bar = eval;
-        bar('foo = 3');
-        return foo;
+        var number = 2;
+        var copyOfEval = eval;
+        copyOfEval('number = 3');
+        return number;
     }
     test(); // 2
-    foo; // 3
+    number; // 3
 
 L'uso di `eval` dovrebbe essere evitato. Il 99.9% dei suoi "utilizzi" può
 essere ottenuto **senza** di essa.
@@ -47,4 +47,3 @@ essere messo in discussione sotto l'aspetto della funzionalità, della performan
 e della sicurezza. Se qualcosa richiede `eval` per poter funzionare, allora **non**
 dovrebbe essere usato in primo luogo, ma si dovrebbe prevedere una
 *miglior progettazione* che non richieda l'uso di `eval`.
-
