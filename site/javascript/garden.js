@@ -60,18 +60,18 @@ Sections.prototype = {
         }
     },
 
-    expand: function (sectionName) {
+    expand: function(sectionName) {
         var nav = this.page.nav,
             index = nav.find('a[href=#' + sectionName + ']')
                        .closest('nav > ul > li').index();
 
         var height = this.page.window.height()
                      - $('nav > div').height()
-                     - (33 * this.heights.length),
+                     - (33 * this.heights.length);
 
-                     sections = [],
-                     currentHeight = 0,
-                     distance = 0;
+        var sections = [],
+            currentHeight = 0,
+            distance = 0;
 
         while ((currentHeight + this.heights[index]) < height) {
             sections.push(index);
@@ -135,7 +135,7 @@ function Page() {
         section: null,
         articule: null
     });
-    
+
     this.sections = new Sections(this);
     this.init();
 }
@@ -149,11 +149,11 @@ Page.prototype = {
             scrollLast: 0,
             resizeTimeout: null
         });
-        
+
         this.window.scroll(function() {
             that.onScroll();
         });
-        
+
         this.window.resize(function() {
             that.onResize();
         });
@@ -164,12 +164,12 @@ Page.prototype = {
         }, 10);
 
         // Show menu for tablets and smart phones
-        $('#show_menu').click(function (){
+        $('#show_menu').click(function() {
             $mainNav.slideDown(300);
             return false;
         });
 
-        $mainNav.click(function(){
+        $mainNav.click(function() {
             if(that.window.width() < 1000)
                 $mainNav.slideUp(300, function() { $mainNav.removeAttr('style'); });
         });
