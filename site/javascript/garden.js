@@ -158,7 +158,7 @@ Page.prototype = {
             that.onResize();
         });
 
-        that.sections.map();
+        this.sections.map();
         setTimeout(function() {
             that.sections.highlight();
         }, 10);
