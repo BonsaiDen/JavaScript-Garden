@@ -443,10 +443,10 @@ a abbr {
 
 /* "Tablet" Styles */
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 999px) {
 	body {
 		width: 100%;
-		max-width: 1000px;
+		max-width: 999px;
 		overflow-x: hidden;
 	}
 
