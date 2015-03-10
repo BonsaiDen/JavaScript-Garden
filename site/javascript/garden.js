@@ -143,7 +143,7 @@ function Page() {
 Page.prototype = {
     init: function() {
         var that = this,
-            mainNav = $('#nav_main');
+            $mainNav = $('#nav_main');
 
         $.extend(this, {
             scrollLast: 0,
@@ -177,14 +177,14 @@ Page.prototype = {
         // Show menu for tablets
         $('#show_menu').click(function (){
             var scrollTop = $.mobile ? that.window.scrollTop() : 0;
-            
-            mainNav.slideDown(300).css('top', scrollTop);
+
+            $mainNav.slideDown(300).css('top', scrollTop);
             return false;
         });
-        
-        $('#nav_main').click(function(){
+
+        $mainNav.click(function(){
             if(that.window.width() < 1000)
-                mainNav.slideUp(300, function() {this.removeAttr('style');});
+                $mainNav.slideUp(300, function() { $mainNav.removeAttr('style'); });
         });
     },
 
