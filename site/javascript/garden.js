@@ -163,22 +163,9 @@ Page.prototype = {
             that.sections.highlight();
         }, 10);
 
-        // Mobile, for position: fixed
-        if ($.mobile) {
-            var navs = $('#nav_mobile, #nav_main');
-            navs.css('position', 'absolute');
-            this.window.scroll(function(){
-                navs.offset({
-                    top: that.window.scrollTop()
-                });
-            });
-        }
-        
-        // Show menu for tablets
+        // Show menu for tablets and smart phones
         $('#show_menu').click(function (){
-            var scrollTop = $.mobile ? that.window.scrollTop() : 0;
-
-            $mainNav.slideDown(300).css('top', scrollTop);
+            $mainNav.slideDown(300);
             return false;
         });
 
