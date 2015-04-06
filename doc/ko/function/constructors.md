@@ -32,7 +32,7 @@ JavaScript의 생성자는 다른 언어들과 다르게 `new` 키워드로 호�
             name: 'Charles'
         };
     }
-    new Test(); // someValue가 포함되지 않은 ({name:'Charles'}) 객체 반환
+    new Person(); // someValue가 포함되지 않은 ({name:'Charles'}) 객체 반환
 
 new 키워드가 없으면 그 함수는 객체를 반환하지 않는다.
 
