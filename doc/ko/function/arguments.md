@@ -28,7 +28,7 @@ JavaScript의 모든 함수 스코프에는 `arguments`라는 특별한 변수�
     }
 
 또 다른 트릭은 `call`과 `apply`를 함께 사용하여 메써드(`this`의 값과 인자들을 사용하는 함수)를 
-단지 인자들만 사용하는 일반 함수로 바꾸는 것입니다.
+단지 인자들만 사용하는 일반 함수로 바꾸는 것이다.
 
     function Person(first, last) {
       this.first = first;
