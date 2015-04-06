@@ -27,21 +27,36 @@ JavaScript의 모든 함수 스코프에는 `arguments`라는 특별한 변수�
         // 내곡동에 땅이라도 산다.
     }
 
-또 다른 방법으로는 함수를 랩핑하지 않고, 풀어서 `call`과 `apply`를 함께 사용하는 방법이 있다. (역주: 프로토타입에 있는 method를 호출하기 전에 Foo 객체 안에 있는 method로 한번더 필터링하는 효과가 있다. )
+또 다른 트릭은 `call`과 `apply`를 함께 사용하여 메써드(`this`의 값과 인자들을 사용하는 함수)를 
+단지 인자들만 사용하는 일반 함수로 바꾸는 것입니다.
 
-    function Foo() {}
+    function Person(first, last) {
+      this.first = first;
+      this.last = last;
+    }
 
-    Foo.prototype.method = function(a, b, c) {
-        console.log(this, a, b, c);
+    Person.prototype.fullname = function(joiner, options) {
+      options = options || { order: "western" };
+      var first = options.order === "western" ? this.first : this.last;
+      var last =  options.order === "western" ? this.last  : this.first;
+      return first + (joiner || " ") + last;
     };
 
-    // "method"를 풀어 쓴(unbound) 버전
-    // 이 Function의 인자: this, arg1, arg2...argN
-    Foo.method = function() {
-
-        // 결과: Foo.prototype.method.call(this, arg1, arg2... argN)
-        Function.call.apply(Foo.prototype.method, arguments);
+    // "fullname" 메써드의 비결합(unbound) 버전을 생성한다.
+    // 첫번째 인자로 'first'와 'last' 속성을 가지고 있는 어떤 객체도 사용 가능하다.
+    // "fullname"의 인자 개수나 순서가 변경되더라도 이 랩퍼를 변경할 필요는 없을 것이다.
+    Person.fullname = function() {
+      // 결과: Person.prototype.fullname.call(this, joiner, ..., argN);
+      return Function.call.apply(Person.prototype.fullname, arguments);
     };
+
+    var grace = new Person("Grace", "Hopper");
+
+    // 'Grace Hopper'
+    grace.fullname();
+
+    // 'Turing, Alan'
+    Person.fullname({ first: "Alan", last: "Turing" }, ", ", { order: "eastern" });
 
 ### 일반 파라미터와 arguments 객체의 인덱스
 
