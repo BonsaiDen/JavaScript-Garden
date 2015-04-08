@@ -60,7 +60,7 @@ Global Scope에서도 this가 사용될 수 있고 이때에는 *Global* 객체�
     Foo.method = function() {
         var self = this;
         function test() {
-            // 여기에서 this 대신에 self를 사용하여 Foo에 접근한다.
+            // 여기에서 this 대신에 self를 사용하여 Foo에 접근한다
         }
         test();
     }
@@ -72,7 +72,7 @@ ECMAScript 5부터는 익명 함수와 결합된 `bind` 메써드를 사용하�
 
     Foo.method = function() {
         var test = function() {
-            // this now refers to Foo
+            // this는 이제 Foo를 참조한다
         }.bind(this);
         test();
     }
