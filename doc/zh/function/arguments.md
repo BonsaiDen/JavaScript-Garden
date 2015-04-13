@@ -93,8 +93,8 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 	  return [a, arguments[0]];
 	}
 	var pair = f(17);
-	assert(pair[0] === 42);
-	assert(pair[1] === 17);
+	console.assert(pair[0] === 42);
+	console.assert(pair[1] === 17);
 
 然而，的确有一种情况会显著的影响现代 JavaScript 引擎的性能。这就是使用 `arguments.callee`。
 
