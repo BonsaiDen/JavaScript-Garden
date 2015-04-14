@@ -65,15 +65,12 @@ explicitly return a value.
             }
         }
     }
-    Robot.prototype = {
-        someFunction: function() {}
-    };
 
     new Robot();
     Robot();
 
 Both calls to `Robot` return the same thing, a newly created object that
-has a property called `method`, which is a 
+has a property called `getColor`, which is a 
 [Closure](#function.closures).
 
 It should also be noted that the call `new Robot()` does **not** affect the
