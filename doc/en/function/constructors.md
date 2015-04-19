@@ -39,7 +39,7 @@ specified by that statement, but **only** if the return value is an `Object`.
             name: 'Charles'
         };
     }
-    new Test(); // the returned object ({name:'Charles'}), not including someValue
+    new Person(); // the returned object ({name:'Charles'}), not including someValue
 
 When the `new` keyword is omitted, the function will **not** return a new object. 
 
