@@ -2,6 +2,9 @@
   "name": "javascript-garden",
   "description": "A collection of documentation about the most quirky parts of the JavaScript language.",
   "version": "0.0.0",
+  "scripts": {
+    "build": "node build.js"
+  },
   "dependencies": {
     "fomatto": "0.5.0",
     "forever": "0.10.8",
