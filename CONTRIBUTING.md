@@ -6,3 +6,14 @@
 1. Contributing to JS Garden makes you a fantastic person, and Brendan Eich will find you immensely attractive.
 
 Thank you for being kind enough to help out!
+
+## Testing locally
+
+1. Run `npm run build.js` to build
+1. Run a webserver from the root of the repo to view
+
+## Getting changes merged
+
+1. Squash your changes into one commit
+1. Make sure the site still works :)
+1. Make a PR
