@@ -1,7 +1,7 @@
 ## Tableaux: iteration et propriétés
 
 Bien que les tableaux soient des objets en JavaScript, il n'y a pas de bonnes raisons d'utiliser la boucle [`for in`](#object.forinloop).
-En fait, il un certain nombre de bonnes raisons **contre** l'utilisation de `for in` sur les tableaux.
+En fait, il y a un certain nombre de bonnes raisons **contre** l'utilisation de `for in` sur les tableaux.
 
 **Remarque:** Les tableaux JavaScript ne sont **pas** *associatifs*. JavaScript n'offre que les [objets](#object.general) pour associer des clés à des valeurs. Contrairement aux tableaux associatifs, les objets ne préservent **pas** l'ordre.
 
