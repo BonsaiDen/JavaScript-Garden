@@ -31,7 +31,7 @@ Esta é única forma correta de usar. Devido ao uso de `hasOwnProperty`, o exemp
 
 Um framework largamente utilizado que estende o `Object.prototype` é [Prototype][1].
 Quando este framework é utilizado, laços `for in` que não utilizam 
-`hasOwnProperty` ficam protegidos contra erros.
+`hasOwnProperty` ficam desprotegidos contra erros.
 
 ### Conclusão
 
