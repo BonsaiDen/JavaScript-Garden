@@ -27,7 +27,7 @@ JavaScript의 모든 함수 스코프에는 `arguments`라는 특별한 변수�
         // 내곡동에 땅이라도 산다.
     }
 
-또 다른 트릭은 `call`과 `apply`를 함께 사용하여 메써드(`this`의 값과 인자들을 사용하는 함수)를 
+또 다른 트릭은 `call`과 `apply`를 함께 사용하여 메소드(`this`의 값과 인자들을 사용하는 함수)를 
 단지 인자들만 사용하는 일반 함수로 바꾸는 것이다.
 
     function Person(first, last) {
@@ -42,7 +42,7 @@ JavaScript의 모든 함수 스코프에는 `arguments`라는 특별한 변수�
       return first + (joiner || " ") + last;
     };
 
-    // "fullname" 메써드의 비결합(unbound) 버전을 생성한다.
+    // "fullname" 메소드의 비결합(unbound) 버전을 생성한다.
     // 첫번째 인자로 'first'와 'last' 속성을 가지고 있는 어떤 객체도 사용 가능하다.
     // "fullname"의 인자 개수나 순서가 변경되더라도 이 랩퍼를 변경할 필요는 없을 것이다.
     Person.fullname = function() {
