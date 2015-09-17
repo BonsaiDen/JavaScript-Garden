@@ -1,6 +1,6 @@
 ﻿##对象使用和属性
 
-JavaScript 中所有变量都是对象，除了两个例外 [`null`](#core.undefined) 和 [`undefined`](#core.undefined)。
+JavaScript 中所有变量都可以当作对象使用，除了两个例外 [`null`](#core.undefined) 和 [`undefined`](#core.undefined)。
 
     false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
@@ -9,7 +9,7 @@ JavaScript 中所有变量都是对象，除了两个例外 [`null`](#core.undef
     Foo.bar = 1;
     Foo.bar; // 1
 
-一个常见的误解是数字的字面值（literal）不是对象。这是因为 JavaScript 解析器的一个错误，
+一个常见的误解是数字的字面值（literal）不能当作对象使用。这是因为 JavaScript 解析器的一个错误，
 它试图将*点操作符*解析为浮点数字面值的一部分。
 
     2.toString(); // 出错：SyntaxError
