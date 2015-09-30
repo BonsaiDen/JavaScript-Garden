@@ -3,7 +3,7 @@
 JavaScript 不包含传统的类继承模型，而是使用 *prototype* 原型模型。
 
 虽然这经常被当作是 JavaScript 的缺点被提及，其实基于原型的继承模型比传统的类继承还要强大。
-实现传统的类继承模型是很简单，但是实现 JavaScript 中的原型继承则要困难的多。
+例如，很容易通过原型继承实现传统的类继承模型，但是反过来，通过传统的类继承模型来实现原型继承模型就困难得多。
 (It is for example fairly trivial to build a classic model on top of it, while the
 other way around is a far more difficult task.)
 
