@@ -127,7 +127,7 @@ vicino scope che le racchiude.
     // le istruzioni var vengono spostate qui
     var bar, someValue; // di default a 'undefined'
 
-    // la dichiarazione function viene spostate qui
+    // la dichiarazione function viene spostata qui
     function test(data) {
         var goo, i, e; // il blocco scope mancante sposta qui queste istruzioni
         if (false) {
