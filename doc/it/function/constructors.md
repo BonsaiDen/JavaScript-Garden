@@ -116,7 +116,7 @@ esso ha alcuni aspetti negativi.
  1. Usa più memoria dal momento che gli oggetti creati **non** condividono
     i metodi di un prototipo.
  2. Per poter ereditare, la factory deve copiare tutti i metodi da un altro
-    oggetto oppure mettere quell'oggetto nel proptotipo del nuovo oggetto.
+    oggetto oppure mettere quell'oggetto nel prototipo del nuovo oggetto.
  3. Perdere la catena di prototipi solo perché si vuole tralasciare la
     parola chiave `new` è contrario allo spirito del linguaggio.
 
