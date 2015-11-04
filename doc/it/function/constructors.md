@@ -41,7 +41,7 @@ specificato da quell'istruzione, ma **solo** se il valore di ritorno è un
             name: 'Charles'
         };
     }
-    new Test(); // l'oggetto ritornato ({name: 'Charles'}), escluso someValue
+    new Person(); // l'oggetto ritornato ({name: 'Charles'}), escluso someValue
 
 Quando la parola chiave `new` viene omessa, la funzione **non** ritornerà un
 nuovo oggetto.
