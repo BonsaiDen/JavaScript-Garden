@@ -31,7 +31,7 @@ Javascript는 클래스 스타일의 상속 모델을 사용하지 않고 *프�
     // 결과적으로 만들어진 프로토타입 체인은 다음과 같다. 
     test [instance of Bar]
         Bar.prototype [instance of Foo] 
-            { foo: 'Hello World' }
+            { foo: 'Hello World', value: 42 }
             Foo.prototype
                 { method: ... }
                 Object.prototype

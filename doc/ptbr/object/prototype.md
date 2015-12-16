@@ -37,7 +37,7 @@ A primeira grande diferença é que herança em JavaScript utiliza o conceito de
     // A cadeia prototype resultante
     test [instance of Bar]
         Bar.prototype [instance of Foo]
-            { foo: 'Hello World' }
+            { foo: 'Hello World', value: 42 }
             Foo.prototype
                 { method: ... }
                 Object.prototype

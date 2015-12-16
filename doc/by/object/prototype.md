@@ -40,7 +40,7 @@ JavaScript гэта адзіная шырока выкарыстоўваемая
     // Выніковы ланцужок прататыпаў
     test [instance of Bar]
         Bar.prototype [instance of Foo]
-            { foo: 'Hello World' }
+            { foo: 'Hello World', value: 42 }
             Foo.prototype
                 { method: ... }
                 Object.prototype

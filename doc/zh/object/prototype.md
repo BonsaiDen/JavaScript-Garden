@@ -35,7 +35,7 @@ other way around is a far more difficult task.)
     // 原型链
     test [Bar的实例]
         Bar.prototype [Foo的实例] 
-            { foo: 'Hello World' }
+            { foo: 'Hello World', value: 42 }
             Foo.prototype
                 {method: ...};
                 Object.prototype
