@@ -21,7 +21,7 @@ Cependant, `eval` n'exécute dans la portée locale que quand il est appelé dir
         return number;
     }
     test(); // 2
-    number; // 3
+    number; // 1
 
 L'utilisation de la fonction `eval` doit être évitée. 99,9% de ses "cas d'utilisation" peuvent être obtenues **sans** elle.
     

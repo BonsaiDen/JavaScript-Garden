@@ -22,7 +22,7 @@ Entreranto, `eval` somente é executado no escopo local quando é chamado direta
         return foo;
     }
     test(); // 2
-    foo; // 3
+    foo; // 1
 
 O uso de `eval` deve ser evitado. 99.9% de seu "uso" pode ser alcançado **sem** ele.
     

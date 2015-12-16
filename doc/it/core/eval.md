@@ -22,7 +22,7 @@ direttamente *e* quando il nome della funzione chiamata è `eval`.
         return number;
     }
     test(); // 2
-    number; // 3
+    number; // 1
 
 L'uso di `eval` dovrebbe essere evitato. Il 99.9% dei suoi "utilizzi" può
 essere ottenuto **senza** di essa.

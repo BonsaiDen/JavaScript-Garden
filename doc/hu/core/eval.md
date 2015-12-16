@@ -23,7 +23,7 @@ Viszont az `eval` csak akkor viselkedik így, hogyha expliciten hívjuk meg
         return foo;
     }
     test(); // 2
-    foo; // 3
+    foo; // 1
 
 Az `eval` használata kerülendő. A "felhasználása" az esetek 99.9%-ban 
 **mellőzhető**.

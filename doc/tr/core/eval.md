@@ -22,7 +22,7 @@ adı `eval` ise lokal kapsamda çalışır.
         return foo;
     }
     test(); // 2
-    foo; // 3
+    foo; // 1
 
 `eval` fonksiyonu **asla** kullanılmamalıdır. Kullanıldığı durumların %99.9'unda
 `eval` **kullanılmadan** da istenen sonuç elde edilebilir.

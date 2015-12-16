@@ -21,7 +21,7 @@
         return number;
     }
     test(); // 2
-    number; // 3
+    number; // 1
 
 어쨌든 `eval`은 사용하지 말아야 한다. eval을 사용하는 99.9%는 사실 eval 없이도 만들수있다.
 
