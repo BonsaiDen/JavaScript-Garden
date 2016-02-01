@@ -220,6 +220,7 @@ which, while different in syntax, behave the same way.
     !function(){}()
     +function(){}()
     (function(){}());
+    void function(){}();
     // and so on...
 
 ### In Conclusion
