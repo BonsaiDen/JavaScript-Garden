@@ -63,7 +63,7 @@ praktikus felhasználási módja.
             // A this itt a globális ojjektum.
         }
         test();
-    }
+    };
 
 Gyakori hiba, hogy úgy gondolják a fenti példában az emberek, hogy a `this` a `test` függvényen
 belül az őt körülvevő `Foo`-ra fog mutatni, pedig **nem**.
@@ -77,7 +77,7 @@ lokálisan elhelyezni a `method`-on belül, ami már valóban a kívánt `this`-
             // Használjuk a that-et a this helyett
         }
         test();
-    }
+    };
 	
 A `that` tuladjonképpen egy mezei változónév (nem kulcsszó), de sokszor használják arra,
 hogy egy másik `this`-re hivatkozzanak vele. A [colsureökkel](#function.closures) kombinálva
