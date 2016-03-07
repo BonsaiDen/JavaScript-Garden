@@ -61,7 +61,7 @@ como um engano de concepção da linguagem, já que **nunca** se mostrou útil.
             // this referencia o objeto global
         }
         test();
-    }
+    };
 
 Um erro comum é achar que `this` dentro de `test` referencia `Foo`; enquanto que, na realidade
  **não é isto que acontece**.
@@ -75,7 +75,7 @@ uma variável global dentro do método para se referir à `Foo`.
             // Utilize that no lugar de this aqui
         }
         test();
-    }
+    };
 
 `that` trata-se de uma variável normal, porém é normalmente utilizada para referências externas de `this`.
 Quando combinadas com [closures](#function.closures), também podem ser utilizadas para repassar `this` como valor.
