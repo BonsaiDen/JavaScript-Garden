@@ -52,7 +52,7 @@ Bien que la plupart de ces cas ont du sens, le premier cas peut être considér�
             // this réfère à l'objet global
         }
         test();
-    }
+    };
 
 Une autre erreur souvent commise est que `this` l'intérieur de `test` se réfère à `foo`; ce qui n'est **pas** du tout le cas.
 
@@ -64,7 +64,7 @@ Pour accéder à `foo` de l'intérieur de `test`, vous pouvez créer une variabl
             // Utilisez self au lieu de this ici
         }
         test();
-    }
+    };
 
 `self` est juste une variable normale, couramment utilisée pour référencer un `this` extérieur. Combiné avec des [fermetures](# function.closures) "closures", on peut l'utiliser pour passer les valeurs de `this`.
 
@@ -75,7 +75,7 @@ Pour accéder à `foo` de l'intérieur de `test`, vous pouvez créer une variabl
             // maintenant, this réfère à Foo
         }.bind(this);
         test();
-    }
+    };
 
 ### Assignement de méthodes
 
