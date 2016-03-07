@@ -25,7 +25,7 @@ una *conversione di tipo* **ovunque** sia possibile.
 Per evitare i problemi appena visti, l'uso
 dell'[operatore di uguaglianza stretta](#types.equality) è **altamente**
 raccomandato. Sebbene questo eviti molti dei comuni problemi, ci sono ancora
-molti ulteriori problemi che possono essere generati dal sistema debolemente
+molti ulteriori problemi che possono essere generati dal sistema debolmente
 tipizzato di JavaScript.
 
 ### Costruttori di tipi interni
