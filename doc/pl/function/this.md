@@ -63,7 +63,7 @@ w praktyce.
             // wewnątrz tej funkcji this wskazuje na obiekt global
         }
         test();
-    }
+    };
 
 Powszechnym błędem jest myślenie, że `this` wewnątrz `test` wskazuje na `Foo`, 
 podczas gdy w rzeczywistości tak **nie jest**.
@@ -77,7 +77,7 @@ metody lokalnej zmiennej, która będzie wskazywała na `Foo`.
             // Należy używać that zamiast this wewnątrz tej funkcji
         }
         test();
-    }
+    };
 
 `that` jest zwykłą zmienną, ale jest to powszechnie stosowana konwencja otrzymywania  
 wartości zewnętrznego `this`. W połączeniu z [domknięciami(closures)](#function.closures), 
