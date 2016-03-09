@@ -36,12 +36,12 @@ Since it is not possible to reference or assign scopes in JavaScript, there is
 interact with it is via the two closures.
 
     var foo = new Counter(4);
-    foo.hack = function() {
+    foo.hackFail = function() {
         count = 1337;
     };
 
 The above code will **not** change the variable `count` in the scope of `Counter`, 
-since `foo.hack` was not defined in **that** scope. It will instead create - or 
+since `foo.hackFail` was not defined in **that** scope. It will instead create - or 
 override - the *global* variable `count`.
 
 ### Closures Inside Loops

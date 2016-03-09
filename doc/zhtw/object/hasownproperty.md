@@ -1,6 +1,6 @@
 ## `hasOwnProperty`
 
-為了判斷一個物件是否包含 *自定義* 屬性而 *不是* [原形](#object.prototype)上的屬性，我們需要使用繼承 `Object.prototype` 的 `hasOwnProperty` 方法。
+為了判斷一個物件是否包含 *自定義* 屬性而 *不是* [原型](#object.prototype)上的屬性，我們需要使用繼承 `Object.prototype` 的 `hasOwnProperty` 方法。
 
 > **注意:** 判斷一個屬性是否 `undefined` 是 **不夠的**。
 > 因為一個屬性可能存在，但是它的值被設成 `undefined`。

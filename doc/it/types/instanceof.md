@@ -34,7 +34,7 @@ esattamente lo stesso oggetto.
 
 ### In conclusione
 
-L'operatore `instanceof` dovrebbe essere usto **solo** quando si ha a che fare
+L'operatore `instanceof` dovrebbe essere usato **solo** quando si ha a che fare
 con oggetti personalizzati creati dal programmatore, che provengono dallo
 stesso contesto JavaScript. Proprio come per l'operatore [`typeof`](#types.typeof),
 ogni altro tipo di utilizzo dovrebbe essere **evitato**.
