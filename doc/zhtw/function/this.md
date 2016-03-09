@@ -59,7 +59,7 @@ mis-design of the language because it **never** has any practical use.
             // this is set to the global object
         }
         test();
-    }
+    };
 
 A common misconception is that `this` inside of `test` refers to `Foo`; while in
 fact, it **does not**.
@@ -73,11 +73,20 @@ local variable inside of `method` that refers to `Foo`.
             // Use that instead of this here
         }
         test();
-    }
+    };
 
 `that` is just a normal variable name, but it is commonly used for the reference to an 
 outer `this`. In combination with [closures](#function.closures), it can also 
 be used to pass `this` values around.
+
+As of ECMAScript 5 you can use the `bind` method combined with an anonymous function to achieve the same result. 
+
+    Foo.method = function() {
+        var test = function() {
+            // this now refers to Foo
+        }.bind(this);
+        test();
+    };
 
 ### Assigning Methods
 
