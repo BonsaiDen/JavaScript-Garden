@@ -1,7 +1,7 @@
 ## La declaración de funciones y expresiones
 
-Las funciones en JavaScript son las primeras clases de objetos. Esto significa que se
-puede pasar como cualquier otro valor. Un uso común de está característica es pasar de
+Las funciones en JavaScript son funciones de primera clase `(first class functions)`.
+Esto significa que se pueden tratar como objetos. Un uso común de esta característica es pasar de
 una *función anónima* a otra, posiblemente una función asíncrona. Esto se conoce como `callback`.
 
 ### La declaración `function`

@@ -2,6 +2,7 @@
 /html
 /log
 /node_modules
+/.idea/*
 
 /site
 !/site/favicon.ico
