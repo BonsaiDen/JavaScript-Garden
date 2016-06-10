@@ -43,7 +43,7 @@ La prima grande differenza è che l'ereditarietà in JavaScript utilizza le
     // La catena di prototipi finale
     test [istanza di Bar]
         Bar.prototype [istanza di Foo]
-            { foo: 'Hello World' }
+            { foo: 'Hello World', value: 42 }
             Foo.prototype
                 { method: ... }
                 Object.prototype

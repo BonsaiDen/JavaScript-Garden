@@ -33,7 +33,7 @@ JavaScriptはプロトタイプベースが採用されている唯一の広範�
     // プロトタイプチェーンの結果
     test [instance of Bar]
         Bar.prototype [instance of Foo] 
-            { foo: 'Hello World' }
+            { foo: 'Hello World', value: 42 }
             Foo.prototype
                 { method: ... }
                 Object.prototype

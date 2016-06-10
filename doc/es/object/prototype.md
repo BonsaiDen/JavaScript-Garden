@@ -41,7 +41,7 @@ llamadas de *cadenas de prototipo* (*prototype chains*).
     // Resultado de cadena de prototipos (prototype chain)
     test [instance of Bar]
         Bar.prototype [instance of Foo] 
-            { foo: 'Hello World' }
+            { foo: 'Hello World', value: 42 }
             Foo.prototype
                 { method: ... }
                 Object.prototype

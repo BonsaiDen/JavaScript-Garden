@@ -33,7 +33,7 @@ JavaScript 不包含傳統繼承的模型，它使用的是*原型*模型。
     // 原型鏈
     test [instance of Bar]
         Bar.prototype [instance of Foo]
-            { foo: 'Hello World' }
+            { foo: 'Hello World', value: 42 }
             Foo.prototype
                 { method: ... }
                 Object.prototype

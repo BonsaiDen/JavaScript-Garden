@@ -33,7 +33,7 @@ La première différence majeure est que l'héritage en JavaScript utilise des *
     // La chaîne de prototypes qui en résulte
     test [instance of Bar]
         Bar.prototype [instance of Foo]
-            { foo: 'Hello World' }
+            { foo: 'Hello World', value: 42 }
             Foo.prototype
                 { method: ... }
                 Object.prototype

@@ -39,7 +39,7 @@ yapılmasıdır.
     // Sonuçta ortaya çıkan prototip zinciri
     test [bir Bar sınıfı nesnesi]
         Bar.prototype [bir Foo sınıfı nesnesi] 
-            { foo: 'Hello World' }
+            { foo: 'Hello World', value: 42 }
             Foo.prototype
                 { method: ... }
                 Object.prototype
