@@ -23,14 +23,14 @@ other way around is a far more difficult task.)
 
     function Bar() {}
 
-    // 设置Bar的prototype属性为Foo的实例对象
+    // 设置 Bar 的 prototype 属性为 Foo 的实例对象
     Bar.prototype = new Foo();
     Bar.prototype.foo = 'Hello World';
 
-    // 修正Bar.prototype.constructor为Bar本身
+    // 修正 Bar.prototype.constructor 为 Bar 本身
     Bar.prototype.constructor = Bar;
 
-    var test = new Bar() // 创建Bar的一个新实例
+    var test = new Bar(); // 创建Bar的一个新实例
 
     // 原型链
     test [Bar的实例]
@@ -58,7 +58,7 @@ other way around is a far more difficult task.)
 ###原型属性
 
 当原型属性用来创建原型链时，可以把**任何**类型的值赋给它（prototype）。
-然而将原子类型赋给 prototype 的操作将会被忽略。
+然而将原子类型（primitives）赋给 prototype 的操作将会被忽略。
 
     function Foo() {}
     Foo.prototype = 1; // 无效
@@ -67,16 +67,16 @@ other way around is a far more difficult task.)
 
 ###性能
 
-如果一个属性在原型链的上端，则对于查找时间将带来不利影响。特别的，试图获取一个不存在的属性将会遍历整个原型链。
+如果一个属性在原型链的上端，则对于查找时间将带来不利影响。注意，试图获取一个不存在的属性将会遍历整个原型链。
 
 并且，当使用 [`for in`](#object.forinloop) 循环遍历对象的属性时，原型链上的**所有**属性都将被访问。
 
 ###扩展内置类型的原型
 
-一个错误特性被经常使用，那就是扩展 `Object.prototype` 或者其他内置类型的原型对象。
+扩展 `Object.prototype` 或者其他内置类型的原型对象，作为一个错误特性，经常被使用。
 
 这种技术被称之为 [monkey patching][1] 并且会破坏*封装*。虽然它被广泛的应用到一些 JavaScript 类库中比如 [Prototype][2],
-但是我仍然不认为为内置类型添加一些*非标准*的函数是个好主意。
+但是我仍然不赞同为内置类型添加一些*非标准*的函数。
 
 扩展内置类型的**唯一**理由是为了和新的 JavaScript 保持一致，比如 [`Array.forEach`][3]。
 
