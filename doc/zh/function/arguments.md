@@ -9,7 +9,7 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 `arguments` 变量**不是**一个数组（`Array`）。
 尽管在语法上它有数组相关的属性 `length`，但它不从 `Array.prototype` 继承，实际上它是一个对象（`Object`）。
 
-因此，无法对 `arguments` 变量使用标准的数组方法，比如 `push`, `pop` 或者 `slice`。
+因此，无法对 `arguments` 变量使用标准的数组方法，比如 `push`、`pop` 或者 `slice`。
 虽然使用 `for` 循环遍历也是可以的，但是为了更好的使用数组方法，最好把它转化为一个真正的数组。
 
 ###转化为数组
@@ -99,13 +99,13 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 然而，的确有一种情况会显著的影响现代 JavaScript 引擎的性能。这就是使用 `arguments.callee`。
 
     function foo() {
-        arguments.callee; // do something with this function object
-        arguments.callee.caller; // and the calling function object
+        arguments.callee; // 使用这个函数对象
+        arguments.callee.caller; // 以及这个函数对象的调用者
     }
 
     function bigLoop() {
         for(var i = 0; i < 100000; i++) {
-            foo(); // Would normally be inlined...
+            foo(); // 通常情况会作为内联函数...
         }
     }
 

@@ -37,5 +37,4 @@
 推荐**总是**使用 `hasOwnProperty`。不要对代码运行的环境做任何假设，不要假设原生对象是否已经被扩展了。
 
 [1]: http://www.prototypejs.org/
-[30]: http://cnblogs.com/sanshi/
 

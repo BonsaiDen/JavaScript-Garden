@@ -25,7 +25,7 @@ JavaScript 中所有变量都可以当作对象使用，除了两个例外 [`nul
 JavaScript 的对象可以作为[*哈希表*][1]使用，主要用来保存命名的键与值的对应关系。
 
 使用对象的字面语法 - `{}` - 可以创建一个简单对象。这个新创建的对象从 `Object.prototype`
-[继承](#object.prototype)下面，没有任何[自定义属性](#object.hasownproperty)。
+[继承](#object.prototype)下来，没有任何[自定义属性](#object.hasownproperty)。
 
     var foo = {}; // 一个空对象
 
@@ -34,7 +34,7 @@ JavaScript 的对象可以作为[*哈希表*][1]使用，主要用来保存命�
 
 ### 访问属性
 
-有两种方式来访问对象的属性，点操作符或者中括号操作符。
+有两种方式来访问对象的属性，点操作符和中括号操作符。
     
     var foo = {name: 'kitten'}
     foo.name; // kitten
