@@ -12,7 +12,7 @@ Funkcja `eval` uruchomi podany string jako kod JavaScript w lokalnym zasięgu (s
     foo; // 1
 
 Niestaty, `eval` zostanie wykonana w lokalnym zasięgu tylko wtedy, gdy zostanie wywołana 
-**bezpośrednio** *i* nazwa wywoływanej funkcji równa sie `eval`.  
+**bezpośrednio** *i* nazwa wywoływanej funkcji równa się `eval`.  
 
     var foo = 1;
     function test() {

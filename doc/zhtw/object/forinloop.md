@@ -27,10 +27,10 @@
     }
 
 這個版本的程式碼是唯一正確的寫法。由於我們使用了 `hasOwnProperty`，這次 **只** 輸出 `moo`。
-如果不只用這個程式碼在原型物件中(比如 `Object.prototype`)被擴展可能會出錯。
+如果不使用這個程式碼在原型物件中(比如 `Object.prototype`)被擴展可能會出錯。
 
-一個廣泛的模組 [Prototype][1]就礦展了圓型的 JavaScript 物件。
-因此，但這模組包含在頁面中時，不使用 `hasOwnProperty` 過濾的 `for in` 尋難免會出問題。
+一個廣泛使用的舊函式庫 [Prototype][1]就擴展了原型的 JavaScript 物件。
+因此，當這個函式庫包含在頁面中時，不使用 `hasOwnProperty` 過濾的 `for in` 迴圈難免會出問題。
 
 ### 總結
 

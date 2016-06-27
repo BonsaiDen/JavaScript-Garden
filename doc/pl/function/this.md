@@ -14,7 +14,7 @@ Używanie `this` w globalnym zasięgu, zwróci po prostu referencję do obiektu 
 
     foo();
 
-Tutaj `this` również będzie wkazywało na obiekt *global*
+Tutaj `this` również będzie wskazywało na obiekt *global*
 
 > **Uwaga ES5:** W trybie strict mode, przypadki z globalnym zasięgiem nie mają miejsca.
 > W tym przypadku `this` zwróci `undefined` zamiast wartości.
@@ -55,7 +55,7 @@ miejsca i `this` wewnątrz `foo` będzie wskazywać na `bar`.
 ### Częste pułapki
 
 Mimo iż Większość z tych przypadków ma sens, to pierwszy przypadek powinien być 
-traktorany jako błąd podczas projektowania języka i **nigdy** nie wykorzystywany 
+traktowany jako błąd podczas projektowania języka i **nigdy** nie wykorzystywany 
 w praktyce.
 
     Foo.method = function() {

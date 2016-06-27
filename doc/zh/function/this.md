@@ -9,7 +9,8 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 
 当在全部范围内使用 `this`，它将会指向*全局*对象。
 
-> **[译者注][30]：**浏览器中运行的 JavaScript 脚本，这个全局对象是 `window`。
+> **[译者注][30]：**浏览器中运行的 JavaScript 脚本，这个全局对象是 `window`；
+> 在 nodejs 环境中运行的 Javascript 脚本，这个全局对象是 `global`。
 
 ###函数调用
 
@@ -22,13 +23,13 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 
 ###方法调用
 
-    test.foo(); 
+    test.foo();
 
 这个例子中，`this` 指向 `test` 对象。
 
 ###调用构造函数
 
-    new foo(); 
+    new foo();
 
 如果函数倾向于和 `new` 关键词一块使用，则我们称这个函数是 [构造函数](#function.constructors)。
 在函数内部，`this` 指向*新创建*的对象。
@@ -39,7 +40,7 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
                           
     var bar = {};
     foo.apply(bar, [1, 2, 3]); // 数组将会被扩展，如下所示
-    foo.call(bar, 1, 2, 3); // 传递到foo的参数是：a = 1, b = 2, c = 3
+    foo.call(bar, 1, 2, 3); // 传递到 foo 的参数是：a = 1, b = 2, c = 3
 
 当使用 `Function.prototype` 上的 `call` 或者 `apply` 方法时，函数内的 `this` 将会被
 **显式设置**为函数调用的第一个参数。
@@ -53,7 +54,7 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 ###常见误解
 
 尽管大部分的情况都说的过去，不过第一个规则（**[译者注][30]：**这里指的应该是第二个规则，也就是直接调用函数时，`this` 指向全局对象）
-被认为是JavaScript语言另一个错误设计的地方，因为它**从来**就没有实际的用途。
+被认为是 JavaScript 语言另一个错误设计的地方，因为它**从来**就没有实际的用途。
 
     Foo.method = function() {
         function test() {

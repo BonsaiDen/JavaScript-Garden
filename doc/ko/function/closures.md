@@ -75,3 +75,21 @@ JavaScript에서는 스코프(Scope)를 어딘가에 할당해두거나 참조�
             }
         })(i), 1000)
     }
+
+즐겨 쓰이는 또 하나의 방법은 `setTimeout` 함수에 세번째 인자를 추가하는 방법이다. 
+추가된 인자는 콜백 함수에 전달된다.
+
+    for(var i = 0; i < 10; i++) {
+        setTimeout(function(e) {
+            console.log(e);  
+        }, 1000, i);
+    }
+
+레거시 JS 환경(Internet Explorer 9 이하)은 이 방법을 지원하지 않는다.
+
+`.bind`를 사용하는 방법도 있다. `.bind`는 `this` 컨텍스트와 인자들을 함수에 결속(bind)시킨다. 
+아래 코드는 위 코드와 동일하게 동작한다.
+
+    for(var i = 0; i < 10; i++) {
+        setTimeout(console.log.bind(console, i), 1000);
+    }

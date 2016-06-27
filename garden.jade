@@ -1,4 +1,4 @@
-!!! 5
+doctype html
 html(lang=language)
   head
     title #{title}
@@ -24,7 +24,7 @@ html(lang=language)
     // Navigation
     nav(id='nav_main')
       div
-        ul 
+        ul
           - each lang in languages
             li(class=lang.id === language ? 'active' : '')
               - if (lang.id === baseLanguage)
@@ -54,7 +54,7 @@ html(lang=language)
 
       a(id='nav_next_section', href='#') next section
         span(class='nav_section_name') section name
-      
+
       a(id='show_menu') show menu
 
     // Sections
@@ -77,25 +77,19 @@ html(lang=language)
 
     // Footer
     footer
-      p Copyright &copy; 2011. Built with
-        | 
-        a(href='http://nodejs.org/') Node.js 
+      p Copyright &copy;. Built with
+        |
+        a(href='http://nodejs.org/') Node.js
         | using a
-        a(href='https://github.com/visionmedia/jade/') jade 
-        | template. 
-        | Hosted by 
-        a(href='http://cramerdev.com') Cramer Development
-        .
+        a(href='https://github.com/visionmedia/jade/') jade
+        | template.
 
-    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js')
-    
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js')
+
     - if (language === baseLanguage)
       script(src='javascript/prettify.js')
-      script(src='javascript/plugin.js')
       script(src='javascript/garden.js')
-    
+
     - else
       script(src='../javascript/prettify.js')
-      script(src='../javascript/plugin.js')
       script(src='../javascript/garden.js')
-

@@ -3,7 +3,7 @@
 Le funzioni in JavaScript sono oggetti di prima classe. Ciò significa che
 possono essere usate come ogni altro valore. Un uso comune di questa
 caratteristica è quello di passare una *funzione anonima* come funzione di
-callback ad un'altra, possibilmente asincrona, funzione.
+callback ad un'altra funzione, possibilmente asincrona.
 
 ### La dichiarazione di `function`
 

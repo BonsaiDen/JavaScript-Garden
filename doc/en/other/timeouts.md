@@ -55,7 +55,7 @@ intervals, result in function calls stacking up.
     function foo(){
         // something that blocks for 1 second
     }
-    setInterval(foo, 100);
+    setInterval(foo, 1000);
 
 In the above code, `foo` will get called once and will then block for one second.
 
@@ -70,7 +70,7 @@ the function itself.
 
     function foo(){
         // something that blocks for 1 second
-        setTimeout(foo, 100);
+        setTimeout(foo, 1000);
     }
     foo();
 

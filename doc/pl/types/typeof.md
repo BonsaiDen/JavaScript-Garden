@@ -36,7 +36,7 @@ natomiast `typeof` ma tylko jeden praktyczny przypadek użycia, który na dodate
 W powyższej tabeli *Typ* odnosi się do wartości zwracanej przez operator `typeof`. 
 Wyraźnie widać, że zwracane wartości w ogóle nie są spójne.
 
-*Klasa* odnosi sie do wartości wewnętrznej właściwości `[[Class]]` obiektu.
+*Klasa* odnosi się do wartości wewnętrznej właściwości `[[Class]]` obiektu.
 
 > **Fragment Specyfikacji:** Wartość `[[Class]]` może być jednym z poniższych 
 > stringów. `Arguments`, `Array`, `Boolean`, `Date`, `Error`, 

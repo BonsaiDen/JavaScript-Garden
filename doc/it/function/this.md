@@ -71,20 +71,30 @@ uso pratico.
 Una comune credenza è che `this` all'interno di `test` faccia riferimento a
 `Foo` mentre, invece, **non** è così.
 
-Per poter ottenere l'accesso a `Foo` dall'interno di `test`, è necessario creare
+Per poter ottenere l'accesso a `Foo` dall'interno di `test`, si può creare
 una variabile locale all'interno di `method` che faccia riferimento a `Foo`.
 
     Foo.method = function() {
-        var that = this;
+        var self = this;
         function test() {
-            // Qui viene usato that invece di this
+            // Qui viene usato self invece di this
         }
         test();
     }
 
-`that` è solo un normale nome di variabile, ma viene comunemente usato come
+`self` è solo un normale nome di variabile, ma viene comunemente usato come
 riferimento ad un `this` più esterno. Abbinato alle [closures](#function.closures)
 può anche essere usato per passare il valore di `this`.
+
+Con l'introduzione di ECMAScript 5 è possibile usare il metodo `bind` combinato
+con una funziona anonima
+
+    Foo.method = function() {
+        var test = function() {
+            // this ora fa riferimento a Foo
+        }.bind(this);
+        test();
+    }
 
 ### Metodi di asseganzione
 
@@ -112,4 +122,3 @@ l'[ereditarietà prototipale](#object.prototype).
 
 Quando `method` viene chiamato da un'istanza di `Bar`, `this` farà riferimento
 a quell'istanza.
-

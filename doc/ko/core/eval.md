@@ -2,26 +2,26 @@
 
 `eval` 함수는 JavaScript 문자열을 지역 스코프에서 실행한다.
 
-    var foo = 1;
+    var number = 1;
     function test() {
-        var foo = 2;
-        eval('foo = 3');
-        return foo;
+        var number = 2;
+        eval('number = 3');
+        return number;
     }
     test(); // 3
-    foo; // 1
+    number; // 1
 
 `eval`함수는 `eval`이라는 이름으로 **직접** 실행할 때에만 지역 스코프에서 실행된다. 그리고 `eval`이라는 이름에 걸맞게 악명또한 높다.
 
-    var foo = 1;
+    var number = 1;
     function test() {
-        var foo = 2;
-        var bar = eval;
-        bar('foo = 3');
-        return foo;
+        var number = 2;
+        var copyOfEval = eval;
+        copyOfEval('number = 3');
+        return number;
     }
     test(); // 2
-    foo; // 3
+    number; // 3
 
 어쨌든 `eval`은 사용하지 말아야 한다. eval을 사용하는 99.9%는 사실 eval 없이도 만들수있다.
 

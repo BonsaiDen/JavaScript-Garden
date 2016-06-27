@@ -1,9 +1,9 @@
 ## Prototype
 
-JavaScript 不包含原本繼承的模型。然而它使用的是*原型*模型。
+JavaScript 不包含傳統繼承的模型，它使用的是*原型*模型。
 
-然而常常有人提及 JavaScript 的缺點，就是基於原本繼承模型比類繼承更強大。
-現實傳統的類繼承模型是很簡單。但是在 JavaScript 中實現元繼承則要困難很多。
+儘管常常有人提及 JavaScript 的缺點，但基於原型的繼承模型比傳統繼承更強大。
+實現傳統的類繼承模型是很簡單。但是在 JavaScript 中實現原型的繼承模型則要困難很多。
 
 由於 JavaScript 是唯一一個被廣泛使用的基於原型繼承的語言，所以我們必須要花時間來理解這兩者的不同。
 
@@ -33,7 +33,7 @@ JavaScript 不包含原本繼承的模型。然而它使用的是*原型*模型�
     // 原型鏈
     test [instance of Bar]
         Bar.prototype [instance of Foo]
-            { foo: 'Hello World' }
+            { foo: 'Hello World', value: 42 }
             Foo.prototype
                 { method: ... }
                 Object.prototype
@@ -72,14 +72,14 @@ JavaScript 不包含原本繼承的模型。然而它使用的是*原型*模型�
 
 一個經常發生的錯誤，那就是擴展 `Object.prototype` 或者是其他內建類型的原型物件。
 
-這種技術叫做 [monkey patching][1] 並且會破壞 *封裝*。雖然被廣泛的應用到一些 Javascript 的架構，像是 [Prototype](http://prototypejs.org) ， 但仍然沒有好的理由新增一個 *非標準* 的功能去搞亂內建型別
+這種技術叫做 [monkey patching][1] 並且會破壞 *封裝*。雖然被廣泛的應用到一些 Javascript 的架構，像是 [Prototype](http://prototypejs.org) ， 但仍然沒有好的理由新增一個 *非標準* 的功能去搞亂內建型別。
 
 擴展內置類型的 **唯一** 理由是為了和新的 JavaScript 保持一致，比如說 [`Array.forEach`][3]
 
 ### 總結
 
 在寫複雜的程式碼的時候，要 **充分理解** 所有程式繼承的屬性還有原型鏈。
-還要堤防原型鏈過長帶來的性能問題，並知道如何通過縮短原型鏈來提高性能。
+還要提防原型鏈過長帶來的性能問題，並知道如何通過縮短原型鏈來提高性能。
 絕對 **不要使用** `native prototype` 除非是為了和新的 JavaScript 引擎作兼容。
 
 [1]: http://en.wikipedia.org/wiki/Monkey_patch

@@ -1,0 +1,69 @@
+{
+    "title": "JavaScript Garden",
+    "langTitle": "JavaScript Garden па Беларуску",
+    "description": "Мануал па недахопаў і дзівосах JavaScript",
+    "sections": [
+        {
+            "title": "Уводзіны",
+            "dir": "intro",
+            "articles": ["index"]
+        },
+        {
+            "title": "Аб'екты",
+            "dir": "object",
+            "articles": [
+                "general",
+                "prototype",
+                "hasownproperty",
+                "forinloop"
+            ]
+        },
+        {
+            "title": "Функцыі",
+            "dir": "function",
+            "articles": [
+                "general",
+                "this",
+                "closures",
+                "arguments",
+                "constructors",
+                "scopes"
+            ]
+        },
+        {
+            "title": "Масівы",
+            "dir": "array",
+            "articles": [
+                "general",
+                "constructor"
+            ]
+        },
+        {
+            "title": "Тыпы",
+            "dir": "types",
+            "articles": [
+                "equality",
+                "typeof",
+                "instanceof",
+                "casting"
+            ]
+        },
+        {
+            "title": "Ядро",
+            "dir": "core",
+            "articles": [
+                "eval",
+                "undefined",
+                "semicolon",
+                "delete"
+            ]
+        },
+        {
+            "title": "Рэшта",
+            "dir": "other",
+            "articles": [
+                "timeouts"
+            ]
+        }
+    ]
+}

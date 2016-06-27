@@ -12,44 +12,44 @@ come costruttore.
 Se la funzione che è stata chiamata non ha un'istruzione `return` esplicita,
 allora essa ritorna implicitamente il valore di `this` (il nuovo oggetto).
 
-    function Foo() {
-        this.bla = 1;
+    function Person(name) {
+        this.name = name;
     }
 
-    Foo.prototype.test = function() {
-        console.log(this.bla);
+    Person.prototype.logName = function() {
+        console.log(this.name);
     };
 
-    var test = new Foo();
+    var sean = new Person();
 
-Questo esempio chiama `Foo` come costruttore ed imposta il `prototype` del
-nuovo oggetto creato a `Foo.prototype`.
+Questo esempio chiama `Person` come costruttore ed imposta il `prototype` del
+nuovo oggetto creato a `Person.prototype`.
 
 In caso di istruzione `return` esplicita, la funzione ritorna il valore
 specificato da quell'istruzione, ma **solo** se il valore di ritorno è un
 `Object`.
 
-    function Bar() {
-        return 2;
+    function Car() {
+        return 'ford';
     }
-    new Bar(); // un nuovo oggetto
+    new Car(); // un nuovo oggetto, non 'ford'
 
-    function Test() {
-        this.value = 2;
+    function Person() {
+        this.someValue = 2;
 
         return {
-            foo: 1
+            name: 'Charles'
         };
     }
-    new Test(); // l'oggetto ritornato
+    new Person(); // l'oggetto ritornato ({name: 'Charles'}), escluso someValue
 
 Quando la parola chiave `new` viene omessa, la funzione **non** ritornerà un
 nuovo oggetto.
 
-    function Foo() {
-        this.bla = 1; // imposta la proprietà dell'oggetto globale
+    function Pirate() {
+        this.hasEyePatch = true; // imposta la proprietà nell'oggetto globale!
     }
-    Foo(); // undefined
+    var somePirate = Pirate(); // somePirate è undefined
 
 Mentre l'esempio precedente potrebbe sembrare essere funzionante in alcuni
 casi, a causa del modo in cui lavora [`this`](#function.this) in JavaScript,
@@ -60,27 +60,27 @@ esso userà l'*oggetto globale* come valore di `this`.
 Per poter omettere la parola chiave `new`, la funzione costruttore deve
 esplicitamente ritornare un valore.
 
-    function Bar() {
-        var value = 1;
+    function Robot() {
+        var color = 'gray';
         return {
-            method: function() {
-                return value;
+            getColor: function() {
+                return color;
             }
         }
     }
-    Bar.prototype = {
-        foo: function() {}
+    Robot.prototype = {
+        someFunction: function() {}
     };
 
-    new Bar();
-    Bar();
+    new Robot();
+    Robot();
 
-Entrambe le chiamate a `Bar` ritornano lo stesso risultato, un nuovo oggetto
+Entrambe le chiamate a `Robot` ritornano lo stesso risultato, un nuovo oggetto
 creato con una proprietà chiamata `method`, che è una [Closure](#function.closures).
 
-Bisogna anche notare che la chiamata `new Bar()` **non** influisce sul prototipo
+Bisogna anche notare che la chiamata `new Robot()` **non** influisce sul prototipo
 dell'oggetto ritornato. Mentre il prototipo sarà impostato con il nuovo oggetto
-creato, `Bar` non ritornerà mai quel nuovo oggetto.
+creato, `Robot` non ritornerà mai quel nuovo oggetto.
 
 Nell'esempio sopra, non c'è differenza funzionale nell'usare o meno la parola
 chiave `new`.
@@ -93,19 +93,20 @@ può portare a bug potenzialmente insidiosi da risolvere.
 Per poter creare un nuovo oggetto, si dovrebbe invece usare una factory e
 costruire un nuovo oggetto all'interno di quella factory.
 
-    function Foo() {
-        var obj = {};
-        obj.value = 'blub';
+    function CarFactory() {
+        var car = {};
+        car.owner = 'nobody';
 
-        var private = 2;
-        obj.someMethod = function(value) {
-            this.value = value;
+        var milesPerGallon = 2;
+
+        car.setOwner = function(newOwner) {
+            this.owner = newOwner;
         }
 
-        obj.getPrivate = function() {
-            return private;
+        car.getMPG = function() {
+            return milesPerGallon;
         }
-        return obj;
+        return car;
     }
 
 Sebbene questo esempio sia a prova di omissione della parola chiave `new` e
@@ -115,7 +116,7 @@ esso ha alcuni aspetti negativi.
  1. Usa più memoria dal momento che gli oggetti creati **non** condividono
     i metodi di un prototipo.
  2. Per poter ereditare, la factory deve copiare tutti i metodi da un altro
-    oggetto oppure mettere quell'oggetto nel proptotipo del nuovo oggetto.
+    oggetto oppure mettere quell'oggetto nel prototipo del nuovo oggetto.
  3. Perdere la catena di prototipi solo perché si vuole tralasciare la
     parola chiave `new` è contrario allo spirito del linguaggio.
 
@@ -126,4 +127,3 @@ bug, **non** è certo un motivo per privarsi completamente dell'uso dei prototip
 Alla fine si tratta di decidere quale sia la soluzione più adatta per
 l'applicazione. &Egrave; specialmente importante scegliere uno specifico stile
 di creazione degli oggetti ed usarlo in maniera **consistente**.
-

@@ -1,6 +1,6 @@
 ## 物件的使用和屬性
 
-每個變數可以表現像 JavaScript 物件，除了 [`null`](#core.undefined) 和 [`undefined`](#core.undefined)。
+在 Javascript 中全部都是物件，除了 [`null`](#core.undefined) 和 [`undefined`](#core.undefined)。
 
     false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
@@ -23,7 +23,7 @@
 
 JavaScript 的物件可以作為 [*Hashmaps*][1]使用，主要用來保存命名的鍵與值的對應關係。
 
-使用物件的字面語法 - `{}` - 可以創建一個簡單的物件。 這個新創建的物件從 `Object.prototype` [繼承](#object.prototype)，下面，沒有任何 [自定義屬性](#object.hasownproperty)。
+使用物件的字面語法 - `{}` - 可以創建一個簡單的物件。 這個新創建的物件[繼承](#object.prototype) 自 `Object.prototype` ，沒有任何 [自定義屬性](#object.hasownproperty)。
 
     var foo = {}; // 一個空的物件
 
@@ -32,7 +32,7 @@ JavaScript 的物件可以作為 [*Hashmaps*][1]使用，主要用來保存命�
 
 ### 訪問屬性
 
-有兩種訪問物件的屬性，點操作或是中括號操作。
+有兩種方式來訪問物件的屬性，點操作或是中括號操作。
     
     var foo = {name: 'kitten'}
     foo.name; // kitten
@@ -76,7 +76,7 @@ JavaScript 的物件可以作為 [*Hashmaps*][1]使用，主要用來保存命�
         delete: 'I am a keyword, so me too' // raises SyntaxError
     };
 
-物件的屬性名可以使用字符串或是普通的宣告。但是由於 JavaScript 編譯器有個另外一個錯誤設計。
+物件的屬性名可以使用字符串或是普通的宣告。但是由於 JavaScript 編譯器存在一個錯誤設計。
 上面的兩種方式在 ECMAScript 5之前都會拋出 `SyntaxError` 的錯誤。
 
 這個錯誤的原因是 `delete` 是 JavaScript 語言的一個 *關鍵字* 因此為了在更低的版本能執行最好用 *string literal*

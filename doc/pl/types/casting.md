@@ -17,7 +17,7 @@ typów **gdziekolwiek** jest to możliwe.
     10 == 010;
     10 == '-10';
 
-> **Uwaga ES5: Literały liczbowe zaczynające sie od `0` są interpretowane jako
+> **Uwaga ES5: Literały liczbowe zaczynające się od `0` są interpretowane jako
 > liczby w systemie ósemkowym. W trybie strict mode w ECMAScript 5 wsparcie dla 
 > liczb ósemkowych zostało porzucone.
 

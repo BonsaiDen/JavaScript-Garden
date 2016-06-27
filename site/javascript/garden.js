@@ -18,10 +18,10 @@ Sections.prototype = {
     },
 
     map: function() {
-        this.names = $('section [id]').map(function(idx, ele) {
+        this.names = $('section>[id]').map(function(idx, ele) {
             return {
                 id: this.id.replace('.intro', ''),
-                offset: $(this).offset().top - 20,
+                offset: $(this).offset().top - 100,
                 title: $(this).find(':header:first').html()
             };
 
@@ -33,7 +33,7 @@ Sections.prototype = {
             articleID = this.names[this.names.length - 1].id;
 
         for(var i = 0, l = this.names.length; i < l; i++) {
-            if (scroll > 0 && this.names[i].offset > scroll) {
+            if (scroll >= 0 && this.names[i].offset > scroll) {
                 articleID = this.names[i - 1].id;
                 break;
             }
@@ -60,18 +60,18 @@ Sections.prototype = {
         }
     },
 
-    expand: function (sectionName) {
+    expand: function(sectionName) {
         var nav = this.page.nav,
             index = nav.find('a[href=#' + sectionName + ']')
                        .closest('nav > ul > li').index();
 
         var height = this.page.window.height()
                      - $('nav > div').height()
-                     - (33 * this.heights.length),
+                     - (33 * this.heights.length);
 
-                     sections = [],
-                     currentHeight = 0,
-                     distance = 0;
+        var sections = [],
+            currentHeight = 0,
+            distance = 0;
 
         while ((currentHeight + this.heights[index]) < height) {
             sections.push(index);
@@ -135,7 +135,7 @@ function Page() {
         section: null,
         articule: null
     });
-    
+
     this.sections = new Sections(this);
     this.init();
 }
@@ -143,48 +143,35 @@ function Page() {
 Page.prototype = {
     init: function() {
         var that = this,
-            mainNav = $('#nav_main');
+            $mainNav = $('#nav_main');
 
         $.extend(this, {
             scrollLast: 0,
             resizeTimeout: null
         });
-        
+
         this.window.scroll(function() {
             that.onScroll();
         });
-        
+
         this.window.resize(function() {
             that.onResize();
         });
 
-        that.sections.map();
+        this.sections.map();
         setTimeout(function() {
             that.sections.highlight();
         }, 10);
 
-        // Mobile, for position: fixed
-        if ($.mobile) {
-            var navs = $('#nav_mobile, #nav_main');
-            navs.css('position', 'absolute');
-            this.window.scroll(function(){
-                navs.offset({
-                    top: that.window.scrollTop()
-                });
-            });
-        }
-        
-        // Show menu for tablets
-        $('#show_menu').click(function (){
-            var scrollTop = $.mobile ? that.window.scrollTop() : 0;
-            
-            mainNav.slideDown(300).css('top', scrollTop);
+        // Show menu for tablets and smart phones
+        $('#show_menu').click(function() {
+            $mainNav.slideDown(300);
             return false;
         });
-        
-        $('#nav_main').click(function(){
+
+        $mainNav.click(function() {
             if(that.window.width() < 1000)
-                mainNav.slideUp(300);
+                $mainNav.slideUp(300, function() { $mainNav.removeAttr('style'); });
         });
     },
 

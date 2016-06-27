@@ -25,14 +25,15 @@ JavaScript에서는 배열(Array)도 객체(Object)지만 객체 순회(Iterate)
 
 `length` 프로퍼티의 *getter*는 단순히 Array 안에 있는 엘리먼트의 개수를 반환하고 *setter*는 배열을 할당한 수만큼 잘라 버린다.
 
-    var foo = [1, 2, 3, 4, 5, 6];
-    foo.length = 3;
-    foo; // [1, 2, 3]
+    var arr = [1, 2, 3, 4, 5, 6];
+    arr.length = 3;
+    arr; // [1, 2, 3]
 
-    foo.length = 6;
-    foo; // [1, 2, 3]
+    arr.length = 6;
+    arr.push(4);
+    arr; // [1, 2, 3, undefined, undefined, undefined, 4]
 
-현재 크기보다 더 작은 값을 할당하면 배열을 자르지만, 현재 크기보다 더 큰 값을 할당한다고 해서 배열을 늘리진 않는다.
+현재 크기보다 더 작은 값을 할당하면 배열을 자른다. 배열의 크기를 증가시키면 드문드문(sparse)한 배열을 생성한다.
 
 ### 결론
 

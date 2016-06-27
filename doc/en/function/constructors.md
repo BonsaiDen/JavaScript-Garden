@@ -11,45 +11,45 @@ constructor.
 If the function that was called has no explicit `return` statement, then it
 implicitly returns the value of `this` - the new object. 
 
-    function Foo() {
-        this.bla = 1;
+    function Person(name) {
+        this.name = name;
     }
 
-    Foo.prototype.test = function() {
-        console.log(this.bla);
+    Person.prototype.logName = function() {
+        console.log(this.name);
     };
 
-    var test = new Foo();
+    var sean = new Person();
 
-The above calls `Foo` as constructor and sets the `prototype` of the newly
-created object to `Foo.prototype`.
+The above calls `Person` as constructor and sets the `prototype` of the newly
+created object to `Person.prototype`.
 
 In case of an explicit `return` statement, the function returns the value 
 specified by that statement, but **only** if the return value is an `Object`.
 
-    function Bar() {
-        return 2;
+    function Car() {
+        return 'ford';
     }
-    new Bar(); // a new object
+    new Car(); // a new object, not 'ford'
 
-    function Test() {
-        this.value = 2;
+    function Person() {
+        this.someValue = 2;
 
         return {
-            foo: 1
+            name: 'Charles'
         };
     }
-    new Test(); // the returned object
+    new Person(); // the returned object ({name:'Charles'}), not including someValue
 
 When the `new` keyword is omitted, the function will **not** return a new object. 
 
-    function Foo() {
-        this.bla = 1; // gets set on the global object
+    function Pirate() {
+        this.hasEyePatch = true; // gets set on the global object!
     }
-    Foo(); // undefined
+    var somePirate = Pirate(); // somePirate is undefined
 
-While the above example might still appear to work in some cases, due to the 
-workings of [`this`](#function.this) in JavaScript, it will use the 
+While the above example might still appear to work in some cases, due to the
+workings of [`this`](#function.this) in JavaScript, it will use the
 *global object* as the value of `this`.
 
 ### Factories
@@ -57,28 +57,25 @@ workings of [`this`](#function.this) in JavaScript, it will use the
 In order to be able to omit the `new` keyword, the constructor function has to 
 explicitly return a value.
 
-    function Bar() {
-        var value = 1;
+    function Robot() {
+        var color = 'gray';
         return {
-            method: function() {
-                return value;
+            getColor: function() {
+                return color;
             }
         }
     }
-    Bar.prototype = {
-        foo: function() {}
-    };
 
-    new Bar();
-    Bar();
+    new Robot();
+    Robot();
 
-Both calls to `Bar` return the same thing, a newly create object that
-has a property called `method`, which is a 
+Both calls to `Robot` return the same thing, a newly created object that
+has a property called `getColor`, which is a 
 [Closure](#function.closures).
 
-It should also be noted that the call `new Bar()` does **not** affect the
+It should also be noted that the call `new Robot()` does **not** affect the
 prototype of the returned object. While the prototype will be set on the newly
-created object, `Bar` never returns that new object.
+created object, `Robot` never returns that new object.
 
 In the above example, there is no functional difference between using and
 not using the `new` keyword.
@@ -92,19 +89,21 @@ lead to bugs.
 In order to create a new object, one should rather use a factory and construct a 
 new object inside of that factory.
 
-    function Foo() {
-        var obj = {};
-        obj.value = 'blub';
+    function CarFactory() {
+        var car = {};
+        car.owner = 'nobody';
 
-        var private = 2;
-        obj.someMethod = function(value) {
-            this.value = value;
+        var milesPerGallon = 2;
+
+        car.setOwner = function(newOwner) {
+            this.owner = newOwner;
         }
 
-        obj.getPrivate = function() {
-            return private;
+        car.getMPG = function() {
+            return milesPerGallon;
         }
-        return obj;
+
+        return car;
     }
 
 While the above is robust against a missing `new` keyword and certainly makes 
