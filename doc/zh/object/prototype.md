@@ -46,7 +46,7 @@ other way around is a far more difficult task.)
 需要注意的是 `new Bar()` **不会**创造出一个新的 `Foo` 实例，而是
 重复使用它原型上的那个实例；因此，所有的 `Bar` 实例都会共享**相同**的 `value` 属性。
 
-> **注意:** **不要**使用 `Bar.prototype = Foo`，因为这不会执行 `Foo` 的原型，而是指向函数 `Foo`。
+> **注意:** **不要**使用 `Bar.prototype = Foo`，因为这不会指向 `Foo` 的原型，而是指向函数 `Foo`。
 > 因此原型链将会回溯到 `Function.prototype` 而不是 `Foo.prototype`，因此 `method` 将不会在 Bar 的原型链上。
 
 ###属性查找
