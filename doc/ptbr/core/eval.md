@@ -11,8 +11,8 @@ A função `eval` executará uma string de código JavaScript no escopo local.
     test(); // 3
     foo; // 1
 
-Entreranto, `eval` somente é executado no escopo local quando é chamado diretamente
-*e* quanto o nome da função chamada é `eval`. 
+Entretanto, `eval` somente é executado no escopo local quando é chamado diretamente
+*e* quando o nome da função chamada é `eval`. 
 
     var foo = 1;
     function test() {
@@ -40,6 +40,6 @@ Ele **nunca** deve ser utilizado com strings de origens duvidosas ou desconhecid
 ### Conclusão
 
 `eval` nunca deve ser utilizado. Qualquer código que faça uso de `eval` seve ser questionado
-em sua utilizade, performance e segurança. Se algo necessita de `eval` para funcionar, então **não** deve ser utilizado.
+em sua utilidade, performance e segurança. Se algo necessita de `eval` para funcionar, então **não** deve ser utilizado.
 Um *design melhor* deve ser utilizado, um que não faça uso de `eval`.
 
