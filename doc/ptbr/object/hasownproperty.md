@@ -27,7 +27,7 @@ em outro lugar na cadeia prototype.
 
 ### `hasOwnProperty` como propriedade
 
-JavaScript não protege o nome do propriedade `hasOwnProperty`; assim, se
+JavaScript não protege o nome da propriedade `hasOwnProperty`; assim, se
 existe a possibilidade de algum objeto possuir uma propriedade com este mesmo nome,
 torna-se necessário utilizar um `hasOwnProperty` **externo** a fim de obter resultados corretos.
 
@@ -50,7 +50,7 @@ torna-se necessário utilizar um `hasOwnProperty` **externo** a fim de obter res
 
 ### Conclusão
 
-O método é a **única** maneira confiável `hasOwnProperty` para verificar a existência da propriedade em um objeto.
+O método `hasOwnProperty` é a **única** maneira confiável para verificar a existência da propriedade em um objeto.
 É recomendado que `hasOwnProperty` seja utilizado em **cada** interação de um [laço `for in`](#object.forinloop)
 a fim de evitar erros de extensão do [prototype](#object.prototype).
 
