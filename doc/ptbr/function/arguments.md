@@ -1,6 +1,6 @@
 ## O objeto `arguments`
 
-Todo escopo de uma função em JavaScript em acesso à variável especial `arguments`.
+Todo escopo de uma função em JavaScript tem acesso à variável especial `arguments`.
 Esta variável armazena uma lista de todos os argumentos que foram passados para a função.
 
 > **Nota:** No caso em que `arguments` tenha sido definido dentro do escopo da função por meio 
@@ -12,7 +12,7 @@ e é de fato um `Object`.
 
 Devido a isto, **não** é possível usar os métodos padrões de array como `push`,
 `pop` ou `slice` no `arguments`. Enquanto que a iteração com um simples `for` loop funciona bem,
-é necessário convertê-lo para um `Array`  a fim de usar os métodos padrões de `Array`.
+é necessário convertê-lo para um `Array` a fim de usar os métodos padrões de `Array`.
 
 ### Convertendo em um Array
 
@@ -96,10 +96,7 @@ em engines modernas de JavaScript. Este caso é o uso de `arguments.callee`
             foo(); // Would normally be inlined...
         }
     }
-
-No código acima, `foo` 
-In the above code, `foo` can no longer be a subject to [inlining][1] since it 
-needs to know about both itself and its caller. 
+ 
 Isto não somente acaba com possíveis ganhos de performance que resultariam de inlining,
 mas também quebram o encapsulamento pois a função agora depende de uma chamada específica de contexto.
 
