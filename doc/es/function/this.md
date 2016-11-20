@@ -17,7 +17,7 @@ Cuando se utiliza `this` en el ámbito global, simplemente se refiere al objeto 
 
 Aquí `this` se refiere al objeto *global*.
 
-> **Nota ES5:** En modo estricto (strict mode), global **ya no** existe.
+> **Nota ES5:** En modo estricto (strict mode), el objeto global **ya no** es accesible a través de this.
 > `this` tendrá el valor de `undefined` en este caso.
 
 ### Llamar a un método
