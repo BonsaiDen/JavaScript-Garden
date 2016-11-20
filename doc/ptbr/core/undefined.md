@@ -28,10 +28,10 @@ Aqui estão alguns exemplos de quando o valor `undefined` é retornado:
 
 ### Manipulando mudanças no valor de `undefined`
 
-Uma que a variável global `undefined` apenas mantém uma cópia do valor *atual* de `undefined`, atribuir-lhe
+Uma vez que a variável global `undefined` apenas mantém uma cópia do valor *atual* de `undefined`, atribuir-lhe
 um novo valor **não** muda o valor do tipo `undefined`.
 
-Ainda, a fim de comparar alguma coisa com o valor de `undefined`, é ncessário que
+Ainda, a fim de comparar alguma coisa com o valor de `undefined`, é necessário que
 primeiro se retorne o `undefined`.
 
 A fim de proteger o código contra uma possível sobrescrtia da variável `undefined`, uma
@@ -54,7 +54,7 @@ Outra maneira de atingir o mesmo efeito seria utilizar uma declaração dentro d
 
     })('Hello World', 42);
 
-A única diferença aqui é a que a última versão resulta na redução de 4 bytes, e nã existe
+A única diferença aqui é a que a última versão resulta na redução de 4 bytes, e não existe
 outro `var` statement dentro do wrapper anônimo.
 
 ### Usos do `null`

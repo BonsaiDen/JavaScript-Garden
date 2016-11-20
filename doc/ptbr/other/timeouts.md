@@ -13,7 +13,7 @@ Quando `setTimeout` é chamado, ele retorna o ID do timeout e agenda a execuçã
 para **aproximadamente** mil milissegundos no futuro.
 `foo` será executado uma **única** vez.
 
-Dependendo de como a enine JavaScript que está rodando o código resolve o timer, bem como
+Dependendo de como a engine JavaScript que está rodando o código resolve o timer, bem como
 o fato de que o JavaScript é single threaded e outro código que é executado pode bloquear a 
 thread, **não há como** garantir a precisão dos intervalos especificados nas chamadas `setTimeout`.
 
@@ -44,7 +44,7 @@ o nome sugere -  irá executar a função a **cada** `X` milisegundos, porém se
 desencorajado.
 
 Quando um código em execução bloqueia a chamada do timeout, `setInterval` continuará
-emitindo chamads para a função em questão. Isto pode, especialmente com intervalos curtos,
+emitindo chamadas para a função em questão. Isto pode, especialmente com intervalos curtos,
 resultar em uma pilha de chamadas de função.
 
     function foo(){
@@ -129,7 +129,7 @@ Esta funcionalidade **nunca** deve ser utilizada pois internamente faz uso de `e
 
 Uma vez que `eval` não é chamado [diretamente](#core.eval) neste caso, a string
 passada como argumento para `setTimeout` será executada no *escopo global*; assim, ela
-não usará a variávle local `foo` do escopo de `bar`.
+não usará a variável local `foo` do escopo de `bar`.
 
 Também é recomendado **não** usar uma string para passar argumentos
 para a função que será chamada por qualquer uma das funções de timeout.

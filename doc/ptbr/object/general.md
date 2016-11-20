@@ -14,7 +14,7 @@ Um equívoco muito comum é a idéia de que números não podem ser manipulados 
 
     2.toString(); // raises SyntaxError
 
-Existem duas soluções para contornar este problema e permtir que números se comportem como objetos.
+Existem três soluções para contornar este problema e permtir que números se comportem como objetos.
 
     2..toString(); // o segundo ponto é reconhecido corretamente
     2 .toString(); // perceba o espaço deixado à esquerda do ponto

@@ -2,7 +2,7 @@
 
 Apesar do JavaScript possuir uma sintaxe no estilo C, o uso do ponto e vírgula **não** é obrigatório. 
 
-JavaScript não é uma linguagem 'semicolon-less'. De fato, o ponto e vírgula é necessário para o interpretação do código. Entretanto, o parser do JavaScript insere o **automaticamente** ponto e vírgula sempre que ocorrer um error de parser, decorrente da falta do ponto e vírgula. 
+JavaScript não é uma linguagem 'semicolon-less'. De fato, o ponto e vírgula é necessário para o interpretação do código. Entretanto, o parser do JavaScript insere o **ponto e vírgula** automaticamente sempre que ocorrer um error de parser, decorrente da falta do ponto e vírgula. 
 
     var foo = function() {
     } // parse error, semicolon expected
@@ -95,12 +95,6 @@ Este código é interpretado em uma só linha.
 As chances de `log` não retornar uma função são **muito** altas; portanto, o código acima irá produzir um `TypeError` informando que `undefined is not a function`.
 
 ### Conclusão
-
-It is highly recommended to **never** omit semicolons. It is also recommended
-that braces be kept on the same line as their corresponding statements and to
-never omit them for single-line `if` / `else` statements. These measures will
-not only improve the consistency of the code, but they will also prevent the
-JavaScript parser from changing code behavior.
 
 É **fortemente** recomendado que nunca se omita o ponto e vírgula. Também é recomendado que chaves sejam mantidas na mesma linha que seus statements e que nunca sejam omitadas em declações de uma só linha como `if` / `else` statements. Tais medidas não somente melhorarão a consistência do código, como também irão previnir alteração no comportamento do código por má interpretação do parser do JavaScript.
 
