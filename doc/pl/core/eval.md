@@ -22,7 +22,7 @@ Niestaty, `eval` zostanie wykonana w lokalnym zasięgu tylko wtedy, gdy zostanie
         return foo;
     }
     test(); // 2
-    foo; // 3
+    foo; // 1
 
 Należy unikać stosowania `eval` **o ile to tylko możliwe**. W 99.9% przypadków można 
 osiągnąć ten sam efekt **nie** używając `eval`.

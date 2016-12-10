@@ -22,7 +22,7 @@ el nombre de la función llamada es `eval`.
         return foo;
     }
     test(); // 2
-    foo; // 3
+    foo; // 1
 
 El uso de `eval` debe evitarse **a toda costa**. El 99.9% de su "uso" puede 
 lograrse **sin** su uso..

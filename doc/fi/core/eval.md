@@ -21,7 +21,7 @@
         return foo;
     }
     test(); // 2
-    foo; // 3
+    foo; // 1
 
 `eval`-funktion käyttöä tulee välttää **ehdottomasti**. 99.9% sen "käyttötapauksista" voidaan toteuttaa **ilman** sitä.
     
