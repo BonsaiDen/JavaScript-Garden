@@ -51,7 +51,7 @@ Global Scope에서도 this가 사용될 수 있고 이때에는 *Global* 객체�
             // 여기에서 this는 Global 객체를 가리킨다.
         }
         test();
-    }
+    };
 
 `test` 에서 `this`가 `Foo`를 가리킬 것으로 생각할 테지만 틀렸다. 실제로는 그렇지 않다.
 
@@ -63,7 +63,7 @@ Global Scope에서도 this가 사용될 수 있고 이때에는 *Global* 객체�
             // 여기에서 this 대신에 self를 사용하여 Foo에 접근한다
         }
         test();
-    }
+    };
 
 `self`는 통상적인 변수 이름이지만, 바깥쪽의 `this`를 참조하기 위해 일반적으로 사용된다. 
 또한 [클로저](#function.closures)와 결합하여 `this`의 값을 주고 받는 용도로 사용할 수도 있다.
@@ -75,7 +75,7 @@ ECMAScript 5부터는 익명 함수와 결합된 `bind` 메소드를 사용하�
             // this는 이제 Foo를 참조한다
         }.bind(this);
         test();
-    }
+    };
 
 ### Method 할당하기
 

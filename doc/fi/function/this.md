@@ -51,7 +51,7 @@ Useimmat näistä tapauksista ovat järkeviä. Ensimmäistä niistä tosin voida
             // this asettuu globaaliin olioon
         }
         test();
-    }
+    };
 
 Yleisesti luullaan, että test-funktion sisältämä `this` viittaa tässä tapauksessa `Foo`-olioon. Todellisuudessa se **ei** kuitenkaan tee näin.
 
@@ -63,7 +63,7 @@ Jotta `Foo`-olioon voidaan päästä käsiksi `test`-funktion sisällä, tulee m
             // Käytä thatia thissin sijasta
         }
         test();
-    }
+    };
 
 `that` on normaali nimi, jota käytetään yleisesti viittaamaan ulompaan `this`-muuttujaan. [Sulkeumia](#function.closures) käytettäessä `this`-arvoa voidaan myös välittää edelleen.
 

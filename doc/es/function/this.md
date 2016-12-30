@@ -63,7 +63,7 @@ mal diseño del lenguaje, ya que **nunca** tiene un uso práctico.
             // this es establecido como un objeto global
         }
         test();
-    }
+    };
 
 Un error común es que `this` dentro de `test` haga referencia a `Foo`, mientras que en
 realidad esto **no es así**.
@@ -77,7 +77,7 @@ dentro del `método` para referirse a `Foo`.
             // Use that instead of this here
         }
         test();
-    }
+    };
 
 `that` es justo un nombre normal, pero es comúnmente usado para referenciar a `this`
 de forma externa. En combinación con [closures](#function.closures), esto puede ser

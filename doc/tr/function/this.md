@@ -65,7 +65,7 @@ kullanılımı yoktur.
             // this genel nesneye işaret eder
         }
         test();
-    }
+    };
 
 Bir başka yanılgı `test` fonksiyonunun içinde `this` 'in `Foo` 'ya işaret
 edeceğinin sanılmasıdır, ama bu **doğru değildir**.
@@ -79,7 +79,7 @@ değişken oluşturmaktır.
             // Burada this yerine that kullanın
         }
         test();
-    }
+    };
 
 `that` kelimesinin dilde özel bir anlamı yoktur, ama sıklıkla dış kapsamdaki
 `this` 'e işaret etmek için kullanılır. Bu yöntem [`closure`](#function.closures)

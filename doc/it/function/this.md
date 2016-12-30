@@ -66,7 +66,7 @@ uso pratico.
             // this viene impostato all'oggetto globale
         }
         test();
-    }
+    };
 
 Una comune credenza è che `this` all'interno di `test` faccia riferimento a
 `Foo` mentre, invece, **non** è così.
@@ -80,7 +80,7 @@ una variabile locale all'interno di `method` che faccia riferimento a `Foo`.
             // Qui viene usato self invece di this
         }
         test();
-    }
+    };
 
 `self` è solo un normale nome di variabile, ma viene comunemente usato come
 riferimento ad un `this` più esterno. Abbinato alle [closures](#function.closures)
@@ -94,7 +94,7 @@ con una funziona anonima
             // this ora fa riferimento a Foo
         }.bind(this);
         test();
-    }
+    };
 
 ### Metodi di asseganzione
 
