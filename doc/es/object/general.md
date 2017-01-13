@@ -91,7 +91,7 @@ Las propiedades de los objetos puede ser simbolizados como caracteres planos y c
 a otro mal diseño del parser de JavaScript, lo anterior es una excepción
 de `SyntaxError` antes de ECMAScript 5.
 
-Este error se debe al `eliminar` una *keyword*; por lo tanto, debe ser
+Este error se produce porque `delete` es una *keyword*; por lo tanto, debe ser
 anotado como un *string literal* para asegurarse que será interpretado correctamente
 por diversos motores de JavaScript.
 
