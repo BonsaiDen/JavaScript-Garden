@@ -47,18 +47,18 @@ When `hasOwnProperty` is left out, the code is prone to errors in cases where
 the native prototypes - e.g. `Object.prototype` -
 have been extended.
 
+> Tried in jeforth
+> js> [].length . \ ==> 0 OK.
+> js> [] obj>keys . \ ==> "" OK.
+> js> [].hasOwnProperty("length") \ ==> true (boolean).
+> So 'length' is a non-enumerable property of an array.
+
 In newer versions of ECMAScript, non-enumerable properties can be defined with
 `Object.defineProperty`, reducing the risk of iterating over properties without
 using `hasOwnProperty`. Nonetheless, care must be taken when using older
 libraries like [Prototype][1], which does not yet take advantage of new ECMAScript features.
 When this framework is included, `for in` loops that do not use
 `hasOwnProperty` are guaranteed to break.
-
-> Tried in jeforth
-> js> [].length . \ ==> 0 OK 
-> js> [] obj>keys . \ ==> "" OK
-> js> [].hasOwnProperty("length") \ ==> true (boolean)
-> So 'length' is a non-enumerable property of an array.
 
 ### In Conclusion
 
