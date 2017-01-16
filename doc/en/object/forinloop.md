@@ -54,6 +54,12 @@ libraries like [Prototype][1], which does not yet take advantage of new ECMAScri
 When this framework is included, `for in` loops that do not use
 `hasOwnProperty` are guaranteed to break.
 
+> Tried in jeforth
+> js> [].length . \ ==> 0 OK 
+> js> [] obj>keys . \ ==> "" OK
+> js> [].hasOwnProperty("length") \ ==> true (boolean)
+> So 'length' is a non-enumerable property of an array.
+
 ### In Conclusion
 
 It is recommended to **always** use `hasOwnProperty` in ECMAScript 3 or lower, as well as
