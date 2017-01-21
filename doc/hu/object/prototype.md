@@ -4,7 +4,7 @@ A JavaScript nem a klasszikus öröklődést használja, hanem egy ún. *protot�
 származtatást használ.
 
 Míg ezt gyakran a JavaScript legnagyobb hibái között tartják számon, valójában
-ez a származtatási modell jóval kifejezőbb mint klasszikus barátja.
+ez a származtatási modell jóval kifejezőbb, mint klasszikus barátja.
 Ezt jelzi, hogy például sokkal könnyebb megépíteni a klasszikus modellt, alapul véve
 a prototípusos modellt, míg a fordított irány kivitelezése igencsak nehézkes lenne.
 
