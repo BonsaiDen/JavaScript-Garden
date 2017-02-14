@@ -75,7 +75,7 @@ JavaScript 标准文档只给出了一种获取 `[[Class]]` 值的方法，那�
 	Object.prototype.toString.call(undefined)	// "[object Undefined]"
 	
 	
-###测试为定义变量
+###测试未定义变量
 
     typeof foo !== 'undefined'
 
