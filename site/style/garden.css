@@ -72,13 +72,12 @@ body {
 
 nav {
 	position: fixed;
-	margin-left: 750px;
 	top: 0;
+	right: 0;
 	padding-bottom: 20px;
 	height: 100%;
-
 	text-shadow: none;
-	width: 240px;
+	width: 225px;
 }
 
 nav > div li {
@@ -607,7 +606,6 @@ a abbr {
 	#nav_main > ul > li {
 		float: left;
 		text-align: center;
-		width: 25%;
 		border-bottom: 0;
 	}
 
