@@ -6,7 +6,7 @@
         {
             "title": "소개",
             "dir": "intro",
-            "articles": []
+            "articles": ["index"]
         },
         {
             "title": "객체",

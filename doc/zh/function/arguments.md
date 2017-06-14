@@ -9,7 +9,7 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 `arguments` 变量**不是**一个数组（`Array`）。
 尽管在语法上它有数组相关的属性 `length`，但它不从 `Array.prototype` 继承，实际上它是一个对象（`Object`）。
 
-因此，无法对 `arguments` 变量使用标准的数组方法，比如 `push`, `pop` 或者 `slice`。
+因此，无法对 `arguments` 变量使用标准的数组方法，比如 `push`、`pop` 或者 `slice`。
 虽然使用 `for` 循环遍历也是可以的，但是为了更好的使用数组方法，最好把它转化为一个真正的数组。
 
 ###转化为数组
@@ -22,13 +22,13 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 
 ###传递参数
 
-下面将参数从一个函数传递到另一个函数，是推荐的做法。
+下面是将参数从一个函数传递到另一个函数的推荐做法。
 
     function foo() {
         bar.apply(null, arguments);
     }
     function bar(a, b, c) {
-        // do stuff here
+        // 干活
     }
 
 另一个技巧是同时使用 `call` 和 `apply`，创建一个快速的解绑定包装器。
@@ -39,7 +39,7 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
         console.log(this, a, b, c);
     };
 
-    // Create an unbound version of "method" 
+    // 创建一个解绑定的 "method"
     // 输入参数为: this, arg1, arg2...argN
     Foo.method = function() {
 
@@ -77,8 +77,7 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 
 ### 性能真相
 
-`arguments` 对象总会被创建，除了两个特殊情况 - 作为局部变量声明和作为形式参数。
-而不管它是否有被使用。
+不管它是否有被使用，`arguments` 对象总会被创建，除了两个特殊情况 - 作为局部变量声明和作为形式参数。
 
 `arguments` 的 *getters* 和 *setters* 方法总会被创建；因此使用 `arguments` 对性能不会有什么影响。
 除非是需要对 `arguments` 对象的属性进行多次访问。
@@ -94,19 +93,19 @@ JavaScript 中每个函数内都能访问一个特别变量 `arguments`。这个
 	  return [a, arguments[0]];
 	}
 	var pair = f(17);
-	assert(pair[0] === 42);
-	assert(pair[1] === 17);
+	console.assert(pair[0] === 42);
+	console.assert(pair[1] === 17);
 
 然而，的确有一种情况会显著的影响现代 JavaScript 引擎的性能。这就是使用 `arguments.callee`。
 
     function foo() {
-        arguments.callee; // do something with this function object
-        arguments.callee.caller; // and the calling function object
+        arguments.callee; // 使用这个函数对象
+        arguments.callee.caller; // 以及这个函数对象的调用者
     }
 
     function bigLoop() {
         for(var i = 0; i < 100000; i++) {
-            foo(); // Would normally be inlined...
+            foo(); // 通常情况会作为内联函数...
         }
     }
 

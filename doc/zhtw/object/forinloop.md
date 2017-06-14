@@ -2,8 +2,8 @@
 
 就像其他的 `in` 操作符一樣， `for in` 循環也進入所有在物件中的屬性
 
-> **注意: ** `for in` 迴圈 **不會** 進入那些 `enumerable` 屬性是 `false`，舉例來說， 陣列中 `length` 的屬性
-    
+> **注意: ** `for in` 迴圈 **不會** 進入那些 `enumerable` 屬性是 `false`，舉例來說，陣列中 `length` 的屬性
+
     // 修改 Object.prototype
     Object.prototype.bar = 1;
 
@@ -27,14 +27,14 @@
     }
 
 這個版本的程式碼是唯一正確的寫法。由於我們使用了 `hasOwnProperty`，這次 **只** 輸出 `moo`。
-如果不只用這個程式碼在原型物件中(比如 `Object.prototype`)被擴展可能會出錯。
+如果不使用這個程式碼在原型物件中(比如 `Object.prototype`)被擴展可能會出錯。
 
-一個廣泛的模組 [Prototype][1]就礦展了圓型的 JavaScript 物件。
-因此，但這模組包含在頁面中時，不使用 `hasOwnProperty` 過濾的 `for in` 尋難免會出問題。
+一個廣泛使用的舊函式庫 [Prototype][1]就擴展了原型的 JavaScript 物件。
+因此，當這個函式庫包含在頁面中時，不使用 `hasOwnProperty` 過濾的 `for in` 迴圈難免會出問題。
 
 ### 總結
 
-推薦 **總是** 使用 `hasOwnProperty`。不要對程式碼的環境做任何假設，不要假設原生的對象是否被擴張
+推薦 **總是** 使用 `hasOwnProperty`。不要對程式碼的環境做任何假設，不要假設原生的對象是否被擴張。
 
 [1]: http://www.prototypejs.org/
 

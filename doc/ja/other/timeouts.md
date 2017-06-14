@@ -40,7 +40,7 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
     function foo(){
         // 1秒おきにブロックの何かを実行
     }
-    setInterval(foo, 1000);
+    setInterval(foo, 100);
 
 上記のコードでは、`foo`が1回呼び出されて、1秒ブロックされます。
 
@@ -52,7 +52,7 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
 
     function foo(){
         // 1秒ブロックする何か
-        setTimeout(foo, 1000);
+        setTimeout(foo, 100);
     }
     foo();
 
@@ -80,7 +80,7 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
 
 `setTimeout`と`setInterval` は、第一引数に文字列を取る事が可能です。この仕様は内部で`eval`を使用する為に、**絶対に**使うべきではありません。
 
-> **注意点:** タイムアウト関数はECMAScript標準では制定されて**いない**為に
+> **注意点:** タイムアウト関数はECMAScript標準では制定されて**いない**為、
 > 文字列を引数にした場合に厳密な動作は色々なJavaScript実装により異なります。
 > 例えば、MicrosoftのJScriptは`eval`の代わりに`Function`コンストラクターを
 > 使用します。
@@ -108,16 +108,16 @@ JavaScriptは非同期なので、`setTimeout`と`setInterval`関数を使って
 
     // 匿名関数を代わりに使用する
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
-> **注意点:** `setTimeout(foo, 1000, a, b, c)`のようなシンタックスを使用する事も
+> **注意点:** `setTimeout(foo, 1000, 1, 2, 3)`のようなシンタックスを使用する事も
 > できますが、[メソッド](#function.this)を使用した際に、分かりにくいエラーが起りえるので
 > 使用はお勧めしません。
 
 ### 終りに
 
-`setTimeout`や`setInterval`のパラメーターに文字列を使用する事は**絶対**するべきではありません。引数が関数に呼び出される必要がある場合**本当**に悪いコードの明確なサインになります。実際の呼び出しには*匿名関数*を渡すべきです。
+`setTimeout`や`setInterval`のパラメーターに文字列を用いては**いけません**。引数が関数に呼び出される必要がある場合**本当**に悪いコードの明確なサインになります。実際の呼び出しには*匿名関数*を渡すべきです。
 
 さらに、`setInterval`の使用はスケジューラーがJavaScriptの実行によってブロックされないので、避けるべきでしょう。
 

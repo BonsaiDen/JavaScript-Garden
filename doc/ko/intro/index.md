@@ -10,8 +10,7 @@ JavaScript Garden은 단순히 JavaScript 언어 자체를 설명하려 만들�
 
 ## 기여자들
 
- - [Caio Romão][5] (철자 교정)
- - [Andreas Blixt][6] (언어 교정)
+- [기여자들](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
 
 ## 번역
  - [박창우][]

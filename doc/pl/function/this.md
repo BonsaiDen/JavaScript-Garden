@@ -14,7 +14,7 @@ Używanie `this` w globalnym zasięgu, zwróci po prostu referencję do obiektu 
 
     foo();
 
-Tutaj `this` również będzie wkazywało na obiekt *global*
+Tutaj `this` również będzie wskazywało na obiekt *global*
 
 > **Uwaga ES5:** W trybie strict mode, przypadki z globalnym zasięgiem nie mają miejsca.
 > W tym przypadku `this` zwróci `undefined` zamiast wartości.
@@ -55,7 +55,7 @@ miejsca i `this` wewnątrz `foo` będzie wskazywać na `bar`.
 ### Częste pułapki
 
 Mimo iż Większość z tych przypadków ma sens, to pierwszy przypadek powinien być 
-traktorany jako błąd podczas projektowania języka i **nigdy** nie wykorzystywany 
+traktowany jako błąd podczas projektowania języka i **nigdy** nie wykorzystywany 
 w praktyce.
 
     Foo.method = function() {
@@ -63,7 +63,7 @@ w praktyce.
             // wewnątrz tej funkcji this wskazuje na obiekt global
         }
         test();
-    }
+    };
 
 Powszechnym błędem jest myślenie, że `this` wewnątrz `test` wskazuje na `Foo`, 
 podczas gdy w rzeczywistości tak **nie jest**.
@@ -77,7 +77,7 @@ metody lokalnej zmiennej, która będzie wskazywała na `Foo`.
             // Należy używać that zamiast this wewnątrz tej funkcji
         }
         test();
-    }
+    };
 
 `that` jest zwykłą zmienną, ale jest to powszechnie stosowana konwencja otrzymywania  
 wartości zewnętrznego `this`. W połączeniu z [domknięciami(closures)](#function.closures), 

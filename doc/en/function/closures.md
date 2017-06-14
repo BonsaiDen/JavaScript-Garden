@@ -36,12 +36,12 @@ Since it is not possible to reference or assign scopes in JavaScript, there is
 interact with it is via the two closures.
 
     var foo = new Counter(4);
-    foo.hack = function() {
+    foo.hackFail = function() {
         count = 1337;
     };
 
 The above code will **not** change the variable `count` in the scope of `Counter`, 
-since `foo.hack` was not defined in **that** scope. It will instead create - or 
+since `foo.hackFail` was not defined in **that** scope. It will instead create - or 
 override - the *global* variable `count`.
 
 ### Closures Inside Loops
@@ -60,7 +60,7 @@ the number `10` ten times.
 
 The *anonymous* function keeps a **reference** to `i`. At the time 
 `console.log` gets called, the `for loop` has already finished, and the value of 
-`i` as been set to `10`.
+`i` has been set to `10`.
 
 In order to get the desired behavior, it is necessary to create a **copy** of 
 the value of `i`.
@@ -96,3 +96,21 @@ above.
         })(i), 1000)
     }
 
+The other popular way to achieve this is to add an additional argument to
+the `setTimeout` function, which passes these arguments to the callback.
+
+    for(var i = 0; i < 10; i++) {
+        setTimeout(function(e) {
+            console.log(e);  
+        }, 1000, i);
+    }
+
+Some legacy JS environments (Internet Explorer 9 & below) do not support this.
+
+There's yet another way to accomplish this by using `.bind`, which can bind
+a `this` context and arguments to function. It behaves identically to the code
+above
+
+    for(var i = 0; i < 10; i++) {
+        setTimeout(console.log.bind(console, i), 1000);
+    }

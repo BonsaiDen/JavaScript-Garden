@@ -15,12 +15,15 @@ the excellent [guide][1] on the Mozilla Developer Network.
 ### The authors
 
 This guide is the work of two lovely Stack Overflow users, [Ivo Wetzel][6]
-(Writing) and [Zhang Yi Jiang][5] (Design).
+(Original English Language Version) and [Zhang Yi Jiang][5] (Design), and
+[many others](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
+who've worked hard to provide translations or fixes.
 
-### Contributors
+It's currently maintained by [Tim Ruffles](http://twitter.com/timruffles).
 
- - [Caio Romão][8] (Spelling corrections)
- - [Andreas Blixt][9] (Language corrections)
+## Contributing
+
+Please submit fixes and translations as [pull requests](https://help.github.com/articles/using-pull-requests).
 
 ### License
 

@@ -206,7 +206,7 @@ this problem can easily be avoided with the help of *anonymous wrappers*.
 
 
 Unnamed functions are considered [expressions](#function.general); so in order to
-being callable, they must first be evaluated.
+be callable, they must first be evaluated.
 
     ( // evaluate the function inside the parentheses
     function() {}
@@ -220,6 +220,7 @@ which, while different in syntax, behave the same way.
     !function(){}()
     +function(){}()
     (function(){}());
+    void function(){}();
     // and so on...
 
 ### In Conclusion

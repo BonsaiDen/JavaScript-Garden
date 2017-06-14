@@ -2,27 +2,27 @@
 
 The `eval` function will execute a string of JavaScript code in the local scope.
 
-    var foo = 1;
+    var number = 1;
     function test() {
-        var foo = 2;
-        eval('foo = 3');
-        return foo;
+        var number = 2;
+        eval('number = 3');
+        return number;
     }
     test(); // 3
-    foo; // 1
+    number; // 1
 
 However, `eval` only executes in the local scope when it is being called
 directly *and* when the name of the called function is actually `eval`.
 
-    var foo = 1;
+    var number = 1;
     function test() {
-        var foo = 2;
-        var bar = eval;
-        bar('foo = 3');
-        return foo;
+        var number = 2;
+        var copyOfEval = eval;
+        copyOfEval('number = 3');
+        return number;
     }
     test(); // 2
-    foo; // 3
+    number; // 3
 
 The use of `eval` should be avoided. 99.9% of its "uses" can be achieved
 **without** it.

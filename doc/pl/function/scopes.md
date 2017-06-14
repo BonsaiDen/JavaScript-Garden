@@ -21,7 +21,7 @@ definiowane w jednej *globalnie współdzielonej* przestrzeni nazw.
 
 Z każdym odwołaniem do zmiennej, JavaScript przeszukuje w górę wszystkie zasięgi 
 dopóki nie znajdzie tej zmiennej. W przypadku, gdy przeszukiwanie dotrze do globalnego 
-zasięgu i nadal nie znajdzie żądanej nazwy, to wyrzuca błąd `ReferenceError`.
+zasięgu i nadal nie znajdzie żądanej nazwy, wyrzuca błąd `ReferenceError`.
 
 ### Zmora globalnych zmiennych
 
@@ -35,7 +35,7 @@ Powyższe dwa skrypty **nie** dają tego samego efektu. Skrypt A definiuje zmien
 nazwaną `foo` w *globalnym* zasięgu, natomiast skrypt B definiuje `foo` 
 w *aktualnym* zasięgu.
 
-Jeszcze raz, to wcale nie daje *tego samego efektu*. Nie użycie `var` może mieć 
+Jeszcze raz, to wcale nie daje *tego samego efektu*. Brak użycia `var` może mieć 
 poważne konsekwencje.
 
     // globalny zasięg
@@ -48,8 +48,8 @@ poważne konsekwencje.
     foo; // 21
 
 Pominięcie słowa `var` w deklaracji wewnątrz funkcji `test` nadpisze wartość 
-zmiennej globalnej `foo`. Mimo że nie wygląda to na początku na duży problem, 
-posiadanie wielu tysięcy linii kodu w JavaScript i nie korzystanie z `var` 
+zmiennej globalnej `foo`. Mimo, że nie wygląda to na początku na duży problem, 
+w przypadku kodu, który posiada wielu tysięcy linii, brak `var` 
 wprowadzi straszne i trudne do wyśledzenia błędy.
     
     // globalny zasięg 
@@ -68,8 +68,8 @@ wprowadzi straszne i trudne do wyśledzenia błędy.
 Zewnętrzna pętla zakończy działanie po pierwszym wywołaniu `subLoop`, ponieważ 
 `subLoop` nadpisuje wartość globalnej zmiennej `i`. Użycie `var` w drugiej pętli 
 `for` pozwoliłoby łatwo uniknąć problemu. Słowo kluczowe `var` nie powinno być 
-**nigdy** pominięte w deklaracji, chyba że *pożądanym skutkiem* jest wpłynięcie na 
-zewnętrzny zasięg.
+**nigdy** pominięte w deklaracji, chyba że *pożądanym skutkiem* jest modyfikacja  
+zewnętrznego zasięgu.
 
 ### Lokalne zmienne
 
@@ -90,7 +90,7 @@ oraz zmienne zadeklarowane poprzez deklaracje `var` wewnątrz funkcji.
     }
     test(10);
 
-Zmienne `foo` oraz `i` są lokalnymi zmiennymi wewnątrz zasiegu funkcji `test`, 
+Zmienne `foo` oraz `i` są lokalnymi zmiennymi wewnątrz zasięgu funkcji `test`, 
 natomiast przypisanie wartości do `bar` nadpisze zmienną globalną o tej samej nazwie.
  
 ### "Hoisting" - wywindowanie, podnoszenie 
@@ -150,10 +150,10 @@ W oryginalnym kodzie instrukcja warunkowa `if` zdaje się modyfikować *zmienną
 globalną* `goo`, podczas gdy faktycznie modyfikuje ona *zmienną lokalną* - po tym 
 jak zostało zastosowane windowanie (hoisting).
 
-Bez wiedzy na temat podnoszenia (hoistingu), poniższy kod może sprawiać wrażenie,
+Analizując poniższy kod bez wiedzy na temat hoistingu możemy odnieść wrażenie,
 że zobaczymy błąd `ReferenceError`.
 
-    // sprawdz czy SomeImportantThing zostało zainicjalizowane
+    // sprawdź, czy SomeImportantThing zostało zainicjalizowane
     if (!SomeImportantThing) {
         var SomeImportantThing = {};
     }
@@ -163,9 +163,9 @@ przeniesiona na początek *globalnego zasięgu*.
 
     var SomeImportantThing;
 
-    // inny kod który może ale nie musi zainicjalizować SomeImportantThing
+    // inny kod, który może, ale nie musi zainicjalizować SomeImportantThing
 
-    // upewnienie sie, że SomeImportantThing zostało zainicjalizowane
+    // upewnij się, że SomeImportantThing zostało zainicjalizowane
     if (!SomeImportantThing) {
         SomeImportantThing = {};
     }
@@ -182,19 +182,21 @@ funkcji.
 
 Na przykład, kiedy próbujemy odczytać zmienną `foo` wewnątrz zasięgu funkcji, 
 JavaScript będzie szukać nazwy w określonej kolejności:
- 1. Jeżeli wewnątrz aktualnego zasięgu znajduje się deklaracja `var foo` skorzystaj z niej.
- 2. Jeżeli jeden z parametrów fukcji został nazwany `foo` użyj go.
- 3. Jeżeli fukcja została nazwana `foo` skorzystaj z tego.
- 4. Przejdz do zewnętrznego zasięgu i przejdz do kroku **#1**.
 
-> **Uwaga:** Jeżeli jeden z parametrów fukcji został nazwany `arguments`, zapobiegnie 
-> to utworzeniu domyślnego obiektu `arguments`.
+ 1. Jeżeli wewnątrz aktualnego zasięgu znajduje się deklaracja `var foo`, skorzystaj z niej.
+ 2. Jeżeli jeden z parametrów fukcji został nazwany `foo`, użyj go.
+ 3. Jeżeli funkcja została nazwana `foo`, skorzystaj z tego.
+ 4. Przejdź do zewnętrznego zasięgu i przejdź do kroku **#1**.
+
+> **Uwaga:** Jeżeli jeden z parametrów fukcji został nazwany `arguments`, 
+> nie zostanie utworzony domyślny obiekt `arguments`.
 
 ### Przestrzenie nazw
 
 Powszechnym problemem posiadania tylko jednej globalnej przestrzeni nazw jest 
 prawdopodobieństwo wystąpienia kolizji nazw. W JavaScripcie, można łatwo uniknąć 
-tego problemu korzystając z *anonimowych wrapperów*.
+tego problemu korzystając z *anonimowych wrapperów* (inaczej: Immediately-Invoked 
+Function Expression - IIFE).
 
     (function() {
         // autonomiczna "przestrzeń nazw"

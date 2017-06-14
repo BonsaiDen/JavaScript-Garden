@@ -55,7 +55,7 @@ kullanıldığında, fonksiyon çağrılarının istiflenmesine neden olur.
     function foo(){
         // 1 saniye süren bir işlem
     }
-    setInterval(foo, 1000);
+    setInterval(foo, 100);
 
 Yukarıdaki örnekte `foo` fonksiyonu bir kez çağrılıp bir saniye boyunca bloke
 edecektir.
@@ -71,7 +71,7 @@ kullanmaktır.
 
     function foo(){
         // 1 saniye süren bir işlem
-        setTimeout(foo, 1000);
+        setTimeout(foo, 100);
     }
     foo();
 
@@ -140,10 +140,10 @@ kullanılması tavsiye **edilmez**.
 
     // Bunu yerine isimsiz bir fonksiyon kullanın
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
-> **Not:** `setTimeout(foo, 1000, a, b, c)` sentaksının kullanılması da mümkün
+> **Not:** `setTimeout(foo, 1000, 1, 2, 3)` sentaksının kullanılması da mümkün
 > olmasına karşın tavsiye edilmez, çünkü bu kullanım [metodlarla](#function.this)
 > birlikte fark edilmesi zor hatalara neden olabilir.
 

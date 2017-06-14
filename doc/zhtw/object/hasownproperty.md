@@ -1,6 +1,6 @@
-## `hasOwnProperty` 
+## `hasOwnProperty`
 
-為了判斷一個物件是否包含 *自定義* 屬性而 *不是* [原形](#object.prototype)上的屬性，我們需要使用繼承 `Object.prototype` 的 `hasOwnProperty` 方法。
+為了判斷一個物件是否包含 *自定義* 屬性而 *不是* [原型](#object.prototype)上的屬性，我們需要使用繼承 `Object.prototype` 的 `hasOwnProperty` 方法。
 
 > **注意:** 判斷一個屬性是否 `undefined` 是 **不夠的**。
 > 因為一個屬性可能存在，但是它的值被設成 `undefined`。
@@ -8,9 +8,9 @@
 `hasOwnProperty` 是 JavaScript 中唯一一個處理屬性但是 **不** 找原型鏈的函式。
 
     // 修改 Object.prototype
-    Object.prototype.bar = 1; 
+    Object.prototype.bar = 1;
     var foo = {goo: undefined};
-    
+
     foo.bar; // 1
     'bar' in foo; // true
 
@@ -35,6 +35,8 @@ JavaScript **不會** 保護 `hasOwnProperty`被占用，因此如果碰到存�
     // 使用其他對象的 hasOwnProperty，並將其上下設置為 foo
     ({}).hasOwnProperty.call(foo, 'bar'); // true
 
+    // 也可以透過原生 Object prototype 的 hasOwnProperty 函數來達成目的
+    Object.prototype.hasOwnProperty.call(foo, 'bar'); // true
 
 ### 結論
 

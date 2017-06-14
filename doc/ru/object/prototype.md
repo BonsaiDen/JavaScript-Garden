@@ -10,17 +10,19 @@
 
 > **Замечание:** При использовании конструкции `Bar.prototype = Foo.prototype` оба объекта будут делить друг с другом **один и тот же** прототип. Так что изменение прототипа одного из объектов повлечёт за собой изменение прототипа другого и наоборот — вряд ли это то, чего вы ожидали.
 
+> **Замечание:** Для объявления наследования вместо `Bar.prototype = Object.create(Foo.prototype)` можно воспользоваться конструкций `Bar.prototype = new Foo()`, но у нее есть пару недостатков: 1) как правило требуется унаследовать только методы и свойства прототипа, а не создавать для этого новый объект; 2) создание объекта может требовать обязательные аргументы.
+
+> **Примечание:** Метод `Object.create` отсутствует в IE8 и ниже, но его легко реализовать созданием своей такой функции или же можно подключить библиотеку для поддержки старых IE [*es5-shim*][5]
+
     function Foo() {
         this.value = 42;
     }
-    Foo.prototype = {
-        method: function() {}
-    };
+    Foo.prototype.method = function() {}
 
     function Bar() {}
 
-    // Установим значением прототипа Bar новый экземпляр Foo
-    Bar.prototype = new Foo();
+    // Зададим наследование от Foo
+    Bar.prototype = Object.create(Foo.prototype);
     Bar.prototype.foo = 'Hello World';
 
     // Убедимся, что Bar является настоящим конструктором
@@ -31,7 +33,7 @@
     // Цепочка прототипов, которая получится в результате
     test [instance of Bar]
         Bar.prototype [instance of Foo]
-            { foo: 'Hello World' }
+            { foo: 'Hello World', value: 42 }
             Foo.prototype
                 { method: ... }
                 Object.prototype
@@ -81,4 +83,5 @@
 [2]: http://en.wikipedia.org/wiki/Monkey_patch
 [3]: http://prototypejs.org/
 [4]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach
+[5]: https://github.com/es-shims/es5-shim
 

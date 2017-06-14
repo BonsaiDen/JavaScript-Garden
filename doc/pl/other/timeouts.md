@@ -2,8 +2,6 @@
 
 Ponieważ JavaScript jest asynchroniczny, istnieje możliwość zaplanowania wykonania 
 funkcji przy użyciu funkcji `setTimeout` i `setInterval`.
-Since JavaScript is asynchronous, it is possible to schedule the execution of a 
-function by using the `setTimeout` and `setInterval` functions.
 
 > **Note:** Funkcje czasowe nie są częścią standardu ECMAScript. Jest to część 
 > standardu [DOM][1].
@@ -49,13 +47,13 @@ milisekund. Jednakże korzystanie z tej funkcji jest odradzane.
 
 Kiedy wykonywany kod zablokuje możliwość uruchomienia zaplanowanej funkcji, 
 `setInterval` będzie próbować uruchamiać daną funkcję, co będzie powodować 
-kolejkowanie wykonania tej samej funkcji kilkukrotnie. Może się to zdażyć
+kolejkowanie wykonania tej samej funkcji kilkukrotnie. Może się to zdarzyć
 szczególnie przy krótkim interwale.
 
     function foo(){
         // coś co blokuje wykonanie na 1 sekundę 
     }
-    setInterval(foo, 1000);
+    setInterval(foo, 100);
 
 W powyższym kodzie kod `foo` zostanie wywołany tylko raz i zablokuje wywołanie na 
 jedną sekundę.
@@ -71,7 +69,7 @@ wewnątrz wywoływanej funkcji.
 
     function foo(){
         // coś co blokuje wykonanie na 1 sekundę
-        setTimeout(foo, 1000);
+        setTimeout(foo, 100);
     }
     foo();
 
@@ -139,11 +137,11 @@ do funkcji, która ma zostać wywołana przez budzik.
 
     // zamiast tego należy skorzystać z anonimowej funkcji
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
 >**Uwaga:** Mimo że możliwe jest wykorzystanie składni
-> `setTimeout(foo, 1000, a, b, c)`, nie zaleca się korzystania z niej, ponieważ 
+> `setTimeout(foo, 1000, 1, 2, 3)`, nie zaleca się korzystania z niej, ponieważ
 > może to prowadzić do subtelnych błędów podczas wykorzystania [metod](#function.this).
 
 ### Wnioski

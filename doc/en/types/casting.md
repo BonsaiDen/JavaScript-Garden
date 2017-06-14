@@ -4,8 +4,9 @@ JavaScript is a *weakly typed* language, so it will apply *type coercion*
 **wherever** possible.
 
     // These are true
-    new Number(10) == 10; // Number.toString() is converted
-                          // back to a number
+    new Number(10) == 10; // Number object is converted
+                          // to a number primitive via implicit call of
+                          // Number.prototype.valueOf method
 
     10 == '10';           // Strings gets converted to Number
     10 == '+10 ';         // More string madness
@@ -57,7 +58,7 @@ Using the **unary** plus operator, it is possible to cast to a number.
 
 ### Casting to a Boolean
 
-By using the **not** operator twice, a value can be converted a boolean.
+By using the **not** operator twice, a value can be converted to a boolean.
 
     !!'foo';   // true
     !!'';      // false

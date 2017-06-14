@@ -178,7 +178,7 @@ adında bir özel değişken tanımlanmıştır, bu değişken *geçerli nesneyi
 Fonksiyon kapsamlarında aynı zamanda [`arguments`](#function.arguments) adında
 bir değişken tanımlanmıştır ve fonksiyonun argümanlarını içerir.
 
-Örnek olarak bir fonksiyon kapsamında `foo` değişkenine eriğildiğinde JavaScript
+Örnek olarak bir fonksiyon kapsamında `foo` değişkenine erişildiğinde JavaScript
 isim çözümlemeyi aşağıdaki sıra ile yapacaktır:
 
  1. Geçerli kapsamda bir `var foo` ifadesi mevcutsa bu kullanılır.

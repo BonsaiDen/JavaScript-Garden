@@ -31,7 +31,7 @@ Ensimmäinen suuri ero liittyy siihen, kuinka perintä toimii. JavaScriptissä s
     // Prototyyppiketju
     test [Bar-olio]
         Bar.prototype [Foo-olio] 
-            { foo: 'Terve maailma' }
+            { foo: 'Terve maailma', value: 42 }
             Foo.prototype
                 { method: ... }
                 Object.prototype

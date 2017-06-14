@@ -10,7 +10,7 @@ JavaScriptはプロトタイプベースが採用されている唯一の広範�
 
 > **注意:** 単に`Bar.prototype = Foo.prototype`を使った場合、両方のオブジェクトは、
 > **同じ**プロトタイプを共有する事になります。その為、片方のオブジェクトのプロトタイプの変更は
-> もう一方のオブジェクトに影響します。大部分の場合、このような影響を及ぼしたく無いと思います。
+> もう一方のオブジェクトに影響します。殆どの場合、このような影響を及ぼしたく無いと思います。
 
     function Foo() {
         this.value = 42;
@@ -33,7 +33,7 @@ JavaScriptはプロトタイプベースが採用されている唯一の広範�
     // プロトタイプチェーンの結果
     test [instance of Bar]
         Bar.prototype [instance of Foo] 
-            { foo: 'Hello World' }
+            { foo: 'Hello World', value: 42 }
             Foo.prototype
                 { method: ... }
                 Object.prototype

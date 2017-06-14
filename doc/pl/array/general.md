@@ -1,6 +1,6 @@
 ## Iterowanie po tablicach oraz właściwościach tablic
 
-Mimo że tablice w JavaScript są obiektami, nie ma dobrych powodów aby używać 
+Mimo, że tablice w JavaScript są obiektami, nie ma dobrych powodów, aby używać 
 [`pętli for in`](#object.forinloop) do iteracji po nich. W rzeczywstości istnieje 
 wiele dobrych powodów **przeciwko** wykorzystaniu `for in` na tablicach.
 
@@ -9,9 +9,9 @@ wiele dobrych powodów **przeciwko** wykorzystaniu `for in` na tablicach.
 > tablice asocjacyjne **zachowują** porządek, natomiast obiekty **nie zachowują**.
 
 Ponieważ pętla `for in` wylicza wszystkie właściwości, które są wewnątrz 
-łańcucha prototypów i jedynym sposobem aby wykluczyć te właściwości jest użycie 
-[`hasOwnProperty`](#object.hasownproperty), ale wówczas pętla staje się 
-**dwadzieście razy** wolniejsza od normalnej pętli `for`.
+łańcucha prototypów, jedynym sposobem, aby wykluczyć te właściwości, jest użycie 
+[`hasOwnProperty`](#object.hasownproperty). Wówczas pętla staje się jednak
+**dwadzieścia razy** wolniejsza od normalnej pętli `for`.
 
 ### Iteracja
 
@@ -26,10 +26,10 @@ użyć klasycznej pętli `for`.
 W powyższym przykładzie jest jeszcze jeden dodatkowy haczyk. Jest to zbuforowanie 
 długości tablicy poprzez `l = list.length`.
 
-Mimo że właściwość `length` jest zdefiniowana wewnątrz tablicy, istnieje nadal 
-dodatkowy koszt na wyszukiwanie tej właściwości przy każdej iteracji w pętli. 
-Chociaż najnowsze silniki JavaScript **mogą** zastosować w tym 
-przypadku optymalizację. Nie ma jednak możliwość ustalenia czy kod będzie wykonywany w jednym 
+Mimo, że właściwość `length` jest zdefiniowana wewnątrz tablicy, istnieje nadal 
+dodatkowy koszt wyszukiwania tej właściwości przy każdej iteracji w pętli. 
+Najnowsze silniki JavaScript **mogą** zastosować w tym 
+przypadku optymalizację. Nie ma jednak możliwości ustalenia, czy kod będzie wykonywany w jednym 
 z tych nowych silników, czy też nie.
 
 W rzeczywistości pominięcie buforowania długości tablicy może spowodować, że pętla 

@@ -3,8 +3,11 @@
 Since JavaScript is asynchronous, it is possible to schedule the execution of a 
 function using the `setTimeout` and `setInterval` functions.
 
-> **Note:** Timeouts are **not** part of the ECMAScript Standard. They are
-> implemented as part of the [DOM][1].
+> **Note:** Timeouts are **not** part of the ECMAScript standard. They were
+> implemented in [BOM, or DOM Level 0][1], which are never defined nor
+> documented formally. No recommended specification has been published so far,
+> however, they are currently being standardized by [HTML5][2]. Due to this 
+> nature, the implementation may vary from browsers and engines.
 
     function foo() {}
     var id = setTimeout(foo, 1000); // returns a Number > 0
@@ -33,7 +36,7 @@ refers to the global object.
     new Foo();
 
 
-> **Note:** As `setTimeout` takes a **function object** as its first parameter, an
+> **Note:** As `setTimeout` takes a **function object** as its first parameter, a
 > common mistake is to use `setTimeout(foo(), 1000)`, which will use the 
 > **return value** of the call `foo` and **not** `foo`. This is, most of the time, 
 > a silent error, since when the function returns `undefined` `setTimeout` will 
@@ -115,8 +118,7 @@ specifically.
 `setTimeout` and `setInterval` can also take a string as their first parameter.
 This feature should **never** be used because it internally makes use of `eval`.
 
-> **Note:** Since the timeout functions are **not** specified by the ECMAScript
-> standard, the exact workings when a string is passed to them might differ in
+> **Note:** The exact workings when a string is passed to them might differ in
 > various JavaScript implementations. For example, Microsoft's JScript uses
 > the `Function` constructor in place of `eval`.
 
@@ -146,12 +148,14 @@ function that will get called by either of the timeout functions.
 
     // Instead use an anonymous function
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
-> **Note:** While it is also possible to use the syntax 
-> `setTimeout(foo, 1000, a, b, c)`, it is not recommended, as its use may lead
-> to subtle errors when used with [methods](#function.this). 
+> **Note:** While it is also possible to use `setTimeout(foo, 1000, 1, 2, 3)`
+> syntax, it is not recommended, as its use may lead
+> to subtle errors when used with [methods](#function.this).
+> Furthermore, the syntax might not work in some JavaScript implementations.
+> For example, Microsoft's Internet Explorer [does **not** pass the arguments directly to the callback](3).
 
 ### In Conclusion
 
@@ -163,5 +167,6 @@ be passed that then takes care of the actual call.
 Furthermore, the use of `setInterval` should be avoided because its scheduler is not
 blocked by executing JavaScript.
 
-[1]: http://en.wikipedia.org/wiki/Document_Object_Model "Document Object Model"
-
+[1]: http://www.nczonline.net/blog/2009/09/29/web-definitions-dom-ajax-and-more/ "Web definitions: DOM, Ajax, and more"
+[2]: http://www.w3.org/TR/2014/WD-html5-20140617/webappapis.html#timers "6 Web application APIs - HTML5"
+[3]: http://msdn.microsoft.com/en-us/library/ie/ms536753(v=vs.85).aspx "setTimeout method (Internet Explorer)"

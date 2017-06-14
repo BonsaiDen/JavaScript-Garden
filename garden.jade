@@ -1,10 +1,11 @@
-!!! 5
+doctype html
 html(lang=language)
   head
     title #{title}
     meta(charset='utf-8')
     meta(name='description', content=description)
     meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='shortcut icon' href='/' + pathPrefix + 'favicon.ico?v=2')
 
     - if (language === baseLanguage)
       link(rel='stylesheet', href='style/garden.css', media='all')
@@ -23,7 +24,7 @@ html(lang=language)
     // Navigation
     nav(id='nav_main')
       div
-        ul 
+        ul
           - each lang in languages
             li(class=lang.id === language ? 'active' : '')
               - if (lang.id === baseLanguage)
@@ -40,12 +41,11 @@ html(lang=language)
             h1
               a(href='#' + section.link) #{section.title}
 
-            - if (section.parsed.index || section.articles.length > 0)
-              ul
-                  
-                - each article in section.articles
-                  li
-                    a(href='#' + article.link)!=article.title
+            ul
+                - if (section.articles.length > 0 && !section.isIntro)
+                    - each article in section.articles
+                      li
+                        a(href='#' + article.link)!=article.title
 
     // Mobile navigation
     nav(id='nav_mobile')
@@ -54,7 +54,7 @@ html(lang=language)
 
       a(id='nav_next_section', href='#') next section
         span(class='nav_section_name') section name
-      
+
       a(id='show_menu') show menu
 
     // Sections
@@ -64,38 +64,32 @@ html(lang=language)
         // Introduction
         header(id=section.link + '.intro')
           h1 #{section.title}
-          - if (section.parsed.index)
-            div!=section.parsed.index.text
+          - if (section.index)
+            div!=section.index.text
 
         // Articles
         - each article in section.articles
           article(id=article.link)
             h2!=article.title
 
-            - each sub in article.parsed.subs
+            - each sub in article.subs
               div!=sub
 
     // Footer
     footer
-      p Copyright &copy; 2011. Built with
-        | 
-        a(href='http://nodejs.org/') Node.js 
+      p Copyright &copy;. Built with
+        |
+        a(href='http://nodejs.org/') Node.js
         | using a
-        a(href='https://github.com/visionmedia/jade/') jade 
-        | template. 
-        | Hosted by 
-        a(href='http://cramerdev.com') Cramer Development
-        .
+        a(href='https://github.com/visionmedia/jade/') jade
+        | template.
 
-    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js')
-    
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js')
+
     - if (language === baseLanguage)
       script(src='javascript/prettify.js')
-      script(src='javascript/plugin.js')
       script(src='javascript/garden.js')
-    
+
     - else
       script(src='../javascript/prettify.js')
-      script(src='../javascript/plugin.js')
       script(src='../javascript/garden.js')
-

@@ -34,7 +34,7 @@ Mikäli suoritettava koodi blokkaa katkaisufunktion kutsun, `setInterval` lisä�
     function foo(){
         // jotain joka blokkaa sekunnin ajaksi
     }
-    setInterval(foo, 1000);
+    setInterval(foo, 100);
 
 Yllä olevassa koodissa `foo`-funktiota kutsutaan, jonka jälleen se blokkaa sekunnin ajan.
 
@@ -46,7 +46,7 @@ Helpoin ja joustavin tapa on käyttää `setTimeout`-funktiota funktiossa itsess
 
     function foo(){
         // jotain joka blokkaa sekunnin ajaksi
-        setTimeout(foo, 1000);
+        setTimeout(foo, 100);
     }
     foo();
 
@@ -99,10 +99,10 @@ Tämän lisäksi on suositeltavaa olla **käyttämättä** merkkijonoja parametr
 
     // Käytä nimetöntä funktiota sen sijaan
     setTimeout(function() {
-        foo(a, b, c);
+        foo(1, 2, 3);
     }, 1000)
 
-> **Huomio:** Vaikka syntaksi `setTimeout(foo, 1000, a, b, c)` onkin mahdollinen, ei sen käyttöä suositella. Tämä johtuu siitä, että sen käyttö voi johtaa virheisiin erityisesti [metodien](#function.this) kanssa.
+> **Huomio:** Vaikka syntaksi `setTimeout(foo, 1000, 1, 2, 3)` onkin mahdollinen, ei sen käyttöä suositella. Tämä johtuu siitä, että sen käyttö voi johtaa virheisiin erityisesti [metodien](#function.this) kanssa.
 
 ### Yhteenveto
 

@@ -8,8 +8,8 @@
 
 `hasOwnProperty` 是 JavaScript 中唯一一个处理属性但是**不**查找原型链的函数。
 
-    // 修改Object.prototype
-    Object.prototype.bar = 1; 
+    // 修改 Object.prototype
+    Object.prototype.bar = 1;
     var foo = {goo: undefined};
     
     foo.bar; // 1
@@ -18,8 +18,8 @@
     foo.hasOwnProperty('bar'); // false
     foo.hasOwnProperty('goo'); // true
 
-只有 `hasOwnProperty` 可以给出正确和期望的结果，这在遍历对象的属性时会很有用。
-**没有**其它方法可以用来排除原型链上的属性，而不是定义在对象*自身*上的属性。
+只有 `hasOwnProperty` 可以给出正确和期望的结果。可以查看 [`for in` 循环](#object.forinloop)
+章节来获取关于在迭代遍历对象属性的时候，何时使用 `hasOwnProperty` 的更多信息。
 
 ###`hasOwnProperty` 作为属性
 
@@ -35,7 +35,7 @@ JavaScript **不会**保护 `hasOwnProperty` 被非法占用，因此如果一�
 
     foo.hasOwnProperty('bar'); // 总是返回 false
 
-    // 使用其它对象的 hasOwnProperty，并将其上下为设置为foo
+    // 使用其它对象的 hasOwnProperty，并将其上下文设置为 foo
     ({}).hasOwnProperty.call(foo, 'bar'); // true
 
 ###结论
@@ -44,4 +44,3 @@ JavaScript **不会**保护 `hasOwnProperty` 被非法占用，因此如果一�
 同时在使用 [`for in` loop](#object.forinloop) 遍历对象时，推荐**总是**使用 `hasOwnProperty` 方法，
 这将会避免[原型](#object.prototype)对象扩展带来的干扰。
 
-[30]: http://cnblogs.com/sanshi/

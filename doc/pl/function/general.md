@@ -1,6 +1,6 @@
 ## Deklaracje funkcji i wyrażenia funkcyjne
 
-Funcje w języku JavaScript są [typami pierwszoklasowymi][1], co oznacza, że mogą 
+Funkcje w języku JavaScript są [typami pierwszoklasowymi][1], co oznacza, że mogą 
 być przekazywane jak każda inna wartość. Jednym z typowych zastosowań tej cechy 
 jest przekazywanie *anonimowej funkcji* jako callback do innej, prawdopodobnie 
 asynchronicznej funkcji.

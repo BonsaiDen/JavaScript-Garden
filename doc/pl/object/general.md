@@ -1,6 +1,6 @@
 ## Wykorzystanie obiektów i ich właściwości
 
-Wszystko w JavaScripcie zachowuje sie jak obiekt, z dwoma wyjątkami
+Wszystko w JavaScripcie zachowuje się jak obiekt, z dwoma wyjątkami
 [`null`](#core.undefined) oraz [`undefined`](#core.undefined). 
 
     false.toString(); // 'false'
@@ -17,7 +17,7 @@ liczby.
 
     2.toString(); // wyrzuca błąd SyntaxError
 
-Istnieje kilka rozwiązań, dzieki którym literał liczbowy będzie zachowywał się 
+Istnieje kilka rozwiązań, dzięki którym literał liczbowy będzie zachowywał się 
 jak obiekt.
 
     2..toString(); // druga kropka jest poprawnie rozpoznana
@@ -31,8 +31,8 @@ ponieważ obiekty składają się głównie z mapowań pomiędzy nazwanymi wła�
 a wartościami dla tych atrybutów.
 
 Używając literału obiektu - notacji `{}` - istnieje możliwość stworzenia obiektu prostego.
-Ten nowy obiekt bedzie [dziedziczył](#object.prototype) z `Object.prototype` oraz 
-nie bedzie posiadał żadnych [własnych właściwości](#object.hasownproperty).
+Ten nowy obiekt będzie [dziedziczył](#object.prototype) z `Object.prototype` oraz 
+nie będzie posiadał żadnych [własnych właściwości](#object.hasownproperty).
 
     var foo = {}; // nowy, pusty obiekt
 
@@ -44,7 +44,7 @@ nie bedzie posiadał żadnych [własnych właściwości](#object.hasownproperty)
 Właściwości obiektu można uzyskać na dwa sposoby - poprzez notację z kropką
 lub z nawiasami kwadratowymi.
     
-    var foo = {name: 'Kitten'}
+    var foo = {name: 'kitten'}
     foo.name; // kitten
     foo['name']; // kitten
     
@@ -60,7 +60,7 @@ błędu podczas odczytu nieistniejącej właściwości.
 
 ### Usuwanie właściwości
 
-Jedynym sposobem na faktycze usunięcie własności z obiektu jest użycie operatora 
+Jedynym sposobem na faktyczne usunięcie własności z obiektu jest użycie operatora 
 `delete`. Ustawienie własności na `undefined` lub `null` usunie tylko *wartość* 
 związaną z własnością, ale nie usunie to *klucza* (nazwy własności) z obiektu.
 
@@ -90,9 +90,9 @@ została usunięta i dlatego nie została wypisana.
     };
 
 Nazwy właściwości obiektu mogą być zarówno zapisane jako tekst (bez cudzysłowów 
-lub apostrofów) lub jako string (w cudzisłowach lub apostrofach). 
+lub apostrofów) lub jako string (w cudzysłowach lub apostrofach). 
 Ze względu na kolejne niedociągnięcie w parserze JavaScript,
-powyższy kod wyrzuci błąd `SyntaxError` dla implementacji JavaScript ponizej ECMAScript 5.
+powyższy kod wyrzuci błąd `SyntaxError` dla implementacji JavaScript poniżej ECMAScript 5.
 
 Ten błąd wynika z faktu, że `delete` jest *słowem kluczowym*, dlatego musi zostać 
 zapisany jako *string* (z cudzysłowami lub apostrofami), aby zapewnić, że zostanie 

@@ -1,7 +1,7 @@
 ## `this` 的工作原理
 
 JavaScript 有移到完全部屬於其他語言處理 `this` 的處理機制。
-在 **五** 種物同的情況下， `this` 指向的個不相同
+在 **五** 種不同的情況下， `this` 指向的各不相同
 
 ### 全域變數
 
@@ -14,12 +14,12 @@ JavaScript 有移到完全部屬於其他語言處理 `this` 的處理機制。
 
     foo();
 
-這裡 `this` 也會指向 *全域* 對象。
+這裡 `this` 也會指向 *全域* 物件。
 
 > **ES5 注意:** 在嚴格模式下，不存在全域變數。
 > `this` 將會是 `undefined`。
 
-### 方法調用
+### 呼叫一個方法
 
     test.foo(); 
 
@@ -59,7 +59,7 @@ mis-design of the language because it **never** has any practical use.
             // this is set to the global object
         }
         test();
-    }
+    };
 
 A common misconception is that `this` inside of `test` refers to `Foo`; while in
 fact, it **does not**.
@@ -73,11 +73,20 @@ local variable inside of `method` that refers to `Foo`.
             // Use that instead of this here
         }
         test();
-    }
+    };
 
 `that` is just a normal variable name, but it is commonly used for the reference to an 
 outer `this`. In combination with [closures](#function.closures), it can also 
 be used to pass `this` values around.
+
+As of ECMAScript 5 you can use the `bind` method combined with an anonymous function to achieve the same result. 
+
+    Foo.method = function() {
+        var test = function() {
+            // this now refers to Foo
+        }.bind(this);
+        test();
+    };
 
 ### Assigning Methods
 

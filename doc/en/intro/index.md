@@ -16,10 +16,12 @@ the excellent [guide][1] on the Mozilla Developer Network.
 This guide is the work of two lovely [Stack Overflow][2] users, [Ivo Wetzel][3]
 (Writing) and [Zhang Yi Jiang][4] (Design).
 
+It's currently maintained by [Tim Ruffles](http://truffles.me.uk).
+
 ## Contributors
 
- - [Caio Romão][5] (Spelling corrections)
- - [Andreas Blixt][6] (Language corrections)
+- Too many to list here, [see all contributors](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors).
+
 
 ## Hosting
 

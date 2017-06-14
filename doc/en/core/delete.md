@@ -39,7 +39,7 @@ Explicitly set properties can be deleted normally.
     obj.y; // undefined
 
 In the example above, `obj.x` and `obj.y` can be deleted because they have no 
-`DontDelete` atribute. That's why the example below works too.
+`DontDelete` attribute. That's why the example below works too.
 
     // this works fine, except for IE:
     var GLOBAL_OBJECT = this;

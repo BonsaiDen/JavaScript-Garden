@@ -6,7 +6,7 @@
         {
             "title": "Introducción",
             "dir": "intro",
-            "articles": []
+            "articles": ["index"]
         },
         {
             "title": "Objetos",
@@ -39,7 +39,7 @@
             ]
         },
         {
-            "title": "Types",
+            "title": "Tipos",
             "dir": "types",
             "articles": [
                 "equality",
