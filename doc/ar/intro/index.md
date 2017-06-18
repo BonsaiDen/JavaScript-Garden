@@ -1,14 +1,10 @@
-## Intro
+## المقدمة
 
-**JavaScript Garden** is a growing collection of documentation about the most 
-quirky parts of the JavaScript programming language. It gives advice to 
-avoid common mistakes and subtle bugs, as well as performance issues and bad 
-practices, that non-expert JavaScript programmers may encounter on their 
-endeavours into the depths of the language.
+**حديقة جافاسكريبت** هي مجموعة توثيق متزايدة عن الجوانب الأكثر غرابة في لغة البرمجة جافاسكريبت. وذلك بإسداء نصائح لتفادي الإخطاء الشائعة والخفية، وكذلك مشاكل الأداء والسلوكيات السيئة التي قد يصطدم بها المبتدؤون في لغة البرمجة جافاسكريبت في غضون بذل الجهد لتعلم اللغة بعمق.
 
 JavaScript Garden does **not** aim to teach you JavaScript. Former knowledge
 of the language is strongly recommended in order to understand the topics covered
-in this guide. In order to learn the basics of the language, please head over to 
+in this guide. In order to learn the basics of the language, please head over to
 the excellent [guide][1] on the Mozilla Developer Network.
 
 ## The Authors
@@ -31,7 +27,7 @@ with a mirror at [JavaScriptGarden.info][8].
 ## License
 
 JavaScript Garden is published under the [MIT license][9] and hosted on
-[GitHub][10]. If you find errors or typos please [file an issue][11] or a pull 
+[GitHub][10]. If you find errors or typos please [file an issue][11] or a pull
 request on the repository. You can also find us in the [JavaScript room][12] on
 Stack Overflow chat.
 
