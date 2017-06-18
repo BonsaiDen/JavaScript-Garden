@@ -2,29 +2,24 @@
 
 **حديقة جافاسكريبت** هي مجموعة توثيق متزايدة عن الجوانب الأكثر غرابة في لغة البرمجة جافاسكريبت. وذلك بإسداء نصائح لتفادي الإخطاء الشائعة والخفية، وكذلك مشاكل الأداء والسلوكيات السيئة التي قد يصطدم بها المبتدؤون في لغة البرمجة جافاسكريبت في غضون بذل الجهد لتعلم اللغة بعمق.
 
-JavaScript Garden does **not** aim to teach you JavaScript. Former knowledge
-of the language is strongly recommended in order to understand the topics covered
-in this guide. In order to learn the basics of the language, please head over to
-the excellent [guide][1] on the Mozilla Developer Network.
+**ليس** هدف حديقة جافاسكريبت تعليمك لغة البرمجة جافاسكريبت. المعرفة المسبقة باللغة جافاسكريبت هم أمر ضروري لفهم المواضيع التي تم تناولها في هذا الدليل. لتعلم أساسيات اللغة، الرجاء الرجوع إلى الدليل [الرائع][1] الخاص بشبكة موزيلا للمطورين.
 
-## The Authors
+## المؤلفون
 
-This guide is the work of two lovely [Stack Overflow][2] users, [Ivo Wetzel][3]
-(Writing) and [Zhang Yi Jiang][4] (Design).
+هذا العمل هو نتاج عمل مستخدمين من مستخدمي [Stack Overflow][2]: [Ivo Wetzel][3] (تحرير) و [Zhang Yi Jiang][4] (تصميم).
 
-It's currently maintained by [Tim Ruffles](http://truffles.me.uk).
+حاليا تتم الصيانة من طرف [Tim Ruffles](http://truffles.me.uk).
 
-## Contributors
+## المساهمون
 
-- Too many to list here, [see all contributors](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors).
+- هناك العديد منهم هنا [شاهد كل المساهمين](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
 
 
-## Hosting
+## الاستضافة
 
-JavaScript Garden is hosted on GitHub, but [Cramer Development][7] supports us
-with a mirror at [JavaScriptGarden.info][8].
+تتم استضافة حديقة جافاسكريبت على GitHub، لكن [Cramer Development][7] تدعمنا بموقع مرآة على [JavaScriptGarden.info][8].
 
-## License
+## الترخيص
 
 JavaScript Garden is published under the [MIT license][9] and hosted on
 [GitHub][10]. If you find errors or typos please [file an issue][11] or a pull
