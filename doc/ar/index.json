@@ -1,15 +1,15 @@
 {
-    "title": "JavaScript Garden",
-    "langTitle": "JavaScript Garden in English",
-    "description": "A Guide to JavaScript's Quirks and Flaws.",
+    "title": "حديقة جافاسكريبت",
+    "langTitle": "حديقة جافاسكريبت باللغة العربية",
+    "description": "دليل عيوب ومراوغات جافاسكريبت",
     "sections": [
         {
-            "title": "Intro",
+            "title": "مقدمة",
             "dir": "intro",
             "articles": ["index"]
         },
         {
-            "title": "Objects",
+            "title": "الكائنات",
             "dir": "object",
             "articles": [
                 "general",
@@ -19,7 +19,7 @@
             ]
         },
         {
-            "title": "Functions",
+            "title": "الدَّوال",
             "dir": "function",
             "articles": [
                 "general",
@@ -31,7 +31,7 @@
             ]
         },
         {
-            "title": "Arrays",
+            "title": "المصفوفات",
             "dir": "array",
             "articles": [
                 "general",
@@ -39,7 +39,7 @@
             ]
         },
         {
-            "title": "Types",
+            "title": "الأنواع",
             "dir": "types",
             "articles": [
                 "equality",
@@ -49,7 +49,7 @@
             ]
         },
         {
-            "title": "Core",
+            "title": "اللب",
             "dir": "core",
             "articles": [
                 "eval",
@@ -59,7 +59,7 @@
             ]
         },
         {
-            "title": "Other",
+            "title": "أشياء أخرى",
             "dir": "other",
             "articles": [
                 "timeouts"
