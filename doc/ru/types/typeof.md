@@ -48,7 +48,7 @@
 
 В примере выше `Object.prototype.toString` вызывается со значением [this](#function.this), ссылающимся на объект, значение `[[Class]]` которого требуется получить.
 
-> **ES5 Замечание:** Для удобства, в ECMAScript 5 возвращаемое значение `Object.prototype.toString` для `null` и `undefined` было изменено с `Object` на `Null` и `Undefined` соответственно.
+> **Замечание по ES5:** Для удобства, в ECMAScript 5 возвращаемое значение `Object.prototype.toString` для `null` и `undefined` было изменено с `Object` на `Null` и `Undefined` соответственно.
 
 ### Проверка переменных на определённость
 
