@@ -9,7 +9,7 @@ Thank you for being kind enough to help out!
 
 ## Testing locally
 
-1. Run `npm run build` to build
+1. Run `npm run build.js` to build
 1. Run a webserver from the root of the repo to view
 
 ## Getting changes merged
