@@ -1,20 +1,20 @@
 ﻿## A `this` mágikus működése
 
-A `this` kicsit másképp működik a JavaScriptben mint ahogy azt megszokhattuk
-más nyelvekben. Ugyanis pontosan **ötféle** módja lehet annak hogy a `this` 
+A `this` kicsit másképp működik a JavaScriptben, mint ahogy azt megszokhattuk
+más nyelvekben. Ugyanis pontosan **ötféle** módja lehet annak, hogy a `this` 
 éppen mire utal a nyelvben.
 
 ### A Globális hatókör
 
 	this;
 	
-Amikor globális hatókörben van használva a this, akkor pontosan a *globális* objektumra utal.
+Amikor globális hatókörben van használva a `this`, akkor pontosan a *globális* objektumra utal.
 
 ### Függvény híváskor
 
 	foo();
 	
-Itt, a `this` megint a *globális* objektumra fog utalni.
+Itt a `this` megint a *globális* objektumra fog utalni.
 
 > **ES5 Megjegyzés:** Strict módban a globális eset **nem létezik** többé.
 > Ezekben az esetekben a `this` értéke undefined lesz.
@@ -80,8 +80,8 @@ lokálisan elhelyezni a `method`-on belül, ami már valóban a kívánt `this`-
     };
 	
 A `that` tuladjonképpen egy mezei változónév (nem kulcsszó), de sokszor használják arra,
-hogy egy másik `this`-re hivatkozzanak vele. A [colsureökkel](#function.closures) kombinálva
-ez a módszer arra is használható hogy `this`-eket passzolgassunk a vakvilágban és mégtovább.
+hogy egy másik `this`-re hivatkozzanak vele. A [closure-ökkel](#function.closures) kombinálva
+ez a módszer arra is használható, hogy `this`-eket passzolgassunk a vakvilágban és még tovább.
 
 ### Eljárások értékül adása
 

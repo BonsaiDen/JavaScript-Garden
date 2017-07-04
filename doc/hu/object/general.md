@@ -1,6 +1,6 @@
 ﻿## Objektumok és mezők használata
 
-A JavaSciprtben minden objektumként működik, a [`null`](#core.undefined) és az [`undefined`](#core.undefined) kivételével.
+A JavaScriptben minden objektumként működik, a [`null`](#core.undefined) és az [`undefined`](#core.undefined) kivételével.
 
     false.toString(); // 'hamis'
     [1, 2, 3].toString(); // '1,2,3'
@@ -47,11 +47,11 @@ Egy objektum mezői kétféle módon érhetőek el, vagy az 'objektum.mezőnév'
     foo.1234; // SyntaxError
     foo['1234']; // működik
 
-A két jelölés majdnem egyenértékűen használható, kivéve, hogy a szögletes zárójelekkel dinamkusan állíthatunk be mezőket és olyan neveket is választhatunk, amik amúgy szintaxis hibához vezetnének (Fordító: mivel a neveket stringbe kell rakni, megadhatunk a JS által "lefoglalt" kulcsszavakat is mezőnévként, habár ennek használata erősen kerülendő).
+A két jelölés majdnem egyenértékűen használható, kivéve, hogy a szögletes zárójelekkel dinamikusan állíthatunk be mezőket és olyan neveket is választhatunk, amik amúgy szintaxis hibához vezetnének (Fordító: mivel a neveket stringbe kell rakni, megadhatunk a JS által "lefoglalt" kulcsszavakat is mezőnévként, habár ennek használata erősen kerülendő).
 
 ### Mezők törlése
 
-Egyetlen módon lehet mezőt törölni egy objektumból ez pedig a `delete` operátor
+Egyetlen módon lehet mezőt törölni egy objektumból, ez pedig a `delete` operátor
 használata; a mező értékének `undefined`-ra vagy `null`-ra való állítása csak
 magára az értékre van kihatással, de a kulcs ugyanúgy megmarad az objektumban.
 
@@ -84,7 +84,7 @@ Az objektumok mezőnevei mind stringként, mind egyszerű szövegként (Ford.: a
 leírhatóak. A JavaScript értelmező hibája miatt, a fenti kód azonban `SyntaxErrort` eredményez ECMAScript 5 előtti verzió esetén.
 
 Ez a hiba onnan ered, hogy a `delete` egy *kulcsszó*, viszont érdemes *string literálként*
-leírni hogy helyesen megértsék a régebbi JavaScript motorok is.
+leírni, hogy helyesen megértsék a régebbi JavaScript motorok is.
 
 [1]: http://en.wikipedia.org/wiki/Hashmap
 

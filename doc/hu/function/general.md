@@ -9,7 +9,7 @@ egy másik -aszinkron- függvény paramétereként.
 
     function foo() {}
 	
-Ez a függvény felkerül a scope tetejére ([hoisting](#function.scopes)), mielőtt a kód végrehajtása megtörténne. Így abban a scopeban ahol *definiálták*, *mindenhol* elérhető, 
+Ez a függvény felkerül a scope tetejére ([hoisting](#function.scopes)), mielőtt a kód végrehajtása megtörténne. Így abban a scope-ban, ahol *definiálták*, *mindenhol* elérhető, 
 még abban a trükkös esetben is, hogyha a kód azon pontján hívjuk ezt a függvényt, mielőtt
 definiáltuk volna (látszólag).
 
@@ -41,7 +41,7 @@ Egy másik érdekes eset, amikor névvel ellátott függvényeket adunk érték�
     }
     bar(); // ReferenceError
 
-Ebben a példában a `bar`t önmagában nem lehet elérni egy külső scopeból (utolsó sor), 
+Ebben a példában a `bar`t önmagában nem lehet elérni egy külső scope-ból (utolsó sor), 
 mivel egyből értékül adtuk a `foo` változónak. Ennek ellenére a `bar`on belül elérhető
 a `bar` név. A tanulság az, hogy a függvény önmagát *mindig* eléri a saját scopeján belül, és ez a JavaScriptben található [névfeloldásnak](#function.scopes) köszönhető.
 

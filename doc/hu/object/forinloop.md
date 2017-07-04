@@ -1,13 +1,13 @@
 ﻿## A `for in` ciklus
 
-Csak úgy mint a jó öreg `in` operátor, a `for in` is bejárja az egész
+Csak úgy, mint a jó öreg `in` operátor, a `for in` is bejárja az egész
 prototípus láncot, amikor egy objektum mezőin próbálnánk iterálni.
 
 > **Megjegyzés:** A `for in` ciklus **nem** fog iterálni azokon a mezőkön,
 > amelyeknek az `enumerable` tulajdonsága `false`-ra van állítva. Például a 
 > `length` mező nem kerül az iterációba amikor egy tömbön iterálnánk végig.
     
-    // Mérgezzük Object.prototypeot!
+    // Mérgezzük Object.prototype-ot!
     Object.prototype.bar = 1;
 
     var foo = {moo: 2};
@@ -32,10 +32,10 @@ lakó [`hasOwnProperty`](#object.hasownproperty) függvény használatával érh
         }
     }
 
-Ez az egyetlen helyes útja annak hogy az objektum saját mezőin iteráljunk csak végig.
+Ez az egyetlen helyes útja annak, hogy az objektum saját mezőin iteráljunk csak végig.
 Mivel a `hasOwnProperty`-t használjuk, így csak a várt `moo`-t fogja kiírni. Tehén jó
 kódunk van! Hogyha a `hasOwnProperty`-t kihagynánk, a kódunk ki lenne téve nem várt
-hibáknak, amik pl. abból fakadnak hogy valaki ocsmányul kiterjesztette az
+hibáknak, amik pl. abból fakadnak, hogy valaki ocsmányul kiterjesztette az
 `Object.prototype`-t.
 
 Például, ha a [Prototype][1] frameworköt használjuk, és nem ilyen stílusban írjuk a
