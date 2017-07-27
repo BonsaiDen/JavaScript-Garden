@@ -26,14 +26,14 @@ meglepetéseket.
 
 ### Natív típusok konstruktorai
 
-A jó hír az, hogy a natív típusok mint a `Number` és a `String` különféle
-módon viselkednek hogyha a `new` kulcsszóval avagy anélkül vannak inicializálva.
+A jó hír az, hogy a natív típusok, mint a `Number` és a `String` különféle
+módon viselkednek, hogy ha a `new` kulcsszóval avagy anélkül vannak inicializálva.
 
     new Number(10) === 10;     // Hamis, Objektum vs. Szám
     Number(10) === 10;         // Igaz, Szám vs. szám
     new Number(10) + 0 === 10; // Igaz, az implicit konverziónak hála
 
-Ha egy natív típust mint a `Number` konstruktorként kezelünk, akkor egy új
+Ha egy natív típust, mint a `Number` konstruktorként kezelünk, akkor egy új
 `Number` objektumot kapunk. De ha kihagyjuk a `new` kulcsszót akkor a `Number`
 egy egyszerű konverter függvényként fog viselkedni.
 

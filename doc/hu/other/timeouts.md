@@ -3,16 +3,16 @@
 Mivel a JavaScript aszinkron, a `setTimeout` és `setInterval` használatával
 lehetséges késleltetni a kódok lefutási idejét.
 
-> **Megjegyzés:** A timeout fv.-ek **nem** részei az ECMAScript Standardnek.
+> **Megjegyzés:** A timeout függvények **nem** részei az ECMAScript Standardnek.
 > Mivel a [DOM][1] részeként lettek implementálva.
 
     function foo() {}
     var id = setTimeout(foo, 1000); // Egy számmal (> 0) tér vissza
 
-Amikor a `setTimeout` függvényt meghívjuk, válaszul egy timeout ID-t kapunk
+Amikor a `setTimeout` függvényt meghívjuk, válaszul egy timeout ID-t kapunk,
 valamint be lesz ütemezve a `foo` függvényhívás, hogy **körülbelül** 1000 miliszekundum múlva fusson le a jövőben. A `foo` **egyszer** lesz végrehajtva.
 
-Az aktuális JavaScript motor időzítésétől függően, és annak figyelembe vételével
+Az aktuális JavaScript motor időzítésétől függően, és annak figyelembe vételével,
 hogy a JavaScript mindig egyszálú, tehát a megelőző kódok blokkolhatják a szálat,
 **soha** nem lehet biztonságosan meghatározni hogy valóban a kért időzítéssel 
 fog lefutni a kód amit megadtunk a `setTimeout`ban. Erre semmilyen biztosíték nincs.
@@ -40,8 +40,8 @@ utal.
 
 ### Híváshalmozás a `setInterval`al
 
-Míg a `setTimeout` csak egyszer futtatja le a megadott függvényt, a `setInterval`
-- ahogy a neve is mutatja - **minden** `X` miliszekundumban végrehajtja a 
+Míg a `setTimeout` csak egyszer futtatja le a megadott függvényt, a `setInterval` -
+ahogy a neve is mutatja - **minden** `X` miliszekundumban végrehajtja a 
 neki átadott kódot, használata pedig erősen kerülendő.
 
 Nagy hátulütője, hogy még akkor is ütemezi az újabb és újabb
@@ -62,7 +62,7 @@ futtatása először végzett.
 
 ### Hogyan Bánjunk El a Blokkolással
 
-A legkönnyebb és kontrollálhatóbb megoldásnak az bizonyul, hogyha a `setTimeout`
+A legkönnyebb és kontrollálhatóbb megoldásnak az bizonyul, ha a `setTimeout`
 függvényt a rögtön a foo-n belül használjuk.
 
     function foo(){
@@ -72,13 +72,13 @@ függvényt a rögtön a foo-n belül használjuk.
     foo();
 
 Ez nem csak egységbe zárja a `setTimeout` hívást, de meggátolja a felesleges hívások
-felhalmozását, és több irányítást ad a kezünkbe. A `foo` így magától eltudja
+felhalmozását, és több irányítást ad a kezünkbe. A `foo` így magától el tudja
 dönteni, hogy akarja-e újra futtatni önmagát vagy sem.
 
 ### Timeout Tisztogatás Kézzel
 
 A `clearTimeout` vagy `clearInterval` hívással tudjuk a timeoutjainkat 
-megszüntetni, természetesen attól függ hogy melyiket használjuk,
+megszüntetni, természetesen attól függ, hogy melyiket használjuk,
 hogy melyik `set` függvénnyel indítottuk útjára a timeoutunkat.
 
     var id = setTimeout(foo, 1000);
@@ -94,7 +94,7 @@ hívás törlésére, ezért bruteforce módszerekhez kell folyamodjunk.
         clearTimeout(i);
     }
 
-Persze ez csak véletlenszerű lövöldözés, semmi sem garantálja hogy a fenti 
+Persze ez csak véletlenszerű lövöldözés, semmi sem garantálja, hogy a fenti 
 módszerrel nem marad timeout a rendszerben (A ford.: például az ezredik timeout vagy
 afelett). Szóval egy másik módszer ennek megoldására, hogy feltételezzük hogy
 minden `setTimeout` hívással az azonosítók száma egyel növekszik.
@@ -106,8 +106,8 @@ minden `setTimeout` hívással az azonosítók száma egyel növekszik.
         clearTimeout(i);
     }
 
-Habár ez a megoldás minden böngészőben megy (egyenlőre), ez az azonosítókról született mondás nincs specifikációban rögzítve, és ennek megfelelően változhat. 
-Az ajánlott módszer továbbra is az, hogy kövessük nyomon az összes timeout azonosítót amit generáltunk, és így ki is tudjuk őket rendesen törölni.
+Habár ez a megoldás minden böngészőben megy (egyelőre), ez az azonosítókról született mondás nincs specifikációban rögzítve, és ennek megfelelően változhat. 
+Az ajánlott módszer továbbra is az, hogy kövessük nyomon az összes timeout azonosítót, amit generáltunk, és így ki is tudjuk őket rendesen törölni.
 
 ### `eval` A Színfalak Mögött
 
@@ -158,7 +158,7 @@ a timeout függvények által meg lesz hívva a későbbiekben.
 **Soha** ne használjunk stringeket a `setTimeout` vagy `setInterval` első
 paramétereiként. Ha argumentumokat kell átadni a meghívandó függvénynek, az 
 egyértelműen **rossz** kódra utal. Ebben az esetben a függvényhívás 
-lebonyolításához egy *anoním* függvény használata ajánlott.
+lebonyolításához egy *anonim* függvény használata ajánlott.
 
 Továbbá, mivel az ütemező kódja nem blokkolódik a JavaScript futás által, a 
 `setInterval` használata úgy általában kerülendő.

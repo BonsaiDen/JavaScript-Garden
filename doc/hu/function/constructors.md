@@ -1,6 +1,6 @@
 ﻿## Konstruktorok
 
-Csak úgy mint minden más, a konstruktorok működése szintén különbözik 
+Csak úgy, mint minden más, a konstruktorok működése szintén különbözik 
 a megszokottól. Itt minden függvényhívás amelyet a `new` kulcsszó előz meg, 
 konstruktor hívásnak számít.
 
@@ -19,7 +19,7 @@ Ha a konstruktor függvényben nincs `return` utasítás, akkor automatikusan a 
 
     var test = new Foo();
 	
-A fenti kódban a `Foo` függvényt mint konstruktort hívjuk meg, ami a test változóban
+A fenti kódban a `Foo` függvényt, mint konstruktort hívjuk meg, ami a test változóban
 egy új objektumot fog eredményezni. Ennek az objektumnak a `prototípusa` a Foo prototípusa lesz.
 
 Trükkös ugyan, de ha mégis van `return` utasítás az éppen konstruált függvényben, akkor
@@ -47,12 +47,12 @@ Hogyha kihagyjuk a `new` kulcsszó használatát, a függvény **nem** egy új o
     }
     Foo(); // undefined
 
-A [`this`](#function.this) JavaScript beli működésének köszönhetően, mégha le is
+A [`this`](#function.this) JavaScript beli működésének köszönhetően, még ha le is
 fut az előbbi kód, akkor a `this` helyére a *globális objektumot* képzeljük.
 
 ### Gyárak (Factory-k)
 
-Ahhoz, hogy teljesen eltudjuk hagyni a `new` kulcsszó használatát, a konstruktor
+Ahhoz, hogy teljesen el tudjuk hagyni a `new` kulcsszó használatát, a konstruktor
 függvény explicit értékkel kell visszatérjen.
 
     function Bar() {

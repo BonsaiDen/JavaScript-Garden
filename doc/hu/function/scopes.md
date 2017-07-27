@@ -214,8 +214,8 @@ ahhoz hogy meghívhatóak legyenek, először ki kell értékelni őket.
     ) // a függvény objektum visszatérítése
     () // az eredmény meghívása
 
-Persze más kifejezések is használhatóak arra hogy kiértékeljük és meghívjuk
-a függvény kifejezést, amelyek habár szintaxisukban eltérnek, ugyanazt eredményezik.
+Persze más kifejezések is használhatóak arra, hogy kiértékeljük és meghívjuk
+a függvény kifejezést, amelyek habár szintaxisukban eltérnek, ugyan azt eredményezik.
 
     // Még több stílus anonymus függvények azonnali hívásához...
     !function(){}()

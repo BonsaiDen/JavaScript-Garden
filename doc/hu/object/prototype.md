@@ -73,7 +73,7 @@ visszatérni.
 
 Alapjáraton, a JavaScript a prototype nevű mezőt használja a prototípus láncok
 kialakításához, de ettől függetlenül ez is ugyanolyan mező mint a többi, és 
-**bármilyen** értéket belehet neki állítani. Viszont a primitív típusokat egyszerűen
+**bármilyen** értéket be lehet neki állítani. Viszont a primitív típusokat egyszerűen
 figyelmen kívül fogja hagyni a feldolgozó.
 
     function Foo() {}
@@ -84,9 +84,9 @@ mezőkre és ezeknek az átállításával bele lehet szólni a prototípus lán
 
 ### Teljesítmény
 
-Értelemszerűen, minnél nagyobb a prototípus lánc, annál tovább tart egy-egy mező
+Értelemszerűen, minél nagyobb a prototípus lánc, annál tovább tart egy-egy mező
 felkeresése, és ez rossz hatással lehet a kód teljesítményére. Emellett, ha egy
-olyan mezőt próbálunk elérni amely nincs az adott objektum példányban, az mindig
+olyan mezőt próbálunk elérni, amely nincs az adott objektum példányban, az mindig
 a teljes lánc bejárását fogja eredményezni.
 
 Vigyázat! Akkor is bejárjuk a teljes láncot, amikor egy objektum mezőin próbálunk [iterálni](#object.forinloop).
@@ -98,7 +98,7 @@ definiált prototípust próbálunk kiegészíteni új kóddal.
 
 Ezt [monkey patching][1]-nek is hívják, és aktívan kerülendő, mivel megtöri 
 az *egységbe zárás* elvét. Habár ezt a technikát olyan népszerű framework-ök
-is használják mint a [Prototype][2], ettől függetlenül ne hagyjuk magunkat csőbe húzni;
+is használják, mint a [Prototype][2], ettől függetlenül ne hagyjuk magunkat csőbe húzni;
 nincs ésszerű indok arra, hogy összezavarjuk a beépített típusokat, további 
 *nem standard* saját funkcionalitással.
 

@@ -10,7 +10,7 @@ ajánlott mindig a tömb literált - `[]` jelölés - használni új tömbök l�
     new Array(3); // Eredmény: []
     new Array('3') // Eredmény: ['3']
 
-Abban az esetben, hogyha ez a konstruktor csak egy `szám` paramétert kap, akkor
+Abban az esetben, ha ez a konstruktor csak egy `szám` paramétert kap, akkor
 visszatérési értékül egy olyan tömböt fog létrehozni amelynek a `length` mezője
 akkorára van beállítva, ahogy azt megadtuk az argumentumban. Megjegyzendő hogy
 **csak** a `length` tulajdonság lesz ekkor beállítva; az egyes indexek külön-külön

@@ -22,12 +22,12 @@ Ez a kódrészlet egy új `Array` objektummá varázsolja az emlegetett `argumen
 
     Array.prototype.slice.call(arguments);
 	
-De, ez a konverzió meglehetősen **lassú** így egyáltalán **nem ajánlott** teljesítmény kirtikus
+De, ez a konverzió meglehetősen **lassú**, így egyáltalán **nem ajánlott** teljesítmény kirtikus
 alkalmazások írásakor.
 
 ### Argumentumok kezelése
 
-A következő módszer ajánlott arra az esetre hogyha az egyik függvény paramétereit egy-az-egyben
+A következő módszer ajánlott arra az esetre, hogy ha az egyik függvény paramétereit egy-az-egyben
 át szeretnénk adni egy másik függvény számára.
 
     function foo() {
@@ -37,7 +37,7 @@ A következő módszer ajánlott arra az esetre hogyha az egyik függvény param
         // sok okos kód ide
     }
 
-Egy másik trükk arra hogy teljesen független wrapper függvényeket gyártsunk, a `call`
+Egy másik trükk arra, hogy teljesen független wrapper függvényeket gyártsunk, a `call`
 és `apply` együttes használata.
 
     function Foo() {}
@@ -83,7 +83,7 @@ egyik paraméterének ezt a nevet választjuk.
 
 Azonban a *getterek* és *setterek* mindig létrejönnek, de ez ne zavarjon meg minket, mert
 semmiféle befolyása nincs a teljesítményre, pláne olyan kódban ahol sokkal több mindennel
-is foglalkozunk mint az `arguments` objetkumhoz való hozzáférés.
+is foglalkozunk, mint az `arguments` objetkumhoz való hozzáférés.
 
 > **ES5 Megjegyzés:** Ezek a **getterek** és **setterek** nem jönnek létre strict módban.
 

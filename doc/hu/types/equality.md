@@ -7,7 +7,7 @@ vizsgálatára
 
 Az egyenlőség vizsgálatot végző (egyik) operátort így jelöljük: `==`
 
-A JavaScript egy *gyengén típusos* nyelv. Ez azt jelenti hogy az egyenlőség
+A JavaScript egy *gyengén típusos* nyelv. Ez azt jelenti, hogy az egyenlőség
 operátor **típuskényszerítést** alkalmaz ahhoz, hogy össze tudjon hasonlítani
 két értéket.
     
@@ -21,9 +21,9 @@ két értéket.
     null         ==   undefined     // igaz
     " \t\r\n"    ==   0             // igaz
 
-A fenti táblázat szépen mutatja hogy mi a típuskényszerítés eredménye, és egyben
+A fenti táblázat szépen mutatja, hogy mi a típuskényszerítés eredménye, és egyben
 azt is, hogy miért rossz szokás a `==` használata. Szokás szerint, ez megint
-olyan fícsör ami nehezen követhető kódhoz vezethet a komplikált konverziós
+olyan fícsör, ami nehezen követhető kódhoz vezethet a komplikált konverziós
 szabályai miatt.
 
 Pláne, hogy a kényszerítés teljesítmény problémákhoz is vezet; ugyanis, mielőtt
@@ -34,7 +34,7 @@ a megfelelő típusra.
 
 Ez az operátor már **három** egyenlőségjelből áll: `===`.
 
-Ugyanúgy működik mint az előbbi, kivéve hogy ez a változat **nem** alkalmaz
+Ugyanúgy működik, mint az előbbi, kivéve hogy ez a változat **nem** alkalmaz
 típuskényszerítést az operandusai között.
 
     ""           ===   "0"           // hamis
@@ -49,12 +49,12 @@ típuskényszerítést az operandusai között.
 
 A felső eredmények sokkal egyértelműbbek és ennek köszönhetően sokkal hamarabb
 eltörik a kód egy-egy ellenőrzésen. Ettől sokkal hibatűrőbb lesz
-a produktumunk, és ráadásul teljesítménybeli gondjaink sem lesznek.
+a produktumunk, ráadásul teljesítménybeli gondjaink sem lesznek.
 
 ### Objektumok összehasonlítása
 
 Habár mind a `==`-t és a `===`-t is egyenlőség operátornak hívjuk, eltérően
-viselkednek hogyha legalább az egyik operandusuk egy objektum.
+viselkednek, hogy ha legalább az egyik operandusuk egy objektum.
 	
 	{} === {};                   // hamis
     new String('foo') === 'foo'; // hamis
