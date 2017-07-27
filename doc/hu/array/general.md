@@ -13,7 +13,7 @@ lassabb mint egy sima `for` ciklus.
 
 ### Iteráció
 
-Annak érdekébern hogy a legjobb teljesítményt érjük el a tömbökön való iteráció során,
+Annak érdekében, hogy a legjobb teljesítményt érjük el a tömbökön való iteráció során,
 a legjobb hogyha a klasszikus `for` ciklust használjuk.
 
     var list = [1, 2, 3, 4, 5, ...... 100000000];
@@ -27,7 +27,7 @@ a `l = list.length` kifejezés használatával.
 Habár a `length` tulajdonság mindig magán a tömbön van definiálva, még mindig
 lehet egy kis teljesítmény kiesés amiatt hogy minden iterációban újra meg kell
 keresni ezt a tulajdonságot. Persze a legújabb JavaScript motorok **talán**
-használnak erre optimalizációt, de nem lehet biztosan megmondani hogy ahol a kódunk
+használnak erre optimalizációt, de nem lehet biztosan megmondani, hogy ahol a kódunk
 futni fog, az egy ilyen motor-e vagy sem.
 
 Valójában, a cachelés kihagyása azt eredményezheti, hogy a ciklusunk csak 

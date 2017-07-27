@@ -1,8 +1,8 @@
 ﻿## `hasOwnProperty`
 
-Hogy megtudjuk nézni egy adott objektum saját mezőit - azokat a mezőket amelyek
+Hogy meg tudjuk nézni egy adott objektum saját mezőit - azokat a mezőket, amelyek
 az objektumon *közvetlenül* vannak definiálva, és nem valahol a 
-[prototípus láncon](#object.prototype) -, a `hasOwnProperty` függvényt használata 
+[prototípus láncon](#object.prototype) -, a `hasOwnProperty` függvény használata 
 ajánlott, amelyet az összes objektum amúgy is örököl az `Object.prototype`-ból.
 
 > **Megj.:** Vicces programozók miatt, **nem** biztos hogy elég lesz megnézni hogy 
@@ -58,4 +58,4 @@ A `hasOwnProperty` használata az **egyetlen** megbízható módszer annak eldö
 hogy egy mező közvetlenül az objektumon lett-e létrehozva. Melegen ajánlott a 
 `hasOwnProperty`-t **minden** [`for in` ciklusban](#object.forinloop) használni.
 Használatával ugyanis elkerülhetjük a kontár módon kiegészített natív prototípusokból
-fakadó esetleges hibákat, amire példát az imént láttunk.
+fakadó esetleges hibákat, amire az imént láttunk példát.

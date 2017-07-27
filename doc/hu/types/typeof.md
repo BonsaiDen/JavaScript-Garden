@@ -5,7 +5,7 @@ lehetőség szerint a JavaScript nyelv egyik legnagyobb buktatója, mivel majdne
 teljesen **rosszul működik**.
 
 Habár az `instanceof`-nak korlátozottan még lehet értelme, a `typeof` operátor
-tényleg csak egyetlen praktikus use case-zel rendelkezik és ez **nem** az hogy egy
+tényleg csak egyetlen praktikus use case-el rendelkezik és ez **nem** az, hogy egy
 objektum típusvizsgálatát elvégezzük.
 
 > **Megjegyzés:** Mivel a `typeof` vizsgálatot ravaszul úgy is le lehet írni,

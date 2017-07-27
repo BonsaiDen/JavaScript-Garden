@@ -2,7 +2,7 @@
 
 Az `instanceof` operátor a két operandusának konstruktorait hasonlítja össze. 
 Csak akkor bizonyul hasznosnak, amikor saját készítésű objektumokon alkalmazzuk.
-Beépített típusokon ugyanolyan hasztalan alkalmazni mint a [typeof operátort](#types.typeof).
+Beépített típusokon ugyanolyan hasztalan alkalmazni, mint a [typeof operátort](#types.typeof).
 
 ### Saját objektumok összehasonlítása
 
@@ -32,4 +32,4 @@ a böngészőn belül), mivel a konstruktoruk nem pontosan ugyanaz az objektum l
 
 ### Összegzésül
 
-Az `instanceof`-ot tehát **csak** megegyező JS kontextusból származó, saját készítésű objektumoknál használjuk. Minden más felhasználása kerülendő, csak úgy mint a [`typeof`](#types.typeof) operátor esetén.
+Az `instanceof`-ot tehát **csak** megegyező JS kontextusból származó, saját készítésű objektumoknál használjuk. Minden más felhasználása kerülendő, csak úgy, mint a [`typeof`](#types.typeof) operátor esetén.

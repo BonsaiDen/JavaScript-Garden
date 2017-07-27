@@ -44,6 +44,6 @@ nem megbízható/ismeretlen.
 ### Összegzésül
 
 Soha ne használjunk `eval`t. Bármilyen kód működése, teljesítménye, ill. biztonsága
-megkérdőjelezhető amely használja ezt a nyelvi elemet. Semmilyen megoldás
+megkérdőjelezhető, amely használja ezt a nyelvi elemet. Semmilyen megoldás
 használata **nem ajánlott** amely első sorban `eval`ra épül. Ekkor egy *jobb
 megoldás* szükségeltetik, amely nem függ az `eval`tól.

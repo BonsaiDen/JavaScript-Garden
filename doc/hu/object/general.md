@@ -2,7 +2,7 @@
 
 A JavaScriptben minden objektumként működik, a [`null`](#core.undefined) és az [`undefined`](#core.undefined) kivételével.
 
-    false.toString(); // 'hamis'
+    false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
     
     function Foo(){}

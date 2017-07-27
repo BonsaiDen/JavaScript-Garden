@@ -3,7 +3,7 @@
 A JavaScript nyelv egyik legerőteljesebb tulajdonsága a *closure*-ök használatában rejlik.
 Ezek használatával a hatókörök egymásba ágyazhatóak, és egy belső hatókör mindig hozzáfér
 az őt körülvevő, külső hatókör változóihoz. Miután JavaScriptben egyetlen dologgal lehet
-hatóköröket kifejezni, és ez a [funkció](#function.scopes) (bizony az if, try/catch és hasonló blokkok **nem** jelentenek új hatókört, mint pl. a Javaban), az összes funkció closure-ként szerepel.
+hatóköröket kifejezni, és ez a [függvény](#function.scopes) (bizony az if, try/catch és hasonló blokkok **nem** jelentenek új hatókört, mint pl. a Javaban), az összes funkció closure-ként szerepel.
 
 ### Privát változók emulálása
 
@@ -25,7 +25,7 @@ hatóköröket kifejezni, és ez a [funkció](#function.scopes) (bizony az if, t
     foo.get(); // 5
 	
 Ebben a példában a `Counter` **két** closure-rel tér vissza: az `increment` és
-a `get` funkcióval. Mind a két funkció **referenciát** tárol a `Counter` hatókörre,
+a `get` függvénnyel. Mind a két függvény **referenciát** tárol a `Counter` hatókörre,
 és így mindketten hozzáférnek a `count` változóhoz, ami ebben a hatókörben lett
 definiálva.
 
@@ -46,7 +46,7 @@ létre fogja hozni, vagy felül fogja írni a *globális* `count` változót (wi
 
 ### Closure-ök használata ciklusokban
 
-Az egyik leggyakoribb hiba amit el lehet követni, az a closure-ök ciklusokban való használata.
+Az egyik leggyakoribb hiba, amit el lehet követni, az a closure-ök ciklusokban való használata.
 Annak is azon speciális esete amikor a ciklus indexváltozóját szeretnénk lemásolni a closure-ön belül.
 
     for(var i = 0; i < 10; i++) {
@@ -82,7 +82,7 @@ függvénnyel](#function.scopes).
 A külső (wrapper) névtelen függvény így azonnal meghívódik az `i` ciklusváltozóval, mint paraméterrel,
 és így mindig egy másolatot fog kapni az `i` változó **értékéről**, amit ő `e` néven emészt tovább.
 
-Így a `setTimeout`ban lévő névtelen fgv. mindig az `e` nevű referenciára fog mutatni, aminek az értéke így már **nem** változik meg a ciklus futása során.
+Így a `setTimeout`ban lévő névtelen függvény mindig az `e` nevű referenciára fog mutatni, aminek az értéke így már **nem** változik meg a ciklus futása során.
 
 Egy másik lehetséges út a megoldáshoz az, hogy egy wrapper függvényt visszatérítünk a setTimeoutból, aminek ugyanaz lesz a hatása, mint a fentebbi példának.
 

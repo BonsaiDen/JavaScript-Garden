@@ -1,7 +1,7 @@
 ﻿## Függvény deklarációk és kifejezések
 
 A függvények JavaScriptben egyben objektumok is. Ez azt jelenti, hogy
-ugyanúgy lehet őket passzolgatni mint bármelyik más értékeket. Ezt a featuret
+ugyanúgy lehet őket passzolgatni, mint bármelyik más értékeket. Ezt a featuret
 gyakran használják arra, hogy egy *névtelen (callback) függvényt* átadjunk 
 egy másik -aszinkron- függvény paramétereként.
 
@@ -30,7 +30,7 @@ Habár ebben a példában a `var` deklaráció futás előtt a kód tetejére k�
 ettől függetlenül a foo mint függvény meghívásakor hibát fogunk kapni.
 
 Ugyanis a deklaráció felkúszott, azonban az értékadás csak futásidőben fog megtörténni,
-addig is a foo változó értéke [undefined](#core.undefined) marad. Az undefinedet pedig hiába hívjuk függvényként, TypeErrort kapunk végeredményül.
+addig is a foo változó értéke [undefined](#core.undefined) marad. Az undefinedot pedig hiába hívjuk függvényként, TypeErrort kapunk végeredményül.
 
 ### Névvel ellátott függvény kifejezés
 

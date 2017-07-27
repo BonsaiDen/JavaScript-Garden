@@ -1,7 +1,7 @@
 ﻿## A `this` mágikus működése
 
 A `this` kicsit másképp működik a JavaScriptben, mint ahogy azt megszokhattuk
-más nyelvekben. Ugyanis pontosan **ötféle** módja lehet annak, hogy a `this` 
+más nyelvekben. Ugyanis pontosan **öt féle** módja lehet annak, hogy a `this` 
 éppen mire utal a nyelvben.
 
 ### A Globális hatókör
@@ -40,7 +40,7 @@ az *újonnan létrehozott* `Objektumra` fog hivatkozni.
     foo.apply(bar, [1, 2, 3]); // ugyanaz mint egy sorral lejjebb
     foo.call(bar, 1, 2, 3); // argumentumok: a = 1, b = 2, c = 3
 
-A `Function.prototype`-ban levő `call` vagy `apply` használatakor aztán elszabadul a pokol :).
+A `Function.prototype`-ban levő `call` vagy `apply` használatakor aztán elszabadul a pokol 😀.
 Ezekben az esetekben ugyanis a this a foo hívásakor **egzaktan** be lesz állítva az apply/call
 első argumentumára. 
 

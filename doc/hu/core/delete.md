@@ -41,7 +41,7 @@ Az expliciten beállított mezőket persze normálisan lehet törölni.
     obj.y; // undefined
 	
 
-A fenti példábna az `obj.x` és `obj.y` törölhető, mivel nincs `DontDelete`
+A fenti példában az `obj.x` és `obj.y` törölhető, mivel nincs `DontDelete`
 attribútuma egyik mezőnek sem. Ezért működik az alábbi példa is.
 
     // működik, kivéve IE-ben
@@ -52,7 +52,7 @@ attribútuma egyik mezőnek sem. Ezért működik az alábbi példa is.
     GLOBAL_OBJECT.a; // undefined
 
 Itt egy trükköt használunk az `a` törlésére. A [`this`](#function.this) itt 
-a Globális objektumra mutat, és expliciten bezetjük rajta az `a` változót, mint
+a Globális objektumra mutat, és expliciten bevezetjük rajta az `a` változót, mint
 egy mezőjét, így törölni is tudjuk.
 
 Mint az szokás, a fenti kód egy kicsit bugos IE-ben (legalábbis 6-8-ig).
@@ -88,4 +88,4 @@ meghatározva az ES aktuális verziójú specifikációjában, pl. a window)
 ### Összegzésképp
 
 A `delete` működése helyenként megjósolhatatlan, így biztonsággal csak olyan
-objektumok mezőin használhatjuk amelyeket expliciten mi állítottunk be.
+objektumok mezőin használhatjuk, amelyeket expliciten mi állítottunk be.

@@ -2,7 +2,7 @@
 
 A **JavaScript Garden** egy folytonosan növekvő kódgyűjtemény amely a nyelv kihívást okozó részeit hivatott tisztázni. Itt tanácsokat kaphatsz afelől, hogyan kerüld el a leggyakoribb programozási- valamint nyelvi hibákat, hogyan írj gyorsabb kódot, és mik a legsűrűbben elkövetett *bad practice*k amelyekkel egy átlagos JavaScript programozó (nem) mindennapi útján találkozhat a nyelv megismerése közben. 
 
-A JavaScript Gardennek **nem** célja hogy megtanítsa a JavaScript nyelvet!
+A JavaScript Gardennek **nem** célja, hogy megtanítsa a JavaScript nyelvet!
 Az itt felsorolt témák megértéséhez mindenképp szükséges némi tapasztalat. Ha a nyelv alapjait szeretnéd elsajátítani, először nézd át ezt a kiváló [tutorialt][1] a Mozilla Developer Networkön.
 
 ## Szerzők

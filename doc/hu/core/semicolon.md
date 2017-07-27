@@ -93,7 +93,7 @@ Az értelmező drasztikusan megváltoztatta a fenti kódot. A legtöbb esetben a
 beillesztő **rosszul** tippel.
 
 (A ford.: Semmilyen nyelvben sem jó, hogyha hagyjuk hogy a gép találja ki mit
-szerettünk volna írni. Néma gyereknek az anyja sem érti a kódját ugye)
+szerettünk volna írni. Néma gyereknek az anyja sem érti a kódját ugye.)
 
 ### Kezdő Zárójelek
 
