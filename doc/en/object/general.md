@@ -6,9 +6,9 @@ Everything in JavaScript acts like an object, with the only two exceptions being
     false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
     
-    function Foo(){}
-    Foo.bar = 1;
-    Foo.bar; // 1
+    function sayHello(){}
+    sayHello.bar = 1;
+    sayHello.bar; // 1
 
 A common misconception is that number literals cannot be used as
 objects. That is because a flaw in JavaScript's parser tries to parse the *dot 
@@ -32,25 +32,25 @@ Using an object literal - `{}` notation - it is possible to create a
 plain object. This new object [inherits](#object.prototype) from `Object.prototype` and 
 does not have [own properties](#object.hasownproperty) defined.
 
-    var foo = {}; // a new empty object
+    var names = {}; // a new empty object
 
-    // a new object with a 'test' property with value 12
-    var bar = {test: 12}; 
+    // a new object with a 'name' property with value 'Rob'
+    var rob = {name: 'Rob'}; 
 
 ### Accessing Properties
 
 The properties of an object can be accessed in two ways, via either the dot
 notation or the square bracket notation.
     
-    var foo = {name: 'kitten'}
-    foo.name; // kitten
-    foo['name']; // kitten
+    var pet = {name: 'kitten'}
+    pet.name; // kitten
+    pet['name']; // kitten
     
     var get = 'name';
-    foo[get]; // kitten
+    pet[get]; // kitten
     
-    foo.1234; // SyntaxError
-    foo['1234']; // works
+    pet.1234; // SyntaxError
+    pet['1234']; // works
 
 The notations work almost identically, with the only difference being that the
 square bracket notation allows for dynamic setting of properties and
@@ -63,13 +63,13 @@ operator; setting the property to `undefined` or `null` only removes the
 *value* associated with the property, but not the *key*.
 
     var obj = {
-        bar: 1,
-        foo: 2,
-        baz: 3
+        a: 1,
+        b: 2,
+        c: 3
     };
-    obj.bar = undefined;
-    obj.foo = null;
-    delete obj.baz;
+    obj.a = undefined;
+    obj.b = null;
+    delete obj.c;
 
     for(var i in obj) {
         if (obj.hasOwnProperty(i)) {
@@ -77,7 +77,7 @@ operator; setting the property to `undefined` or `null` only removes the
         }
     }
 
-The above outputs both `bar undefined` and `foo null` - only `baz` was
+The above outputs both `a undefined` and `b null` - only `c` was
 removed and is therefore missing from the output.
 
 ### Notation of Keys
