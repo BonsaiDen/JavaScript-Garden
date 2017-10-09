@@ -50,7 +50,7 @@ notation or the square bracket notation.
     foo[get]; // kitten
     
     foo.1234; // SyntaxError
-    foo['1234']; // works
+    foo[1234]; // works
 
 The notations work almost identically, with the only difference being that the
 square bracket notation allows for dynamic setting of properties and
