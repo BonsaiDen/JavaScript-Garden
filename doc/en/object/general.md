@@ -7,8 +7,8 @@ Everything in JavaScript acts like an object, with the only two exceptions being
     [1, 2, 3].toString(); // '1,2,3'
     
     function sayHello(){}
-    sayHello.bar = 1;
-    sayHello.bar; // 1
+    sayHello.count = 1;
+    sayHello.count; // 1
 
 A common misconception is that number literals cannot be used as
 objects. That is because a flaw in JavaScript's parser tries to parse the *dot 
