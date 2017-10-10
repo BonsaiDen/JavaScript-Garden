@@ -67,9 +67,10 @@ and pointer comparison in C.
 
 ### Comparing NaN
 If either side of double equals `a == b` contains `NaN`, `false` will be returned.
-In case of a tripple equals `a === b`, following things are considered.
+In case of a triple equals `a === b`, following things are considered.
+This makes `NaN` the only value which is not equal to itself.
 
-FYI `typeof NaN` is `number`
+FYI `typeof NaN` is `number`.
 
 - If `typeof a` is different from `typeof b`, return `false`.
  - If `typeof a` is `number`, then
