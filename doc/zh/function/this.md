@@ -18,7 +18,7 @@ JavaScript 有一套完全不同于其它语言的对 `this` 的处理机制。
 
 这里 `this` 也会指向*全局*对象。
 
-> **ES5 注意:** 在严格模式下（strict mode），不存在全局变量。
+> **ES5 注意:** 在严格模式下（strict mode），不存在全局对象。
 > 这种情况下 `this` 将会是 `undefined`。
 
 ###方法调用
