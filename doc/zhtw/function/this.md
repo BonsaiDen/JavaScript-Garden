@@ -1,6 +1,6 @@
 ## `this` 的工作原理
 
-JavaScript 有移到完全部屬於其他語言處理 `this` 的處理機制。
+JavaScript 有一道完全不屬於其他語言處理 `this` 的處理機制。
 在 **五** 種不同的情況下， `this` 指向的各不相同
 
 ### 全域變數
@@ -42,8 +42,7 @@ JavaScript 有移到完全部屬於其他語言處理 `this` 的處理機制。
 
 當使用 `function.prototype` 上的 `call` 或只 `apply` 方法時，函式內的 `this` 將會被 **顯示設置** 為函式調用的第一個參數。
 
-As a result, in the above example the *method case* does **not** apply, and `this` 
-inside of `foo` will be set to `bar`.
+因此，在以上的例子中已不適用*函式調用*的原則，而且`this`會被設定指向`bar`。
 
 > **Note:** `this` **cannot** be used to refer to the object inside of an `Object`
 > literal. So `var obj = {me: this}` will **not** result in `me` referring to
@@ -51,56 +50,48 @@ inside of `foo` will be set to `bar`.
 
 ### 常見誤解
 
-While most of these cases make sense, the first can be considered another
-mis-design of the language because it **never** has any practical use.
+儘管大部分的例子都合理，但第一個例子(譯者注: 應該是指前面呼叫一個函式的那個例子)可以被視為一個語言的不良設計，因為它**從來**就沒有實際用途。
 
     Foo.method = function() {
         function test() {
-            // this is set to the global object
+            // this 設定為全域
         }
         test();
     };
 
-A common misconception is that `this` inside of `test` refers to `Foo`; while in
-fact, it **does not**.
+一個常見的誤解是 `test` 中的 `this` 指向 `Foo` 物件，但實際上並**不是**。
 
-In order to gain access to `Foo` from within `test`, it is necessary to create a 
-local variable inside of `method` that refers to `Foo`.
+為了在 `test` 中使用 `Foo` 物件，我們需要在 `method` 函式内部建立一個區域變數指向 `Foo`。
 
     Foo.method = function() {
         var that = this;
         function test() {
-            // Use that instead of this here
+            // 這裡使用 that 而非 this
         }
         test();
     };
 
-`that` is just a normal variable name, but it is commonly used for the reference to an 
-outer `this`. In combination with [closures](#function.closures), it can also 
-be used to pass `this` values around.
+`that` 只是普通的名字，不過這個名字常被用用來指向外部的 `this`。 在 [閉包](#function.closures) 一節，可以看到它(`that`)可以取代 `this` 傳遞。
 
-As of ECMAScript 5 you can use the `bind` method combined with an anonymous function to achieve the same result. 
+在 ECMAScript 5 ，你可以使用 `bind` 結合匿名函式達到相同結果。
 
     Foo.method = function() {
         var test = function() {
-            // this now refers to Foo
+            // this 指向 Foo
         }.bind(this);
         test();
     };
 
-### Assigning Methods
+### 函式表達式
 
-Another thing that does **not** work in JavaScript is function aliasing, which is
-**assigning** a method to a variable.
+另一個在 JavaScript 中**不會**運作的就是 function aliasing，也就是函式**賦值**給一個變數。
 
     var test = someObject.methodTest;
     test();
 
-Due to the first case, `test` now acts like a plain function call; therefore,
-`this` inside it will no longer refer to `someObject`.
+上例中，`test` 就像一個普通的函式被调用；因此，函式内的 this 將不再指向 `someObject`。
 
-While the late binding of `this` might seem like a bad idea at first, in 
-fact, it is what makes [prototypal inheritance](#object.prototype) work. 
+雖然起初 `this` 的绑定特性似乎像是個壞主意，但事實上，它使得 [原型繼承](#object.prototype)得以運作。
 
     function Foo() {}
     Foo.prototype.method = function() {};
@@ -110,7 +101,5 @@ fact, it is what makes [prototypal inheritance](#object.prototype) work.
 
     new Bar().method();
 
-When `method` gets called on an instance of `Bar`, `this` will now refer to that
-very instance. 
-
+當 `method` 被呼叫時，`this` 將會指向 `Bar` 的實體物件。
 

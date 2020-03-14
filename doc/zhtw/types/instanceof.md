@@ -1,6 +1,6 @@
 ## `instanceof` 操作符
 
-`instanceof` 操作符用來比較兩個建構函數的操作數。只有在比較字定義的物件時才有意義。這和 [typeof operator](#types.typeof)一樣用處不大。
+`instanceof` 操作符用來比較兩個建構函數的操作數。只有在比較自定義的物件時才有意義。這和 [typeof operator](#types.typeof)一樣用處不大。
 
 ### 比較定意義物件
 
@@ -24,7 +24,7 @@
     'foo' instanceof String; // false
     'foo' instanceof Object; // false
 
-有一點需要注意的， `instanceof` 不能用來物件來自上下文不同的屬性（例如：瀏覽器中不同的文檔結構），因為它的建構函數不一樣。
+有一點需要注意的， `instanceof` 不會在來自不同的上下文的物件運作（例如：瀏覽器中不同的文檔結構），因為它的建構函數不一樣。
 
 ### In Conclusion
 

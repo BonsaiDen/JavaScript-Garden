@@ -7,7 +7,7 @@
 > 只有 [objects](#object.general) 來管理建值的相對應關係
 > Arrays 是**保持** 順序的，Objects **則沒有**
 
-因為 `for in` 迴圈會列舉所有在原型 Array 上的屬性因為他會使用[`hasOwnProperty`](#object.hasownproperty), 這會使得 Array 比原本的 `for` 迴圈慢上二十幾倍
+因為 `for in` 迴圈會使用[`hasOwnProperty`](#object.hasownproperty)，所以它會列舉所有在原型 Array 上的屬性，這會使得 Array 比原本的 `for` 迴圈慢上二十幾倍
 
 ### 迴圈
 
@@ -20,8 +20,8 @@
 
 在上面的例子中利用 `l = list.length` 來處理 Array 的長度問題。
 
-雖然 `length` 屬性是屬於 Array 中其中一個屬性，但是他還使有一定的性能消耗在每次循環的訪問。
-近期 Javascript 使用 **may** 來解決在這上面的效率問題，但是在現在的引擎上還不一定有支援。
+雖然 `length` 屬性是屬於 Array 中其中一個屬性，但是他在每次循環還是有一定的性能消耗。
+近期 Javascript **可能**使用來解決在這上面的效率問題，但是在現在的引擎上還不一定有支援。
 
 實際上，不使用暫存 Array 長度的方式比使用暫存的版本還要慢很多。
 
