@@ -1,6 +1,6 @@
 ## `undefined` 和 `null`
 
-JavaScript 中有兩個表示空值的方式， `null` 和 `undefined` ， `undefined`式比較常用的一種。
+JavaScript 中有兩個表示空值的方式， `null` 和 `undefined` ， `undefined`是比較常用的一種。
 
 ### `undefined` 的值
 
