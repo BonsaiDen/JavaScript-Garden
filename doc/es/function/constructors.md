@@ -48,7 +48,7 @@ Cuando una `nueva` keyword es omitidad, la función **no** devuelve un nuevo obj
     }
     Foo(); // undefined
 
-Auqnue el ejemplo anterior puede parecer que trabaja en algunos casos, debido
+Aunque el ejemplo anterior puede parecer que trabaja en algunos casos, debido
 a los trabajos de [`this`](#function.this) en JavaScript, que usará el
 *objeto global* como valor de `this`.
 
