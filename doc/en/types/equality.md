@@ -18,6 +18,7 @@ JavaScript features *weak typing*. This means that the equality operator
     false        ==   null          // false
     null         ==   undefined     // true
     " \t\r\n"    ==   0             // true
+    NaN          ==   NaN           // false
 
 The above table shows the results of the type coercion, and it is the main reason 
 why the use of `==` is widely regarded as bad practice. It introduces
@@ -43,6 +44,7 @@ operator does **not** perform type coercion between its operands.
     false        ===   null          // false
     null         ===   undefined     // false
     " \t\r\n"    ===   0             // false
+    NaN          ===   NaN           // false
 
 The above results are a lot clearer and allow for early breakage of code. This
 hardens code to a certain degree and also gives performance improvements in case
@@ -62,6 +64,18 @@ differently when at least one of their operands is an `Object`.
 Here, both operators compare for **identity** and **not** equality; that is, they
 will compare for the same **instance** of the object, much like `is` in Python 
 and pointer comparison in C.
+
+### Comparing NaN
+If either side of double equals `a == b` contains `NaN`, `false` will be returned.
+In case of a triple equals `a === b`, following things are considered.
+This makes `NaN` the only value which is not equal to itself.
+
+FYI `typeof NaN` is `number`.
+
+- If `typeof a` is different from `typeof b`, return `false`.
+ - If `typeof a` is `number`, then
+      - If a is NaN, return `false`.
+      - If b is NaN, return `false`.
 
 ### In Conclusion
 
