@@ -68,7 +68,7 @@ horrible y difícil detección de errores.
 El bucle externo terminará después de la primera llamada a `subLoop`,  desde `subLoop`
 sobreescribe el valor global de `i`. Usando `var` para el segundo bucle `for` se hace
 fácil evitar este error. La sentencia `var` no debe **nunca** dejarse a menos que
-el *efecto deseado* es afectado por el ámbito exteriror.
+el *efecto deseado* es afectado por el ámbito exterior.
 
 ### Variables locales
 
