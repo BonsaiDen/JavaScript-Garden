@@ -47,7 +47,7 @@ mayor implicación.
     test();
     foo; // 21
 
-Dejando de lador la sentencia `var` dentro de la función `test` sobre escribiría el
+Dejando de lado la sentencia `var` dentro de la función `test` sobre escribiría el
 valor de `foo`. Si bien al principio puede parecer un gran cambio, se tiene
 miles de líneas de código en JavaScript y no se usaría `var` introduciendose en un
 horrible y difícil detección de errores.
