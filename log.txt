@@ -1,0 +1,122 @@
+
+[x] The "javascript garden" project needs to be built before browsing according to CONTRIBUTING.md
+	So I run the build command line:
+		Microsoft Windows [Version 10.0.14393]
+		(c) 2016 Microsoft Corporation. All rights reserved.
+
+		c:\Users\hcche\Documents\GitHub\JavaScript-Garden>npm run build
+
+		> javascript-garden@0.0.0 build c:\Users\hcche\Documents\GitHub\JavaScript-Garden
+		> node build.js
+
+		module.js:327
+			throw err;
+			^
+
+		Error: Cannot find module 'lodash'
+			at Function.Module._resolveFilename (module.js:325:15)
+			at Function.Module._load (module.js:276:25)
+			at Module.require (module.js:353:17)
+			at require (internal/module.js:12:17)
+			at Object.<anonymous> (c:\Users\hcche\Documents\GitHub\JavaScript-Garden\build.js:2:9)
+			at Module._compile (module.js:409:26)
+			at Object.Module._extensions..js (module.js:416:10)
+			at Module.load (module.js:343:32)
+			at Function.Module._load (module.js:300:12)
+			at Function.Module.runMain (module.js:441:10)
+
+		npm ERR! Windows_NT 10.0.14393
+		npm ERR! argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run
+		" "build"
+		npm ERR! node v4.4.3
+		npm ERR! npm  v2.15.1
+		npm ERR! code ELIFECYCLE
+		npm ERR! javascript-garden@0.0.0 build: `node build.js`
+		npm ERR! Exit status 1
+		npm ERR!
+		npm ERR! Failed at the javascript-garden@0.0.0 build script 'node build.js'.
+		npm ERR! This is most likely a problem with the javascript-garden package,
+		npm ERR! not with npm itself.
+		npm ERR! Tell the author that this fails on your system:
+		npm ERR!     node build.js
+		npm ERR! You can get information on how to open an issue for this project with:
+		npm ERR!     npm bugs javascript-garden
+		npm ERR! Or if that isn't available, you can get their info via:
+		npm ERR!
+		npm ERR!     npm owner ls javascript-garden
+		npm ERR! There is likely additional logging output above.
+
+		npm ERR! Please include the following file with any support request:
+		npm ERR!     c:\Users\hcche\Documents\GitHub\JavaScript-Garden\npm-debug.log
+	
+		c:\Users\hcche\Documents\GitHub\JavaScript-Garden>
+	[ ] check the error, RI: a module "lodash" is missing. So I studied and found how to install
+		that module: http://www.w3cplus.com/javascript/lodash-intro.html ( See my Ynote and Evernote )
+		--> install lodash:
+		c:\Users\hcche\Documents\GitHub\JavaScript-Garden>npm install --save lodash
+		npm WARN package.json javascript-garden@0.0.0 No repository field.
+		npm WARN package.json javascript-garden@0.0.0 No license field.
+		lodash@2.2.1 node_modules\lodash
+		--> ok? Try building j/g again:
+		c:\Users\hcche\Documents\GitHub\JavaScript-Garden>npm run build
+		> javascript-garden@0.0.0 build c:\Users\hcche\Documents\GitHub\JavaScript-Garden
+		> node build.js
+		module.js:327
+			throw err;
+			^
+		Error: Cannot find module 'jade'
+			at Function.Module._resolveFilename (module.js:325:15)
+			at Function.Module._load (module.js:276:25)
+			at Module.require (module.js:353:17)
+			at require (internal/module.js:12:17)
+			at Object.<anonymous> (c:\Users\hcche\Documents\GitHub\JavaScript-Garden\build.js:3:12)
+			at Module._compile (module.js:409:26)
+			at Object.Module._extensions..js (module.js:416:10)
+			at Module.load (module.js:343:32)
+			at Function.Module._load (module.js:300:12)
+			at Function.Module.runMain (module.js:441:10)
+		--> so, again, missing 'jade' module.
+		--> install jade:
+		c:\Users\hcche\Documents\GitHub\JavaScript-Garden>npm install --save jade
+		--> try again:
+		c:\Users\hcche\Documents\GitHub\JavaScript-Garden>npm run build
+		Error: Cannot find module 'marked'
+			at Function.Module._resolveFilename (module.js:325:15)
+			at Function.Module._load (module.js:276:25)		
+		--> so, again, missing 'marked' module.
+		--> install marked:
+		c:\Users\hcche\Documents\GitHub\JavaScript-Garden>npm install --save marked
+		--> try again:
+		c:\Users\hcche\Documents\GitHub\JavaScript-Garden>npm run build
+
+		> javascript-garden@0.0.0 build c:\Users\hcche\Documents\GitHub\JavaScript-Garden
+		> node build.js
+
+		c:\Users\hcche\Documents\GitHub\JavaScript-Garden>			
+		==> OK now, Bingo!
+			Taget directory c:\Users\hcche\Documents\GitHub\JavaScript-Garden\site 
+			was very empty but now is full of different languages and index.html appears.
+[x]	Modify the 'prototype.md' to be :
+	JavaScript 不包含傳統的「類」繼承的模型，它使用的是「原型」模型。
+	儘管這常被認為是 JavaScript 的缺點，但「原型繼承模型」其實比「類繼承模型」更強大。
+	在「原型繼承模型」上實現傳統的「類繼承模型」是小事一件，但反過來要在只有「類繼承模
+	型」的地方弄出「原型繼承模型」則要困難很多。
+	--> submit --> push to my fork.
+	[x] How to make a PR (Pull request)?
+		--> Found a [New pull request] button on my repo's home page. --> click it, switched
+		to a page "Comparing changes" and it says : Choose two branches to see what’s changed or 
+		to start a new pull request. If you need to, you can also compare across forks. --> so
+		I check the difference and it's fine. The page also says : "Able to merge. These branches 
+		can be automatically merged." so I am about to proceed.
+		--> And, for the safe, I rebuilt again:
+			c:\Users\hcche\Documents\GitHub\JavaScript-Garden>npm run build
+			> javascript-garden@0.0.0 build c:\Users\hcche\Documents\GitHub\JavaScript-Garden
+			> node build.js
+			and then view the changes on my local browser to make sure it works fine:
+			file:///C:/Users/hcche/Documents/GitHub/JavaScript-Garden/site/zhtw/index.html#object.prototype
+			--> OK!
+		--> There's a button "[Create pull request] Discuss and review the changes in this comparison 
+			with others." and I click it . . .
+		--> follow the process to provide some descriptions and then submit and DONE!
+			The pull request is really went to the original repo BonsaiDen/JavaScript-Garden
+			
