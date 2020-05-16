@@ -1,6 +1,6 @@
 ## Объекты и их свойства
 
-В JavaScript всё ведет себя, как объект, лишь за двумя исключениями — [`null`](#core.undefined) и [`undefined`](#core.undefined).
+В JavaScript всё ведет себя как объект, лишь за двумя исключениями — [`null`](#core.undefined) и [`undefined`](#core.undefined).
 
     false.toString(); // 'false'
     [1, 2, 3].toString(); // '1,2,3'
