@@ -1,0 +1,69 @@
+{
+    "title": "حديقة جافاسكريبت",
+    "langTitle": "حديقة جافاسكريبت باللغة العربية",
+    "description": "دليل عيوب ومراوغات جافاسكريبت",
+    "sections": [
+        {
+            "title": "مقدمة",
+            "dir": "intro",
+            "articles": ["index"]
+        },
+        {
+            "title": "الكائنات",
+            "dir": "object",
+            "articles": [
+                "general",
+                "prototype",
+                "hasownproperty",
+                "forinloop"
+            ]
+        },
+        {
+            "title": "الدَّوال",
+            "dir": "function",
+            "articles": [
+                "general",
+                "this",
+                "closures",
+                "arguments",
+                "constructors",
+                "scopes"
+            ]
+        },
+        {
+            "title": "المصفوفات",
+            "dir": "array",
+            "articles": [
+                "general",
+                "constructor"
+            ]
+        },
+        {
+            "title": "الأنواع",
+            "dir": "types",
+            "articles": [
+                "equality",
+                "typeof",
+                "instanceof",
+                "casting"
+            ]
+        },
+        {
+            "title": "اللب",
+            "dir": "core",
+            "articles": [
+                "eval",
+                "undefined",
+                "semicolon",
+                "delete"
+            ]
+        },
+        {
+            "title": "أشياء أخرى",
+            "dir": "other",
+            "articles": [
+                "timeouts"
+            ]
+        }
+    ]
+}
