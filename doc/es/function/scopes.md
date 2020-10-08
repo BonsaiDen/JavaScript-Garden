@@ -1,7 +1,7 @@
 ## Ámbitos y Namespaces
 
 A pesar que JavaScript tiene una muy buena sintaxis de dos llaves para los bloques,
-está **no** es compatible con el soporte de ámbito de bloques; por lo que todo se deja
+esta **no** es compatible con el soporte de ámbito de bloques; por lo que todo se deja
 al lenguaje con el *ámbito de la función*.
 
     function test() { // un ámbito
@@ -47,8 +47,8 @@ mayor implicación.
     test();
     foo; // 21
 
-Dejando de lado la sentencia `var` dentro de la función `test` sobre escribiría el
-valor de `foo`. Si bien al principio puede parecer un gran cambio, se tiene
+Dejando de lado la sentencia `var` dentro de la función `test` sobrescribiría el
+valor de `foo`. Si bien al principio puede parecer un gran cambio, si tiene
 miles de líneas de código en JavaScript y no se usaría `var` introduciendose en un
 horrible y difícil detección de errores.
     
@@ -91,12 +91,12 @@ La única fuente para las variables locales en JavaScript son los parámetros de
     test(10);
 
 Mientras `foo` y `i` son variables locales dentro del ámbitor de la función `test`,
-ela asignación de `bar` sobreescribe la variable global con el mismo nombre.
+la asignación de `bar` sobreescribe la variable global con el mismo nombre.
 
 ### Hoisting
 
 La declaración de **hoists** en JavaScript. Esto significa que tanto la declaración de `var` y
-la `función` declarada se translada a la parte superior de su ámbito que lo contiene.
+la `función` declarada se traslada a la parte superior de su ámbito que lo contiene.
 
     bar();
     var bar = function() {};
@@ -116,7 +116,7 @@ la `función` declarada se translada a la parte superior de su ámbito que lo co
     }
 
 El código anterior transforma antes de ejecutarse. JavaScript mueve
-la declaracione `var` aspi como las declaraciones de la `función` a la parte superior a
+las declaraciones `var` así como las declaraciones de la `función` a la parte superior a
 lo más cercano del ámbito circundante.
 
     // declaraciones var movidas aquí
