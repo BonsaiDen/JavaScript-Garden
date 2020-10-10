@@ -5,7 +5,7 @@ Cualquier llamada que es precedida por la palabra `new` actua como un constructo
 
 Dentro del constructor - la función llama - el valor de `this` se refiere a un
 `Objeto` recién creado. El [`prototipo`](#object.prototype) de este **nuevo** 
-objeto se establece en el `prototipo` de la funcióno que es invocado como el
+objeto se establece en el `prototipo` de la función que es invocado como el
 constructor.
 
 Si la función que se llama no tiene una sentencia `return` explícita, entonces
@@ -41,7 +41,7 @@ que la declaración, **pero sólo** si el valor devuelto es un `Object`.
     }
     new Test(); // the returned object
 
-Cuando una `nueva` keyword es omitidad, la función **no** devuelve un nuevo objeto. 
+Cuando una `nueva` keyword es omitida, la función **no** devuelve un nuevo objeto. 
 
     function Foo() {
         this.bla = 1; // se establece en el objeto global
@@ -107,7 +107,7 @@ constructor para crear un nuevo objeto dentro de la fábrica.
         return obj;
     }
 
-Aunque lo anterior es robuesto frente a la keyword `new` y, ciertamente hace
+Aunque lo anterior es robusto frente a la keyword `new` y, ciertamente hace
 que el uso de [variables privadas](#function.closures) sea fácil, esto viene con
 algunas desventajas.
 
