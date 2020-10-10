@@ -49,7 +49,7 @@ llamadas de *cadenas de prototipo* (*prototype chains*).
 
 En el código anterior, el objeto `test` hereda de `Bar.prototype` y `Foo.prototype`; 
 por lo tanto, tendrá acceso a la función `method` que se ha definido en `Foo`. 
-También se tendrá acceso a a la propiedad `value` de la **única** instancia de `Foo` 
+También se tendrá acceso a la propiedad `value` de la **única** instancia de `Foo` 
 que compone su prototipo. Es importante tomar en cuenta que `new Bar()` **no** creará una nueva 
 instancia de `Foo`, pero retornará lo asignado en su prototipo; de este modo, todas las instancias 
 de `Bar` tendrán que compartir el **mismo** `valor` de la propiedad.
@@ -86,8 +86,8 @@ El tiempo tomado en la búsqueda de propiedades es alta y la cadena de prototipo
 presentar un impacto negativo crítico en el rendimiento en partes del código. Además, 
 si ha tratado de acceder a propiedades que no existen, esto provoca que se recorra la cadena de prototipo completa.
 
-Además, al recorrer en [iteración](#object.forinloop) las propiedades de un objeto
-, **cada** propiedad encontrada en la cadena de prototipo será enumerada.
+Además, al recorrer en [iteración](#object.forinloop) las propiedades de un objeto, 
+**cada** propiedad encontrada en la cadena de prototipo será enumerada.
  
 ### Extensión de prototipos nativos
 
@@ -104,7 +104,7 @@ características de los motores JavaScript más modernos; por ejemplo,
 
 ### En conclusión
 
-Se **debe** entender por completo el módelo de herencia prototipado antes de 
+Se **debe** entender por completo el modelo de herencia prototipado antes de 
 escribir código complejo que lo utilice. Además, observe la longitud de la
 cadena de prototipo y modifíquela si es necesario para evitar posibles problemas de 
 rendimiento. Con relación a los prototipos nativos, estos **nunca** deben ser extendidos a 
