@@ -10,14 +10,14 @@ Todo en JavaScript actúa como un objeto, con las dos únicas excepciones de
     Foo.bar = 1;
     Foo.bar; // 1
 
-Un error muy común es el uso de literales númericos como objetos.
+Un error muy común es el uso de literales numéricos como objetos.
 Esto se debe a un error en el parser de JavaScript que intenta analizar la
 *notación de puntos* como un literal de punto flotante.
 
     2.toString(); // lanza SyntaxError
 
 Existe un par de soluciones que pueden utilizarse para hacer que los
-literales númericos actúen como objetos.
+literales numéricos actúen como objetos.
 
     2..toString(); // el segundo punto es reconocido correctamente
     2 .toString(); // observe el espacio a la izquierda del punto
