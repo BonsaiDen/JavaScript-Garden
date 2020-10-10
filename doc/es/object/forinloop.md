@@ -35,7 +35,7 @@ esto se hace mediante el uso del método [`hasOwnProperty`](#object.hasownproper
 Está versión es la única forma correcta de uso. Esto se debe **sólo** al uso de 
 `hasOwnProperty` que imprimirá `moo`. Cuando `hasOwnProperty` se omita, el código es 
 propenso a errores  en los casos de prototipos nativos - ej. `Object.prototype` - 
-se ha extendedido.
+se ha extendido.
 
 Uno de los frameworks más usado que implementa estas funcionalidades es [Prototype][1]. Cuando el 
 framework es incluido, el bucle `for in` que no utilicen `hasOwnProperty` no podrá garantizar que 
