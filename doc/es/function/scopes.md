@@ -116,7 +116,7 @@ la `función` declarada se translada a la parte superior de su ámbito que lo co
     }
 
 El código anterior transforma antes de ejecutarse. JavaScript mueve
-la declaracione `var` aspi como las declaraciones de la `función` a la parte superior a
+la declaración `var` así como las declaraciones de la `función` a la parte superior a
 lo más cercano del ámbito circundante.
 
     // declaraciones var movidas aquí
