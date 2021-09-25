@@ -54,7 +54,7 @@ insertarlos.
     })(window)
 
 A continuación se muestra el resultado del juego de "adivinanzas" 
-del analizadores sintácticos.
+del analizador.
 
     (function(window, undefined) {
         function test(options) {
@@ -78,7 +78,7 @@ del analizadores sintácticos.
         }
         window.test = test; // <- insertado
 
-    // The lines got merged again
+    // Las líneas se fusionaron de nuevo
     })(window)(function(window) {
         window.someLibrary = {}; // <- insertado
 
