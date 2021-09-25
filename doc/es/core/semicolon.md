@@ -1,30 +1,30 @@
-## Automatic Semicolon Insertion
+## Inserción automática de punto y coma (;)
 
-Although JavaScript has C style syntax, it does **not** enforce the use of
-semicolons in the source code, so it is possible to omit them.
+Aunque JavaScript tiene una sintaxis parecida a C, **no** impone el uso de 
+punto y coma en el código fuente, por lo que es posible omitirlos.
 
-JavaScript is not a semicolon-less language. In fact, it needs the 
-semicolons in order to understand the source code. Therefore, the JavaScript
-parser **automatically** inserts them whenever it encounters a parse
-error due to a missing semicolon.
-
-    var foo = function() {
-    } // parse error, semicolon expected
-    test()
-
-Insertion happens, and the parser tries again.
+JavaScript no es un lenguaje sin punto y coma. De hecho, necesita el punto y coma 
+para comprender el código fuente. Por lo tanto, el analizador de JavaScript 
+los inserta **automáticamente** cada vez que encuentra un error de análisis debido a 
+que falta un punto y coma.
 
     var foo = function() {
-    }; // no error, parser continues
+    } // parse error, punto y coma esperado
     test()
 
-The automatic insertion of semicolon is considered to be one of **biggest**
-design flaws in the language because it *can* change the behavior of code.
+Se produce la inserción y el analizador vuelve a intentarlo.
 
-### How it Works
+    var foo = function() {
+    }; // sin error, el analizador continúa
+    test()
 
-The code below has no semicolons in it, so it is up to the parser to decide where
-to insert them.
+La inserción automática de punto y coma se considera uno de los **más grandes**
+defectos de diseño en el lenguaje porque *puede* cambiar el comportamiento del código.
+
+### ¿Cómo funciona?
+
+El siguiente código no tiene punto y coma, por lo que depende del analizador decidir dónde
+insertarlos.
 
     (function(window, undefined) {
         function test(options) {
@@ -53,62 +53,63 @@ to insert them.
 
     })(window)
 
-Below is the result of the parser's "guessing" game.
+A continuación se muestra el resultado del juego de "adivinanzas" 
+del analizadores sintácticos.
 
     (function(window, undefined) {
         function test(options) {
 
-            // Not inserted, lines got merged
+            // No insertado, las líneas se fusionaron
             log('testing!')(options.list || []).forEach(function(i) {
 
-            }); // <- inserted
+            }); // <- insertado
 
             options.value.test(
                 'long string to pass here',
                 'and another long string to pass'
             ); // <- inserted
 
-            return; // <- inserted, breaks the return statement
-            { // treated as a block
+            return; // <- insertado, rompe la declaración de devolución
+            { // tratado como un bloque
 
-                // a label and a single expression statement
+                // una etiqueta y una declaración de expresión única
                 foo: function() {} 
-            }; // <- inserted
+            }; // <- insertado
         }
-        window.test = test; // <- inserted
+        window.test = test; // <- insertado
 
     // The lines got merged again
     })(window)(function(window) {
-        window.someLibrary = {}; // <- inserted
+        window.someLibrary = {}; // <- insertado
 
-    })(window); //<- inserted
+    })(window); //<- insertado
 
-> **Note:** The JavaScript parser does not "correctly" handle return statements 
-> which are followed by a new line, while this is not neccessarily the fault of 
-> the automatic semicolon insertion, it can still be an unwanted side-effect. 
+> **Nota:** El analizador de JavaScript no maneja "correctamente" las declaraciones de retorno
+> que van seguidos de una nueva línea, aunque esto no es necesariamente culpa de
+> la inserción automática del punto y coma, aún puede ser un efecto secundario no deseado. 
 
-The parser drastically changed the behavior of the code above. In certain cases,
-it does the **wrong thing**.
+El analizador cambió drásticamente el comportamiento del código anterior. En algunos casos,
+lo hace de forma **incorrecta**.
 
-### Leading Parenthesis
+### Paréntesis principal
 
-In case of a leading parenthesis, the parser will **not** insert a semicolon.
+En el caso de un paréntesis inicial, el analizador **no** insertará un punto y coma.
 
     log('testing!')
     (options.list || []).forEach(function(i) {})
 
-This code gets transformed into one line.
+Este código se transforma en una línea.
 
     log('testing!')(options.list || []).forEach(function(i) {})
 
-Chances are **very** high that `log` does **not** return a function; therefore,
-the above will yield a `TypeError` stating that `undefined is not a function`.
+Las posibilidades son **muy** altas de que `log` **no** devuelva una función; por lo tanto,
+lo anterior producirá un `TypeError` que indica que `undefined no es una función`.
 
-### In Conclusion
+### En conclusión
 
-It is highly recommended to **never** omit semicolons; it is also advocated to 
-keep braces on the same line with their corresponding statements and to never omit 
-them for one single-line `if` / `else` statements. Both of these measures will 
-not only improve the consistency of the code, but they will also prevent the 
-JavaScript parser from changing its behavior.
+Se recomienda **nunca** omitir el punto y coma; también se aboga por que se
+mantengan las llaves en la misma línea con sus declaraciones correspondientes 
+y nunca las omita para una sola línea de declaraciones `if` / ` else`. Ambas medidas
+no solo mejoran la consistencia del código, sino que también evitarán que
+el analizador de JavaScript cambie su comportamiento.
 
