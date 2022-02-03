@@ -25,7 +25,7 @@ A primeira grande diferença é que herança em JavaScript utiliza o conceito de
 
     function Bar() {}
 
-    // Apontar Bar's prototype para uma nava instância de Foo
+    // Apontar Bar's prototype para uma nova instância de Foo
     Bar.prototype = new Foo();
     Bar.prototype.foo = 'Hello World';
 
