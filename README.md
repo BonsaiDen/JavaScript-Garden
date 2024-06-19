@@ -1,6 +1,18 @@
 JavaScript Garden
 =================
 
+2024 update: this project has not been actively maintained in years. The original author
+[took the site down](https://github.com/BonsaiDen/JavaScript-Garden/commit/93278fbcafa569fd193f8784abc267e9db09c645) 
+in 2022 (no judgement - updating it would be a big project!). At that point it was already long out of date, e.g. missing
+the new language features from ES6 onwards.
+
+Many excellent modern guides exist, e.g. [Eloquent Javascript](https://eloquentjavascript.net/), or
+the [MDN guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
+
+Thanks for all the maintainers and translators over the years!
+
+-----
+
 **JavaScript Garden** is a growing collection of documentation about the most 
 quirky parts of the JavaScript programming language. It gives advice to 
 avoid common mistakes, subtle bugs, as well as performance issues and bad 
@@ -19,7 +31,7 @@ This guide is the work of two lovely Stack Overflow users, [Ivo Wetzel][6]
 [many others](https://github.com/BonsaiDen/JavaScript-Garden/graphs/contributors)
 who've worked hard to provide translations or fixes.
 
-It's currently maintained by [Tim Ruffles](http://twitter.com/timruffles).
+It was maintained by [Tim Ruffles](http://twitter.com/timruffles) from 2013-2020ish.
 
 ## Contributing
 
