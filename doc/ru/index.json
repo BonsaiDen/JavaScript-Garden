@@ -9,6 +9,7 @@
             "articles": [
                 "authors",
                 "contributors",
+                "hosting",
                 "translators",
                 "license"
             ]
@@ -54,12 +55,13 @@
             ]
         },
         {
-            "title": "Нативности",
+            "title": "Ядро",
             "dir": "core",
             "articles": [
                 "eval",
                 "undefined",
-                "semicolon"
+                "semicolon",
+                "delete"
             ]
         },
         {
