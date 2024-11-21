@@ -30,7 +30,7 @@ En este ejemplo `this` se referiere a `test`.
 
     new foo(); 
 
-Llamar a una función que esta precedida por la palabra clave `new` actúa como
+Llamar a una función que está precedida por la palabra clave `new` actúa como
 un [constructor](#function.constructors). Dentro de la función, `this` se refiere 
 al `Objeto` *recién creado*.
 
@@ -50,12 +50,12 @@ Como resultado, el ejemplo anterior sobre los *casos de métodos* estos **no** s
 dentro de `foo` puede establecerse en `bar`.
 
 > **Nota:** `this` **no puede** ser usado para referirse a un objeto dentro de un `Objeto`
-> literal. Así `var obj = {me: this}` **no**  dará ninǵun resultado en `me` refiriendose a
+> literal. Así `var obj = {me: this}` **no**  dará ninǵun resultado en `me` refiriéndose a
 > `obj`, ya que `this` sólo será obtenido por uno de los cincos casos enumerados.
 
 ### Errores comunes
 
-Si bien en la mayoría de los casos esto tiene sentido, el primero puede cosiderarse como otro
+Si bien en la mayoría de los casos esto tiene sentido, el primero puede considerarse como otro
 mal diseño del lenguaje, ya que **nunca** tiene un uso práctico.
 
     Foo.method = function() {
