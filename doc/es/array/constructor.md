@@ -12,7 +12,7 @@ cuando se crean nuevos arrays.
     new Array('3') // Resultado: ['3']
 
 En casos cuando sólo hay un argumento pasado al constructor del `Array`,
-y que el argumento es un `Número`, el contructor devolverá un array *disperso* 
+y que el argumento es un `Número`, el constructor devolverá un array *disperso* 
 con la propiedad `length` establecida al valor del argumento. Esto debe señalarse
 que la propiedad `length` **sólo** del nuevo array se establecerá de esa manera, 
 los índices reales de la matriz no se iniciará. 
