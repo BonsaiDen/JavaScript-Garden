@@ -1,7 +1,7 @@
 ## Iteración de un Array y sus propiedades
 
 A pesar que los arrays en JavaScript son objetos, no existe un buena razón para
-usarlo en un [`bucle for`](#object.forinloop) para una interación de este. De 
+usarlo en un [`bucle for`](#object.forinloop) para una interacción de este. De 
 hecho, hay un número de buenas razones **contra** el uso de `for in` en arrays.
 
 > **Nota:** Los arrays de JavaScript **no** son *arrays asociativos*. JavaScript sólo 
@@ -53,6 +53,6 @@ longitud no tiene ningún efecto sobre el array.
 ### En conclusión
 
 Para obtener el mejor rendimiento es recomendable siempre usar el bucle `for`
-y alamacenar en caché la propiedad `length`. El uso del bucle `for in` en un array 
+y almacenar en caché la propiedad `length`. El uso del bucle `for in` en un array 
 es señal de un código mal escrito propenso a errores y un mal desempeño. 
 
