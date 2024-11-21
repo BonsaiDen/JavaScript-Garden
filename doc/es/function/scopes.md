@@ -116,7 +116,7 @@ la `función` declarada se translada a la parte superior de su ámbito que lo co
     }
 
 El código anterior transforma antes de ejecutarse. JavaScript mueve
-la declaracione `var` aspi como las declaraciones de la `función` a la parte superior a
+la declaración `var` así como las declaraciones de la `función` a la parte superior a
 lo más cercano del ámbito circundante.
 
     // declaraciones var movidas aquí
@@ -170,62 +170,62 @@ a la parte superior del *ámbito global*.
         SomeImportantThing = {};
     }
 
-### Name Resolution Order
+### Orden de Resolución de Nombres
 
-All scopes in JavaScript, including the *global scope*, have the special name 
-[`this`](#function.this), defined in them, which refers to the *current object*. 
+Todos los ámbitos en JavaScript, incluyendo el *Ámbito Global* tienen el nombre
+especial [`this`](#function.this) definido en ellos, que se refiere al *objecto actual*.
 
-Function scopes also have the name [`arguments`](#function.arguments), defined in
-them, which contains the arguments that were passed to a function.
+Los ámbitos de las funciones también tienen el nombre [`arguments`](#function.arguments)
+, definido en ellas, que contiene los argumentos que se pasaron a la función.
 
-For example, when trying to access a variable named `foo` inside the scope of a 
-function, JavaScript will lookup the name in the following order:
+Por ejemplo, cuando se intenta acceder a una variable llamada `foo` dentro del 
+ámbito de una función, JavaScript buscará el nombre en el siguiente orden:
 
- 1. In case there is a `var foo` statement in the current scope, use that.
- 2. If one of the function parameters is named `foo`, use that.
- 3. If the function itself is called `foo`, use that.
- 4. Go to the next outer scope, and start with **#1** again.
+ 1. En caso de que haya una sentencia `var foo` en el ámbito actual, utilícela.
+ 2. Si uno de los parámetros de la función se llama `foo`, utilícelo.
+ 3. Si la propia función se llama `foo`, utilícela.
+ 4. Vaya al siguiente ámbito exterior, y empiece con el paso **#1** nuevamente.
 
-> **Note:** Having a parameter called `arguments` will **prevent** the creation 
-> of the default `arguments` object.
+> **Nota:** Tener un parametro llamado `arguments` **evitará** la creación
+> del objeto `arguments` por defecto.
 
 ### Namespaces
 
-A common problem of having only one global namespace is the likeliness of running
-into problems where variable names clash. In JavaScript, this problem can
-easily be avoided with the help of *anonymous wrappers*.
+Un problema común de tener solo un namespace global es la probabilidad de encontrarse
+con problemas donde los nombres de variables chocan. En JavaScript, este problema se puede
+evitar facílmente con la ayuda de *anonymous wrappers*
 
     (function() {
-        // a self contained "namespace"
+        // un "namespace" auto contenido
         
         window.foo = function() {
-            // an exposed closure
+            // un closure expuesto
         };
 
-    })(); // execute the function immediately
+    })(); // se ejecuta la función inmediatamente
 
 
-Unnamed functions are considered [expressions](#function.general); so in order to
-being callable, they must first be evaluated.
+Las funciones sin nombre son consideradas [expressions](#function.general); 
+así que para poderlas invocar, primero deben evaluarse.
 
-    ( // evaluate the function inside the paranthesis
+    ( // evaluar la función dentro de los paréntesis
     function() {}
-    ) // and return the function object
-    () // call the result of the evaluation
+    ) // y retornar el objeto de la función
+    () // llama al resultado de la evaluación
 
-There are other ways for evaluating and calling the function expression; which, 
-while different in syntax, do behave the exact same way.
+Hay otras formas de evaluar y llamar a la función expression; tanto que
+mientras difieren en la sintaxis, se comportan exactamente igual.
 
-    // Two other ways
+    // Dos alternativas
     +function(){}();
     (function(){}());
 
-### In Conclusion
+### En Conclusión
 
-It is recommended to always use an *anonymous wrapper* for encapsulating code in 
-its own namespace. This does not only protect code against name clashes, but it 
-also allows for better modularization of programs.
+Es recomendable que siempre se use un *anonymous wrapper* para encapsular el código en 
+su propio namespace. Esto no sólo proteje al código contra los choques de nombres,
+sino que tambien permite una mejor modularización de los programas.
 
-Additionally, the use of global variables is considered **bad practice**. **Any**
-use of them indicates badly written code that is prone to errors and hard to maintain.
-
+Además, el uso de variables globales es considerado una **mala practica**.
+**Cualquier** uso de ellas indica que el código está mal escrito, será propenso a errores y 
+dificil de mantener.
