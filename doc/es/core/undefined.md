@@ -7,12 +7,12 @@ es `undefined`.
 
 `undefined` es un tipo de dato con exactamente el mismo valor: `undefined`.
 
-El lenguaje también define una variable global que tiene el valor de `undefined`,
+El lenguaje también define una variable global que tiene el valor de `undefined`.
 Esta variable es también llamada `undefined`. Sin embargo, esta variable **no** es una 
 constante, ni es una palabra reservada del lenguaje. Esto significa que el *valor* 
 puede ser sobreescrito fácilmente.
 
-> **Nota ES5:** `undefined` en ECMAScript 5 **ya no es** *modificable* en modo esstricto,
+> **Nota ES5:** `undefined` en ECMAScript 5 **ya no es** *modificable* en modo estricto,
 > pero su nombre todavía puede por ejemplo establecer una función con el nombre
 > `undefined`.
 
@@ -20,15 +20,15 @@ Algunos ejemplos cuando el valor retorna `undefined`:
 
  - Acceso a la variable global (sin modificar) `undefined`.
  - Retorna implícitamente las funciones que no posean la sentencia `return`.
- - Sentencia `return` que no retorna nada de forma explicíta.
+ - Sentencia `return` que no retorna nada de forma explícita.
  - Búsquedas de propiedades inexistentes.
  - Párametros de la función que no tienen ningún valor explicíto pasado.
- - Cualquier valor que se estable en `undefined`.
+ - Cualquier valor que se establece en `undefined`.
 
 ### Manejar los cambios en el valor deChanges `undefined`
 
 Dado que la variable `undefined` sólo tiene una copia del *value* de  
-`undefined`, assigna un nuevo valor que **no** cambie el valor del 
+`undefined`, asigna un nuevo valor que **no** cambie el valor del 
 *tipo* `undefined`.
 
 
