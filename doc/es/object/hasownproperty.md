@@ -2,7 +2,7 @@
 
 Con el fin de comprobar si un objeto posee una propiedad definida *en sí* mismo y **no**
 en algún lugar de su [cadena de prototipo](#object.prototype), es necesario utilizar
-el método `hasOwnProperty` ya que todos los objetos herendan de `Object.prototype`.
+el método `hasOwnProperty` ya que todos los objetos heredan de `Object.prototype`.
 
 > **Nota:** **No** es suficiente con comprobar si una propiedad está `definida`.
 > La propiedad bien podría existir, pero su valor sólo pasa a ser definido como 
@@ -22,8 +22,8 @@ y **no** las salta en la cadena de prototipo.
     foo.hasOwnProperty('goo'); // true
 
 Sólo `hasOwnProperty` retornará el resultado correcto y esperado, esto es
-ensencial cuando se repite una iteración en las propiedades de cualquier objeto. No hay
-otra maner de excluir las propiedades que no están definidas en el mismo objeto, pero 
+esencial cuando se repite una iteración en las propiedades de cualquier objeto. No hay
+otra manera de excluir las propiedades que no están definidas en el mismo objeto, pero 
 en alguna parte de su cadena de prototipo si.
 
 ### `hasOwnProperty` como propiedad
@@ -49,5 +49,5 @@ la posibilidad de que un objeto tenga una propiedad con el mismo nombre, es nece
 Cuando se necesite comprobar la existencia de una propiedad en un objeto, `hasOwnProperty` es
 el **único** método para hacerlo. También se recomienda el uso de `hasOwnProperty` como
 parte de un [bucle `for in`](#object.forinloop), esto evitará errores desde
-extenciones de [prototipos](#object.prototype) nativos.
+extensiones de [prototipos](#object.prototype) nativos.
 
