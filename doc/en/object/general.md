@@ -22,6 +22,7 @@ as objects too.
     2..toString(); // the second point is correctly recognized
     2 .toString(); // note the space left of the dot
     (2).toString(); // 2 is evaluated first
+	2["toString"](); // alternative notation avoids using the dot 
 
 ### Objects as a Data Type
 
