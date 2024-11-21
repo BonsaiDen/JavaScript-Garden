@@ -1,0 +1,22 @@
+{
+    "title": "Градината на JavaScript",
+    "langTitle": "Градината на JavaScript на български",
+    "description": "Ръководство за особеностите и пропуските в JavaScript.",
+    "sections": [
+        {
+            "title": "Увод",
+            "dir": "intro",
+            "articles": ["index"]
+        },
+        {
+            "title": "Обекти",
+            "dir": "object",
+            "articles": [
+                "general",
+                "prototype",
+                "hasownproperty",
+                "forinloop"
+            ]
+        }
+    ]
+}
