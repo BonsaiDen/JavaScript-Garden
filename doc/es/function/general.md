@@ -8,7 +8,7 @@ una *función anónima* a otra, posiblemente una función asíncrona. Esto se co
 
     function foo() {}
 
-La función anterior se [carga](#function.scopes) así mismo antes de iniciar la ejecución del
+La función anterior se [carga](#function.scopes) asimisma antes de iniciar la ejecución del
 programa; por lo tanto, está disponible en *todo* el scope (ámbito) de la aplicación
 donde se ha *definido*, aunque hubiera sido llamado antes de definirse en el código.
 
@@ -26,11 +26,11 @@ Este ejemplo asigna una función sin nombre y anónima a la variable `foo`.
     var foo = function() {};
 
 Debido a la declaración de `var`, que carga el nombre de la variable `foo` antes
-de la ejecución real del inicio del código, `foo` ya estará definidido cuando se
+de la ejecución real del inicio del código, `foo` ya estará definido cuando se
 ejecute el script.
 
 Pero se asigna sólo si ocurre en tiempo de ejecución, el valor de `foo` de forma 
-predetermina es [undefined](#core.undefined) antes de que el código se ejecute.
+predeterminada es [undefined](#core.undefined) antes de que el código se ejecute.
 
 ### Expresión nombre de función
 
@@ -44,5 +44,5 @@ Otro caso especial de asignación de nombre de funciones.
 Aquí `bar` no está disponible en el ámbito externo (scope), ya que la función sólo es 
 asignada a `foo`; Sin embargo, dentro de `bar` si está disponible. Esto se debe a la forma
 en como trabaja la [resolución de nombres](#function.scopes) en JavaScript, el nombre de 
-la función esta *siempre* disponible en el ámbito local de la propia función.
+la función está *siempre* disponible en el ámbito local de la propia función.
 
