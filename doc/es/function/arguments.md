@@ -1,10 +1,10 @@
 ## El objeto `arguments`
 
 Cada ámbito de la función de JavaScript puede acceder a la variable especial `arguments`.
-Está variable contiene una lista de todos los argumentos que se pasan a la función.
+Esta variable contiene una lista de todos los argumentos que se pasan a la función.
 
 > **Nota:** En este caso `arguments` ya se ha definido dentro del ámbito de la
-> función ya sea através de la sentencia `var` o como un parámetro formal,
+> función ya sea a través de la sentencia `var` o como un parámetro formal,
 > el objeto `arguments` no se creará.
 
 El objeto `arguments` **no** es un `Array`. Si bien cuenta con la semántica
@@ -108,7 +108,7 @@ necesita saber acerca de sí mismo y la llamada. Esto no sólo denota los posibl
 de rendimiento que surgen con la expansión en línea, ya que también interrumpe la encapsulación
 ya que la función ahora puede ser dependiente de un contexto específico de llamada.
 
-Es **muy recomendable**  **nunca** hacer uso de `arguments.callee` o de cualquier
+Es **muy recomendable**  **nunca** hacer uso de `arguments.callee` o de cualquiera
 de sus propiedades.
 
 > **Nota ES5:** En modo estricto, `arguments.callee` generará una excepción de `TypeError` ya que 
