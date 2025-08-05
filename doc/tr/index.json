@@ -57,7 +57,14 @@
                 "semicolon",
                 "delete"
             ]
-        },
+        }, 
+        {
+            "title": "Hata Yönetimi",
+            "dir": "error",
+            "articles": [
+                "built-in-error-types"
+             ]
+        },  
         {
             "title": "Diğer",
             "dir": "other",
